@@ -1,0 +1,98 @@
+
+--カテゴリーテーブル
+create table categories(
+  id serial NOT NULL PRIMARY KEY,
+  name varchar(20) NOT NULL UNIQUE
+
+);
+
+
+--ブランドテーブル
+create table brands(
+  id serial NOT NULL PRIMARY KEY,
+  name varchar(50) NOT NULL UNIQUE
+
+);
+
+
+--タグコンテンツテーブル
+create table tag_contents(
+  id serial NOT NULL PRIMARY KEY,
+  name varchar(30) NOT NULL UNIQUE
+);
+
+
+--タグテーブル
+create table tags(
+  id serial NOT NULL PRIMARY KEY,
+  clothes_id integer NOT NULL,
+  tag_contents_id integer REFERENCES tag_contents(id)
+
+);
+
+
+--色テーブル
+create table colors ( 
+  id serial NOT NULL PRIMARY KEY,
+  name varchar(10) NOT NULL UNIQUE
+);
+
+
+--サイズテーブル
+create table sizes(
+  id serial NOT NULL PRIMARY KEY,
+  name varchar(5) NOT NULL UNIQUE
+
+);
+
+
+--服テーブル
+create table clothes(
+  id serial NOT NULL PRIMARY KEY,
+  user_id integer NOT NULL,
+  category_id integer NOT NULL REFERENCES categories(id),
+  brand_id integer NOT NULL REFERENCES brands(id),
+  image_path varchar(50) NOT NULL,
+  price integer,
+  color_id integer REFERENCES colors(id) NOT NULL,
+  season char,
+  size_id integer REFERENCES sizes(id),
+  perchase_date date,
+  comment varchar(250),
+  deleted boolean NOT NULL DEFAULT FALSE
+
+);
+
+--ユーザーテーブル
+create table users(
+  id serial NOT NULL PRIMARY KEY,
+  email varchar(50) NOT NULL,
+  password varchar(20) NOT NULL,
+  deleted boolean NOT NULL DEFAULT FALSE
+
+);
+
+--コーディネートテーブル
+create table coordinates(
+  id serial NOT NULL PRIMARY KEY,
+  user_id integer NOT NULL,
+  fashion_accessories integer,
+  tops1 integer,
+  tops2 integer,
+  outers integer,
+  bottoms integer,
+  shoes integer,
+  bag integer,
+  dress integer,
+  deleted boolean NOT NULL DEFAULT FALSE
+
+);
+
+--お問い合わせテーブル
+create table contacts(
+  id serial NOT NULL PRIMARY KEY,
+  name varchar(20) NOT NULL,
+  email varchar(50) NOT NULL,
+  content text NOT NULL
+
+);
