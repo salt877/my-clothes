@@ -36,12 +36,12 @@
 		<nav>
 			<div class="inner">
 				<ul>
-					<li><a href="statistics.html">統計データ</a></li>
-					<li><a href="calender.html">カレンダー</a></li>
-					<li><a href="coordinate.html">コーディネート</a></li>
-					<li><a href="contact.html">お問い合わせ</a></li>
-					<li><a href="faq.html">FAQ</a></li>
-					<li><a href="logout.html">ログアウト</a></li>
+					<li><a href="statistics.html"><i class="far fa-chart-bar"></i>&emsp;&emsp;統計データ</a></li>
+					<li><a href="calender.html"><i class="far fa-calendar-alt"></i>&emsp;&emsp;カレンダー</a></li>
+					<li><a href="coordinate.html"><i class="fas fa-female"></i>&emsp;&emsp;コーディネート</a></li>
+					<li><a href="contact.html"><i class="far fa-envelope"></i>&emsp;&emsp;お問い合わせ</a></li>
+					<li><a href="faq.html"><i class="far fa-question-circle"></i>&emsp;&emsp;FAQ</a></li>
+					<li><a href="logout.html"><i class="fas fa-sign-out-alt"></i>&emsp;&emsp;ログアウト</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -54,63 +54,88 @@
 	</div>
 
 	<!-- main -->
-	<div class="text-center" style="text-align: center; margin-top: 100px;">
-		<h2>MYQLOから退会</h2>
+	<div class="container" style="margin-bottom: 400px;">
+		<div class="text-center" style="margin-top: 100px;">
+			<h1 class="section-heading text-uppercase">MYQLOから退会</h1>
 
-		<br> 本当に退会してもよろしいですか？<br> <br>
+			<div class="section-subheading text-muted">本当に退会してもよろしいですか？</div>
+			<br> <br>
 
-		<button class="btn btn-primary" data-toggle="modal"
-			data-target="#exampleModal">
-			<span style="padding: 0px 50px 0px 50px;">はい</span>
-		</button>
-
-		<!-- 「はい」を押したときのモーダルの設定 -->
-		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-			aria-labelledby="exampleModalLabel">
-			<div class="modal-dialog">
-				<div class="modal-content">
-
-					<!-- モーダル内ヘッダー -->
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">確認</h5>
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="閉じる">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-
-					<!-- モーダル内ボディ -->
-					<div class="modal-body">
-						このアカウントを削除します。<br> （「はい」を押すとアカウント削除後、登録画面へ移ります。)
-					</div>
-
-					<!-- モーダル内フッター -->
-					<div class="modal-footer">
-						<form action="register_user.html" method="post">
-							<button type="submit" class="btn btn-primary">はい</button>
-						</form>
-
-						<button type="button" class="btn btn-secondary"
-							data-dismiss="modal">戻る</button>
-					</div>
-
-					<!-- /.modal-footer -->
-				</div>
-				<!-- /.modal-content -->
-			</div>
-			<!-- /.modal-dialog -->
-		</div>
-		<!-- /.modal -->
-		<!-- モーダル設定終了 -->
-
-		<br> <br>
-		<form method="post" class="" action="top.html">
-			<button class="btn btn-primary">
-				<span style="padding: 0px 50px 0px 50px;">戻る</span>
+			<button class="btn btn-primary" data-toggle="modal"
+				data-target="#exampleModal">
+				<span style="padding: 0px 50px 0px 50px;">はい</span>
 			</button>
-		</form>
 
+			<!-- 「はい」を押したときのモーダルの設定 -->
+			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+				aria-labelledby="exampleModalLabel">
+				<div class="modal-dialog">
+					<div class="modal-content">
+
+						<!-- モーダル内ヘッダー -->
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">確認</h5>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="閉じる">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+
+						<!-- モーダル内ボディ -->
+						<div class="modal-body">
+							このアカウントを削除します。<br> （「はい」を押すとアカウント削除後、登録画面へ移ります。)
+						</div>
+
+						<!-- モーダル内フッター -->
+						<div class="modal-footer">
+							<form action="register_user.html" method="post">
+								<button type="submit" class="btn btn-primary">はい</button>
+							</form>
+
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">戻る</button>
+						</div>
+
+						<!-- /.modal-footer -->
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			<!-- /.modal -->
+			<!-- モーダル設定終了 -->
+
+			<br> <br>
+			<form method="post" class="" action="top.html">
+				<button class="btn btn-primary">
+					<span style="padding: 0px 50px 0px 50px;">戻る</span>
+				</button>
+			</form>
+
+		</div>
 	</div>
+
+	<!-- Footer-->
+	<footer class="footer py-4">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-lg-4 text-lg-left">Copyright © MYQLO 2020</div>
+				<div class="col-lg-4 my-3 my-lg-0">
+					<a class="btn btn-dark btn-social mx-2" href="#!"><i
+						class="fab fa-twitter"></i></a> <a
+						class="btn btn-dark btn-social mx-2" href="#!"><i
+						class="fab fa-facebook-f"></i></a> <a
+						class="btn btn-dark btn-social mx-2" href="#!"><i
+						class="fab fa-linkedin-in"></i></a>
+				</div>
+				<div class="col-lg-4 text-lg-right">
+					<a class="mr-3" href="#!">Privacy Policy</a> <a href="#!">Terms
+						of Use</a>
+				</div>
+			</div>
+		</div>
+	</footer>
+
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"

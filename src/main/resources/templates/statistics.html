@@ -31,12 +31,12 @@
 		<nav>
 			<div class="inner">
 				<ul>
-					<li><a href="statistics.html">統計データ</a></li>
-					<li><a href="calender.html">カレンダー</a></li>
-					<li><a href="coordinate.html">コーディネート</a></li>
-					<li><a href="contact.html">お問い合わせ</a></li>
-					<li><a href="faq.html">FAQ</a></li>
-					<li><a href="logout.html">ログアウト</a></li>
+					<li><a href="statistics.html"><i class="far fa-chart-bar"></i>&emsp;&emsp;統計データ</a></li>
+					<li><a href="calender.html"><i class="far fa-calendar-alt"></i>&emsp;&emsp;カレンダー</a></li>
+					<li><a href="coordinate.html"><i class="fas fa-female"></i>&emsp;&emsp;コーディネート</a></li>
+					<li><a href="contact.html"><i class="far fa-envelope"></i>&emsp;&emsp;お問い合わせ</a></li>
+					<li><a href="faq.html"><i class="far fa-question-circle"></i>&emsp;&emsp;FAQ</a></li>
+					<li><a href="logout.html"><i class="fas fa-sign-out-alt"></i>&emsp;&emsp;ログアウト</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -51,23 +51,48 @@
 	<section class="page-section bg-light" id="portfolio">
 		<div class="container">
 			<div class="text-center">
-				<h2 class="section-heading text-uppercase">統計データ</h2>
-				<h3 class="section-subheading text-muted">あなたのクローゼットの統計データです。</h3>
+				<h2 class="section-heading text-uppercase">MY STATS</h2>
+				<div class="section-subheading text-muted">あなたが登録したアイテムの統計データです。</div>
+			</div>
+			<br><br>
 
-				<h4>クローゼット総資産額</h4>
-				<h6 class="section-subheading text-muted">¥1,232,505,896</h6>
-				<br>
+			<div class="text-center">
 
-				<h4>購入アイテム平均額</h4>
-				<h6 class="section-subheading text-muted">¥56,975</h6>
-				<br>
+				<table class="table">
+					<thead>
+						<tr>
+							<th class="st-column">クローゼット総資産額</th>
+							<th class="st-column">購入アイテム平均額</th>
+							<th class="st-column">クローゼットアイテム数</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>¥1,232,505,896</td>
+							<td>¥56,975</td>
+							<td>126&nbsp;点</td>
 
-				<h4>クローゼットアイテム数</h4>
-				<h6 class="section-subheading text-muted">4</h6>
-				<br>
+						</tr>
+					</tbody>
+				</table>
+
+				<br> <br>
 				<!-- Chart.jsを使って仮表示 -->
-				<h4>総アイテム数</h4>
-				<canvas id="myChart"></canvas>
+				<!-- 総アイテム数テーブル -->
+				<table class="table">
+					<thead>
+						<tr>
+							<th class="st-column">総アイテム数</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<canvas id="myChart"></canvas>
+							</td>
+						</tr>
+					</tbody>
+				</table>
 				<script
 					src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
 
@@ -75,12 +100,12 @@
 				<script type="text/javascript">
 					var ctx = document.getElementById("myChart");
 					var myChart = new Chart(ctx, {
-						type : 'pie',
+						type : 'doughnut',
 						data : {
 							labels : [ "トップス", "ボトムス", "シューズ", "ファッション雑貨" ],
 							datasets : [ {
-								backgroundColor : [ "#BB5179", "#FAFF67",
-										"#58A27C", "#3C00FF"
+								backgroundColor : [ "#DC143C", "#00008B",
+										"#6B8E23", "#FFD700"
 
 								],
 								data : [ 38, 31, 21, 10 ]
@@ -95,20 +120,33 @@
 
 					});
 				</script>
-				<br> <br> <br>
-				<!-- Chart.jsを使って仮表示 -->
-				<h4>カテゴリー別金額</h4>
-				<canvas id="myChart2"></canvas>
+
+				<br>
+				<!-- カテゴリー別金額テーブル-->
+				<table class="table">
+					<thead>
+						<tr>
+							<th class="st-column">カテゴリー別金額</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<canvas id="myChart2"></canvas>
+							</td>
+						</tr>
+					</tbody>
+				</table>
 
 				<script type="text/javascript">
 					var ctx2 = document.getElementById("myChart2");
 					var myChart2 = new Chart(ctx2, {
-						type : 'pie',
+						type : 'doughnut',
 						data : {
 							labels : [ "トップス", "ボトムス", "シューズ", "ファッション雑貨" ],
 							datasets : [ {
-								backgroundColor : [ "#BB5179", "#FAFF67",
-										"#58A27C", "#3C00FF"
+								backgroundColor : [ "#DC143C", "#00008B",
+										"#6B8E23", "#FFD700"
 
 								],
 								data : [ 201890, 13230, 2230, 2250 ]
@@ -123,20 +161,33 @@
 
 					});
 				</script>
-				<br> <br> <br>
+				<br>
 				<!-- Chart.jsを使って仮表示 -->
-				<h4>ブランド別金額</h4>
-				<canvas id="myChart3"></canvas>
+
+				<table class="table">
+					<thead>
+						<tr>
+							<th class="st-column">ブランド別金額</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<canvas id="myChart3"></canvas>
+							</td>
+						</tr>
+					</tbody>
+				</table>
 
 				<script type="text/javascript">
 					var ctx3 = document.getElementById("myChart3");
 					var myChart3 = new Chart(ctx3, {
-						type : 'pie',
+						type : 'doughnut',
 						data : {
 							labels : [ "ニューバランス", "アディダス", "ナイキ", "UNIQLO" ],
 							datasets : [ {
-								backgroundColor : [ "#BB5179", "#FAFF67",
-										"#58A27C", "#3C00FF"
+								backgroundColor : [ "#DC143C", "#00008B",
+										"#6B8E23", "#FFD700"
 
 								],
 								data : [ 190890, 73130, 45230, 1290 ]
@@ -157,6 +208,27 @@
 
 		</div>
 	</section>
+
+	<!-- Footer-->
+	<footer class="footer py-4">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-lg-4 text-lg-left">Copyright © MYQLO 2020</div>
+				<div class="col-lg-4 my-3 my-lg-0">
+					<a class="btn btn-dark btn-social mx-2" href="#!"><i
+						class="fab fa-twitter"></i></a> <a
+						class="btn btn-dark btn-social mx-2" href="#!"><i
+						class="fab fa-facebook-f"></i></a> <a
+						class="btn btn-dark btn-social mx-2" href="#!"><i
+						class="fab fa-linkedin-in"></i></a>
+				</div>
+				<div class="col-lg-4 text-lg-right">
+					<a class="mr-3" href="#!">Privacy Policy</a> <a href="#!">Terms
+						of Use</a>
+				</div>
+			</div>
+		</div>
+	</footer>
 
 
 	<!-- Bootstrap core JS-->
