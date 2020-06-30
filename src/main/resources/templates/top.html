@@ -23,11 +23,12 @@
           <nav>
             <div class="inner">
               <ul>
-                <li><a href="#"><i class="far fa-chart-bar"></i>&emsp;&emsp;統計データ</a></li>
-                <li><a href="#"><i class="far fa-calendar-alt"></i>&emsp;&emsp;カレンダー</a></li>
-                <li><a href="#"><i class="fas fa-female"></i>&emsp;&emsp;コーディネート</a></li>
-                <li><a href="#"><i class="far fa-envelope"></i>&emsp;&emsp;お問い合わせ</a></li>
-                <li><a href="#"><i class="far fa-question-circle"></i>&emsp;&emsp;FAQ</a></li>
+                <li><a href="top.html"><i class="fas fa-home"></i>&emsp;&emsp;TOP</a></li>
+                <li><a href="statistics.html"><i class="far fa-chart-bar"></i>&emsp;&emsp;統計データ</a></li>
+                <li><a href="calender.html"><i class="far fa-calendar-alt"></i>&emsp;&emsp;カレンダー</a></li>
+                <li><a href="coordinate.html"><i class="fas fa-female"></i>&emsp;&emsp;コーディネート</a></li>
+                <li><a href="contact.html"><i class="far fa-envelope"></i>&emsp;&emsp;お問い合わせ</a></li>
+                <li><a href="faq.html"><i class="far fa-question-circle"></i>&emsp;&emsp;FAQ</a></li>
                 <li><a href="#"><i class="fas fa-sign-out-alt"></i>&emsp;&emsp;ログアウト</a></li>
              </ul>
            </div>
@@ -49,95 +50,197 @@
                     <h2 class="section-heading text-uppercase">My Closet</h2>
                     <h3 class="section-subheading text-muted">Here is a list of the clothes you have.</h3>
                 </div>
-                <div class="row">
-                    <div class="col-lg-4 col-sm-6 mb-4">
-                        <div class="portfolio-item">
-                            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
-                                <div class="portfolio-hover">
-                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                                </div>
-                                <img class="img-fluid" src="../static/dist/assets/img/portfolio/01-thumbnail.jpg" alt="" />
-                            </a>
-                            <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Threads</div>
-                                <div class="portfolio-caption-subheading text-muted">Illustration</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 mb-4">
-                        <div class="portfolio-item">
-                            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal2">
-                                <div class="portfolio-hover">
-                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                                </div>
-                                <img class="img-fluid" src="../static/dist/assets/img/portfolio/02-thumbnail.jpg" alt="" />
-                            </a>
-                            <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Explore</div>
-                                <div class="portfolio-caption-subheading text-muted">Graphic Design</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 mb-4">
-                        <div class="portfolio-item">
-                            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal3">
-                                <div class="portfolio-hover">
-                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                                </div>
-                                <img class="img-fluid" src="../static/dist/assets/img/portfolio/03-thumbnail.jpg" alt="" />
-                            </a>
-                            <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Finish</div>
-                                <div class="portfolio-caption-subheading text-muted">Identity</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-                        <div class="portfolio-item">
-                            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal4">
-                                <div class="portfolio-hover">
-                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                                </div>
-                                <img class="img-fluid" src="../static/dist/assets/img/portfolio/04-thumbnail.jpg" alt="" />
-                            </a>
-                            <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Lines</div>
-                                <div class="portfolio-caption-subheading text-muted">Branding</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 mb-4 mb-sm-0">
-                        <div class="portfolio-item">
-                            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal5">
-                                <div class="portfolio-hover">
-                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                                </div>
-                                <img class="img-fluid" src="../static/dist/assets/img/portfolio/05-thumbnail.jpg" alt="" />
-                            </a>
-                            <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Southwest</div>
-                                <div class="portfolio-caption-subheading text-muted">Website Design</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="portfolio-item">
-                            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal6">
-                                <div class="portfolio-hover">
-                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                                </div>
-                                <img class="img-fluid" src="../static/dist/assets/img/portfolio/06-thumbnail.jpg" alt="" />
-                            </a>
-                            <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Window</div>
-                                <div class="portfolio-caption-subheading text-muted">Photography</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    
+                <div id="cloth_list" class="row">
+                	<div class="col-lg-4 col-sm-6 mb-4">
+                		<div class="portfolio-item">
+                			<a class="portfolio-link" data-toggle="modal" href="#portfolioModal2">
+                				<div class="portfolio-hover">
+                					<div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                				</div>
+                				<img class="img-fluid" src="../static/dist/assets/img/portfolio/01-thumbnail.jpg" alt="" />
+                			</a>
+                			<div  class="portfolio-caption">
+                				<div class="portfolio-caption-heading">Explore</div>
+                				<div class="portfolio-caption-subheading text-muted">Graphic Design</div>
+                			</div>
+                		</div>
+                	</div>
+                	<div class="col-lg-4 col-sm-6 mb-4">
+                		<div class="portfolio-item">
+                			<a class="portfolio-link" data-toggle="modal" href="#portfolioModal2">
+                				<div class="portfolio-hover">
+                					<div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                				</div>
+                				<img class="img-fluid" src="../static/dist/assets/img/portfolio/02-thumbnail.jpg" alt="" />
+                			</a>
+                			<div  class="portfolio-caption">
+                				<div class="portfolio-caption-heading">Explore</div>
+                				<div class="portfolio-caption-subheading text-muted">Graphic Design</div>
+                			</div>
+                		</div>
+                	</div>
+                	<div class="col-lg-4 col-sm-6 mb-4">
+                		<div class="portfolio-item">
+                			<a class="portfolio-link" data-toggle="modal" href="#portfolioModal2">
+                				<div class="portfolio-hover">
+                					<div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                				</div>
+                				<img class="img-fluid" src="../static/dist/assets/img/portfolio/03-thumbnail.jpg" alt="" />
+                			</a>
+                			<div  class="portfolio-caption">
+                				<div class="portfolio-caption-heading">Explore</div>
+                				<div class="portfolio-caption-subheading text-muted">Graphic Design</div>
+                			</div>
+                		</div>
+                	</div>
+                	<div class="col-lg-4 col-sm-6 mb-4">
+                		<div class="portfolio-item">
+                			<a class="portfolio-link" data-toggle="modal" href="#portfolioModal2">
+                				<div class="portfolio-hover">
+                					<div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                				</div>
+                				<img class="img-fluid" src="../static/dist/assets/img/portfolio/04-thumbnail.jpg" alt="" />
+                			</a>
+                			<div  class="portfolio-caption">
+                				<div class="portfolio-caption-heading">Explore</div>
+                				<div class="portfolio-caption-subheading text-muted">Graphic Design</div>
+                			</div>
+                		</div>
+                	</div>
+                	<div class="col-lg-4 col-sm-6 mb-4">
+                		<div class="portfolio-item">
+                			<a class="portfolio-link" data-toggle="modal" href="#portfolioModal2">
+                				<div class="portfolio-hover">
+                					<div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                				</div>
+                				<img class="img-fluid" src="../static/dist/assets/img/portfolio/05-thumbnail.jpg" alt="" />
+                			</a>
+                			<div  class="portfolio-caption">
+                				<div class="portfolio-caption-heading">Explore</div>
+                				<div class="portfolio-caption-subheading text-muted">Graphic Design</div>
+                			</div>
+                		</div>
+                	</div>
+                	<div class="col-lg-4 col-sm-6 mb-4">
+                		<div class="portfolio-item">
+                			<a class="portfolio-link" data-toggle="modal" href="#portfolioModal2">
+                				<div class="portfolio-hover">
+                					<div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                				</div>
+                				<img class="img-fluid" src="../static/dist/assets/img/portfolio/06-thumbnail.jpg" alt="" />
+                			</a>
+                			<div  class="portfolio-caption">
+                				<div class="portfolio-caption-heading">Explore</div>
+                				<div class="portfolio-caption-subheading text-muted">Graphic Design</div>
+                			</div>
+                		</div>
+                	</div>
+                	<div class="col-lg-4 col-sm-6 mb-4">
+                		<div class="portfolio-item">
+                			<a class="portfolio-link" data-toggle="modal" href="#portfolioModal2">
+                				<div class="portfolio-hover">
+                					<div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                				</div>
+                				<img class="img-fluid" src="../static/dist/assets/img/portfolio/01-thumbnail.jpg" alt="" />
+                			</a>
+                			<div  class="portfolio-caption">
+                				<div class="portfolio-caption-heading">Explore</div>
+                				<div class="portfolio-caption-subheading text-muted">Graphic Design</div>
+                			</div>
+                		</div>
+                	</div>
+                	<div class="col-lg-4 col-sm-6 mb-4">
+                		<div class="portfolio-item">
+                			<a class="portfolio-link" data-toggle="modal" href="#portfolioModal2">
+                				<div class="portfolio-hover">
+                					<div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                				</div>
+                				<img class="img-fluid" src="../static/dist/assets/img/portfolio/02-thumbnail.jpg" alt="" />
+                			</a>
+                			<div  class="portfolio-caption">
+                				<div class="portfolio-caption-heading">Explore</div>
+                				<div class="portfolio-caption-subheading text-muted">Graphic Design</div>
+                			</div>
+                		</div>
+                	</div>
+                	<div class="col-lg-4 col-sm-6 mb-4">
+                		<div class="portfolio-item">
+                			<a class="portfolio-link" data-toggle="modal" href="#portfolioModal2">
+                				<div class="portfolio-hover">
+                					<div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                				</div>
+                				<img class="img-fluid" src="../static/dist/assets/img/portfolio/03-thumbnail.jpg" alt="" />
+                			</a>
+                			<div  class="portfolio-caption">
+                				<div class="portfolio-caption-heading">Explore</div>
+                				<div class="portfolio-caption-subheading text-muted">Graphic Design</div>
+                			</div>
+                		</div>
+                	</div>
+                	<div class="col-lg-4 col-sm-6 mb-4">
+                		<div class="portfolio-item">
+                			<a class="portfolio-link" data-toggle="modal" href="#portfolioModal2">
+                				<div class="portfolio-hover">
+                					<div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                				</div>
+                				<img class="img-fluid" src="../static/dist/assets/img/portfolio/04-thumbnail.jpg" alt="" />
+                			</a>
+                			<div  class="portfolio-caption">
+                				<div class="portfolio-caption-heading">Explore</div>
+                				<div class="portfolio-caption-subheading text-muted">Graphic Design</div>
+                			</div>
+                		</div>
+                	</div>
+                	<div class="col-lg-4 col-sm-6 mb-4">
+                		<div class="portfolio-item">
+                			<a class="portfolio-link" data-toggle="modal" href="#portfolioModal2">
+                				<div class="portfolio-hover">
+                					<div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                				</div>
+                				<img class="img-fluid" src="../static/dist/assets/img/portfolio/05-thumbnail.jpg" alt="" />
+                			</a>
+                			<div  class="portfolio-caption">
+                				<div class="portfolio-caption-heading">Explore</div>
+                				<div class="portfolio-caption-subheading text-muted">Graphic Design</div>
+                			</div>
+                		</div>
+                	</div>
+                	<div class="col-lg-4 col-sm-6 mb-4">
+                		<div class="portfolio-item">
+                			<a class="portfolio-link" data-toggle="modal" href="#portfolioModal2">
+                				<div class="portfolio-hover">
+                					<div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                				</div>
+                				<img class="img-fluid" src="../static/dist/assets/img/portfolio/06-thumbnail.jpg" alt="" />
+                			</a>
+                			<div  class="portfolio-caption">
+                				<div class="portfolio-caption-heading">Explore</div>
+                				<div class="portfolio-caption-subheading text-muted">Graphic Design</div>
+                			</div>
+                		</div>
+                	</div>
+                	<div class="col-lg-4 col-sm-6 mb-4">
+                		<div class="portfolio-item">
+                			<a class="portfolio-link" data-toggle="modal" href="#portfolioModal2">
+                				<div class="portfolio-hover">
+                					<div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                				</div>
+                				<img class="img-fluid" src="../static/dist/assets/img/portfolio/06-thumbnail.jpg" alt="" />
+                			</a>
+                			<div  class="portfolio-caption">
+                				<div class="portfolio-caption-heading">Explore</div>
+                				<div class="portfolio-caption-subheading text-muted">Graphic Design</div>
+                			</div>
+                		</div>
+                	</div>
+                	
+                	<div id="more_btn" class="btn btn--orange btn-c">もっと見る <i class="fa fa-chevron-down" aria-hidden="true"></i></div>
+  					<div id="close_btn" class="btn btn--orange btn-c">閉じる <i class="fa fa-chevron-up" aria-hidden="true"></i></div>
+                </div>
+                
+                
                 <div class="register-item-btn">
-                	<a href="#" class="btn-circle-stitch">
+                	<a href="register_cloth.html" class="btn-circle-stitch">
                 		<i class="fas fa-tshirt"></i>
                 		<span>登録</span>
                 	</a>
@@ -165,6 +268,7 @@
         
         <!-- Bootstrap core JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
         <!-- Third party plugin JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
@@ -174,5 +278,6 @@
         <!-- Core theme JS-->
         <script src="../static/dist/js/scripts.js"></script>
         <script src="../static/dist/js/hamburger_menu.js"></script>
+        <script src="../static/dist/js/vuemore.js"></script>
     </body>
 </html>
