@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=yes">
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>MYQLO</title>
+<link rel="icon" type="image/x-icon"
+	href="../static/dist/assets/img/favicon.ico" />
+<!-- Font Awesome icons (free version)-->
+<script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js"
+	crossorigin="anonymous"></script>
+<!-- Google fonts-->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+	rel="stylesheet" type="text/css" />
+<link
+	href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic"
+	rel="stylesheet" type="text/css" />
+<link
+	href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
+	rel="stylesheet" type="text/css" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="../static/dist/css/styles.css" rel="stylesheet" />
+
+<!-- FullCalender実装用 -->
+<link href='../static/lib/main.css' rel='stylesheet' />
+<script src='../static/lib/main.js'></script>
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+		var calendarEl = document.getElementById('calendar');
+
+		var calendar = new FullCalendar.Calendar(calendarEl);
+
+		calendar.render();
+	});
+</script>
+<style>
+a {
+	color: black;
+}
+
+body {
+	margin: 40px 10px;
+	padding: 0;
+	font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+	font-size: 14px;
+}
+
+#calendar {
+	max-width: 1100px;
+	margin: 0 auto;
+}
+</style>
+<title>カレンダー</title>
+</head>
+<body>
+	<!-- Navigation-->
+	<div id="navArea">
+		<nav>
+			<div class="inner">
+				<ul>
+					<li><a href="statistics.html">統計データ</a></li>
+					<li><a href="calender.html">カレンダー</a></li>
+					<li><a href="coordinate.html">コーディネート</a></li>
+					<li><a href="contact.html">お問い合わせ</a></li>
+					<li><a href="faq.html">FAQ</a></li>
+					<li><a href="logout.html">ログアウト</a></li>
+				</ul>
+			</div>
+		</nav>
+		<div class="humberger_menue">
+			<div class="toggle_btn">
+				<span></span> <span></span> <span></span>
+			</div>
+		</div>
+		<div id="mask"></div>
+	</div>
+	<div class="container">
+		<div class="text-center">
+			<h2 class="section-heading text-uppercase">MYQLOカレンダー</h2>
+			<div>MYQLOに登録した服を月ごとにチェック！</div>
+			<br> <br>
+		</div>
+
+		<div id='calendar'></div>
+		<br>
+		<h3 class="text-center" style="font-size: 30px">〇月の衣服代：201,560円</h3>
+	</div>
+
+	<!-- Bootstrap core JS-->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+	<!-- Third party plugin JS-->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+	<!-- Contact form JS-->
+	<script src="../static/dist/assets/mail/jqBootstrapValidation.js"></script>
+	<script src="../static/dist/assets/mail/contact_me.js"></script>
+	<!-- Core theme JS-->
+	<script src="../static/dist/js/scripts.js"></script>
+	<script src="../static/dist/js/hamburger_menu.js"></script>
+</body>
+</html>
