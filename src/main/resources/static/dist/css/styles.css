@@ -10,6 +10,7 @@
  * Copyright 2011-2020 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+ 
 
 /*今すぐログインボタン*/ 
 .btn--orange,
@@ -848,6 +849,131 @@ pre code {
   .container {
     max-width: 1140px;
   }
+ .title{
+      color: #1f2b2d;
+      font-family: "SFUI Display";
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      text-align: left;
+      position: relative;
+      vertical-align: middle;
+      padding: 13px 0 13px 77px;
+      margin: 9px 0 0px 0;
+
+      background-color: #fff;
+      @media (max-width: 900px) {
+        font-size: 14px;
+        line-height: 18px;
+      }
+      @media (max-width: 600px) {
+        font-size: 12px;
+        line-height: 16px;
+        padding: 9px 0 9px 52px;
+      }
+    }
+    .text{
+      opacity: 0.8;
+      color: #1f2b2d;
+      font-family: "SFUI Display";
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+      @media (max-width: 900px) {
+        font-size: 13px;
+        line-height: 18px;
+      }
+      @media (max-width: 600px) {
+        font-size: 12px;
+        line-height: 17px;
+      }
+    }
+
+    .acordion-wrapper {
+      margin: 0 auto;
+      text-align: center;
+      overflow-y: hidden;
+      max-width:800px;
+      min-width:290px;
+    }
+
+    .acordion-title:hover {
+      cursor: pointer;
+
+    }
+
+    .acordion-title.active + .acordion-count {
+      display: block;
+    }
+
+
+    .acordion-title > .title:before {
+      content: '+';
+      font-size: 24px;
+      font-weight: 100;
+      position: absolute;
+      left: 0px;
+      //line-height: 24px;
+      padding: 12px 18px 13px 18px;
+      background-color: #77ddf7;
+      color: #fff;
+      top: 50%;
+     // transition: 1s;
+      vertical-align: middle;
+      transform: translateY(-50%);
+      @media (max-width: 600px) {
+        font-size: 16px;
+        padding: 8px 13px 8px 13px;
+      }
+    }
+
+    .acordion-title.active > .title {
+      text-shadow: none;
+    }
+
+    .acordion-title.active > .title:before {
+       content: '-';
+      padding: 13px 20px 13px 20px;
+       //font-size: 39px;
+       transition: 0s;
+       background-color: #7ace4c;
+      @media (max-width: 600px) {
+        font-size: 16px;
+        padding: 10px 15px 8px 14px;
+      }
+     }
+    .acordion-title.active > .title {
+      background-color: #e9eff0;
+    }
+
+    .acordion-title > .title:hover {
+      &:before{
+        background-color: #5cb3c9;
+      }
+    }
+    .acordion-title.active > .title:hover {
+      &:before {
+        content: '-';
+        background-color: #00b006;
+      }
+    }
+
+
+    .acordion-count {
+      position: relative;
+      padding: 15px 25px;
+      background-color: #fff;
+
+    }
+    .acordion-count, .text > p {
+      text-align: left;
+      opacity: 0.9;
+      color: #1f2b2d;
+      font-family: "SFUI Display";
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+    }
 }
 
 .container-fluid, .container-xl, .container-lg, .container-md, .container-sm {
@@ -10789,67 +10915,413 @@ section#contact form#contactForm :-ms-input-placeholder {
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
-/*トップ画面の文字動き*/
-.main {
-  position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+/*問い合わせフォーム*/
+.cp_iptxt {
+	position: relative;
+	width: 80%;
+	margin: 40px 3%;
+}
+.cp_iptxt input[type='text'] {
+	font: 15px/24px sans-serif;
+	box-sizing: border-box;
+	width: 100%;
+	padding: 0.3em;
+	transition: 0.3s;
+	letter-spacing: 1px;
+	color: #aaaaaa;
+	border: 1px solid #1b2538;
+	border-radius: 4px;
+}
+.ef input[type='text']:focus {
+	border: 1px solid #da3c41;
+	outline: none;
+	box-shadow: 0 0 5px 1px rgba(218,60,65, .5);
 }
 
-.main-heading {
-  color: #777;
-  text-transform: uppercase;
+.cp_iptxt input[type='email'] {
+	font: 15px/24px sans-serif;
+	box-sizing: border-box;
+	width: 100%;
+	padding: 0.3em;
+	transition: 0.3s;
+	letter-spacing: 1px;
+	color: #aaaaaa;
+	border: 1px solid #1b2538;
+	border-radius: 4px;
+}
+.ef input[type='email']:focus {
+	border: 1px solid #da3c41;
+	outline: none;
+	box-shadow: 0 0 5px 1px rgba(218,60,65, .5);
 }
 
-.main-heading-primary {
-  display: block;
-  font-size: 5.0rem;
-  font-weight: 400;
-  letter-spacing: 35px;
-  animation: moveInLeft 1s ease-out;
-  margin: auto;
+.cp_iptxt textarea {
+	font: 15px/24px sans-serif;
+	box-sizing: border-box;
+	width: 100%;
+	padding: 0.3em;
+	transition: 0.3s;
+	letter-spacing: 1px;
+	color: #aaaaaa;
+	border: 1px solid #1b2538;
+	border-radius: 4px;
+}
+.ef textarea:focus {
+	border: 1px solid #da3c41;
+	outline: none;
+	box-shadow: 0 0 5px 1px rgba(218,60,65, .5);
 }
 
-.main-heading-secondary {
-  font-family: sans-serif;
-  display: block;
-  font-size: 1.5rem;
-  font-weight: bold;
+.contact-form{
+	margin-top: 100px;
+	margin-left: 450px;
+}
+
+.submit-button{
+	margin-top: 50px;
+	margin-left: 250px;
+}
+
+/*cloth新規登録画面*/
+body {
+  font-family: "Open Sans", sans-serif;
+  line-height: 1.25;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 0 auto;
+  padding: 0;
+  width: 650px;
+  table-layout: fixed;
+  color: #ff9900;
+}
+
+table tr {
+  background-color: #fff;
+  padding: .35em;
+  border-bottom: 1px dotted #bbb;
+}
+table tr:last-child{
+   border-bottom: 2px solid #bbb;
+}
+table th,
+table td {
+  padding: 1em 10px 1em 1em;
+}
+tbody th {
+    color: black;
+}
+.txt{
+   text-align: left;
+   font-size: .85em;
+}
+.price{
+   text-align: right;
+}
+@media screen and (max-width: 600px) {
+  table {
+    border: 0;
+    width:100%
+  }
+  table th{
+    display: block;
+    border-right: none;
+    border-bottom: 2px solid #0f7d13;
+    padding-bottom: .6em;
+    margin-bottom: .6em;
+
+  }
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  
+  table tr {
+    display: block;
+    margin-bottom: 2em;
+        border-bottom: 2px solid #0f7d13;
+  }
+  
+  table td {
+    border-bottom: 1px solid #bbb;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+    position: relative;
+    padding: .625em .625em .625em 4em;
+    border-right: none;
+  }
+  
+  table td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    position: absolute;
+    left: 10px;
+  }
+  
+  table td:last-child {
+    border-bottom: 0;
+  }
+}
+
+.image-information{
+	position: relative;
+  	top: 10px;
+    left: 37%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.complete-btn{
+	position: relative;
+  	top: 10px;
+    left: 45%;
+    padding-top: 30px;
+}
+
+.cp_ipselect {
+	overflow: hidden;
+	width: 90%;
+	text-align: center;
+}
+.cp_ipselect select {
+	width: 100%;
+	padding-right: 1em;
+	cursor: pointer;
+	text-indent: 0.01px;
+	text-overflow: ellipsis;
+	border: none;
+	outline: none;
+	background: transparent;
+	background-image: none;
+	box-shadow: none;
+	-webkit-appearance: none;
+	appearance: none;
+}
+.cp_ipselect select::-ms-expand {
+    display: none;
+}
+.cp_ipselect.cp_sl02 {
+	position: relative;
+	border: 1px solid #bbbbbb;
+	border-radius: 2px;
+	background: #ffffff;
+}
+.cp_ipselect.cp_sl02::before {
+	position: absolute;
+	top: 0.8em;
+	right: 0.9em;
+	width: 0;
+	height: 0;
+	padding: 0;
+	content: '';
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	border-top: 6px solid #666666;
+	pointer-events: none;
+}
+.cp_ipselect.cp_sl02:after {
+	position: absolute;
+	top: 0;
+	right: 2.5em;
+	bottom: 0;
+	width: 1px;
+	content: '';
+	border-left: 1px solid #bbbbbb;
+}
+.cp_ipselect.cp_sl02 select {
+	padding: 8px 38px 8px 8px;
+	color: #666666;
+}
+
+.txt input[type='text']{
+  width: 90%;
+  max-width: 400px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.txt textarea{
+  width: 90%;
+  max-width: 400px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.txt input[type='date']{
+  width: 90%;
+  max-width: 400px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.search{
+	position:relative;
+    max-width:300px;	
+}
+
+.search-form{
+	height:30px;
+	padding:0 10px; 
+	position:absolute; 
+	left:0;
+	top:-15px; 
+	border-radius:2px;
+	outline:0;
+}
+
+#sbtn2{
+	height:10px;
+	position:absolute; 
+	left:235px;/*アイコン左右の位置調整*/
+	top:-9px;
+	background:none;
+	color:#666;
+	border:none;
+	font-size:15px;/*アイコンサイズ*/
+}
+
+
+
+
+/*アイテム編集・削除画面*/
+.menue-btn{
+	position: relative;
+  	top: 10px;
+    left: 45%;
+    padding-top: 30px;
+    overflow: hidden;
+}
+
+.delete-btn{
+  
+}
+
+/*FAQ*/
+.cp_qa *, .cp_qa *:after, .cp_qa *:before {
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+.cp_qa {
+	border-top: 1px solid #1b2538;
+}
+.cp_qa .cp_actab {
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	margin-bottom: 1px;
+	color: #1b2538;
+}
+.cp_qa .cp_actab input {
+	position: absolute;
+	opacity: 0;
+}
+/* 質問 */
+.cp_qa .cp_actab label {
+	font-weight: bold;
+	line-height: 1.6;
+	position: relative;
+	display: block;
+	margin: 0 0 0 0;
+	padding: 1em 2em 1em 1em;
+	cursor: pointer;
+	border-bottom: 1px solid #1b2538;
+}
+.cp_qa .cp_actab label:hover {
+	color: #00838F;
+}
+/* 答え */
+.cp_qa .cp_actab .cp_actab-content {
+	overflow: hidden;
+	max-height: 0;
+	-webkit-transition: max-height 0.5s ease;
+	        transition: max-height 0.5s ease;
+	color: #ffffff;
+	background: rgba(0, 131, 143, 0.5);
+}
+.cp_qa .cp_actab .cp_actab-content p {
+	margin: 3em;
+}
+/* 質問を開いた時の仕様 */
+/* --アイコン */
+.cp_qa .cp_actab input:checked ~ label {
+	color: #00838F;
+}
+/* --答えの高さ */
+.cp_qa .cp_actab input:checked ~ .cp_actab-content {
+	max-height: 40em;
+}
+/* 質問をクリックした時のアイコンの動き */
+.cp_qa .cp_actab label::after {
+	line-height: 1.6;
+	position: absolute;
+	top: 50%;
+	right: 0;
+	display: block;
+	width: 3em;
+	margin-top: -12.5px;
+	-webkit-transition: all 0.5s ease;
+	        transition: all 0.5s ease;
+	text-align: center;
+}
+.cp_qa .cp_actab input[type=checkbox] + label::after {
+	content: '▼';
+}
+.cp_qa .cp_actab input[type=checkbox]:checked + label::after {
+	-webkit-transform: rotateX(180deg);
+	transform: rotateX(180deg);
+}
+
+/*TOPメニュー画面*/
+.register-item-btn{
+	height: 140px;
+	width: 140px;
+	position: absolute;
+	bottom: 30px;
+	right: 30px;
+	position: fixed;
+	border-radius: 100%;
+}
+
+.btn-circle-stitch {
+  display: inline-block;
+  text-decoration: none;
+  background: #87befd;
+  color: #FFF;
+  width: 120px;
+  height: 120px;
+  line-height: 120px;
+  border-radius: 50%;
   text-align: center;
-  letter-spacing: 31px;
-  color: hotpink;
-  animation: moveInRight 1s ease-out;
+  overflow: hidden;
+  box-shadow: 0px 0px 0px 5px #87befd;
+  border: dashed 1px #FFF;
+  transition: .4s;
 }
 
-@keyframes moveInLeft {
-  0% {
-    opacity: 0;
-    transform: translateX(-100px);
-  }
-  
-  80% {
-    transform: translateX(10px);
-  }
-  
-  100% {
-    opacity: 1;
-    transform: translate(0);
-  }
+.btn-circle-stitch:hover {
+  background: #668ad8;
+  box-shadow: 0px 0px 0px 5px #668ad8;
 }
 
-@keyframes moveInRight {
-  0% {
-    opacity: 0;
-    transform: translateX(100px);
-  }
-  
-  80% {
-    transform: translateX(-10px);
-  }
-  
-  100% {
-    opacity: 1;
-    transform: translate(0);
-  }
-}
+/*問い合わせ仮モーダル*/
+
