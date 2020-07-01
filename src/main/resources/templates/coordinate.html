@@ -2,7 +2,7 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>MYQLO</title>
+<title>MYQLO | MY COORDINATE</title>
 <link rel="icon" type="image/x-icon"
 	href="../static/dist/assets/img/favicon.ico" />
 <!-- Font Awesome icons (free version)-->
@@ -17,6 +17,9 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
 	rel="stylesheet" type="text/css" />
+
+<link rel="stylesheet" href="themes/base/jquery.ui.all.css">
+
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="../static/dist/css/styles.css" rel="stylesheet" />
 <script src='../static/lib/main.js'></script>
@@ -28,12 +31,12 @@
 			<div class="inner">
 				<ul>
 					<li><a href="top.html"><i class="fas fa-home"></i>&emsp;&emsp;TOP</a></li>
-                	<li><a href="statistics.html"><i class="far fa-chart-bar"></i>&emsp;&emsp;統計データ</a></li>
-               	    <li><a href="calender.html"><i class="far fa-calendar-alt"></i>&emsp;&emsp;カレンダー</a></li>
-                	<li><a href="coordinate.html"><i class="fas fa-female"></i>&emsp;&emsp;コーディネート</a></li>
-                	<li><a href="contact.html"><i class="far fa-envelope"></i>&emsp;&emsp;お問い合わせ</a></li>
-                	<li><a href="faq.html"><i class="far fa-question-circle"></i>&emsp;&emsp;FAQ</a></li>
-                	<li><a href="#"><i class="fas fa-sign-out-alt"></i>&emsp;&emsp;ログアウト</a></li>
+					<li><a href="statistics.html"><i class="far fa-chart-bar"></i>&emsp;&emsp;統計データ</a></li>
+					<li><a href="calender.html"><i class="far fa-calendar-alt"></i>&emsp;&emsp;カレンダー</a></li>
+					<li><a href="coordinate.html"><i class="fas fa-female"></i>&emsp;&emsp;コーディネート</a></li>
+					<li><a href="contact.html"><i class="far fa-envelope"></i>&emsp;&emsp;お問い合わせ</a></li>
+					<li><a href="faq.html"><i class="far fa-question-circle"></i>&emsp;&emsp;FAQ</a></li>
+					<li><a href="#"><i class="fas fa-sign-out-alt"></i>&emsp;&emsp;ログアウト</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -51,22 +54,256 @@
 			<h1 class="section-heading text-uppercase" style="margin-top: 100px;">MY
 				COORDINATE</h1>
 			<div class="section-subheading text-muted">登録した服でコーディネートしよう。</div>
-			<br>
+			<br> <br>
 		</div>
 
+		<table class="table">
+			<thead>
+				<tr>
+					<th colspan="3" style="text-align: center;">コーディネート</th>
+					<th colspan="2" style="text-align: center;">アイテム選択</th>
+					<th style="text-align: center;">過去のコーデ</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td colspan="3" id="containment-wrapper">
 
-		<div class="row"
-			style="background-color: #FFFFEE; padding-bottom: 10px;">
-			<div class="col-md-8"></div>
+						<div style="height: 470px; width: 406.5px;">
+							<img id="draggable1" class="draggable ui-widget-content" alt=""
+								src="../static/dist/assets/img/fashion/t-shirt.png"
+								style="width: 45%; height: auto;"> <img id="draggable2"
+								class="draggable ui-widget-content" alt=""
+								src="../static/dist/assets/img/fashion/pants.png"
+								style="width: 30%; height: auto;"> <img id="draggable3"
+								class="draggable ui-widget-content" alt=""
+								src="../static/dist/assets/img/fashion/bag.png"
+								style="width: 30%; height: auto;"> <img id="draggable4"
+								class="draggable ui-widget-content" alt=""
+								src="../static/dist/assets/img/fashion/shoes.png"
+								style="width: 40%; height: auto;">
 
+						</div>
+					</td>
+					<td colspan="2">
+						<!-- ファッション雑貨 (valueとして、user_idに紐づいたclothesのidを飛ばします。)-->
+						<div class="fashion-accessories">
+							<select class="custom-select" name="fashion_accessories">
+								<option disabled selected value="/">ファッション雑貨を選択</option>
+								<option value="#">画像１</option>
+								<option value="#">画像２</option>
+								<option value="#">画像３</option>
+								<option value="#">画像４</option>
+							</select>
+						</div> <br> <!-- トップス1を選択(valueとして、user_idに紐づいたclothesのidを飛ばします。) -->
+						<div class="fashion-accessories">
+							<select class="custom-select" name="tops1">
+								<option disabled selected value="/">トップス1を選択</option>
+								<option value="#">画像１</option>
+								<option value="#">画像２</option>
+								<option value="#">画像３</option>
+								<option value="#">画像４</option>
+							</select>
+						</div> <br> <!-- トップス2を選択 (valueとして、user_idに紐づいたclothesのidを飛ばします。)-->
+						<div class="tops1">
+							<select class="custom-select" name="tops2">
+								<option disabled selected value="/">トップス2を選択</option>
+								<option value="#">画像１</option>
+								<option value="#">画像２</option>
+								<option value="#">画像３</option>
+								<option value="#">画像４</option>
+							</select>
+						</div> <br> <!-- アウターを選択 (valueとして、user_idに紐づいたclothesのidを飛ばします。)-->
+						<div class="tops2">
+							<select class="custom-select" name="outer">
+								<option disabled selected value="/">アウターを選択</option>
+								<option value="#">画像１</option>
+								<option value="#">画像２</option>
+								<option value="#">画像３</option>
+								<option value="#">画像４</option>
+							</select><br>
+						</div> <br> <!-- ワンピースを選択 (valueとして、user_idに紐づいたclothesのidを飛ばします。)-->
+						<div class="bags">
+							<select class="custom-select" name="dress">
+								<option disabled selected value="/">ワンピースを選択</option>
+								<option value="#">画像１</option>
+								<option value="#">画像２</option>
+								<option value="#">画像３</option>
+								<option value="#">画像４</option>
+							</select>
+						</div> <br> <!-- ボトムスを選択 (valueとして、user_idに紐づいたclothesのidを飛ばします。)-->
+						<div class="bottoms">
+							<select class="custom-select" name="bottoms">
+								<option disabled selected value="/">ボトムスを選択</option>
+								<option value="#">画像１</option>
+								<option value="#">画像２</option>
+								<option value="#">画像３</option>
+								<option value="#">画像４</option>
+							</select>
+						</div> <br> <!-- シューズを選択(valueとして、user_idに紐づいたclothesのidを飛ばします。) -->
+						<div class="shoes">
+							<select class="custom-select" name="shoes">
+								<option disabled selected value="/">シューズを選択</option>
+								<option value="#">画像１</option>
+								<option value="#">画像２</option>
+								<option value="#">画像３</option>
+								<option value="#">画像４</option>
+							</select>
+						</div> <br> <!-- バッグを選択(valueとして、user_idに紐づいたclothesのidを飛ばします。)s -->
+						<div class="bags">
+							<select class="custom-select" name="bag">
+								<option disabled selected value="/">バッグを選択</option>
+								<option value="#">画像１</option>
+								<option value="#">画像２</option>
+								<option value="#">画像３</option>
+								<option value="#">画像４</option>
+							</select>
+						</div>
+					</td>
+					<td><div style="text-align: center;">
+							<div
+								style="background-color: #fed136; border-radius: 50px; padding: 5px 0 5px 0;">
+								<a data-toggle="modal" data-target="#exampleModal"
+									style="color: white;">オフィスコーデ</a>
+							</div>
+							<br>
+							<div
+								style="background-color: #fed136; border-radius: 50px; padding: 5px 0 5px 0;">
+								<a data-toggle="modal" data-target="#exampleModal"
+									style="color: white;">デートコーデ</a>
+							</div>
+							<br>
+							<div
+								style="background-color: #fed136; border-radius: 50px; padding: 5px 0 5px 0;">
+								<a data-toggle="modal" data-target="#exampleModal"
+									style="color: white;">ママ友とディナー</a>
+							</div>
+							<!-- 「はい」を押したときのモーダルの設定 -->
+							<div class="modal fade" id="exampleModal" tabindex="-1"
+								role="dialog" aria-labelledby="exampleModalLabel">
+								<div class="modal-dialog">
+									<div class="modal-content">
 
+										<!-- モーダル内ヘッダー -->
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalLabel">コーディネート</h5>
+											<button type="button" class="close" data-dismiss="modal"
+												aria-label="閉じる">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
 
+										<!-- モーダル内ボディ -->
+										<div class="modal-body">
+											<img alt=""
+												src="../static/dist/assets/img/fashion/coordinate-img.jpg">
+										</div>
+
+										<!-- モーダル内フッター -->
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"
+												data-dismiss="modal">閉じる</button>
+										</div>
+
+										<!-- /.modal-footer -->
+									</div>
+									<!-- /.modal-content -->
+								</div>
+								<!-- /.modal-dialog -->
+							</div>
+							<!-- /.modal -->
+							<!-- モーダル設定終了 -->
+
+						</div></td>
+				</tr>
+			</tbody>
+		</table>
+		<br>
+		<div style="text-align: center;">
+			<button type="button" class="btn btn-primary"
+				style="border-radius: 50px; padding-left: 30px; padding-right: 30px;"
+				data-toggle="modal" data-target="#registerModal">コーディネートに登録</button>
 		</div>
+
+		<!-- 「登録」を押したときのモーダルの設定 -->
+		<div class="modal fade" id="registerModal" tabindex="-1" role="dialog"
+			aria-labelledby="registerModalLabel">
+			<div class="modal-dialog">
+				<div class="modal-content">
+
+					<!-- モーダル内ヘッダー -->
+					<div class="modal-header">
+						<h5 class="modal-title" id="registerModalLabel">コーディネート確認</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="閉じる">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+
+					<!-- モーダル内ボディ -->
+					<div class="modal-body">
+						<table class="table">
+							<thead>
+								<tr>
+									<th style="text-align: center;">トップス1</th>
+									<th style="text-align: center;">ボトムス</th>
+									<th style="text-align: center;">シューズ</th>
+									<th style="text-align: center;">バッグ</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><img alt=""
+										src="../static/dist/assets/img/fashion/t-shirt.png"
+										style="width: 100%; height: auto;"></td>
+									<td><img alt=""
+										src="../static/dist/assets/img/fashion/pants.png"
+										style="width: 100%; height: auto;"></td>
+									<td><img alt=""
+										src="../static/dist/assets/img/fashion/shoes.png"
+										style="width: 100%; height: auto;"></td>
+									<td><img alt=""
+										src="../static/dist/assets/img/fashion/bag.png"
+										style="width: 100%; height: auto;"></td>
+								</tr>
+							</tbody>
+						</table>
+						<div>
+							<h6>
+								コーデ名<span style="color: red;">（必須）</span>
+							</h6>
+							<input type="text" name="coordinate-name" class="form-control"
+								placeholder="（例）オフィスカジュアルコーデ">
+						</div>
+					</div>
+
+					<!-- モーダル内フッター -->
+					<div class="modal-footer">
+						<form action="#" method="post">
+
+							<button type="submit"
+								class="btn btn-primary coordinate-regis-btn">
+								<span>登録する</span>
+							</button>
+
+						</form>
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">戻る</button>
+					</div>
+
+					<!-- /.modal-footer -->
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+		<!-- /.modal -->
+		<!-- モーダル設定終了 -->
+
+
 	</div>
 
-
-
-
+	<br>
 
 	<!-- Footer-->
 	<footer class="footer py-4">
@@ -101,6 +338,8 @@
 	<!-- Third party plugin JS-->
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+
 	<!-- Contact form JS-->
 	<script src="../static/dist/assets/mail/jqBootstrapValidation.js"></script>
 	<script src="../static/dist/assets/mail/contact_me.js"></script>
@@ -108,5 +347,30 @@
 	<script src="../static/dist/js/scripts.js"></script>
 	<script src="../static/dist/js/hamburger_menu.js"></script>
 
+	<!-- jQuery UI (Draggable)-->
+
+	<script type="text/javascript"
+		src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$("#draggable1").draggable({
+				containment : "#containment-wrapper",
+				scroll : false
+			});
+			$("#draggable2").draggable({
+				containment : "#containment-wrapper",
+				scroll : false
+			});
+			$("#draggable3").draggable({
+				containment : "#containment-wrapper",
+				scroll : false
+			});
+			$("#draggable4").draggable({
+				containment : "#containment-wrapper",
+				scroll : false
+			});
+
+		});
+	</script>
 </body>
 </html>
