@@ -14854,12 +14854,23 @@ input.btn--delete:hover {
 }
 
 /*TOP続きを読む*/
-.btn--orange {
+.btn--vuemore,
+a.vuemore {
+  color: #fff;
+  background-color: #fed136;
+}
+.btn--vuemore:hover,
+a.vuemore:hover {
+  color: #fff;
+  background: #fed136;
+}
+
+.btn--vuemore {
   color: #fff;
   background-color: #fed136;
 }
 
-.btn--orange:hover {
+.btn--vuemore:hover {
   color: #fff;
   background: #fed852;
 }
@@ -14873,7 +14884,7 @@ input.btn--delete:hover {
   margin-right: 1.5rem;
 }
 
-.btn--orange{
+.btn--vuemore{
 	display:block;
 	clear: none;
 	margin: 0 auto;
