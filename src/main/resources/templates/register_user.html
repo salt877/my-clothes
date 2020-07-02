@@ -6,7 +6,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>MYQLO | 新規会員登録</title>
-        <link rel="icon" type="image/x-icon" href="../static/dist/assets/img/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="../static/dist/assets/img/favicon.ico" th:href="@{/dist/assets/img/favicon.ico}"/>
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -14,7 +14,7 @@
         <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="../static/dist/css/styles.css" rel="stylesheet" />
+        <link href="../static/dist/css/styles.css" rel="stylesheet" th:href="@{/dist/css/styles.css}" />
     </head>
     <body id="page-top">
     
@@ -39,15 +39,18 @@
                 	<div class="center-heading">
                 		<h1>Welcome To MYQLO！</h1>
                 	</div>
-                	<form action="#" method="post">
+                	<form action="register_user.html" th:action="@{/register_user}" method="post" th:object="${registerUserForm}">
                 		<div class="form-group">
+                			<label th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="control-label" style="color: red" for="inputError">メールアドレスを入力してください</label>
                 			<input type="email" class="form-control" name="email" id="email" placeholder="Email" value=""/>
                 		</div>
                 		<div class="form-group">
+                			 <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="control-label" style="color: red" for="inputError">パスワードを入力してください</label>
                 			 <input type="password" class="form-control" name="password" id="password" placeholder="Password" value=""/>
                             <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
                          </div>
                          <div class="form-group">
+                         	<label th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}" class="control-label" style="color: red" for="inputError">確認用パスワードを入力してください</label>
                             <input type="password" class="form-control" name="confirmPassword" id="re_password" placeholder="Confirmation Password" value=""/>
                         </div>
                         <div class="submit-group">
