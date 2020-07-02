@@ -14711,20 +14711,41 @@ tbody th {
 	font-size: 15px; /*アイコンサイズ*/
 }
 
+.switch_btn{
+  position: relative;
+  top: 30px;
+  left: 48%;
+}
+
+.comp_btn{
+	margin: 0 auto;
+}
+
 /*アイテム編集・削除画面*/
-.menue-btn {
+.modal-dialog{
+	min-width:75%;
+ 	max-width: 80%;
+ 	width: 150%;
+}
+
+.complete-btn{
 	position: relative;
-	top: 10px;
-	left: 45%;
-	padding-top: 30px;
-	overflow: hidden;
+	top: 0px;
+	left: 42%;
 }
 
-.delete-btn {
-	
+.btn--submit,
+input.btn--delete {
+  color: #fff;
+  background-color: #6c757d;
+}
+.btn--delete:hover,
+input.btn--delete:hover {
+  color: #fff;
+  background: #6c757d;
 }
 
-/* 質問 */
+/*FAQ画面*/
 .cp_qa *, .cp_qa *:after, .cp_qa *:before {
 	-webkit-box-sizing: border-box;
 	        box-sizing: border-box;
@@ -14833,12 +14854,23 @@ tbody th {
 }
 
 /*TOP続きを読む*/
-.btn--orange {
+.btn--vuemore,
+a.vuemore {
+  color: #fff;
+  background-color: #fed136;
+}
+.btn--vuemore:hover,
+a.vuemore:hover {
+  color: #fff;
+  background: #fed136;
+}
+
+.btn--vuemore {
   color: #fff;
   background-color: #fed136;
 }
 
-.btn--orange:hover {
+.btn--vuemore:hover {
   color: #fff;
   background: #fed852;
 }
@@ -14852,11 +14884,15 @@ tbody th {
   margin-right: 1.5rem;
 }
 
-.btn--orange{
+.btn--vuemore{
 	display:block;
 	clear: none;
 	margin: 0 auto;
 }
+
+/*アイテム確認画面*/
+.select_btn{
+	margin: 0 auto;
 
 /*問い合わせ仮モーダル*/
 4279
