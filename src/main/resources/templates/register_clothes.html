@@ -75,9 +75,8 @@
 								<td data-label="カテゴリー" class="txt">
 									<div class="cp_ipselect cp_sl02">
 										<select required>
-											<option>アクセサリー</option>
-											<option>バック</option>
-											<option>トップス</option>
+											<option th:each="category :${categoryList}"
+												th:text="${category.name}" th:value="${category.id}">アクセサリー</option>
 										</select>
 									</div>
 								</td>
@@ -98,9 +97,8 @@
 								<td data-label="カラー" class="txt">
 									<div class="cp_ipselect cp_sl02">
 										<select required>
-											<option>レッド</option>
-											<option>ブルー</option>
-											<option>ブラック</option>
+											<option th:each="color :${colorList}" th:text="${color.name}"
+												th:value="${color.id}">レッド</option>
 										</select>
 									</div>
 								</td>
