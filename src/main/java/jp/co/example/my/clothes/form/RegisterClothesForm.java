@@ -37,7 +37,7 @@ public class RegisterClothesForm {
 	/**
 	 * 購入日
 	 */
-	private Date perchaseDate;
+	private String perchaseDate;
 
 	/**
 	 * 価格
@@ -97,11 +97,11 @@ public class RegisterClothesForm {
 		this.size = size;
 	}
 
-	public Date getPerchaseDate() {
+	public String getPerchaseDate() {
 		return perchaseDate;
 	}
 
-	public void setPerchaseDate(Date perchaseDate) {
+	public void setPerchaseDate(String perchaseDate) {
 		this.perchaseDate = perchaseDate;
 	}
 
