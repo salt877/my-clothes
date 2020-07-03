@@ -72,6 +72,12 @@
 			<scope>provided</scope>
 		</dependency>
 		<!-- Lombok -->
+		<!-- メール送信  -->
+ 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+		<!-- メール送信  -->
 	</dependencies>
 
 	<build>
