@@ -22,7 +22,8 @@
 	href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
 	rel="stylesheet" type="text/css" />
 <!-- Core theme CSS (includes Bootstrap)-->
-<link href="../static/dist/css/styles.css" rel="stylesheet" />
+<link href="../static/dist/css/styles.css"
+	th:href="@{/dist/css/styles.css}" rel="stylesheet" />
 </head>
 <body id="page-top">
 
@@ -37,7 +38,7 @@
 					<li><a href="calender.html"><i class="far fa-calendar-alt"></i>&emsp;&emsp;カレンダー</a></li>
 					<li><a href="coordinate.html"><i class="fas fa-female"></i>&emsp;&emsp;コーディネート</a></li>
 					<li><a href="contact.html"><i class="far fa-envelope"></i>&emsp;&emsp;お問い合わせ</a></li>
-					<li><a href="faq.html"><i class="far fa-question-circle"></i>&emsp;&emsp;FAQ</a></li>
+					<li><a href="faq.html" th:href="@{/faq}"><i class="far fa-question-circle"></i>&emsp;&emsp;FAQ</a></li>
 					<li><a href="login.html"><i class="fas fa-sign-out-alt"></i>&emsp;&emsp;ログアウト</a></li>
 
 				</ul>
@@ -82,8 +83,7 @@
 						<p>
 							▶<strong>服を登録</strong><br>自分が持っているアイテムの写真やカテゴリ、ブランドなどの項目を入力し、MYQLOへ登録します。<br>
 							<br>▶<strong>登録した服を検索</strong><br>
-							トップ画面より、MYQLOへ登録した服をカテゴリ別・ブランド別・タグ別に検索できます。<br> <br>
-							▶<strong>カレンダー機能</strong><br>
+							トップ画面より、MYQLOへ登録した服をカテゴリ別・ブランド別・タグ別に検索できます。<br> <br> ▶<strong>カレンダー機能</strong><br>
 							アイテム登録（編集）時に入力した購入日データをもとに、月ごとのお買い物データを見ることができます。<br> <br>
 							▶<strong>コーディネート機能</strong><br> 登録した服でコーディネートができます。<br>作成したコーディネートはMYQLOに登録することができます。<br>
 							<br>▶<strong>統計機能</strong><br>
@@ -274,8 +274,8 @@
 					<div class="cp_actab-content">
 						<p>
 							ご退会につきましては下記リンクよりお手続きをお願いしております。<br>
-							退会処理には、1～3営業日お時間をいただいております。<br> <br> 退会処理をご希望の方は<a
-								href="delete_user.html" class="faq-a">こちら</a>
+							退会処理には、1～3営業日お時間をいただいております。<br> <br> 退会をご希望の方は<a
+								href="delete_user.html" class="faq-a">こちら</a>から。
 					</div>
 				</div>
 			</div>
@@ -302,6 +302,7 @@
 							プロフィール登録やパスワード・メールアドレス変更をした際の認証確認メールや、お問い合わせに対する返信は
 							@gmail.comのドメインアドレスからお送りします。<br>
 							ドメイン指定受信や迷惑メール対策など、お客様がご利用のメール設定によって受信できない場合がございます。メール設定をご確認ください。
+
 
 
 
@@ -350,11 +351,13 @@
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 	<!-- Contact form JS-->
-	<script src="../static/dist/assets/mail/jqBootstrapValidation.js"></script>
-	<script src="../static/dist/assets/mail/contact_me.js"></script>
+	<script src="../static/dist/assets/mail/jqBootstrapValidation.js"
+		th:src="@{/dist/assets/mail/jqBootstrapValidation.js}"></script>
+	<script src="../static/dist/assets/mail/contact_me.js"
+		th:src="@{/dist/assets/mail/contact_me.js}"></script>
 	<!-- Core theme JS-->
-	<script src="../static/dist/js/scripts.js"></script>
-	<script src="../static/dist/js/hamburger_menu.js"></script>
-	<script src="../static/dist/js/accordion.js"></script>
+	<script src="../static/dist/js/scripts.js" th:src="@{/dist/js/scripts.js}"></script>
+	<script src="../static/dist/js/hamburger_menu.js" th:src="@{/dist/js/hamburger_menu.js}"></script>
+	<script src="../static/dist/js/accordion.js" th:src="@{/dist/js/accordion.js}"></script>
 </body>
 </html>
