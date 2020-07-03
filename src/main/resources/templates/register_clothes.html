@@ -24,6 +24,17 @@
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="../static/dist/css/styles.css"
 	th:href="@{/dist/css/styles.css}" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript">
+$( function() {
+    var brands= [ [(${brandListForAutocomplete})] ];
+    console.log(brands);
+    $( "#brand" ).autocomplete({
+      source: brands
+    });
+  } );
+</script>
 </head>
 <body id="page-top">
 
@@ -57,7 +68,7 @@
 				<h2 class="section-heading text-uppercase">アイテム新規登録</h2>
 			</div>
 			<form action="#" method="post"
-				th:action="@{registerClothes/register}">
+				th:action="@{/registerClothes/register}">
 				<div class="image-information">
 					<input name="imageFile" type="file" />
 					<!-- accept=".jpg,.png,image/jpeg,image/png"th:errorclass="error-input" -->
@@ -74,7 +85,8 @@
 								<th>カテゴリー</th>
 								<td data-label="カテゴリー" class="txt">
 									<div class="cp_ipselect cp_sl02">
-										<select required>
+										<select required name="category">
+											<option></option>
 											<option th:each="category :${categoryList}"
 												th:text="${category.name}" th:value="${category.id}">アクセサリー</option>
 										</select>
@@ -85,7 +97,7 @@
 								<th>ブランド</th>
 								<td data-label="ブランド" class="txt">
 									<div class="search">
-										<input type="text" class="search-form">
+										<input type="text" class="search-form" name="brand" id="brand">
 										<button type="submit" id="sbtn2">
 											<i class="fas fa-search"></i>
 										</button>
@@ -96,7 +108,8 @@
 								<th>カラー</th>
 								<td data-label="カラー" class="txt">
 									<div class="cp_ipselect cp_sl02">
-										<select required>
+										<select required name="color">
+											<option></option>
 											<option th:each="color :${colorList}" th:text="${color.name}"
 												th:value="${color.id}">レッド</option>
 										</select>
@@ -119,7 +132,7 @@
 								<th>タグ</th>
 								<td data-label="タグ" class="txt">
 									<div class="search">
-										<input type="text" class="search-form">
+										<input type="text" class="search-form" name="tag">
 										<button type="submit" id="sbtn2">
 											<i class="fas fa-search"></i>
 										</button>
@@ -128,46 +141,43 @@
 							</tr>
 							<tr>
 								<th>シーズン</th>
-								<td data-label="シーズン" class="txt"><input type="radio">春&emsp;
-									<input type="radio">夏&emsp; <input type="radio">秋&emsp;
-									<input type="radio">冬</td>
+								<td data-label="シーズン" class="txt"><input type="radio"
+									name="season" th:value="春">春&emsp; <input type="radio"
+									name="season" th:value="夏">夏&emsp; <input type="radio"
+									name="season" th:value="秋">秋&emsp; <input type="radio"
+									name="season" th:value="冬">冬</td>
 							</tr>
 							<tr>
 								<th>サイズ</th>
-								<td data-label="サイズ" class="txt">
+								<td data-label="サイズ" class="txt" name="size">
 									<div class="cp_ipselect cp_sl02">
-										<select required>
-											<option>XS</option>
-											<option>S</option>
-											<option>M</option>
-											<option>L</option>
-											<option>LL</option>
-											<option>3L</option>
-											<option>4L</option>
-											<option>F</option>
-											<option>不明</option>
+										<select required name="size">
+											<option></option>
+											<option th:each="size:${sizeList}" th:text="${size.name}"
+												th:value="${size.id}">XS</option>
 										</select>
 									</div>
 								</td>
 							</tr>
 							<tr>
 								<th>購入日</th>
-								<td data-label="購入日" class="txt"><input type="date">
-								</td>
+								<td data-label="購入日" class="txt"><input type="date"
+									name="perchaseDate"></td>
 							</tr>
 							<tr>
 								<th>価格</th>
-								<td data-label="価格" class="txt"><input type="text">
-								</td>
+								<td data-label="価格" class="txt"><input type="text"
+									name="price"></td>
 							</tr>
 							<tr>
 								<th>メモ</th>
 								<td data-label="メモ" class="txt"><textarea rows="10"
-										cols="30"></textarea></td>
+										name="comment" cols="30"></textarea></td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
+				<button type="submit">aaaa</button>
 				<!-- 切り替えボタンの設定 -->
 				<div class="switch_btn">
 					<button type="button" class="btn btn-primary" data-toggle="modal"
