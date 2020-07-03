@@ -38,7 +38,8 @@
 					<li><a href="calender.html"><i class="far fa-calendar-alt"></i>&emsp;&emsp;カレンダー</a></li>
 					<li><a href="coordinate.html"><i class="fas fa-female"></i>&emsp;&emsp;コーディネート</a></li>
 					<li><a href="contact.html"><i class="far fa-envelope"></i>&emsp;&emsp;お問い合わせ</a></li>
-					<li><a href="faq.html" th:href="@{/faq}"><i class="far fa-question-circle"></i>&emsp;&emsp;FAQ</a></li>
+					<li><a href="faq.html" th:href="@{/faq}"><i
+							class="far fa-question-circle"></i>&emsp;&emsp;FAQ</a></li>
 					<li><a href="login.html"><i class="fas fa-sign-out-alt"></i>&emsp;&emsp;ログアウト</a></li>
 
 				</ul>
@@ -113,7 +114,7 @@
 						for="cp_tabfour07" class="text-muted">アイテム登録時の必須入力項目はどこですか？</label>
 					<div class="cp_actab-content">
 						<p>
-							【画像】に加え、【カテゴリー】と【ブランド】となります。<br>
+							【画像】に加え、【カテゴリー】、【ブランド】、【色】となります。<br>
 							それ以外の任意の項目を入力していただくと、統計画面などでより詳細な情報を表示できるようになります。
 					</div>
 				</div>
@@ -306,12 +307,14 @@
 
 
 
+
 						
 					</div>
 				</div>
 
 
 			</div>
+		</div>
 	</section>
 
 	<!-- お問い合わせボタン -->
@@ -356,8 +359,11 @@
 	<script src="../static/dist/assets/mail/contact_me.js"
 		th:src="@{/dist/assets/mail/contact_me.js}"></script>
 	<!-- Core theme JS-->
-	<script src="../static/dist/js/scripts.js" th:src="@{/dist/js/scripts.js}"></script>
-	<script src="../static/dist/js/hamburger_menu.js" th:src="@{/dist/js/hamburger_menu.js}"></script>
-	<script src="../static/dist/js/accordion.js" th:src="@{/dist/js/accordion.js}"></script>
+	<script src="../static/dist/js/scripts.js"
+		th:src="@{/dist/js/scripts.js}"></script>
+	<script src="../static/dist/js/hamburger_menu.js"
+		th:src="@{/dist/js/hamburger_menu.js}"></script>
+	<script src="../static/dist/js/accordion.js"
+		th:src="@{/dist/js/accordion.js}"></script>
 </body>
 </html>
