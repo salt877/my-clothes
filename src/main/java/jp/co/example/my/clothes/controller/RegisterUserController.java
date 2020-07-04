@@ -40,7 +40,7 @@ public class RegisterUserController {
 	 * 
 	 * @return ユーザ登録画面
 	 */
-	@RequestMapping("/show_register_user")
+	@RequestMapping("/showRegisterUser")
 	public String showRegisterUser() {
 		return "register_user";
 	}
@@ -52,7 +52,7 @@ public class RegisterUserController {
 	 * @param result エラー格納オブジェクト
 	 * @return ログイン画面へリダイレクト
 	 */
-	@RequestMapping("/register_user")
+	@RequestMapping("/registerUser")
 	public String registerUser(@Validated RegisterUserForm form, BindingResult result) {
 
 		// メールアドレスが重複している場合
@@ -69,9 +69,8 @@ public class RegisterUserController {
 		User user = new User();
 		BeanUtils.copyProperties(form, user);
 		
-		System.out.println("ハッシュ化前のパスワード"+user.getPassword());
 		registerUserService.registerUser(user);
 
-		return "redirect:/show_login";
+		return "redirect:/showLogin";
 	}
 }
