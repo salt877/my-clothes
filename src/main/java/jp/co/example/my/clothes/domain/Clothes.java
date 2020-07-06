@@ -19,17 +19,16 @@ public class Clothes {
 	/**
 	 * ユーザーID
 	 */
-	private Integer UserId;
-
-	/**
-	 * カテゴリID
-	 */
-	private Integer categoryId;
+	private Integer userId;
 
 	/**
 	 * ブランドID
 	 */
-	private Integer BrandId;
+	private Integer brandId;
+	/**
+	 * カテゴリID
+	 */
+	private Integer categoryId;
 
 	/**
 	 * 画像パス
@@ -47,14 +46,14 @@ public class Clothes {
 	private Integer colorId;
 
 	/**
+	 * シーズン
+	 */
+	private String season;
+
+	/**
 	 * サイズID
 	 */
 	private Integer sizeId;
-
-	/**
-	 * 季節
-	 */
-	private String season;
 
 	/**
 	 * 購入日
@@ -96,6 +95,15 @@ public class Clothes {
 	 */
 	private List<Tag> tagList;
 
+	@Override
+	public String toString() {
+		return "Clothes [id=" + id + ", userId=" + userId + ", brandId=" + brandId + ", categoryId=" + categoryId
+				+ ", imagePath=" + imagePath + ", price=" + price + ", colorId=" + colorId + ", season=" + season
+				+ ", sizeId=" + sizeId + ", perchaseDate=" + perchaseDate + ", comment=" + comment + ", deleted="
+				+ deleted + ", category=" + category + ", brand=" + brand + ", color=" + color + ", size=" + size
+				+ ", tagList=" + tagList + "]";
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -105,27 +113,19 @@ public class Clothes {
 	}
 
 	public Integer getUserId() {
-		return UserId;
+		return userId;
 	}
 
 	public void setUserId(Integer userId) {
-		UserId = userId;
+		this.userId = userId;
 	}
 
 	public Integer getBrandId() {
-		return BrandId;
+		return brandId;
 	}
 
 	public void setBrandId(Integer brandId) {
-		BrandId = brandId;
-	}
-
-	public String getImagePath() {
-		return imagePath;
-	}
-
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
+		this.brandId = brandId;
 	}
 
 	public Integer getCategoryId() {
@@ -134,6 +134,14 @@ public class Clothes {
 
 	public void setCategoryId(Integer categoryId) {
 		this.categoryId = categoryId;
+	}
+
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
 	}
 
 	public Integer getPrice() {
@@ -150,6 +158,14 @@ public class Clothes {
 
 	public void setColorId(Integer colorId) {
 		this.colorId = colorId;
+	}
+
+	public String getSeason() {
+		return season;
+	}
+
+	public void setSeason(String season) {
+		this.season = season;
 	}
 
 	public Integer getSizeId() {
@@ -222,23 +238,6 @@ public class Clothes {
 
 	public void setTagList(List<Tag> tagList) {
 		this.tagList = tagList;
-	}
-
-	public String getSeason() {
-		return season;
-	}
-
-	public void setSeason(String season) {
-		this.season = season;
-	}
-
-	@Override
-	public String toString() {
-		return "Clothes [id=" + id + ", UserId=" + UserId + ", categoryId=" + categoryId + ", BrandId=" + BrandId
-				+ ", imagePath=" + imagePath + ", price=" + price + ", colorId=" + colorId + ", sizeId=" + sizeId
-				+ ", season=" + season + ", perchaseDate=" + perchaseDate + ", comment=" + comment + ", deleted="
-				+ deleted + ", category=" + category + ", brand=" + brand + ", color=" + color + ", size=" + size
-				+ ", tagList=" + tagList + "]";
 	}
 
 }
