@@ -3,6 +3,7 @@ package jp.co.example.my.clothes.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import jp.co.example.my.clothes.domain.User;
 import jp.co.example.my.clothes.repository.UserRepository;
@@ -14,6 +15,7 @@ import jp.co.example.my.clothes.repository.UserRepository;
  *
  */
 @Service
+@Transactional
 public class RegisterUserService {
 
 	@Autowired

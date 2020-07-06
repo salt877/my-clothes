@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>MYQLO | ログイン</title>
-        <link rel="icon" type="image/x-icon" href="../static/dist/assets/img/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="../static/dist/assets/img/favicon.ico" th:href="@{/dist/assets/img/favicon.ico}"/>
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -14,7 +14,7 @@
         <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="../static/dist/css/styles.css" rel="stylesheet" />
+        <link href="../static/dist/css/styles.css" rel="stylesheet" th:href="@{/dist/css/styles.css}"/>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     </head>
     <body id="page-top">
@@ -39,8 +39,11 @@
                 	<div class="center-heading">
                 		<h1>Start To MYQLO！</h1>
                 	</div>
-                	<form action="#" method="post">
+                	<form action="login.html" th:action="@{/login}" method="post">
                 		<div class="form-group">
+								<div class="alert" th:if="${errorMessage}">
+									<p th:text="${errorMessage}" class="control-label" style="color: red">メールアドレス、またはパスワードが間違っています</p>
+								</div>
                 			<input type="email" class="form-control" name="email" id="email" placeholder="Email" value=""/>
                 		</div>
                 		<div class="form-group">
@@ -54,10 +57,10 @@
                    
                    <!-- パスワード忘れ・アカウント作成へのリンク -->
                    <p class="loginhere text-center">
-                        パスワードを忘れた方は<a href="change_password.html" class="loginhere-link a-link">こちら &gt;</a>
+                        パスワードを忘れた方は<a href="change_password.html" th:href="@{/sendPasswordChangeMail}" class="loginhere-link a-link">こちら &gt;</a>
                    </p>
                    <p class="loginhere text-center">
-                        アカウント作成がまだの方は<a href="register_user.html" class="loginhere-link a-link">こちら &gt;</a>
+                        アカウント作成がまだの方は<a href="register_user.html" th:href="@{/registerUser}" class="loginhere-link a-link">こちら &gt;</a>
                    </p>
                    
                    <!-- Googleアカウントなどの連携ログイン -->
@@ -73,7 +76,6 @@
                    		</div>
                    </div>
                 </div>
-            </div>
             </div>
         </header>
 

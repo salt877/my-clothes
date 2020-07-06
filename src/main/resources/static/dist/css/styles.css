@@ -320,7 +320,39 @@ tabindex
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :focus
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -340,7 +372,23 @@ tabindex
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -355,7 +403,23 @@ tabindex
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -377,7 +441,31 @@ outline
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
+
 
 
 
@@ -391,9 +479,33 @@ outline
 
 
 
+
+
+
+
+
+
+
+
 0
 !
 important
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -509,6 +621,22 @@ a
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
@@ -516,7 +644,23 @@ a
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -533,7 +677,23 @@ href
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -555,7 +715,31 @@ color
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
+
 
 
 
@@ -569,7 +753,31 @@ color
 
 
 
+
+
+
+
+
+
+
+
 inherit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -596,7 +804,31 @@ text-decoration
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
+
 
 
 
@@ -610,7 +842,31 @@ text-decoration
 
 
 
+
+
+
+
+
+
+
+
 none
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -727,6 +983,22 @@ button
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
@@ -734,7 +1006,23 @@ button
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -749,7 +1037,23 @@ button
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -774,6 +1078,22 @@ button
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
@@ -781,7 +1101,23 @@ button
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -796,7 +1132,23 @@ button
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -821,7 +1173,31 @@ reset
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :not
+
+
+
+
+
+
+
+
 
 
 
@@ -836,6 +1212,14 @@ reset
 
 
 
+
+
+
+
+
+
+
+
 (
 :disabled
 
@@ -844,7 +1228,23 @@ reset
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -869,6 +1269,22 @@ submit
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
@@ -876,7 +1292,23 @@ submit
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -891,7 +1323,23 @@ submit
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -913,7 +1361,31 @@ cursor
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
+
 
 
 
@@ -927,7 +1399,31 @@ cursor
 
 
 
+
+
+
+
+
+
+
+
 pointer
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1123,6 +1619,22 @@ mark, .mark {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
@@ -1130,7 +1642,23 @@ mark, .mark {
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -1145,7 +1673,23 @@ mark, .mark {
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -1167,7 +1711,31 @@ margin-right
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
+
 
 
 
@@ -1181,8 +1749,32 @@ margin-right
 
 
 
+
+
+
+
+
+
+
+
 0
 .5rem
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1433,7 +2025,31 @@ pre code {
 			
 			
 			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			:
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			
 			
@@ -1447,8 +2063,32 @@ pre code {
 			
 			
 			
+			
+			
+			
+			
+			
+			
+			
+			
 			14
 			px
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			
 			
@@ -1475,7 +2115,31 @@ pre code {
 			
 			
 			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			:
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			
 			
@@ -1489,8 +2153,32 @@ pre code {
 			
 			
 			
+			
+			
+			
+			
+			
+			
+			
+			
 			18
 			px
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			
 			
@@ -1519,7 +2207,31 @@ pre code {
 			
 			
 			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			:
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			
 			
@@ -1533,8 +2245,32 @@ pre code {
 			
 			
 			
+			
+			
+			
+			
+			
+			
+			
+			
 			12
 			px
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			
 			
@@ -1561,7 +2297,31 @@ pre code {
 			
 			
 			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			:
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			
 			
@@ -1575,8 +2335,32 @@ pre code {
 			
 			
 			
+			
+			
+			
+			
+			
+			
+			
+			
 			16
 			px
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			
 			
@@ -1603,6 +2387,22 @@ pre code {
 			
 			
 			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			:
 			
 			
@@ -1610,7 +2410,23 @@ pre code {
 			
 			
 			
+			
+			
+			
+			
+			
+			
+			
+			
 			 
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			
 			
@@ -1625,7 +2441,23 @@ pre code {
 			
 			
 			
+			
+			
+			
+			
+			
+			
+			
+			
 			 
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			
 			
@@ -1641,7 +2473,23 @@ pre code {
 			
 			
 			
+			
+			
+			
+			
+			
+			
+			
+			
 			 
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			
 			
@@ -1650,6 +2498,22 @@ pre code {
 			
 			52
 			px
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			
 			
@@ -1691,7 +2555,31 @@ pre code {
 		
 		
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		:
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		
@@ -1705,8 +2593,32 @@ pre code {
 		
 		
 		
+		
+		
+		
+		
+		
+		
+		
+		
 		13
 		px
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		
@@ -1733,7 +2645,31 @@ pre code {
 		
 		
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		:
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		
@@ -1747,8 +2683,32 @@ pre code {
 		
 		
 		
+		
+		
+		
+		
+		
+		
+		
+		
 		18
 		px
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		
@@ -1777,7 +2737,31 @@ pre code {
 		
 		
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		:
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		
@@ -1791,8 +2775,32 @@ pre code {
 		
 		
 		
+		
+		
+		
+		
+		
+		
+		
+		
 		12
 		px
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		
@@ -1819,7 +2827,31 @@ pre code {
 		
 		
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		:
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		
@@ -1833,8 +2865,32 @@ pre code {
 		
 		
 		
+		
+		
+		
+		
+		
+		
+		
+		
 		17
 		px
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		
@@ -1900,7 +2956,31 @@ pre code {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	:
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -1914,8 +2994,32 @@ pre code {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
 	16
 	px
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -1942,6 +3046,22 @@ pre code {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	:
 	
 	
@@ -1949,7 +3069,23 @@ pre code {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
 	 
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -1964,7 +3100,23 @@ pre code {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
 	 
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -1979,7 +3131,23 @@ pre code {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
 	 
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -1994,7 +3162,23 @@ pre code {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
 	 
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -2003,6 +3187,22 @@ pre code {
 	
 	13
 	px
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -2048,7 +3248,31 @@ pre code {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	:
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -2062,8 +3286,32 @@ pre code {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
 	16
 	px
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -2090,6 +3338,22 @@ pre code {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	:
 	
 	
@@ -2097,7 +3361,23 @@ pre code {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
 	 
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -2112,7 +3392,23 @@ pre code {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
 	 
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -2127,7 +3423,23 @@ pre code {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
 	 
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -2142,7 +3454,23 @@ pre code {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
 	 
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -2151,6 +3479,22 @@ pre code {
 	
 	14
 	px
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -2239,6 +3583,22 @@ pre code {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
 
 
 
@@ -4053,6 +5413,22 @@ textarea.form-control {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
@@ -4060,7 +5436,23 @@ textarea.form-control {
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -4075,7 +5467,23 @@ textarea.form-control {
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -4090,7 +5498,23 @@ textarea.form-control {
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -4105,7 +5529,23 @@ textarea.form-control {
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -4127,7 +5567,31 @@ cursor
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
+
 
 
 
@@ -4141,7 +5605,31 @@ cursor
 
 
 
+
+
+
+
+
+
+
+
 pointer
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -4811,6 +6299,22 @@ input[type=submit].btn-block, input[type=reset].btn-block, input[type=button].bt
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
@@ -4818,7 +6322,23 @@ input[type=submit].btn-block, input[type=reset].btn-block, input[type=button].bt
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -4833,7 +6353,23 @@ input[type=submit].btn-block, input[type=reset].btn-block, input[type=button].bt
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -4855,6 +6391,22 @@ opacity
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -4862,7 +6414,23 @@ opacity
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -4884,6 +6452,22 @@ opacity
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
@@ -4891,7 +6475,23 @@ opacity
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -4906,7 +6506,23 @@ opacity
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -4928,7 +6544,31 @@ display
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
+
 
 
 
@@ -4942,7 +6582,31 @@ display
 
 
 
+
+
+
+
+
+
+
+
 none
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -5263,6 +6927,22 @@ none
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
@@ -5270,7 +6950,23 @@ none
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -5285,7 +6981,23 @@ none
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -5308,6 +7020,22 @@ none
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
@@ -5315,7 +7043,23 @@ none
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -5331,7 +7075,23 @@ none
 
 
 
+
+
+
+
+
+
+
+
 	
+
+
+
+
+
+
+
+
 
 
 
@@ -5353,7 +7113,31 @@ margin-left
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
+
 
 
 
@@ -5367,8 +7151,32 @@ margin-left
 
 
 
+
+
+
+
+
+
+
+
 -1
 px
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -5446,6 +7254,22 @@ px
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
@@ -5453,7 +7277,23 @@ px
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -5468,7 +7308,23 @@ px
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -5491,7 +7347,31 @@ px
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :not
+
+
+
+
+
+
+
+
 
 
 
@@ -5506,6 +7386,14 @@ px
 
 
 
+
+
+
+
+
+
+
+
 (
 :first-child
 
@@ -5514,7 +7402,23 @@ px
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -5536,7 +7440,31 @@ margin-top
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
+
 
 
 
@@ -5550,8 +7478,32 @@ margin-top
 
 
 
+
+
+
+
+
+
+
+
 -1
 px
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -5642,6 +7594,22 @@ px
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
@@ -5649,7 +7617,23 @@ px
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -5664,7 +7648,23 @@ px
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -5687,7 +7687,31 @@ px
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :not
+
+
+
+
+
+
+
+
 
 
 
@@ -5702,6 +7726,14 @@ px
 
 
 
+
+
+
+
+
+
+
+
 (
 :last-child
 
@@ -5710,7 +7742,23 @@ px
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -5732,6 +7780,22 @@ border-top-right-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -5739,7 +7803,23 @@ border-top-right-radius
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -5760,6 +7840,22 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -5767,7 +7863,23 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -5791,6 +7903,22 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
@@ -5798,7 +7926,23 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -5813,7 +7957,23 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -5836,7 +7996,31 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :not
+
+
+
+
+
+
+
+
 
 
 
@@ -5851,6 +8035,14 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
+
+
 (
 :first-child
 
@@ -5859,7 +8051,23 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -5881,6 +8089,22 @@ border-top-left-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -5888,7 +8112,23 @@ border-top-left-radius
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -5909,6 +8149,22 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -5916,7 +8172,23 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -6053,6 +8325,22 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
@@ -6060,7 +8348,23 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -6075,7 +8379,23 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -6101,7 +8421,31 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :not
+
+
+
+
+
+
+
+
 
 
 
@@ -6116,6 +8460,14 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
+
+
 (
 :last-child
 
@@ -6124,7 +8476,23 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -6150,6 +8518,22 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :last-child
 >
 .btn
@@ -6165,7 +8549,31 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :not
+
+
+
+
+
+
+
+
 
 
 
@@ -6180,6 +8588,14 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
+
+
 (
 :last-child
 
@@ -6188,7 +8604,23 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -6203,7 +8635,23 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -6218,7 +8666,23 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -6241,9 +8705,41 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :last-child
 >
 .input-group-text
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -6264,7 +8760,23 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
+
+
 	
+
+
+
+
+
+
+
+
 
 
 
@@ -6279,7 +8791,23 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -6301,6 +8829,22 @@ border-top-right-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -6308,7 +8852,23 @@ border-top-right-radius
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -6329,6 +8889,22 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -6336,7 +8912,23 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -6372,6 +8964,22 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
@@ -6379,7 +8987,23 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -6394,7 +9018,23 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -6420,6 +9060,22 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
@@ -6427,7 +9083,23 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -6442,7 +9114,23 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -6468,9 +9156,41 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :first-child
 >
 .btn
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -6490,7 +9210,23 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -6505,7 +9241,23 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -6528,9 +9280,41 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :first-child
 >
 .input-group-text
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -6550,7 +9334,23 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -6566,7 +9366,23 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
+
+
 	
+
+
+
+
+
+
+
+
 
 
 
@@ -6588,6 +9404,22 @@ border-top-left-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -6595,7 +9427,23 @@ border-top-left-radius
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -6616,6 +9464,22 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -6623,7 +9487,23 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -6846,6 +9726,22 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 [
 multiple
 ]
@@ -6863,9 +9759,41 @@ multiple
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 [
 size
 ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -6885,7 +9813,23 @@ size
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -6904,7 +9848,23 @@ size
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -6926,7 +9886,31 @@ height
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
+
 
 
 
@@ -6940,7 +9924,31 @@ height
 
 
 
+
+
+
+
+
+
+
+
 auto
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -6967,7 +9975,31 @@ padding-right
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
+
 
 
 
@@ -6981,8 +10013,32 @@ padding-right
 
 
 
+
+
+
+
+
+
+
+
 0
 .75rem
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -7009,7 +10065,31 @@ background-image
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
+
 
 
 
@@ -7023,7 +10103,31 @@ background-image
 
 
 
+
+
+
+
+
+
+
+
 none
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -7950,6 +11054,22 @@ none
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	:not
 	
 	
@@ -7957,7 +11077,23 @@ none
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
 	 
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -7972,7 +11108,23 @@ none
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
 	 
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -7994,6 +11146,22 @@ none
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	:
 	
 	
@@ -8001,7 +11169,23 @@ none
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
 	 
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -8022,6 +11206,22 @@ none
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	:
 	
 	
@@ -8029,7 +11229,23 @@ none
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
 	 
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -8064,6 +11280,22 @@ none
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
@@ -8071,7 +11303,23 @@ none
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -8086,7 +11334,23 @@ none
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -8108,6 +11372,22 @@ border-top-left-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -8115,7 +11395,23 @@ border-top-left-radius
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -8136,6 +11432,22 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -8143,7 +11455,23 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -8201,6 +11529,22 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
@@ -8208,7 +11552,23 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -8223,7 +11583,23 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -8245,6 +11621,22 @@ border-bottom
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -8252,7 +11644,23 @@ border-bottom
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -8273,6 +11681,22 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -8280,7 +11704,23 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -8301,6 +11741,22 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -8308,7 +11764,23 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -8332,6 +11804,22 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
@@ -8339,7 +11827,23 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -8354,7 +11858,23 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -8376,6 +11896,22 @@ border-top-left-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -8383,7 +11919,23 @@ border-top-left-radius
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -8404,6 +11956,22 @@ border-top-right-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -8411,7 +11979,23 @@ border-top-right-radius
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -9345,6 +12929,22 @@ a.close.disabled {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
@@ -9352,7 +12952,23 @@ a.close.disabled {
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -9367,7 +12983,23 @@ a.close.disabled {
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -9389,7 +13021,31 @@ margin-bottom
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
+
 
 
 
@@ -9403,8 +13059,32 @@ margin-bottom
 
 
 
+
+
+
+
+
+
+
+
 0
 .75rem
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -10187,6 +13867,22 @@ opacity
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -10195,7 +13891,23 @@ opacity
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -10219,7 +13931,31 @@ transform
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
+
 
 
 
@@ -10235,7 +13971,31 @@ transform
 
 
 
+
+
+
+
+
+
+
+
 none
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -10275,6 +14035,22 @@ opacity
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -10283,7 +14059,23 @@ opacity
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -10307,7 +14099,31 @@ transform
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
+
 
 
 
@@ -10323,7 +14139,31 @@ transform
 
 
 
+
+
+
+
+
+
+
+
 none
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -13321,6 +17161,22 @@ a.text-dark:hover, a.text-dark:focus {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	:not
 	
 	
@@ -13328,7 +17184,23 @@ a.text-dark:hover, a.text-dark:focus {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
 	 
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -13343,7 +17215,23 @@ a.text-dark:hover, a.text-dark:focus {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
 	 
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -13365,7 +17253,31 @@ a.text-dark:hover, a.text-dark:focus {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	:
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -13379,7 +17291,31 @@ a.text-dark:hover, a.text-dark:focus {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
 	underline
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -14076,7 +18012,8 @@ section#contact form#contactForm :-ms-input-placeholder {
 		"Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
-HEAD /*トップ画面の文字動き*/       
+HEAD /*
+画面の文字動き*/               
 .main {
 	position: absolute;
 	top: 40%;
@@ -14132,6 +18069,22 @@ transform
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -14140,7 +18093,23 @@ transform
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -14163,8 +18132,40 @@ translateX
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 (10
 px
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -14196,6 +18197,22 @@ opacity
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -14204,7 +18221,23 @@ opacity
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -14228,7 +18261,31 @@ transform
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
+
 
 
 
@@ -14244,7 +18301,31 @@ transform
 
 
 
+
+
+
+
+
+
+
+
 translate
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -14285,6 +18366,22 @@ transform
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -14293,7 +18390,23 @@ transform
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -14316,8 +18429,40 @@ translateX
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 (-10
 px
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -14349,6 +18494,22 @@ opacity
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -14357,7 +18518,23 @@ opacity
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -14381,7 +18558,31 @@ transform
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
+
 
 
 
@@ -14397,7 +18598,31 @@ transform
 
 
 
+
+
+
+
+
+
+
+
 translate
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -14711,48 +18936,49 @@ tbody th {
 	font-size: 15px; /*アイコンサイズ*/
 }
 
-.switch_btn{
-  position: relative;
-  top: 30px;
-  left: 48%;
+.switch_btn {
+	position: relative;
+	top: 30px;
+	left: 48%;
 }
 
-.comp_btn{
+.comp_btn {
 	margin: 0 auto;
 }
 
 /*アイテム編集・削除画面*/
-.modal-dialog{
-	min-width:75%;
- 	max-width: 80%;
- 	width: 150%;
+.modal-dialog {
+	min-width: 75%;
+	max-width: 80%;
+	width: 150%;
 }
 
-.complete-btn{
+.complete-btn {
 	position: relative;
 	top: 0px;
 	left: 42%;
 }
 
-.btn--submit,
-input.btn--delete {
-  color: #fff;
-  background-color: #6c757d;
+.btn--submit, input.btn--delete {
+	color: #fff;
+	background-color: #6c757d;
 }
-.btn--delete:hover,
-input.btn--delete:hover {
-  color: #fff;
-  background: #6c757d;
+
+.btn--delete:hover, input.btn--delete:hover {
+	color: #fff;
+	background: #6c757d;
 }
 
 /*FAQ画面*/
 .cp_qa *, .cp_qa *:after, .cp_qa *:before {
 	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
+	box-sizing: border-box;
 }
+
 .cp_qa {
 	border-top: 1px solid #1b2538;
 }
+
 .cp_qa .cp_actab {
 	position: relative;
 	overflow: hidden;
@@ -14760,6 +18986,7 @@ input.btn--delete:hover {
 	margin-bottom: 1px;
 	color: #1b2538;
 }
+
 .cp_qa .cp_actab input {
 	position: absolute;
 	opacity: 0;
@@ -14775,6 +19002,7 @@ input.btn--delete:hover {
 	cursor: pointer;
 	border-bottom: 1px solid #1b2538;
 }
+
 .cp_qa .cp_actab label:hover {
 	color: #00838F;
 }
@@ -14783,10 +19011,12 @@ input.btn--delete:hover {
 	overflow: hidden;
 	max-height: 0;
 	-webkit-transition: max-height 0.5s ease;
-	        transition: max-height 0.5s ease;
-	color: #ffffff;
-	background: rgba(0, 131, 143, 0.5);
+	transition: max-height 0.5s ease;
+	/*color: #ffffff;*/
+	background: #EEEEEE;
+	/*background: rgba(0, 131, 143, 0.5);*/
 }
+
 .cp_qa .cp_actab .cp_actab-content p {
 	margin: -1.9em 30em 3em 2em;
 }
@@ -14809,20 +19039,21 @@ input.btn--delete:hover {
 	width: 3em;
 	margin-top: -12.5px;
 	-webkit-transition: all 0.5s ease;
-	        transition: all 0.5s ease;
+	transition: all 0.5s ease;
 	text-align: center;
 }
-.cp_qa .cp_actab input[type=checkbox] + label::after {
+
+.cp_qa .cp_actab input[type=checkbox]+label::after {
 	content: '▼';
 }
-.cp_qa .cp_actab input[type=checkbox]:checked + label::after {
+
+.cp_qa .cp_actab input[type=checkbox]:checked+label::after {
 	-webkit-transform: rotateX(180deg);
 	transform: rotateX(180deg);
 }
 
-
 /*TOPメニュー画面*/
-.register-item-btn{
+.register-item-btn {
 	height: 140px;
 	width: 140px;
 	position: absolute;
@@ -14833,68 +19064,109 @@ input.btn--delete:hover {
 }
 
 .btn-circle-stitch {
-  display: inline-block;
-  text-decoration: none;
-  background: #87befd;
-  color: #FFF;
-  width: 120px;
-  height: 120px;
-  line-height: 120px;
-  border-radius: 50%;
-  text-align: center;
-  overflow: hidden;
-  box-shadow: 0px 0px 0px 5px #87befd;
-  border: dashed 1px #FFF;
-  transition: .4s;
+	display: inline-block;
+	text-decoration: none;
+	background: #87befd;
+	color: #FFF;
+	width: 120px;
+	height: 120px;
+	line-height: 120px;
+	border-radius: 50%;
+	text-align: center;
+	overflow: hidden;
+	box-shadow: 0px 0px 0px 5px #87befd;
+	border: dashed 1px #FFF;
+	transition: .4s;
 }
 
 .btn-circle-stitch:hover {
-  background: #668ad8;
-  box-shadow: 0px 0px 0px 5px #668ad8;
+	background: #668ad8;
+	box-shadow: 0px 0px 0px 5px #668ad8;
 }
 
 /*TOP続きを読む*/
-.btn--vuemore,
-a.vuemore {
-  color: #fff;
-  background-color: #fed136;
+.btn--vuemore, a.vuemore {
+	color: #fff;
+	background-color: #fed136;
 }
-.btn--vuemore:hover,
-a.vuemore:hover {
-  color: #fff;
-  background: #fed136;
+
+.btn--vuemore:hover, a.vuemore:hover {
+	color: #fff;
+	background: #fed136;
 }
 
 .btn--vuemore {
-  color: #fff;
-  background-color: #fed136;
+	color: #fff;
+	background-color: #fed136;
 }
 
 .btn--vuemore:hover {
-  color: #fff;
-  background: #fed852;
+	color: #fff;
+	background: #fed852;
 }
 
 .btn-c {
-  font-size: 1rem;
-  padding: 0.5rem 32rem 0.5rem 32rem;
+	font-size: 1rem;
+	padding: 0.5rem 32rem 0.5rem 32rem;
 }
 
 .btn-c i.fa {
-  margin-right: 1.5rem;
+	margin-right: 1.5rem;
 }
 
-.btn--vuemore{
-	display:block;
+.btn--vuemore {
+	display: block;
 	clear: none;
 	margin: 0 auto;
 }
 
 /*アイテム確認画面*/
-.select_btn{
+.select_btn {
 	margin: 0 auto;
+}
 
-/*問い合わせ仮モーダル*/
-4279
-e541ba133a683006adf880e7c2dbcb1f4dff 
+/*FAQ画面*/
+.faq-contact-btn {
+	height: 150px;
+	width: 150px;
+	position: absolute;
+	bottom: 30px;
+	right: 30px;
+	position: fixed;
+	border-radius: 100%;
+}
 
+.btn-circle {
+	display: inline-block;
+	text-decoration: none;
+	background: #87befd;
+	color: #FFF;
+	width: 130px;
+	height: 130px;
+	line-height: 130px;
+	border-radius: 50%;
+	text-align: center;
+	overflow: hidden;
+	box-shadow: 0px 0px 0px 5px #87befd;
+	border: dashed 1px #FFF;
+	transition: .4s;
+}
+
+.faq-btn {
+	border-radius: 50px;
+	background: #fed136;
+	color: white;
+}
+
+.faq-btn:hover{
+	opacity: 0.7;
+	color: white;
+}
+
+.faq-a{
+	color: blue;
+}
+
+.faq-a:hover{
+	color: blue;
+}
