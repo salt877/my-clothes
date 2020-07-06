@@ -24,19 +24,13 @@
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="../static/dist/css/styles.css"
 	th:href="@{/dist/css/styles.css}" rel="stylesheet" />
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script type="text/javascript">
-$( function() {
-    var brands= [ [(${brandListForAutocomplete})] ];
-    console.log(brands);
-    $( "#brand" ).autocomplete({
-      source: brands
-    });
-  } );
-</script>
+
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
 </head>
 <body id="page-top">
+
 
 	<!-- Navigation-->
 	<div id="navArea">
@@ -68,7 +62,8 @@ $( function() {
 				<h2 class="section-heading text-uppercase">アイテム新規登録</h2>
 			</div>
 			<form action="#" method="post"
-				th:action="@{/registerClothes/register}">
+				th:action="@{/registerClothes/register}"
+				th:object="${registerClothesForm}">
 				<div class="image-information">
 					<input name="imageFile" type="file" />
 					<!-- accept=".jpg,.png,image/jpeg,image/png"th:errorclass="error-input" -->
@@ -85,7 +80,7 @@ $( function() {
 								<th>カテゴリー</th>
 								<td data-label="カテゴリー" class="txt">
 									<div class="cp_ipselect cp_sl02">
-										<select required name="category">
+										<select required name="category" id="category">
 											<option></option>
 											<option th:each="category :${categoryList}"
 												th:text="${category.name}" th:value="${category.id}">アクセサリー</option>
@@ -97,6 +92,7 @@ $( function() {
 								<th>ブランド</th>
 								<td data-label="ブランド" class="txt">
 									<div class="search">
+									<label for="brand" th:errors="*{brand}" style="color:red"></label>  
 										<input type="text" class="search-form" name="brand" id="brand">
 										<button type="submit" id="sbtn2">
 											<i class="fas fa-search"></i>
@@ -132,7 +128,7 @@ $( function() {
 								<th>タグ</th>
 								<td data-label="タグ" class="txt">
 									<div class="search">
-										<input type="text" class="search-form" name="tag">
+										<input type="text" class="search-form" name="tag" id="tag">
 										<button type="submit" id="sbtn2">
 											<i class="fas fa-search"></i>
 										</button>
@@ -368,5 +364,24 @@ $( function() {
 		th:src="@{/dist/js/hamburger_menu.js}"></script>
 	<script src="../static/dist/js/vuemore.js"
 		th:src="@{/dist/js/vuemore.js}"></script>
+
+	<!-- brand用オートコンプリート なぜかhead内だと起動しない -->
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script type="text/javascript">
+$( function() {
+    var brands= [ [(${brandListForAutocomplete})] ];
+    var tagContents= [ [(${tagContentsListForAutocomplete})] ];
+    //console.log(brands);
+    console.log(tagContents);
+    $( "#brand" ).autocomplete({
+      source: brands
+    });
+    $( "#tag" ).autocomplete({
+        source: tagContents
+     });
+  });
+</script>
+
 </body>
 </html>

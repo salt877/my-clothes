@@ -2,21 +2,26 @@ package jp.co.example.my.clothes.form;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotBlank;
+
 public class RegisterClothesForm {
 
 	/**
 	 * カテゴリID
 	 */
+	@NotBlank(message = "選択必須です")
 	private String category;
 
 	/**
 	 * ブランドID
 	 */
+	@NotBlank(message = "選択必須です")
 	private String brand;
 
 	/**
 	 * カラーID
 	 */
+	@NotBlank(message = "選択必須です")
 	private String color;
 
 	/**

@@ -1,19 +1,33 @@
 package jp.co.example.my.clothes.controller;
 
+import java.sql.Date;
 import java.util.List;
+
+import javax.naming.Binding;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import jp.co.example.my.clothes.domain.Brand;
 import jp.co.example.my.clothes.domain.Category;
+import jp.co.example.my.clothes.domain.Clothes;
 import jp.co.example.my.clothes.domain.Color;
 import jp.co.example.my.clothes.domain.Size;
 import jp.co.example.my.clothes.form.RegisterClothesForm;
 import jp.co.example.my.clothes.service.RegisterClothesService;
 
+/**
+ * アイテム登録画面を操作するコントローラー.
+ * 
+ * @author ashibe
+ *
+ */
 @Controller
 @RequestMapping("/registerClothes")
 public class RegisterClothesController {
@@ -25,6 +39,12 @@ public class RegisterClothesController {
 		return new RegisterClothesForm();
 	}
 
+	/**
+	 * アイテム登録画面を開く.
+	 * 
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/showRegisterClothes")
 	public String showRegisterClothes(Model model) {
 		// カテゴリの選択肢一覧を取得
@@ -38,15 +58,94 @@ public class RegisterClothesController {
 		model.addAttribute("sizeList", sizeList);
 
 		// ブランドのオートコンプリート機能
-		StringBuilder brandListForAutocomplete = registerClothesService.getItemListForAutoconplete();
+		StringBuilder brandListForAutocomplete = registerClothesService.getBrandListForAutoconplete();
 		model.addAttribute("brandListForAutocomplete", brandListForAutocomplete);
-System.out.println(brandListForAutocomplete);
+
+		// タグのオートコンプリート機能.
+		StringBuilder tagContentListForAutocomplete = registerClothesService.getTagContentListForAutoconplete();
+		model.addAttribute("tagContentsListForAutocomplete", tagContentListForAutocomplete);
+		// System.out.println(tagContentListForAutocomplete);
+
 		return "register_clothes.html";
 	}
 
+	/**
+	 * 入力された情報を受け取りアイテム登録を行う.
+	 * 
+	 * @param form
+	 * @return
+	 */
 	@RequestMapping("/register")
-	public String Register(RegisterClothesForm form) {
-		System.out.println(form);
+	public String Register(Model model, @Validated RegisterClothesForm form, BindingResult result) {
+
+		if (result.hasErrors()) {
+			return showRegisterClothes(model);
+		}
+		// 入力されたブランド情報を取得(必須)
+		Brand brand = registerClothesService.brandSearchByName(form.getBrand());
+
+		// 入力されたカテゴリ情報を取得（必須）
+		Category category = registerClothesService.categorySearchById(Integer.parseInt(form.getCategory()));
+
+		// 入力したカラー情報を取得（必須)
+		Color color = registerClothesService.ColorSearchById(Integer.parseInt(form.getColor()));
+
+		// 入力されたサイズ情報を取得(任意)
+		Size size = registerClothesService.sizeSearchById(Integer.parseInt(form.getSize()));
+
+		// 取得した情報をカテゴリにセット
+		Clothes clothes = new Clothes();
+		// 入力必須項目
+		// userId
+		clothes.setUserId(1);
+		// 画像パス（仮）
+		clothes.setImagePath("1");
+		// ブランド情報
+		clothes.setBrand(brand);
+		clothes.setBrandId(brand.getId());
+
+		// カテゴリ情報
+		clothes.setCategory(category);
+		clothes.setCategoryId(category.getId());
+
+		// カラー情報
+		clothes.setColor(color);
+		clothes.setColorId(color.getId());
+
+		// 入力任意項目
+
+		// タグ
+
+		// 季節
+		if (!StringUtils.isEmpty(form.getSeason())) {
+			clothes.setSeason(form.getSeason());
+		}
+
+		// サイズ情報
+		if (!StringUtils.isEmpty(form.getSize())) {
+			clothes.setSize(size);
+			clothes.setSizeId(size.getId());
+		}
+
+		// 購入日付
+		if (!StringUtils.isEmpty(form.getPerchaseDate())) {
+			Date sqlDate = Date.valueOf(form.getPerchaseDate());
+			clothes.setPerchaseDate(sqlDate);
+		}
+
+		// 価格
+		if (!StringUtils.isEmpty(form.getPrice())) {
+			clothes.setPrice(Integer.parseInt(form.getPrice()));
+		}
+
+		// メモ
+		if (!StringUtils.isEmpty(form.getComment())) {
+			clothes.setComment(form.getComment());
+		}
+
+		// アイテム情報を登録
+		registerClothesService.insertNewClothes(clothes);
+
 		return "register_clothes.html";
 
 	}

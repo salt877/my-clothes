@@ -22,6 +22,11 @@ public class Clothes {
 	private Integer UserId;
 
 	/**
+	 * カテゴリID
+	 */
+	private Integer categoryId;
+
+	/**
 	 * ブランドID
 	 */
 	private Integer BrandId;
@@ -45,6 +50,11 @@ public class Clothes {
 	 * サイズID
 	 */
 	private Integer sizeId;
+
+	/**
+	 * 季節
+	 */
+	private String season;
 
 	/**
 	 * 購入日
@@ -86,14 +96,6 @@ public class Clothes {
 	 */
 	private List<Tag> tagList;
 
-	@Override
-	public String toString() {
-		return "Clothes [id=" + id + ", UserId=" + UserId + ", BrandId=" + BrandId + ", imagePath=" + imagePath
-				+ ", price=" + price + ", colorId=" + colorId + ", sizeId=" + sizeId + ", perchaseDate=" + perchaseDate
-				+ ", comment=" + comment + ", deleted=" + deleted + ", category=" + category + ", brand=" + brand
-				+ ", color=" + color + ", size=" + size + ", tagList=" + tagList + "]";
-	}
-
 	public Integer getId() {
 		return id;
 	}
@@ -124,6 +126,14 @@ public class Clothes {
 
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
+	}
+
+	public Integer getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(Integer categoryId) {
+		this.categoryId = categoryId;
 	}
 
 	public Integer getPrice() {
@@ -212,6 +222,23 @@ public class Clothes {
 
 	public void setTagList(List<Tag> tagList) {
 		this.tagList = tagList;
+	}
+
+	public String getSeason() {
+		return season;
+	}
+
+	public void setSeason(String season) {
+		this.season = season;
+	}
+
+	@Override
+	public String toString() {
+		return "Clothes [id=" + id + ", UserId=" + UserId + ", categoryId=" + categoryId + ", BrandId=" + BrandId
+				+ ", imagePath=" + imagePath + ", price=" + price + ", colorId=" + colorId + ", sizeId=" + sizeId
+				+ ", season=" + season + ", perchaseDate=" + perchaseDate + ", comment=" + comment + ", deleted="
+				+ deleted + ", category=" + category + ", brand=" + brand + ", color=" + color + ", size=" + size
+				+ ", tagList=" + tagList + "]";
 	}
 
 }

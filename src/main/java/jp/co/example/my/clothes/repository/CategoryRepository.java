@@ -27,15 +27,27 @@ public class CategoryRepository {
 	private static final RowMapper<Category> CATEGORY_ROW_MAPPER = new BeanPropertyRowMapper<>(Category.class);
 
 	/**
-	 * カテゴリ一覧を取得.
+	 * selectboxの表示の為のカテゴリ一覧を取得.
 	 * 
 	 * @return カテゴリ一覧
 	 */
 	public List<Category> showCategoryList() {
-		String sql = "select * from categories order by name";
+		String sql = "select id,name from categories order by name";
 		SqlParameterSource param = new MapSqlParameterSource();
 		List<Category> categoryList = template.query(sql, param, CATEGORY_ROW_MAPPER);
 		return categoryList;
+	}
+
+	/**
+	 * idでカテゴリを一件取得.
+	 * 
+	 * @return
+	 */
+	public Category categorySearchByCategoryId(Integer id) {
+		String sql = "select id,name from categories where id = :id";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
+		Category category = template.queryForObject(sql, param, CATEGORY_ROW_MAPPER);
+		return category;
 	}
 
 }

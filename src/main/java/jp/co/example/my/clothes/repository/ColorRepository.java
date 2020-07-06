@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import jp.co.example.my.clothes.domain.Color;
+import jp.co.example.my.clothes.domain.Size;
 
 /**
  * カラー情報を扱うレポジトリ.
@@ -39,4 +40,17 @@ public class ColorRepository {
 
 	}
 
+	/**
+	 * 入力されたカラー情報を取得.
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public Color ColorSearchByid(Integer id) {
+		String sql = "select id,name from colors where id = :id";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
+		Color color = template.queryForObject(sql, param, COLOR_ROW_MAPPER);
+		return color;
+
+	}
 }
