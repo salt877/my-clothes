@@ -19,12 +19,17 @@ public class Clothes {
 	/**
 	 * ユーザーID
 	 */
-	private Integer UserId;
+	private Integer userId;
+
+	/**
+	 * カテゴリID
+	 */
+	private Integer categoryId;
 
 	/**
 	 * ブランドID
 	 */
-	private Integer BrandId;
+	private Integer brandId;
 
 	/**
 	 * 画像パス
@@ -40,6 +45,11 @@ public class Clothes {
 	 * カラーID
 	 */
 	private Integer colorId;
+
+	/**
+	 * シーズン
+	 */
+	private String season;
 
 	/**
 	 * サイズID
@@ -86,14 +96,6 @@ public class Clothes {
 	 */
 	private List<Tag> tagList;
 
-	@Override
-	public String toString() {
-		return "Clothes [id=" + id + ", UserId=" + UserId + ", BrandId=" + BrandId + ", imagePath=" + imagePath
-				+ ", price=" + price + ", colorId=" + colorId + ", sizeId=" + sizeId + ", perchaseDate=" + perchaseDate
-				+ ", comment=" + comment + ", deleted=" + deleted + ", category=" + category + ", brand=" + brand
-				+ ", color=" + color + ", size=" + size + ", tagList=" + tagList + "]";
-	}
-
 	public Integer getId() {
 		return id;
 	}
@@ -103,19 +105,27 @@ public class Clothes {
 	}
 
 	public Integer getUserId() {
-		return UserId;
+		return userId;
 	}
 
 	public void setUserId(Integer userId) {
-		UserId = userId;
+		this.userId = userId;
+	}
+
+	public Integer getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(Integer categoryId) {
+		this.categoryId = categoryId;
 	}
 
 	public Integer getBrandId() {
-		return BrandId;
+		return brandId;
 	}
 
 	public void setBrandId(Integer brandId) {
-		BrandId = brandId;
+		this.brandId = brandId;
 	}
 
 	public String getImagePath() {
@@ -140,6 +150,14 @@ public class Clothes {
 
 	public void setColorId(Integer colorId) {
 		this.colorId = colorId;
+	}
+
+	public String getSeason() {
+		return season;
+	}
+
+	public void setSeason(String season) {
+		this.season = season;
 	}
 
 	public Integer getSizeId() {
@@ -212,6 +230,15 @@ public class Clothes {
 
 	public void setTagList(List<Tag> tagList) {
 		this.tagList = tagList;
+	}
+
+	@Override
+	public String toString() {
+		return "Clothes [id=" + id + ", userId=" + userId + ", categoryId=" + categoryId + ", brandId=" + brandId
+				+ ", imagePath=" + imagePath + ", price=" + price + ", colorId=" + colorId + ", season=" + season
+				+ ", sizeId=" + sizeId + ", perchaseDate=" + perchaseDate + ", comment=" + comment + ", deleted="
+				+ deleted + ", category=" + category + ", brand=" + brand + ", color=" + color + ", size=" + size
+				+ ", tagList=" + tagList + "]";
 	}
 
 }
