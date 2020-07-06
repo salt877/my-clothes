@@ -2,11 +2,13 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
+        <meta name="keywords" content="springboot,contact us,">
         <title>MYQLO | お問い合わせ</title>
-        <link rel="icon" type="image/x-icon" href="../static/dist/assets/img/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="../static/dist/assets/img/favicon.ico" th:href="@{/dist/assets/img/favicon.ico}"/>
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -14,7 +16,14 @@
         <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="../static/dist/css/styles.css" rel="stylesheet" />
+        <link href="../static/dist/css/styles.css" rel="stylesheet" th:href="@{/dist/css/styles.css}" />
+        
+        <!-- Form送信完了後ポップアップ用のJavaScript -->
+        <script type="text/javascript">
+        	function send(){
+        		alert("お問い合わせを受け付けました。");
+        	}
+        </script>
     </head>
     <body id="page-top">
     
@@ -47,30 +56,33 @@
         <section class="page-section bg-light" id="portfolio">
             <div class="conatact-container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">お問い合わせ  内容入力</h2>
+                    <h2 class="section-heading text-uppercase">お問い合わせ  入力フォーム</h2>
                     <p>お問い合わせ内容をご入力の上、「送信」ボタンをクリックしてください。</p>
                 </div>
-                	<form action="#" method="post">
+                	<form action="#" method="post" th:action="@{/contact/reception}" th:object="${contactForm}" onsubmit="return send()">
                 		<div class="contact-form">
                 			<div class="cp_iptxt">
 								<label class="ef">お名前
-									<input type="text" placeholder="山田太郎" size=54>
+									<input type="text" name="name" placeholder="山田太郎" size=54 th:field="*{name}">
 								</label>
+                				<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color:red">エラー！</div>
 							</div>
 							<div class="cp_iptxt">
 								<label class="ef">メールアドレス<br>
-									<input type="email" placeholder="aaa@gmail.com" size=60>
+									<input type="email" name="email" placeholder="aaa@gmail.com" size=60 th:field="*{email}">
 								</label>
+								<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color:red">エラー！</div>
 							</div>
 							<div class="cp_iptxt">
-								<label class="ef">お問い合わせ内容<br>
-									<textarea name="comment" cols="63" rows="5"></textarea>
+									<label class="ef">お問い合わせ内容<br>
+									<textarea name="content" cols="63" rows="5" th:field="*{content}" ></textarea>
 								</label>
+								<div th:if="${#fields.hasErrors('content')}" th:errors="*{content}" style="color:red">エラー！</div>
 							</div>
 							
 							<!-- 送信ボタン/完了ポップアップ -->
 							<div class="submit-button">
-                    			<input type="submit" name="submit" id="submit" class="btn btn--submit btn--radius" value="&emsp;送信&emsp;" onClick="alert('問い合わせを受け付けました。');"/>
+                    			<input type="submit" name="submit" id="submit" class="btn btn--submit btn--radius" value="&emsp;送信&emsp;"/>
                	  	    	</div>
                	  	    </div>
               	    </form>
@@ -101,10 +113,10 @@
         <!-- Third party plugin JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
         <!-- Contact form JS-->
-        <script src="../static/dist/assets/mail/jqBootstrapValidation.js"></script>
-        <script src="../static/dist/assets/mail/contact_me.js"></script>
+        <script src="../static/dist/assets/mail/jqBootstrapValidation.js" th:href="@{/dist/assets/mail/jqBootstrapValidation.js}" ></script>
+        <script src="../static/dist/assets/mail/contact_me.js" th:href="@{/dist/assets/mail/contact_me.js}"></script>
         <!-- Core theme JS-->
-        <script src="../static/dist/js/scripts.js"></script>
-        <script src="../static/dist/js/hamburger_menu.js"></script>
+        <script src="../static/dist/js/scripts.js" th:href="@{/dist/js/scripts.js}"></script>
+        <script src="../static/dist/js/hamburger_menu.js" th:href="@{/dist/js/hamburger_menu.js}"></script>
     </body>
 </html>
