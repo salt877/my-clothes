@@ -46,7 +46,7 @@ public class ClothesRepository {
 	 * @return clothesオブジェクトが入ったリスト（０件の場合nullを返します。）
 	 */
 	public List<Clothes> findByUserId(Integer userId) {
-		String sql = "SELECT user_id, image_path, price, category_id, brand_id, color_id, size_id, season, perchase_date, comment FROM clothes WHERE user_id = :userId";
+		String sql = "SELECT user_id, image_path, CASE WHEN price IS NULL THEN 0 ELSE price END, category_id, brand_id, color_id, size_id, season, perchase_date, comment FROM clothes WHERE user_id = :userId";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
 		List<Clothes> clothesList = template.query(sql, param, CLOTHES_ROW_MAPPER);
 

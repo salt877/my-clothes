@@ -29,10 +29,12 @@ public class ShowStatisticsController {
 		Integer totalItemPrice = 0;
 		Integer itemPriceAverage = 0;
 
-		List<Clothes> clothesListByUserId = showStatisticsService.showStatsByUserId(userId);
+		List<Clothes> clothesListByUserId = showStatisticsService.showStatsByUserId(1);
+		System.out.println("ユーザーIDで検索結果:" + clothesListByUserId);
 
 		// ユーザーIDに紐づくアイテムの合計点数
 		totalItemCount = clothesListByUserId.size();
+		System.out.println("アイテム点数:" + totalItemCount);
 
 		// ユーザーIDに紐づくアイテムの合計金額
 		for (Clothes clothesByUserId : clothesListByUserId) {
@@ -40,8 +42,15 @@ public class ShowStatisticsController {
 
 		}
 
+		System.out.println("アイテム合計金額:" + totalItemPrice);
+
 		// ユーザーIDに紐づくアイテム平均金額
 		itemPriceAverage = totalItemPrice / clothesListByUserId.size();
+		System.out.println("アイテム平均金額:" + itemPriceAverage);
+
+		model.addAttribute("totalItemCount", totalItemCount);
+		model.addAttribute("totalItemPrice", totalItemPrice);
+		model.addAttribute("itemPriceAverage", itemPriceAverage);
 
 		return "statistics";
 
