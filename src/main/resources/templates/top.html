@@ -59,9 +59,120 @@
 			</div>
 			<div id="cloth_list" class="row">
 				<div class="col-lg-4 col-sm-6 mb-4">
+				<tbody>
+				<tr th:each="item : ${clothesList}">
+					<th class="portfolio-item">
+						<td><a class="portfolio-link" data-toggle="modal"
+							href="edit_clothes.html" th:href="@{'/edit?id=' + ${item.id}}" data-target="#exampleModal">
+							<div class="portfolio-hover">
+								<div class="portfolio-hover-content">
+									<i class="fas fa-plus fa-3x"></i>
+								</div>
+							</div>
+							<img class="img-fluid" src="../static/img/1.jpg" th:src="${'/img/'+item.imagePath}" alt="" />
+						<div class="portfolio-caption"></a></td></div>
+				</th>
+				</tr>
+				</tbody>
+							<!-- <div class="portfolio-caption-heading">Explore</div>
+							<div class="portfolio-caption-subheading text-muted">Graphic
+								Design</div> -->
+						</div>
+					</div>
+<!-- 				<div class="col-lg-4 col-sm-6 mb-4">
 					<div class="portfolio-item">
 						<a class="portfolio-link" data-toggle="modal"
-							href="edit_cloth.html" data-target="#exampleModal">
+							href="#portfolioModal2" data-target="#exampleModal">
+							<div class="portfolio-hover">
+								<div class="portfolio-hover-content">
+									<i class="fas fa-plus fa-3x"></i>
+								</div>
+							</div> <img class="img-fluid"
+							src="../static/dist/assets/img/portfolio/02-thumbnail.jpg" alt="" />
+						</a>
+						<div class="portfolio-caption">
+							<div class="portfolio-caption-heading">Explore</div>
+							<div class="portfolio-caption-subheading text-muted">Graphic
+								Design</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-sm-6 mb-4">
+					<div class="portfolio-item">
+						<a class="portfolio-link" data-toggle="modal"
+							href="#portfolioModal2" data-target="#exampleModal">
+							<div class="portfolio-hover">
+								<div class="portfolio-hover-content">
+									<i class="fas fa-plus fa-3x"></i>
+								</div>
+							</div> <img class="img-fluid"
+							src="../static/dist/assets/img/portfolio/03-thumbnail.jpg" alt="" />
+						</a>
+						<div class="portfolio-caption">
+							<div class="portfolio-caption-heading">Explore</div>
+							<div class="portfolio-caption-subheading text-muted">Graphic
+								Design</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-sm-6 mb-4">
+					<div class="portfolio-item">
+						<a class="portfolio-link" data-toggle="modal"
+							href="#portfolioModal2" data-target="#exampleModal">
+							<div class="portfolio-hover">
+								<div class="portfolio-hover-content">
+									<i class="fas fa-plus fa-3x"></i>
+								</div>
+							</div> <img class="img-fluid"
+							src="../static/dist/assets/img/portfolio/04-thumbnail.jpg" alt="" />
+						</a>
+						<div class="portfolio-caption">
+							<div class="portfolio-caption-heading">Explore</div>
+							<div class="portfolio-caption-subheading text-muted">Graphic
+								Design</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-sm-6 mb-4">
+					<div class="portfolio-item">
+						<a class="portfolio-link" data-toggle="modal"
+							href="#portfolioModal2" data-target="#exampleModal">
+							<div class="portfolio-hover">
+								<div class="portfolio-hover-content">
+									<i class="fas fa-plus fa-3x"></i>
+								</div>
+							</div> <img class="img-fluid"
+							src="../static/dist/assets/img/portfolio/05-thumbnail.jpg" alt="" />
+						</a>
+						<div class="portfolio-caption">
+							<div class="portfolio-caption-heading">Explore</div>
+							<div class="portfolio-caption-subheading text-muted">Graphic
+								Design</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-sm-6 mb-4">
+					<div class="portfolio-item">
+						<a class="portfolio-link" data-toggle="modal"
+							href="#portfolioModal2" data-target="#exampleModal">
+							<div class="portfolio-hover">
+								<div class="portfolio-hover-content">
+									<i class="fas fa-plus fa-3x"></i>
+								</div>
+							</div> <img class="img-fluid"
+							src="../static/dist/assets/img/portfolio/06-thumbnail.jpg" alt="" />
+						</a>
+						<div class="portfolio-caption">
+							<div class="portfolio-caption-heading">Explore</div>
+							<div class="portfolio-caption-subheading text-muted">Graphic
+								Design</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-sm-6 mb-4">
+					<div class="portfolio-item">
+						<a class="portfolio-link" data-toggle="modal"
+							href="#portfolioModal2" data-target="#exampleModal">
 							<div class="portfolio-hover">
 								<div class="portfolio-hover-content">
 									<i class="fas fa-plus fa-3x"></i>
@@ -175,96 +286,6 @@
 									<i class="fas fa-plus fa-3x"></i>
 								</div>
 							</div> <img class="img-fluid"
-							src="../static/dist/assets/img/portfolio/01-thumbnail.jpg" alt="" />
-						</a>
-						<div class="portfolio-caption">
-							<div class="portfolio-caption-heading">Explore</div>
-							<div class="portfolio-caption-subheading text-muted">Graphic
-								Design</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-sm-6 mb-4">
-					<div class="portfolio-item">
-						<a class="portfolio-link" data-toggle="modal"
-							href="#portfolioModal2" data-target="#exampleModal">
-							<div class="portfolio-hover">
-								<div class="portfolio-hover-content">
-									<i class="fas fa-plus fa-3x"></i>
-								</div>
-							</div> <img class="img-fluid"
-							src="../static/dist/assets/img/portfolio/02-thumbnail.jpg" alt="" />
-						</a>
-						<div class="portfolio-caption">
-							<div class="portfolio-caption-heading">Explore</div>
-							<div class="portfolio-caption-subheading text-muted">Graphic
-								Design</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-sm-6 mb-4">
-					<div class="portfolio-item">
-						<a class="portfolio-link" data-toggle="modal"
-							href="#portfolioModal2" data-target="#exampleModal">
-							<div class="portfolio-hover">
-								<div class="portfolio-hover-content">
-									<i class="fas fa-plus fa-3x"></i>
-								</div>
-							</div> <img class="img-fluid"
-							src="../static/dist/assets/img/portfolio/03-thumbnail.jpg" alt="" />
-						</a>
-						<div class="portfolio-caption">
-							<div class="portfolio-caption-heading">Explore</div>
-							<div class="portfolio-caption-subheading text-muted">Graphic
-								Design</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-sm-6 mb-4">
-					<div class="portfolio-item">
-						<a class="portfolio-link" data-toggle="modal"
-							href="#portfolioModal2" data-target="#exampleModal">
-							<div class="portfolio-hover">
-								<div class="portfolio-hover-content">
-									<i class="fas fa-plus fa-3x"></i>
-								</div>
-							</div> <img class="img-fluid"
-							src="../static/dist/assets/img/portfolio/04-thumbnail.jpg" alt="" />
-						</a>
-						<div class="portfolio-caption">
-							<div class="portfolio-caption-heading">Explore</div>
-							<div class="portfolio-caption-subheading text-muted">Graphic
-								Design</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-sm-6 mb-4">
-					<div class="portfolio-item">
-						<a class="portfolio-link" data-toggle="modal"
-							href="#portfolioModal2" data-target="#exampleModal">
-							<div class="portfolio-hover">
-								<div class="portfolio-hover-content">
-									<i class="fas fa-plus fa-3x"></i>
-								</div>
-							</div> <img class="img-fluid"
-							src="../static/dist/assets/img/portfolio/05-thumbnail.jpg" alt="" />
-						</a>
-						<div class="portfolio-caption">
-							<div class="portfolio-caption-heading">Explore</div>
-							<div class="portfolio-caption-subheading text-muted">Graphic
-								Design</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-sm-6 mb-4">
-					<div class="portfolio-item">
-						<a class="portfolio-link" data-toggle="modal"
-							href="#portfolioModal2" data-target="#exampleModal">
-							<div class="portfolio-hover">
-								<div class="portfolio-hover-content">
-									<i class="fas fa-plus fa-3x"></i>
-								</div>
-							</div> <img class="img-fluid"
 							src="../static/dist/assets/img/portfolio/06-thumbnail.jpg" alt="" />
 						</a>
 						<div class="portfolio-caption">
@@ -273,25 +294,7 @@
 								Design</div>
 						</div>
 					</div>
-				</div>
-				<div class="col-lg-4 col-sm-6 mb-4">
-					<div class="portfolio-item">
-						<a class="portfolio-link" data-toggle="modal"
-							href="#portfolioModal2" data-target="#exampleModal">
-							<div class="portfolio-hover">
-								<div class="portfolio-hover-content">
-									<i class="fas fa-plus fa-3x"></i>
-								</div>
-							</div> <img class="img-fluid"
-							src="../static/dist/assets/img/portfolio/06-thumbnail.jpg" alt="" />
-						</a>
-						<div class="portfolio-caption">
-							<div class="portfolio-caption-heading">Explore</div>
-							<div class="portfolio-caption-subheading text-muted">Graphic
-								Design</div>
-						</div>
-					</div>
-				</div>
+				</div> -->
 
 				<!-- もっと見るボタン -->
 				<div id="more_btn" class="btn btn--vuemore btn-c">
@@ -299,6 +302,7 @@
 				</div>
 				<div id="close_btn" class="btn btn--vuemore btn-c">
 					閉じる <i class="fa fa-chevron-up" aria-hidden="true"></i>
+				</div>
 				</div>
 			</div>
 
