@@ -1,12 +1,15 @@
 package jp.co.example.my.clothes.service;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import jp.co.example.my.clothes.domain.User;
+import jp.co.example.my.clothes.form.RegisterUserForm;
 import jp.co.example.my.clothes.repository.UserRepository;
 
 /**
@@ -24,11 +27,16 @@ public class RegisterUserCompleteSendMailService {
 
 	@Autowired
 	private UserRepository userRepository;
+	
+	@ModelAttribute
+	public RegisterUserForm setUpForm() {
+		return new RegisterUserForm();
+	}
 
 	/**
 	 * ユーザ登録完了後にメールを送信するメソッド.
 	 */
-	public void sendMail() {
+	public void sendMail(RegisterUserForm form) {
 		// メール情報を詰めるオブジェクト
 		SimpleMailMessage msg = new SimpleMailMessage();
 
@@ -37,6 +45,7 @@ public class RegisterUserCompleteSendMailService {
 
 		// ユーザ情報から送信先のメールアドレスをセット
 		User user = new User();
+		BeanUtils.copyProperties(form, user);
 		msg.setTo(user.getEmail());
 
 		// 件名
@@ -52,12 +61,12 @@ public class RegisterUserCompleteSendMailService {
 		text.append("お世話になっております。\n");
 		text.append("MYQLO運営事務局です。この度は本サイトにご登録いただきありがとうございます。\n");
 		text.append("下記にご登録いただいたメールアドレスとパスワードをお知らせ致します。\n");
-		text.append("URLよりログイン画面にアクセスできますので、\n\n");
-		text.append("ログイン画面URL：http://localhost:8080//showLogin\n");
+		text.append("URLよりログイン画面にアクセスできますので、ご確認ください。\n\n");
+		text.append("ログイン画面URL：http://localhost:8080/showLogin\n");
 		text.append("メールアドレス：" + user.getEmail() + "\n");
 		text.append("パスワード：" + user.getPassword() + "\n\n");
 		text.append("引き続き、MYQLOをお楽しみください。\n");
-		text.append("今後ともよろしくお願い申し上げます。\n");
+		text.append("今後ともよろしくお願い申し上げます。\n\n");
 
 		// フッター部分
 		text.append("──────────────────────────────────────────\n");

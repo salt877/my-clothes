@@ -77,7 +77,7 @@ public class RegisterUserController {
 		registerUserService.registerUser(user);
 		
 		// メールを送信する
-		sendMailService.sendMail();
+		sendMailService.sendMail(form);
 
 		return "redirect:/showLogin";
 	}
