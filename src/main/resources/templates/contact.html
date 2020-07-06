@@ -2,9 +2,11 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
+        <meta name="keywords" content="springboot,contact us,">
         <title>MYQLO | お問い合わせ</title>
         <link rel="icon" type="image/x-icon" href="../static/dist/assets/img/favicon.ico" th:href="@{/dist/assets/img/favicon.ico}"/>
         <!-- Font Awesome icons (free version)-->
@@ -15,6 +17,13 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="../static/dist/css/styles.css" rel="stylesheet" th:href="@{/dist/css/styles.css}" />
+        
+        <!-- Form送信完了後ポップアップ用のJavaScript -->
+        <script type="text/javascript">
+        	function send(){
+        		alert("お問い合わせを受け付けました。");
+        	}
+        </script>
     </head>
     <body id="page-top">
     
@@ -50,7 +59,7 @@
                     <h2 class="section-heading text-uppercase">お問い合わせ  入力フォーム</h2>
                     <p>お問い合わせ内容をご入力の上、「送信」ボタンをクリックしてください。</p>
                 </div>
-                	<form action="#" method="post" th:action="@{/contact/reception}" th:object="${contactForm}">
+                	<form action="#" method="post" th:action="@{/contact/reception}" th:object="${contactForm}" onsubmit="return send()">
                 		<div class="contact-form">
                 			<div class="cp_iptxt">
 								<label class="ef">お名前
