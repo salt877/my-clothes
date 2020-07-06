@@ -88,4 +88,20 @@ public class ShowStatisticsService {
 	public Brand showBrandById(Integer id) {
 		return brandRepository.brandSearchById(id);
 	}
+
+	public StringBuilder getClothesListForChart(List<Clothes> clothesList) {
+		StringBuilder clothesListForChart = new StringBuilder();
+		for (int i = 0; i < clothesList.size(); i++) {
+			if (i != 0) {
+				clothesListForChart.append(",");
+
+			}
+
+			Clothes clothes = clothesList.get(i);
+			clothesListForChart.append("\"");
+			clothesListForChart.append(clothes.getCategory().getName());
+			clothesListForChart.append("\"");
+		}
+		return clothesListForChart;
+	}
 }
