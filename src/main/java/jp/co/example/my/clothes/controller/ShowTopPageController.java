@@ -15,7 +15,8 @@ import jp.co.example.my.clothes.domain.LoginUser;
 import jp.co.example.my.clothes.service.ShowTopPageService;
 
 @Controller
-public class ShopTopPageController {
+@RequestMapping("")
+public class ShowTopPageController {
 
 	@Autowired
 	private ShowTopPageService showTopPageService;
@@ -31,12 +32,14 @@ public class ShopTopPageController {
 	 * @return トップページ
 	 */
 	@RequestMapping("/")
-	public String showItemList(Model model, @AuthenticationPrincipal LoginUser loginUser) {
+	public String showItemList(Model model,@AuthenticationPrincipal LoginUser loginUser) {
 
 		Integer userId = loginUser.getUser().getId();
+		System.out.println("userIdは"+userId);
 
 		List<Clothes> clothesList = showTopPageService.showItemList(userId);
 
+		System.out.println("あああ"+clothesList.size());
 		model.addAttribute("clothesList", clothesList);
 
 		return "top";
