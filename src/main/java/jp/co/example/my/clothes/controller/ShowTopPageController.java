@@ -35,11 +35,9 @@ public class ShowTopPageController {
 	public String showItemList(Model model,@AuthenticationPrincipal LoginUser loginUser) {
 
 		Integer userId = loginUser.getUser().getId();
-		System.out.println("userIdは"+userId);
 
 		List<Clothes> clothesList = showTopPageService.showItemList(userId);
 
-		System.out.println("あああ"+clothesList.size());
 		model.addAttribute("clothesList", clothesList);
 
 		return "top";

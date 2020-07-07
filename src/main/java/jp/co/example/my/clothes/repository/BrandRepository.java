@@ -59,4 +59,24 @@ public class BrandRepository {
 		}
 	}
 
+	/**
+	 * 
+	 * ブランドIDで1件検索.
+	 * 
+	 * @param id ブランドID
+	 * @return brandオブジェクト
+	 */
+	public Brand brandSearchById(Integer id) {
+		String sql = "SELECT id ,name FROM brands where id = :id";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
+		List<Brand> brandList = template.query(sql, param, BRAND_ROW_MAPPER);
+
+		if (brandList.size() == 0) {
+			return null;
+		}
+
+		return brandList.get(0);
+
+	}
+
 }

@@ -21,7 +21,6 @@ public class ShowTopPageService {
 	 * @return 登録アイテム一覧
 	 */
 	public List<Clothes> showItemList(Integer userId) {
-		System.out.println("サービスクラス"+userId);
 		List<Clothes> clothesList = clothesRepository.findAll(userId);
 		return clothesList;
 	}
