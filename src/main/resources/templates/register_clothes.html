@@ -31,8 +31,22 @@
 <script type="text/javascript">
 
 function func1(){
+	 $("#category2").val($("#category").val());
+	 $("#brand2").val($("#brand").val());
+     $("#color2").val($("#color").val());
+     $("#tag2").val($("#tag").val());
+     $("#size2").val($("#size").val());
+     $("#season2").val(a);
+     $("#perchaseDate2").val($("#perchaseDate").val());
+     $("#price2").val($("#price").val());
+     $("#comment2").val($("#comment").val());
+     
+	 
 	console.log("モーダルへ");
 	var category = document.getElementById( "category" ).value ;
+	if(form1.category.value==""){
+	return false;
+	}
 	var a=document.getElementById( "category" ).text ;
 	var brand = document.getElementById( "brand" ).value ;
 	var color = document.getElementById( "color" ).value ;
@@ -50,10 +64,6 @@ function func1(){
 	console.log(perchaseDate);
 	console.log(price);
 	console.log(comment);
-}
-
-function func2(){
-	console.log("aaaaa");
 }
 
 
@@ -118,7 +128,7 @@ function func2(){
 								<td data-label="category" class="txt"><label for="category"
 									th:errors="*{category}" style="color: red"></label>
 									<div class="cp_ipselect cp_sl02">
-										<select required name="category" id="category">
+										<select  name="category" id="category">
 											<option th:value="null"></option>
 											<option th:each="category :${categoryList}"
 												th:text="${category.name}" th:value="${category.id}"
@@ -129,11 +139,9 @@ function func2(){
 							<tr>
 								<th>
 									<div>ブランド</div>
-									<div th:if="${message}!=null" th:text="${message}"
-										style="color: red"></div>
+									<div th:if="${message}!=null" th:text="${message}" style="color: red"></div>
 								</th>
-								<td data-label="brand" class="txt"><label for="brand"
-									th:errors="*{brand}" style="color: red"></label>
+								<td data-label="brand" class="txt"><label for="brand" th:errors="*{brand}" style="color: red"></label>
 									<div class="search">
 										<input type="text" class="search-form" name="brand" id="brand"
 											th:field="*{brand}">
@@ -150,7 +158,7 @@ function func2(){
 								<td data-label="color" class="txt"><label for="color"
 									th:errors="*{color}" style="color: red"></label>
 									<div class="cp_ipselect cp_sl02">
-										<select required name="color" id="color">
+										<select name="color" id="color">
 											<option th:value="null"></option>
 											<option th:each="color :${colorList}" th:text="${color.name}"
 												th:value="${color.id}" th:field="*{color}">レッド</option>
@@ -183,15 +191,11 @@ function func2(){
 							</tr>
 							<tr>
 								<th>シーズン</th>
-								<td data-label="シーズン" class="txt" id="season"><input
-									type="radio" name="season" th:value="春"
-									th:checked="${season=='春'}" id="season">春&emsp; <input
-									type="radio" name="season" th:value="夏"
-									th:checked="${season=='夏'}" id="season">夏&emsp; <input
-									type="radio" name="season" th:value="秋"
-									th:checked="${season=='秋'}" id="season">秋&emsp; <input
-									type="radio" name="season" th:value="冬"
-									th:checked="${season=='冬'}" id="season">冬</td>
+								<td data-label="シーズン" class="txt" id="seasons">
+								<input type="radio" name="season" th:value="春" th:checked="${season=='春'}" id="season" onchange="chk1(this.value)" >春&emsp;
+								<input type="radio" name="season" th:value="夏" th:checked="${season=='夏'}" id="season" onchange="chk1(this.value)">夏&emsp;
+								<input type="radio" name="season" th:value="秋"  th:checked="${season=='秋'}" id="season" onchange="chk1(this.value)">秋&emsp;
+								<input type="radio" name="season" th:value="冬"   th:checked="${season=='冬'}" id="season" onchange="chk1(this.value)">冬</td>
 							</tr>
 							<tr>
 								<th>サイズ</th>
@@ -259,36 +263,7 @@ function func2(){
 											th:errorclass="error-input" -->
 									</div>
 
-		<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-		<script type="text/javascript">
-            $(function () {
-                $("#category").on("keyup change", function () {
-                    $("#category2").val($(this).val());
-                });
-                $("#brand").on("keyup change", function () {
-                    $("#brand2").val($(this).val());
-                });
-                $("#color").on("keyup change", function () {
-                    $("#color2").val($(this).val());
-                });
-                $("#tag").on("keyup change", function () {
-                    $("#tag2").val($(this).val());
-                });
-                $("#size").on("keyup change", function () {
-                    $("#size2").val($(this).val());
-                });
-                $("#perchaseDate").on("keyup change", function () {
-                    $("#perchaseDate2").val($(this).val());
-                });
-                $("#price").on("keyup change", function () {
-                    $("#price2").val($(this).val());
-                });
-                $("#comment").on("keyup change", function () {
-                    $("#comment2").val($(this).val());
-                });
-            });
-            
-        </script>
+									
 									<div class="required-information">
 										<table>
 											<thead>
@@ -314,10 +289,8 @@ function func2(){
 													<th>ブランド</th>
 													<td data-label="ブランド" class="txt">
 														<div class="search">
-															<input type="text" class="search-form" id="brand2" disabled="disabled">
-															<button type="submit" id="sbtn2">
-																<i class="fas fa-search"></i>
-															</button>
+															<input type="text" class="search-form" id="brand2"
+																disabled="disabled">
 														</div>
 													</td>
 												</tr>
@@ -325,11 +298,12 @@ function func2(){
 													<th>カラー</th>
 													<td data-label="カラー" class="txt">
 														<div class="cp_ipselect cp_sl02">
-															<select  id="color2" disabled="disabled">
-											<option th:value="null"></option>
-											<option th:each="color :${colorList}" th:text="${color.name}"
-												th:value="${color.id}" th:field="*{color}">レッド</option>
-										</select>
+															<select id="color2" disabled="disabled">
+																<option th:value="null"></option>
+																<option th:each="color :${colorList}"
+																	th:text="${color.name}" th:value="${color.id}"
+																	th:field="*{color}">レッド</option>
+															</select>
 														</div>
 													</td>
 												</tr>
@@ -349,40 +323,44 @@ function func2(){
 													<th>タグ</th>
 													<td data-label="タグ" class="txt">
 														<div class="search">
-															<input type="text" class="search-form" id="tag2" disabled="disabled">
-															<button type="submit" id="sbtn2">
-																<i class="fas fa-search"></i>
-															</button>
+															<input type="text" class="search-form" id="tag2"
+																disabled="disabled">
 														</div>
 													</td>
 												</tr>
 												<tr>
 													<th>シーズン</th>
-													<td data-label="シーズン" class="txt"><input type="radio">春&emsp;
-														<input type="radio">夏&emsp; <input type="radio">秋&emsp;
-														<input type="radio">冬</td>
+													<td data-label="シーズン" class="txt">
+													<span id="season2" style="color: black"></span>
+													<script>
+													function chk1(val) {
+  													document.getElementById("season2").textContent = val;
+													}
+													</script>
+													</td>
 												</tr>
 												<tr>
 													<th>サイズ</th>
 													<td data-label="サイズ" class="txt">
 														<div class="cp_ipselect cp_sl02">
-															<select  id="size2" disabled="disabled">
-											<option></option>
-											<option th:each="size:${sizeList}" th:text="${size.name}"
-												th:value="${size.id}" th:field="*{size}">XS</option>
-										</select>
+															<select id="size2" disabled="disabled">
+																<option></option>
+																<option th:each="size:${sizeList}"
+																	th:text="${size.name}" th:value="${size.id}"
+																	th:field="*{size}">XS</option>
+															</select>
 														</div>
 													</td>
 												</tr>
 												<tr>
 													<th>購入日</th>
-													<td data-label="購入日" class="txt"><input type="date" id="perchaseDate2" disabled="disabled">
-													</td>
+													<td data-label="購入日" class="txt"><input type="date"
+														id="perchaseDate2" disabled="disabled"></td>
 												</tr>
 												<tr>
 													<th>価格</th>
-													<td data-label="価格" class="txt"><input type="text" id="price2" disabled="disabled">
-													</td>
+													<td data-label="価格" class="txt"><input type="text"
+														id="price2" disabled="disabled"></td>
 												</tr>
 												<tr>
 													<th>メモ</th>
@@ -457,8 +435,6 @@ function func2(){
 $( function() {
     var brands= [ [(${brandListForAutocomplete})] ];
     var tagContents= [ [(${tagContentsListForAutocomplete})] ];
-    //console.log(brands);
-    console.log(tagContents);
     $( "#brand" ).autocomplete({
       source: brands
     });

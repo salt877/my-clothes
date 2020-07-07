@@ -70,6 +70,28 @@ public class RegisterClothesController {
 		return "register_clothes.html";
 	}
 
+//	@RequestMapping("/confirmRegister")
+//	public String confirmRegister(Model model, RegisterClothesForm form,BindingResult result) {
+//		// 入力必須欄に未入力項目があったら入力画面に返す.
+//				if (result.hasErrors()) {
+//					model.addAttribute("season", form.getSeason());
+//					return showRegisterClothes(model, form);
+//				}
+//
+//				// 入力されたブランド情報を取得(必須)
+//				Brand brand = registerClothesService.brandSearchByName(form.getBrand());
+//				if (brand == null) {
+//					model.addAttribute("message", "ソートされた選択肢の中から選択してください");
+//					model.addAttribute("season", form.getSeason());
+//					return showRegisterClothes(model, form);
+//				}
+//		
+//		
+//		
+//		return "top.html";
+//
+//	}
+
 	/**
 	 * 入力された情報を受け取りアイテム登録を行う.
 	 * 
@@ -111,7 +133,7 @@ public class RegisterClothesController {
 		// userId
 		clothes.setUserId(1);
 		// 画像パス（仮）
-		clothes.setImagePath("1");
+		clothes.setImagePath("1.jpg");
 		// ブランド情報
 		clothes.setBrand(brand);
 		clothes.setBrandId(brand.getId());
