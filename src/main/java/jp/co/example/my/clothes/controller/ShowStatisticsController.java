@@ -35,58 +35,47 @@ public class ShowStatisticsController {
 	 * @return
 	 */
 	@RequestMapping("/stats")
-	public String showStatistics(@AuthenticationPrincipal LoginUser loginUser, Model model) {
+	public String showStatistics(Integer userId, Model model) {
 		Integer totalItemCount = 0;
 		Integer totalItemPrice = 0;
 		Integer itemPriceAverage = 0;
 
 		// ユーザーIDに紐づく服データ全件取得
-		List<Clothes> clothesListByUserId = showStatisticsService.showStatsByUserId(loginUser.getUser().getId());
+		List<Clothes> clothesListByUserId = showStatisticsService.showStatsByUserId(1);
 
-		if (clothesListByUserId != null) {
-			// 合計点数
-			totalItemCount = clothesListByUserId.size();
+		//アイテム登録が１件もない場合、統計画面には何も表示せず、アイテム登録画面へ誘導します。
+		if (clothesListByUserId == null) {
+			model.addAttribute("clothesListByUserId", clothesListByUserId);
+			model.addAttribute("message", "表示するデータがありません。");
 
-			// 合計金額
-			for (Clothes clothesByUserId : clothesListByUserId) {
-				totalItemPrice += clothesByUserId.getPrice();
+			return "statistics";
 
-			}
-
-			// 平均金額
-			itemPriceAverage = totalItemPrice / clothesListByUserId.size();
-
-		} else {
-
-			totalItemCount = 0;
-			totalItemPrice = 0;
 		}
 
-		// グラフ用
-		// clothesオブジェクトからカテゴリー・ブランド名を入れるリスト
-		List<String> categoryNameList = new ArrayList<>();
-		List<String> brandNameList = new ArrayList<>();
+		// 合計点数
+		totalItemCount = clothesListByUserId.size();
 
-		// 重複削除したカテゴリー・ブランド名を入れるリスト
-		List<String> categoryNameSimpleList = new ArrayList<>();
-		List<String> brandNameSimpleList = new ArrayList<>();
+		// 合計金額
+		for (Clothes clothesByUserId : clothesListByUserId) {
+			totalItemPrice += clothesByUserId.getPrice();
 
-		// カテゴリー・ブランドをclothesオブジェクトから抽出し、それぞれの名前をリスト化、重複を削除
-		if (clothesListByUserId != null) {
-
-			for (Clothes clothes : clothesListByUserId) {
-				categoryNameList.add(clothes.getCategory().getName());
-				categoryNameSimpleList = categoryNameList.stream().distinct().collect(Collectors.toList());
-
-				brandNameList.add(clothes.getBrand().getName());
-				brandNameSimpleList = brandNameList.stream().distinct().collect(Collectors.toList());
-			}
 		}
+
+		// 平均金額
+		itemPriceAverage = totalItemPrice / clothesListByUserId.size();
+
+		// カテゴリー名・ブランド名を重複している名前を削除してclothesインスタンスから抽出・リストに格納
+		List<String> categoryNameList = clothesListByUserId.stream().map(c -> c.getCategory().getName()).distinct()
+				.collect(Collectors.toList());
+
+		List<String> brandNameList = clothesListByUserId.stream().map(b -> b.getBrand().getName()).distinct()
+				.collect(Collectors.toList());
 
 		// Chart.js用にリストを配列化
-		String categoryArray[] = categoryNameSimpleList.toArray(new String[categoryNameSimpleList.size()]);
-		String brandArray[] = brandNameSimpleList.toArray(new String[brandNameSimpleList.size()]);
+		String categoryArray[] = categoryNameList.toArray(new String[categoryNameList.size()]);
+		String brandArray[] = brandNameList.toArray(new String[brandNameList.size()]);
 
+		model.addAttribute("clothesListByUserId", clothesListByUserId);
 		model.addAttribute("totalItemCount", totalItemCount);
 		model.addAttribute("totalItemPrice", totalItemPrice);
 		model.addAttribute("itemPriceAverage", itemPriceAverage);
@@ -94,6 +83,5 @@ public class ShowStatisticsController {
 		model.addAttribute("brandLabel", brandArray);
 
 		return "statistics";
-
 	}
 }
