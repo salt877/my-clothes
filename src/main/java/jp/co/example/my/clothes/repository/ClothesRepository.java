@@ -119,7 +119,7 @@ public class ClothesRepository {
 				"cl.season cl_season, cl.perchase_date cl_perchase_date, cl.comment cl_comment, cl.deleted cl_deleted, ");
 		sql.append(
 				"ca.id ca_id, ca.name ca_name, b.id b_id, b.name b_name FROM clothes cl left outer join categories ca on cl.category_id = ca.id ");
-		sql.append("left outer join brands b on cl.brand_id = b.id WHERE user_id = :userId;");
+		sql.append("left outer join brands b on cl.brand_id = b.id WHERE user_id = :userId ORDER BY cl.id;");
 
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
 		List<Clothes> clothesList = template.query(sql.toString(), param, CLOTHES_ROW_MAPPER2);
