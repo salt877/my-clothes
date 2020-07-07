@@ -10,17 +10,11 @@
 <link rel="icon" type="image/x-icon"
 	href="../static/dist/assets/img/favicon.ico" th:href="@{/dist/assets/img/favicon.ico}"/>
 <!-- Font Awesome icons (free version)-->
-<script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js"
-	crossorigin="anonymous"></script>
+<script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
 <!-- Google fonts-->
-<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
-	rel="stylesheet" type="text/css" />
-<link
-	href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic"
-	rel="stylesheet" type="text/css" />
-<link
-	href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
-	rel="stylesheet" type="text/css" />
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+<link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="../static/dist/css/styles.css" rel="stylesheet" th:href="@{/dist/css/styles.css}"/>
 </head>
@@ -31,13 +25,13 @@
 		<nav>
 			<div class="inner">
 				<ul>
-					<li><a href="top.html"><i class="fas fa-home"></i>&emsp;&emsp;TOP</a></li>
-					<li><a href="statistics.html"><i class="far fa-chart-bar"></i>&emsp;&emsp;統計データ</a></li>
-					<li><a href="calender.html"><i class="far fa-calendar-alt"></i>&emsp;&emsp;カレンダー</a></li>
-					<li><a href="coordinate.html"><i class="fas fa-female"></i>&emsp;&emsp;コーディネート</a></li>
-					<li><a href="contact.html"><i class="far fa-envelope"></i>&emsp;&emsp;お問い合わせ</a></li>
-					<li><a href="faq.html"><i class="far fa-question-circle"></i>&emsp;&emsp;FAQ</a></li>
-					<li><a href="login.html"><i class="fas fa-sign-out-alt"></i>&emsp;&emsp;ログアウト</a></li>
+					<li><a href="top.html" th:href="@{/}"><i class="fas fa-home"></i>&emsp;&emsp;TOP</a></li>
+					<li><a href="statistics.html" th:href="@{/}"><i class="far fa-chart-bar"></i>&emsp;&emsp;統計データ</a></li>
+					<li><a href="calender.html" th:href="@{/}"><i class="far fa-calendar-alt"></i>&emsp;&emsp;カレンダー</a></li>
+					<li><a href="coordinate.html" th:href="@{/}"><i class="fas fa-female"></i>&emsp;&emsp;コーディネート</a></li>
+					<li><a href="contact.html" th:href="@{/}"><i class="far fa-envelope"></i>&emsp;&emsp;お問い合わせ</a></li>
+					<li><a href="faq.html" th:href="@{/faq}"><i class="far fa-question-circle"></i>&emsp;&emsp;FAQ</a></li>
+					<li><a href="login.html" th:href="@{/logout}"><i class="fas fa-sign-out-alt"></i>&emsp;&emsp;ログアウト</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -79,6 +73,7 @@
 		</div>
 	</tbody>		 -->
 				<div class="col-lg-4 col-sm-6 mb-4">
+				<table>
 					<tr class="portfolio-item" th:each="item : ${clothesList}">
 					 <th>
 						<a class="portfolio-link" data-toggle="modal" href="edit_clothes.html" th:href="@{'/edit?id=' + ${item.id}}" data-target="#exampleModal">
@@ -93,6 +88,7 @@
 						</div>
 					 </th>
 					</tr>
+				</table>
 				</div>
 				
 <!-- 				<div class="col-lg-4 col-sm-6 mb-4">
@@ -124,11 +120,9 @@
 				<div id="close_btn" class="btn btn--vuemore btn-c">
 					閉じる <i class="fa fa-chevron-up" aria-hidden="true"></i>
 				</div>
-				
-</div>
+
 			<!-- モーダルウィンドウ -->
-			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-				aria-labelledby="exampleModalLabel">
+			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -143,9 +137,8 @@
 							<!-- フォーム -->
 							<form action="#" method="post">
 								<div class="image-information">
-									<input name="imageFile" type="file"
-										accept=".jpg,.png,image/jpeg,image/png"
-										th:errorclass="error-input" />
+									<input type="file" name="imageFile" accept=".jpg,.png,image/jpeg,image/png" />
+									<!-- th:errorclass="error-input" がinputタグに入ってると読み込まれないので一旦コメントアウト-->
 								</div>
 								<div class="required-information">
 									<table>
@@ -318,11 +311,11 @@
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 	<!-- Contact form JS-->
-	<script src="../static/dist/assets/mail/jqBootstrapValidation.js"></script>
-	<script src="../static/dist/assets/mail/contact_me.js"></script>
+	<script src="../static/dist/assets/mail/jqBootstrapValidation.js" th:src="@{/dist/assets/mail/jqBootstrapValidation.js}"></script>
+	<script src="../static/dist/assets/mail/contact_me.js" th:src="@{/dist/assets/mail/contact_me.js}"></script>
 	<!-- Core theme JS-->
-	<script src="../static/dist/js/scripts.js"></script>
-	<script src="../static/dist/js/hamburger_menu.js"></script>
-	<script src="../static/dist/js/vuemore.js"></script>
+	<script src="../static/dist/js/scripts.js" th:src="@{/dist/js/scripts.js}"></script>
+	<script src="../static/dist/js/hamburger_menu.js" th:src="@{/dist/js/hamburger_menu.js}"></script>
+	<script src="../static/dist/js/vuemore.js" th:src="@{/dist/js/vuemore.js}"></script>
 </body>
 </html>
