@@ -43,13 +43,27 @@
 		<div id="mask"></div>
 	</div>
 
-	<!-- アイテム一覧画面-->
+	<!-- アイテム一覧画面 -->
 	 <section class="page-section bg-light" id="portfolio">
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">My Closet</h2>
                     <h3 class="section-subheading text-muted">Here is a list of the clothes you have.</h3>
                 </div>
+     <!-- タブ切り替え -->
+     <div class="tab-wrap">
+     	<input id="tab_all" type="radio" name="tab" class="tab-switch" checked="checked"/><label class="tab-label" for="tab_all">ALL</label>       
+     	<input id="tab_tops" type="radio" name="tab" class="tab-switch"/><label class="tab-label" for="tab_tops">TOPS</label>       
+     	<input id="tab_outer" type="radio" name="tab" class="tab-switch"/><label class="tab-label" for="tab_outer">OUTER</label>       
+     	<input id="tab_bottoms" type="radio" name="tab" class="tab-switch"/><label class="tab-label" for="tab_bottoms">BOTTOMS</label>       
+     	<input id="tab_shoes" type="radio" name="tab" class="tab-switch"/><label class="tab-label" for="tab_shoes">SHOES</label>       
+     	<input id="tab_bags" type="radio" name="tab" class="tab-switch"/><label class="tab-label" for="tab_bags">BAGS</label>       
+     	<input id="tab_accessories" type="radio" name="tab" class="tab-switch"/><label class="tab-label" for="tab_accessories">ACCESSORIES</label>       
+     </div>       
+                
+                
+                
+                
                 <div id="cloth_list" class="row">
                 	<div class="col-lg-4 col-sm-6 mb-4"  th:each="item : ${clothesList}">
                 		<div class="portfolio-item">
