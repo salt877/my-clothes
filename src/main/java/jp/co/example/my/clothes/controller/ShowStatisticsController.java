@@ -5,11 +5,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.example.my.clothes.domain.Clothes;
+import jp.co.example.my.clothes.domain.LoginUser;
 import jp.co.example.my.clothes.service.ShowStatisticsService;
 
 /**
@@ -33,42 +35,52 @@ public class ShowStatisticsController {
 	 * @return
 	 */
 	@RequestMapping("/stats")
-	public String showStatistics(Integer userId, Model model) {
+	public String showStatistics(@AuthenticationPrincipal LoginUser loginUser, Model model) {
 		Integer totalItemCount = 0;
 		Integer totalItemPrice = 0;
 		Integer itemPriceAverage = 0;
 
 		// ユーザーIDに紐づく服データ全件取得
-		List<Clothes> clothesListByUserId = showStatisticsService.showStatsByUserId(1);
+		List<Clothes> clothesListByUserId = showStatisticsService.showStatsByUserId(loginUser.getUser().getId());
 
-		// 合計点数
-		totalItemCount = clothesListByUserId.size();
+		if (clothesListByUserId != null) {
+			// 合計点数
+			totalItemCount = clothesListByUserId.size();
 
-		// 合計金額
-		for (Clothes clothesByUserId : clothesListByUserId) {
-			totalItemPrice += clothesByUserId.getPrice();
+			// 合計金額
+			for (Clothes clothesByUserId : clothesListByUserId) {
+				totalItemPrice += clothesByUserId.getPrice();
 
+			}
+
+			// 平均金額
+			itemPriceAverage = totalItemPrice / clothesListByUserId.size();
+
+		} else {
+
+			totalItemCount = 0;
+			totalItemPrice = 0;
 		}
 
-		// 平均金額
-		itemPriceAverage = totalItemPrice / clothesListByUserId.size();
-
 		// グラフ用
-		//clothesオブジェクトからカテゴリー・ブランド名を入れるリスト
+		// clothesオブジェクトからカテゴリー・ブランド名を入れるリスト
 		List<String> categoryNameList = new ArrayList<>();
 		List<String> brandNameList = new ArrayList<>();
 
-		//重複削除したカテゴリー・ブランド名を入れるリスト
+		// 重複削除したカテゴリー・ブランド名を入れるリスト
 		List<String> categoryNameSimpleList = new ArrayList<>();
 		List<String> brandNameSimpleList = new ArrayList<>();
 
 		// カテゴリー・ブランドをclothesオブジェクトから抽出し、それぞれの名前をリスト化、重複を削除
-		for (Clothes clothes : clothesListByUserId) {
-			categoryNameList.add(clothes.getCategory().getName());
-			categoryNameSimpleList = categoryNameList.stream().distinct().collect(Collectors.toList());
+		if (clothesListByUserId != null) {
 
-			brandNameList.add(clothes.getBrand().getName());
-			brandNameSimpleList = brandNameList.stream().distinct().collect(Collectors.toList());
+			for (Clothes clothes : clothesListByUserId) {
+				categoryNameList.add(clothes.getCategory().getName());
+				categoryNameSimpleList = categoryNameList.stream().distinct().collect(Collectors.toList());
+
+				brandNameList.add(clothes.getBrand().getName());
+				brandNameSimpleList = brandNameList.stream().distinct().collect(Collectors.toList());
+			}
 		}
 
 		// Chart.js用にリストを配列化
