@@ -44,74 +44,28 @@
 	</div>
 
 	<!-- アイテム一覧画面-->
-	<section class="page-section bg-light" id="portfolio">
-		<div class="container">
-			<div class="text-center">
-				<h2 class="section-heading text-uppercase">My Closet</h2>
-				<h3 class="section-subheading text-muted">Here is a list of the
-					clothes you have.</h3>
-			</div>
-		<!-- 	<tbody>
-			<div id="cloth_list" class="row">
-				<div class="col-lg-4 col-sm-6 mb-4">
-					<tr th:each="item : ${clothesList}">
-						<th class="portfolio-item">
-							<td>
-								<a class="portfolio-link" data-toggle="modal" href="edit_clothes.html" th:href="@{'/edit?id=' + ${item.id}}" data-target="#exampleModal">
-									<img class="img-fluid" src="../static/img/1.jpg" th:src="${'/static/img/'+item.imagePath}" alt="" />
-									<div class="portfolio-hover">	あああ
-									<div class="portfolio-hover-content">
-									<i class="fas fa-plus fa-3x"></i>
-									</div>
-									</div>
-						<div class="portfolio-caption"></div>
-								</a>
-							</td>
-						</th>		
-				</tr>
-			</div>
-		</div>
-	</tbody>		 -->
-				<div class="col-lg-4 col-sm-6 mb-4">
-				<table>
-					<tr class="portfolio-item" th:each="item : ${clothesList}">
-					 <th>
-						<a class="portfolio-link" data-toggle="modal" href="edit_clothes.html" th:href="@{'/edit?id=' + ${item.id}}" data-target="#exampleModal">
-							<td class="portfolio-hover">
-							<img class="img-fluid" src="../static/dist/assets/img/portfolio/02-thumbnail.jpg" th:src="${'/img/'+item.imagePath}" alt="" />
-								<div class="portfolio-hover-content">
-									<i class="fas fa-plus fa-3x"></i>
-								</div>
-							</td> 
-						</a>
-						<div class="portfolio-caption">
-						</div>
-					 </th>
-					</tr>
-				</table>
-				</div>
-				
-<!-- 				<div class="col-lg-4 col-sm-6 mb-4">
-					<div class="portfolio-item">
-						<a class="portfolio-link" data-toggle="modal"
-							href="#portfolioModal2" data-target="#exampleModal">
-							<div class="portfolio-hover">
-								<div class="portfolio-hover-content">
-									<i class="fas fa-plus fa-3x"></i>
-								</div>
-							</div> <img class="img-fluid"
-							src="../static/dist/assets/img/portfolio/03-thumbnail.jpg" alt="" />
-						</a>
-						<div class="portfolio-caption">
-							<div class="portfolio-caption-heading">Explore</div>
-							<div class="portfolio-caption-subheading text-muted">Graphic
-								Design</div>
-						</div>
-					</div>
-				</div> -->
-				
-				
-
+	 <section class="page-section bg-light" id="portfolio">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">My Closet</h2>
+                    <h3 class="section-subheading text-muted">Here is a list of the clothes you have.</h3>
+                </div>
+                <div id="cloth_list" class="row">
+                	<div class="col-lg-4 col-sm-6 mb-4"  th:each="item : ${clothesList}">
+                		<div class="portfolio-item">
+                			<a class="portfolio-link" data-toggle="modal" href="edit_cloth.html" data-target="#exampleModal">
+                				<div class="portfolio-hover">
+                					<div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                				</div>
+                				<img class="img-fluid" th:src="${'/img/'+item.imagePath}" alt=""/>
+                			</a>
+                			<!-- <div  class="portfolio-caption">
+                				<div class="portfolio-caption-heading">Explore</div>
+                				<div class="portfolio-caption-subheading text-muted">Graphic Design</div>
+                			</div> -->
+                		</div>
+                	</div>
+          
 				<!-- もっと見るボタン -->
 			
 				<div id="more_btn" class="btn btn--vuemore btn-c">
@@ -272,8 +226,9 @@
 
 			<!-- アイテム新規登録ボタン -->
 			<div class="register-item-btn">
-				<a href="register_clothes.html" class="btn-circle-stitch"> <i
-					class="fas fa-tshirt"></i> <span>登録</span>
+				<a href="register_clothes.html"  th:href="@{/registerClothes/showRegisterClothes}" class="btn-circle-stitch"> 
+					<i class="fas fa-tshirt"></i>
+					<span>登録</span>
 				</a>
 			</div>
 		</div>
@@ -301,15 +256,11 @@
 	</footer>
 
 	<!-- Bootstrap core JS-->
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
 	<!-- Third party plugin JS-->
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 	<!-- Contact form JS-->
 	<script src="../static/dist/assets/mail/jqBootstrapValidation.js" th:src="@{/dist/assets/mail/jqBootstrapValidation.js}"></script>
 	<script src="../static/dist/assets/mail/contact_me.js" th:src="@{/dist/assets/mail/contact_me.js}"></script>
