@@ -33,7 +33,8 @@
 			<div class="inner">
 				<ul>
 					<li><a href="top.html"><i class="fas fa-home"></i>&emsp;&emsp;TOP</a></li>
-					<li><a href="statistics.html"><i class="far fa-chart-bar"></i>&emsp;&emsp;統計データ</a></li>
+					<li><a href="statistics.html" th:href="@{/stats}"><i
+							class="far fa-chart-bar"></i>&emsp;&emsp;統計データ</a></li>
 					<li><a href="calender.html"><i class="far fa-calendar-alt"></i>&emsp;&emsp;カレンダー</a></li>
 					<li><a href="coordinate.html"><i class="fas fa-female"></i>&emsp;&emsp;コーディネート</a></li>
 					<li><a href="contact.html"><i class="far fa-envelope"></i>&emsp;&emsp;お問い合わせ</a></li>
@@ -59,50 +60,56 @@
 			<br> <br>
 
 			<div class="text-center">
+				<div th:if="${clothesListByUserId} == null">
+					<br>
+					<h5 th:text="${message}"></h5>
+					<div><a href="register_clothes.html" th:href="@{/registerClothes/showRegisterClothes}">アイテムを登録しよう！</a></div>
+				</div>
 
-				<table class="table">
-					<thead>
-						<tr>
-							<th class="st-column">クローゼット総資産額</th>
-							<th class="st-column">購入アイテム平均額</th>
-							<th class="st-column">クローゼットアイテム数</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td><span
-								th:text="${#numbers.formatInteger(totalItemPrice, 1, 'COMMA') + '&nbsp;円'}"></span></td>
-							<td><span
-								th:text="${#numbers.formatInteger(itemPriceAverage, 1, 'COMMA') + '&nbsp;円'}"></span></td>
-							<td><span
-								th:text="${#numbers.formatInteger(totalItemCount, 1, 'COMMA') + '&nbsp;点'}"></span></td>
+				<div th:if="${clothesListByUserId} != null">
+					<table class="table">
+						<thead>
+							<tr>
+								<th class="st-column">クローゼット総資産額</th>
+								<th class="st-column">購入アイテム平均額</th>
+								<th class="st-column">クローゼットアイテム数</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><span
+									th:text="${#numbers.formatInteger(totalItemPrice, 1, 'COMMA') + '&nbsp;円'}"></span></td>
+								<td><span
+									th:text="${#numbers.formatInteger(itemPriceAverage, 1, 'COMMA') + '&nbsp;円'}"></span></td>
+								<td><span
+									th:text="${#numbers.formatInteger(totalItemCount, 1, 'COMMA') + '&nbsp;点'}"></span></td>
 
-						</tr>
-					</tbody>
-				</table>
+							</tr>
+						</tbody>
+					</table>
 
-				<br> <br>
-				<!-- Chart.jsを使って仮表示 -->
-				<!-- 総アイテム数テーブル -->
-				<table class="table">
-					<thead>
-						<tr>
-							<th class="st-column">カテゴリー別アイテム数</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>
-								<canvas id="myChart"></canvas>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<script
-					src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+					<br> <br>
+					<!-- Chart.jsを使って仮表示 -->
+					<!-- 総アイテム数テーブル -->
+					<table class="table">
+						<thead>
+							<tr>
+								<th class="st-column">カテゴリー別アイテム数</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<canvas id="myChart"></canvas>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<script
+						src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
 
 
-				<script type="text/javascript" th:inline="javascript">
+					<script type="text/javascript" th:inline="javascript">
 					var ctx = document.getElementById("myChart");
 					var myChart = new Chart(ctx, {
 						type : 'doughnut',
@@ -127,24 +134,24 @@
 					});
 				</script>
 
-				<br>
-				<!-- カテゴリー別金額テーブル-->
-				<table class="table">
-					<thead>
-						<tr>
-							<th class="st-column">カテゴリー別金額</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>
-								<canvas id="myChart2"></canvas>
-							</td>
-						</tr>
-					</tbody>
-				</table>
+					<br>
+					<!-- カテゴリー別金額テーブル-->
+					<table class="table">
+						<thead>
+							<tr>
+								<th class="st-column">カテゴリー別金額</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<canvas id="myChart2"></canvas>
+								</td>
+							</tr>
+						</tbody>
+					</table>
 
-				<script type="text/javascript" th:inline="javascript">
+					<script type="text/javascript" th:inline="javascript">
 					var ctx2 = document.getElementById("myChart2");
 					var myChart2 = new Chart(ctx2, {
 						type : 'doughnut',
@@ -168,25 +175,25 @@
 
 					});
 				</script>
-				<br>
-				<!-- Chart.jsを使って仮表示 -->
+					<br>
+					<!-- Chart.jsを使って仮表示 -->
 
-				<table class="table">
-					<thead>
-						<tr>
-							<th class="st-column">ブランド別金額</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>
-								<canvas id="myChart3"></canvas>
-							</td>
-						</tr>
-					</tbody>
-				</table>
+					<table class="table">
+						<thead>
+							<tr>
+								<th class="st-column">ブランド別金額</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<canvas id="myChart3"></canvas>
+								</td>
+							</tr>
+						</tbody>
+					</table>
 
-				<script type="text/javascript" th:inline="javascript">
+					<script type="text/javascript" th:inline="javascript">
 					var ctx3 = document.getElementById("myChart3");
 					var myChart3 = new Chart(ctx3, {
 						type : 'doughnut',
@@ -211,6 +218,7 @@
 				</script>
 
 
+				</div>
 			</div>
 
 		</div>
