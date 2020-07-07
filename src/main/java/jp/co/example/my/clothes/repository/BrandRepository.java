@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.ObjectUtils;
 
 import jp.co.example.my.clothes.domain.Brand;
 
@@ -50,8 +51,32 @@ public class BrandRepository {
 
 		String sql = "select id ,name from brands where name = :name ";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("name", name);
-		Brand brand = template.queryForObject(sql, param, BRAND_ROW_MAPPER);
-		return brand;
+		List<Brand> brandList = template.query(sql, param, BRAND_ROW_MAPPER);
+		if (brandList.size()==0) {
+			return null;
+		} else {
+			return brandList.get(0);
+		}
+	}
+
+	/**
+	 * 
+	 * ブランドIDで1件検索.
+	 * 
+	 * @param id ブランドID
+	 * @return brandオブジェクト
+	 */
+	public Brand brandSearchById(Integer id) {
+		String sql = "SELECT id ,name FROM brands where id = :id";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
+		List<Brand> brandList = template.query(sql, param, BRAND_ROW_MAPPER);
+
+		if (brandList.size() == 0) {
+			return null;
+		}
+
+		return brandList.get(0);
+
 	}
 
 }

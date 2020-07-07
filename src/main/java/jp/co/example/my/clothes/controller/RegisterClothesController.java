@@ -6,6 +6,7 @@ import java.util.List;
 import javax.naming.Binding;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -46,7 +47,7 @@ public class RegisterClothesController {
 	 * @return
 	 */
 	@RequestMapping("/showRegisterClothes")
-	public String showRegisterClothes(Model model) {
+	public String showRegisterClothes(Model model, @AuthenticationPrincipal RegisterClothesForm form) {
 		// カテゴリの選択肢一覧を取得
 		List<Category> categoryList = registerClothesService.showCategoryList();
 		model.addAttribute("categoryList", categoryList);
@@ -78,11 +79,20 @@ public class RegisterClothesController {
 	@RequestMapping("/register")
 	public String Register(Model model, @Validated RegisterClothesForm form, BindingResult result) {
 
+		System.out.println(form);
+		// 入力必須欄に未入力項目があったら入力画面に返す.
 		if (result.hasErrors()) {
-			return showRegisterClothes(model);
+			model.addAttribute("season", form.getSeason());
+			return showRegisterClothes(model, form);
 		}
+
 		// 入力されたブランド情報を取得(必須)
 		Brand brand = registerClothesService.brandSearchByName(form.getBrand());
+		if (brand == null) {
+			model.addAttribute("message", "ソートされた選択肢の中から選択してください");
+			model.addAttribute("season", form.getSeason());
+			return showRegisterClothes(model, form);
+		}
 
 		// 入力されたカテゴリ情報を取得（必須）
 		Category category = registerClothesService.categorySearchById(Integer.parseInt(form.getCategory()));
@@ -91,8 +101,10 @@ public class RegisterClothesController {
 		Color color = registerClothesService.ColorSearchById(Integer.parseInt(form.getColor()));
 
 		// 入力されたサイズ情報を取得(任意)
-		Size size = registerClothesService.sizeSearchById(Integer.parseInt(form.getSize()));
-
+		Size size = null;
+		if (!StringUtils.isEmpty(form.getSize())) {
+			size = registerClothesService.sizeSearchById(Integer.parseInt(form.getSize()));
+		}
 		// 取得した情報をカテゴリにセット
 		Clothes clothes = new Clothes();
 		// 入力必須項目
@@ -146,7 +158,7 @@ public class RegisterClothesController {
 		// アイテム情報を登録
 		registerClothesService.insertNewClothes(clothes);
 
-		return "register_clothes.html";
+		return "top.html";
 
 	}
 }

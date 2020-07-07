@@ -3,6 +3,8 @@ package jp.co.example.my.clothes.form;
 import java.util.Date;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 public class RegisterClothesForm {
 
@@ -47,11 +49,13 @@ public class RegisterClothesForm {
 	/**
 	 * 価格
 	 */
+	@Pattern(regexp = "^[0-9]{0,10}$", message = "半角英数字で入力してください")
 	private String price;
 
 	/**
 	 * コメント
 	 */
+	@Size(max=100 ,message="100文字以内で入力してください")
 	private String comment;
 
 	public String getCategory() {
