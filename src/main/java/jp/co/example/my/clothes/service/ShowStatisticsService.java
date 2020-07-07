@@ -27,12 +27,6 @@ public class ShowStatisticsService {
 	@Autowired
 	private ClothesRepository clothesRepository;
 
-	@Autowired
-	private CategoryRepository categoryRepository;
-
-	@Autowired
-	private BrandRepository brandRepository;
-
 	/**
 	 * ユーザーIDで服情報を取得.
 	 * 
@@ -44,64 +38,4 @@ public class ShowStatisticsService {
 
 	}
 
-	/**
-	 * ユーザーIDとカテゴリーIDで服情報を取得
-	 * 
-	 * @param userId     ユーザーID
-	 * @param categoryId カテゴリーID
-	 * @return
-	 */
-	public List<Clothes> showStatsByUserIdAndCategoryId(Integer userId, Integer categoryId) {
-		return clothesRepository.findByUserIdAndCategoryId(userId, categoryId);
-
-	}
-
-	/**
-	 * ユーザーIDとブランドIDで服情報を取得
-	 * 
-	 * @param userId  ユーザーID
-	 * @param brandId ブランドID
-	 * @return
-	 */
-	public List<Clothes> showStatsByUserIdAndBrandId(Integer userId, Integer brandId) {
-		return clothesRepository.findByUserIdAndBrandId(userId, brandId);
-	}
-
-	/**
-	 * IDでカテゴリーを１件取得
-	 * 
-	 * @param id ID
-	 * @return
-	 */
-	public Category showCategoryById(Integer id) {
-		return categoryRepository.categorySearchByCategoryId(id);
-
-	}
-
-	/**
-	 * 
-	 * IDでブランドを１取得
-	 * 
-	 * @param id ID
-	 * @return
-	 */
-	public Brand showBrandById(Integer id) {
-		return brandRepository.brandSearchById(id);
-	}
-
-	public StringBuilder getClothesListForChart(List<Clothes> clothesList) {
-		StringBuilder clothesListForChart = new StringBuilder();
-		for (int i = 0; i < clothesList.size(); i++) {
-			if (i != 0) {
-				clothesListForChart.append(",");
-
-			}
-
-			Clothes clothes = clothesList.get(i);
-			clothesListForChart.append("\"");
-			clothesListForChart.append(clothes.getCategory().getName());
-			clothesListForChart.append("\"");
-		}
-		return clothesListForChart;
-	}
 }

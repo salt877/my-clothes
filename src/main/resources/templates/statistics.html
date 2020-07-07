@@ -87,7 +87,7 @@
 				<table class="table">
 					<thead>
 						<tr>
-							<th class="st-column">総アイテム数</th>
+							<th class="st-column">カテゴリー別アイテム数</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -102,18 +102,19 @@
 					src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
 
 
-				<script type="text/javascript">
+				<script type="text/javascript" th:inline="javascript">
 					var ctx = document.getElementById("myChart");
 					var myChart = new Chart(ctx, {
 						type : 'doughnut',
 						data : {
-							labels : [ "トップス", "ボトムス", "シューズ", "ファッション雑貨" ],
+							labels : [[ ${categoryLabel} ]],
 							datasets : [ {
 								backgroundColor : [ "#DC143C", "#00008B",
-										"#6B8E23", "#FFD700"
+										"#6B8E23", "#FFD700", "#DC143C", "#00008B",
+										"#6B8E23"
 
 								],
-								data : [ 38, 31, 21, 10 ]
+								data : [ 38, 31, 21, 10, 0, 0, 40 ]
 							} ]
 						},
 						options : {
@@ -143,15 +144,16 @@
 					</tbody>
 				</table>
 
-				<script type="text/javascript">
+				<script type="text/javascript" th:inline="javascript">
 					var ctx2 = document.getElementById("myChart2");
 					var myChart2 = new Chart(ctx2, {
 						type : 'doughnut',
 						data : {
-							labels : [ "トップス", "ボトムス", "シューズ", "ファッション雑貨" ],
+							labels : [[ ${categoryLabel} ]],
 							datasets : [ {
 								backgroundColor : [ "#DC143C", "#00008B",
-										"#6B8E23", "#FFD700"
+									"#6B8E23", "#FFD700", "#DC143C", "#00008B",
+									"#6B8E23"
 
 								],
 								data : [ 201890, 13230, 2230, 2250 ]
@@ -184,12 +186,12 @@
 					</tbody>
 				</table>
 
-				<script type="text/javascript">
+				<script type="text/javascript" th:inline="javascript">
 					var ctx3 = document.getElementById("myChart3");
 					var myChart3 = new Chart(ctx3, {
 						type : 'doughnut',
 						data : {
-							labels : [ "ニューバランス", "アディダス", "ナイキ", "UNIQLO" ],
+							labels : [[ ${brandLabel} ]],
 							datasets : [ {
 								backgroundColor : [ "#DC143C", "#00008B",
 										"#6B8E23", "#FFD700"
