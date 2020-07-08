@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.example.my.clothes.domain.User;
 import jp.co.example.my.clothes.form.RegisterUserForm;
+import jp.co.example.my.clothes.service.RegisterUserCompleteSendMailService;
 import jp.co.example.my.clothes.service.RegisterUserService;
+import jp.co.example.my.clothes.service.SendMailService;
 
 /**
  * ユーザ情報を操作するコントローラークラス.
@@ -24,6 +26,9 @@ public class RegisterUserController {
 
 	@Autowired
 	private RegisterUserService registerUserService;
+	
+	@Autowired
+	private RegisterUserCompleteSendMailService sendMailService;
 
 	/**
 	 * 使用するフォームオブジェクトをリクエストスコープに格納する.
@@ -70,6 +75,9 @@ public class RegisterUserController {
 		BeanUtils.copyProperties(form, user);
 		
 		registerUserService.registerUser(user);
+		
+		// メールを送信する
+		sendMailService.sendMail(form);
 
 		return "redirect:/showLogin";
 	}
