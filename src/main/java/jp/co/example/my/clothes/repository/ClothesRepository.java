@@ -1,6 +1,5 @@
 package jp.co.example.my.clothes.repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,18 +29,6 @@ public class ClothesRepository {
 
 	private static final RowMapper<Clothes> CLOTHES_ROW_MAPPER = new BeanPropertyRowMapper<>(Clothes.class);
 
-	/**
-	 * 新規にアイテム情報をインサート.
-	 * 
-	 * @param clothes
-	 */
-	public void insertClothes(Clothes clothes) {
-		String sql = "insert into clothes(user_id,image_path,price,category_id,brand_id, color_id,size_id,season,Perchase_date,comment)values(:userId,:imagePath,:price, :categoryId,:brandId,:colorId,:sizeId,:season,:PerchaseDate,:comment)";
-		SqlParameterSource param = new BeanPropertySqlParameterSource(clothes);
-		template.update(sql, param);
-
-	}
-
 //	private static final RowMapper<Clothes> CLOTHES_ROW_MAPPER = (rs,i) ->{
 //		
 //		Clothes clothes = new Clothes();
@@ -60,17 +47,44 @@ public class ClothesRepository {
 //		return clothes;
 //	};
 
-	private static final String SQL = "SELECT id,user_id,category_id,brand_id,image_path,price,color_id,season,size_id,perchase_date,comment,deleted FROM clothes ";
+	private static final String SQL = "SELECT id,user_id,category_id,brand_id,image_path,price,color_id,season,size_id,perchase_date,comment,deleted FROM clothes WHERE ";
+
+	/**
+	 * 新規にアイテム情報をインサート.
+	 * 
+	 * @param clothes
+	 */
+	public void insertClothes(Clothes clothes) {
+		String sql = "insert into clothes(user_id,image_path,price,category_id,brand_id, color_id,size_id,season,Perchase_date,comment)values(:userId,:imagePath,:price, :categoryId,:brandId,:colorId,:sizeId,:season,:PerchaseDate,:comment)";
+		SqlParameterSource param = new BeanPropertySqlParameterSource(clothes);
+		template.update(sql, param);
+
+	}
 
 	/**
 	 * 登録アイテム一覧をID順で取得します.
 	 * 
+	 * @param ログインユーザID
 	 * @return 登録アイテム一覧
 	 */
 	public List<Clothes> findAll(Integer userId) {
-		String sql = SQL + "WHERE user_id=:userId ORDER BY id;";
+		String sql = SQL + "user_id=:userId ORDER BY id;";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
 		List<Clothes> clothesList = template.query(sql, param, CLOTHES_ROW_MAPPER);
+		return clothesList;
+	}
+	
+	/**
+	 * 登録アイテムをカテゴリごとに分けて表示します.
+	 * 
+	 * @param userId ログインユーザID
+	 * @param categoryId　カテゴリID
+	 * @return 登録アイテム一覧
+	 */
+	public List<Clothes> findByCategory(Integer userId,Integer categoryId){
+		String sql = SQL + "user_id=:userId AND category_id=:categoryId ORDER BY id;";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId).addValue("categoryId", categoryId);
+		List<Clothes> clothesList = template.query(sql, param,CLOTHES_ROW_MAPPER);
 		return clothesList;
 	}
 
