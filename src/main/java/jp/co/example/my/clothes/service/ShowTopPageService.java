@@ -25,4 +25,16 @@ public class ShowTopPageService {
 		return clothesList;
 	}
 
+	/**
+	 * 登録アイテムをカテゴリごとに検索します.
+	 * 
+	 * @param userId ログインユーザID
+	 * @param        categoryId カテゴリID
+	 * @return 登録アイテム一覧
+	 */
+	public List<Clothes> showItemListByCategory(Integer userId, Integer categoryId) {
+		List<Clothes> clothesList = clothesRepository.findByCategory(userId, categoryId);
+		return clothesList;
+	}
+
 }

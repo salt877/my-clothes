@@ -51,21 +51,34 @@
                     <h3 class="section-subheading text-muted">Here is a list of the clothes you have.</h3>
                 </div>
      <!-- タブ切り替え -->
+     <form id="category" action="top.html" th:action="@{/}"  method="post" onchange="submit(this.form)">
      <div class="tab-wrap">
-     	<input id="tab_all" type="radio" name="tab" class="tab-switch" checked="checked"/><label class="tab-label" for="tab_all">ALL</label>       
-     	<input id="tab_tops" type="radio" name="tab" class="tab-switch"/><label class="tab-label" for="tab_tops">TOPS</label>       
-     	<input id="tab_outer" type="radio" name="tab" class="tab-switch"/><label class="tab-label" for="tab_outer">OUTER</label>       
-     	<input id="tab_bottoms" type="radio" name="tab" class="tab-switch"/><label class="tab-label" for="tab_bottoms">BOTTOMS</label>       
-     	<input id="tab_shoes" type="radio" name="tab" class="tab-switch"/><label class="tab-label" for="tab_shoes">SHOES</label>       
-     	<input id="tab_bags" type="radio" name="tab" class="tab-switch"/><label class="tab-label" for="tab_bags">BAGS</label>       
-     	<input id="tab_accessories" type="radio" name="tab" class="tab-switch"/><label class="tab-label" for="tab_accessories">ACCESSORIES</label>       
-     </div>       
-                
-                
-                
+     	<input id="tab_all" type="radio" name="categoryId" value="0" class="tab-switch"><label class="tab-label" for="tab_all">ALL</label>       
+     	<input id="tab_tops" type="radio" name="categoryId" value="2" class="tab-switch"><label class="tab-label" for="tab_tops">TOPS</label>       
+     	<input id="tab_outer" type="radio" name="categoryId" value="3" class="tab-switch"><label class="tab-label" for="tab_outer">OUTER</label>       
+     	<input id="tab_bottoms" type="radio" name="categoryId" value="4" class="tab-switch"><label class="tab-label" for="tab_bottoms">BOTTOMS</label>       
+     	<input id="tab_dress" type="radio" name="categoryId" value="7" class="tab-switch"><label class="tab-label" for="tab_dress">DRESS</label>       
+     	<input id="tab_shoes" type="radio" name="categoryId" value="5" class="tab-switch"><label class="tab-label" for="tab_shoes">SHOES</label>       
+     	<input id="tab_bags" type="radio" name="categoryId" value="6" class="tab-switch"/><label class="tab-label" for="tab_bags">BAGS</label>       
+     	<input id="tab_accessories" type="radio"name="categoryId" value="1" class="tab-switch"/><label class="tab-label" for="tab_accessories">ACCESSORIES</label>       
+     </div> 
+     <script type="text/javascript">
+     $(function() {
+      
+       // セレクトボックスを選択するたびに発動
+       $('form').change(function() {
+      
+         // <form>要素を送信        
+         $('form').prop("disabled",true);
+         $('form').submit();
+      
+       });
+     });
+</script>           
+     </form>
                 
                 <div id="cloth_list" class="row">
-                	<div class="col-lg-4 col-sm-6 mb-4"  th:each="item : ${clothesList}">
+                	<div id="items" class="col-lg-4 col-sm-6 mb-4" th:each="item : ${clothesList}">
                 		<div class="portfolio-item">
                 			<a class="portfolio-link" data-toggle="modal" href="edit_cloth.html" data-target="#exampleModal">
                 				<div class="portfolio-hover">
@@ -73,10 +86,6 @@
                 				</div>
                 				<img class="img-fluid" th:src="${'/img/'+item.imagePath}" alt=""/>
                 			</a>
-                			<!-- <div  class="portfolio-caption">
-                				<div class="portfolio-caption-heading">Explore</div>
-                				<div class="portfolio-caption-subheading text-muted">Graphic Design</div>
-                			</div> -->
                 		</div>
                 	</div>
           

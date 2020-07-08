@@ -19186,7 +19186,7 @@ tbody th {
     display: none;
 }
 /* アクティブなタブ */
-.tab-switch:checked+.tab-label {
+.tab-label:hover{
     background: DeepSkyBlue;
 }
 .tab-switch:checked+.tab-label+.tab-content {

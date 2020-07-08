@@ -27,19 +27,25 @@ public class ShowTopPageController {
 	/**
 	 * ログインしているユーザの登録アイテムを全て表示します.
 	 * 
-	 * @param model リクエストスコープ
-	 * @param       loginUser ログインユーザ
+	 * @param model     リクエストスコープ
+	 * @param loginUser ログインユーザ
 	 * @return トップページ
 	 */
 	@RequestMapping("/")
-	public String showItemList(Model model,@AuthenticationPrincipal LoginUser loginUser) {
+	public String showItemList(Model model, @AuthenticationPrincipal LoginUser loginUser,Integer categoryId) {
 
 		Integer userId = loginUser.getUser().getId();
 
-		List<Clothes> clothesList = showTopPageService.showItemList(userId);
+		//トップページを最初に開いた時と、「ALL」が選択されたときのアイテム表示
+		if(categoryId==null || categoryId.equals(0) ) {
+			List<Clothes> clothesList = showTopPageService.showItemList(userId);			
+			model.addAttribute("clothesList", clothesList);
 
-		model.addAttribute("clothesList", clothesList);
-
+		//カテゴリが選択された時
+		} else if(categoryId!=null) {
+			List<Clothes> clothesList = showTopPageService.showItemListByCategory(userId, categoryId);						
+			model.addAttribute("clothesList", clothesList);
+		}
 		return "top";
 	}
 
