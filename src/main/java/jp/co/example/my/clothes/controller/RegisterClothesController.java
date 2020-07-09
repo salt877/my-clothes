@@ -3,7 +3,6 @@ package jp.co.example.my.clothes.controller;
 import java.sql.Date;
 import java.util.List;
 
-import javax.naming.Binding;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -67,32 +66,9 @@ public class RegisterClothesController {
 		// タグのオートコンプリート機能.
 		StringBuilder tagContentListForAutocomplete = registerClothesService.getTagContentListForAutoconplete();
 		model.addAttribute("tagContentsListForAutocomplete", tagContentListForAutocomplete);
-		// System.out.println(tagContentListForAutocomplete);
 
 		return "register_clothes.html";
 	}
-
-//	@RequestMapping("/confirmRegister")
-//	public String confirmRegister(Model model, RegisterClothesForm form,BindingResult result) {
-//		// 入力必須欄に未入力項目があったら入力画面に返す.
-//				if (result.hasErrors()) {
-//					model.addAttribute("season", form.getSeason());
-//					return showRegisterClothes(model, form);
-//				}
-//
-//				// 入力されたブランド情報を取得(必須)
-//				Brand brand = registerClothesService.brandSearchByName(form.getBrand());
-//				if (brand == null) {
-//					model.addAttribute("message", "ソートされた選択肢の中から選択してください");
-//					model.addAttribute("season", form.getSeason());
-//					return showRegisterClothes(model, form);
-//				}
-//		
-//		
-//		
-//		return "top.html";
-//
-//	}
 
 	/**
 	 * 入力された情報を受け取りアイテム登録を行う.
@@ -179,7 +155,9 @@ public class RegisterClothesController {
 		// アイテム情報を登録
 		registerClothesService.insertNewClothes(clothes);
 
-		// タグ情報の登録
+		// タグ情報の登録(アイテム登録後出ないと結び付けるclothesIdが存在しない為アイテム登録後に実施)
+
+		// userIdに紐づいた一番最新に登録したアイテムを取得
 		Clothes registerdClothes = registerClothesService.newClothesSearchByUserId(1);
 		System.out.println(registerdClothes);
 		// 入力された情報があればすでにタグとして登録されているか確認
