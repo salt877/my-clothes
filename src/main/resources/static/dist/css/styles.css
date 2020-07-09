@@ -19735,6 +19735,23 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 }
 
 /* Firefox */
-input[type="number"] {
-	-moz-appearance: textfield;
+
+
+
+/*input type="number"textboxの見た目をtext	boxとそろえる*/
+.txt input[type='number'] {
+	width: 90%;
+	max-width: 400px;
+	padding: 5px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+
+.ef input[type='number']:focus {
+	border: 1px solid #da3c41;
+	outline: none;
+	box-shadow: 0 0 5px 1px rgba(218, 60, 65, .5);
 }
