@@ -20,6 +20,7 @@ import jp.co.example.my.clothes.domain.Category;
 import jp.co.example.my.clothes.domain.Clothes;
 import jp.co.example.my.clothes.domain.Color;
 import jp.co.example.my.clothes.domain.Size;
+import jp.co.example.my.clothes.domain.TagContent;
 import jp.co.example.my.clothes.form.RegisterClothesForm;
 import jp.co.example.my.clothes.service.RegisterClothesService;
 
@@ -148,8 +149,6 @@ public class RegisterClothesController {
 
 		// 入力任意項目
 
-		// タグ
-
 		// 季節
 		if (!StringUtils.isEmpty(form.getSeason())) {
 			clothes.setSeason(form.getSeason());
@@ -180,7 +179,42 @@ public class RegisterClothesController {
 		// アイテム情報を登録
 		registerClothesService.insertNewClothes(clothes);
 
-		return "top.html";
+		// タグ情報の登録
+		Clothes registerdClothes = registerClothesService.newClothesSearchByUserId(1);
+		System.out.println(registerdClothes);
+		System.out.println(registerdClothes.getUserId());
+		// 入力された情報があればすでにタグとして登録されているか確認
+		TagContent registerTagContent = new TagContent();
+
+		//タグが入力されていればその情報が登録されているか検索、なければ登録.
+		if (StringUtils.isEmpty(form.getTag1())) {
+			TagContent tagContent1 = registerClothesService.tagContentSearchByName(form.getTag1());
+			if (!StringUtils.isEmpty(tagContent1)) {
+				registerTagContent.setId(1);// ユーザーIDに変更する.
+				registerTagContent.setName(form.getTag1());
+				registerClothesService.insertTagContent(registerTagContent);
+			}
+		}
+		
+		if (StringUtils.isEmpty(form.getTag2())) {
+			TagContent tagContent2 = registerClothesService.tagContentSearchByName(form.getTag2());
+			if (!StringUtils.isEmpty(tagContent2)) {
+				registerTagContent.setId(1);// ユーザーIDに変更する.
+				registerTagContent.setName(form.getTag2());
+				registerClothesService.insertTagContent(registerTagContent);
+			}
+			
+		}
+		if (StringUtils.isEmpty(form.getTag1())) {
+			TagContent tagContent3 = registerClothesService.tagContentSearchByName(form.getTag3());
+			if (!StringUtils.isEmpty(tagContent3)) {
+				registerTagContent.setId(1);// ユーザーIDに変更する.
+				registerTagContent.setName(form.getTag3());
+				registerClothesService.insertTagContent(registerTagContent);
+			}
+		}
+
+		return "register_clothes.html";
 
 	}
 }

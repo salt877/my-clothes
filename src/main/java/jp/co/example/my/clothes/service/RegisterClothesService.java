@@ -176,4 +176,36 @@ public class RegisterClothesService {
 		clothesRepository.insertClothes(clothes);
 	}
 
+	/**
+	 * userIdで新規に追加したclothesオブジェクトの情報を取得.
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	public Clothes newClothesSearchByUserId(Integer userId) {
+		Clothes clothes = clothesRepository.findNewClothes(userId);
+		return clothes;
+	}
+
+	/**
+	 * 入力されたタグがすでに登録されているか確認.
+	 * 
+	 * @param name
+	 * @return
+	 */
+	public TagContent tagContentSearchByName(String name) {
+		TagContent tagContent = tagContentRepository.tagCcntentSearchByName(name);
+		return tagContent;
+
+	}
+
+	/**
+	 * 新しくタグ内容を登録する.
+	 * 
+	 * @param tagContent
+	 */
+	public void insertTagContent(TagContent tagContent) {
+		tagContentRepository.insertTagContent(tagContent);
+	}
+
 }
