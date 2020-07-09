@@ -38,4 +38,32 @@ public class ShowStatisticsService {
 
 	}
 
+	public List<Clothes> showStatsCategoryLabel(Integer userId) {
+		return clothesRepository.findByUserIdOrderByCategoryId(userId);
+	}
+
+	public List<Clothes> showStatsBrandLabel(Integer userId) {
+		return clothesRepository.findByUserIdOrderByBrandId(userId);
+	}
+
+	/**
+	 * ユーザーIDで服情報を取得（カテゴリーごとにリスト化）.
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	public List<List<Clothes>> showStatsByUserIdAndListedByCategoryId(Integer userId) {
+		return clothesRepository.findByUserIdAndListedByCategoryId(userId);
+	}
+
+	/**
+	 * ユーザーIDで服情報を取得（ブランドごとにリスト化）.
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	public List<List<Clothes>> showStatsByUserIdAndListedByBrandId(Integer userId) {
+		return clothesRepository.findByUserIdAndListedByBrandId(userId);
+	}
+
 }

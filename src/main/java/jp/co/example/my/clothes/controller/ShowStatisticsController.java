@@ -5,13 +5,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.example.my.clothes.domain.Clothes;
-import jp.co.example.my.clothes.domain.LoginUser;
 import jp.co.example.my.clothes.service.ShowStatisticsService;
 
 /**
@@ -43,7 +41,7 @@ public class ShowStatisticsController {
 		// ユーザーIDに紐づく服データ全件取得
 		List<Clothes> clothesListByUserId = showStatisticsService.showStatsByUserId(1);
 
-		//アイテム登録が１件もない場合、統計画面には何も表示せず、アイテム登録画面へ誘導します。
+		// アイテム登録が１件もない場合、統計画面には何も表示せず、アイテム登録画面へ誘導します。
 		if (clothesListByUserId == null) {
 			model.addAttribute("clothesListByUserId", clothesListByUserId);
 			model.addAttribute("message", "表示するデータがありません。");
@@ -62,13 +60,16 @@ public class ShowStatisticsController {
 		}
 
 		// 平均金額
-		itemPriceAverage = totalItemPrice / clothesListByUserId.size();
+		itemPriceAverage = totalItemPrice / totalItemCount;
 
 		// カテゴリー名・ブランド名を重複している名前を削除してclothesインスタンスから抽出・リストに格納
-		List<String> categoryNameList = clothesListByUserId.stream().map(c -> c.getCategory().getName()).distinct()
-				.collect(Collectors.toList());
+		List<Clothes> clothesListOrderByCategoryId = showStatisticsService.showStatsCategoryLabel(1);
+		List<Clothes> clothListOrderByBrandId = showStatisticsService.showStatsBrandLabel(1);
 
-		List<String> brandNameList = clothesListByUserId.stream().map(b -> b.getBrand().getName()).distinct()
+		List<String> categoryNameList = clothesListOrderByCategoryId.stream().map(c -> c.getCategory().getName())
+				.distinct().collect(Collectors.toList());
+
+		List<String> brandNameList = clothListOrderByBrandId.stream().map(b -> b.getBrand().getName()).distinct()
 				.collect(Collectors.toList());
 
 		// Chart.js用にリストを配列化
@@ -84,4 +85,30 @@ public class ShowStatisticsController {
 
 		return "statistics";
 	}
+
+//	@RequestMapping("/showStats")
+//	public String showStatistics2(Integer userId, Model model) {
+//		List<List<Clothes>> bigClothesList = showStatisticsService.showStatsByUserIdAndListedByCategoryId(1);
+//		System.out.println("コントローラのリスト:" + bigClothesList);
+//		
+//		int totalPriceByCategory = 0;
+//		List<Integer> priceList = new ArrayList<>();
+//		List<Integer> sizeList = new ArrayList<>();
+//
+//		for (List<Clothes> clothesList : bigClothesList) {
+//			for (int i = 0; i < clothesList.size(); i++) {
+//				totalPriceByCategory += clothesList.get(i).getPrice();
+//				System.out.println("計算中" + totalPriceByCategory);
+//			}
+//			System.out.println("カテゴリ別合計" + totalPriceByCategory);
+//			priceList.add(totalPriceByCategory);
+//			System.out.println(priceList);
+//			totalPriceByCategory = 0;
+//		}
+//
+//		Integer priceArray[] = priceList.toArray(new Integer[priceList.size()]);
+//		model.addAttribute("priceArray", priceArray);
+//
+//		return "statistics";
+//	}
 }
