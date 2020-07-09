@@ -49,5 +49,13 @@ public class CategoryRepository {
 		Category category = template.queryForObject(sql, param, CATEGORY_ROW_MAPPER);
 		return category;
 	}
+	
+	public List<Category> categoryList(){
+		String sql = "select id,name from categories order by id";
+		SqlParameterSource param = new MapSqlParameterSource();
+		List<Category> categoryList = template.query(sql, param, CATEGORY_ROW_MAPPER);
+		return categoryList;
+		
+	}
 
 }

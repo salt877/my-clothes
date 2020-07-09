@@ -128,7 +128,7 @@ function func1(){
 								<td data-label="category" class="txt"><label for="category"
 									th:errors="*{category}" style="color: red"></label>
 									<div class="cp_ipselect cp_sl02">
-										<select  name="category" id="category">
+										<select name="category" id="category">
 											<option th:value="null"></option>
 											<option th:each="category :${categoryList}"
 												th:text="${category.name}" th:value="${category.id}"
@@ -139,9 +139,11 @@ function func1(){
 							<tr>
 								<th>
 									<div>ブランド</div>
-									<div th:if="${message}!=null" th:text="${message}" style="color: red"></div>
+									<div th:if="${message}!=null" th:text="${message}"
+										style="color: red"></div>
 								</th>
-								<td data-label="brand" class="txt"><label for="brand" th:errors="*{brand}" style="color: red"></label>
+								<td data-label="brand" class="txt"><label for="brand"
+									th:errors="*{brand}" style="color: red"></label>
 									<div class="search">
 										<input type="text" class="search-form" name="brand" id="brand"
 											th:field="*{brand}">
@@ -182,7 +184,8 @@ function func1(){
 								<td data-label="タグ" class="txt">
 									<div class="search">
 										<input type="text" class="search-form" name="tag" id="tag"
-											th:field="*{tag}">
+											th:field="*{tag}"> <input type="text"
+											class="search-form" name="tag" id="tag" th:field="*{tag}">
 										<button type="submit" id="sbtn2">
 											<i class="fas fa-search"></i>
 										</button>
@@ -191,11 +194,17 @@ function func1(){
 							</tr>
 							<tr>
 								<th>シーズン</th>
-								<td data-label="シーズン" class="txt" id="seasons">
-								<input type="radio" name="season" th:value="春" th:checked="${season=='春'}" id="season" onchange="chk1(this.value)" >春&emsp;
-								<input type="radio" name="season" th:value="夏" th:checked="${season=='夏'}" id="season" onchange="chk1(this.value)">夏&emsp;
-								<input type="radio" name="season" th:value="秋"  th:checked="${season=='秋'}" id="season" onchange="chk1(this.value)">秋&emsp;
-								<input type="radio" name="season" th:value="冬"   th:checked="${season=='冬'}" id="season" onchange="chk1(this.value)">冬</td>
+								<td data-label="シーズン" class="txt" id="seasons"><input
+									type="radio" name="season" th:value="春"
+									th:checked="${season=='春'}" id="season"
+									onchange="chk1(this.value)">春&emsp; <input type="radio"
+									name="season" th:value="夏" th:checked="${season=='夏'}"
+									id="season" onchange="chk1(this.value)">夏&emsp; <input
+									type="radio" name="season" th:value="秋"
+									th:checked="${season=='秋'}" id="season"
+									onchange="chk1(this.value)">秋&emsp; <input type="radio"
+									name="season" th:value="冬" th:checked="${season=='冬'}"
+									id="season" onchange="chk1(this.value)">冬</td>
 							</tr>
 							<tr>
 								<th>サイズ</th>
@@ -263,7 +272,7 @@ function func1(){
 											th:errorclass="error-input" -->
 									</div>
 
-									
+
 									<div class="required-information">
 										<table>
 											<thead>
@@ -326,18 +335,17 @@ function func1(){
 															<input type="text" class="search-form" id="tag2"
 																disabled="disabled">
 														</div>
+
 													</td>
 												</tr>
 												<tr>
 													<th>シーズン</th>
-													<td data-label="シーズン" class="txt">
-													<span id="season2" style="color: black"></span>
-													<script>
+													<td data-label="シーズン" class="txt"><span id="season2"
+														style="color: black"></span> <script>
 													function chk1(val) {
   													document.getElementById("season2").textContent = val;
 													}
-													</script>
-													</td>
+													</script></td>
 												</tr>
 												<tr>
 													<th>サイズ</th>

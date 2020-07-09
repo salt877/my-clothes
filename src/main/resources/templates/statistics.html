@@ -24,6 +24,13 @@
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="../static/dist/css/styles.css" rel="stylesheet"
 	th:href="@{/dist/css/styles.css}" />
+
+<!-- Chart.js -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js "></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+<script src="https://unpkg.com/chartjs-plugin-colorschemes"></script>
+
 <title>Insert title here</title>
 </head>
 <body>
@@ -63,7 +70,10 @@
 				<div th:if="${clothesListByUserId} == null">
 					<br>
 					<h5 th:text="${message}"></h5>
-					<div><a href="register_clothes.html" th:href="@{/registerClothes/showRegisterClothes}">アイテムを登録しよう！</a></div>
+					<div>
+						<a href="register_clothes.html"
+							th:href="@{/registerClothes/showRegisterClothes}">アイテムを登録しよう！</a>
+					</div>
 				</div>
 
 				<div th:if="${clothesListByUserId} != null">
@@ -89,53 +99,8 @@
 					</table>
 
 					<br> <br>
-					<!-- Chart.jsを使って仮表示 -->
-					<!-- 総アイテム数テーブル -->
-					<table class="table">
-						<thead>
-							<tr>
-								<th class="st-column">カテゴリー別アイテム数</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>
-									<canvas id="myChart"></canvas>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-					<script
-						src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
 
-
-					<script type="text/javascript" th:inline="javascript">
-					var ctx = document.getElementById("myChart");
-					var myChart = new Chart(ctx, {
-						type : 'doughnut',
-						data : {
-							labels : [[ ${categoryLabel} ]],
-							datasets : [ {
-								backgroundColor : [ "#DC143C", "#00008B",
-										"#6B8E23", "#FFD700", "#DC143C", "#00008B",
-										"#6B8E23"
-
-								],
-								data : [ 38, 31, 21, 10, 0, 0, 40 ]
-							} ]
-						},
-						options : {
-							title : {
-								display : true,
-								text : 'カテゴリー　割合'
-							}
-						}
-
-					});
-				</script>
-
-					<br>
-					<!-- カテゴリー別金額テーブル-->
+					<!-- カテゴリー別金額テーブル -->
 					<table class="table">
 						<thead>
 							<tr>
@@ -144,40 +109,132 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td>
-									<canvas id="myChart2"></canvas>
-								</td>
+								<td><input type="hidden" id="userId" value="1">
+									<canvas id="chartListedByCategoryPrice"></canvas></td>
 							</tr>
 						</tbody>
 					</table>
 
+					<!-- カテゴリー別金額表示用js -->
 					<script type="text/javascript" th:inline="javascript">
-					var ctx2 = document.getElementById("myChart2");
-					var myChart2 = new Chart(ctx2, {
-						type : 'doughnut',
-						data : {
-							labels : [[ ${categoryLabel} ]],
-							datasets : [ {
-								backgroundColor : [ "#DC143C", "#00008B",
-									"#6B8E23", "#FFD700", "#DC143C", "#00008B",
-									"#6B8E23"
-
-								],
-								data : [ 201890, 13230, 2230, 2250 ]
-							} ]
-						},
-						options : {
-							title : {
-								display : true,
-								text : 'カテゴリー別　金額'
-							}
-						}
-
-					});
-				</script>
+					$(function(){
+						$('#chartListedByCategoryPrice').ready(function(){
+							$.ajax({
+								url: "http://localhost:8080/get_category_price_data",
+								type: "GET",
+								dataType: "json",
+								data:{
+									userId: $("#userId").val()
+									},
+								async: true
+									
+								}).done(function(data){
+									var categoryPrices = [];
+													
+									for(var categoryPrice of data.categoryPriceList){
+										categoryPrices.push(categoryPrice);
+									}
+														
+									const ctx = document.getElementById('chartListedByCategoryPrice');
+									const doughnutChart = new Chart(ctx, {
+										type: 'doughnut',
+										data : {
+											labels : [[ ${categoryLabel} ]],
+											datasets : [{
+												data : categoryPrices,
+												}]
+										},
+											options : {
+												title : {
+													display : true,
+													text : 'カテゴリー　割合'
+													},
+												plugins: {
+										            colorschemes: {
+										                scheme: 'brewer.Paired12'
+												            }
+												        }
+											       }
+												});
+								}).fail(function(XMLHttpRequest, textStatus, errorThrown){
+									alert("エラーが発生しました。");
+										console.log("XMLHttpRequest:" + XMLHttpRequest.status);
+										console.log("textStatus:" + textStatus);
+										console.log("errorThrown" + errorThrown.message);
+								});
+							});						
+						});
+					</script>
 					<br>
-					<!-- Chart.jsを使って仮表示 -->
 
+					<!-- カテゴリー別アイテム数テーブル-->
+					<table class="table">
+						<thead>
+							<tr>
+								<th class="st-column">カテゴリー別アイテム数</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><input type="hidden" id="userId" value="1">
+									<canvas id="chartListedByCategoryCount"></canvas></td>
+							</tr>
+						</tbody>
+					</table>
+
+					<!-- カテゴリー別アイテム数表示用js -->
+					<script type="text/javascript" th:inline="javascript">
+					$(function(){
+						$('#chartListedByCategoryCount').ready(function(){
+							$.ajax({
+								url: "http://localhost:8080/get_category_count_data",
+								type: "GET",
+								dataType: "json",
+								data:{
+									userId: $("#userId").val()
+									},
+								async: true
+									
+								}).done(function(data){
+									var categoryCounts = [];
+													
+									for(var categoryCount of data.categoryCountList){
+										categoryCounts.push(categoryCount);
+									}
+														
+									const ctx = document.getElementById('chartListedByCategoryCount');
+									const doughnutChart = new Chart(ctx, {
+										type: 'doughnut',
+										data : {
+											labels : [[ ${categoryLabel} ]],
+											datasets : [{
+												data : categoryCounts,
+												}]
+										},
+											options : {
+												title : {
+													display : true,
+													text : 'カテゴリー　割合'
+													},
+												plugins: {
+										            colorschemes: {
+										                scheme: 'brewer.Paired12'
+												            }
+												        }
+											       }
+												});
+								}).fail(function(XMLHttpRequest, textStatus, errorThrown){
+									alert("エラーが発生しました。");
+										console.log("XMLHttpRequest:" + XMLHttpRequest.status);
+										console.log("textStatus:" + textStatus);
+										console.log("errorThrown" + errorThrown.message);
+								});
+							});						
+						});
+					</script>
+					<br>
+
+					<!-- ブランド別金額 -->
 					<table class="table">
 						<thead>
 							<tr>
@@ -186,37 +243,129 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td>
-									<canvas id="myChart3"></canvas>
-								</td>
+								<td><input type="hidden" id="userId" value="1">
+									<canvas id="chartListedByBrandPrice"></canvas></td>
 							</tr>
 						</tbody>
 					</table>
 
+					<!-- ブランド別金額表示用js -->
 					<script type="text/javascript" th:inline="javascript">
-					var ctx3 = document.getElementById("myChart3");
-					var myChart3 = new Chart(ctx3, {
-						type : 'doughnut',
-						data : {
-							labels : [[ ${brandLabel} ]],
-							datasets : [ {
-								backgroundColor : [ "#DC143C", "#00008B",
-										"#6B8E23", "#FFD700"
+					$(function(){
+						$('#chartListedByBrandPrice').ready(function(){
+							$.ajax({
+								url: "http://localhost:8080/get_brand_price_data",
+								type: "GET",
+								dataType: "json",
+								data:{
+									userId: $("#userId").val()
+									},
+								async: true
+									
+								}).done(function(data){
+									var brandPrices = [];
+													
+									for(var brandPrice of data.brandPriceList){
+										brandPrices.push(brandPrice);
+									}
+														
+									const ctx = document.getElementById('chartListedByBrandPrice');
+									const doughnutChart = new Chart(ctx, {
+										type: 'doughnut',
+										data : {
+											labels : [[ ${brandLabel} ]],
+											datasets : [{
+												data : brandPrices,
+												}]
+										},
+											options : {
+												title : {
+													display : true,
+													text : 'ブランド　割合'
+													},
+												plugins: {
+										            colorschemes: {
+										                scheme: 'brewer.Paired12'
+												            }
+												        }
+											       }
+												});
+								}).fail(function(XMLHttpRequest, textStatus, errorThrown){
+									alert("エラーが発生しました。");
+										console.log("XMLHttpRequest:" + XMLHttpRequest.status);
+										console.log("textStatus:" + textStatus);
+										console.log("errorThrown" + errorThrown.message);
+								});
+							});						
+						});
+					</script>
+					<br>
 
-								],
-								data : [ 190890, 73130, 45230, 1290 ]
-							} ]
-						},
-						options : {
-							title : {
-								display : true,
-								text : 'ブランド別　金額'
-							}
-						}
+					<!-- ブランド別アイテム数 -->
+					<table class="table">
+						<thead>
+							<tr>
+								<th class="st-column">ブランド別アイテム数</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><input type="hidden" id="userId" value="1">
+									<canvas id="chartListedByBrandCount"></canvas></td>
+							</tr>
+						</tbody>
+					</table>
 
-					});
-				</script>
-
+					<!-- ブランド別アイテム数表示用js -->
+					<script type="text/javascript" th:inline="javascript">
+					$(function(){
+						$('#chartListedByBrandCount').ready(function(){
+							$.ajax({
+								url: "http://localhost:8080/get_brand_count_data",
+								type: "GET",
+								dataType: "json",
+								data:{
+									userId: $("#userId").val()
+									},
+								async: true
+									
+								}).done(function(data){
+									var brandCounts = [];
+													
+									for(var brandCount of data.brandCountList){
+										brandCounts.push(brandCount);
+									}
+														
+									const ctx = document.getElementById('chartListedByBrandCount');
+									const doughnutChart = new Chart(ctx, {
+										type: 'doughnut',
+										data : {
+											labels : [[ ${brandLabel} ]],
+											datasets : [{
+												data : brandCounts,
+												}]
+										},
+											options : {
+												title : {
+													display : true,
+													text : 'ブランド　割合'
+													},
+												plugins: {
+										            colorschemes: {
+										                scheme: 'brewer.Paired12'
+												            }
+												        }
+											       }
+												});
+								}).fail(function(XMLHttpRequest, textStatus, errorThrown){
+									alert("エラーが発生しました。");
+										console.log("XMLHttpRequest:" + XMLHttpRequest.status);
+										console.log("textStatus:" + textStatus);
+										console.log("errorThrown" + errorThrown.message);
+								});
+							});						
+						});
+					</script>
 
 				</div>
 			</div>
@@ -264,5 +413,9 @@
 		th:src="@{/dist/js/scripts.js}"></script>
 	<script src="../static/dist/js/hamburger_menu.js"
 		th:src="@{/dist/js/hamburger_menu.js}"></script>
+
+
+
+
 </body>
 </html>
