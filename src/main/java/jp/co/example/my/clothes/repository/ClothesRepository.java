@@ -1,5 +1,6 @@
 package jp.co.example.my.clothes.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,18 +75,19 @@ public class ClothesRepository {
 		List<Clothes> clothesList = template.query(sql, param, CLOTHES_ROW_MAPPER);
 		return clothesList;
 	}
-	
+
 	/**
 	 * 登録アイテムをカテゴリごとに分けて表示します.
 	 * 
-	 * @param userId ログインユーザID
-	 * @param categoryId　カテゴリID
+	 * @param userId     ログインユーザID
+	 * @param categoryId カテゴリID
 	 * @return 登録アイテム一覧
 	 */
-	public List<Clothes> findByCategory(Integer userId,Integer categoryId){
+	public List<Clothes> findByCategory(Integer userId, Integer categoryId) {
 		String sql = SQL + "user_id=:userId AND category_id=:categoryId ORDER BY id;";
-		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId).addValue("categoryId", categoryId);
-		List<Clothes> clothesList = template.query(sql, param,CLOTHES_ROW_MAPPER);
+		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId).addValue("categoryId",
+				categoryId);
+		List<Clothes> clothesList = template.query(sql, param, CLOTHES_ROW_MAPPER);
 		return clothesList;
 	}
 
@@ -146,20 +148,21 @@ public class ClothesRepository {
 		return clothesList;
 
 	}
-	
+
 	/**
-<<<<<<< HEAD
 	 * 登録した商品とuserIdに結びつけてタグを登録する為に新規登録したclothesオブジェクトを取得.
+	 * 
 	 * @param userId
 	 * @return
 	 */
 	public Clothes findNewClothes(Integer userId) {
-		String sql= SQL+"WHERE 1=1 AND user_id=:userId order by id desc";
+		String sql = SQL + "WHERE 1=1 AND user_id=:userId order by id desc";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
-		List<Clothes> clothesList= template.query(sql, param,CLOTHES_ROW_MAPPER);
+		List<Clothes> clothesList = template.query(sql, param, CLOTHES_ROW_MAPPER);
 		return clothesList.get(0);
-		
-=======
+	}
+
+	/**
 	 * ユーザーIDで服データ検索（カテゴリID昇順）.
 	 * 
 	 * @param userId ユーザーID
@@ -187,7 +190,7 @@ public class ClothesRepository {
 		return clothesList;
 
 	}
-	
+
 	/**
 	 * ユーザーIDで服データ検索（ブランドID昇順）.
 	 * 
@@ -377,7 +380,6 @@ public class ClothesRepository {
 
 		return bigClothesList;
 
->>>>>>> feature/stats
 	}
 
 }
