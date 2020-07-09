@@ -9,6 +9,9 @@ $(function() {
 	$("#color").on("change",function(){
 		change();
 	});
+	$("#price").on("change",function(){
+		change();
+	});
 	
 	function change(){
 		console.log("aaa");

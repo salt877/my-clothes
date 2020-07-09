@@ -11,6 +11,7 @@ import jp.co.example.my.clothes.domain.Category;
 import jp.co.example.my.clothes.domain.Clothes;
 import jp.co.example.my.clothes.domain.Color;
 import jp.co.example.my.clothes.domain.Size;
+import jp.co.example.my.clothes.domain.Tag;
 import jp.co.example.my.clothes.domain.TagContent;
 import jp.co.example.my.clothes.repository.BrandRepository;
 import jp.co.example.my.clothes.repository.CategoryRepository;
@@ -18,6 +19,7 @@ import jp.co.example.my.clothes.repository.ClothesRepository;
 import jp.co.example.my.clothes.repository.ColorRepository;
 import jp.co.example.my.clothes.repository.SizeRepository;
 import jp.co.example.my.clothes.repository.TagContentRepository;
+import jp.co.example.my.clothes.repository.TagRepository;
 
 /**
  * アイテムを登録するためのサービス.
@@ -45,6 +47,9 @@ public class RegisterClothesService {
 
 	@Autowired
 	private ClothesRepository clothesRepository;
+	
+	@Autowired
+	private TagRepository tagRepository;
 
 	// 新規登録画面の表示の際に必要なメソッド.
 
@@ -206,6 +211,15 @@ public class RegisterClothesService {
 	 */
 	public void insertTagContent(TagContent tagContent) {
 		tagContentRepository.insertTagContent(tagContent);
+	}
+	
+	/**
+	 * 
+	 * @param tag
+	 */
+	public void insertTag(Tag tag) {
+		tagRepository.insertTag(tag);
+		
 	}
 
 }

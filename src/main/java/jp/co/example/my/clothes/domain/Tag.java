@@ -16,7 +16,7 @@ public class Tag {
 	/**
 	 * 結び付く服のID
 	 */
-	private Integer clothesID;
+	private Integer clothesId;
 
 	/**
 	 * 結び付けるタグ内容のID
@@ -36,14 +36,6 @@ public class Tag {
 		this.id = id;
 	}
 
-	public Integer getClothesID() {
-		return clothesID;
-	}
-
-	public void setClothesID(Integer clothesID) {
-		this.clothesID = clothesID;
-	}
-
 	public Integer getTagContentId() {
 		return tagContentId;
 	}
@@ -60,9 +52,17 @@ public class Tag {
 		this.tagContent = tagContent;
 	}
 
+	public Integer getClothesId() {
+		return clothesId;
+	}
+
+	public void setClothesId(Integer clothesId) {
+		this.clothesId = clothesId;
+	}
+
 	@Override
 	public String toString() {
-		return "Tag [id=" + id + ", clothesID=" + clothesID + ", tagContentId=" + tagContentId + ", tagContent="
+		return "Tag [id=" + id + ", clothesId=" + clothesId + ", tagContentId=" + tagContentId + ", tagContent="
 				+ tagContent + "]";
 	}
 
