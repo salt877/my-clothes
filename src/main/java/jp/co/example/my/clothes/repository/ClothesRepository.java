@@ -145,5 +145,18 @@ public class ClothesRepository {
 		return clothesList;
 
 	}
+	
+	/**
+	 * 登録した商品とuserIdに結びつけてタグを登録する為に新規登録したclothesオブジェクトを取得.
+	 * @param userId
+	 * @return
+	 */
+	public Clothes findNewClothes(Integer userId) {
+		String sql= SQL+"WHERE 1=1 AND user_id=:userId order by id desc";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
+		List<Clothes> clothesList= template.query(sql, param,CLOTHES_ROW_MAPPER);
+		return clothesList.get(0);
+		
+	}
 
 }

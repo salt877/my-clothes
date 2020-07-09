@@ -20,6 +20,8 @@ import jp.co.example.my.clothes.domain.Category;
 import jp.co.example.my.clothes.domain.Clothes;
 import jp.co.example.my.clothes.domain.Color;
 import jp.co.example.my.clothes.domain.Size;
+import jp.co.example.my.clothes.domain.Tag;
+import jp.co.example.my.clothes.domain.TagContent;
 import jp.co.example.my.clothes.form.RegisterClothesForm;
 import jp.co.example.my.clothes.service.RegisterClothesService;
 
@@ -101,7 +103,6 @@ public class RegisterClothesController {
 	@RequestMapping("/register")
 	public String Register(Model model, @Validated RegisterClothesForm form, BindingResult result) {
 
-		System.out.println(form);
 		// 入力必須欄に未入力項目があったら入力画面に返す.
 		if (result.hasErrors()) {
 			model.addAttribute("season", form.getSeason());
@@ -148,8 +149,6 @@ public class RegisterClothesController {
 
 		// 入力任意項目
 
-		// タグ
-
 		// 季節
 		if (!StringUtils.isEmpty(form.getSeason())) {
 			clothes.setSeason(form.getSeason());
@@ -180,7 +179,64 @@ public class RegisterClothesController {
 		// アイテム情報を登録
 		registerClothesService.insertNewClothes(clothes);
 
-		return "top.html";
+		// タグ情報の登録
+		Clothes registerdClothes = registerClothesService.newClothesSearchByUserId(1);
+		System.out.println(registerdClothes);
+		// 入力された情報があればすでにタグとして登録されているか確認
+		TagContent registerTagContent = new TagContent();
+		Tag tag = null;
+
+		// タグが入力されていればその情報が登録されているか検索
+		// タグ１
+		if (!StringUtils.isEmpty(form.getTag1())) {
+			TagContent tagContent1 = registerClothesService.tagContentSearchByName(form.getTag1());
+			// もし登録されていないタグであれば登録する
+			if (StringUtils.isEmpty(tagContent1)) {
+				registerTagContent.setId(1);// ユーザーIDに変更する.
+				registerTagContent.setName(form.getTag1());
+				System.out.println(registerTagContent);
+				registerClothesService.insertTagContent(registerTagContent);
+			}
+			// タグidとclothesIdと結びつけてtagテーブルに入れる
+			tag = new Tag();
+			tag.setClothesId(registerdClothes.getId());
+			TagContent newTagContent1 = registerClothesService.tagContentSearchByName(form.getTag1());
+			tag.setTagContentId(newTagContent1.getId());
+			registerClothesService.insertTag(tag);
+		}
+
+		// タグ２
+		if (!StringUtils.isEmpty(form.getTag2())) {
+			TagContent tagContent2 = registerClothesService.tagContentSearchByName(form.getTag2());
+			if (StringUtils.isEmpty(tagContent2)) {
+				registerTagContent.setId(1);// ユーザーIDに変更する.
+				registerTagContent.setName(form.getTag2());
+				registerClothesService.insertTagContent(registerTagContent);
+			}
+			tag = new Tag();
+			tag.setClothesId(registerdClothes.getId());
+			TagContent newTagContent2 = registerClothesService.tagContentSearchByName(form.getTag2());
+			tag.setTagContentId(newTagContent2.getId());
+			registerClothesService.insertTag(tag);
+
+		}
+
+		// タグ３
+		if (!StringUtils.isEmpty(form.getTag3())) {
+			TagContent tagContent3 = registerClothesService.tagContentSearchByName(form.getTag3());
+			if (StringUtils.isEmpty(tagContent3)) {
+				registerTagContent.setId(1);// ユーザーIDに変更する.
+				registerTagContent.setName(form.getTag3());
+				registerClothesService.insertTagContent(registerTagContent);
+			}
+			tag = new Tag();
+			tag.setClothesId(registerdClothes.getId());
+			TagContent newTagContent3 = registerClothesService.tagContentSearchByName(form.getTag3());
+			tag.setTagContentId(newTagContent3.getId());
+			registerClothesService.insertTag(tag);
+		}
+
+		return "register_clothes.html";
 
 	}
 }

@@ -27,9 +27,19 @@ public class RegisterClothesForm {
 	private String color;
 
 	/**
-	 * タグ
+	 * タグ1
 	 */
-	private String tag;
+	private String tag1;
+	
+	/**
+	 * タグ2
+	 */
+	private String tag2;
+	
+	/**
+	 * タグ3
+	 */
+	private String tag3;
 
 	/**
 	 * 季節
@@ -55,7 +65,7 @@ public class RegisterClothesForm {
 	/**
 	 * コメント
 	 */
-	@Size(max=100 ,message="100文字以内で入力してください")
+	@Size(max = 100, message = "100文字以内で入力してください")
 	private String comment;
 
 	public String getCategory() {
@@ -82,12 +92,28 @@ public class RegisterClothesForm {
 		this.color = color;
 	}
 
-	public String getTag() {
-		return tag;
+	public String getTag1() {
+		return tag1;
 	}
 
-	public void setTag(String tag) {
-		this.tag = tag;
+	public void setTag1(String tag1) {
+		this.tag1 = tag1;
+	}
+
+	public String getTag2() {
+		return tag2;
+	}
+
+	public void setTag2(String tag2) {
+		this.tag2 = tag2;
+	}
+
+	public String getTag3() {
+		return tag3;
+	}
+
+	public void setTag3(String tag3) {
+		this.tag3 = tag3;
 	}
 
 	public String getSeason() {
@@ -132,9 +158,10 @@ public class RegisterClothesForm {
 
 	@Override
 	public String toString() {
-		return "RegisterClothesForm [category=" + category + ", brand=" + brand + ", color=" + color + ", tag=" + tag
-				+ ", season=" + season + ", size=" + size + ", perchaseDate=" + perchaseDate + ", price=" + price
-				+ ", comment=" + comment + "]";
+		return "RegisterClothesForm [category=" + category + ", brand=" + brand + ", color=" + color + ", tag1=" + tag1
+				+ ", tag2=" + tag2 + ", tag3=" + tag3 + ", season=" + season + ", size=" + size + ", perchaseDate="
+				+ perchaseDate + ", price=" + price + ", comment=" + comment + "]";
 	}
+	
 
 }
