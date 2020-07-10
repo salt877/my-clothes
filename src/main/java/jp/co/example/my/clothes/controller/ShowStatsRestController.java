@@ -40,21 +40,16 @@ public class ShowStatsRestController {
 		Map<String, List<Integer>> categoryPriceMap = new HashMap<>();
 
 		List<List<Clothes>> bigClothesList = showStatisticsService.showStatsByUserIdAndListedByCategoryId(userId);
-		System.out.println("レストコントローラのリスト:" + bigClothesList);
 
 		List<Integer> priceList = new ArrayList<>();
 		int totalPriceByCategory = 0;
 
 		for (List<Clothes> clothesList : bigClothesList) {
 			for (Clothes clothes : clothesList) {
-				System.out.println("足しあげ前" + totalPriceByCategory);
 				totalPriceByCategory += clothes.getPrice();
-				System.out.println("足しあげ後" + totalPriceByCategory);
 			}
 
-			System.out.println("カテゴリ別合計" + totalPriceByCategory);
 			priceList.add(totalPriceByCategory);
-			System.out.println(priceList);
 			totalPriceByCategory = 0;
 		}
 		categoryPriceMap.put("categoryPriceList", priceList);
@@ -73,13 +68,11 @@ public class ShowStatsRestController {
 		Map<String, List<Integer>> categoryCountMap = new HashMap<>();
 
 		List<List<Clothes>> bigClothesList = showStatisticsService.showStatsByUserIdAndListedByCategoryId(userId);
-		System.out.println("レストコントローラのリスト:" + bigClothesList);
 
 		List<Integer> countList = new ArrayList<>();
 		int totalCountByCategory = 0;
 
 		for (List<Clothes> clothesList : bigClothesList) {
-			System.out.println("カテゴリごとの服リスト" + clothesList);
 			totalCountByCategory = clothesList.size();
 			countList.add(totalCountByCategory);
 			totalCountByCategory = 0;
@@ -103,19 +96,15 @@ public class ShowStatsRestController {
 		Map<String, List<Integer>> brandPriceMap = new HashMap<>();
 
 		List<List<Clothes>> bigClothesList = showStatisticsService.showStatsByUserIdAndListedByBrandId(userId);
-		System.out.println("レストコントローラのリスト:" + bigClothesList);
 
 		List<Integer> priceList = new ArrayList<>();
 		int totalPriceByBrand = 0;
 
 		for (List<Clothes> clothesList : bigClothesList) {
 			for (Clothes clothes : clothesList) {
-				System.out.println("足しあげ前" + totalPriceByBrand);
 				totalPriceByBrand += clothes.getPrice();
-				System.out.println("足しあげ後" + totalPriceByBrand);
 			}
 
-			System.out.println("カテゴリ別合計" + totalPriceByBrand);
 			priceList.add(totalPriceByBrand);
 			System.out.println(priceList);
 			totalPriceByBrand = 0;
@@ -136,13 +125,11 @@ public class ShowStatsRestController {
 		Map<String, List<Integer>> brandCountMap = new HashMap<>();
 
 		List<List<Clothes>> bigClothesList = showStatisticsService.showStatsByUserIdAndListedByBrandId(userId);
-		System.out.println("レストコントローラのリスト:" + bigClothesList);
 
 		List<Integer> countList = new ArrayList<>();
 		int totalCountBybrand = 0;
 
 		for (List<Clothes> clothesList : bigClothesList) {
-			System.out.println("ブランドごとの服リスト" + clothesList);
 			totalCountBybrand = clothesList.size();
 			countList.add(totalCountBybrand);
 			totalCountBybrand = 0;

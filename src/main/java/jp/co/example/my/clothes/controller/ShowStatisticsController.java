@@ -69,13 +69,6 @@ public class ShowStatisticsController {
 				.showStatsCategoryLabel(loginUser.getUser().getId());
 		List<Clothes> clothListOrderByBrandId = showStatisticsService.showStatsBrandLabel(loginUser.getUser().getId());
 
-		if (clothesListOrderByCategoryId == null && clothListOrderByBrandId == null) {
-			model.addAttribute("clothesListByUserId", clothesListByUserId);
-			model.addAttribute("message", "表示するデータがありません。");
-
-			return "statistics";
-		}
-
 		List<String> categoryNameList = clothesListOrderByCategoryId.stream().map(c -> c.getCategory().getName())
 				.distinct().collect(Collectors.toList());
 
