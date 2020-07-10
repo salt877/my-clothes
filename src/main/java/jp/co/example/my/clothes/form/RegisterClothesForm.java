@@ -1,12 +1,17 @@
 package jp.co.example.my.clothes.form;
 
-import java.util.Date;
-
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class RegisterClothesForm {
+
+	/**
+	 * 画像
+	 */
+	private MultipartFile imageFile;
 
 	/**
 	 * カテゴリID
@@ -30,12 +35,12 @@ public class RegisterClothesForm {
 	 * タグ1
 	 */
 	private String tag1;
-	
+
 	/**
 	 * タグ2
 	 */
 	private String tag2;
-	
+
 	/**
 	 * タグ3
 	 */
@@ -156,12 +161,20 @@ public class RegisterClothesForm {
 		this.comment = comment;
 	}
 
+	public MultipartFile getImageFile() {
+		return imageFile;
+	}
+
+	public void setImageFile(MultipartFile imageFile) {
+		this.imageFile = imageFile;
+	}
+
 	@Override
 	public String toString() {
-		return "RegisterClothesForm [category=" + category + ", brand=" + brand + ", color=" + color + ", tag1=" + tag1
-				+ ", tag2=" + tag2 + ", tag3=" + tag3 + ", season=" + season + ", size=" + size + ", perchaseDate="
-				+ perchaseDate + ", price=" + price + ", comment=" + comment + "]";
+		return "RegisterClothesForm [imageFile=" + imageFile + ", category=" + category + ", brand=" + brand
+				+ ", color=" + color + ", tag1=" + tag1 + ", tag2=" + tag2 + ", tag3=" + tag3 + ", season=" + season
+				+ ", size=" + size + ", perchaseDate=" + perchaseDate + ", price=" + price + ", comment=" + comment
+				+ "]";
 	}
-	
 
 }

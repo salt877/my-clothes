@@ -82,7 +82,8 @@ function func1(){
 		<nav>
 			<div class="inner">
 				<ul>
-					<li><a href="top.html"><i class="fas fa-home"></i>&emsp;&emsp;TOP</a></li>
+					<li><a href="top.html" th:href="@{/}"><i
+							class="fas fa-home"></i>&emsp;&emsp;TOP</a></li>
 					<li><a href="statistics.html"><i class="far fa-chart-bar"></i>&emsp;&emsp;統計データ</a></li>
 					<li><a href="calender.html"><i class="far fa-calendar-alt"></i>&emsp;&emsp;カレンダー</a></li>
 					<li><a href="coordinate.html"><i class="fas fa-female"></i>&emsp;&emsp;コーディネート</a></li>
@@ -108,9 +109,11 @@ function func1(){
 			</div>
 			<form action="#" method="post" id="form1"
 				th:action="@{/registerClothes/register}"
-				th:object="${registerClothesForm}">
+				th:object="${registerClothesForm}" enctype="multipart/form-data">
 				<div class="image-information">
-					<input name="imageFile" type="file" />
+					<label th:if="${#fields.hasErrors('imageFile')}"
+						th:errors="*{imageFile}" class="error-messages">
+						写真を選択してください </label> <input name="imageFile" type="file" />
 					<!-- accept=".jpg,.png,image/jpeg,image/png"th:errorclass="error-input" -->
 				</div>
 				<div class="required-information">
@@ -138,10 +141,9 @@ function func1(){
 							</tr>
 							<tr>
 								<th>
-									<div>ブランド</div>
-									<div th:if="${message}!=null" th:text="${message}"
-										style="color: red"></div>
-										
+									<div>ブランド</div> <!--  div th:if="${message}!=null" th:text="${message}"
+										style="color: red"></div-->
+									<div id="duplicateMessage" style="color: red;"></div>
 								</th>
 								<td data-label="brand" class="txt"><label for="brand"
 									th:errors="*{brand}" style="color: red"></label>
@@ -237,7 +239,7 @@ function func1(){
 
 								<td data-label="price" class="txt"><label for="price"
 									th:errors="*{price}" style="color: red"></label> <input
-									type="number" name="price" th:field="*{price}" id="price" ></td>
+									type="number" name="price" th:field="*{price}" id="price"></td>
 							</tr>
 							<tr>
 								<th>メモ</th>
@@ -340,7 +342,8 @@ function func1(){
 													<th>タグ1</th>
 													<td data-label="タグ" class="txt">
 														<div class="search">
-															<input type="text" class="search-form" id="tag11"disabled="disabled">
+															<input type="text" class="search-form" id="tag11"
+																disabled="disabled">
 														</div>
 													</td>
 												</tr>
@@ -348,7 +351,8 @@ function func1(){
 													<th>タグ2</th>
 													<td data-label="タグ" class="txt">
 														<div class="search">
-															<input type="text" class="search-form" id="tag22" disabled="disabled">
+															<input type="text" class="search-form" id="tag22"
+																disabled="disabled">
 														</div>
 													</td>
 												</tr>
@@ -356,7 +360,8 @@ function func1(){
 													<th>タグ3</th>
 													<td data-label="タグ" class="txt  border-top-0">
 														<div class="search">
-															<input type="text" class="search-form" id="tag33" disabled="disabled">
+															<input type="text" class="search-form" id="tag33"
+																disabled="disabled">
 														</div>
 													</td>
 												</tr>
@@ -461,7 +466,7 @@ function func1(){
 
 
 	<!-- brand用オートコンプリート なぜかhead内だと起動しない -->
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script type="text/javascript">
 $( function() {

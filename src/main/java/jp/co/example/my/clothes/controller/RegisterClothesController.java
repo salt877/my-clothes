@@ -1,8 +1,10 @@
 package jp.co.example.my.clothes.controller;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Date;
+import java.util.Base64;
 import java.util.List;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -13,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import jp.co.example.my.clothes.domain.Brand;
 import jp.co.example.my.clothes.domain.Category;
@@ -77,13 +80,14 @@ public class RegisterClothesController {
 	 * @return
 	 */
 	@RequestMapping("/register")
-	public String Register(Model model, @Validated RegisterClothesForm form, BindingResult result) {
+	public String Register(Model model, @Validated RegisterClothesForm form, BindingResult result) throws IOException {
+		System.out.println(form);
 
-		// 入力必須欄に未入力項目があったら入力画面に返す.
-		if (result.hasErrors()) {
-			model.addAttribute("season", form.getSeason());
-			return showRegisterClothes(model, form);
-		}
+//		// 入力必須欄に未入力項目があったら入力画面に返す.
+//		if (result.hasErrors()) {
+//			model.addAttribute("season", form.getSeason());
+//			return showRegisterClothes(model, form);
+//		}
 
 		// 入力されたブランド情報を取得(必須)
 		Brand brand = registerClothesService.brandSearchByName(form.getBrand());
@@ -109,8 +113,34 @@ public class RegisterClothesController {
 		// 入力必須項目
 		// userId
 		clothes.setUserId(1);
+
 		// 画像パス（仮）
-		clothes.setImagePath("1.jpg");
+		// 画像ファイル形式チェック
+		MultipartFile imageFile = form.getImageFile();
+		String fileExtension = null;
+		try {
+			fileExtension = getExtension(imageFile.getOriginalFilename());
+
+			if (!"jpg".equals(fileExtension) && !"png".equals(fileExtension)) {
+				result.rejectValue("imageFile", "", "拡張子は.jpgか.pngのみに対応しています");
+				System.out.println("aaa");
+			}
+		} catch (Exception e) {
+			result.rejectValue("imageFile", "", "拡張子は.jpgか.pngのみに対応しています");
+			System.out.println("fffff");
+		}
+		// 画像ファイルをBase64形式にエンコード
+		String base64FileString = Base64.getEncoder().encodeToString(imageFile.getBytes());
+		if ("jpg".equals(fileExtension)) {
+			base64FileString = "data:image/jpeg;base64," + base64FileString;
+		} else if ("png".equals(fileExtension)) {
+			base64FileString = "data:image/png;base64," + base64FileString;
+		}
+
+		System.out.println(base64FileString);
+		clothes.setImagePath(base64FileString);
+		// clothes.setImagePath("1.png");
+		// clothes.setImagePath("1.png");
 		// ブランド情報
 		clothes.setBrand(brand);
 		clothes.setBrandId(brand.getId());
@@ -153,13 +183,14 @@ public class RegisterClothesController {
 		}
 
 		// アイテム情報を登録
+		System.out.println(clothes);
 		registerClothesService.insertNewClothes(clothes);
 
 		// タグ情報の登録(アイテム登録後出ないと結び付けるclothesIdが存在しない為アイテム登録後に実施)
 
 		// userIdに紐づいた一番最新に登録したアイテムを取得
 		Clothes registerdClothes = registerClothesService.newClothesSearchByUserId(1);
-		System.out.println(registerdClothes);
+
 		// 入力された情報があればすでにタグとして登録されているか確認
 		TagContent registerTagContent = new TagContent();
 		Tag tag = null;
@@ -216,5 +247,23 @@ public class RegisterClothesController {
 
 		return "register_clothes.html";
 
+	}
+
+	/*
+	 * ファイル名から拡張子を返します.
+	 * 
+	 * @param originalFileName ファイル名
+	 * 
+	 * @return .を除いたファイルの拡張子
+	 */
+	private String getExtension(String originalFileName) throws Exception {
+		if (originalFileName == null) {
+			throw new FileNotFoundException();
+		}
+		int point = originalFileName.lastIndexOf(".");
+		if (point == -1) {
+			throw new FileNotFoundException();
+		}
+		return originalFileName.substring(point + 1);
 	}
 }
