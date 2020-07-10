@@ -95,7 +95,7 @@ public class ClothesRepository {
 	/**
 	 * 登録しているブランド名を表示します.
 	 * 
-	 * @param userId ログインユーザID
+	 * @param userId ログインユーザID <<<<<<< HEAD
 	 * @return ブランド名の入ったリスト
 	 */
 	public List<Brand> showBrandName(Integer userId) {
@@ -410,7 +410,6 @@ public class ClothesRepository {
 		}
 
 		return bigClothesList;
-
 	}
 
 }
