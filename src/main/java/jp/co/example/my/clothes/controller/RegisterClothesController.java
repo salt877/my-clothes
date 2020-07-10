@@ -21,6 +21,7 @@ import jp.co.example.my.clothes.domain.Brand;
 import jp.co.example.my.clothes.domain.Category;
 import jp.co.example.my.clothes.domain.Clothes;
 import jp.co.example.my.clothes.domain.Color;
+import jp.co.example.my.clothes.domain.LoginUser;
 import jp.co.example.my.clothes.domain.Size;
 import jp.co.example.my.clothes.domain.Tag;
 import jp.co.example.my.clothes.domain.TagContent;
@@ -51,7 +52,7 @@ public class RegisterClothesController {
 	 * @return
 	 */
 	@RequestMapping("/showRegisterClothes")
-	public String showRegisterClothes(Model model, @AuthenticationPrincipal RegisterClothesForm form) {
+	public String showRegisterClothes(Model model, @AuthenticationPrincipal LoginUser loginUser) {
 		// カテゴリの選択肢一覧を取得
 		List<Category> categoryList = registerClothesService.showCategoryList();
 		model.addAttribute("categoryList", categoryList);
@@ -80,7 +81,8 @@ public class RegisterClothesController {
 	 * @return
 	 */
 	@RequestMapping("/register")
-	public String Register(Model model, @Validated RegisterClothesForm form, BindingResult result) throws IOException {
+	public String Register(Model model, @Validated RegisterClothesForm form, BindingResult result,
+			@AuthenticationPrincipal LoginUser loginUser) throws IOException {
 		System.out.println(form);
 
 //		// 入力必須欄に未入力項目があったら入力画面に返す.
@@ -94,7 +96,7 @@ public class RegisterClothesController {
 		if (brand == null) {
 			model.addAttribute("message", "ソートされた選択肢の中から選択してください");
 			model.addAttribute("season", form.getSeason());
-			return showRegisterClothes(model, form);
+			return showRegisterClothes(model, loginUser);
 		}
 
 		// 入力されたカテゴリ情報を取得（必須）
@@ -112,7 +114,7 @@ public class RegisterClothesController {
 		Clothes clothes = new Clothes();
 		// 入力必須項目
 		// userId
-		clothes.setUserId(1);
+		clothes.setUserId(loginUser.getUser().getId());
 
 		// 画像パス（仮）
 		// 画像ファイル形式チェック
@@ -201,7 +203,7 @@ public class RegisterClothesController {
 			TagContent tagContent1 = registerClothesService.tagContentSearchByName(form.getTag1());
 			// もし登録されていないタグであれば登録する
 			if (StringUtils.isEmpty(tagContent1)) {
-				registerTagContent.setId(1);// ユーザーIDに変更する.
+				registerTagContent.setId(loginUser.getUser().getId());// ユーザーIDに変更する.
 				registerTagContent.setName(form.getTag1());
 				System.out.println(registerTagContent);
 				registerClothesService.insertTagContent(registerTagContent);
@@ -218,7 +220,7 @@ public class RegisterClothesController {
 		if (!StringUtils.isEmpty(form.getTag2())) {
 			TagContent tagContent2 = registerClothesService.tagContentSearchByName(form.getTag2());
 			if (StringUtils.isEmpty(tagContent2)) {
-				registerTagContent.setId(1);// ユーザーIDに変更する.
+				registerTagContent.setId(loginUser.getUser().getId());// ユーザーIDに変更する.
 				registerTagContent.setName(form.getTag2());
 				registerClothesService.insertTagContent(registerTagContent);
 			}
@@ -234,7 +236,7 @@ public class RegisterClothesController {
 		if (!StringUtils.isEmpty(form.getTag3())) {
 			TagContent tagContent3 = registerClothesService.tagContentSearchByName(form.getTag3());
 			if (StringUtils.isEmpty(tagContent3)) {
-				registerTagContent.setId(1);// ユーザーIDに変更する.
+				registerTagContent.setId(loginUser.getUser().getId());// ユーザーIDに変更する.
 				registerTagContent.setName(form.getTag3());
 				registerClothesService.insertTagContent(registerTagContent);
 			}
@@ -245,7 +247,7 @@ public class RegisterClothesController {
 			registerClothesService.insertTag(tag);
 		}
 
-		return "register_clothes.html";
+		return "top.html";
 
 	}
 
