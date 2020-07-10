@@ -108,6 +108,7 @@ public class RegisterClothesService {
 
 	/**
 	 * ブランド一覧を取得.
+	 * 
 	 * @return
 	 */
 	public List<Brand> brandList() {
