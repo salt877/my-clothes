@@ -30,6 +30,7 @@ public class ClothesRepository {
 	private NamedParameterJdbcTemplate template;
 
 	private static final RowMapper<Clothes> CLOTHES_ROW_MAPPER = new BeanPropertyRowMapper<>(Clothes.class);
+	private static final RowMapper<Brand> BRAND_ROW_MAPPER = new BeanPropertyRowMapper<>(Brand.class);
 
 //	private static final RowMapper<Clothes> CLOTHES_ROW_MAPPER = (rs,i) ->{
 //		
@@ -49,7 +50,7 @@ public class ClothesRepository {
 //		return clothes;
 //	};
 
-	private static final String SQL = "SELECT id,user_id,category_id,brand_id,image_path,price,color_id,season,size_id,perchase_date,comment,deleted FROM clothes WHERE ";
+	private static final String SQL = "SELECT id,user_id,category_id,brand_id,image_path,price,color_id,season,size_id,perchase_date,comment,deleted FROM clothes ";
 
 	/**
 	 * 新規にアイテム情報をインサート.
@@ -70,7 +71,7 @@ public class ClothesRepository {
 	 * @return 登録アイテム一覧
 	 */
 	public List<Clothes> findAll(Integer userId) {
-		String sql = SQL + "user_id=:userId ORDER BY id;";
+		String sql = SQL + "WHERE user_id=:userId ORDER BY id;";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
 		List<Clothes> clothesList = template.query(sql, param, CLOTHES_ROW_MAPPER);
 		return clothesList;
@@ -84,9 +85,36 @@ public class ClothesRepository {
 	 * @return 登録アイテム一覧
 	 */
 	public List<Clothes> findByCategory(Integer userId, Integer categoryId) {
-		String sql = SQL + "user_id=:userId AND category_id=:categoryId ORDER BY id;";
+		String sql = SQL + "WHERE user_id=:userId AND category_id=:categoryId ORDER BY id;";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId).addValue("categoryId",
 				categoryId);
+		List<Clothes> clothesList = template.query(sql, param, CLOTHES_ROW_MAPPER);
+		return clothesList;
+	}
+
+	/**
+	 * 登録しているブランド名を表示します.
+	 * 
+	 * @param userId ログインユーザID
+	 * @return ブランド名の入ったリスト
+	 */
+	public List<Brand> showBrandName(Integer userId) {
+		String sql = "SELECT DISTINCT brands.id,brands.name FROM brands INNER JOIN clothes ON brands.id = clothes.brand_id WHERE clothes.user_id=:userId;";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
+		List<Brand> brandList = template.query(sql, param, BRAND_ROW_MAPPER);
+		return brandList;
+	}
+
+	/**
+	 * 登録アイテムをブランド別に分けて表示します.
+	 * 
+	 * @param userId  ログインユーザID
+	 * @param brandId ブランドID
+	 * @return 登録アイテム一覧
+	 */
+	public List<Clothes> findByBrand(Integer userId, Integer brandId) {
+		String sql = SQL + "WHERE user_id=:userId AND brand_id=:brandId ORDER BY id;";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId).addValue("brandId", brandId);
 		List<Clothes> clothesList = template.query(sql, param, CLOTHES_ROW_MAPPER);
 		return clothesList;
 	}
@@ -136,7 +164,8 @@ public class ClothesRepository {
 				"cl.season cl_season, cl.perchase_date cl_perchase_date, cl.comment cl_comment, cl.deleted cl_deleted, ");
 		sql.append(
 				"ca.id ca_id, ca.name ca_name, b.id b_id, b.name b_name FROM clothes cl LEFT OUTER JOIN categories ca ON cl.category_id = ca.id ");
-		sql.append("LEFT OUTER JOIN brands b ON cl.brand_id = b.id WHERE user_id = :userId AND deleted = FALSE ORDER BY cl.id;");
+		sql.append(
+				"LEFT OUTER JOIN brands b ON cl.brand_id = b.id WHERE user_id = :userId AND deleted = FALSE ORDER BY cl.id;");
 
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
 		List<Clothes> clothesList = template.query(sql.toString(), param, CLOTHES_ROW_MAPPER2);
@@ -178,7 +207,8 @@ public class ClothesRepository {
 				"cl.season cl_season, cl.perchase_date cl_perchase_date, cl.comment cl_comment, cl.deleted cl_deleted, ");
 		sql.append(
 				"ca.id ca_id, ca.name ca_name, b.id b_id, b.name b_name FROM clothes cl LEFT OUTER JOIN categories ca ON cl.category_id = ca.id ");
-		sql.append("LEFT OUTER JOIN brands b ON cl.brand_id = b.id WHERE user_id = :userId AND deleted = FALSE ORDER BY ca.id;");
+		sql.append(
+				"LEFT OUTER JOIN brands b ON cl.brand_id = b.id WHERE user_id = :userId AND deleted = FALSE ORDER BY ca.id;");
 
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
 		List<Clothes> clothesList = template.query(sql.toString(), param, CLOTHES_ROW_MAPPER2);
@@ -207,7 +237,8 @@ public class ClothesRepository {
 				"cl.season cl_season, cl.perchase_date cl_perchase_date, cl.comment cl_comment, cl.deleted cl_deleted, ");
 		sql.append(
 				"ca.id ca_id, ca.name ca_name, b.id b_id, b.name b_name FROM clothes cl LEFT OUTER JOIN categories ca ON cl.category_id = ca.id ");
-		sql.append("LEFT OUTER JOIN brands b ON cl.brand_id = b.id WHERE user_id = :userId AND deleted = FALSE ORDER BY b.id;");
+		sql.append(
+				"LEFT OUTER JOIN brands b ON cl.brand_id = b.id WHERE user_id = :userId AND deleted = FALSE ORDER BY b.id;");
 
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
 		List<Clothes> clothesList = template.query(sql.toString(), param, CLOTHES_ROW_MAPPER2);

@@ -7,8 +7,7 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>MYQLO | トップ画面</title>
-<link rel="icon" type="image/x-icon"
-	href="../static/dist/assets/img/favicon.ico" th:href="@{/dist/assets/img/favicon.ico}"/>
+<link rel="icon" type="image/x-icon" href="../static/dist/assets/img/favicon.ico" th:href="@{/dist/assets/img/favicon.ico}"/>
 <!-- Font Awesome icons (free version)-->
 <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
 <!-- Google fonts-->
@@ -17,6 +16,7 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="../static/dist/css/styles.css" rel="stylesheet" th:href="@{/dist/css/styles.css}"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body id="page-top">
 
@@ -51,7 +51,12 @@
                     <h3 class="section-subheading text-muted">Here is a list of the clothes you have.</h3>
                 </div>
      <!-- タブ切り替え -->
-     <form id="category" action="top.html" th:action="@{/}"  method="post" onchange="submit(this.form)">
+     <select id="narrow_down" name="narrow_down" onclick="entryChange1();">
+     	<option value="category">カテゴリで絞り込む</option>
+     	<option value="brand">ブランドで絞り込む</option>
+     	<option value="tag">タグで絞り込む</option>
+     </select>
+    <form id="category" action="top.html" th:action="@{/search}"  method="post" onchange="submit(this.form)">
      <div class="tab-wrap">
      	<input id="tab_all" type="radio" name="categoryId" value="0" class="tab-switch"><label class="tab-label" for="tab_all">ALL</label>       
      	<input id="tab_tops" type="radio" name="categoryId" value="2" class="tab-switch"><label class="tab-label" for="tab_tops">TOPS</label>       
@@ -62,20 +67,24 @@
      	<input id="tab_bags" type="radio" name="categoryId" value="6" class="tab-switch"/><label class="tab-label" for="tab_bags">BAGS</label>       
      	<input id="tab_accessories" type="radio"name="categoryId" value="1" class="tab-switch"/><label class="tab-label" for="tab_accessories">ACCESSORIES</label>       
      </div> 
-     <script type="text/javascript">
-     $(function() {
-      
-       // セレクトボックスを選択するたびに発動
-       $('form').change(function() {
-      
-         // <form>要素を送信        
-         $('form').prop("disabled",true);
-         $('form').submit();
-      
-       });
-     });
-</script>           
+     <span th:each="brand : ${brandMap}">     
+     	<input id="brand_name" type="radio" name="brandId" th:value="${brand.key}"  th:text="${brand.value}">   
+     </span>
      </form>
+     <script type="text/javascript">
+     function entryChange1(){
+    	 select = document.getElementsByName('narrow_down')
+    	 if(select[0].checked) {
+		//フォーム
+		document.getElementByName('categoryId').style.display = "";
+		document.getElementByName('brandId').style.display = "none";
+     } else if(select[1].checked) {
+    	 document.getElementByName('categoryId').style.display = "none";
+ 		document.getElementByName('brandId').style.display = "";
+     }
+     }
+     window.onload = entryChange1;
+     </script>
                 
                 <div id="cloth_list" class="row">
                 	<div id="items" class="col-lg-4 col-sm-6 mb-4" th:each="item : ${clothesList}">
@@ -288,6 +297,7 @@
 	<script src="../static/dist/assets/mail/jqBootstrapValidation.js" th:src="@{/dist/assets/mail/jqBootstrapValidation.js}"></script>
 	<script src="../static/dist/assets/mail/contact_me.js" th:src="@{/dist/assets/mail/contact_me.js}"></script>
 	<!-- Core theme JS-->
+	<script src="../static/dist/js/show_item.js" th:src="@{/dist/js/show_item.js}"></script>
 	<script src="../static/dist/js/scripts.js" th:src="@{/dist/js/scripts.js}"></script>
 	<script src="../static/dist/js/hamburger_menu.js" th:src="@{/dist/js/hamburger_menu.js}"></script>
 	<script src="../static/dist/js/vuemore.js" th:src="@{/dist/js/vuemore.js}"></script>

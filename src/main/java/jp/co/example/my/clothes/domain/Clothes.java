@@ -95,14 +95,10 @@ public class Clothes {
 	 */
 	private List<Tag> tagList;
 
-	@Override
-	public String toString() {
-		return "Clothes [id=" + id + ", userId=" + userId + ", brandId=" + brandId + ", categoryId=" + categoryId
-				+ ", imagePath=" + imagePath + ", price=" + price + ", colorId=" + colorId + ", season=" + season
-				+ ", sizeId=" + sizeId + ", perchaseDate=" + perchaseDate + ", comment=" + comment + ", deleted="
-				+ deleted + ", category=" + category + ", brand=" + brand + ", color=" + color + ", size=" + size
-				+ ", tagList=" + tagList + "]";
-	}
+	/**
+	 * ブランドリスト
+	 */
+	private List<Brand> brandList;
 
 	public Integer getId() {
 		return id;
@@ -238,6 +234,23 @@ public class Clothes {
 
 	public void setTagList(List<Tag> tagList) {
 		this.tagList = tagList;
+	}
+
+	public List<Brand> getBrandList() {
+		return brandList;
+	}
+
+	public void setBrandList(List<Brand> brandList) {
+		this.brandList = brandList;
+	}
+
+	@Override
+	public String toString() {
+		return "Clothes [id=" + id + ", userId=" + userId + ", brandId=" + brandId + ", categoryId=" + categoryId
+				+ ", imagePath=" + imagePath + ", price=" + price + ", colorId=" + colorId + ", season=" + season
+				+ ", sizeId=" + sizeId + ", perchaseDate=" + perchaseDate + ", comment=" + comment + ", deleted="
+				+ deleted + ", category=" + category + ", brand=" + brand + ", color=" + color + ", size=" + size
+				+ ", tagList=" + tagList + ", brandList=" + brandList + "]";
 	}
 
 }
