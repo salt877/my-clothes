@@ -6,13 +6,16 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import jp.co.example.my.clothes.domain.Clothes;
+import jp.co.example.my.clothes.domain.LoginUser;
 import jp.co.example.my.clothes.service.ShowStatisticsService;
+import lombok.extern.java.Log;
 
 /**
  * 統計画面のグラフデータをjson（map）形式で返すRestController.
@@ -36,7 +39,7 @@ public class ShowStatsRestController {
 	public Map<String, List<Integer>> getTotalPriceByCategory(Integer userId) {
 		Map<String, List<Integer>> categoryPriceMap = new HashMap<>();
 
-		List<List<Clothes>> bigClothesList = showStatisticsService.showStatsByUserIdAndListedByCategoryId(1);
+		List<List<Clothes>> bigClothesList = showStatisticsService.showStatsByUserIdAndListedByCategoryId(userId);
 		System.out.println("レストコントローラのリスト:" + bigClothesList);
 
 		List<Integer> priceList = new ArrayList<>();
@@ -69,7 +72,7 @@ public class ShowStatsRestController {
 	public Map<String, List<Integer>> getTotalCountByCategory(Integer userId) {
 		Map<String, List<Integer>> categoryCountMap = new HashMap<>();
 
-		List<List<Clothes>> bigClothesList = showStatisticsService.showStatsByUserIdAndListedByCategoryId(1);
+		List<List<Clothes>> bigClothesList = showStatisticsService.showStatsByUserIdAndListedByCategoryId(userId);
 		System.out.println("レストコントローラのリスト:" + bigClothesList);
 
 		List<Integer> countList = new ArrayList<>();
@@ -99,7 +102,7 @@ public class ShowStatsRestController {
 	public Map<String, List<Integer>> getTotalPriceByBrand(Integer userId) {
 		Map<String, List<Integer>> brandPriceMap = new HashMap<>();
 
-		List<List<Clothes>> bigClothesList = showStatisticsService.showStatsByUserIdAndListedByBrandId(1);
+		List<List<Clothes>> bigClothesList = showStatisticsService.showStatsByUserIdAndListedByBrandId(userId);
 		System.out.println("レストコントローラのリスト:" + bigClothesList);
 
 		List<Integer> priceList = new ArrayList<>();
@@ -132,7 +135,7 @@ public class ShowStatsRestController {
 	public Map<String, List<Integer>> getTotalCountByBrand(Integer userId) {
 		Map<String, List<Integer>> brandCountMap = new HashMap<>();
 
-		List<List<Clothes>> bigClothesList = showStatisticsService.showStatsByUserIdAndListedByBrandId(1);
+		List<List<Clothes>> bigClothesList = showStatisticsService.showStatsByUserIdAndListedByBrandId(userId);
 		System.out.println("レストコントローラのリスト:" + bigClothesList);
 
 		List<Integer> countList = new ArrayList<>();

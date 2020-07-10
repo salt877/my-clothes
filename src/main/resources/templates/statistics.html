@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport"
@@ -77,6 +78,7 @@
 				</div>
 
 				<div th:if="${clothesListByUserId} != null">
+					<input type="hidden" id="loginUserId" th:value="${loginUserId}">
 					<table class="table">
 						<thead>
 							<tr>
@@ -109,8 +111,9 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td><input type="hidden" id="userId" value="1">
-									<canvas id="chartListedByCategoryPrice"></canvas></td>
+								<td>
+									<canvas id="chartListedByCategoryPrice"></canvas>
+								</td>
 							</tr>
 						</tbody>
 					</table>
@@ -123,9 +126,9 @@
 								url: "http://localhost:8080/get_category_price_data",
 								type: "GET",
 								dataType: "json",
-								data:{
-									userId: $("#userId").val()
-									},
+								data : {
+									userId : $('#loginUserId').val()
+								},
 								async: true
 									
 								}).done(function(data){
@@ -153,7 +156,7 @@
 										            colorschemes: {
 										                scheme: 'brewer.Paired12'
 												            }
-												        }
+												        }											
 											       }
 												});
 								}).fail(function(XMLHttpRequest, textStatus, errorThrown){
@@ -171,13 +174,15 @@
 					<table class="table">
 						<thead>
 							<tr>
+
 								<th class="st-column">カテゴリー別アイテム数</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<td><input type="hidden" id="userId" value="1">
-									<canvas id="chartListedByCategoryCount"></canvas></td>
+								<td>
+									<canvas id="chartListedByCategoryCount"></canvas>
+								</td>
 							</tr>
 						</tbody>
 					</table>
@@ -190,9 +195,9 @@
 								url: "http://localhost:8080/get_category_count_data",
 								type: "GET",
 								dataType: "json",
-								data:{
-									userId: $("#userId").val()
-									},
+								data : {
+									userId : $('#loginUserId').val()
+								},
 								async: true
 									
 								}).done(function(data){
@@ -243,8 +248,9 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td><input type="hidden" id="userId" value="1">
-									<canvas id="chartListedByBrandPrice"></canvas></td>
+								<td>
+									<canvas id="chartListedByBrandPrice"></canvas>
+								</td>
 							</tr>
 						</tbody>
 					</table>
@@ -257,9 +263,9 @@
 								url: "http://localhost:8080/get_brand_price_data",
 								type: "GET",
 								dataType: "json",
-								data:{
-									userId: $("#userId").val()
-									},
+								data : {
+									userId : $('#loginUserId').val()
+								},
 								async: true
 									
 								}).done(function(data){
@@ -310,8 +316,9 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td><input type="hidden" id="userId" value="1">
-									<canvas id="chartListedByBrandCount"></canvas></td>
+								<td>
+									<canvas id="chartListedByBrandCount"></canvas>
+								</td>
 							</tr>
 						</tbody>
 					</table>
@@ -324,9 +331,9 @@
 								url: "http://localhost:8080/get_brand_count_data",
 								type: "GET",
 								dataType: "json",
-								data:{
-									userId: $("#userId").val()
-									},
+								data : {
+									userId : $('#loginUserId').val()
+								},
 								async: true
 									
 								}).done(function(data){

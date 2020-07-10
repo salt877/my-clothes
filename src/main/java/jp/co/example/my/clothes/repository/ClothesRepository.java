@@ -136,7 +136,7 @@ public class ClothesRepository {
 				"cl.season cl_season, cl.perchase_date cl_perchase_date, cl.comment cl_comment, cl.deleted cl_deleted, ");
 		sql.append(
 				"ca.id ca_id, ca.name ca_name, b.id b_id, b.name b_name FROM clothes cl LEFT OUTER JOIN categories ca ON cl.category_id = ca.id ");
-		sql.append("LEFT OUTER JOIN brands b ON cl.brand_id = b.id WHERE user_id = :userId ORDER BY cl.id;");
+		sql.append("LEFT OUTER JOIN brands b ON cl.brand_id = b.id WHERE user_id = :userId AND deleted = FALSE ORDER BY cl.id;");
 
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
 		List<Clothes> clothesList = template.query(sql.toString(), param, CLOTHES_ROW_MAPPER2);
@@ -178,7 +178,7 @@ public class ClothesRepository {
 				"cl.season cl_season, cl.perchase_date cl_perchase_date, cl.comment cl_comment, cl.deleted cl_deleted, ");
 		sql.append(
 				"ca.id ca_id, ca.name ca_name, b.id b_id, b.name b_name FROM clothes cl LEFT OUTER JOIN categories ca ON cl.category_id = ca.id ");
-		sql.append("LEFT OUTER JOIN brands b ON cl.brand_id = b.id WHERE user_id = :userId ORDER BY ca.id;");
+		sql.append("LEFT OUTER JOIN brands b ON cl.brand_id = b.id WHERE user_id = :userId AND deleted = FALSE ORDER BY ca.id;");
 
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
 		List<Clothes> clothesList = template.query(sql.toString(), param, CLOTHES_ROW_MAPPER2);
@@ -207,7 +207,7 @@ public class ClothesRepository {
 				"cl.season cl_season, cl.perchase_date cl_perchase_date, cl.comment cl_comment, cl.deleted cl_deleted, ");
 		sql.append(
 				"ca.id ca_id, ca.name ca_name, b.id b_id, b.name b_name FROM clothes cl LEFT OUTER JOIN categories ca ON cl.category_id = ca.id ");
-		sql.append("LEFT OUTER JOIN brands b ON cl.brand_id = b.id WHERE user_id = :userId ORDER BY b.id;");
+		sql.append("LEFT OUTER JOIN brands b ON cl.brand_id = b.id WHERE user_id = :userId AND deleted = FALSE ORDER BY b.id;");
 
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
 		List<Clothes> clothesList = template.query(sql.toString(), param, CLOTHES_ROW_MAPPER2);
@@ -287,7 +287,7 @@ public class ClothesRepository {
 				"cl.season cl_season, cl.perchase_date cl_perchase_date, cl.comment cl_comment, cl.deleted cl_deleted, ");
 		sql.append(
 				"ca.id ca_id, ca.name ca_name FROM clothes cl LEFT OUTER JOIN categories ca ON cl.category_id = ca.id ");
-		sql.append("WHERE user_id = :userId ORDER BY ca.id;");
+		sql.append("WHERE user_id = :userId AND deleted = FALSE ORDER BY ca.id;");
 
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
 		List<List<Clothes>> bigClothesList = template.query(sql.toString(), param,
@@ -368,7 +368,7 @@ public class ClothesRepository {
 		sql.append(
 				"cl.season cl_season, cl.perchase_date cl_perchase_date, cl.comment cl_comment, cl.deleted cl_deleted, ");
 		sql.append("b.id b_id, b.name b_name FROM clothes cl LEFT OUTER JOIN brands b ON cl.brand_id = b.id ");
-		sql.append("WHERE user_id = :userId ORDER BY b.id;");
+		sql.append("WHERE user_id = :userId AND deleted = FALSE ORDER BY b.id;");
 
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
 		List<List<Clothes>> bigClothesList = template.query(sql.toString(), param,
