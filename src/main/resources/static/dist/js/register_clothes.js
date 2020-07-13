@@ -12,6 +12,10 @@ $(function() {
 	$("#price").on("change",function(){
 		change();
 	});
+	$("#myImage").on("change",function(){
+		change();
+	});
+	
 	
 });
 	
@@ -23,14 +27,14 @@ $(function() {
 		 console.log(color);
 		 var brand = document.getElementById( "brand" ).value ;
 		 brand=brand.replace(/^\s+/,"");
-		 console.log(brand);
-		 
-		 if(!category||!color||!brand){
+		 var image = $("myImage").val().length;
+		 console.log(image); 
+		 if(!category||!color||!brand||image==0){
 			 $('#confirm').prop('disabled', true);
-			 console.log("bbb");
+			 console.log("押せる");
 		 }else{
 			 $('#confirm').prop('disabled', false);
-			 console.log("ccc");
+			 console.log("押せない");
 		 }
 	};
 	
