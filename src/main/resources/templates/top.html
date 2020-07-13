@@ -62,6 +62,7 @@
 	</div>
 
 	<!-- アイテム一覧画面 -->
+<<<<<<< HEAD
 	<section class="page-section bg-light" id="portfolio">
 		<div class="container">
 			<div class="text-center">
@@ -133,6 +134,52 @@
 					</div>
 				</div>
 
+=======
+	 <section class="page-section bg-light" id="portfolio">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">My Closet</h2>
+                    <h3 class="section-subheading text-muted">Here is a list of the clothes you have.</h3>
+                </div>
+     <!-- タブ切り替え -->
+     <select id="narrow_down" name="narrow_down" onclick="entryChange1();">
+     	<option value="category">カテゴリで絞り込む</option>
+     	<option value="brand">ブランドで絞り込む</option>
+     	<option value="tag">タグで絞り込む</option>
+     </select>
+    <form id="category" action="top.html" th:action="@{/search}"  method="post" onchange="submit(this.form)">
+     <div class="tab-wrap">
+     	<input id="tab_all" type="radio" name="categoryId" value="0" class="tab-switch"><label class="tab-label" for="tab_all">ALL</label>       
+     	<input id="tab_tops" type="radio" name="categoryId" value="2" class="tab-switch"><label class="tab-label" for="tab_tops">TOPS</label>       
+     	<input id="tab_outer" type="radio" name="categoryId" value="3" class="tab-switch"><label class="tab-label" for="tab_outer">OUTER</label>       
+     	<input id="tab_bottoms" type="radio" name="categoryId" value="4" class="tab-switch"><label class="tab-label" for="tab_bottoms">BOTTOMS</label>       
+     	<input id="tab_dress" type="radio" name="categoryId" value="7" class="tab-switch"><label class="tab-label" for="tab_dress">DRESS</label>       
+     	<input id="tab_shoes" type="radio" name="categoryId" value="5" class="tab-switch"><label class="tab-label" for="tab_shoes">SHOES</label>       
+     	<input id="tab_bags" type="radio" name="categoryId" value="6" class="tab-switch"/><label class="tab-label" for="tab_bags">BAGS</label>       
+     	<input id="tab_accessories" type="radio"name="categoryId" value="1" class="tab-switch"/><label class="tab-label" for="tab_accessories">ACCESSORIES</label>       
+     </div> 
+     <span th:each="brand : ${brandMap}">     
+     	<input id="brand_name" type="radio" name="brandId" th:value="${brand.key}"  th:text="${brand.value}">   
+     </span>
+     <div>     
+     <span th:each="tag : ${tagMap}">     
+     	<input id="tag_name" type="radio" name="tagContentsId" th:value="${tag.key}"  th:text="${tag.value}">   
+     </span>
+     </div>
+     </form>             
+                <div id="cloth_list" class="row">
+                	<div id="items" class="col-lg-4 col-sm-6 mb-4" th:each="item : ${clothesList}">
+                		<div class="portfolio-item">
+                			<a class="portfolio-link" data-toggle="modal" href="edit_cloth.html" data-target="#exampleModal">
+                				<div class="portfolio-hover">
+                					<div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                				</div>
+                				<img class="img-fluid" th:src="${'/img/'+item.imagePath}" alt=""/>
+                			</a>
+                		</div>
+                	</div>
+          
+>>>>>>> 3e137c9af83f9b25a8f5b102f8131cfa84e9aa6d
 				<!-- もっと見るボタン -->
 
 				<div id="more_btn" class="btn btn--vuemore btn-c">
