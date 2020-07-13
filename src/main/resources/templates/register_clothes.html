@@ -33,9 +33,22 @@
 	src="../static/dist/js/register_clothes.js"
 	th:src="@{/dist/js/register_clothes.js}" /></script>
 
-
-
 <script type="text/javascript">
+$(function() {
+$('#myImage').on('change', function (e) {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        $("#preview").attr('src', e.target.result);
+    }
+    reader.readAsDataURL(e.target.files[0]);
+});
+});
+
+
+</script>
+<script type="text/javascript">
+
+/*選択必須項目を選択しないとモーダルに移動できない使用にしたため不要*/
 function func1(){
 	　const category = document.getElementById('category').value;
 	 const color = document.getElementById('color').value;
@@ -48,6 +61,8 @@ function func1(){
 	  }else{
 		  console.log('すべて選択されています')
 	  }
+	  
+	
 	 
 	//入力された値をモーダルの画面に映す
 	 $("#category2").val($("#category").val());
@@ -61,13 +76,18 @@ function func1(){
      $("#price2").val($("#price").val());
      $("#comment2").val($("#comment").val());
      
+     
+    
 	 
 	console.log("モーダルへ");
+	/*
 	var tag = document.getElementById( "tag" ).value ;
 	var season = document.getElementById( "season" ).value ;
 	var perchaseDate = document.getElementById( "perchaseDate" ).value ;
 	var price = document.getElementById( "price" ).value ;
 	var comment = document.getElementById( "comment" ).value ;
+	*/
+	
 	
 	
 }
@@ -113,8 +133,9 @@ function func1(){
 				<div class="image-information">
 					<label th:if="${#fields.hasErrors('imageFile')}"
 						th:errors="*{imageFile}" class="error-messages">
-						写真を選択してください </label> <input name="imageFile" type="file" />
-					<!-- accept=".jpg,.png,image/jpeg,image/png"th:errorclass="error-input" -->
+						写真を選択してください </label> <input name="imageFile" type="file"
+						accept=".jpg,.png" id="myImage" />
+					<!-- ,image/jpeg,image/png"th:errorclass="error-input" -->
 				</div>
 				<div class="required-information">
 					<table>
@@ -279,7 +300,7 @@ function func1(){
 							<div class="modal-body">
 								<div>
 									<div class="image-information">
-										<input name="imageFile" type="file" />
+											 <img id="preview">
 										<!-- accept=".jpg,.png,image/jpeg,image/png"
 											th:errorclass="error-input" -->
 									</div>

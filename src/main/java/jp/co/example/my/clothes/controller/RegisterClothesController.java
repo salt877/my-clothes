@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.util.Base64;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -98,6 +99,10 @@ public class RegisterClothesController {
 			model.addAttribute("season", form.getSeason());
 			return showRegisterClothes(model, loginUser);
 		}
+		if (Pattern.matches("^[0-9]*$", form.getPrice())) {
+			System.out.println("数字以外が入力されています");
+			return showRegisterClothes(model, loginUser);
+		}
 
 		// 入力されたカテゴリ情報を取得（必須）
 		Category category = registerClothesService.categorySearchById(Integer.parseInt(form.getCategory()));
@@ -125,11 +130,11 @@ public class RegisterClothesController {
 
 			if (!"jpg".equals(fileExtension) && !"png".equals(fileExtension)) {
 				result.rejectValue("imageFile", "", "拡張子は.jpgか.pngのみに対応しています");
-				System.out.println("aaa");
+				// System.out.println("aaa");
 			}
 		} catch (Exception e) {
 			result.rejectValue("imageFile", "", "拡張子は.jpgか.pngのみに対応しています");
-			System.out.println("fffff");
+			// System.out.println("fffff");
 		}
 		// 画像ファイルをBase64形式にエンコード
 		String base64FileString = Base64.getEncoder().encodeToString(imageFile.getBytes());
