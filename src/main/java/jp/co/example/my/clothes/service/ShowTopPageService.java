@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import jp.co.example.my.clothes.domain.Brand;
 import jp.co.example.my.clothes.domain.Clothes;
-import jp.co.example.my.clothes.domain.Tag;
 import jp.co.example.my.clothes.domain.TagContent;
 import jp.co.example.my.clothes.repository.ClothesRepository;
 
@@ -77,8 +76,8 @@ public class ShowTopPageService {
 	/**
 	 * 登録アイテムをタグごとに検索します.
 	 * 
-	 * @param userId ユーザID
-	 * @param        tagContentsId タグ内容ID
+	 * @param userId        ユーザID
+	 * @param tagContentsId タグ内容ID
 	 * @return 登録アイテム一覧
 	 */
 	public List<Clothes> showItemListByTag(Integer userId, Integer tagContentsId) {

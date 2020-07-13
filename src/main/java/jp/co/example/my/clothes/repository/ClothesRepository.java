@@ -16,7 +16,6 @@ import org.springframework.stereotype.Repository;
 import jp.co.example.my.clothes.domain.Brand;
 import jp.co.example.my.clothes.domain.Category;
 import jp.co.example.my.clothes.domain.Clothes;
-import jp.co.example.my.clothes.domain.Tag;
 import jp.co.example.my.clothes.domain.TagContent;
 
 /**
@@ -33,7 +32,6 @@ public class ClothesRepository {
 
 	private static final RowMapper<Clothes> CLOTHES_ROW_MAPPER = new BeanPropertyRowMapper<>(Clothes.class);
 	private static final RowMapper<Brand> BRAND_ROW_MAPPER = new BeanPropertyRowMapper<>(Brand.class);
-	private static final RowMapper<Tag> TAG_ROW_MAPPER = new BeanPropertyRowMapper<>(Tag.class);
 	private static final RowMapper<TagContent> TAG_CONTENTS_ROW_MAPPER = new BeanPropertyRowMapper<>(TagContent.class);
 
 //	private static final RowMapper<Clothes> CLOTHES_ROW_MAPPER = (rs,i) ->{
@@ -125,8 +123,8 @@ public class ClothesRepository {
 	/**
 	 * 登録しているタグを検索します.
 	 * 
-	 * @param userId
-	 * @return
+	 * @param userId ログインユーザID
+	 * @return　タグ名の入ったリスト
 	 */
 	public List<TagContent> showTagName(Integer userId){
 		StringBuilder sql = new StringBuilder();
@@ -134,8 +132,8 @@ public class ClothesRepository {
 		sql.append("JOIN tags AS t ON c.id=t.clothes_id JOIN tag_contents AS tc ");
 		sql.append("ON t.tag_contents_id=tc.id WHERE c.user_id=:userId");
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
-		List<TagContent> tagList = template.query(sql.toString(), param, TAG_CONTENTS_ROW_MAPPER);
-		return tagList;
+		List<TagContent> tagNameList = template.query(sql.toString(), param, TAG_CONTENTS_ROW_MAPPER);
+		return tagNameList;
 	}
 	
 	/**
