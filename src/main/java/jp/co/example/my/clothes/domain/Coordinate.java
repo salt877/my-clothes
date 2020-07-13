@@ -29,7 +29,7 @@ public class Coordinate {
 	private Integer dress;
 	/** ユーザー情報格納用インスタンス */
 	private User user;
-	/** 服情報格納用インスタンス*/
+	/** 服情報格納用インスタンス */
 	private Clothes clothes;
 	/** 服情報を詰めるリスト（コーディネート情報） */
 	private List<Clothes> clothesList;
@@ -135,6 +135,15 @@ public class Coordinate {
 
 	public void setClothesList(List<Clothes> clothesList) {
 		this.clothesList = clothesList;
+	}
+
+	/**
+	 * 服リスト（コーディネート）に服情報を追加します.
+	 * 
+	 * @param clothes
+	 */
+	public void addClothesList(Clothes clothes) {
+		clothesList.add(clothes);
 	}
 
 }
