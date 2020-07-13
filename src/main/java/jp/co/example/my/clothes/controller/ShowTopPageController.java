@@ -50,8 +50,8 @@ public class ShowTopPageController {
 			Integer brandId = brandList.get(i).getId();
 			String brandName = brandList.get(i).getName();
 			brandMap.put(brandId, brandName);
-			model.addAttribute("brandMap", brandMap);
 		}
+		model.addAttribute("brandMap", brandMap);
 
 		// 登録タグ名を表示させる
 		List<TagContent> tagNameList = showTopPageService.showTagName(userId);
@@ -61,8 +61,9 @@ public class ShowTopPageController {
 			String tagContentsName = tagNameList.get(i).getName();
 			System.out.println("登録されてるアイテムのあるtag_contantsテーブルのidは" + tagContentsId + "、nameは" + tagContentsName);
 			tagMap.put(tagContentsId, tagContentsName);
-			model.addAttribute("tagMap", tagMap);
 		}
+		model.addAttribute("tagMap", tagMap);
+		
 		return "top";
 	}
 
@@ -94,6 +95,7 @@ public class ShowTopPageController {
 			System.out.println("ブランド選択された時、ブランドIDは" + brandId);
 		}
 
+		// タグが選択された時
 		if (tagContentsId != null) {
 			List<Clothes> clothesList = showTopPageService.showItemListByTag(userId, tagContentsId);
 			model.addAttribute("clothesList", clothesList);
@@ -120,8 +122,6 @@ public class ShowTopPageController {
 			tagMap.put(tagContentsId2, tagContentsName);
 		}
 		model.addAttribute("tagMap", tagMap);
-
-		System.out.println("今表示してるのはUSER:" + userId + " CATEGORY_ID:" + categoryId + " BRAND_ID:" + brandId);
 
 		return "top";
 	}
