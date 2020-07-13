@@ -115,7 +115,7 @@ public class ShowStatsRestController {
 	}
 
 	/**
-	 * カテゴリー別ドーナツグラフの表示を行う.
+	 * ブランド別ドーナツグラフの表示を行う.
 	 * 
 	 * @param userId ユーザーID
 	 * @return ブランドごとの合計アイテム数リストが詰まったマップ
