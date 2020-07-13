@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
+import jp.co.example.my.clothes.domain.LoginUser;
 import jp.co.example.my.clothes.domain.User;
 
 /**
@@ -50,13 +51,24 @@ public class UserRepository {
 	 * @return ユーザ情報 存在しない場合はnullを返します
 	 */
 	public User findByEmail(String email) {
-		String sql = "SELECT id,email,password from users where email=:email";
+		String sql = "SELECT id,email,password from users where email=:email AND deleted= false";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("email", email);
 		List<User> userList = template.query(sql, param, USER_ROW_MAPPER);
 		if (userList.size() == 0) {
 			return null;
 		}
 		return userList.get(0);
+	}
+
+	/**
+	 * ユーザー情報を論理削除（データを消すわけではなく、使えなくする）
+	 * 
+	 * @param user
+	 */
+	public void deleteUser(LoginUser user) {
+		String sql = "UPDATE users SET deleted='true' where email=:email";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("email", user.getUser().getEmail());
+		template.update(sql, param);
 	}
 
 }

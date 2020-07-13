@@ -33,8 +33,10 @@
 		<nav>
 			<div class="inner">
 				<ul>
-					<li><a href="top.html"><i class="fas fa-home"></i>&emsp;&emsp;TOP</a></li>
-					<li><a href="statistics.html" th:href="@{/stats}"><i class="far fa-chart-bar"></i>&emsp;&emsp;統計データ</a></li>
+					<li><a href="top.html" th:href="@{/}"><i
+							class="fas fa-home"></i>&emsp;&emsp;TOP</a></li>
+					<li><a href="statistics.html" th:href="@{/stats}"><i
+							class="far fa-chart-bar"></i>&emsp;&emsp;統計データ</a></li>
 					<li><a href="calender.html"><i class="far fa-calendar-alt"></i>&emsp;&emsp;カレンダー</a></li>
 					<li><a href="coordinate.html"><i class="fas fa-female"></i>&emsp;&emsp;コーディネート</a></li>
 					<li><a href="contact.html"><i class="far fa-envelope"></i>&emsp;&emsp;お問い合わせ</a></li>
@@ -276,7 +278,9 @@
 						<p>
 							ご退会につきましては下記リンクよりお手続きをお願いしております。<br>
 							退会処理には、1～3営業日お時間をいただいております。<br> <br> 退会をご希望の方は<a
-								href="delete_user.html" class="faq-a">こちら</a>から。
+								href="delete_user.html"
+								th:href="@{/withdrawal/showWithdrawalPage}" class="faq-a">こちら</a>から。
+						
 					</div>
 				</div>
 			</div>
@@ -303,7 +307,8 @@
 							プロフィール登録やパスワード・メールアドレス変更をした際の認証確認メールや、お問い合わせに対する返信は
 							@gmail.comのドメインアドレスからお送りします。<br>
 							ドメイン指定受信や迷惑メール対策など、お客様がご利用のメール設定によって受信できない場合がございます。メール設定をご確認ください。
-					
+
+						
 					</div>
 				</div>
 			</div>
