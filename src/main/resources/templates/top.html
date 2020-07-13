@@ -70,22 +70,12 @@
      <span th:each="brand : ${brandMap}">     
      	<input id="brand_name" type="radio" name="brandId" th:value="${brand.key}"  th:text="${brand.value}">   
      </span>
-     </form>
-     <script type="text/javascript">
-     function entryChange1(){
-    	 select = document.getElementsByName('narrow_down')
-    	 if(select[0].checked) {
-		//フォーム
-		document.getElementByName('categoryId').style.display = "";
-		document.getElementByName('brandId').style.display = "none";
-     } else if(select[1].checked) {
-    	 document.getElementByName('categoryId').style.display = "none";
- 		document.getElementByName('brandId').style.display = "";
-     }
-     }
-     window.onload = entryChange1;
-     </script>
-                
+     <div>     
+     <span th:each="tag : ${tagMap}">     
+     	<input id="tag_name" type="radio" name="tagContentsId" th:value="${tag.key}"  th:text="${tag.value}">   
+     </span>
+     </div>
+     </form>             
                 <div id="cloth_list" class="row">
                 	<div id="items" class="col-lg-4 col-sm-6 mb-4" th:each="item : ${clothesList}">
                 		<div class="portfolio-item">
