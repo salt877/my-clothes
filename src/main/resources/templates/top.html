@@ -17,6 +17,7 @@
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="../static/dist/css/styles.css" rel="stylesheet" th:href="@{/dist/css/styles.css}"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body id="page-top">
 
@@ -51,28 +52,37 @@
                     <h3 class="section-subheading text-muted">Here is a list of the clothes you have.</h3>
                 </div>
      <!-- タブ切り替え -->
-     <select id="narrow_down" name="narrow_down" onclick="entryChange1();">
+     <div class="cp_ipselect cp_sl04">
+     <select required>    
+     	<option value="">アイテムを絞り込む</option> 
      	<option value="category">カテゴリで絞り込む</option>
      	<option value="brand">ブランドで絞り込む</option>
      	<option value="tag">タグで絞り込む</option>
      </select>
-    <form id="category" action="top.html" th:action="@{/search}"  method="post" onchange="submit(this.form)">
-     <div class="tab-wrap">
-     	<input id="tab_all" type="radio" name="categoryId" value="0" class="tab-switch"><label class="tab-label" for="tab_all">ALL</label>       
-     	<input id="tab_tops" type="radio" name="categoryId" value="2" class="tab-switch"><label class="tab-label" for="tab_tops">TOPS</label>       
-     	<input id="tab_outer" type="radio" name="categoryId" value="3" class="tab-switch"><label class="tab-label" for="tab_outer">OUTER</label>       
-     	<input id="tab_bottoms" type="radio" name="categoryId" value="4" class="tab-switch"><label class="tab-label" for="tab_bottoms">BOTTOMS</label>       
-     	<input id="tab_dress" type="radio" name="categoryId" value="7" class="tab-switch"><label class="tab-label" for="tab_dress">DRESS</label>       
-     	<input id="tab_shoes" type="radio" name="categoryId" value="5" class="tab-switch"><label class="tab-label" for="tab_shoes">SHOES</label>       
-     	<input id="tab_bags" type="radio" name="categoryId" value="6" class="tab-switch"/><label class="tab-label" for="tab_bags">BAGS</label>       
-     	<input id="tab_accessories" type="radio"name="categoryId" value="1" class="tab-switch"/><label class="tab-label" for="tab_accessories">ACCESSORIES</label>       
+     </div>
+    <form action="top.html" th:action="@{/search}"  method="post" onchange="submit(this.form)">
+     <div id="category" class="category">
+     	<input id="tab_all" type="radio" name="categoryId" class="radioButton" value="0"><label  class="tab-label" for="tab_all">ALL</label>       
+     	<input id="tab_tops" type="radio" name="categoryId" value="2" class="radioButton"><label class="tab-label" for="tab_tops">TOPS</label>       
+     	<input id="tab_outer" type="radio" name="categoryId" value="3" class="radioButton"><label class="tab-label" for="tab_outer">OUTER</label>       
+     	<input id="tab_bottoms" type="radio" name="categoryId" value="4" class="radioButton"><label class="tab-label" for="tab_bottoms">BOTTOMS</label>       
+     	<input id="tab_dress" type="radio" name="categoryId" value="7" class="radioButton"><label class="tab-label" for="tab_dress">DRESS</label>       
+     	<input id="tab_shoes" type="radio" name="categoryId" value="5" class="radioButton"><label class="tab-label" for="tab_shoes">SHOES</label>       
+     	<input id="tab_bags" type="radio" name="categoryId" value="6" class="radioButton"/><label class="tab-label" for="tab_bags">BAGS</label>       
+     	<input id="tab_accessories" type="radio"name="categoryId" value="1" class="radioButton"/><label class="tab-label" for="tab_accessories">ACCESSORIES</label>  
      </div> 
-     <span th:each="brand : ${brandMap}">     
-     	<input id="brand_name" type="radio" name="brandId" th:value="${brand.key}"  th:text="${brand.value}">   
+     <div>
+     <span class="brand" id="brand" th:each="brand : ${brandMap}">  
+     <label>
+     	<input type="radio" class="radioButton" name="brandId" th:value="${brand.key}" th:text="${brand.value}">
+     </label>   
      </span>
-     <div>     
-     <span th:each="tag : ${tagMap}">     
-     	<input id="tag_name" type="radio" name="tagContentsId" th:value="${tag.key}"  th:text="${tag.value}">   
+     </div>
+     <div>
+     <span  class="tag" id="tag" th:each="tag : ${tagMap}">     
+     <label>
+     	<input type="radio" class="radioButton" name="tagContentsId" th:value="${tag.key}" th:text="${tag.value}">
+     </label> 
      </span>
      </div>
      </form>             
