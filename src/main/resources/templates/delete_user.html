@@ -37,7 +37,8 @@
 		<nav>
 			<div class="inner">
 				<ul>
-					<li><a href="top.html"><i class="fas fa-home"></i>&emsp;&emsp;TOP</a></li>
+					<li><a href="top.html" th:href="@{/}"><i
+							class="fas fa-home"></i>&emsp;&emsp;TOP</a></li>
 					<li><a href="statistics.html"><i class="far fa-chart-bar"></i>&emsp;&emsp;統計データ</a></li>
 					<li><a href="calender.html"><i class="far fa-calendar-alt"></i>&emsp;&emsp;カレンダー</a></li>
 					<li><a href="coordinate.html"><i class="fas fa-female"></i>&emsp;&emsp;コーディネート</a></li>
@@ -90,10 +91,10 @@
 
 						<!-- モーダル内フッター -->
 						<div class="modal-footer">
-							<form action="register_user.html" th:action="@{/withdrawal/withdrawalUser}" method="post">
+							<form action="register_user.html"
+								th:action="@{/withdrawal/withdrawalUser}" method="post">
 								<button type="submit" class="btn btn-primary">はい</button>
 							</form>
-
 							<button type="button" class="btn btn-secondary"
 								data-dismiss="modal">戻る</button>
 						</div>
@@ -108,7 +109,7 @@
 			<!-- モーダル設定終了 -->
 
 			<br> <br>
-			<form method="post" class="" action="top.html">
+			<form method="post" class="" action="top.html" th:action="@{/faq}">
 				<button class="btn btn-primary">
 					<span style="padding: 0px 50px 0px 50px;">戻る</span>
 				</button>
