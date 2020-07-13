@@ -3,7 +3,6 @@ package jp.co.example.my.clothes.controller;
 import java.sql.Date;
 import java.util.List;
 
-import javax.naming.Binding;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

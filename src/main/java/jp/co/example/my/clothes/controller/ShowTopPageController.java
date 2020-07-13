@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import jp.co.example.my.clothes.domain.Brand;
 import jp.co.example.my.clothes.domain.Clothes;
 import jp.co.example.my.clothes.domain.LoginUser;
-import jp.co.example.my.clothes.domain.Tag;
 import jp.co.example.my.clothes.domain.TagContent;
 import jp.co.example.my.clothes.service.ShowTopPageService;
 
