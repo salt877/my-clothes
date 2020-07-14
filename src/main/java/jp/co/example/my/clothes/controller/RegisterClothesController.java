@@ -7,7 +7,6 @@ import java.util.Base64;
 import java.util.List;
 import java.util.regex.Pattern;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -197,7 +196,7 @@ public class RegisterClothesController {
 		// タグ情報の登録(アイテム登録後出ないと結び付けるclothesIdが存在しない為アイテム登録後に実施)
 
 		// userIdに紐づいた一番最新に登録したアイテムを取得
-		Clothes registerdClothes = registerClothesService.newClothesSearchByUserId(1);
+		Clothes registerdClothes = registerClothesService.newClothesSearchByUserId(loginUser.getUser().getId());
 
 		// 入力された情報があればすでにタグとして登録されているか確認
 		TagContent registerTagContent = new TagContent();
