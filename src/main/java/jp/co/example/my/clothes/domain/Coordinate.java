@@ -13,6 +13,8 @@ public class Coordinate {
 	private Integer id;
 	/** ユーザーID */
 	private Integer userId;
+	/** ファッション雑貨 */
+	private Integer fashionAccessories;
 	/** トップス１の服ID */
 	private Integer tops1;
 	/** トップス２の服ID */
@@ -27,18 +29,21 @@ public class Coordinate {
 	private Integer bag;
 	/** ワンピースの服ID */
 	private Integer dress;
+	/** 削除フラグ */
+	private boolean deleted;
+	/** コーディネート名 */
+	private String name;
 	/** ユーザー情報格納用インスタンス */
 	private User user;
-	/** 服情報格納用インスタンス */
-	private Clothes clothes;
 	/** 服情報を詰めるリスト（コーディネート情報） */
 	private List<Clothes> clothesList;
 
 	@Override
 	public String toString() {
-		return "Coordinate [id=" + id + ", userId=" + userId + ", tops1=" + tops1 + ", tops2=" + tops2 + ", outers="
-				+ outers + ", bottoms=" + bottoms + ", shoes=" + shoes + ", bag=" + bag + ", dress=" + dress + ", user="
-				+ user + ", clothes=" + clothes + ", clothesList=" + clothesList + "]";
+		return "Coordinate [id=" + id + ", userId=" + userId + ", fashionAccessories=" + fashionAccessories + ", tops1="
+				+ tops1 + ", tops2=" + tops2 + ", outers=" + outers + ", bottoms=" + bottoms + ", shoes=" + shoes
+				+ ", bag=" + bag + ", dress=" + dress + ", deleted=" + deleted + ", name=" + name + ", user=" + user
+				+ ", clothesList=" + clothesList + "]";
 	}
 
 	public Integer getId() {
@@ -55,6 +60,14 @@ public class Coordinate {
 
 	public void setUserId(Integer userId) {
 		this.userId = userId;
+	}
+
+	public Integer getFashionAccessories() {
+		return fashionAccessories;
+	}
+
+	public void setFashionAccessories(Integer fashionAccessories) {
+		this.fashionAccessories = fashionAccessories;
 	}
 
 	public Integer getTops1() {
@@ -113,6 +126,22 @@ public class Coordinate {
 		this.dress = dress;
 	}
 
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public User getUser() {
 		return user;
 	}
@@ -121,29 +150,12 @@ public class Coordinate {
 		this.user = user;
 	}
 
-	public Clothes getClothes() {
-		return clothes;
-	}
-
-	public void setClothes(Clothes clothes) {
-		this.clothes = clothes;
-	}
-
 	public List<Clothes> getClothesList() {
 		return clothesList;
 	}
 
 	public void setClothesList(List<Clothes> clothesList) {
 		this.clothesList = clothesList;
-	}
-
-	/**
-	 * 服リスト（コーディネート）に服情報を追加します.
-	 * 
-	 * @param clothes
-	 */
-	public void addClothesList(Clothes clothes) {
-		clothesList.add(clothes);
 	}
 
 }

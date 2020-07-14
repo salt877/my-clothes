@@ -21,8 +21,9 @@
 <link rel="stylesheet" href="themes/base/jquery.ui.all.css">
 
 <!-- Core theme CSS (includes Bootstrap)-->
-<link href="../static/dist/css/styles.css" rel="stylesheet" />
-<script src='../static/lib/main.js'></script>
+<link href="../static/dist/css/styles.css"
+	th:href="@{/dist/css/styles.css}" rel="stylesheet" />
+<script src="../static/lib/main.js" th:src="@{/lib/main.js}"></script>
 </head>
 <body>
 	<!-- Navigation-->
@@ -30,13 +31,13 @@
 		<nav>
 			<div class="inner">
 				<ul>
-					<li><a href="top.html"><i class="fas fa-home"></i>&emsp;&emsp;TOP</a></li>
-					<li><a href="statistics.html"><i class="far fa-chart-bar"></i>&emsp;&emsp;統計データ</a></li>
-					<li><a href="calender.html"><i class="far fa-calendar-alt"></i>&emsp;&emsp;カレンダー</a></li>
-					<li><a href="coordinate.html"><i class="fas fa-female"></i>&emsp;&emsp;コーディネート</a></li>
-					<li><a href="contact.html"><i class="far fa-envelope"></i>&emsp;&emsp;お問い合わせ</a></li>
-					<li><a href="faq.html"><i class="far fa-question-circle"></i>&emsp;&emsp;FAQ</a></li>
-					<li><a href="login.html"><i class="fas fa-sign-out-alt"></i>&emsp;&emsp;ログアウト</a></li>
+					<li><a href="top.html" th:href="@{/}"><i class="fas fa-home"></i>&emsp;&emsp;TOP</a></li>
+					<li><a href="statistics.html" th:href="@{/stats}"><i class="far fa-chart-bar"></i>&emsp;&emsp;統計データ</a></li>
+					<li><a href="calender.html" th:href="@{/}"><i class="far fa-calendar-alt"></i>&emsp;&emsp;カレンダー</a></li>
+					<li><a href="coordinate.html" th:href="@{/coordinate}"><i class="fas fa-female"></i>&emsp;&emsp;コーディネート</a></li>
+					<li><a href="contact.html" th:href="@{/}"><i class="far fa-envelope"></i>&emsp;&emsp;お問い合わせ</a></li>
+					<li><a href="faq.html" th:href="@{/faq}"><i class="far fa-question-circle"></i>&emsp;&emsp;FAQ</a></li>
+					<li><a href="login.html" th:href="@{/logout}"><i class="fas fa-sign-out-alt"></i>&emsp;&emsp;ログアウト</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -161,59 +162,65 @@
 						</div>
 					</td>
 					<td><div style="text-align: center;">
-							<div
-								style="background-color: #fed136; border-radius: 50px; padding: 5px 0 5px 0;">
-								<a data-toggle="modal" data-target="#exampleModal"
-									style="color: white;">オフィスコーデ</a>
-							</div>
-							<br>
-							<div
-								style="background-color: #fed136; border-radius: 50px; padding: 5px 0 5px 0;">
-								<a data-toggle="modal" data-target="#exampleModal"
-									style="color: white;">デートコーデ</a>
-							</div>
-							<br>
-							<div
-								style="background-color: #fed136; border-radius: 50px; padding: 5px 0 5px 0;">
-								<a data-toggle="modal" data-target="#exampleModal"
-									style="color: white;">ママ友とディナー</a>
-							</div>
-							<!-- 「はい」を押したときのモーダルの設定 -->
-							<div class="modal fade" id="exampleModal" tabindex="-1"
-								role="dialog" aria-labelledby="exampleModalLabel">
-								<div class="modal-dialog">
-									<div class="modal-content">
+							<div th:each="coordinate: ${coordinateList}">
+								<div
+									style="background-color: #fed136; border-radius: 50px; padding: 5px 0 5px 0;">
+									<a data-toggle="modal" data-target="#coordinate-modal"
+										th:attr="data-target='#coordinate-modal'+${coordinate.id}"
+										style="color: white;"><span th:text="${coordinate.name}"></span></a>
+									<!--
+									<div th:each="clothes:${coordinate.clothesList}">
+										 <img class="img-fluid" th:src="${'/img/'+clothes.imagePath}" alt=""/> 
+										
+									</div>-->
 
-										<!-- モーダル内ヘッダー -->
-										<div class="modal-header">
-											<h5 class="modal-title" id="exampleModalLabel">コーディネート</h5>
-											<button type="button" class="close" data-dismiss="modal"
-												aria-label="閉じる">
-												<span aria-hidden="true">&times;</span>
-											</button>
-										</div>
 
-										<!-- モーダル内ボディ -->
-										<div class="modal-body">
-											<img alt=""
-												src="../static/dist/assets/img/fashion/coordinate-img.jpg">
-										</div>
+									<br>
 
-										<!-- モーダル内フッター -->
-										<div class="modal-footer">
-											<button type="button" class="btn btn-secondary"
-												data-dismiss="modal">閉じる</button>
-										</div>
-
-										<!-- /.modal-footer -->
-									</div>
-									<!-- /.modal-content -->
 								</div>
-								<!-- /.modal-dialog -->
-							</div>
-							<!-- /.modal -->
-							<!-- モーダル設定終了 -->
 
+								<br>
+
+								<!-- 過去コーデリンクを押したときのモーダルの設定 -->
+								<div class="modal fade"
+									th:id="coordinate-modal+${coordinate.id}" tabindex="-1"
+									role="dialog" aria-labelledby="exampleModalLabel">
+									<div class="modal-dialog">
+										<div class="modal-content">
+
+											<!-- モーダル内ヘッダー -->
+											<div class="modal-header">
+												<h5 class="modal-title" id="exampleModalLabel">コーディネート</h5>
+												<button type="button" class="close" data-dismiss="modal"
+													aria-label="閉じる">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+
+											<!-- モーダル内ボディ -->
+											<div class="modal-body">
+												<div th:each="clothes:${coordinate.clothesList}">
+													<img class="img-fluid"
+														th:src="${'/img/'+clothes.imagePath}" alt="" />
+												</div>
+
+												<!-- モーダル内フッター -->
+												<div class="modal-footer">
+													<button type="button" class="btn btn-secondary"
+														data-dismiss="modal">閉じる</button>
+												</div>
+
+												<!-- /.modal-footer -->
+											</div>
+											<!-- /.modal-content -->
+										</div>
+										<!-- /.modal-dialog -->
+									</div>
+									<!-- /.modal -->
+									<!-- モーダル設定終了 -->
+
+								</div>
+							</div>
 						</div></td>
 				</tr>
 			</tbody>
@@ -341,11 +348,15 @@
 
 
 	<!-- Contact form JS-->
-	<script src="../static/dist/assets/mail/jqBootstrapValidation.js"></script>
-	<script src="../static/dist/assets/mail/contact_me.js"></script>
+	<script src="../static/dist/assets/mail/jqBootstrapValidation.js"
+		th:src="@{/dist/assets/mail/jqBootstrapValidation.js}"></script>
+	<script src="../static/dist/assets/mail/contact_me.js"
+		th:src="@{/dist/assets/mail/contact_me.js}"></script>
 	<!-- Core theme JS-->
-	<script src="../static/dist/js/scripts.js"></script>
-	<script src="../static/dist/js/hamburger_menu.js"></script>
+	<script src="../static/dist/js/scripts.js"
+		th:src="@{/dist/js/scripts.js}"></script>
+	<script src="../static/dist/js/hamburger_menu.js"
+		th:src="@{/dist/js/hamburger_menu.js}"></script>
 
 	<!-- jQuery UI (Draggable)-->
 

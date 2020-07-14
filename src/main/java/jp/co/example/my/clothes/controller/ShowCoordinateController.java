@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.example.my.clothes.domain.Coordinate;
 import jp.co.example.my.clothes.domain.LoginUser;
@@ -30,6 +31,7 @@ public class ShowCoordinateController {
 	 * @param model
 	 * @return コーディネート画面へ遷移
 	 */
+	@RequestMapping("/coordinate")
 	public String showCoordinate(@AuthenticationPrincipal LoginUser loginUser, Model model) {
 		List<Coordinate> coordinateList = showCoordinateService.showCoordinate(loginUser.getUser().getId());
 
