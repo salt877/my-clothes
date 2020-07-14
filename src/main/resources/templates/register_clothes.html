@@ -61,17 +61,26 @@ $(function() {
 	$("#price").on("change",function(){
 		change();
 	});
-	
 });
 	
+	//画像が入っているか確認.
+	$(function() {
+		$("input:file").change(function (){
+		 var fileName = $(this).val();
+		 console.log(fileName);
+		//$(".filename").html(fileName);
+	 });
+		});
 	function change(){
-		console.log("aaa");
 		　var category = document.getElementById('category').value;
 		console.log(category);
 		 var color = document.getElementById('color').value;
 		 console.log(color);
 		 var brand = document.getElementById( "brand" ).value ;
 		 brand=brand.replace(/^\s+/,"");
+		 var image = document.getElementById('myImage').value;
+		 console.log(myImage);
+		 
 		 if(!category||!color||!brand){
 			 $('#confirm').prop('disabled', true);
 			 console.log("押せない");
@@ -159,6 +168,10 @@ function func1(){
 						th:errors="*{imageFile}" class="error-messages">
 						写真を選択してください </label> <input name="imageFile" type="file"
 						accept=".jpg,.png" id="myImage" />
+					<script type="text/javascript">
+  						
+						</script>
+
 					<!-- ,image/jpeg,image/png"th:errorclass="error-input" -->
 				</div>
 				<div class="required-information">
