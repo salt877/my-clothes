@@ -34,6 +34,7 @@
 	th:src="@{/dist/js/register_clothes.js}" /></script>
 
 <script type="text/javascript">
+//aモーダルの画像表示
 $(function() {
 $('#myImage').on('change', function (e) {
     var reader = new FileReader();
@@ -44,12 +45,60 @@ $('#myImage').on('change', function (e) {
 });
 });
 
-
+//a選択必須項目が入力されていなかったらモーダルに遷移できなくする
+$(function() {
+	console.log("aaaa");
+	$('#confirm').prop('disabled', true);
+	$("#category").on("change",function(){
+		change();
+	});
+	$("#brand").on("change",function(){
+		change();
+	});
+	$("#color").on("change",function(){
+		change();
+	});
+	$("#price").on("change",function(){
+		change();
+	});
+	
+});
+	
+	function change(){
+		console.log("aaa");
+		　var category = document.getElementById('category').value;
+		console.log(category);
+		 var color = document.getElementById('color').value;
+		 console.log(color);
+		 var brand = document.getElementById( "brand" ).value ;
+		 brand=brand.replace(/^\s+/,"");
+		 if(!category||!color||!brand){
+			 $('#confirm').prop('disabled', true);
+			 console.log("押せない");
+		 }else{
+			 $('#confirm').prop('disabled', false);
+			 console.log("押せる");
+		 }
+	};
+	
+	
+	
 </script>
 <script type="text/javascript">
-
-/*選択必須項目を選択しないとモーダルに移動できない使用にしたため不要*/
+//a選択必須項目を選択しないとモーダルに移動できない使用にしたため不要*/
 function func1(){
+	// a入力された値をモーダルの画面に映す
+	$("#category2").val($("#category").val());
+	$("#brand2").val($("#brand").val());
+    $("#color2").val($("#color").val());
+    $("#tag11").val($("#tag1").val());
+    $("#tag22").val($("#tag2").val());
+    $("#tag33").val($("#tag3").val());
+    $("#size2").val($("#size").val());
+    $("#perchaseDate2").val($("#perchaseDate").val());
+    $("#price2").val($("#price").val());
+    $("#comment2").val($("#comment").val());
+	console.log("モーダルへ");
 	　const category = document.getElementById('category').value;
 	 const color = document.getElementById('color').value;
 	 var brand = document.getElementById( "brand" ).value ;
@@ -61,36 +110,9 @@ function func1(){
 	  }else{
 		  console.log('すべて選択されています')
 	  }
+}	  
 	  
 	
-	 
-	//入力された値をモーダルの画面に映す
-	 $("#category2").val($("#category").val());
-	 $("#brand2").val($("#brand").val());
-     $("#color2").val($("#color").val());
-     $("#tag11").val($("#tag1").val());
-     $("#tag22").val($("#tag2").val());
-     $("#tag33").val($("#tag3").val());
-     $("#size2").val($("#size").val());
-     $("#perchaseDate2").val($("#perchaseDate").val());
-     $("#price2").val($("#price").val());
-     $("#comment2").val($("#comment").val());
-     
-     
-    
-	 
-	console.log("モーダルへ");
-	/*
-	var tag = document.getElementById( "tag" ).value ;
-	var season = document.getElementById( "season" ).value ;
-	var perchaseDate = document.getElementById( "perchaseDate" ).value ;
-	var price = document.getElementById( "price" ).value ;
-	var comment = document.getElementById( "comment" ).value ;
-	*/
-	
-	
-	
-}
 
 </script>
 </head>
@@ -104,11 +126,13 @@ function func1(){
 				<ul>
 					<li><a href="top.html" th:href="@{/}"><i
 							class="fas fa-home"></i>&emsp;&emsp;TOP</a></li>
-					<li><a href="statistics.html" th:href="@{/stats}"><i class="far fa-chart-bar"></i>&emsp;&emsp;統計データ</a></li>
+					<li><a href="statistics.html" th:href="@{/stats}"><i
+							class="far fa-chart-bar"></i>&emsp;&emsp;統計データ</a></li>
 					<li><a href="calender.html"><i class="far fa-calendar-alt"></i>&emsp;&emsp;カレンダー</a></li>
 					<li><a href="coordinate.html"><i class="fas fa-female"></i>&emsp;&emsp;コーディネート</a></li>
 					<li><a href="contact.html"><i class="far fa-envelope"></i>&emsp;&emsp;お問い合わせ</a></li>
-					<li><a href="faq.html" th:href="@{/faq}"><i class="far fa-question-circle"></i>&emsp;&emsp;FAQ</a></li>
+					<li><a href="faq.html" th:href="@{/faq}"><i
+							class="far fa-question-circle"></i>&emsp;&emsp;FAQ</a></li>
 					<li><a href="login.html"><i class="fas fa-sign-out-alt"></i>&emsp;&emsp;ログアウト</a></li>
 				</ul>
 			</div>
@@ -301,6 +325,12 @@ function func1(){
 								<div>
 									<div class="image-information">
 										<img id="preview">
+										<script type="text/javascript">
+										/*a 表示の画像サイズを指定する*/
+										var targetImg = document.getElementById('preview');
+										targetImg.width = 300;
+										targetImg.height = 300;
+										</script>
 										<!-- accept=".jpg,.png,image/jpeg,image/png"
 											th:errorclass="error-input" -->
 									</div>
