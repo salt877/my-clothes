@@ -47,7 +47,7 @@ public class RegisterClothesService {
 
 	@Autowired
 	private ClothesRepository clothesRepository;
-	
+
 	@Autowired
 	private TagRepository tagRepository;
 
@@ -104,6 +104,16 @@ public class RegisterClothesService {
 			brandListForAutocomplete.append("\"");
 		}
 		return brandListForAutocomplete;
+	}
+
+	/**
+	 * ブランド一覧を取得.
+	 * 
+	 * @return
+	 */
+	public List<Brand> brandList() {
+		List<Brand> brandList = brandRepository.AllbrandList();
+		return brandList;
 	}
 
 	/**
@@ -212,14 +222,14 @@ public class RegisterClothesService {
 	public void insertTagContent(TagContent tagContent) {
 		tagContentRepository.insertTagContent(tagContent);
 	}
-	
+
 	/**
 	 * 
 	 * @param tag
 	 */
 	public void insertTag(Tag tag) {
 		tagRepository.insertTag(tag);
-		
+
 	}
 
 }

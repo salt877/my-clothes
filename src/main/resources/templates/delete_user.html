@@ -26,7 +26,8 @@
 	href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
 	rel="stylesheet" type="text/css" />
 <!-- Core theme CSS (includes Bootstrap)-->
-<link href="../static/dist/css/styles.css" rel="stylesheet" />
+<link href="../static/dist/css/styles.css"
+	th:href="@{/dist/css/styles.css}" rel="stylesheet" />
 <title>Insert title here</title>
 </head>
 <body>
@@ -36,13 +37,14 @@
 		<nav>
 			<div class="inner">
 				<ul>
-					<li><a href="top.html"><i class="fas fa-home"></i>&emsp;&emsp;TOP</a></li>
-                	<li><a href="statistics.html"><i class="far fa-chart-bar"></i>&emsp;&emsp;統計データ</a></li>
-                	<li><a href="calender.html"><i class="far fa-calendar-alt"></i>&emsp;&emsp;カレンダー</a></li>
-                	<li><a href="coordinate.html"><i class="fas fa-female"></i>&emsp;&emsp;コーディネート</a></li>
-                	<li><a href="contact.html"><i class="far fa-envelope"></i>&emsp;&emsp;お問い合わせ</a></li>
-                	<li><a href="faq.html"><i class="far fa-question-circle"></i>&emsp;&emsp;FAQ</a></li>
-                	<li><a href="login.html"><i class="fas fa-sign-out-alt"></i>&emsp;&emsp;ログアウト</a></li>
+					<li><a href="top.html" th:href="@{/}"><i
+							class="fas fa-home"></i>&emsp;&emsp;TOP</a></li>
+					<li><a href="statistics.html"><i class="far fa-chart-bar"></i>&emsp;&emsp;統計データ</a></li>
+					<li><a href="calender.html"><i class="far fa-calendar-alt"></i>&emsp;&emsp;カレンダー</a></li>
+					<li><a href="coordinate.html"><i class="fas fa-female"></i>&emsp;&emsp;コーディネート</a></li>
+					<li><a href="contact.html"><i class="far fa-envelope"></i>&emsp;&emsp;お問い合わせ</a></li>
+					<li><a href="faq.html"><i class="far fa-question-circle"></i>&emsp;&emsp;FAQ</a></li>
+					<li><a href="login.html"><i class="fas fa-sign-out-alt"></i>&emsp;&emsp;ログアウト</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -89,10 +91,10 @@
 
 						<!-- モーダル内フッター -->
 						<div class="modal-footer">
-							<form action="register_user.html" method="post">
+							<form action="register_user.html"
+								th:action="@{/withdrawal/withdrawalUser}" method="post">
 								<button type="submit" class="btn btn-primary">はい</button>
 							</form>
-
 							<button type="button" class="btn btn-secondary"
 								data-dismiss="modal">戻る</button>
 						</div>
@@ -107,7 +109,7 @@
 			<!-- モーダル設定終了 -->
 
 			<br> <br>
-			<form method="post" class="" action="top.html">
+			<form method="post" class="" action="top.html" th:action="@{/faq}">
 				<button class="btn btn-primary">
 					<span style="padding: 0px 50px 0px 50px;">戻る</span>
 				</button>
@@ -159,10 +161,15 @@
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 	<!-- Contact form JS-->
-	<script src="../static/dist/assets/mail/jqBootstrapValidation.js"></script>
-	<script src="../static/dist/assets/mail/contact_me.js"></script>
+	<script src="../static/dist/assets/mail/jqBootstrapValidation.js"
+		th:src="@{/dist/assets/mail/jqBootstrapValidation.js}"></script>
+	<script src="../static/dist/assets/mail/contact_me.js"
+		th:src="@{/dist/assets/mail/contact_me.js}"></script>
 	<!-- Core theme JS-->
-	<script src="../static/dist/js/scripts.js"></script>
-	<script src="../static/dist/js/hamburger_menu.js"></script>
+	<script src="../static/dist/js/scripts.js"
+		th:src="@{/dist/js/scripts.js}"></script>
+	</script>
+	<script src="../static/dist/js/hamburger_menu.js"
+		th:src="@{/dist/js/hamburger_menu.js}"></script>
 </body>
 </html>

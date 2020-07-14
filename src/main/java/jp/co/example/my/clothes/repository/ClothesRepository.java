@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
 import jp.co.example.my.clothes.domain.Brand;
 import jp.co.example.my.clothes.domain.Category;
 import jp.co.example.my.clothes.domain.Clothes;
+import jp.co.example.my.clothes.domain.TagContent;
 
 /**
  * clothesを扱うためのレポジトリ.
@@ -31,6 +32,7 @@ public class ClothesRepository {
 
 	private static final RowMapper<Clothes> CLOTHES_ROW_MAPPER = new BeanPropertyRowMapper<>(Clothes.class);
 	private static final RowMapper<Brand> BRAND_ROW_MAPPER = new BeanPropertyRowMapper<>(Brand.class);
+	private static final RowMapper<TagContent> TAG_CONTENTS_ROW_MAPPER = new BeanPropertyRowMapper<>(TagContent.class);
 
 //	private static final RowMapper<Clothes> CLOTHES_ROW_MAPPER = (rs,i) ->{
 //		
@@ -93,9 +95,9 @@ public class ClothesRepository {
 	}
 
 	/**
-	 * 登録しているブランド名を表示します.
+	 * 登録しているブランド名を検索します.
 	 * 
-	 * @param userId ログインユーザID
+	 * @param userId ログインユーザID <<<<<<< HEAD
 	 * @return ブランド名の入ったリスト
 	 */
 	public List<Brand> showBrandName(Integer userId) {
@@ -116,6 +118,40 @@ public class ClothesRepository {
 		String sql = SQL + "WHERE user_id=:userId AND brand_id=:brandId ORDER BY id;";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId).addValue("brandId", brandId);
 		List<Clothes> clothesList = template.query(sql, param, CLOTHES_ROW_MAPPER);
+		return clothesList;
+	}
+	/**
+	 * 登録しているタグを検索します.
+	 * 
+	 * @param userId ログインユーザID
+	 * @return　タグ名の入ったリスト
+	 */
+	public List<TagContent> showTagName(Integer userId){
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT DISTINCT ON (tc.name) tc.id,t.clothes_id,tc.name FROM clothes AS C ");
+		sql.append("JOIN tags AS t ON c.id=t.clothes_id JOIN tag_contents AS tc ");
+		sql.append("ON t.tag_contents_id=tc.id WHERE c.user_id=:userId");
+		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
+		List<TagContent> tagNameList = template.query(sql.toString(), param, TAG_CONTENTS_ROW_MAPPER);
+		return tagNameList;
+	}
+	
+	/**
+	 * 登録アイテムをタグ別に分けて表示します.
+	 * 
+	 * @param userId
+	 * @param tagContentsId
+	 * @return
+	 */
+	public List<Clothes> findByTag(Integer userId,Integer tagContentsId){
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT c.id,c.user_id,c.category_id,c.brand_id,c.image_path,c.price,color_id,c.season,c.size_id,c.perchase_date,c.comment,c.deleted,");
+		sql.append("t.id,t.clothes_id,tc.id,tc.name FROM clothes AS c ");
+		sql.append("JOIN tags AS t ON c.id=t.clothes_id JOIN tag_contents AS tc ON t.tag_contents_id=tc.id ");
+		sql.append("WHERE c.user_id=:userId AND tc.id=:tagContentsId;");
+		System.out.println(sql.toString());
+		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId).addValue("tagContentsId", tagContentsId);
+		List<Clothes> clothesList = template.query(sql.toString(), param,CLOTHES_ROW_MAPPER);
 		return clothesList;
 	}
 
@@ -410,7 +446,6 @@ public class ClothesRepository {
 		}
 
 		return bigClothesList;
-
 	}
 
 }
