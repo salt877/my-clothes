@@ -5,11 +5,8 @@ import java.io.IOException;
 import java.sql.Date;
 import java.util.Base64;
 import java.util.List;
-<<<<<<< HEAD
-import java.util.regex.Pattern;
-=======
->>>>>>> feature/weather
 
+import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -192,10 +189,6 @@ public class RegisterClothesController {
 		// アイテム情報を登録
 		System.out.println(clothes);
 		registerClothesService.insertNewClothes(clothes);
-		
-		
-		
-		
 
 		// タグ情報の登録(アイテム登録後出ないと結び付けるclothesIdが存在しない為アイテム登録後に実施)
 
