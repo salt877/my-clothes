@@ -5,7 +5,10 @@ import java.io.IOException;
 import java.sql.Date;
 import java.util.Base64;
 import java.util.List;
+<<<<<<< HEAD
 import java.util.regex.Pattern;
+=======
+>>>>>>> feature/weather
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -130,11 +133,9 @@ public class RegisterClothesController {
 
 			if (!"jpg".equals(fileExtension) && !"png".equals(fileExtension)) {
 				result.rejectValue("imageFile", "", "拡張子は.jpgか.pngのみに対応しています");
-				// System.out.println("aaa");
 			}
 		} catch (Exception e) {
 			result.rejectValue("imageFile", "", "拡張子は.jpgか.pngのみに対応しています");
-			// System.out.println("fffff");
 		}
 		// 画像ファイルをBase64形式にエンコード
 		String base64FileString = Base64.getEncoder().encodeToString(imageFile.getBytes());
@@ -144,10 +145,9 @@ public class RegisterClothesController {
 			base64FileString = "data:image/png;base64," + base64FileString;
 		}
 
-		System.out.println(base64FileString);
+		// エンコードした画像をセットする.
 		clothes.setImagePath(base64FileString);
-		// clothes.setImagePath("1.png");
-		// clothes.setImagePath("1.png");
+
 		// ブランド情報
 		clothes.setBrand(brand);
 		clothes.setBrandId(brand.getId());
@@ -192,6 +192,10 @@ public class RegisterClothesController {
 		// アイテム情報を登録
 		System.out.println(clothes);
 		registerClothesService.insertNewClothes(clothes);
+		
+		
+		
+		
 
 		// タグ情報の登録(アイテム登録後出ないと結び付けるclothesIdが存在しない為アイテム登録後に実施)
 
