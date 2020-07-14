@@ -61,6 +61,19 @@ public class UserRepository {
 	}
 
 	/**
+	 * メールアドレスを変更する.
+	 * 
+	 * @param userId ユーザID
+	 * @param email  メールアドレス
+	 */
+	public void updateUserEmail(Integer id, String email) {
+		String sql = "UPDATE users SET email=:email WHERE id=:id";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("email", email).addValue("id", id);
+		template.update(sql, param);
+		System.out.println(sql);
+	}
+
+	/**
 	 * ユーザー情報を論理削除（データを消すわけではなく、使えなくする）
 	 * 
 	 * @param user
