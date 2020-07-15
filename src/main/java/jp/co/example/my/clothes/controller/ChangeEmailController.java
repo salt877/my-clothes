@@ -72,7 +72,7 @@ public class ChangeEmailController {
 		Integer id = loginUser.getUser().getId();
 		changeUserEmailService.changeEmail(id, form.getEmail());
 
-		return "redirect:/showLogin";
+		return "complete_change_email";
 	}
 
 }
