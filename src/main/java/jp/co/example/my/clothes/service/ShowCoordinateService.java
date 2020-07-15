@@ -10,7 +10,7 @@ import jp.co.example.my.clothes.domain.Coordinate;
 import jp.co.example.my.clothes.repository.CoordinateRepository;
 
 /**
- * コーディナート画面を表示する業務処理を行うサービスクラス.F
+ * コーディナート画面を表示する業務処理を行うサービスクラス.
  * 
  * @author masashi.nose
  *

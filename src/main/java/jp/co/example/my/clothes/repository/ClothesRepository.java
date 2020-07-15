@@ -1,6 +1,7 @@
 package jp.co.example.my.clothes.repository;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,9 +96,28 @@ public class ClothesRepository {
 	}
 
 	/**
+	 * 登録アイテムをカテゴリごとに分けて表示します.
+	 * 
+	 * @param userId     ログインユーザID
+	 * @param categoryId カテゴリID
+	 * @return 登録アイテム一覧
+	 */
+	public List<Clothes> findByCategoryForCoordinate(Integer userId, Integer categoryId) {
+		String sql = SQL + "WHERE user_id=:userId AND category_id=:categoryId ORDER BY id;";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId).addValue("categoryId",
+				categoryId);
+		List<Clothes> clothesList = template.query(sql, param, CLOTHES_ROW_MAPPER);
+
+		if (clothesList.size() == 0) {
+			return Collections.emptyList();
+		}
+		return clothesList;
+	}
+
+	/**
 	 * 登録しているブランド名を検索します.
 	 * 
-	 * @param userId ログインユーザID <<<<<<< HEAD
+	 * @param userId ログインユーザID
 	 * @return ブランド名の入ったリスト
 	 */
 	public List<Brand> showBrandName(Integer userId) {
@@ -120,13 +140,14 @@ public class ClothesRepository {
 		List<Clothes> clothesList = template.query(sql, param, CLOTHES_ROW_MAPPER);
 		return clothesList;
 	}
+
 	/**
 	 * 登録しているタグを検索します.
 	 * 
 	 * @param userId ログインユーザID
-	 * @return　タグ名の入ったリスト
+	 * @return タグ名の入ったリスト
 	 */
-	public List<TagContent> showTagName(Integer userId){
+	public List<TagContent> showTagName(Integer userId) {
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT DISTINCT ON (tc.name) tc.id,t.clothes_id,tc.name FROM clothes AS C ");
 		sql.append("JOIN tags AS t ON c.id=t.clothes_id JOIN tag_contents AS tc ");
@@ -135,7 +156,7 @@ public class ClothesRepository {
 		List<TagContent> tagNameList = template.query(sql.toString(), param, TAG_CONTENTS_ROW_MAPPER);
 		return tagNameList;
 	}
-	
+
 	/**
 	 * 登録アイテムをタグ別に分けて表示します.
 	 * 
@@ -143,15 +164,17 @@ public class ClothesRepository {
 	 * @param tagContentsId
 	 * @return
 	 */
-	public List<Clothes> findByTag(Integer userId,Integer tagContentsId){
+	public List<Clothes> findByTag(Integer userId, Integer tagContentsId) {
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT c.id,c.user_id,c.category_id,c.brand_id,c.image_path,c.price,color_id,c.season,c.size_id,c.perchase_date,c.comment,c.deleted,");
+		sql.append(
+				"SELECT c.id,c.user_id,c.category_id,c.brand_id,c.image_path,c.price,color_id,c.season,c.size_id,c.perchase_date,c.comment,c.deleted,");
 		sql.append("t.id,t.clothes_id,tc.id,tc.name FROM clothes AS c ");
 		sql.append("JOIN tags AS t ON c.id=t.clothes_id JOIN tag_contents AS tc ON t.tag_contents_id=tc.id ");
 		sql.append("WHERE c.user_id=:userId AND tc.id=:tagContentsId;");
 		System.out.println(sql.toString());
-		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId).addValue("tagContentsId", tagContentsId);
-		List<Clothes> clothesList = template.query(sql.toString(), param,CLOTHES_ROW_MAPPER);
+		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId).addValue("tagContentsId",
+				tagContentsId);
+		List<Clothes> clothesList = template.query(sql.toString(), param, CLOTHES_ROW_MAPPER);
 		return clothesList;
 	}
 
