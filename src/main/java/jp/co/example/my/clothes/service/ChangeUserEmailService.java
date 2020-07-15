@@ -25,7 +25,7 @@ public class ChangeUserEmailService {
 	}
 
 	/**
-	 * メールドレスを変更します.
+	 * メールアドレスを変更します.
 	 * 
 	 * @param userId ユーザID
 	 * @param email  メールアドレス

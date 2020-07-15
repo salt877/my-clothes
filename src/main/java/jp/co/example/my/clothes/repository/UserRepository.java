@@ -61,7 +61,7 @@ public class UserRepository {
 	}
 
 	/**
-	 * メールアドレスを変更する.
+	 * メールアドレスを変更します.
 	 * 
 	 * @param userId ユーザID
 	 * @param email  メールアドレス
