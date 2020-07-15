@@ -5,9 +5,8 @@ import java.io.IOException;
 import java.sql.Date;
 import java.util.Base64;
 import java.util.List;
+
 import java.util.regex.Pattern;
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -131,11 +130,9 @@ public class RegisterClothesController {
 
 			if (!"jpg".equals(fileExtension) && !"png".equals(fileExtension)) {
 				result.rejectValue("imageFile", "", "拡張子は.jpgか.pngのみに対応しています");
-				// System.out.println("aaa");
 			}
 		} catch (Exception e) {
 			result.rejectValue("imageFile", "", "拡張子は.jpgか.pngのみに対応しています");
-			// System.out.println("fffff");
 		}
 		// 画像ファイルをBase64形式にエンコード
 		String base64FileString = Base64.getEncoder().encodeToString(imageFile.getBytes());
@@ -145,10 +142,9 @@ public class RegisterClothesController {
 			base64FileString = "data:image/png;base64," + base64FileString;
 		}
 
-		System.out.println(base64FileString);
+		// エンコードした画像をセットする.
 		clothes.setImagePath(base64FileString);
-		// clothes.setImagePath("1.png");
-		// clothes.setImagePath("1.png");
+
 		// ブランド情報
 		clothes.setBrand(brand);
 		clothes.setBrandId(brand.getId());
@@ -197,7 +193,7 @@ public class RegisterClothesController {
 		// タグ情報の登録(アイテム登録後出ないと結び付けるclothesIdが存在しない為アイテム登録後に実施)
 
 		// userIdに紐づいた一番最新に登録したアイテムを取得
-		Clothes registerdClothes = registerClothesService.newClothesSearchByUserId(1);
+		Clothes registerdClothes = registerClothesService.newClothesSearchByUserId(loginUser.getUser().getId());
 
 		// 入力された情報があればすでにタグとして登録されているか確認
 		TagContent registerTagContent = new TagContent();

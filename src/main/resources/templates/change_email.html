@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>MYQLO | パスワード変更</title>
+        <title>MYQLO | メールアドレス変更</title>
         <link rel="icon" type="image/x-icon" href="../static/dist/assets/img/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
@@ -45,12 +45,15 @@
                    		</p>
                    </div>
                    <div class="passwordform">
-                   		<form action="#" method="post">
+                   		<form action="change_email.html" th:action="@{/showChangeEmail/input}" method="post" th:object="${changeUserEmailForm}">
                 			<div class="form-group">
-                				<input type="email" class="form-control" name="newEmail" id="newEmail" placeholder="新しいメールアドレス" value=""/>
+                				<label th:if="${message}" th:text="${message}" style="color: black">確認用メールアドレスが一致しません</label>
+                				<label th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="control-label" style="color: black" for="inputError">メールアドレスを入力してください</label>
+                				<input type="email" class="form-control" name="email" id="email" th:field="*{email}" placeholder="新しいメールアドレス" value=""/>
                 			</div>
                 			<div class="form-group">
-                				<input type="email" class="form-control" name="confirmationNewEmail" id="confirmationNewEmail" placeholder="【確認用】新しいメールアドレス" value=""/>
+                				<label th:if="${#fields.hasErrors('confirmEmail')}" th:errors="*{confirmEmail}" class="control-label" style="color: black" for="inputError">確認用メールアドレスを入力してください</label>
+                				<input type="email" class="form-control" name="confirmEmail" id="confirmEmail" th:field="*{confirmEmail}" placeholder="【確認用】新しいメールアドレス" value=""/>
                 			</div>
                         	<div class="submit-group">
                     			<input type="submit" name="submit" id="submit" class="btn btn--submit btn--radius" value="&emsp;送信する&emsp;"/>
@@ -58,9 +61,11 @@
                    		</form>
                    </div>
                 </div>
-            </div>
+              </div>
         </header>
-
+	<script type="text/javascript">
+	
+	</script>
         <!-- Footer-->
         <footer class="footer py-4">
             <div class="container">
@@ -80,8 +85,8 @@
         </footer>
  
         <!-- Bootstrap core JS-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <!-- Third party plugin JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
         <!-- Contact form JS-->
