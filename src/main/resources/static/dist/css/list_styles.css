@@ -1,0 +1,104 @@
+@charset "UTF-8";
+
+/** 一覧のタブで使用 */
+.cp_ipselect {
+	overflow: hidden;
+	width: 40%;
+	margin: 2em auto;
+	text-align: center;
+}
+
+.cp_ipselect select {
+	width: 100%;
+	padding-right: 1em;
+	cursor: pointer;
+	text-indent: 0.01px;
+	text-overflow: ellipsis;
+	border: none;
+	outline: none;
+	background: transparent;
+	background-image: none;
+	box-shadow: none;
+	-webkit-appearance: none;
+	appearance: none;
+}
+
+.cp_ipselect select::-ms-expand {
+	display: none;
+}
+
+.cp_ipselect.cp_sl04 {
+	position: relative;
+	border-radius: 2px;
+	border: 2px solid #ffd478;
+	border-radius: 50px;
+	background: #ffffff;
+}
+
+.cp_ipselect.cp_sl04::before {
+	position: absolute;
+	top: 0.8em;
+	right: 0.8em;
+	width: 0;
+	height: 0;
+	padding: 0;
+	content: '';
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	border-top: 6px solid #ffd478;
+	pointer-events: none;
+}
+
+.cp_ipselect.cp_sl04 select {
+	padding: 8px 38px 8px 8px;
+	color: #5e5e5e;
+}
+
+/** ラジオボタンで使用　*/
+.radioButton {
+	display: none;
+}
+
+label {
+	background-color: #8cc5ed;
+	padding: 10px 20px;
+	border-radius: 50px;
+}
+
+.radioButton:checked+label {
+	background-color: pink;
+}
+
+.col-lg-4 col-sm-6 mb-4 {
+	position: relative;
+}
+
+.col-lg-4 col-sm-6 mb-4 &:before {
+	display: block;
+	padding-top: 100%;
+}
+
+/** 写真の後ろの枠 */
+.portfolio-item {
+	text-align: center;
+	width: 350px;
+	height: 350px;
+ 	padding: 13%; 
+	margin: 1em 1em;
+	background: -webkit-repeating-linear-gradient(-45deg, #f0f8ff, #f0f8ff 3px, #e9f4ff
+		3px, #e9f4ff 7px);
+	background: repeating-linear-gradient(-45deg, #f0f8ff, #f0f8ff 3px, #e9f4ff 3px,
+		#e9f4ff 7px);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content .img-fluid img{
+	height: auto;
+	max-height: 80%;
+	width: auto;
+	max-width: 80%;
+}
+
+
+

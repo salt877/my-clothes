@@ -8,12 +8,9 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>MYQLO | トップ画面</title>
-<link rel="icon" type="image/x-icon"
-	href="../static/dist/assets/img/favicon.ico"
-	th:href="@{/dist/assets/img/favicon.ico}" />
+<link rel="icon" type="image/x-icon" href="../static/dist/assets/img/favicon.ico" th:href="@{/dist/assets/img/favicon.ico}" />
 <!-- Font Awesome icons (free version)-->
-<script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js"
-	crossorigin="anonymous"></script>
+<script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
 <!-- Google fonts-->
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css" />
@@ -24,8 +21,10 @@
 	href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
 	rel="stylesheet" type="text/css" />
 <!-- Core theme CSS (includes Bootstrap)-->
-<link href="../static/dist/css/styles.css" rel="stylesheet" th:href="@{/dist/css/styles.css}"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link href="../static/dist/css/list_styles.css" rel="stylesheet" th:href="@{/dist/css/list_styles.css}" />
+<link href="../static/dist/css/styles.css" rel="stylesheet" th:href="@{/dist/css/styles.css}" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body id="page-top">
@@ -55,59 +54,73 @@
 	</div>
 
 	<!-- アイテム一覧画面 -->
-	 <section class="page-section bg-light" id="portfolio">
-            <div class="container">
-                <div class="text-center">
-                    <h2 class="section-heading text-uppercase">My Closet</h2>
-                    <h3 class="section-subheading text-muted">Here is a list of the clothes you have.</h3>
-                </div>
-     <!-- タブ切り替え -->
-     <div class="cp_ipselect cp_sl04">
-     <select required>    
-     	<option value="">アイテムを絞り込む</option> 
-     	<option value="category">カテゴリで絞り込む</option>
-     	<option value="brand">ブランドで絞り込む</option>
-     	<option value="tag">タグで絞り込む</option>
-     </select>
-     </div>
-    <form action="top.html" th:action="@{/search}"  method="post" onchange="submit(this.form)">
-     <div id="category" class="category">
-     	<input id="tab_all" type="radio" name="categoryId" class="radioButton" value="0"><label  class="tab-label" for="tab_all">ALL</label>       
-     	<input id="tab_tops" type="radio" name="categoryId" value="2" class="radioButton"><label class="tab-label" for="tab_tops">TOPS</label>       
-     	<input id="tab_outer" type="radio" name="categoryId" value="3" class="radioButton"><label class="tab-label" for="tab_outer">OUTER</label>       
-     	<input id="tab_bottoms" type="radio" name="categoryId" value="4" class="radioButton"><label class="tab-label" for="tab_bottoms">BOTTOMS</label>       
-     	<input id="tab_dress" type="radio" name="categoryId" value="7" class="radioButton"><label class="tab-label" for="tab_dress">DRESS</label>       
-     	<input id="tab_shoes" type="radio" name="categoryId" value="5" class="radioButton"><label class="tab-label" for="tab_shoes">SHOES</label>       
-     	<input id="tab_bags" type="radio" name="categoryId" value="6" class="radioButton"/><label class="tab-label" for="tab_bags">BAGS</label>       
-     	<input id="tab_accessories" type="radio"name="categoryId" value="1" class="radioButton"/><label class="tab-label" for="tab_accessories">ACCESSORIES</label>  
-     </div> 
-     <div>
-     <span class="brand" id="brand" th:each="brand : ${brandMap}">  
-     <label>
-     	<input type="radio" class="radioButton" name="brandId" th:value="${brand.key}" th:text="${brand.value}">
-     </label>   
-     </span>
-     </div>
-     <div>
-     <span  class="tag" id="tag" th:each="tag : ${tagMap}">     
-     <label>
-     	<input type="radio" class="radioButton" name="tagContentsId" th:value="${tag.key}" th:text="${tag.value}">
-     </label> 
-     </span>
-     </div>
-     </form>             
-                <div id="cloth_list" class="row">
-                	<div id="items" class="col-lg-4 col-sm-6 mb-4" th:each="item : ${clothesList}">
-                		<div class="portfolio-item">
-                			<a class="portfolio-link" data-toggle="modal" href="edit_cloth.html" data-target="#exampleModal">
-                				<div class="portfolio-hover">
-                					<div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                				</div>
-                				<img class="img-fluid" th:src="${'/img/'+item.imagePath}" alt="" />
-                			</a>
-                		</div>
-                	</div>
-          
+	<section class="page-section bg-light" id="portfolio">
+		<div class="container">
+			<div class="text-center">
+				<h2 class="section-heading text-uppercase">My Closet</h2>
+				<h3 class="section-subheading text-muted">Here is a list of the
+					clothes you have.</h3>
+			</div>
+			<!-- タブ切り替え -->
+			<div class="cp_ipselect cp_sl04">
+				<select required>
+					<option value="">アイテムを絞り込む</option>
+					<option value="category">カテゴリで絞り込む</option>
+					<option value="brand">ブランドで絞り込む</option>
+					<option value="tag">タグで絞り込む</option>
+				</select>
+			</div>
+			<form action="top.html" th:action="@{/search}" method="post"
+				onchange="submit(this.form)">
+				<div id="category" class="category">
+					<input id="tab_all" type="radio" name="categoryId" class="radioButton" value="0"><label
+						class="tab-label" for="tab_all">ALL</label> <input id="tab_tops" type="radio"
+						name="categoryId" value="2" class="radioButton"><label
+						class="tab-label" for="tab_tops">TOPS</label> <input
+						id="tab_outer" type="radio" name="categoryId" value="3"
+						class="radioButton"><label class="tab-label"
+						for="tab_outer">OUTER</label> <input id="tab_bottoms" type="radio"
+						name="categoryId" value="4" class="radioButton"><label
+						class="tab-label" for="tab_bottoms">BOTTOMS</label> <input
+						id="tab_dress" type="radio" name="categoryId" value="7"
+						class="radioButton"><label class="tab-label"
+						for="tab_dress">DRESS</label> <input id="tab_shoes" type="radio"
+						name="categoryId" value="5" class="radioButton"><label
+						class="tab-label" for="tab_shoes">SHOES</label> <input
+						id="tab_bags" type="radio" name="categoryId" value="6"
+						class="radioButton" /><label class="tab-label" for="tab_bags">BAGS</label>
+					<input id="tab_accessories" type="radio" name="categoryId"
+						value="1" class="radioButton" /><label class="tab-label"
+						for="tab_accessories">ACCESSORIES</label>
+				</div>
+				<div>
+					<span class="brand" id="brand" th:each="brand : ${brandMap}">
+						<label> <input type="radio" class="radioButton"
+							name="brandId" th:value="${brand.key}" th:text="${brand.value}">
+					</label>
+					</span>
+				</div>
+				<div>
+					<span class="tag" id="tag" th:each="tag : ${tagMap}"> <label>
+							<input type="radio" class="radioButton" name="tagContentsId"
+							th:value="${tag.key}" th:text="${tag.value}">
+					</label>
+					</span>
+				</div>
+			</form>
+			<div id="cloth_list" class="row">
+				<div id="items" class="col-lg-4 col-sm-6 mb-4" th:each="item : ${clothesList}">
+					<div class="portfolio-item">
+						<a class="portfolio-link" data-toggle="modal" href="edit_cloth.html" data-target="#exampleModal">
+							  <div class="portfolio-hover">  
+								  <div class="portfolio-hover-content"> 
+									 <i class="fas fa-plus fa-3x"></i> 
+								</div>  
+							  </div>   
+									<img class="img-fluid" th:src="${'/img/'+item.imagePath}" />
+						</a>
+					</div>
+				</div>
 				<!-- もっと見るボタン -->
 
 				<div id="more_btn" class="btn btn--vuemore btn-c">
@@ -116,6 +129,7 @@
 				<div id="close_btn" class="btn btn--vuemore btn-c">
 					閉じる <i class="fa fa-chevron-up" aria-hidden="true"></i>
 				</div>
+	</div>
 
 				<!-- モーダルウィンドウ -->
 				<div class="modal fade" id="exampleModal" tabindex="-1"
