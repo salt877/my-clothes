@@ -1,0 +1,37 @@
+@charset "UTF-8";
+/*
+#modal-img {
+	display: flex;
+}
+
+/*
+#modal-img>img {
+	width: 250px;
+	height: auto;
+	margin: 12px;
+}
+*/
+.continue-coordinate-btn {
+	border-radius: 50px;
+}
+
+
+.radio-img {
+	width: 250px;
+	height: auto;
+	margin: 12px;
+}
+
+.radio {
+	display: none;
+}
+
+.radio+ .radio-img {
+	border: 3px #ffffff solid;
+}
+
+.radio:checked+ .radio-img {
+	border: 3px #ff0000 solid;
+	background-color: #ffeeee;
+}
+

@@ -21,13 +21,35 @@ $(function(){
 				parentDiv.removeChild(parentDiv.firstChild);
 				
 			}
+			
 	
 			// <div>タグの中の子要素としてリストの中身分<img>タグを生成します.
 			for(let clothes of data.clothesList){
+				var newLabel = document.createElement("label");
+				newLabel.setAttribute("id", "modal-label" + clothes.id);
+				document.getElementById("modal-img").appendChild(newLabel);
+				
+				var newInput = document.createElement("input");
+				newInput.type = "radio";
+				newInput.id = "modal-radio" + clothes.id;
+				newInput.className = "radio";
+				newInput.name = "clothesId";
+				newInput.value = clothes.id;
+				document.getElementById("modal-label"+ clothes.id).appendChild(newInput);
+								
 				var newImg = document.createElement("img");
 				newImg.setAttribute("src", '/img/'+clothes.imagePath);
-				document.getElementById("modal-img").appendChild(newImg);
-			}	    
+				newImg.setAttribute("class", "radio-img");
+				document.getElementById("modal-label" + clothes.id).appendChild(newImg);
+
+			}
+			
+			$('#select-modal-btn').on('click', function(){
+				let radioVal = $('input[name="clothesId"]:checked').val();
+				console.log(radioVal);
+				$('#fashion_accessories').val(radioVal);
+				
+			});
 			
 		}).fail(function(XMLHttpRequest, textStatus, errorThrown){
 			alert("エラーが発生しました。");
@@ -60,13 +82,32 @@ $(function(){
 				
 			}
 			
+			
 			// <div>タグの中の子要素としてリストの中身分<img>タグを生成します.
 			for(let clothes of data.clothesList){
-				console.log("for文内での画像パス：" + clothes.imagePath);
+				var newLabel = document.createElement("label");
+				newLabel.setAttribute("id", "modal-label" + clothes.id);
+				document.getElementById("modal-img").appendChild(newLabel);
+				
+				var newInput = document.createElement("input");
+				newInput.type = "radio";
+				newInput.id = "modal-radio" + clothes.id;
+				newInput.className = "radio";
+				newInput.name = "clothesId";
+				newInput.value = clothes.id;
+				document.getElementById("modal-label"+ clothes.id).appendChild(newInput);
+								
 				var newImg = document.createElement("img");
-				newImg.setAttribute("src", '/img/'+clothes.imagePath);		
-				document.getElementById("modal-img").appendChild(newImg);
-			}
+				newImg.setAttribute("src", '/img/'+clothes.imagePath);
+				newImg.setAttribute("class", "radio-img");
+				document.getElementById("modal-label" + clothes.id).appendChild(newImg);
+			}	    
+			
+			$('#select-modal-btn').on('click', function(){
+				let radioVal = $('input[name="clothesId"]:checked').val();
+				$('#tops1').val(radioVal);	
+				
+			});
 			
 					
 		}).fail(function(XMLHttpRequest, textStatus, errorThrown){
@@ -99,12 +140,34 @@ $(function(){
 				
 			}
 			
+			
 			for(let clothes of data.clothesList){
-				console.log("for文内での画像パス：" + clothes.imagePath);
+				var newLabel = document.createElement("label");
+				newLabel.setAttribute("id", "modal-label" + clothes.id);
+				document.getElementById("modal-img").appendChild(newLabel);
+				
+				var newInput = document.createElement("input");
+				newInput.type = "radio";
+				newInput.id = "modal-radio" + clothes.id;
+				newInput.className = "radio";
+				newInput.name = "clothesId";
+				newInput.value = clothes.id;
+				document.getElementById("modal-label"+ clothes.id).appendChild(newInput);
+								
 				var newImg = document.createElement("img");
 				newImg.setAttribute("src", '/img/'+clothes.imagePath);
-				document.getElementById("modal-img").appendChild(newImg);
-			}
+				newImg.setAttribute("class", "radio-img");
+				document.getElementById("modal-label" + clothes.id).appendChild(newImg);
+			}	    
+			
+			$('#select-modal-btn').on('click', function(){
+				let radioVal = $('input[name="clothesId"]:checked').val();
+				console.log(radioVal);
+				$('#tops2').val(radioVal);	
+				
+			});
+			
+			
 		}).fail(function(XMLHttpRequest, textStatus, errorThrown){
 			alert("エラーが発生しました。");
 			console.log("XMLHttpRequest:" + XMLHttpRequest.status);
@@ -113,7 +176,8 @@ $(function(){
 		
 		});
 		});
-	
+
+// アウター
 	$('#outers-btn').on('click', function(){
 		$.ajax({
 			url: "http://localhost:8080/show_clotheslist",
@@ -133,13 +197,34 @@ $(function(){
 				parentDiv.removeChild( parentDiv.firstChild );
 				
 			}
-			
+						
 			for(let clothes of data.clothesList){
-				console.log("for文内での画像パス：" + clothes.imagePath);
+				var newLabel = document.createElement("label");
+				newLabel.setAttribute("id", "modal-label" + clothes.id);
+				document.getElementById("modal-img").appendChild(newLabel);
+				
+				var newInput = document.createElement("input");
+				newInput.type = "radio";
+				newInput.id = "modal-radio" + clothes.id;
+				newInput.className = "radio";
+				newInput.name = "clothesId";
+				newInput.value = clothes.id;
+				document.getElementById("modal-label"+ clothes.id).appendChild(newInput);
+								
 				var newImg = document.createElement("img");
 				newImg.setAttribute("src", '/img/'+clothes.imagePath);
-				document.getElementById("modal-img").appendChild(newImg);
-			}
+				newImg.setAttribute("class", "radio-img");
+				document.getElementById("modal-label" + clothes.id).appendChild(newImg);
+			}	    
+			
+			$('#select-modal-btn').on('click', function(){
+				let radioVal = $('input[name="clothesId"]:checked').val();
+				console.log(radioVal);
+				$('#outer').val(radioVal);	
+				
+			});
+			
+			
 		}).fail(function(XMLHttpRequest, textStatus, errorThrown){
 			alert("エラーが発生しました。");
 			console.log("XMLHttpRequest:" + XMLHttpRequest.status);
@@ -149,6 +234,7 @@ $(function(){
 		});
 		});
 	
+// ボトムス
 	$('#bottoms-btn').on('click', function(){
 		$.ajax({
 			url: "http://localhost:8080/show_clotheslist",
@@ -169,13 +255,33 @@ $(function(){
 				parentDiv.removeChild( parentDiv.firstChild );
 				
 			}
-			
+						
 			for(let clothes of data.clothesList){
-				console.log("for文内での画像パス：" + clothes.imagePath);
+				var newLabel = document.createElement("label");
+				newLabel.setAttribute("id", "modal-label" + clothes.id);
+				document.getElementById("modal-img").appendChild(newLabel);
+				
+				var newInput = document.createElement("input");
+				newInput.type = "radio";
+				newInput.id = "modal-radio" + clothes.id;
+				newInput.className = "radio";
+				newInput.name = "clothesId";
+				newInput.value = clothes.id;
+				document.getElementById("modal-label"+ clothes.id).appendChild(newInput);
+								
 				var newImg = document.createElement("img");
 				newImg.setAttribute("src", '/img/'+clothes.imagePath);
-				document.getElementById("modal-img").appendChild(newImg);
-			}
+				newImg.setAttribute("class", "radio-img");
+				document.getElementById("modal-label" + clothes.id).appendChild(newImg);
+			}	    
+			
+			$('#select-modal-btn').on('click', function(){
+				let radioVal = $('input[name="clothesId"]:checked').val();
+				console.log(radioVal);
+				$('#bottoms').val(radioVal);	
+				
+			});
+			
 		}).fail(function(XMLHttpRequest, textStatus, errorThrown){
 			alert("エラーが発生しました。");
 			console.log("XMLHttpRequest:" + XMLHttpRequest.status);
@@ -185,6 +291,7 @@ $(function(){
 		});
 		});
 	
+// シューズ
 	$('#shoes-btn').on('click', function(){
 		$.ajax({
 			url: "http://localhost:8080/show_clotheslist",
@@ -204,13 +311,33 @@ $(function(){
 				parentDiv.removeChild( parentDiv.firstChild );
 				
 			}
-			
+						
 			for(let clothes of data.clothesList){
-				console.log("for文内での画像パス：" + clothes.imagePath);
+				var newLabel = document.createElement("label");
+				newLabel.setAttribute("id", "modal-label" + clothes.id);
+				document.getElementById("modal-img").appendChild(newLabel);
+				
+				var newInput = document.createElement("input");
+				newInput.type = "radio";
+				newInput.id = "modal-radio" + clothes.id;
+				newInput.className = "radio";
+				newInput.name = "clothesId";
+				newInput.value = clothes.id;
+				document.getElementById("modal-label"+ clothes.id).appendChild(newInput);
+								
 				var newImg = document.createElement("img");
 				newImg.setAttribute("src", '/img/'+clothes.imagePath);
-				document.getElementById("modal-img").appendChild(newImg);
-			}
+				newImg.setAttribute("class", "radio-img");
+				document.getElementById("modal-label" + clothes.id).appendChild(newImg);
+			}	    
+			
+			$('#select-modal-btn').on('click', function(){
+				let radioVal = $('input[name="clothesId"]:checked').val();
+				console.log(radioVal);
+				$('#shoes').val(radioVal);	
+				
+			});
+			
 		}).fail(function(XMLHttpRequest, textStatus, errorThrown){
 			alert("エラーが発生しました。");
 			console.log("XMLHttpRequest:" + XMLHttpRequest.status);
@@ -220,6 +347,7 @@ $(function(){
 		});
 		});
 	
+// バッグ
 	$('#bag-btn').on('click', function(){
 		$.ajax({
 			url: "http://localhost:8080/show_clotheslist",
@@ -241,12 +369,33 @@ $(function(){
 				
 			}
 			
+			
 			for(let clothes of data.clothesList){
-				console.log("for文内での画像パス：" + clothes.imagePath);
+				var newLabel = document.createElement("label");
+				newLabel.setAttribute("id", "modal-label" + clothes.id);
+				document.getElementById("modal-img").appendChild(newLabel);
+				
+				var newInput = document.createElement("input");
+				newInput.type = "radio";
+				newInput.id = "modal-radio" + clothes.id;
+				newInput.className = "radio";
+				newInput.name = "clothesId";
+				newInput.value = clothes.id;
+				document.getElementById("modal-label"+ clothes.id).appendChild(newInput);
+								
 				var newImg = document.createElement("img");
 				newImg.setAttribute("src", '/img/'+clothes.imagePath);
-				document.getElementById("modal-img").appendChild(newImg);
-			}
+				newImg.setAttribute("class", "radio-img");
+				document.getElementById("modal-label" + clothes.id).appendChild(newImg);
+			}	    
+			
+			$('#select-modal-btn').on('click', function(){
+				let radioVal = $('input[name="clothesId"]:checked').val();
+				console.log(radioVal);
+				$('#bag').val(radioVal);	
+				
+			});
+			
 		}).fail(function(XMLHttpRequest, textStatus, errorThrown){
 			alert("エラーが発生しました。");
 			console.log("XMLHttpRequest:" + XMLHttpRequest.status);
@@ -256,6 +405,7 @@ $(function(){
 		});
 		});
 	
+// ワンピース
 	$('#dress-btn').on('click', function(){
 		$.ajax({
 			url: "http://localhost:8080/show_clotheslist",
@@ -277,12 +427,33 @@ $(function(){
 				
 			}
 			
+			
 			for(let clothes of data.clothesList){
-				console.log("for文内での画像パス：" + clothes.imagePath);
+				var newLabel = document.createElement("label");
+				newLabel.setAttribute("id", "modal-label" + clothes.id);
+				document.getElementById("modal-img").appendChild(newLabel);
+				
+				var newInput = document.createElement("input");
+				newInput.type = "radio";
+				newInput.id = "modal-radio" + clothes.id;
+				newInput.className = "radio";
+				newInput.name = "clothesId";
+				newInput.value = clothes.id;
+				document.getElementById("modal-label"+ clothes.id).appendChild(newInput);
+								
 				var newImg = document.createElement("img");
 				newImg.setAttribute("src", '/img/'+clothes.imagePath);
-				document.getElementById("modal-img").appendChild(newImg);
-			}
+				newImg.setAttribute("class", "radio-img");
+				document.getElementById("modal-label" + clothes.id).appendChild(newImg);
+			}	    
+			
+			$('#select-modal-btn').on('click', function(){
+				let radioVal = $('input[name="clothesId"]:checked').val();
+				console.log(radioVal);
+				$('#dress').val(radioVal);	
+				
+			});
+			
 			
 		}).fail(function(XMLHttpRequest, textStatus, errorThrown){
 			alert("エラーが発生しました。");
@@ -291,6 +462,6 @@ $(function(){
 			console.log("errorThrown" + errorThrown.message);
 		
 		});
-		});	
-	
+		});		
 });
+

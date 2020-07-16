@@ -18,6 +18,10 @@
 	href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
 	rel="stylesheet" type="text/css" />
 
+<!-- coordinate.css読み込み -->
+<link rel="stylesheet" href="../static/dist/css/coordinate.css"
+	th:href="@{/dist/css/coordinate.css}">
+
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="../static/dist/css/styles.css"
 	th:href="@{/dist/css/styles.css}" rel="stylesheet" />
@@ -63,7 +67,10 @@
 			<br> <br>
 
 		</div>
-		<form action="#" method="post">
+
+
+
+		<form action="#" name="coordinate-form" method="post">
 			<table class="table">
 				<thead>
 					<tr>
@@ -86,7 +93,7 @@
 									<button data-toggle="modal" data-target="#category-modal"
 										type="button" class="btn btn-light category-btn"
 										id="fashion-accessories-btn" value="1" style="width: 250px;">ファッション雑貨を選択</button>
-									<input type="hidden" name="fashion_accessories" value="">
+									<input type="hidden" id="fashion_accessories" name="fashion_accessories" value="">
 								</div>
 								<br>
 
@@ -97,7 +104,7 @@
 									<button data-toggle="modal" data-target="#category-modal"
 										type="button" class="btn btn-light category-btn"
 										id="tops1-btn" value="2" style="width: 250px;">トップス１を選択</button>
-									<input type="hidden" name="tops" value="">
+									<input type="hidden" id="tops1" name="tops" value="">
 								</div>
 								<br>
 
@@ -106,7 +113,7 @@
 									<button data-toggle="modal" data-target="#category-modal"
 										type="button" class="btn btn-light category-btn"
 										id="tops2-btn" value="2" style="width: 250px;">トップス２を選択</button>
-									<input type="hidden" name="tops" value="">
+									<input type="hidden" id="tops2" name="tops" value="">
 								</div>
 								<br>
 
@@ -115,7 +122,7 @@
 									<button data-toggle="modal" data-target="#category-modal"
 										type="button" class="btn btn-light category-btn"
 										id="outers-btn" value="3" style="width: 250px;">アウターを選択</button>
-									<input type="hidden" name="outers" value="">
+									<input type="hidden" id="outers" name="outers" value="">
 								</div>
 								<br>
 
@@ -124,7 +131,7 @@
 									<button data-toggle="modal" data-target="#category-modal"
 										type="button" class="btn btn-light category-btn"
 										id="bottoms-btn" value="4" style="width: 250px;">ボトムスを選択</button>
-									<input type="hidden" name="bottoms" value="">
+									<input type="hidden" id="bottoms" name="bottoms" value="">
 								</div>
 								<br>
 
@@ -133,7 +140,7 @@
 									<button data-toggle="modal" data-target="#category-modal"
 										type="button" class="btn btn-light category-btn"
 										id="shoes-btn" value="5" style="width: 250px;">シューズを選択</button>
-									<input type="hidden" name="shoes" value="">
+									<input type="hidden" id="shoes" name="shoes" value="">
 								</div>
 								<br>
 
@@ -142,7 +149,7 @@
 									<button data-toggle="modal" data-target="#category-modal"
 										type="button" class="btn btn-light category-btn" id="bag-btn"
 										value="6" style="width: 250px;">バッグを選択</button>
-									<input type="hidden" name="bag" value="">
+									<input type="hidden" id="bag" name="bag" value="">
 								</div>
 								<br>
 
@@ -151,7 +158,7 @@
 									<button data-toggle="modal" data-target="#category-modal"
 										type="button" class="btn btn-light category-btn"
 										id="dress-btn" value="7" style="width: 250px;">ワンピースを選択</button>
-									<input type="hidden" name="dress" value="">
+									<input type="hidden" id="dress" name="dress" value="">
 								</div>
 								<br>
 
@@ -172,25 +179,16 @@
 
 											<!-- モーダル内ボディ -->
 											<div class="modal-body">
-												<div class="modal-list">
-
-													<div id="modal-img">
-													
-														<img src="../static/img/5.jpg"
-															class="img-fluid" id="modal-ca-img" alt="" />
-															
-															
-													</div>
-
-
+												<div id="modal-img">
+													<!-- ここに動的にlabel/input/imgタグが生成されます。 -->
 												</div>
-
 											</div>
 
 
 											<!-- モーダル内フッター -->
 											<div class="modal-footer">
-												<button type="button" class="btn btn-primary">選択</button>
+												<button type="button" id="select-modal-btn" class="btn btn-primary modal-btn"
+													data-dismiss="modal">選択</button>
 												<button type="button" class="btn btn-secondary"
 													data-dismiss="modal">閉じる</button>
 											</div>
