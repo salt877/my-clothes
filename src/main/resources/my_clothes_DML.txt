@@ -400,3 +400,84 @@ insert into clothes(
   'ちょっと大きめ'
 );
 
+--アイテムNo10
+insert into clothes(
+  id,
+  user_id,
+  category_id,
+  brand_id,
+  image_path,
+  price,
+  color_id,
+  season,
+  size_id,
+  perchase_date,
+  comment
+)values(
+  10,
+  1,
+  3,
+  4541,
+  '10.jpg',
+  10000,
+  8,
+  '秋',
+  5,
+  '2020-09-22',
+  '暖かい'
+);
+
+--アイテムNo11
+insert into clothes(
+  id,
+  user_id,
+  category_id,
+  brand_id,
+  image_path,
+  price,
+  color_id,
+  season,
+  size_id,
+  perchase_date,
+  comment
+)values(
+  11,
+  1,
+  3,
+  5943,
+  'ゴマモン.jpg',
+  0,
+  1,
+  '夏',
+  4,
+  '2020-02-14',
+  'マーチングフィッシーズ！'
+);
+
+--アイテムNo12
+insert into clothes(
+  id,
+  user_id,
+  category_id,
+  brand_id,
+  image_path,
+  price,
+  color_id,
+  season,
+  size_id,
+  perchase_date,
+  comment
+)values(
+  12,
+  1,
+  4,
+  5943,
+  'グレイモン.png',
+  0,
+  1,
+  '秋',
+  4,
+  '2020-02-14',
+  'メガフレイム！'
+);
+
