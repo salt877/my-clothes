@@ -1,5 +1,5 @@
 //listの個数を取得しておく
-var listContents = $("#cloth_list .img-fluid").length;
+var listContents = $("#cloth_list .portfolio-item").length;
 $("#cloth_list").each(function(){
 
 //最初に表示させるアイテムの数
