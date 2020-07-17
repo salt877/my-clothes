@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -129,6 +131,40 @@ public class CoordinateRepository {
 		}
 
 		return coordinateList;
+	}
+	
+	private static final RowMapper<Coordinate> COORDINATE_ROW_MAPPER =(rs, i) ->{
+		Coordinate coordinate = new Coordinate();
+		coordinate.setId(rs.getInt("id"));
+		coordinate.setUserId(rs.getInt("user_id"));
+		coordinate.setFashionAccessories(rs.getInt("fashion_accessories"));
+		coordinate.setTops1(rs.getInt("tops1"));
+		coordinate.setTops2(rs.getInt("tops2"));
+		coordinate.setOuters(rs.getInt("outers"));
+		coordinate.setShoes(rs.getInt("shoes"));
+		coordinate.setBag(rs.getInt("bag"));
+		coordinate.setDress(rs.getInt("dress"));
+		coordinate.setName(rs.getString("name"));
+		
+		return coordinate;
+	};
+	
+	
+
+	/**
+	 * coordinatesテーブルにインサートします.
+	 * 
+	 * @param coordinate
+	 */
+	public void insert(Coordinate coordinate) {
+		StringBuilder sql = new StringBuilder();
+		sql.append("INSERT INTO coordinates (user_id, fashion_accesories, tops1, tops2, outers, bottoms, shoes, bag) ");
+		sql.append("VALUES (:userId, :fashionAccessories, :tops1, :tops2, :outers, :bottoms, :shoes, :bag)");
+
+		SqlParameterSource param = new BeanPropertySqlParameterSource(coordinate);
+
+		template.update(sql.toString(), param);
+
 	}
 
 }
