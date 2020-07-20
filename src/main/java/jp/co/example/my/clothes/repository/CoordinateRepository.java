@@ -158,8 +158,8 @@ public class CoordinateRepository {
 	 */
 	public void insert(Coordinate coordinate) {
 		StringBuilder sql = new StringBuilder();
-		sql.append("INSERT INTO coordinates (user_id, fashion_accesories, tops1, tops2, outers, bottoms, shoes, bag) ");
-		sql.append("VALUES (:userId, :fashionAccessories, :tops1, :tops2, :outers, :bottoms, :shoes, :bag)");
+		sql.append("INSERT INTO coordinates (user_id, fashion_accessories, tops1, tops2, outers, bottoms, shoes, bag, name) ");
+		sql.append("VALUES (:userId, :fashionAccessories, :tops1, :tops2, :outers, :bottoms, :shoes, :bag, :name)");
 
 		SqlParameterSource param = new BeanPropertySqlParameterSource(coordinate);
 
