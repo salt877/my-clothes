@@ -3,9 +3,10 @@ $(function(){
 	
 	// カテゴリーボタンがクリックされた時のajax通信処理
 	$('.category-btn').on('click', function(){
+		
 		// カテゴリーごとの条件分岐のため、クリックされたボタンのdata-id属性取得
 		var checkId = $(this).data('id');
-		console.log(checkId);
+		
 		// APIへ飛ばすためのパラメータとして、クリックされたボタンのカテゴリーID取得
 		var categoryId = $(this).val();
 
@@ -52,17 +53,16 @@ $(function(){
 			
 			// 画像をクリックしたときの処理
 			$('img.radio-img').on('click', function() {
-				// クリックされた画像にcheckedクラスを付与
+				// クリックされた画像にcheckedクラスを付与・その画像についているラジオボタンのチェックをtrueにする.
 				var $imgList = $('.modal-label');				  
 				$imgList.find('img.radio-img.checked').removeClass('checked');
 				$(this).prev('input:radio[name="clothesId"]').prop('checked',true);
 				$(this).addClass('checked');			
 			
+				// チェックされたラジオボタンのvalue・imgのsrc取得
 				var checkedVal = $('input[name="clothesId"]:checked').val();
-				console.log(checkedVal);
 				var src = $('img.radio-img.checked').attr('src');
 
-			
 			// モーダル内の選択ボタンをクリックしたときの処理.
 			// hiddenのvalueに選択された服IDを付与.
 			// 登録確認モーダル＆コーディネート画面にチェックされた画像を表示.
@@ -117,10 +117,8 @@ $(function(){
 					$("#drag-img8").attr("src",src);
 					$("#in-modal-img8").attr("src",src);	
 				}
-
-			
 			});
-			});
+		});
 			
 		}).fail(function(XMLHttpRequest, textStatus, errorThrown){
 			alert("エラーが発生しました。");
@@ -190,28 +188,32 @@ $(function(){
 	});
 	
 	
-	$('#co-confirmation-btn').on('click', function(){
-		
-		console.log("fa:" + $('#modal-fashion-accessories').val());
-		console.log("t1:" + $('#modal-tops1').val());
-		console.log("t2:" + $('#modal-tops2').val());
-		console.log("ou:" + $('#modal-outers').val());
-		console.log("bo:" + $('#modal-bottoms').val());
-		console.log("sh:" + $('#modal-shoes').val());
-		console.log("ba:" + $('#modal-bag').val());
-		console.log("dr:" + $('#modal-dress').val());
-		
-	});
+	function deleteCoordinate(){
+		if(confirm("このコーディネートを削除してもよろしいですか？")){
+			$.ajax({
+				url: "http://localhost:8080/delete_coordinate",
+				type: "GET",
+				data :{
+					coordinateId : $('#co-delete-btn').val()
+					}
+				async: true
+				
+			// 通信成功時の処理
+			}).done(function(data){
+				window.location.href="http://localhost:8080/coordinate";
+				
+			}).fail(function(XMLHttpRequest, textStatus, errorThrown){
+				alert("エラーが発生しました。");
+				console.log("XMLHttpRequest:" + XMLHttpRequest.status);
+				console.log("textStatus:" + textStatus);
+				console.log("errorThrown" + errorThrown.message);
+			
+		});	
+			
+		}else{
+			return false;
+			}
+		}
+	
 });
 	
-
-	
-	
-	
-	
-	
-	
-	
-	
-
-

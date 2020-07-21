@@ -130,7 +130,7 @@
 								<button data-toggle="modal" data-target="#category-modal"
 									type="button" class="btn btn-light category-btn" id="tops1-btn"
 									data-id='tops1' value="2" style="width: 250px;">トップス１を選択</button>
-							
+
 							</div>
 							<br>
 
@@ -173,7 +173,7 @@
 								<button data-toggle="modal" data-target="#category-modal"
 									type="button" class="btn btn-light category-btn" id="bag-btn"
 									data-id='bag' value="6" style="width: 250px;">バッグを選択</button>
-								
+
 							</div>
 							<br>
 
@@ -182,7 +182,7 @@
 								<button data-toggle="modal" data-target="#category-modal"
 									type="button" class="btn btn-light category-btn" id="dress-btn"
 									data-id='dress' value="7" style="width: 250px;">ワンピースを選択</button>
-								
+
 							</div>
 							<br>
 
@@ -284,6 +284,9 @@
 
 												<!-- モーダル内フッター -->
 												<div class="modal-footer">
+													<button type="button" class="btn btn-primary"
+														id="co-delete-btn" data-dismiss="modal" onclick=""
+														th:value="${coordinate.id}">このコーディネートを削除する</button>
 													<button type="button" class="btn btn-secondary"
 														data-dismiss="modal">閉じる</button>
 												</div>
@@ -308,7 +311,7 @@
 			<button type="button" class="btn btn-primary"
 				id="co-confirmation-btn"
 				style="border-radius: 50px; padding-left: 30px; padding-right: 30px;"
-				data-toggle="modal" data-target="#registerModal">コーディネートに登録</button>
+				data-toggle="modal" data-target="#registerModal">確認画面へ</button>
 		</div>
 
 		<!-- 「登録」を押したときのモーダルの設定 -->
@@ -355,38 +358,38 @@
 											src="" style="width: 100px; height: auto;"></td>
 										<!-- トップス１ -->
 										<td id="t1-img"><input type="hidden" id="modal-tops1"
-											name="tops1" value="" th:field="*{tops1}"> <img class="tops1-img"
-											id="in-modal-img2" alt="" src=""
+											name="tops1" value="" th:field="*{tops1}"> <img
+											class="tops1-img" id="in-modal-img2" alt="" src=""
 											style="width: 100px; height: auto;"></td>
 										<!-- トップス２ -->
 										<td id="t1-img"><input type="hidden" id="modal-tops2"
-											name="tops2" value="" th:field="*{tops2}"> <img class="tops2-img"
-											id="in-modal-img3" alt="" src=""
+											name="tops2" value="" th:field="*{tops2}"> <img
+											class="tops2-img" id="in-modal-img3" alt="" src=""
 											style="width: 100px; height: auto;"></td>
 										<!-- アウター -->
 										<td id="ou-img"><input type="hidden" id="modal-outers"
-											name="outers" value="" th:field="*{outers}"> <img class="outers-img"
-											id="in-modal-img4" alt="" src=""
+											name="outers" value="" th:field="*{outers}"> <img
+											class="outers-img" id="in-modal-img4" alt="" src=""
 											style="width: 100px; height: auto;"></td>
 										<!-- ボトムス -->
 										<td id="bt-img"><input type="hidden" id="modal-bottoms"
-											name="bottoms" value="" th:field="*{bottoms}"> <img class="bottoms-img"
-											id="in-modal-img5" alt="" src=""
+											name="bottoms" value="" th:field="*{bottoms}"> <img
+											class="bottoms-img" id="in-modal-img5" alt="" src=""
 											style="width: 100px; height: auto;"></td>
 										<!-- シューズ -->
 										<td id="sh-img"><input type="hidden" id="modal-shoes"
-											name="shoes" value="" th:field="*{shoes}"> <img class="shoes-img"
-											id="in-modal-img6" alt="" src=""
+											name="shoes" value="" th:field="*{shoes}"> <img
+											class="shoes-img" id="in-modal-img6" alt="" src=""
 											style="width: 100px; height: auto;"></td>
 										<!-- バッグ -->
 										<td id="bg-img"><input type="hidden" id="modal-bag"
-											name="bag" value="" th:field="*{bag}"> <img class="bags-img"
-											id="in-modal-img7" alt="" src=""
+											name="bag" value="" th:field="*{bag}"> <img
+											class="bags-img" id="in-modal-img7" alt="" src=""
 											style="width: 100px; height: auto;"></td>
 										<!-- ワンピース-->
 										<td id="dr-img"><input type="hidden" id="modal-dress"
-											name="dress" value="" th:field="*{dress}"> <img class="dress-img"
-											id="in-modal-img8" alt="" src=""
+											name="dress" value="" th:field="*{dress}"> <img
+											class="dress-img" id="in-modal-img8" alt="" src=""
 											style="width: 100px; height: auto;"></td>
 
 									</tr>

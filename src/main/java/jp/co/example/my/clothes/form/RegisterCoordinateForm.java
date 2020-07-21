@@ -145,10 +145,11 @@ public class RegisterCoordinateForm {
 	 * @return
 	 */
 	public Integer getIntDress() {
+		
 		if (StringUtils.isEmpty(dress)) {
 			return null;
 		}
-		return Integer.parseInt(bag);
+		return Integer.parseInt(dress);
 	}
 
 	public String getId() {

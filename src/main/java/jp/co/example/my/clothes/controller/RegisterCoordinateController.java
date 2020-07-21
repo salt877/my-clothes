@@ -63,6 +63,7 @@ public class RegisterCoordinateController {
 		coordinate.setShoes(form.getIntShoes());
 		coordinate.setBag(form.getIntBag());
 		coordinate.setDress(form.getIntDress());
+		System.out.println(form.getIntDress());
 		coordinate.setName(form.getName());
 		
 		System.out.println(coordinate);

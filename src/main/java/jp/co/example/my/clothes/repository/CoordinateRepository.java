@@ -119,7 +119,7 @@ public class CoordinateRepository {
 				"ON co.fashion_accessories  = cl.id OR co.tops1 = cl.id OR co.tops2 = cl.id OR co.outers = cl.id OR co.bottoms = cl.id OR co.shoes = cl.id OR co.bag = cl.id OR co.dress = cl.id ");
 		sql.append("LEFT OUTER JOIN categories ca ON cl.category_id = ca.id ");
 		sql.append("LEFT OUTER JOIN brands b ON cl.brand_id = cl.id ");
-		sql.append("WHERE co.user_id = :userId ");
+		sql.append("WHERE co.user_id = :userId AND deleted = FALSE");
 		sql.append("ORDER BY co.id, cl.category_id");
 
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
@@ -132,24 +132,6 @@ public class CoordinateRepository {
 
 		return coordinateList;
 	}
-	
-	private static final RowMapper<Coordinate> COORDINATE_ROW_MAPPER =(rs, i) ->{
-		Coordinate coordinate = new Coordinate();
-		coordinate.setId(rs.getInt("id"));
-		coordinate.setUserId(rs.getInt("user_id"));
-		coordinate.setFashionAccessories(rs.getInt("fashion_accessories"));
-		coordinate.setTops1(rs.getInt("tops1"));
-		coordinate.setTops2(rs.getInt("tops2"));
-		coordinate.setOuters(rs.getInt("outers"));
-		coordinate.setShoes(rs.getInt("shoes"));
-		coordinate.setBag(rs.getInt("bag"));
-		coordinate.setDress(rs.getInt("dress"));
-		coordinate.setName(rs.getString("name"));
-		
-		return coordinate;
-	};
-	
-	
 
 	/**
 	 * coordinatesテーブルにインサートします.
@@ -158,11 +140,28 @@ public class CoordinateRepository {
 	 */
 	public void insert(Coordinate coordinate) {
 		StringBuilder sql = new StringBuilder();
-		sql.append("INSERT INTO coordinates (user_id, fashion_accessories, tops1, tops2, outers, bottoms, shoes, bag, name) ");
-		sql.append("VALUES (:userId, :fashionAccessories, :tops1, :tops2, :outers, :bottoms, :shoes, :bag, :name)");
+		sql.append(
+				"INSERT INTO coordinates (user_id, fashion_accessories, tops1, tops2, outers, bottoms, shoes, bag, dress, name) ");
+		sql.append(
+				"VALUES (:userId, :fashionAccessories, :tops1, :tops2, :outers, :bottoms, :shoes, :bag, :dress, :name)");
 
 		SqlParameterSource param = new BeanPropertySqlParameterSource(coordinate);
 
+		template.update(sql.toString(), param);
+
+	}
+
+	/**
+	 * 
+	 * coodinatesテーブルから指定IDのデータを論理削除します.
+	 * 
+	 * @param coordinateId
+	 */
+	public void update(Integer coordinateId) {
+		StringBuilder sql = new StringBuilder();
+		sql.append("UPDATE coordinates SET deleted = 'true' WHERE coordinate_id = :coordinateId");
+
+		SqlParameterSource param = new MapSqlParameterSource().addValue("coodinateId", coordinateId);
 		template.update(sql.toString(), param);
 
 	}
