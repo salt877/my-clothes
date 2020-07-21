@@ -40,6 +40,17 @@ public class ShowTopPageService {
 	}
 
 	/**
+	 * 登録アイテムをカテゴリごとに検索します.
+	 * 
+	 * @param userId     ログインユーザID
+	 * @param categoryId カテゴリID
+	 * @return 登録アイテム一覧
+	 */
+	public List<Clothes> showItemListByCategoryForCoordinate(Integer userId, Integer categoryId) {
+		return clothesRepository.findByCategory(userId, categoryId);
+	}
+
+	/**
 	 * ブランド名を表示します.
 	 * 
 	 * @param userId ユーザID
