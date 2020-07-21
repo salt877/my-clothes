@@ -187,19 +187,24 @@ $(function(){
 		
 	});
 	
-	
-	function deleteCoordinate(){
+	// コーデ削除ボタンを押したときの処理
+	$('#co-delete-btn').on('click', function(){
+		console.log($(this).val());
+		
+		var coordinateId = $('#co-delete-btn').val();
+		console.log("コーデID" + coordinateId);
+		
 		if(confirm("このコーディネートを削除してもよろしいですか？")){
 			$.ajax({
 				url: "http://localhost:8080/delete_coordinate",
 				type: "GET",
 				data :{
-					coordinateId : $('#co-delete-btn').val()
-					}
+					coordinateId : coordinateId
+					},
 				async: true
 				
 			// 通信成功時の処理
-			}).done(function(data){
+			}).done(function(){
 				window.location.href="http://localhost:8080/coordinate";
 				
 			}).fail(function(XMLHttpRequest, textStatus, errorThrown){
@@ -213,7 +218,7 @@ $(function(){
 		}else{
 			return false;
 			}
-		}
+	});
 	
 });
 	

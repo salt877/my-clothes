@@ -119,7 +119,7 @@ public class CoordinateRepository {
 				"ON co.fashion_accessories  = cl.id OR co.tops1 = cl.id OR co.tops2 = cl.id OR co.outers = cl.id OR co.bottoms = cl.id OR co.shoes = cl.id OR co.bag = cl.id OR co.dress = cl.id ");
 		sql.append("LEFT OUTER JOIN categories ca ON cl.category_id = ca.id ");
 		sql.append("LEFT OUTER JOIN brands b ON cl.brand_id = cl.id ");
-		sql.append("WHERE co.user_id = :userId AND deleted = FALSE");
+		sql.append("WHERE co.user_id = :userId AND co.deleted = 'FALSE' ");
 		sql.append("ORDER BY co.id, cl.category_id");
 
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
@@ -159,9 +159,9 @@ public class CoordinateRepository {
 	 */
 	public void update(Integer coordinateId) {
 		StringBuilder sql = new StringBuilder();
-		sql.append("UPDATE coordinates SET deleted = 'true' WHERE coordinate_id = :coordinateId");
+		sql.append("UPDATE coordinates SET deleted = 'true' WHERE id = :coordinateId");
 
-		SqlParameterSource param = new MapSqlParameterSource().addValue("coodinateId", coordinateId);
+		SqlParameterSource param = new MapSqlParameterSource().addValue("coordinateId", coordinateId);
 		template.update(sql.toString(), param);
 
 	}
