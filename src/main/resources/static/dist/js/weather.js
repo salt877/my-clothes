@@ -4,10 +4,9 @@
 
 function clickBtn3() {
 	var API_KEY = '478ea780a9d4d20c8ddf7539de30ee32';
-
 	const str = document.getElementById("city").value;
-	console.log(str);
 	var city = str;
+	var city = "東京都";
 	var url = 'http://api.openweathermap.org/data/2.5/forecast?q=' + city
 			+ ',jp&units=metric&APPID=' + API_KEY;
 	console.log(url);
