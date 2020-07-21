@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+body {
+    color: #002222;
+    background-color: papayawhip;
+    text-align: center;
+}
+
+img{
+    width: 100px;
+}
+
+.container{
+    padding-left: 20%;
+    padding-right: 20%;
+}
+input {
+    margin: 2%;
+}
+
+#submit{
+    margin-left: 10px;
+}
+
+.bold{
+    font-weight: bold;
+    font-size: 1.5em;
+}

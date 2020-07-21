@@ -1,42 +1,84 @@
 package jp.co.example.my.clothes.controller;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import lombok.RequiredArgsConstructor;
+import jp.co.example.my.clothes.domain.LoginUser;
+import jp.co.example.my.clothes.domain.Weather;
+import jp.co.example.my.clothes.form.WeatherForm;
+import jp.co.example.my.clothes.service.WeatherService;
 
-@RequestMapping("/Whether")
+/**
+ * 天気予報ページを操作するコントローラー.
+ * 
+ * @author ashibe
+ *
+ */
+@RequestMapping("/weather")
+@Controller
 public class WeatherController {
 
-	private String jsonDataString;
-
-	public String getJsonData() {
-		return this.jsonDataString;
+	@ModelAttribute
+	public WeatherForm setUpWeatherForm() {
+		return new WeatherForm();
 	}
 
-	public void setJsonData(String urlString) {
-		StringBuilder builder = new StringBuilder();
-		try {
-			URL url = new URL(urlString);
-			Object content = url.getContent();
-			if (content instanceof InputStream) {
-				BufferedReader reader = new BufferedReader(new InputStreamReader((InputStream) content));
-				String line;
-				while ((line = reader.readLine()) != null) {
-					builder.append(line);
-				}
-				this.jsonDataString = builder.toString();
-			}
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+	@Autowired
+	private WeatherService weatherService;
+
+	/**
+	 * 天気予報詳細ページに遷移する.
+	 * 
+	 * @param form
+	 * @param model
+	 * @param loginUser
+	 * @return
+	 */
+	@RequestMapping("/showWeatherPage")
+	public String showWeatherPage(WeatherForm form, Model model, @AuthenticationPrincipal LoginUser loginUser) {
+
+		// 天気予報表示のための街が登録されているか検索
+		Weather weather = weatherService.cityFindByUserId(loginUser.getUser().getId());
+		form.setCity(weather.getCityName());
+		System.out.println(form);
+		return "weather.html";
+
+	}
+
+	/**
+	 * 天気予報情報を登録.
+	 * 
+	 * @param form
+	 * @param model
+	 * @param loginUser
+	 * @return
+	 */
+	@RequestMapping("/registerCity")
+	public String registerPref(WeatherForm form, Model model, @AuthenticationPrincipal LoginUser loginUser) {
+
+		// 天気予報情報が登録されているか確認.
+		Weather weather = weatherService.cityFindByUserId(loginUser.getUser().getId());
+		// 情報がなかったら新規に登録
+		if (StringUtils.isEmpty(weather)) {
+			weather = new Weather();
+			weather.setUserId(loginUser.getUser().getId());
+			weather.setCityName(form.getCity());
+			weatherService.insertMyCity(weather);
+		} else {
+			// 既に情報が登録されていたら更新
+			weather = new Weather();
+			weather.setUserId(loginUser.getUser().getId());
+			weather.setCityName(form.getCity());
+			weatherService.updateCity(weather);
+
 		}
+
+		return showWeatherPage(form, model, loginUser);
 	}
+
 }
