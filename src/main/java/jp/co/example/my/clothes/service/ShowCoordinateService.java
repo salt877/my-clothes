@@ -33,4 +33,13 @@ public class ShowCoordinateService {
 
 	}
 
+	/**
+	 * コーディネートIDに紐づくコーディネートデータを論理削除します.
+	 * 
+	 * @param coordinateId
+	 */
+	public void deleteCoordinate(Integer coordinateId) {
+		coordinateRepository.update(coordinateId);
+	}
+
 }
