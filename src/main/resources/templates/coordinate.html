@@ -2,6 +2,8 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
 <title>MYQLO | MY COORDINATE</title>
 <link rel="icon" type="image/x-icon"
 	href="../static/dist/assets/img/favicon.ico" />
@@ -73,11 +75,7 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th colspan="3" style="text-align: center;">コーディネート&nbsp;&nbsp;
-						<i class="far fa-question-circle section-subheading text-muted"
-						id="coordinate-tip"></i>
-						<p class="tooltip co-tooltip">選択したアイテムをドラッグで動かせます。画像をダブルリックで選択を取り消しできます。</p>
-					</th>
+					<th colspan="3" style="text-align: center;">コーディネート&nbsp;&nbsp;</th>
 					<th colspan="2" style="text-align: center;">アイテム選択</th>
 					<th style="text-align: center;">過去のコーデ</th>
 				</tr>
@@ -276,8 +274,8 @@
 													<tbody>
 														<tr>
 															<td th:each="clothes:${coordinate.clothesList}"><img
-																class="img-fluid" th:src="${'/img/'+clothes.imagePath}"
-																alt="" style="width: 200px; height: auto;" /></td>
+																class="img-fluid" th:src="${clothes.imagePath}" alt=""
+																style="width: 200px; height: auto;" /></td>
 														</tr>
 													</tbody>
 												</table>
@@ -352,44 +350,47 @@
 
 										<!-- ファッション雑貨 -->
 										<td id="fa-img"><input type="hidden"
-											id="modal-fashion-accessories" name="fashion_accessories"
-											value="" th:field="*{fashionAccessories}"> <img
+											id="modal-fashion-accessories" class="modal-input"
+											name="fashion_accessories" value=""
+											th:field="*{fashionAccessories}"> <img
 											class="fashion-accessories-img" id="in-modal-img1" alt=""
 											src="" style="width: 100px; height: auto;"></td>
 										<!-- トップス１ -->
 										<td id="t1-img"><input type="hidden" id="modal-tops1"
-											name="tops1" value="" th:field="*{tops1}"> <img
-											class="tops1-img" id="in-modal-img2" alt="" src=""
+											class="modal-input" name="tops1" value="" th:field="*{tops1}">
+											<img class="tops1-img" id="in-modal-img2" alt="" src=""
 											style="width: 100px; height: auto;"></td>
 										<!-- トップス２ -->
 										<td id="t1-img"><input type="hidden" id="modal-tops2"
-											name="tops2" value="" th:field="*{tops2}"> <img
-											class="tops2-img" id="in-modal-img3" alt="" src=""
+											class="modal-input" name="tops2" value="" th:field="*{tops2}">
+											<img class="tops2-img" id="in-modal-img3" alt="" src=""
 											style="width: 100px; height: auto;"></td>
 										<!-- アウター -->
 										<td id="ou-img"><input type="hidden" id="modal-outers"
-											name="outers" value="" th:field="*{outers}"> <img
-											class="outers-img" id="in-modal-img4" alt="" src=""
+											class="modal-input" name="outers" value=""
+											th:field="*{outers}"> <img class="outers-img"
+											id="in-modal-img4" alt="" src=""
 											style="width: 100px; height: auto;"></td>
 										<!-- ボトムス -->
 										<td id="bt-img"><input type="hidden" id="modal-bottoms"
-											name="bottoms" value="" th:field="*{bottoms}"> <img
-											class="bottoms-img" id="in-modal-img5" alt="" src=""
+											class="modal-input" name="bottoms" value=""
+											th:field="*{bottoms}"> <img class="bottoms-img"
+											id="in-modal-img5" alt="" src=""
 											style="width: 100px; height: auto;"></td>
 										<!-- シューズ -->
 										<td id="sh-img"><input type="hidden" id="modal-shoes"
-											name="shoes" value="" th:field="*{shoes}"> <img
-											class="shoes-img" id="in-modal-img6" alt="" src=""
+											class="modal-input" name="shoes" value="" th:field="*{shoes}">
+											<img class="shoes-img" id="in-modal-img6" alt="" src=""
 											style="width: 100px; height: auto;"></td>
 										<!-- バッグ -->
 										<td id="bg-img"><input type="hidden" id="modal-bag"
-											name="bag" value="" th:field="*{bag}"> <img
-											class="bags-img" id="in-modal-img7" alt="" src=""
+											class="modal-input" name="bag" value="" th:field="*{bag}">
+											<img class="bags-img" id="in-modal-img7" alt="" src=""
 											style="width: 100px; height: auto;"></td>
 										<!-- ワンピース-->
 										<td id="dr-img"><input type="hidden" id="modal-dress"
-											name="dress" value="" th:field="*{dress}"> <img
-											class="dress-img" id="in-modal-img8" alt="" src=""
+											class="modal-input" name="dress" value="" th:field="*{dress}">
+											<img class="dress-img" id="in-modal-img8" alt="" src=""
 											style="width: 100px; height: auto;"></td>
 
 									</tr>
@@ -400,7 +401,7 @@
 									コーデ名<span style="color: red;">（必須）</span>
 								</h6>
 								<input type="text" name="name" class="form-control"
-									placeholder="（例）オフィスカジュアルコーデ" th:field="*{name}">
+									id="code-name" placeholder="（例）オフィスカジュアルコーデ" th:field="*{name}">
 							</div>
 						</div>
 
@@ -446,10 +447,7 @@
 						class="btn btn-dark btn-social mx-2" href="#!"><i
 						class="fab fa-linkedin-in"></i></a>
 				</div>
-				<div class="col-lg-4 text-lg-right">
-					<a class="mr-3" href="#!">Privacy Policy</a> <a href="#!">Terms
-						of Use</a>
-				</div>
+
 			</div>
 		</div>
 	</footer>

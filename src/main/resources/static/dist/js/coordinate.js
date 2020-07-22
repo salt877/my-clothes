@@ -46,7 +46,7 @@ $(function(){
 				document.getElementById("modal-label"+ clothes.id).appendChild(newInput);
 								
 				var newImg = document.createElement("img");
-				newImg.setAttribute("src", '/img/'+clothes.imagePath);
+				newImg.setAttribute("src", clothes.imagePath);
 				newImg.setAttribute("class", "radio-img");
 				document.getElementById("modal-label" + clothes.id).appendChild(newImg);
 			}
@@ -67,6 +67,7 @@ $(function(){
 			// hiddenのvalueに選択された服IDを付与.
 			// 登録確認モーダル＆コーディネート画面にチェックされた画像を表示.
 			$('#select-modal-btn').on('click', function(){
+
 				
 				if(checkId === "fashion-accessories"){
 					$('#modal-fashion-accessories').val(checkedVal);
@@ -131,68 +132,65 @@ $(function(){
 	
 	// コーデエリア画像のダブルクリック処理
 	// コーデエリア・確認モーダル内の画像削除・hiddenのvalue削除
-	$('#drag-img1').on('dblclick', function(){
-		$("#drag-img1").attr("src", "");
-		$("#in-modal-img1").attr("src", "");
-		$('#modal-fashion-accessories').val("");	
+	$('.drag-img').on('dblclick', function(){
+		if($(this).attr('id') === "drag-img1"){
+			$("#drag-img1").attr("src", "");
+			$("#in-modal-img1").attr("src", "");
+			$('#modal-fashion-accessories').val("");
+		}
+		
+		if($(this).attr('id') === "drag-img2"){
+			$("#drag-img2").attr("src", "");
+			$("#in-modal-img2").attr("src", "");
+			$('#modal-tops1').val("");
+		}
+		
+		if($(this).attr('id') === "drag-img3"){
+			$("#drag-img3").attr("src", "");
+			$("#in-modal-img3").attr("src", "");
+			$('#modal-tops2').val("");
+		}
+		
+		if($(this).attr('id') === "drag-img4"){
+			$("#drag-img4").attr("src", "");
+			$("#in-modal-img4").attr("src", "");
+			$('#modal-outers').val("");
+		}
+		
+		if($(this).attr('id') === "drag-img5"){
+			$("#drag-img5").attr("src", "");
+			$("#in-modal-img5").attr("src", "");
+			$('#modal-bottoms').val("");
+		}
+		
+		if($(this).attr('id') === "drag-img6"){
+			$("#drag-img6").attr("src", "");
+			$("#in-modal-img6").attr("src", "");
+			$('#modal-shoes').val("");
+		}
+		
+		if($(this).attr('id') === "drag-img7"){
+			$("#drag-img7").attr("src", "");
+			$("#in-modal-img7").attr("src", "");
+			$('#modal-bag').val("");
+		}
+		
+		if($(this).attr('id') === "drag-img8"){
+			$("#drag-img8").attr("src", "");
+			$("#in-modal-im8").attr("src", "");
+			$('#modal-dress').val("");
+		}
 		
 	});
 	
-	$('#drag-img2').on('dblclick', function(){
-		$("#drag-img2").attr("src", "");
-		$("#in-modal-img2").attr("src", "");
-		$('##modal-tops1').val("");	
-		
-	});
 	
-	$('#drag-img3').on('dblclick', function(){
-		$("#drag-img3").attr("src", "");
-		$("#in-modal-img3").attr("src", "");
-		$('##modal-tops2').val("");	
-		
-	});
-	
-	$('#drag-img4').on('dblclick', function(){
-		$("#drag-img4").attr("src", "");
-		$("#in-modal-img4").attr("src", "");
-		$('##modal-outers').val("");	
-		
-	});
-	
-	$('#drag-img5').on('dblclick', function(){
-		$("#drag-img5").attr("src", "");
-		$("#in-modal-img5").attr("src", "");
-		$('##modal-bottoms').val("");	
-		
-	});
-	
-	$('#drag-img6').on('dblclick', function(){
-		$("#drag-img6").attr("src", "");
-		$("#in-modal-img6").attr("src", "");
-		$('##modal-shoes').val("");	
-		
-	});
-	
-	$('#drag-img7').on('dblclick', function(){
-		$("#drag-img7").attr("src", "");
-		$("#in-modal-img7").attr("src", "");
-		$('##modal-bag').val("");	
-		
-	});
-	
-	$('#drag-img8').on('dblclick', function(){
-		$("#drag-img8").attr("src", "");
-		$("#in-modal-img8").attr("src", "");
-		$('##modal-dress').val("");	
-		
-	});
+
 	
 	// コーデ削除ボタンを押したときの処理
 	$('#co-delete-btn').on('click', function(){
-		console.log($(this).val());
 		
 		var coordinateId = $('#co-delete-btn').val();
-		console.log("コーデID" + coordinateId);
+		console.log("コーデID：" + coordinateId);
 		
 		if(confirm("このコーディネートを削除してもよろしいですか？")){
 			$.ajax({
@@ -219,6 +217,30 @@ $(function(){
 			return false;
 			}
 	});
+	
+	 if ( $('#code-name').val().length == 0 ) {
+		    $('.coordinate-regis-btn').attr('disabled', 'disabled');
+		  }
+		  $('#code-name').bind('keydown keyup keypress change', function() {
+		    if ( $(this).val().length > 0 ) {
+		      $('.coordinate-regis-btn').removeAttr('disabled');
+		    } else {
+		      $('.coordinate-regis-btn').attr('disabled', 'disabled');
+		    }
+		  });
+	
+	
+//	$('.coordinate-regis-btn').prop('disabled', true);
+//	var codeName = $('#code-name').val();
+//	if(codeName){
+//		$('.coordinate-regis-btn').prop('disabled', false);
+//	}else{
+//		$('.coordinate-regis-btn').prop('disabled', true);
+//		
+//	}
+	
+	
+	
 	
 });
 	
