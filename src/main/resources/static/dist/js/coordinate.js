@@ -118,6 +118,12 @@ $(function(){
 					$("#drag-img8").attr("src",src);
 					$("#in-modal-img8").attr("src",src);	
 				}
+				
+				if($('#modal-tops1').val() == $('#modal-tops2').val()){
+					$('#co-confirmation-btn').attr('disabled', 'disabled');
+				}else{
+					$('#co-confirmation-btn').removeAttr('disabled');
+				}
 			});
 		});
 			
@@ -214,33 +220,22 @@ $(function(){
 		});	
 			
 		}else{
+			
 			return false;
-			}
+			
+		}
 	});
-	
-	 if ( $('#code-name').val().length == 0 ) {
-		    $('.coordinate-regis-btn').attr('disabled', 'disabled');
-		  }
-		  $('#code-name').bind('keydown keyup keypress change', function() {
+			
+	// コーデ名未入力の場合、登録ボタン押下不可.
+	if($('#code-name').val().length == 0) {
+		$('.coordinate-regis-btn').attr('disabled', 'disabled');
+    }
+		$('#code-name').bind('keydown keyup keypress change', function() {
 		    if ( $(this).val().length > 0 ) {
-		      $('.coordinate-regis-btn').removeAttr('disabled');
+		    	$('.coordinate-regis-btn').removeAttr('disabled');
 		    } else {
-		      $('.coordinate-regis-btn').attr('disabled', 'disabled');
+		        $('.coordinate-regis-btn').attr('disabled', 'disabled');
 		    }
-		  });
-	
-	
-//	$('.coordinate-regis-btn').prop('disabled', true);
-//	var codeName = $('#code-name').val();
-//	if(codeName){
-//		$('.coordinate-regis-btn').prop('disabled', false);
-//	}else{
-//		$('.coordinate-regis-btn').prop('disabled', true);
-//		
-//	}
-	
-	
-	
-	
+	    });
 });
 	
