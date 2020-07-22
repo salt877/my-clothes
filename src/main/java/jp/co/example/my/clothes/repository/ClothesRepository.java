@@ -17,6 +17,8 @@ import org.springframework.stereotype.Repository;
 import jp.co.example.my.clothes.domain.Brand;
 import jp.co.example.my.clothes.domain.Category;
 import jp.co.example.my.clothes.domain.Clothes;
+import jp.co.example.my.clothes.domain.Color;
+import jp.co.example.my.clothes.domain.Size;
 import jp.co.example.my.clothes.domain.TagContent;
 
 /**
@@ -469,6 +471,68 @@ public class ClothesRepository {
 		}
 
 		return bigClothesList;
+	}
+	
+	// アイテム詳細表示用のローマッパー.
+	private static final RowMapper<Clothes>CLOTHES_ROW_MAPPER3 = (rs, i) -> {
+		Clothes clothes = new Clothes();
+		clothes.setId(rs.getInt("cl_id"));
+		clothes.setUserId(rs.getInt("cl_user_id"));
+		clothes.setBrandId(rs.getInt("cl_brand_id"));
+		clothes.setCategoryId(rs.getInt("cl_category_id"));
+		clothes.setColorId(rs.getInt("cl_color_id"));
+		clothes.setSizeId(rs.getInt("cl_size_id"));
+		clothes.setImagePath(rs.getString("cl_image_path"));
+		clothes.setPrice(rs.getInt("cl_price"));
+		clothes.setSeason(rs.getString("cl_season"));
+		clothes.setPerchaseDate(rs.getDate("cl_perchase_date"));
+		clothes.setComment(rs.getString("cl_comment"));
+		// ブランド
+		Brand brand = new Brand();
+		brand.setId(rs.getInt("b_brand_id"));
+		brand.setName(rs.getString("b_brand_name"));
+		clothes.setBrand(brand);
+		// カテゴリー
+		Category category = new Category();
+		category.setId(rs.getInt("ca_category_id"));
+		category.setName(rs.getString("ca_category_name"));
+		clothes.setCategory(category);
+		// カラー
+		Color color = new Color();
+		color.setId(rs.getInt("co_id"));
+		color.setName(rs.getString("co_color_name"));
+		clothes.setColor(color);
+		// サイズ
+		Size size = new Size();
+		size.setId(rs.getInt("s_id"));
+		size.setName(rs.getString("s_size_name"));
+		clothes.setSize(size);
+	
+		return clothes;
+	};
+
+	/**
+	 * アイテムIDで1件検索を行います.
+	 * 
+	 * @param id アイテムID
+	 * @return 1件のアイテム情報
+	 */
+	public Clothes findById(Integer id) {
+		StringBuilder sql = new StringBuilder();
+		sql.append(
+				"SELECT cl.id cl_id,cl.user_id cl_user_id,ca.name ca_name,b.id b_brand_id,b.name b_brand_name,ca.id ca_category_id,ca.name ca_category_name," + 
+				"cl.image_path cl_image_path,cl.price cl_price,co.id co_id,co.name co_color_name,cl.season cl_season," + 
+				"s.id s_id,s.name s_size_name,cl.perchase_date cl_perchase_date,cl.comment cl_comment,cl.brand_id cl_brand_id," +
+				"cl.category_id cl_category_id,cl.color_id cl_color_id,cl.size_id cl_size_id ");
+		sql.append("FROM clothes cl ");
+		sql.append("LEFT JOIN categories ca ON cl.category_id = ca.id ");
+		sql.append("LEFT JOIN brands b ON cl.brand_id=b.id ");
+		sql.append("LEFT JOIN colors co ON cl.color_id=co.id ");
+		sql.append("LEFT JOIN sizes s ON cl.size_id=s.id ");
+		sql.append("WHERE cl.id=:id");
+		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
+		Clothes clothes = template.queryForObject(sql.toString(), param, CLOTHES_ROW_MAPPER3);
+		return clothes;
 	}
 
 }
