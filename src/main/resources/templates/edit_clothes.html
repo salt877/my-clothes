@@ -49,8 +49,11 @@
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">アイテム新規登録</h2>
                 </div>
-                <form action="#" method="post">
+                <form action="#" method="post" th:action="@{/showDetail}">
+                	<!-- 商品idを埋め込んでおく -->
+					<input  type="hidden" name="itemId" th:value="${item.id}">
                 	<div class="image-information">
+                	<img class="img-fluid" th:src="${'/img/'+clothes.imagePath}" /><br>
                 		<input name="imageFile" type="file" accept=".jpg,.png,image/jpeg,image/png" th:errorclass="error-input"/>
               	    </div>
               	    <div class="required-information">
@@ -145,19 +148,19 @@
                 				<tr>
                 					<th>購入日</th>
                 					<td data-label="購入日" class="txt">
-	                						<input type="date">
+	                						<input type="date" th:value="${clothes.perchaseDate}">
                 					</td>
                 				</tr>
                 				<tr>
                 					<th>価格</th>
                 					<td data-label="価格" class="txt">
-                						<input type="text">
+                						<input type="text" th:value="${clothes.price}">
                 					</td>
                 				</tr>
                 				<tr>
                 					<th>メモ</th>
                 					<td data-label="メモ" class="txt">
-                						<textarea rows="10" cols="30"></textarea>
+                						<textarea rows="10" cols="30" th:text="${clothes.comment}"></textarea>
                 					</td>
                 				</tr>
                 			</tbody>

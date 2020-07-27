@@ -59,11 +59,11 @@ public class TagRepository {
 	 */
 	public List<Tag> findById(Integer id){
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT tc.id tc_id, tc.name tc_name, t.id tag_id, t.clothes_id clothes_id");
-		sql.append("FROM tag_contents tc");
-		sql.append("JOIN tags t");
-		sql.append("ON tc.id=t.tag_contents_id");
-		sql.append("WHERE t.clothes_id=1;");
+		sql.append("SELECT tc.id tc_id, tc.name tc_name, t.id tag_id, t.clothes_id clothes_id ");
+		sql.append("FROM tag_contents tc ");
+		sql.append("JOIN tags t ");
+		sql.append("ON tc.id=t.tag_contents_id ");
+		sql.append("WHERE t.clothes_id=:id;");
 		SqlParameterSource param = new MapSqlParameterSource("id", id);
 		return template.query(sql.toString(), param, TAG_ROW_MAPPER2);
 	}

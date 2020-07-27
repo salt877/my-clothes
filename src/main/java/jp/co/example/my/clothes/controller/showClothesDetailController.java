@@ -33,8 +33,11 @@ public class showClothesDetailController {
 	public String toClothesDetail(Model model, Integer id) {
 		Clothes clothes = showClothesDetailService.showClothesDetail(id);
 		List<Tag>tagList = showClothesDetailService.showTagList(id);
+		clothes.setTagList(tagList);
+		
 		model.addAttribute("tagList", tagList);
 		model.addAttribute("clothes", clothes);
+		
 		return "edit_clothes";
 	}
 	
