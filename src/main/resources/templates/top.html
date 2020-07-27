@@ -8,9 +8,12 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>MYQLO | トップ画面</title>
-<link rel="icon" type="image/x-icon" href="../static/dist/assets/img/favicon.ico" th:href="@{/dist/assets/img/favicon.ico}" />
+<link rel="icon" type="image/x-icon"
+	href="../static/dist/assets/img/favicon.ico"
+	th:href="@{/dist/assets/img/favicon.ico}" />
 <!-- Font Awesome icons (free version)-->
-<script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+<script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js"
+	crossorigin="anonymous"></script>
 <!-- Google fonts-->
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css" />
@@ -21,11 +24,54 @@
 	href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
 	rel="stylesheet" type="text/css" />
 <!-- Core theme CSS (includes Bootstrap)-->
-<link href="../static/dist/css/list_styles.css" rel="stylesheet" th:href="@{/dist/css/list_styles.css}" />
-<link href="../static/dist/css/styles.css" rel="stylesheet" th:href="@{/dist/css/styles.css}" />
+<link href="../static/dist/css/list_styles.css" rel="stylesheet"
+	th:href="@{/dist/css/list_styles.css}" />
+<link href="../static/dist/css/styles.css" rel="stylesheet"
+	th:href="@{/dist/css/styles.css}" />
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+	$(function() {
+		var API_KEY = '478ea780a9d4d20c8ddf7539de30ee32';
+		var city="[[ ${city} ]]";
+		//var city = "東京都";
+		var url = 'http://api.openweathermap.org/data/2.5/forecast?q=' + city
+				+ ',jp&units=metric&APPID=' + API_KEY;
+		$.ajax({
+			url : url,
+			dataType : "json",
+			type : 'GET',
+		}).done(function(data) {
+			var insertHTML = "";
+			var cityName = '<h2>' + data.city.name + '</h2>';
+			$('#city-name').html(cityName);
+			for (var i = 0; i <= 0; i = i + 1) {
+				insertHTML += buildHTML(data, i);
+			}
+			$('#weather').html(insertHTML);
+		}).fail(function(data) {
+			console.log("失敗しました");
+		});
+	});
+
+	function buildHTML(data, i) {
+		var Week = new Array("（日）", "（月）", "（火）", "（水）", "（木）", "（金）", "（土）");
+		var date = new Date(data.list[i].dt_txt);
+		date.setHours(date.getHours() + 9);
+		var month = date.getMonth() + 1;
+		var day = month + "月" + date.getDate() + "日" + Week[date.getDay()]
+				+ date.getHours() + "：00";
+		var icon = data.list[i].weather[0].icon;
+		var html = '<div class="weather-report">'
+				+ '<img src="http://openweathermap.org/img/w/' + icon + '.png">'
+				+ '<div class="weather-date">' + day + '</div>'
+				+ '<div class="weather-main">' + data.list[i].weather[0].main
+				+ '</div>' + '<div class="weather-temp">'
+				+ Math.round(data.list[i].main.temp) + '℃</div>' + '</div>';
+		return html
+	}
+</script>
 </head>
 <body id="page-top">
 
@@ -34,13 +80,20 @@
 		<nav>
 			<div class="inner">
 				<ul>
-					<li><a href="top.html" th:href="@{/}"><i class="fas fa-home"></i>&emsp;&emsp;TOP</a></li>
-					<li><a href="statistics.html" th:href="@{/stats}"><i class="far fa-chart-bar"></i>&emsp;&emsp;統計データ</a></li>
-					<li><a href="calender.html" th:href="@{/}"><i class="far fa-calendar-alt"></i>&emsp;&emsp;カレンダー</a></li>
-					<li><a href="coordinate.html" th:href="@{/coordinate}"><i class="fas fa-female"></i>&emsp;&emsp;コーディネート</a></li>
-					<li><a href="contact.html" th:href="@{/}"><i class="far fa-envelope"></i>&emsp;&emsp;お問い合わせ</a></li>
-					<li><a href="faq.html" th:href="@{/faq}"><i class="far fa-question-circle"></i>&emsp;&emsp;FAQ</a></li>
-					<li><a href="login.html" th:href="@{/logout}"><i class="fas fa-sign-out-alt"></i>&emsp;&emsp;ログアウト</a></li>
+					<li><a href="top.html" th:href="@{/}"><i
+							class="fas fa-home"></i>&emsp;&emsp;TOP</a></li>
+					<li><a href="statistics.html" th:href="@{/stats}"><i
+							class="far fa-chart-bar"></i>&emsp;&emsp;統計データ</a></li>
+					<li><a href="calender.html" th:href="@{/}"><i
+							class="far fa-calendar-alt"></i>&emsp;&emsp;カレンダー</a></li>
+					<li><a href="coordinate.html" th:href="@{/coordinate}"><i
+							class="fas fa-female"></i>&emsp;&emsp;コーディネート</a></li>
+					<li><a href="contact.html" th:href="@{/}"><i
+							class="far fa-envelope"></i>&emsp;&emsp;お問い合わせ</a></li>
+					<li><a href="faq.html" th:href="@{/faq}"><i
+							class="far fa-question-circle"></i>&emsp;&emsp;FAQ</a></li>
+					<li><a href="login.html" th:href="@{/logout}"><i
+							class="fas fa-sign-out-alt"></i>&emsp;&emsp;ログアウト</a></li>
 
 				</ul>
 			</div>
@@ -60,6 +113,13 @@
 				<h2 class="section-heading text-uppercase">My Closet</h2>
 				<h3 class="section-subheading text-muted">Here is a list of the
 					clothes you have.</h3>
+			<!-- 天気予報の表示 -->
+			<div th:text="${city}+'の天気'"></div>
+			<br>		
+			<div class="weather">
+			<a th:href="@{/weather/showWeatherPage}"><span id="weather"></span></a>
+			</div>	
+			
 			</div>
 			<!-- タブ切り替え -->
 			<div class="cp_ipselect cp_sl04">
@@ -73,8 +133,9 @@
 			<form action="top.html" th:action="@{/search}" method="post"
 				onchange="submit(this.form)">
 				<div id="category" class="category">
-					<input id="tab_all" type="radio" name="categoryId" class="radioButton" value="0"><label
-						class="tab-label" for="tab_all">ALL</label> <input id="tab_tops" type="radio"
+					<input id="tab_all" type="radio" name="categoryId"
+						class="radioButton" value="0"><label class="tab-label"
+						for="tab_all">ALL</label> <input id="tab_tops" type="radio"
 						name="categoryId" value="2" class="radioButton"><label
 						class="tab-label" for="tab_tops">TOPS</label> <input
 						id="tab_outer" type="radio" name="categoryId" value="3"
@@ -109,15 +170,16 @@
 				</div>
 			</form>
 			<div id="cloth_list" class="row">
-				<div id="items" class="col-lg-4 col-sm-6 mb-4" th:each="item : ${clothesList}">
+				<div id="items" class="col-lg-4 col-sm-6 mb-4"
+					th:each="item : ${clothesList}">
 					<div class="portfolio-item">
-						<a class="portfolio-link" data-toggle="modal" href="edit_cloth.html" data-target="#exampleModal">
-							  <div class="portfolio-hover">  
-								  <div class="portfolio-hover-content"> 
-									 <i class="fas fa-plus fa-3x"></i> 
-								</div>  
-							  </div>   
-									<img class="img-fluid" th:src="${'/img/'+item.imagePath}" />
+						<a class="portfolio-link" data-toggle="modal"
+							href="edit_cloth.html" data-target="#exampleModal">
+							<div class="portfolio-hover">
+								<div class="portfolio-hover-content">
+									<i class="fas fa-plus fa-3x"></i>
+								</div>
+							</div> <img class="img-fluid" th:src="${'/img/'+item.imagePath}" />
 						</a>
 					</div>
 				</div>
@@ -129,166 +191,166 @@
 				<div id="close_btn" class="btn btn--vuemore btn-c">
 					閉じる <i class="fa fa-chevron-up" aria-hidden="true"></i>
 				</div>
-	</div>
-
-				<!-- モーダルウィンドウ -->
-				<div class="modal fade" id="exampleModal" tabindex="-1"
-					role="dialog" aria-labelledby="exampleModalLabel">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title" id="exampleModalLabel">アイテム編集画面</h5>
-								<button type="button" class="close" data-dismiss="modal"
-									aria-label="閉じる">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<div class="modal-body">
-
-								<!-- フォーム -->
-								<form action="#" method="post">
-									<div class="image-information">
-										<input type="file" name="imageFile"
-											accept=".jpg,.png,image/jpeg,image/png" />
-										<!-- th:errorclass="error-input" がinputタグに入ってると読み込まれないので一旦コメントアウト-->
-									</div>
-									<div class="required-information">
-										<table>
-											<thead>
-												<tr>
-													<th scope="col" colspan="2">基本情報（必須）</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<th>カテゴリー</th>
-													<td data-label="カテゴリー" class="txt">
-														<div class="cp_ipselect cp_sl02">
-															<select required>
-																<option>アクセサリー</option>
-																<option>バック</option>
-																<option>トップス</option>
-															</select>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<th>ブランド</th>
-													<td data-label="ブランド" class="txt">
-														<div class="search">
-															<input type="text" class="search-form">
-															<button type="submit" id="sbtn2">
-																<i class="fas fa-search"></i>
-															</button>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<th>カラー</th>
-													<td data-label="カラー" class="txt">
-														<div class="cp_ipselect cp_sl02">
-															<select required>
-																<option>レッド</option>
-																<option>ブルー</option>
-																<option>ブラック</option>
-															</select>
-														</div>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-									<br> <br>
-									<div class="detailed-information">
-										<table>
-											<thead>
-												<tr>
-													<th scope="col" colspan="2">詳細情報</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<th>タグ</th>
-													<td data-label="タグ" class="txt">
-														<div class="search">
-															<input type="text" class="search-form">
-															<button type="submit" id="sbtn2">
-																<i class="fas fa-search"></i>
-															</button>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<th>シーズン</th>
-													<td data-label="シーズン" class="txt"><input type="radio">春&emsp;
-														<input type="radio">夏&emsp; <input type="radio">秋&emsp;
-														<input type="radio">冬</td>
-												</tr>
-												<tr>
-													<th>サイズ</th>
-													<td data-label="サイズ" class="txt">
-														<div class="cp_ipselect cp_sl02">
-															<select required>
-																<option>XS</option>
-																<option>S</option>
-																<option>M</option>
-																<option>L</option>
-																<option>LL</option>
-																<option>3L</option>
-																<option>4L</option>
-																<option>F</option>
-																<option>不明</option>
-															</select>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<th>購入日</th>
-													<td data-label="購入日" class="txt"><input type="date">
-													</td>
-												</tr>
-												<tr>
-													<th>価格</th>
-													<td data-label="価格" class="txt"><input type="text">
-													</td>
-												</tr>
-												<tr>
-													<th>メモ</th>
-													<td data-label="メモ" class="txt"><textarea rows="10"
-															cols="30"></textarea></td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</form>
-							</div>
-							<!-- フォーム終了 -->
-
-							<!-- モーダルウィンドウフッター -->
-							<div class="modal-footer">
-								<div class="select_btn">
-									<input type="submit" name="submit" id="submit"
-										class="btn btn--delete btn--radius" value="&emsp;削除&emsp;" />
-									<input type="submit" name="submit" id="submit"
-										class="btn btn--submit btn--radius" value="&emsp;変更を保存&emsp;" />
-								</div>
-							</div>
-							<!-- /.modal-footer -->
-						</div>
-						<!-- /.modal-content -->
-					</div>
-					<!-- /.modal-dialog -->
-				</div>
-				<!-- /.modal -->
-
-				<!-- アイテム新規登録ボタン -->
-				<div class="register-item-btn">
-					<a href="register_clothes.html"
-						th:href="@{/registerClothes/showRegisterClothes}"
-						class="btn-circle-stitch"> <i class="fas fa-tshirt"></i> <span>登録</span>
-					</a>
-				</div>
 			</div>
+
+			<!-- モーダルウィンドウ -->
+			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+				aria-labelledby="exampleModalLabel">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">アイテム編集画面</h5>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="閉じる">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+
+							<!-- フォーム -->
+							<form action="#" method="post">
+								<div class="image-information">
+									<input type="file" name="imageFile"
+										accept=".jpg,.png,image/jpeg,image/png" />
+									<!-- th:errorclass="error-input" がinputタグに入ってると読み込まれないので一旦コメントアウト-->
+								</div>
+								<div class="required-information">
+									<table>
+										<thead>
+											<tr>
+												<th scope="col" colspan="2">基本情報（必須）</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<th>カテゴリー</th>
+												<td data-label="カテゴリー" class="txt">
+													<div class="cp_ipselect cp_sl02">
+														<select required>
+															<option>アクセサリー</option>
+															<option>バック</option>
+															<option>トップス</option>
+														</select>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<th>ブランド</th>
+												<td data-label="ブランド" class="txt">
+													<div class="search">
+														<input type="text" class="search-form">
+														<button type="submit" id="sbtn2">
+															<i class="fas fa-search"></i>
+														</button>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<th>カラー</th>
+												<td data-label="カラー" class="txt">
+													<div class="cp_ipselect cp_sl02">
+														<select required>
+															<option>レッド</option>
+															<option>ブルー</option>
+															<option>ブラック</option>
+														</select>
+													</div>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<br> <br>
+								<div class="detailed-information">
+									<table>
+										<thead>
+											<tr>
+												<th scope="col" colspan="2">詳細情報</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<th>タグ</th>
+												<td data-label="タグ" class="txt">
+													<div class="search">
+														<input type="text" class="search-form">
+														<button type="submit" id="sbtn2">
+															<i class="fas fa-search"></i>
+														</button>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<th>シーズン</th>
+												<td data-label="シーズン" class="txt"><input type="radio">春&emsp;
+													<input type="radio">夏&emsp; <input type="radio">秋&emsp;
+													<input type="radio">冬</td>
+											</tr>
+											<tr>
+												<th>サイズ</th>
+												<td data-label="サイズ" class="txt">
+													<div class="cp_ipselect cp_sl02">
+														<select required>
+															<option>XS</option>
+															<option>S</option>
+															<option>M</option>
+															<option>L</option>
+															<option>LL</option>
+															<option>3L</option>
+															<option>4L</option>
+															<option>F</option>
+															<option>不明</option>
+														</select>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<th>購入日</th>
+												<td data-label="購入日" class="txt"><input type="date">
+												</td>
+											</tr>
+											<tr>
+												<th>価格</th>
+												<td data-label="価格" class="txt"><input type="text">
+												</td>
+											</tr>
+											<tr>
+												<th>メモ</th>
+												<td data-label="メモ" class="txt"><textarea rows="10"
+														cols="30"></textarea></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</form>
+						</div>
+						<!-- フォーム終了 -->
+
+						<!-- モーダルウィンドウフッター -->
+						<div class="modal-footer">
+							<div class="select_btn">
+								<input type="submit" name="submit" id="submit"
+									class="btn btn--delete btn--radius" value="&emsp;削除&emsp;" />
+								<input type="submit" name="submit" id="submit"
+									class="btn btn--submit btn--radius" value="&emsp;変更を保存&emsp;" />
+							</div>
+						</div>
+						<!-- /.modal-footer -->
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			<!-- /.modal -->
+
+			<!-- アイテム新規登録ボタン -->
+			<div class="register-item-btn">
+				<a href="register_clothes.html"
+					th:href="@{/registerClothes/showRegisterClothes}"
+					class="btn-circle-stitch"> <i class="fas fa-tshirt"></i> <span>登録</span>
+				</a>
+			</div>
+		</div>
 	</section>
 
 	<!-- Footer-->

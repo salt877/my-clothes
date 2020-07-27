@@ -10,13 +10,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.example.my.clothes.domain.Brand;
 import jp.co.example.my.clothes.domain.Clothes;
 import jp.co.example.my.clothes.domain.LoginUser;
 import jp.co.example.my.clothes.domain.TagContent;
+import jp.co.example.my.clothes.domain.Weather;
 import jp.co.example.my.clothes.service.ShowTopPageService;
+import jp.co.example.my.clothes.service.WeatherService;
 
 @Controller
 @RequestMapping("")
@@ -27,6 +30,9 @@ public class ShowTopPageController {
 
 	@Autowired
 	private HttpSession session;
+
+	@Autowired
+	private WeatherService weatherService;
 
 	/**
 	 * ログインしているユーザの登録アイテムを全て表示します.
@@ -42,6 +48,14 @@ public class ShowTopPageController {
 
 		List<Clothes> clothesList = showTopPageService.showItemList(userId);
 		model.addAttribute("clothesList", clothesList);
+
+		// 天気予報情報の表示
+		Weather weather = weatherService.cityFindByUserId(loginUser.getUser().getId());
+		if (StringUtils.isEmpty(weather)) {
+			model.addAttribute("city", "東京都");
+		} else {
+			model.addAttribute("city", weather.getCityName());
+		}
 
 		// 登録ブランド名を表示させる
 		List<Brand> brandList = showTopPageService.showBrandName(userId);
@@ -59,11 +73,12 @@ public class ShowTopPageController {
 		for (int i = 0; i < tagNameList.size(); i++) {
 			Integer tagContentsId = tagNameList.get(i).getId();
 			String tagContentsName = tagNameList.get(i).getName();
-			System.out.println("登録されてるアイテムのあるtag_contantsテーブルのidは" + tagContentsId + "、nameは" + tagContentsName);
+			// System.out.println("登録されてるアイテムのあるtag_contantsテーブルのidは" + tagContentsId +
+			// "、nameは" + tagContentsName);
 			tagMap.put(tagContentsId, tagContentsName);
 		}
 		model.addAttribute("tagMap", tagMap);
-		
+
 		return "top";
 	}
 
@@ -78,28 +93,28 @@ public class ShowTopPageController {
 			List<Clothes> clothesList = showTopPageService.showItemList(userId);
 			model.addAttribute("clothesList", clothesList);
 
-			System.out.println("トップページを開いた時、ブランドIDは" + brandId);
+			// System.out.println("トップページを開いた時、ブランドIDは" + brandId);
 		}
 
 		// カテゴリが選択された時
 		if (categoryId != null) {
 			List<Clothes> clothesList = showTopPageService.showItemListByCategory(userId, categoryId);
 			model.addAttribute("clothesList", clothesList);
-			System.out.println("カテゴリ選択された時、ブランドIDは" + brandId);
+			// System.out.println("カテゴリ選択された時、ブランドIDは" + brandId);
 		}
 
 		// ブランドが選択された時
 		if (brandId != null) {
 			List<Clothes> clothesList = showTopPageService.showItemListByBrand(userId, brandId);
 			model.addAttribute("clothesList", clothesList);
-			System.out.println("ブランド選択された時、ブランドIDは" + brandId);
+			// System.out.println("ブランド選択された時、ブランドIDは" + brandId);
 		}
 
 		// タグが選択された時
 		if (tagContentsId != null) {
 			List<Clothes> clothesList = showTopPageService.showItemListByTag(userId, tagContentsId);
 			model.addAttribute("clothesList", clothesList);
-			System.out.println("タグ選択された時、タグコンテンツIDは" + tagContentsId);
+			// System.out.println("タグ選択された時、タグコンテンツIDは" + tagContentsId);
 		}
 
 		// 登録ブランド名を表示させる
@@ -109,7 +124,7 @@ public class ShowTopPageController {
 			Integer brandId2 = brandList.get(i).getId();
 			String brandName = brandList.get(i).getName();
 			brandMap.put(brandId2, brandName);
-			System.out.println(brandId2 + brandName);
+			// System.out.println(brandId2 + brandName);
 		}
 		model.addAttribute("brandMap", brandMap);
 

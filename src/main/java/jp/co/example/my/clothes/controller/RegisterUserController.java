@@ -76,6 +76,7 @@ public class RegisterUserController {
 		
 		registerUserService.registerUser(user);
 		
+		
 		// メールを送信する
 		sendMailService.sendMail(form);
 

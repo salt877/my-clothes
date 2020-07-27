@@ -12,6 +12,17 @@
 	-moz-appearance: none;
 }
 
+.txt input[type='select'] {
+	width: 90%;
+	max-width: 400px;
+	padding: 5px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+
 .ef input[type='number']:focus {
 	border: 1px solid #da3c41;
 	outline: none;

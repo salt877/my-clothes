@@ -44,8 +44,14 @@ public class WeatherController {
 
 		// 天気予報表示のための街が登録されているか検索
 		Weather weather = weatherService.cityFindByUserId(loginUser.getUser().getId());
-		form.setCity(weather.getCityName());
-		System.out.println(form);
+		if (!StringUtils.isEmpty(weather)) {
+			form.setCity(weather.getCityName());
+			model.addAttribute("pref", weather.getCityName());
+		} else {// 初期表示は東京都
+			form.setCity("東京都");
+			model.addAttribute("pref", form.getCity());
+		}
+
 		return "weather.html";
 
 	}
@@ -71,11 +77,12 @@ public class WeatherController {
 			weatherService.insertMyCity(weather);
 		} else {
 			// 既に情報が登録されていたら更新
-			weather = new Weather();
-			weather.setUserId(loginUser.getUser().getId());
-			weather.setCityName(form.getCity());
-			weatherService.updateCity(weather);
-
+			if (!StringUtils.isEmpty(form.getCity())) {
+				weather = new Weather();
+				weather.setUserId(loginUser.getUser().getId());
+				weather.setCityName(form.getCity());
+				weatherService.updateCity(weather);
+			}
 		}
 
 		return showWeatherPage(form, model, loginUser);

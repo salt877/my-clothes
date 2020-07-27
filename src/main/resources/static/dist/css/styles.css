@@ -20289,3 +20289,7 @@ label {
 	background-color: pink;
 }
 
+.container　> .text-center >.weather > a> span{
+	color:#0000FF;
+}
+
