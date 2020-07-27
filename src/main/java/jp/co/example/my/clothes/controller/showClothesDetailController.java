@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.example.my.clothes.domain.Clothes;
 import jp.co.example.my.clothes.domain.Tag;
+import jp.co.example.my.clothes.service.RegisterClothesService;
 import jp.co.example.my.clothes.service.ShowClothesDetailService;
 
 @Controller
@@ -17,6 +18,9 @@ public class showClothesDetailController {
 
 	@Autowired
 	private ShowClothesDetailService showClothesDetailService;
+	
+	@Autowired
+	private RegisterClothesService registerClothesService;
 	
 	/**
 	 * アイテムの詳細画面を表示するメソッドです.
