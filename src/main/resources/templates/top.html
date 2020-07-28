@@ -114,10 +114,9 @@
 				<h3 class="section-subheading text-muted">Here is a list of the
 					clothes you have.</h3>
 			<!-- 天気予報の表示 -->
-			<div th:text="${city}+'の天気'"></div>
-			<br>		
+					
 			<div class="weather">
-			<a th:href="@{/weather/showWeatherPage}"><span id="weather"></span></a>
+			<a th:href="@{/weather/showWeatherPage}"><div th:text="${city}+'の天気'"></div><span id="weather"></span></a>
 			</div>	
 			
 			</div>
