@@ -530,9 +530,28 @@ public class ClothesRepository {
 		sql.append("LEFT JOIN colors co ON cl.color_id=co.id ");
 		sql.append("LEFT JOIN sizes s ON cl.size_id=s.id ");
 		sql.append("WHERE cl.id=:id");
+		
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
 		Clothes clothes = template.queryForObject(sql.toString(), param, CLOTHES_ROW_MAPPER3);
+		
 		return clothes;
+	}
+	
+	/**
+	 * アイテムの更新を行うメソッドです.
+	 * 
+	 * @param clothes clothesオブジェクト
+	 */
+	public void update(Clothes clothes) {
+		SqlParameterSource param = new BeanPropertySqlParameterSource(clothes);
+		
+		StringBuilder sql = new StringBuilder();
+		sql.append("UPDATE clothes ");
+		sql.append("SET category_id=:categoryId, brand_id=:brandId, color_id=:colorId, season=:season, size_id=:sizeId,");
+		sql.append("price=:price, perchase_date=:perchaseDate, comment=:comment ");
+		sql.append("WHERE id=:id;");
+		
+		template.update(sql.toString(), param);
 	}
 
 }

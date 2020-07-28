@@ -109,8 +109,7 @@ public class showClothesDetailController {
 	@RequestMapping("/editClothes")
 	public String editClothes(Model model, EditClothesForm form) {
 		
-		
-		return "";
+		return "redirect://";
 	}
 	
 	
