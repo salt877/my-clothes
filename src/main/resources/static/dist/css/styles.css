@@ -19871,7 +19871,7 @@ tbody th {
 
 .cp_ipselect {
 	overflow: hidden;
-	width: 90%;
+	
 	text-align: center;
 }
 
@@ -19928,6 +19928,7 @@ tbody th {
 .cp_ipselect.cp_sl02 select {
 	padding: 8px 38px 8px 8px;
 	color: #666666;
+
 }
 
 .txt input[type='text'] {
@@ -20227,8 +20228,7 @@ tbody th {
 /** 一覧のタブで使用 */
 .cp_ipselect {
 	overflow: hidden;
-	width: 40%;
-	margin: 2em auto;
+	width: 90%;
 	text-align: center;
 }
 
@@ -20276,6 +20276,7 @@ tbody th {
 .cp_ipselect.cp_sl04 select {
 	padding: 8px 38px 8px 8px;
 	color: #5e5e5e;
+	width:9%;
 }
 
 
