@@ -6,11 +6,11 @@ public class EditClothesForm {
 
 	/** 画像 */
 	private MultipartFile imageFile;
-	/** カテゴリー */
+	/** カテゴリーID */
 	private String category;
-	/** ブランド */
+	/** ブランドID */
 	private String brand;
-	/** カラー */
+	/** カラーID */
 	private String color;
 	/** タグ1 */
 	private String tag1;
@@ -20,7 +20,7 @@ public class EditClothesForm {
 	private String tag3;
 	/** シーズン */
 	private String season;
-	/** サイズ */
+	/** サイズID */
 	private String size;
 	/** 購入日 */
 	private String perchaseDate;

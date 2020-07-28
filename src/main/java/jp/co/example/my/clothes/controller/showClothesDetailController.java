@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -51,12 +52,12 @@ public class showClothesDetailController {
 	public String toClothesDetail(Model model, Integer id, EditClothesForm form) {
 		
 		// シーズンの選択肢を表示
-				Map<String,String>seasonMap = new LinkedHashMap<>();
-				seasonMap.put("春", "春");
-				seasonMap.put("夏", "夏");
-				seasonMap.put("秋", "秋");
-				seasonMap.put("冬", "冬");
-				model.addAttribute("seasonMap", seasonMap);
+		Map<String,String>seasonMap = new LinkedHashMap<>();
+		seasonMap.put("春", "春");
+		seasonMap.put("夏", "夏");
+		seasonMap.put("秋", "秋");
+		seasonMap.put("冬", "冬");
+		model.addAttribute("seasonMap", seasonMap);
 		
 		// カテゴリの選択肢一覧を取得
 		List<Category> categoryList = registerClothesService.showCategoryList();
@@ -82,14 +83,33 @@ public class showClothesDetailController {
 		clothes.setTagList(tagList);
 		
 		// 初期表示
+		form.setCategory(Integer.toString(clothes.getCategoryId()));
+		form.setBrand(clothes.getBrand().getName());
+		form.setColor(Integer.toString(clothes.getColorId()));
+		form.setSeason(clothes.getSeason());
+		form.setSize(Integer.toString(clothes.getSizeId()));
+		form.setPrice(Integer.toString(clothes.getPrice()));
+		form.setComment(clothes.getComment());
+		if(CollectionUtils.isEmpty(tagList)) {	// tagに何も登録されていない場合
+			form.setTag1("");
+			form.setTag2("");
+			form.setTag3("");
+		} else {		// tagが3つ登録されている場合
+			form.setTag1(clothes.getTagList().get(0).getTagContent().getName());
+			form.setTag2(clothes.getTagList().get(1).getTagContent().getName());
+			form.setTag3(clothes.getTagList().get(2).getTagContent().getName());
+		}
 		
 		model.addAttribute("clothes", clothes);
 		
 		return "edit_clothes";
 	}
 	
+
 	@RequestMapping("/editClothes")
 	public String editClothes(Model model, EditClothesForm form) {
+		
+		
 		return "";
 	}
 	

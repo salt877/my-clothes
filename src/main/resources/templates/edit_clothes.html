@@ -49,7 +49,7 @@
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">アイテム詳細/編集</h2>
                 </div>
-                <form action="#" method="post" th:action="@{/showDetail}" th:object="${editClothesForm}">
+                <form action="#" method="post" th:action="@{/showDetail/editClothes}" th:object="${editClothesForm}">
                 	<!-- 商品idを埋め込んでおく -->
 					<input  type="hidden" name="itemId" th:value="${clothes.id}">
                 	<div class="image-information">
@@ -71,7 +71,7 @@
                 							<select name="category" id="category">
                 								<option th:each="category :${categoryList}"
 												th:text="${category.name}" th:value="${category.id}"
-												>アクセサリー</option>
+												th:field="*{category}">アクセサリー</option>
                 							</select>
                 						</div>
                 					</td>
@@ -80,7 +80,7 @@
                 					<th>ブランド</th>
                 					<td data-label="ブランド" class="txt">
                 						<div class="search">
-                							<input type="text" class="search-form"  name="brand" id="brand" th:value="${clothes.brand.name}">
+                							<input type="text" class="search-form"  name="brand" id="brand" th:value="${clothes.brand.name}" th:field="*{brand}">
                 							<button type="submit" id="sbtn2"><i class="fas fa-search"></i></button>
                 						</div>
                 					</td>
@@ -89,9 +89,9 @@
                 					<th>カラー</th>
                 					<td data-label="カラー" class="txt">
                 						<div class="cp_ipselect cp_sl02">
-                							<select name="color" id="color">
+                							<select name="color" id="color" th:field="*{color}">
                 								<option th:each="color :${colorList}" th:text="${color.name}"
-												th:value="${color.id}">レッド</option>
+												th:value="${color.id}" >レッド</option>
                 							</select>
                 						</div>
                 					</td>
@@ -112,16 +112,16 @@
                 					<th>タグ1</th>
                 					<td data-label="タグ" class="txt">
                 						<div class="search">
-                							<input type="text" class="search-form" name="tag1" id="tag1">
+                							<input type="text" class="search-form" name="tag1" id="tag1" th:field="*{tag1}">
                 							<button type="submit" id="sbtn2"><i class="fas fa-search"></i></button>
                 						</div>
                 					</td>
                 				</tr>
                 				<tr>
                 					<th>タグ2</th>
-                					<td data-label="タグ" class="txt">
+                					<td data-label="タグ" class="txt" >
                 						<div class="search">
-                							<input type="text" class="search-form" name="tag2" id="tag2">
+                							<input type="text" class="search-form" name="tag2" id="tag2" th:field="*{tag2}">
                 							<button type="submit" id="sbtn2"><i class="fas fa-search"></i></button>
                 						</div>
                 					</td>
@@ -130,7 +130,7 @@
                 					<th>タグ3</th>
                 					<td data-label="タグ" class="txt">
                 						<div class="search">
-                							<input type="text" class="search-form" name="tag3" id="tag3">
+                							<input type="text" class="search-form" name="tag3" id="tag3" th:field="*{tag3}">
                 							<button type="submit" id="sbtn2"><i class="fas fa-search"></i></button>
                 						</div>
                 					</td>
@@ -139,7 +139,7 @@
                 					<th>シーズン</th>
                 					<td data-label="シーズン" class="txt">
                 						<span th:each="season : ${seasonMap}">
-	                						<input name="season" id="season" type="radio" th:value="${season.key}" th:text="${season.value}">&emsp;&emsp;
+	                						<input name="season" id="season" type="radio" th:value="${season.key}" th:text="${season.value}" th:field="*{season}">&emsp;&emsp;
 	                					</span>
                 					</td>
                 				</tr>
@@ -157,19 +157,19 @@
                 				<tr>
                 					<th>購入日</th>
                 					<td data-label="購入日" class="txt">
-	                						<input type="date" th:value="${clothes.perchaseDate}">
+	                						<input name="perchaseDate" id="perchaseDate" type="date" th:value="${clothes.perchaseDate}">
                 					</td>
                 				</tr>
                 				<tr>
                 					<th>価格</th>
                 					<td data-label="価格" class="txt">
-                						<input type="text" th:value="${#numbers.formatInteger(clothes.price,2,'COMMA')}">
+                						<input name="price" id="price" type="text" th:value="${#numbers.formatInteger(clothes.price,1,'COMMA')}">
                 					</td>
                 				</tr>
                 				<tr>
                 					<th>メモ</th>
                 					<td data-label="メモ" class="txt">
-                						<textarea rows="10" cols="30" th:text="${clothes.comment}"></textarea>
+                						<textarea name="comment" id="comment" rows="10" cols="30" th:field="*{comment}"></textarea>
                 					</td>
                 				</tr>
                 			</tbody>
