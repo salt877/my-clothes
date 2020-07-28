@@ -64,13 +64,6 @@ public class RegisterClothesController {
 		// サイズの選択し一覧を表示
 		List<Size> sizeList = registerClothesService.showSizeList();
 		model.addAttribute("sizeList", sizeList);
-		// シーズンの選択肢を表示
-		Map<String,String>seasonMap = new LinkedHashMap<>();
-		seasonMap.put("春", "春");
-		seasonMap.put("夏", "夏");
-		seasonMap.put("秋", "秋");
-		seasonMap.put("冬", "冬");
-		model.addAttribute("seasonMap", seasonMap);
 
 		// ブランドのオートコンプリート機能
 		StringBuilder brandListForAutocomplete = registerClothesService.getBrandListForAutoconplete();
