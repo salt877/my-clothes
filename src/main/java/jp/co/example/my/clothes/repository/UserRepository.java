@@ -3,6 +3,7 @@ package jp.co.example.my.clothes.repository;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -11,6 +12,7 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import jp.co.example.my.clothes.domain.LoginUser;
+import jp.co.example.my.clothes.domain.PasswordReset;
 import jp.co.example.my.clothes.domain.User;
 
 /**
@@ -29,6 +31,9 @@ public class UserRepository {
 		user.setPassword(rs.getString("password"));
 		return user;
 	};
+
+	private static final RowMapper<PasswordReset> PASSWORD_RESET_ROWMAPPER = new BeanPropertyRowMapper<>(
+			PasswordReset.class);
 
 	@Autowired
 	private NamedParameterJdbcTemplate template;
@@ -70,7 +75,44 @@ public class UserRepository {
 		String sql = "UPDATE users SET email=:email WHERE id=:id";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("email", email).addValue("id", id);
 		template.update(sql, param);
-		System.out.println(sql);
+	}
+
+	/**
+	 * ランダムURLからユーザIDを検索します.
+	 * 
+	 * @param token
+	 * @return
+	 */
+	public PasswordReset findUserByUrl(String randomUrl) {
+		String sql = "SELECT id,user_id,random_url,expire_date FROM password_reset WHERE random_url=:randomUrl";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("randomUrl", randomUrl);
+		List<PasswordReset> changeList = template.query(sql, param, PASSWORD_RESET_ROWMAPPER);
+		if (changeList.size() == 0) {
+			return null;
+		}
+		return changeList.get(0);
+	}
+
+	public User findUserByUserId(Integer userId) {
+		String sql = "SELECT id,email,password FROM users WHERE id=:id AND deleted='false'";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("id", userId);
+		List<User> userList = template.query(sql, param, USER_ROW_MAPPER);
+		if (userList.size() == 0) {
+			return null;
+		}
+		return userList.get(0);
+	}
+
+	/**
+	 * パスワードを変更します.
+	 * 
+	 * @param user ユーザ情報
+	 */
+	public void updateUserPassword(Integer userId, String password) {
+		String sql = "UPDATE users SET password=:password WHERE id=:id AND deleted='false'";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("password", password).addValue("id",
+				userId);
+		template.update(sql, param);
 	}
 
 	/**

@@ -65,6 +65,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.logoutSuccessUrl("/showLogin") // ログアウト後に遷移させるパス(ここではログイン画面を設定)
 				.deleteCookies("JSESSIONID") // ログアウト後、Cookieに保存されているセッションIDを削除
 				.invalidateHttpSession(true); // true:ログアウト後、セッションを無効にする false:セッションを無効にしない
+		
+		http.sessionManagement()
+			.enableSessionUrlRewriting(true)
+			.invalidSessionUrl("/showLogin");  //URL Rewritingを有効化する
 
 	}
 
