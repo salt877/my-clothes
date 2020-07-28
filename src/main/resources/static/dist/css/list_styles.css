@@ -1,14 +1,14 @@
 @charset "UTF-8";
 
 /** 一覧のタブで使用 */
-.cp_ipselect {
+.item_select {
 	overflow: hidden;
 	width: 40%;
 	margin: 2em auto;
 	text-align: center;
 }
 
-.cp_ipselect select {
+.item_select select {
 	width: 100%;
 	padding-right: 1em;
 	cursor: pointer;
@@ -23,11 +23,11 @@
 	appearance: none;
 }
 
-.cp_ipselect select::-ms-expand {
+.item_select select::-ms-expand {
 	display: none;
 }
 
-.cp_ipselect.cp_sl04 {
+.item_select.cp_sl04 {
 	position: relative;
 	border-radius: 2px;
 	border: 2px solid #ffd478;
@@ -35,7 +35,7 @@
 	background: #ffffff;
 }
 
-.cp_ipselect.cp_sl04::before {
+.item_select.cp_sl04::before {
 	position: absolute;
 	top: 0.8em;
 	right: 0.8em;
@@ -49,7 +49,7 @@
 	pointer-events: none;
 }
 
-.cp_ipselect.cp_sl04 select {
+.item_select.cp_sl04 select {
 	padding: 8px 38px 8px 8px;
 	color: #5e5e5e;
 }
