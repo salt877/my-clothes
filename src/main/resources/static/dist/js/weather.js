@@ -1,6 +1,12 @@
 /**
  * 
  */
+
+body { 
+	background-image: url(img/weather.jpg);
+}
+
+
 /*
 function clickBtn3() {
 

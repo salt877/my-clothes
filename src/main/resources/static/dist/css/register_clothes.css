@@ -27,15 +27,14 @@
 	border: 1px solid #da3c41;
 	outline: none;
 	box-shadow: 0 0 5px 1px rgba(218, 60, 65, .5);
-	
-/*input type="number"のスピンボタンの非表示*/
-/* Chrome/Safari */
-input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button
-	{
-	-webkit-appearance: none;
-}
+	/*input type="number"のスピンボタンの非表示*/
+	/* Chrome/Safari */
 
-/* Firefox */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
 input[type="number"] {
-	-moz-appearance: textfield;
-} 
+  -moz-appearance:textfield;
+}

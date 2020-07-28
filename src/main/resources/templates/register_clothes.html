@@ -34,6 +34,13 @@
 <script type="text/javascript"
 	src="../static/dist/js/register_clothes.js"
 	th:src="@{/dist/js/register_clothes.js}" /></script>
+<style type='text/css'>
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+</style>
 
 <script type="text/javascript">
 //aモーダルの画像表示
@@ -169,7 +176,7 @@ function func1(){
 					<label th:if="${#fields.hasErrors('imageFile')}"
 						th:errors="*{imageFile}" class="error-messages">
 						写真を選択してください </label> <input name="imageFile" type="file"
-						accept=".jpg,.png" id="myImage" />
+						accept=".jpg,.png" id="myImage"　required="required">
 					<script type="text/javascript">
   						
 						</script>
@@ -201,8 +208,7 @@ function func1(){
 							</tr>
 							<tr>
 								<th>
-									<div>ブランド</div> <!--  div th:if="${message}!=null" th:text="${message}"
-										style="color: red"></div-->
+									<div>ブランド</div> <div th:if="${message}!=null" th:text="${message}"　style="color: red"></div-->
 									<div id="duplicateMessage" style="color: red;"></div>
 								</th>
 								<td data-label="brand" class="txt"><label for="brand"
@@ -283,7 +289,7 @@ function func1(){
 								<td data-label="サイズ" class="txt" name="size">
 									<div class="cp_ipselect cp_sl02">
 										<select name="size" id="size">
-											<option>--</option>
+											<option value="">--</option>
 											<option th:each="size:${sizeList}" th:text="${size.name}"
 												th:value="${size.id}" th:field="*{size}">XS</option>
 										</select>
