@@ -103,7 +103,7 @@ public class ClothesRepository {
 	 * @return 登録アイテム一覧
 	 */
 	public List<Clothes> findByCategoryForCoordinate(Integer userId, Integer categoryId) {
-		String sql = SQL + "WHERE user_id=:userId AND category_id=:categoryId ORDER BY id;";
+		String sql = SQL + "WHERE user_id=:userId AND category_id=:categoryId AND deleted = false ORDER BY id;";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId).addValue("categoryId",
 				categoryId);
 		List<Clothes> clothesList = template.query(sql, param, CLOTHES_ROW_MAPPER);

@@ -15,7 +15,6 @@
 	border-radius: 50px;
 }
 
-
 .radio-img {
 	width: 250px;
 	height: auto;
@@ -26,15 +25,19 @@
 	display: none;
 }
 
-.radio+ .radio-img {
+.radio+.radio-img {
 	border: 3px #ffffff solid;
 }
 
-.radio:checked+ .radio-img {
+.radio:checked+.radio-img {
 	border: 3px #ff0000 solid;
 	background-color: #ffeeee;
 }
-
+/*
+.modal-input {
+	visibility: hidden;
+}
+*/
 /*
 .tooltip {
     width:130px;

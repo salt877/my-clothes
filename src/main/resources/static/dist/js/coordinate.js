@@ -1,6 +1,6 @@
 
 $(function(){
-	
+
 	// カテゴリーボタンがクリックされた時のajax通信処理
 	$('.category-btn').on('click', function(){
 		
@@ -22,15 +22,15 @@ $(function(){
 		// 通信成功時の処理
 		}).done(function(data){
 			
-			// モーダル内親要素<div>の中にある既存の<img>タグを削除
-			// 親要素
+			// モーダル内親要素<div>の中にある既存の<img>タグ等を削除
+			// 親要素取得
 			var parentDiv = document.getElementById('modal-img');
-			// 子要素を全削除
+			// その中の子要素を全削除
 			while(parentDiv.firstChild){
 				parentDiv.removeChild(parentDiv.firstChild);	
 			}
 			
-			// リスト分label/input/imgタグ生成
+			// APIから取得したリスト分label/input/imgタグ生成
 			for(let clothes of data.clothesList){
 				var newLabel = document.createElement("label");
 				newLabel.setAttribute("id", "modal-label" + clothes.id);
@@ -51,81 +51,101 @@ $(function(){
 				document.getElementById("modal-label" + clothes.id).appendChild(newImg);
 			}
 			
-			// 画像をクリックしたときの処理
-			$('img.radio-img').on('click', function() {
-				// クリックされた画像にcheckedクラスを付与・その画像についているラジオボタンのチェックをtrueにする.
-				var $imgList = $('.modal-label');				  
-				$imgList.find('img.radio-img.checked').removeClass('checked');
-				$(this).prev('input:radio[name="clothesId"]').prop('checked',true);
-				$(this).addClass('checked');			
-			
-				// チェックされたラジオボタンのvalue・imgのsrc取得
-				var checkedVal = $('input[name="clothesId"]:checked').val();
-				var src = $('img.radio-img.checked').attr('src');
+			// 動的にimgタグが作られる親要素取得
+			// モーダル内選択ボタンをデフォルトで押下不可
+			var checkedVal = 0; 
+			var src;
+			var $imgList = $('.modal-label');			
+			$('#select-modal-btn').prop('disabled', true);	
 
-			// モーダル内の選択ボタンをクリックしたときの処理.
-			// hiddenのvalueに選択された服IDを付与.
-			// 登録確認モーダル＆コーディネート画面にチェックされた画像を表示.
-			$('#select-modal-btn').on('click', function(){
+			// モーダル内画像（ラジオボタン）をクリックしたときの処理
+			$('input:radio[name="clothesId"]').off('click').on('click', function() {
 
-				
-				if(checkId === "fashion-accessories"){
-					$('#modal-fashion-accessories').val(checkedVal);
-					$("#drag-img1").attr("src",src);
-					$("#in-modal-img1").attr("src",src);
+				// 同じ画像をクリックした場合
+				// トップス１と２で同じ画像が選択された際は、選択不可にする.
+				// その画像のcheckedクラスを削除
+				// ラジオボタンの選択解除
+				// 選択ボタン押下不可
+				if($(this).val() == checkedVal || $(this).val() == $('#modal-tops1').val() || $(this).val() == $('#modal-tops2').val()) {
+					$imgList.find('img.radio-img.checked').removeClass('checked');
+					$(this).prop('checked', false);
+					$('#select-modal-btn').prop('disabled', true);	
+					checkedVal = 0;
 					
+				// 異なる画像をクリックした場合
+				// クリックされた画像にcheckedクラスを付与
+				// ラジオボタンのチェックをtrueにする.
+				// 選択ボタン押下不可解除
+				} else {
+					$imgList.find('img.radio-img.checked').removeClass('checked');
+					$(this).next('.radio-img').addClass('checked');			
+					$(this).prop('checked', true);
+					$('#select-modal-btn').prop('disabled', false);		
+					src = $(this).next('.radio-img').attr('src');		
+					checkedVal = $(this).val();
 				}
-					
-				if(checkId === "tops1"){
-					$('#modal-tops1').val(checkedVal);	
-					$("#drag-img2").attr("src",src);
-					$("#in-modal-img2").attr("src",src);
-				}
-				
-					
-				if(checkId === "tops2"){
-					$('#modal-tops2').val(checkedVal);	
-					$("#drag-img3").attr("src",src);
-					$("#in-modal-img3").attr("src",src);
-				}
-				
-				if(checkId === "outers"){
-					$('#modal-outers').val(checkedVal);	
-					$("#drag-img4").attr("src",src);
-					$("#in-modal-img4").attr("src",src);
-				}
-				 
-				if(checkId === "bottoms"){
-					$('#modal-bottoms').val(checkedVal);	
-					$("#drag-img5").attr("src",src);
-					$("#in-modal-img5").attr("src",src);
-				}
-				
-				if(checkId === "shoes"){
-					$('#modal-shoes').val(checkedVal);	
-					$("#drag-img6").attr("src",src);
-					$("#in-modal-img6").attr("src",src);
-				}
-				
-				if(checkId === "bag"){
-					$('#modal-tops1').val(checkedVal);	
-					$("#drag-img7").attr("src",src);
-					$("#in-modal-img7").attr("src",src);
-				}
-				
-				if(checkId === "dress"){
-					$('#modal-dress').val(checkedVal);	
-					$("#drag-img8").attr("src",src);
-					$("#in-modal-img8").attr("src",src);	
-				}
-				
-				if($('#modal-tops1').val() == $('#modal-tops2').val()){
-					$('#co-confirmation-btn').attr('disabled', 'disabled');
-				}else{
-					$('#co-confirmation-btn').removeAttr('disabled');
-				}
+
+
 			});
-		});
+				
+				// 閉じるボタンを押したときの処理（選択したまま閉じた場合、check外す）
+				// checkIdを初期化
+				$('.close-modal').off('click').on('click', function(){
+					$imgList.find('img.radio-img.checked').removeClass('checked');
+					$('input[name=clothesId]').prop('checked', false);
+					checkId = "";
+				
+				});
+				
+
+
+				// モーダル内の選択ボタンをクリックしたときの処理.
+				// 登録確認モーダル内hiddenのvalueに選択された服IDを付与.
+				// 登録確認モーダル＆コーディネート画面にチェックされた画像を表示.
+				$('#select-modal-btn').off('click').on('click', function(){
+						
+					if(checkId === "fashion-accessories"){
+						$('#modal-fashion-accessories').val(checkedVal);
+						$("#drag-img1").attr("src",src);
+						$("#in-modal-img1").attr("src",src);
+					
+					}else if(checkId === "tops1"){
+						$('#modal-tops1').val(checkedVal);	
+						$("#drag-img2").attr("src",src);
+						$("#in-modal-img2").attr("src",src);
+					
+					}else if(checkId === "tops2"){
+						$('#modal-tops2').val(checkedVal);	
+						$("#drag-img3").attr("src",src);
+						$("#in-modal-img3").attr("src",src);
+					
+					}else if(checkId === "outers"){
+						$('#modal-outers').val(checkedVal);	
+						$("#drag-img4").attr("src",src);
+						$("#in-modal-img4").attr("src",src);
+					
+					}else if(checkId === "bottoms"){
+						$('#modal-bottoms').val(checkedVal);	
+						$("#drag-img5").attr("src",src);
+						$("#in-modal-img5").attr("src",src);
+					
+					}else if(checkId === "shoes"){
+						$('#modal-shoes').val(checkedVal);	
+						$("#drag-img6").attr("src",src);
+						$("#in-modal-img6").attr("src",src);
+					
+					}else if(checkId === "bag"){
+						$('#modal-tops1').val(checkedVal);	
+						$("#drag-img7").attr("src",src);
+						$("#in-modal-img7").attr("src",src);
+					
+					}else if(checkId === "dress"){
+						$('#modal-dress').val(checkedVal);	
+						$("#drag-img8").attr("src",src);
+						$("#in-modal-img8").attr("src",src);	
+					}	
+				
+				});
 			
 		}).fail(function(XMLHttpRequest, textStatus, errorThrown){
 			alert("エラーが発生しました。");
@@ -139,6 +159,7 @@ $(function(){
 	// コーデエリア画像のダブルクリック処理
 	// コーデエリア・確認モーダル内の画像削除・hiddenのvalue削除
 	$('.drag-img').on('dblclick', function(){
+				
 		if($(this).attr('id') === "drag-img1"){
 			$("#drag-img1").attr("src", "");
 			$("#in-modal-img1").attr("src", "");
@@ -183,14 +204,12 @@ $(function(){
 		
 		if($(this).attr('id') === "drag-img8"){
 			$("#drag-img8").attr("src", "");
-			$("#in-modal-im8").attr("src", "");
+			$("#in-modal-img8").attr("src", "");
 			$('#modal-dress').val("");
 		}
 		
+		
 	});
-	
-	
-
 	
 	// コーデ削除ボタンを押したときの処理
 	$('#co-delete-btn').on('click', function(){
@@ -225,17 +244,45 @@ $(function(){
 			
 		}
 	});
+	
+	//確認モーダルのボタン押下処理
+	//hiddenのvalue＆コーデ名が空の場合押下不可
+	if($('#code-name').val().length == 0 || $('.modal-input').val().length == 0) {
+		$('.coordinate-regis-btn').prop('disabled', true);
+	}
+	
+	//確認ボタンクリックイベント
+	$('#co-confirmation-btn').on('click', function(){
+		//hiddenが空（アイテム未選択）の場合、押下不可
+		if($('.modal-input').val().length == 0){
+			$('.coordinate-regis-btn').prop('disabled', true);
+		}
+		
+		//確認モーダルを開いた時点でアイテム選択済＆コーデ名入力されている場合押下可
+		if($('.modal-input').val().length > 0 && $('#code-name').val().length > 0){
+			$('.coordinate-regis-btn').prop('disabled', false);
+		}
+		
+		//コーデ名入力欄changeイベント
+		$('#code-name').off('change').on('change', function() {
 			
-	// コーデ名未入力の場合、登録ボタン押下不可.
-	if($('#code-name').val().length == 0) {
-		$('.coordinate-regis-btn').attr('disabled', 'disabled');
-    }
-		$('#code-name').bind('keydown keyup keypress change', function() {
-		    if ( $(this).val().length > 0 ) {
-		    	$('.coordinate-regis-btn').removeAttr('disabled');
-		    } else {
-		        $('.coordinate-regis-btn').attr('disabled', 'disabled');
-		    }
-	    });
+			//コーデ名入力&アイテム選択済みの場合、押下可
+			if ($('#code-name').val().length > 0 && $('.modal-input').val().length > 0) {
+				$('.coordinate-regis-btn').prop('disabled', false);
+			
+			//コーデ名入力済み＆アイテム未選択の場合、押下不可
+			}else if($('#code-name').val().length > 0 && $('.modal-input').val().length == 0){
+				$('.coordinate-regis-btn').prop('disabled', true);
+			
+			//コーデ名未入力&アイテム選択済みの場合、押下不可
+			}else if($('#code-name').val().length == 0 && $('.modal-input').val().length > 0){
+				$('.coordinate-regis-btn').prop('disabled', true);
+			}
+			
+
+		});
+		
+	});	
+	
 });
 	

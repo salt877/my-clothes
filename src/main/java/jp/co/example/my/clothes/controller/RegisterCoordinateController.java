@@ -33,7 +33,7 @@ public class RegisterCoordinateController {
 	}
 
 	/**
-	 * コーディネートを登録します.トップスで同じアイテムを選んだ場合はコーディネート画面に戻ります。
+	 * コーディネートを登録します.
 	 * 
 	 * @param loginUser
 	 * @param form
@@ -45,14 +45,6 @@ public class RegisterCoordinateController {
 	public String registerCoordinate(@Validated RegisterCoordinateForm form, BindingResult result,
 			@AuthenticationPrincipal LoginUser loginUser) {
 
-//		if (form.getIntTops1() == form.getIntTops2()) {
-//			result.rejectValue("tops1", "", "トップスは同じアイテムを選択できません。");
-//		}
-//
-//		if (result.hasErrors()) {
-//			return "coordinate";
-//		}
-
 		Coordinate coordinate = new Coordinate();
 		coordinate.setUserId(loginUser.getUser().getId());
 		coordinate.setFashionAccessories(form.getIntFashionAccessories());
@@ -63,7 +55,6 @@ public class RegisterCoordinateController {
 		coordinate.setShoes(form.getIntShoes());
 		coordinate.setBag(form.getIntBag());
 		coordinate.setDress(form.getIntDress());
-		System.out.println(form.getIntDress());
 		coordinate.setName(form.getName());
 		
 		System.out.println(coordinate);

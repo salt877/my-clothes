@@ -41,7 +41,7 @@ public class ShowCoordinateRestController {
 	public Map<String, List<Clothes>> clothesMap(@AuthenticationPrincipal LoginUser loginUser, Integer categoryId) {
 		Map<String, List<Clothes>> clothesMap = new HashMap<>();
 
-		List<Clothes> clothesList = showTopPageService.showItemListByCategory(loginUser.getUser().getId(), categoryId);
+		List<Clothes> clothesList = showTopPageService.showItemListByCategoryForCoordinate(loginUser.getUser().getId(), categoryId);
 
 		clothesMap.put("clothesList", clothesList);
 
