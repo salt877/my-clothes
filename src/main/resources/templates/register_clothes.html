@@ -35,10 +35,10 @@
 	src="../static/dist/js/register_clothes.js"
 	th:src="@{/dist/js/register_clothes.js}" /></script>
 <style type='text/css'>
-input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button
-	{
-	-webkit-appearance: none;
-	margin: 0;
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 /* 画像の選択ボタンに関して*/
@@ -60,9 +60,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 	box-shadow: 0 8px 10px -2px rgba(0, 0, 0, 0.2); /* 影を表示 */
 }
 /* inputは隠す */
-.upload-label input {
-	display: none;
-}
+
 </style>
 
 <script type="text/javascript">
@@ -100,7 +98,7 @@ $(function() {
 		$("#myImage").change(function (){
 		 var fileName = $(this).val();
 		 console.log(fileName);
-		change();
+		 change();
 	 });
 		});
 	function change(){
@@ -108,10 +106,10 @@ $(function() {
 		console.log(category);
 		 var color = document.getElementById('color').value;
 		 console.log(color);
-		 var brand = document.getElementById( 'brand' ).value ;
+		 var brand = document.getElementById( "brand" ).value ;
 		 brand=brand.replace(/^\s+/,"");
 		 var image = document.getElementById('myImage').value;
-		 console.log(image);
+		 console.log(Image);
 		 
 		 if(!category||!color||!brand||!image){
 			 $('#confirm').prop('disabled', true);
@@ -196,7 +194,8 @@ function func1(){
 				th:action="@{/registerClothes/register}"
 				th:object="${registerClothesForm}" enctype="multipart/form-data">
 				<div class="image-information">
-					<label class="upload-label">画像を選択してください <input
+					
+						<label class="upload-label">画像を選択してください <input
 						name="imageFile" type="file" accept=".jpg,.png" id="myImage"
 						required>
 					</label>
@@ -228,11 +227,8 @@ function func1(){
 							</tr>
 							<tr>
 								<th>
-									<div>ブランド</div>
-									<div th:if="${message}!=null" th:text="${message}"
-										　style="color: red">
-										</div-->
-										<div id="duplicateMessage" style="color: red;"></div>
+									<div>ブランド</div> <div th:if="${message}!=null" th:text="${message}"　style="color: red"></div-->
+									<div id="duplicateMessage" style="color: red;"></div>
 								</th>
 								<td data-label="brand" class="txt"><label for="brand"
 									th:errors="*{brand}" style="color: red"></label>
@@ -372,9 +368,6 @@ function func1(){
 										<script type="text/javascript">
 										/*a 表示の画像サイズを指定する*/
 										var targetImg = document.getElementById('preview');
-										if(targetImg.length==0{
-											console.log("写真が選択されていません");
-										}
 										targetImg.width = 300;
 										targetImg.height = 300;
 										</script>

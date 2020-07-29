@@ -43,6 +43,11 @@
 body { 
 	background-image: url(img/weather.jpg);
 }
+span{
+
+  display: inline-block;
+
+}
 </style>
 
 
@@ -79,20 +84,22 @@ body {
 		var day = month + "月" + date.getDate() + "日" + Week[date.getDay()]
 				+ date.getHours() + "：00";
 		var icon = data.list[i].weather[0].icon;
-		var html = '<div class="weather-report">'
+		var html = '<span class="weather-report">'
 				+ '<img src="http://openweathermap.org/img/w/' + icon + '.png">'
-				+ '<div class="weather-date">' + day + '</div>'
+				+ '<div class="weather-date">' + day + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>'
 				+ '<div class="weather-main">' + data.list[i].weather[0].main
-				+ '</div>' + '<div class="weather-temp">'
-				+ Math.round(data.list[i].main.temp) + '℃</div>' + '</div>';
+				+ '&nbsp;</div>' + '<div class="weather-temp">'
+				+ Math.round(data.list[i].main.temp) + '℃</div>' + '</span>';
 		return html
 	}
 	
 	function clickBtn3(){
 		const str = document.getElementById("city").value;
 		console.log(str);
+		form1.submit();
 		var city = str;
 		alert(str+"に設定しました");
+		
 	}
 </script>
 </head>
@@ -141,12 +148,12 @@ body {
 		<span id="weather"></span>
 	</div>
 	<form action="" th:action="@{/weather/registerCity}" method="post"
-		th:object="${weatherForm}">
+		th:object="${weatherForm}" name="form1">
 		<div align="center">
 			<div>
-				<br> <input type="submit" value="都道府県を設定" onclick="clickBtn3()"
+				<br> <input type="submit" value="都道府県を設定" 
 					class="btn btn-primary"> <select id="city" name="city"
-					class="form-control" style="width: 130px">
+					class="form-control" style="width: 130px" onchange="clickBtn3()">
 					<optgroup label="北海道　東北">
 						<option value="北海道" th:field="*{city}">北海道</option>
 						<option value="青森県" th:field="*{city}">青森県</option>
