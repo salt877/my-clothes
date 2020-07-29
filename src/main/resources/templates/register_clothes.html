@@ -35,10 +35,33 @@
 	src="../static/dist/js/register_clothes.js"
 	th:src="@{/dist/js/register_clothes.js}" /></script>
 <style type='text/css'>
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button
+	{
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+/* 画像の選択ボタンに関して*/
+/* labelをボタンらしく */
+.upload-label {
+	display: inline-block;
+	cursor: pointer; /* カーソルを指に */
+	margin: 1em 0; /* まわりの余白 */
+	padding: .7em 1em; /* 文字まわりの余白 */
+	line-height: 1.4; /* 行間 */
+	background: #ffc107; /* 背景色 */
+	color: #FFF; /* 文字色 */
+	font-size: 0.95em; /* フォントサイズ */
+	border-radius: 2.5em; /* 角の丸み */
+	transition: 0.2s; /* ホバーをなめらかに */
+}
+/* aホバー時 */
+.upload-label:hover {
+	box-shadow: 0 8px 10px -2px rgba(0, 0, 0, 0.2); /* 影を表示 */
+}
+/* inputは隠す */
+.upload-label input {
+	display: none;
 }
 </style>
 
@@ -74,10 +97,10 @@ $(function() {
 	
 	//画像が入っているか確認.
 	$(function() {
-		$("input:file").change(function (){
+		$("#myImage").change(function (){
 		 var fileName = $(this).val();
 		 console.log(fileName);
-		//$(".filename").html(fileName);
+		change();
 	 });
 		});
 	function change(){
@@ -85,12 +108,12 @@ $(function() {
 		console.log(category);
 		 var color = document.getElementById('color').value;
 		 console.log(color);
-		 var brand = document.getElementById( "brand" ).value ;
+		 var brand = document.getElementById( 'brand' ).value ;
 		 brand=brand.replace(/^\s+/,"");
 		 var image = document.getElementById('myImage').value;
-		 console.log(myImage);
+		 console.log(image);
 		 
-		 if(!category||!color||!brand){
+		 if(!category||!color||!brand||!image){
 			 $('#confirm').prop('disabled', true);
 			 console.log("押せない");
 		 }else{
@@ -173,13 +196,10 @@ function func1(){
 				th:action="@{/registerClothes/register}"
 				th:object="${registerClothesForm}" enctype="multipart/form-data">
 				<div class="image-information">
-					<label th:if="${#fields.hasErrors('imageFile')}"
-						th:errors="*{imageFile}" class="error-messages">
-						写真を選択してください </label> <input name="imageFile" type="file"
-						accept=".jpg,.png" id="myImage"　required="required">
-					<script type="text/javascript">
-  						
-						</script>
+					<label class="upload-label">画像を選択してください <input
+						name="imageFile" type="file" accept=".jpg,.png" id="myImage"
+						required>
+					</label>
 
 					<!-- ,image/jpeg,image/png"th:errorclass="error-input" -->
 				</div>
@@ -208,8 +228,11 @@ function func1(){
 							</tr>
 							<tr>
 								<th>
-									<div>ブランド</div> <div th:if="${message}!=null" th:text="${message}"　style="color: red"></div-->
-									<div id="duplicateMessage" style="color: red;"></div>
+									<div>ブランド</div>
+									<div th:if="${message}!=null" th:text="${message}"
+										　style="color: red">
+										</div-->
+										<div id="duplicateMessage" style="color: red;"></div>
 								</th>
 								<td data-label="brand" class="txt"><label for="brand"
 									th:errors="*{brand}" style="color: red"></label>
@@ -349,6 +372,9 @@ function func1(){
 										<script type="text/javascript">
 										/*a 表示の画像サイズを指定する*/
 										var targetImg = document.getElementById('preview');
+										if(targetImg.length==0{
+											console.log("写真が選択されていません");
+										}
 										targetImg.width = 300;
 										targetImg.height = 300;
 										</script>
