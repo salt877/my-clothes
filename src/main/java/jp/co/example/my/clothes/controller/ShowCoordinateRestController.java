@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jp.co.example.my.clothes.domain.Clothes;
 import jp.co.example.my.clothes.domain.LoginUser;
+import jp.co.example.my.clothes.service.ShowCoordinateService;
 import jp.co.example.my.clothes.service.ShowTopPageService;
 
 /**
@@ -26,6 +27,9 @@ public class ShowCoordinateRestController {
 	@Autowired
 	private ShowTopPageService showTopPageService;
 
+	@Autowired
+	private ShowCoordinateService showCoodinateService;
+
 	/**
 	 * ユーザー別カテゴリーごとのアイテム情報をJSON形式で返す.
 	 * 
@@ -37,11 +41,22 @@ public class ShowCoordinateRestController {
 	public Map<String, List<Clothes>> clothesMap(@AuthenticationPrincipal LoginUser loginUser, Integer categoryId) {
 		Map<String, List<Clothes>> clothesMap = new HashMap<>();
 
-		List<Clothes> clothesList = showTopPageService.showItemListByCategory(loginUser.getUser().getId(), categoryId);
+		List<Clothes> clothesList = showTopPageService.showItemListByCategoryForCoordinate(loginUser.getUser().getId(), categoryId);
 
 		clothesMap.put("clothesList", clothesList);
 
 		return clothesMap;
+	}
+
+	/**
+	 * コーディネートIDに紐づくコーディネートデータを論理削除.
+	 * 
+	 * @param coordinateId
+	 */
+	@RequestMapping(value = "/delete_coordinate", method = RequestMethod.GET)
+	public void deleteCoordinate(Integer coordinateId) {
+		showCoodinateService.deleteCoordinate(coordinateId);
+		
 	}
 
 }

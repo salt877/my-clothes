@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -117,7 +119,7 @@ public class CoordinateRepository {
 				"ON co.fashion_accessories  = cl.id OR co.tops1 = cl.id OR co.tops2 = cl.id OR co.outers = cl.id OR co.bottoms = cl.id OR co.shoes = cl.id OR co.bag = cl.id OR co.dress = cl.id ");
 		sql.append("LEFT OUTER JOIN categories ca ON cl.category_id = ca.id ");
 		sql.append("LEFT OUTER JOIN brands b ON cl.brand_id = cl.id ");
-		sql.append("WHERE co.user_id = :userId ");
+		sql.append("WHERE co.user_id = :userId AND co.deleted = 'FALSE' ");
 		sql.append("ORDER BY co.id, cl.category_id");
 
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
@@ -129,6 +131,39 @@ public class CoordinateRepository {
 		}
 
 		return coordinateList;
+	}
+
+	/**
+	 * coordinatesテーブルにインサートします.
+	 * 
+	 * @param coordinate
+	 */
+	public void insert(Coordinate coordinate) {
+		StringBuilder sql = new StringBuilder();
+		sql.append(
+				"INSERT INTO coordinates (user_id, fashion_accessories, tops1, tops2, outers, bottoms, shoes, bag, dress, name) ");
+		sql.append(
+				"VALUES (:userId, :fashionAccessories, :tops1, :tops2, :outers, :bottoms, :shoes, :bag, :dress, :name)");
+
+		SqlParameterSource param = new BeanPropertySqlParameterSource(coordinate);
+
+		template.update(sql.toString(), param);
+
+	}
+
+	/**
+	 * 
+	 * coodinatesテーブルから指定IDのデータを論理削除します.
+	 * 
+	 * @param coordinateId
+	 */
+	public void update(Integer coordinateId) {
+		StringBuilder sql = new StringBuilder();
+		sql.append("UPDATE coordinates SET deleted = 'true' WHERE id = :coordinateId");
+
+		SqlParameterSource param = new MapSqlParameterSource().addValue("coordinateId", coordinateId);
+		template.update(sql.toString(), param);
+
 	}
 
 }

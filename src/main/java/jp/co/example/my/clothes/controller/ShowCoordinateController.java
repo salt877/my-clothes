@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.example.my.clothes.domain.Coordinate;
 import jp.co.example.my.clothes.domain.LoginUser;
+import jp.co.example.my.clothes.form.RegisterCoordinateForm;
 import jp.co.example.my.clothes.service.ShowCoordinateService;
 
 /**
@@ -23,6 +25,11 @@ public class ShowCoordinateController {
 
 	@Autowired
 	private ShowCoordinateService showCoordinateService;
+
+	@ModelAttribute
+	public RegisterCoordinateForm setUpForm() {
+		return new RegisterCoordinateForm();
+	}
 
 	/**
 	 * コーディネート画面を表示します.

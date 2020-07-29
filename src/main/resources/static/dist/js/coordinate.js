@@ -1,252 +1,154 @@
 
 $(function(){
-	
-// ファッション雑貨
-	$('#fashion-accessories-btn').on('click', function(){
-		$.ajax({
+
+	// カテゴリーボタンがクリックされた時のajax通信処理
+	$('.category-btn').on('click', function(){
+		
+		// カテゴリーごとの条件分岐のため、クリックされたボタンのdata-id属性取得
+		var checkId = $(this).data('id');
+		
+		// APIへ飛ばすためのパラメータとして、クリックされたボタンのカテゴリーID取得
+		var categoryId = $(this).val();
+
+			$.ajax({
 			url: "http://localhost:8080/show_clotheslist",
 			type: "GET",
 			dataType: "json",
 			data: {
-				categoryId: $('#fashion-accessories-btn').val()
+				categoryId: categoryId
 			},
 			async: true
-		
-		}).done(function(data){
-			// リストを回して画像表示させる前に、親要素<div>の中にある既存の<img>タグを削除します.
-			// 親要素
-			var parentDiv = document.getElementById('modal-img');
-			// 子要素を全削除
-			while(parentDiv.firstChild){
-				parentDiv.removeChild(parentDiv.firstChild);
-				
-			}
-	
-			// <div>タグの中の子要素としてリストの中身分<img>タグを生成します.
-			for(let clothes of data.clothesList){
-				var newImg = document.createElement("img");
-				newImg.setAttribute("src", '/img/'+clothes.imagePath);
-				document.getElementById("modal-img").appendChild(newImg);
-			}	    
 			
-		}).fail(function(XMLHttpRequest, textStatus, errorThrown){
-			alert("エラーが発生しました。");
-			console.log("XMLHttpRequest:" + XMLHttpRequest.status);
-			console.log("textStatus:" + textStatus);
-			console.log("errorThrown" + errorThrown.message);
-		
-		});
-		});
-	
-// トップス１
-	$('#tops1-btn').on('click', function(){
-		$.ajax({
-			url: "http://localhost:8080/show_clotheslist",
-			type: "GET",
-			dataType: "json",
-			data: {
-				categoryId: $('#tops1-btn').val()
-			},
-			async: true
-		
+		// 通信成功時の処理
 		}).done(function(data){
 			
-			// リストを回して画像表示させる前に、親要素<div>の中にある既存の<img>タグを削除します.
-			// 親要素
+			// モーダル内親要素<div>の中にある既存の<img>タグ等を削除
+			// 親要素取得
 			var parentDiv = document.getElementById('modal-img');
-			// 子要素
+			// その中の子要素を全削除
 			while(parentDiv.firstChild){
-				parentDiv.removeChild( parentDiv.firstChild );
-				
+				parentDiv.removeChild(parentDiv.firstChild);	
 			}
 			
-			// <div>タグの中の子要素としてリストの中身分<img>タグを生成します.
+			// APIから取得したリスト分label/input/imgタグ生成
 			for(let clothes of data.clothesList){
-				console.log("for文内での画像パス：" + clothes.imagePath);
+				var newLabel = document.createElement("label");
+				newLabel.setAttribute("id", "modal-label" + clothes.id);
+				newLabel.setAttribute("class", "modal-label");		
+				document.getElementById("modal-img").appendChild(newLabel);
+				
+				var newInput = document.createElement("input");
+				newInput.type = "radio";
+				newInput.id = "modal-radio" + clothes.id;
+				newInput.className = "radio";
+				newInput.name = "clothesId";
+				newInput.value = clothes.id;
+				document.getElementById("modal-label"+ clothes.id).appendChild(newInput);
+								
 				var newImg = document.createElement("img");
-				newImg.setAttribute("src", '/img/'+clothes.imagePath);		
-				document.getElementById("modal-img").appendChild(newImg);
+				newImg.setAttribute("src", clothes.imagePath);
+				newImg.setAttribute("class", "radio-img");
+				document.getElementById("modal-label" + clothes.id).appendChild(newImg);
 			}
 			
+			// チェックされたradioのvalueを入れる変数checkedVal（radio選択解除の条件分岐にも使用）
+			// チェックされた画像のsrcを入れる変数src
+			// 動的にimgタグが作られる親要素取得
+			// モーダル内選択ボタンをデフォルトで押下不可
+			var checkedVal = 0; 
+			var src;
+			var $imgList = $('.modal-label');			
+			$('#select-modal-btn').prop('disabled', true);	
+
+			// モーダル内画像（ラジオボタン）をクリックしたときの処理
+			$('input:radio[name="clothesId"]').off('click').on('click', function() {
+
+				// 同じ画像をクリックした場合
+				// トップス１と２で同じ画像が選択された際は、選択不可にする.
+				// その画像のcheckedクラスを削除
+				// ラジオボタンの選択解除
+				// 選択ボタン押下不可
+				if($(this).val() == checkedVal || $(this).val() == $('#modal-tops1').val() || $(this).val() == $('#modal-tops2').val()) {
+					$imgList.find('img.radio-img.checked').removeClass('checked');
+					$(this).prop('checked', false);
+					$('#select-modal-btn').prop('disabled', true);	
+					checkedVal = 0;
 					
-		}).fail(function(XMLHttpRequest, textStatus, errorThrown){
-			alert("エラーが発生しました。");
-			console.log("XMLHttpRequest:" + XMLHttpRequest.status);
-			console.log("textStatus:" + textStatus);
-			console.log("errorThrown" + errorThrown.message);
-		
-		});
-		});
-	
-// トップス２
-	$('#tops2-btn').on('click', function(){
-		$.ajax({
-			url: "http://localhost:8080/show_clotheslist",
-			type: "GET",
-			dataType: "json",
-			data: {
-				categoryId: $('#tops2-btn').val()
-			},
-			async: true
-		
-		}).done(function(data){
-			// リストを回して画像表示させる前に、親要素<div>の中にある既存の<img>タグを削除します.
-			// 親要素
-			var parentDiv = document.getElementById('modal-img');
-			// 子要素を全削除
-			while(parentDiv.firstChild){
-				parentDiv.removeChild( parentDiv.firstChild );
-				
-			}
-			
-			for(let clothes of data.clothesList){
-				console.log("for文内での画像パス：" + clothes.imagePath);
-				var newImg = document.createElement("img");
-				newImg.setAttribute("src", '/img/'+clothes.imagePath);
-				document.getElementById("modal-img").appendChild(newImg);
-			}
-		}).fail(function(XMLHttpRequest, textStatus, errorThrown){
-			alert("エラーが発生しました。");
-			console.log("XMLHttpRequest:" + XMLHttpRequest.status);
-			console.log("textStatus:" + textStatus);
-			console.log("errorThrown" + errorThrown.message);
-		
-		});
-		});
-	
-	$('#outers-btn').on('click', function(){
-		$.ajax({
-			url: "http://localhost:8080/show_clotheslist",
-			type: "GET",
-			dataType: "json",
-			data: {
-				categoryId: $('#outers-btn').val()
-			},
-			async: true
-		
-		}).done(function(data){
-			// リストを回して画像表示させる前に、親要素<div>の中にある既存の<img>タグを削除します.
-			// 親要素
-			var parentDiv = document.getElementById('modal-img');
-			// 子要素を全削除
-			while(parentDiv.firstChild){
-				parentDiv.removeChild( parentDiv.firstChild );
-				
-			}
-			
-			for(let clothes of data.clothesList){
-				console.log("for文内での画像パス：" + clothes.imagePath);
-				var newImg = document.createElement("img");
-				newImg.setAttribute("src", '/img/'+clothes.imagePath);
-				document.getElementById("modal-img").appendChild(newImg);
-			}
-		}).fail(function(XMLHttpRequest, textStatus, errorThrown){
-			alert("エラーが発生しました。");
-			console.log("XMLHttpRequest:" + XMLHttpRequest.status);
-			console.log("textStatus:" + textStatus);
-			console.log("errorThrown" + errorThrown.message);
-		
-		});
-		});
-	
-	$('#bottoms-btn').on('click', function(){
-		$.ajax({
-			url: "http://localhost:8080/show_clotheslist",
-			type: "GET",
-			dataType: "json",
-			data: {
-				categoryId: $('#bottoms-btn').val()
-			},
-			async: true
-		
-		}).done(function(data){
-			// リストを回して画像表示させる前に、親要素<div>の中にある既存の<img>タグを削除します.
-			// 親要素
-			var parentDiv = document.getElementById('modal-img');
-			// 子要素を全削除
+				// 異なる画像をクリックした場合
+				// クリックされた画像にcheckedクラスを付与
+				// ラジオボタンのチェックをtrueにする.
+				// 選択ボタン押下不可解除
+				} else {
+					$imgList.find('img.radio-img.checked').removeClass('checked');
+					$(this).next('.radio-img').addClass('checked');			
+					$(this).prop('checked', true);
+					$('#select-modal-btn').prop('disabled', false);		
+					src = $(this).next('.radio-img').attr('src');		
+					checkedVal = $(this).val();
+				}
 
-			while(parentDiv.firstChild){
-				parentDiv.removeChild( parentDiv.firstChild );
-				
-			}
-			
-			for(let clothes of data.clothesList){
-				console.log("for文内での画像パス：" + clothes.imagePath);
-				var newImg = document.createElement("img");
-				newImg.setAttribute("src", '/img/'+clothes.imagePath);
-				document.getElementById("modal-img").appendChild(newImg);
-			}
-		}).fail(function(XMLHttpRequest, textStatus, errorThrown){
-			alert("エラーが発生しました。");
-			console.log("XMLHttpRequest:" + XMLHttpRequest.status);
-			console.log("textStatus:" + textStatus);
-			console.log("errorThrown" + errorThrown.message);
-		
-		});
-		});
-	
-	$('#shoes-btn').on('click', function(){
-		$.ajax({
-			url: "http://localhost:8080/show_clotheslist",
-			type: "GET",
-			dataType: "json",
-			data: {
-				categoryId: $('#shoes-btn').val()
-			},
-			async: true
-		
-		}).done(function(data){
-			// リストを回して画像表示させる前に、親要素<div>の中にある既存の<img>タグを削除します.
-			// 親要素
-			var parentDiv = document.getElementById('modal-img');
-			// 子要素を全削除
-			while(parentDiv.firstChild){
-				parentDiv.removeChild( parentDiv.firstChild );
-				
-			}
-			
-			for(let clothes of data.clothesList){
-				console.log("for文内での画像パス：" + clothes.imagePath);
-				var newImg = document.createElement("img");
-				newImg.setAttribute("src", '/img/'+clothes.imagePath);
-				document.getElementById("modal-img").appendChild(newImg);
-			}
-		}).fail(function(XMLHttpRequest, textStatus, errorThrown){
-			alert("エラーが発生しました。");
-			console.log("XMLHttpRequest:" + XMLHttpRequest.status);
-			console.log("textStatus:" + textStatus);
-			console.log("errorThrown" + errorThrown.message);
-		
-		});
-		});
-	
-	$('#bag-btn').on('click', function(){
-		$.ajax({
-			url: "http://localhost:8080/show_clotheslist",
-			type: "GET",
-			dataType: "json",
-			data: {
-				categoryId: $('#bag-btn').val()
-			},
-			async: true
-		
-		}).done(function(data){
-			// リストを回して画像表示させる前に、親要素<div>の中にある既存の<img>タグを削除します.
-			// 親要素
-			var parentDiv = document.getElementById('modal-img');
-			// 子要素を全削除
 
-			while(parentDiv.firstChild){
-				parentDiv.removeChild( parentDiv.firstChild );
+			});
 				
-			}
+				// 閉じるボタンを押したときの処理（選択したまま閉じた場合、check外す）
+				// checkIdを初期化
+				$('.close-modal').off('click').on('click', function(){
+					$imgList.find('img.radio-img.checked').removeClass('checked');
+					$('input[name=clothesId]').prop('checked', false);
+					checkId = "";
+				
+				});
+				
+
+
+				// モーダル内の選択ボタンをクリックしたときの処理.
+				// 登録確認モーダル内hiddenのvalueに選択された服IDを付与.
+				// 登録確認モーダル＆コーディネート画面にチェックされた画像を表示.
+				$('#select-modal-btn').off('click').on('click', function(){
+						
+					if(checkId === "fashion-accessories"){
+						$('#modal-fashion-accessories').val(checkedVal);
+						$("#drag-img1").attr("src",src);
+						$("#in-modal-img1").attr("src",src);
+					
+					}else if(checkId === "tops1"){
+						$('#modal-tops1').val(checkedVal);	
+						$("#drag-img2").attr("src",src);
+						$("#in-modal-img2").attr("src",src);
+					
+					}else if(checkId === "tops2"){
+						$('#modal-tops2').val(checkedVal);	
+						$("#drag-img3").attr("src",src);
+						$("#in-modal-img3").attr("src",src);
+					
+					}else if(checkId === "outers"){
+						$('#modal-outers').val(checkedVal);	
+						$("#drag-img4").attr("src",src);
+						$("#in-modal-img4").attr("src",src);
+					
+					}else if(checkId === "bottoms"){
+						$('#modal-bottoms').val(checkedVal);	
+						$("#drag-img5").attr("src",src);
+						$("#in-modal-img5").attr("src",src);
+					
+					}else if(checkId === "shoes"){
+						$('#modal-shoes').val(checkedVal);	
+						$("#drag-img6").attr("src",src);
+						$("#in-modal-img6").attr("src",src);
+					
+					}else if(checkId === "bag"){
+						$('#modal-tops1').val(checkedVal);	
+						$("#drag-img7").attr("src",src);
+						$("#in-modal-img7").attr("src",src);
+					
+					}else if(checkId === "dress"){
+						$('#modal-dress').val(checkedVal);	
+						$("#drag-img8").attr("src",src);
+						$("#in-modal-img8").attr("src",src);	
+					}	
+				
+				});
 			
-			for(let clothes of data.clothesList){
-				console.log("for文内での画像パス：" + clothes.imagePath);
-				var newImg = document.createElement("img");
-				newImg.setAttribute("src", '/img/'+clothes.imagePath);
-				document.getElementById("modal-img").appendChild(newImg);
-			}
 		}).fail(function(XMLHttpRequest, textStatus, errorThrown){
 			alert("エラーが発生しました。");
 			console.log("XMLHttpRequest:" + XMLHttpRequest.status);
@@ -254,43 +156,161 @@ $(function(){
 			console.log("errorThrown" + errorThrown.message);
 		
 		});
-		});
+	});
 	
-	$('#dress-btn').on('click', function(){
-		$.ajax({
-			url: "http://localhost:8080/show_clotheslist",
-			type: "GET",
-			dataType: "json",
-			data: {
-				categoryId: $('#dress-btn').val()
-			},
-			async: true
-		
-		}).done(function(data){
-			// リストを回して画像表示させる前に、親要素<div>の中にある既存の<img>タグを削除します.
-			// 親要素
-			var parentDiv = document.getElementById('modal-img');
-			
-			// 子要素を全削除
-			while(parentDiv.firstChild){
-				parentDiv.removeChild( parentDiv.firstChild );
+	// コーデエリア画像のダブルクリック処理
+	// コーデエリア・確認モーダル内の画像削除・hiddenのvalue削除
+	$('.drag-img').on('dblclick', function(){
 				
-			}
-			
-			for(let clothes of data.clothesList){
-				console.log("for文内での画像パス：" + clothes.imagePath);
-				var newImg = document.createElement("img");
-				newImg.setAttribute("src", '/img/'+clothes.imagePath);
-				document.getElementById("modal-img").appendChild(newImg);
-			}
-			
-		}).fail(function(XMLHttpRequest, textStatus, errorThrown){
-			alert("エラーが発生しました。");
-			console.log("XMLHttpRequest:" + XMLHttpRequest.status);
-			console.log("textStatus:" + textStatus);
-			console.log("errorThrown" + errorThrown.message);
+		if($(this).attr('id') === "drag-img1"){
+			$("#drag-img1").attr("src", "");
+			$("#in-modal-img1").attr("src", "");
+			$('#modal-fashion-accessories').val("");
+		}
 		
-		});
+		if($(this).attr('id') === "drag-img2"){
+			$("#drag-img2").attr("src", "");
+			$("#in-modal-img2").attr("src", "");
+			$('#modal-tops1').val("");
+		}
+		
+		if($(this).attr('id') === "drag-img3"){
+			$("#drag-img3").attr("src", "");
+			$("#in-modal-img3").attr("src", "");
+			$('#modal-tops2').val("");
+		}
+		
+		if($(this).attr('id') === "drag-img4"){
+			$("#drag-img4").attr("src", "");
+			$("#in-modal-img4").attr("src", "");
+			$('#modal-outers').val("");
+		}
+		
+		if($(this).attr('id') === "drag-img5"){
+			$("#drag-img5").attr("src", "");
+			$("#in-modal-img5").attr("src", "");
+			$('#modal-bottoms').val("");
+		}
+		
+		if($(this).attr('id') === "drag-img6"){
+			$("#drag-img6").attr("src", "");
+			$("#in-modal-img6").attr("src", "");
+			$('#modal-shoes').val("");
+		}
+		
+		if($(this).attr('id') === "drag-img7"){
+			$("#drag-img7").attr("src", "");
+			$("#in-modal-img7").attr("src", "");
+			$('#modal-bag').val("");
+		}
+		
+		if($(this).attr('id') === "drag-img8"){
+			$("#drag-img8").attr("src", "");
+			$("#in-modal-img8").attr("src", "");
+			$('#modal-dress').val("");
+		}
+		
+		
+	});
+	
+	// コーデ削除ボタンを押したときの処理
+	$('#co-delete-btn').on('click', function(){
+		
+		var coordinateId = $('#co-delete-btn').val();
+		console.log("コーデID：" + coordinateId);
+		
+		if(confirm("このコーディネートを削除してもよろしいですか？")){
+			$.ajax({
+				url: "http://localhost:8080/delete_coordinate",
+				type: "GET",
+				data :{
+					coordinateId : coordinateId
+					},
+				async: true
+				
+			// 通信成功時の処理
+			}).done(function(){
+				window.location.href="http://localhost:8080/coordinate";
+				
+			}).fail(function(XMLHttpRequest, textStatus, errorThrown){
+				alert("エラーが発生しました。");
+				console.log("XMLHttpRequest:" + XMLHttpRequest.status);
+				console.log("textStatus:" + textStatus);
+				console.log("errorThrown" + errorThrown.message);
+			
 		});	
+			
+		}else{
+			
+			return false;
+			
+		}
+	});
+	
+	// 確認モーダルのボタン押下処理
+	// デフォルトは押下不可
+	$('.coordinate-regis-btn').prop('disabled', true);
+	$('small#conf-msg').hide();
+	
+	// 確認ボタンクリックイベント
+	$('#co-confirmation-btn').on('click', function(){
+		
+		// hidden要素取得
+		var hidden = document.getElementsByClassName('modal-input');
+		// hiddenのvalueを格納する配列用意
+		var hiddenVal = [];
+		
+		// hidden要素分回し、valueがある場合のみ配列に格納
+		for(let i = 0; i < hidden.length; i++){
+			if(hidden.item(i).value){
+				hiddenVal.push(hidden.item(i).value);
+			}				
+		}
+
+		if(hiddenVal.length > 0 && $('#code-name').val().length == 0){
+			$('small#conf-msg').hide();
+			$('.coordinate-regis-btn').prop('disabled', true);
+		}
+		
+		// 確認モーダルを開いた時点でアイテム選択済＆コーデ名入力されている場合押下可
+		if(hiddenVal.length > 0 && $('#code-name').val().length > 0 && $('#code-name').val().length <= 20){
+			$('small#conf-msg').hide();
+			$('.coordinate-regis-btn').prop('disabled', false);
+		}
+		
+				
+		// hiddenValが空（アイテム未選択）の場合、押下不可
+		if(hiddenVal.length == 0 || $('#code-name').val().length > 20){
+			$('small#conf-msg').show();
+			$('.coordinate-regis-btn').prop('disabled', true);
+		}
+		
+		
+		// コーデ名入力欄changeイベント
+		$('#code-name').off('change').on('change', function() {
+			// コーデ名入力済み＆アイテム未選択の場合、押下不可
+		
+			if($('#code-name').val().length > 0 && hiddenVal.length == 0){
+				$('.coordinate-regis-btn').prop('disabled', true);
+			}
+						
+			// コーデ名入力&アイテム選択済みの場合、押下可
+			if ($('#code-name').val().length > 0 && $('#code-name').val().length <= 20 && hiddenVal.length > 0) {
+				$('.coordinate-regis-btn').prop('disabled', false);
+			
+			}
+			
+			// コーデ名未入力&アイテム選択済みの場合、押下不可
+			if($('#code-name').val().length == 0 && hiddenVal.length > 0){
+				$('.coordinate-regis-btn').prop('disabled', true);
+			}
+			
+			
+
+		});
+		
+	});	
+	
 	
 });
+	

@@ -1089,10 +1089,12 @@ th {
 	text-align: inherit;
 }
 
+
 label {
 	display: inline-block;
 	margin-bottom: 0.5rem;
 }
+
 
 button {
 	border-radius: 0;
@@ -1754,10 +1756,12 @@ button::-moz-focus-inner, [type=button]::-moz-focus-inner, [type=reset]::-moz-fo
 	border-style: none;
 }
 
+
 input[type=radio], input[type=checkbox] {
 	box-sizing: border-box;
 	padding: 0;
 }
+
 
 textarea {
 	overflow: auto;
@@ -8754,6 +8758,7 @@ px
 	margin-bottom: 0;
 }
 
+
 .btn-group-toggle>.btn input[type=radio], .btn-group-toggle>.btn input[type=checkbox],
 	.btn-group-toggle>.btn-group>.btn input[type=radio], .btn-group-toggle>.btn-group>.btn input[type=checkbox]
 	{
@@ -8761,6 +8766,7 @@ px
 	clip: rect(0, 0, 0, 0);
 	pointer-events: none;
 }
+
 
 .input-group {
 	position: relative;
@@ -21657,10 +21663,12 @@ tbody th {
 	margin: -1.9em 30em 3em 2em;
 }
 /* 質問を開いた時の仕様 */
-/* --アイコン */
+/* --アイコン 
 .cp_qa .cp_actab input:checked ~ label {
 	color: #00838F;
 }
+
+*/
 /* --答えの高さ */
 .cp_qa .cp_actab input:checked ~ .cp_actab-content {
 	max-height: 40em;
@@ -21861,17 +21869,6 @@ tbody th {
 	width: 9%;
 }
 
-//
-クラス名を指定する。
-label {
-	background-color: #8cc5ed;
-	padding: 10px 20px;
-	border-radius: 50px;
-}
-
-.radioButton:checked+label {
-	background-color: pink;
-}
 
 .container　>.text-center>.weather>a>span {
 	color: #0000FF;
@@ -21898,3 +21895,4 @@ label {
 .upload-label input {
   display: none;
 }
+

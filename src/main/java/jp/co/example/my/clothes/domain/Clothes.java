@@ -3,6 +3,7 @@ package jp.co.example.my.clothes.domain;
 import java.util.Date;
 import java.util.List;
 
+
 /**
  * アイテム情報を扱うドメインクラス.
  * 
