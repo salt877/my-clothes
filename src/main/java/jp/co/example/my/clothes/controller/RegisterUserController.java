@@ -12,7 +12,6 @@ import jp.co.example.my.clothes.domain.User;
 import jp.co.example.my.clothes.form.RegisterUserForm;
 import jp.co.example.my.clothes.service.RegisterUserCompleteSendMailService;
 import jp.co.example.my.clothes.service.RegisterUserService;
-import jp.co.example.my.clothes.service.SendMailService;
 
 /**
  * ユーザ情報を操作するコントローラークラス.
@@ -75,6 +74,7 @@ public class RegisterUserController {
 		BeanUtils.copyProperties(form, user);
 		
 		registerUserService.registerUser(user);
+		
 		
 		// メールを送信する
 		sendMailService.sendMail(form);

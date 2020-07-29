@@ -51,6 +51,8 @@ $(function(){
 				document.getElementById("modal-label" + clothes.id).appendChild(newImg);
 			}
 			
+			// チェックされたradioのvalueを入れる変数checkedVal（radio選択解除の条件分岐にも使用）
+			// チェックされた画像のsrcを入れる変数src
 			// 動的にimgタグが作られる親要素取得
 			// モーダル内選択ボタンをデフォルトで押下不可
 			var checkedVal = 0; 
@@ -245,44 +247,70 @@ $(function(){
 		}
 	});
 	
-	//確認モーダルのボタン押下処理
-	//hiddenのvalue＆コーデ名が空の場合押下不可
-	if($('#code-name').val().length == 0 || $('.modal-input').val().length == 0) {
-		$('.coordinate-regis-btn').prop('disabled', true);
-	}
+	// 確認モーダルのボタン押下処理
+	// デフォルトは押下不可
+	$('.coordinate-regis-btn').prop('disabled', true);
+	$('small#conf-msg').hide();
 	
-	//確認ボタンクリックイベント
+	// 確認ボタンクリックイベント
 	$('#co-confirmation-btn').on('click', function(){
-		//hiddenが空（アイテム未選択）の場合、押下不可
-		if($('.modal-input').val().length == 0){
+		
+		// hidden要素取得
+		var hidden = document.getElementsByClassName('modal-input');
+		// hiddenのvalueを格納する配列用意
+		var hiddenVal = [];
+		
+		// hidden要素分回し、valueがある場合のみ配列に格納
+		for(let i = 0; i < hidden.length; i++){
+			if(hidden.item(i).value){
+				hiddenVal.push(hidden.item(i).value);
+			}				
+		}
+
+		if(hiddenVal.length > 0 && $('#code-name').val().length == 0){
+			$('small#conf-msg').hide();
 			$('.coordinate-regis-btn').prop('disabled', true);
 		}
 		
-		//確認モーダルを開いた時点でアイテム選択済＆コーデ名入力されている場合押下可
-		if($('.modal-input').val().length > 0 && $('#code-name').val().length > 0){
+		// 確認モーダルを開いた時点でアイテム選択済＆コーデ名入力されている場合押下可
+		if(hiddenVal.length > 0 && $('#code-name').val().length > 0 && $('#code-name').val().length <= 20){
+			$('small#conf-msg').hide();
 			$('.coordinate-regis-btn').prop('disabled', false);
 		}
 		
-		//コーデ名入力欄changeイベント
+				
+		// hiddenValが空（アイテム未選択）の場合、押下不可
+		if(hiddenVal.length == 0 || $('#code-name').val().length > 20){
+			$('small#conf-msg').show();
+			$('.coordinate-regis-btn').prop('disabled', true);
+		}
+		
+		
+		// コーデ名入力欄changeイベント
 		$('#code-name').off('change').on('change', function() {
-			
-			//コーデ名入力&アイテム選択済みの場合、押下可
-			if ($('#code-name').val().length > 0 && $('.modal-input').val().length > 0) {
-				$('.coordinate-regis-btn').prop('disabled', false);
-			
-			//コーデ名入力済み＆アイテム未選択の場合、押下不可
-			}else if($('#code-name').val().length > 0 && $('.modal-input').val().length == 0){
-				$('.coordinate-regis-btn').prop('disabled', true);
-			
-			//コーデ名未入力&アイテム選択済みの場合、押下不可
-			}else if($('#code-name').val().length == 0 && $('.modal-input').val().length > 0){
+			// コーデ名入力済み＆アイテム未選択の場合、押下不可
+		
+			if($('#code-name').val().length > 0 && hiddenVal.length == 0){
 				$('.coordinate-regis-btn').prop('disabled', true);
 			}
+						
+			// コーデ名入力&アイテム選択済みの場合、押下可
+			if ($('#code-name').val().length > 0 && $('#code-name').val().length <= 20 && hiddenVal.length > 0) {
+				$('.coordinate-regis-btn').prop('disabled', false);
+			
+			}
+			
+			// コーデ名未入力&アイテム選択済みの場合、押下不可
+			if($('#code-name').val().length == 0 && hiddenVal.length > 0){
+				$('.coordinate-regis-btn').prop('disabled', true);
+			}
+			
 			
 
 		});
 		
 	});	
+	
 	
 });
 	

@@ -72,6 +72,14 @@ create table users(
 
 );
 
+--パスワード変更用情報格納テーブル
+CREATE TABLE password_reset(
+id serial NOT NULL PRIMARY KEY,
+user_id INTEGER NOT NULL,
+random_url VARCHAR(72) NOT NULL,
+expire_date TIMESTAMP NOT NULL
+); 
+
 --コーディネートテーブル
 create table coordinates(
   id serial NOT NULL PRIMARY KEY,
