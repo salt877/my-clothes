@@ -99,10 +99,10 @@ public class RegisterClothesController {
 			model.addAttribute("season", form.getSeason());
 			return showRegisterClothes(model, loginUser);
 		}
-//		if (Pattern.matches("^[0-9]*$", form.getPrice())) {
-//			System.out.println("数字以外が入力されています");
-//			return showRegisterClothes(model, loginUser);
-//		}
+		if (Pattern.matches("^[0-9]{0-9}*$", form.getPrice())) {
+			System.out.println("数字以外が入力されています");
+			return showRegisterClothes(model, loginUser);
+		}
 
 		// 入力されたカテゴリ情報を取得（必須）
 		Category category = registerClothesService.categorySearchById(Integer.parseInt(form.getCategory()));
