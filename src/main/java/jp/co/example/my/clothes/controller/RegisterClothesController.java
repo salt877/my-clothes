@@ -99,7 +99,8 @@ public class RegisterClothesController {
 			model.addAttribute("season", form.getSeason());
 			return showRegisterClothes(model, loginUser);
 		}
-		if (Pattern.matches("^[0-9]{0-9}*$", form.getPrice())) {
+		
+		if (!Pattern.matches("^[0-9]*$",form.getPrice())&&!StringUtils.isEmpty(form.getPrice())) {
 			System.out.println("数字以外が入力されています");
 			return showRegisterClothes(model, loginUser);
 		}
@@ -249,7 +250,7 @@ public class RegisterClothesController {
 			registerClothesService.insertTag(tag);
 		}
 
-		return "top.html";
+		return "redirect:/";
 
 	}
 
