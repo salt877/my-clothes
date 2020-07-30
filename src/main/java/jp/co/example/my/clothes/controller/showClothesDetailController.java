@@ -108,11 +108,11 @@ public class showClothesDetailController {
 			form.setTag1("");
 			form.setTag2("");
 			form.setTag3("");
-		} else if(clothes.getTagList().get(1).equals(null) && clothes.getTagList().get(2).equals(null)) {
+		} else if(clothes.getTagList().size() == 1) {	// 要素が1つの場合 	
 			form.setTag1(clothes.getTagList().get(0).getTagContent().getName());
 			form.setTag2("");
 			form.setTag3("");
-		} else if(clothes.getTagList().get(2).equals(null)) {
+		} else if(clothes.getTagList().size() ==2) {		// 要素が2つの場合
 			form.setTag1(clothes.getTagList().get(0).getTagContent().getName());
 			form.setTag2(clothes.getTagList().get(1).getTagContent().getName());
 			form.setTag3("");
@@ -138,7 +138,7 @@ public class showClothesDetailController {
 	 * @return トップ画面に遷移
 	 */
 	@RequestMapping("/editClothes")
-	public String editClothes(Model model, EditClothesForm form, @AuthenticationPrincipal LoginUser loginUser, Integer id) {
+	public String editClothes(Model model, EditClothesForm form, @AuthenticationPrincipal LoginUser loginUser) {
 		
 		// 入力されたカテゴリー情報を取得(必須)
 		Category category = editClothesService.categorySearchById(Integer.parseInt(form.getCategory()));
@@ -159,7 +159,7 @@ public class showClothesDetailController {
 		// userId
 		clothes.setUserId(loginUser.getUser().getId());
 		// アイテムID
-		clothes.setId(Integer.parseInt(form.getClothesId()));;
+		clothes.setId(Integer.parseInt(form.getClothesId()));
 		
 		// カテゴリー情報
 		clothes.setCategory(category);
@@ -200,18 +200,41 @@ public class showClothesDetailController {
 		System.out.println(clothes);
 		editClothesService.editClothes(clothes);
 		
-		// 入力されたタグの登録を行う
-		
 		// userIdに紐づいた一番最新に登録したアイテムを取得
-//		Clothes editClothes = editClothesService.newClothesSearchByUserId(loginUser.getUser().getId());
 		
 		
+		// タグの登録を行う
+		TagContent editTagContent = new TagContent();
+		Tag tag = null;
+		
+		// tag1
+		// タグが入力されている場合
+		if(!StringUtils.isEmpty(form.getTag1())) {
+			// 入力された情報が登録されているかを検索
+			TagContent tagContent1 = editClothesService.tagContentSearchByName(form.getTag1());
+			// もし登録されていないタグがあれば登録する　★表示がされない
+			if(StringUtils.isEmpty(tagContent1)) {
+				editTagContent.setId(loginUser.getUser().getId());  // ユーザIDに変更する
+				editTagContent.setName(form.getTag1());
+				System.out.println(editTagContent);
+				editClothesService.insertTagContent(editTagContent);
+			}
+		// tag
+		List<Tag>tagList = showClothesDetailService.showTagList(Integer.parseInt(form.getClothesId()));
+		System.out.println(tagList);
+		tag = editClothesService.findATag(loginUser.getUser().getId(), Integer.parseInt(form.getClothesId()), tagList.get(0).getTagContentId());
+		System.out.println(tag);
+		tag.setTagContentId(tagContent1.getId());
+		editClothesService.tagUpdate(tag);
+		}
 		
 		
 		
 		
 		return "forward://";
 	}
+	
+	
 	
 	
 }
