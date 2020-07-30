@@ -128,6 +128,15 @@ public class showClothesDetailController {
 	}
 	
 
+	/**
+	 * アイテム情報の編集を行うメソッドです.
+	 * 
+	 * @param model リクエストスコープ
+	 * @param form フォーム
+	 * @param loginUser ユーザのログイン情報
+	 * @param id アイテムID
+	 * @return トップ画面に遷移
+	 */
 	@RequestMapping("/editClothes")
 	public String editClothes(Model model, EditClothesForm form, @AuthenticationPrincipal LoginUser loginUser, Integer id) {
 		
