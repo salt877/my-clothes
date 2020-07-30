@@ -87,6 +87,14 @@ public class ShowTopPageController {
 
 		Integer userId = loginUser.getUser().getId();
 
+		// 天気予報情報の表示
+		Weather weather = weatherService.cityFindByUserId(loginUser.getUser().getId());
+		if (StringUtils.isEmpty(weather)) {
+			model.addAttribute("city", "東京都");
+		} else {
+			model.addAttribute("city", weather.getCityName());
+		}
+
 		// トップページを最初に開いた時と、「ALL」が選択されたときのアイテム表示
 		if (categoryId == null || categoryId.equals(0)) {
 			List<Clothes> clothesList = showTopPageService.showItemList(userId);

@@ -178,7 +178,7 @@
               	   
               	   <!-- 削除・変更ボタン -->
               	   <div class="complete-btn">
-                    		<input type="submit" name="submit" id="submit" class="btn btn--delete btn--radius" value="&emsp;削除&emsp;"/>
+                    		<a class="btn btn--delete btn--radius"  th:href="@{'/deleteClothes/pushDeleteButton?id='+${clothes.id}}">&emsp;削除&emsp;</a>
                     		<input type="submit" name="submit" id="submit" class="btn btn--submit btn--radius" value="&emsp;変更を保存&emsp;"/>
                	   </div>
                </form>

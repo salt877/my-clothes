@@ -76,7 +76,7 @@ public class ClothesRepository {
 	 * @return 登録アイテム一覧
 	 */
 	public List<Clothes> findAll(Integer userId) {
-		String sql = SQL + "WHERE user_id=:userId ORDER BY id;";
+		String sql = SQL + "WHERE user_id=:userId AND deleted =false ORDER BY id ;";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
 		List<Clothes> clothesList = template.query(sql, param, CLOTHES_ROW_MAPPER);
 		return clothesList;
@@ -90,7 +90,7 @@ public class ClothesRepository {
 	 * @return 登録アイテム一覧
 	 */
 	public List<Clothes> findByCategory(Integer userId, Integer categoryId) {
-		String sql = SQL + "WHERE user_id=:userId AND category_id=:categoryId ORDER BY id;";
+		String sql = SQL + "WHERE user_id=:userId AND category_id=:categoryId AND deleted =false ORDER BY id;";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId).addValue("categoryId",
 				categoryId);
 		List<Clothes> clothesList = template.query(sql, param, CLOTHES_ROW_MAPPER);
@@ -137,7 +137,7 @@ public class ClothesRepository {
 	 * @return 登録アイテム一覧
 	 */
 	public List<Clothes> findByBrand(Integer userId, Integer brandId) {
-		String sql = SQL + "WHERE user_id=:userId AND brand_id=:brandId ORDER BY id;";
+		String sql = SQL + "WHERE user_id=:userId AND brand_id=:brandId AND deleted =false ORDER BY id;";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId).addValue("brandId", brandId);
 		List<Clothes> clothesList = template.query(sql, param, CLOTHES_ROW_MAPPER);
 		return clothesList;
@@ -172,7 +172,7 @@ public class ClothesRepository {
 				"SELECT c.id,c.user_id,c.category_id,c.brand_id,c.image_path,c.price,color_id,c.season,c.size_id,c.perchase_date,c.comment,c.deleted,");
 		sql.append("t.id,t.clothes_id,tc.id,tc.name FROM clothes AS c ");
 		sql.append("JOIN tags AS t ON c.id=t.clothes_id JOIN tag_contents AS tc ON t.tag_contents_id=tc.id ");
-		sql.append("WHERE c.user_id=:userId AND tc.id=:tagContentsId;");
+		sql.append("WHERE c.user_id=:userId AND tc.id=:tagContentsId AND deleted =false;");
 		System.out.println(sql.toString());
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId).addValue("tagContentsId",
 				tagContentsId);
@@ -472,9 +472,9 @@ public class ClothesRepository {
 
 		return bigClothesList;
 	}
-	
+
 	// アイテム詳細表示用のローマッパー.
-	private static final RowMapper<Clothes>CLOTHES_ROW_MAPPER3 = (rs, i) -> {
+	private static final RowMapper<Clothes> CLOTHES_ROW_MAPPER3 = (rs, i) -> {
 		Clothes clothes = new Clothes();
 		clothes.setId(rs.getInt("cl_id"));
 		clothes.setUserId(rs.getInt("cl_user_id"));
@@ -507,7 +507,7 @@ public class ClothesRepository {
 		size.setId(rs.getInt("s_id"));
 		size.setName(rs.getString("s_size_name"));
 		clothes.setSize(size);
-	
+
 		return clothes;
 	};
 
@@ -520,23 +520,23 @@ public class ClothesRepository {
 	public Clothes findById(Integer id) {
 		StringBuilder sql = new StringBuilder();
 		sql.append(
-				"SELECT cl.id cl_id,cl.user_id cl_user_id,ca.name ca_name,b.id b_brand_id,b.name b_brand_name,ca.id ca_category_id,ca.name ca_category_name," + 
-				"cl.image_path cl_image_path,cl.price cl_price,co.id co_id,co.name co_color_name,cl.season cl_season," + 
-				"s.id s_id,s.name s_size_name,cl.perchase_date cl_perchase_date,cl.comment cl_comment,cl.brand_id cl_brand_id," +
-				"cl.category_id cl_category_id,cl.color_id cl_color_id,cl.size_id cl_size_id ");
+				"SELECT cl.id cl_id,cl.user_id cl_user_id,ca.name ca_name,b.id b_brand_id,b.name b_brand_name,ca.id ca_category_id,ca.name ca_category_name,"
+						+ "cl.image_path cl_image_path,cl.price cl_price,co.id co_id,co.name co_color_name,cl.season cl_season,"
+						+ "s.id s_id,s.name s_size_name,cl.perchase_date cl_perchase_date,cl.comment cl_comment,cl.brand_id cl_brand_id,"
+						+ "cl.category_id cl_category_id,cl.color_id cl_color_id,cl.size_id cl_size_id ");
 		sql.append("FROM clothes cl ");
 		sql.append("LEFT JOIN categories ca ON cl.category_id = ca.id ");
 		sql.append("LEFT JOIN brands b ON cl.brand_id=b.id ");
 		sql.append("LEFT JOIN colors co ON cl.color_id=co.id ");
 		sql.append("LEFT JOIN sizes s ON cl.size_id=s.id ");
 		sql.append("WHERE cl.id=:id");
-		
+
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
 		Clothes clothes = template.queryForObject(sql.toString(), param, CLOTHES_ROW_MAPPER3);
-		
+
 		return clothes;
 	}
-	
+
 	/**
 	 * アイテムの更新を行うメソッドです.
 	 * 
@@ -544,15 +544,28 @@ public class ClothesRepository {
 	 */
 	public void update(Clothes clothes) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(clothes);
-		
+
 		StringBuilder sql = new StringBuilder();
 		sql.append("UPDATE clothes ");
-		sql.append("SET category_id=:categoryId, brand_id=:brandId, color_id=:colorId, season=:season, size_id=:sizeId,");
+		sql.append(
+				"SET category_id=:categoryId, brand_id=:brandId, color_id=:colorId, season=:season, size_id=:sizeId,");
 		sql.append("price=:price, perchase_date=:perchaseDate, comment=:comment ");
 		sql.append("WHERE id=:id ");
 		sql.append("AND user_id=:userId;");
-		
+
 		template.update(sql.toString(), param);
+	}
+
+	/**
+	 * アイテムの削除を行う.
+	 * 
+	 * @param id
+	 */
+	public void deleteClothes(Integer id) {
+		String sql = "UPDATE clothes SET deleted=true WHERE id=:id";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
+		template.update(sql, param);
+
 	}
 
 }
