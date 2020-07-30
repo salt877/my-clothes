@@ -14,7 +14,7 @@
         <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="../static/dist/css/styles.css" rel="stylesheet" />
+        <link href="../static/dist/css/styles.css" rel="stylesheet" th:href="@{/dist/css/styles.css}"/>
     </head>
     <body id="page-top">
     
@@ -23,13 +23,13 @@
           <nav>
             <div class="inner">
               <ul>
-                    <li><a href="top.html"><i class="fas fa-home"></i>&emsp;&emsp;TOP</a></li>
-                	<li><a href="statistics.html"><i class="far fa-chart-bar"></i>&emsp;&emsp;統計データ</a></li>
-                	<li><a href="calender.html"><i class="far fa-calendar-alt"></i>&emsp;&emsp;カレンダー</a></li>
-                	<li><a href="coordinate.html"><i class="fas fa-female"></i>&emsp;&emsp;コーディネート</a></li>
-                	<li><a href="contact.html"><i class="far fa-envelope"></i>&emsp;&emsp;お問い合わせ</a></li>
-               		<li><a href="faq.html"><i class="far fa-question-circle"></i>&emsp;&emsp;FAQ</a></li>
-                	<li><a href="login.html"><i class="fas fa-sign-out-alt"></i>&emsp;&emsp;ログアウト</a></li>
+                    <li><a href="top.html" th:href="@{/}"><i class="fas fa-home"></i>&emsp;&emsp;TOP</a></li>
+                	<li><a href="statistics.html" th:href="@{/stats}"><i class="far fa-chart-bar"></i>&emsp;&emsp;統計データ</a></li>
+                	<li><a href="calender.html" th:href="@{/}"><i class="far fa-calendar-alt"></i>&emsp;&emsp;カレンダー</a></li>
+                	<li><a href="coordinate.html" th:href="@{/coordinate}"><i class="fas fa-female"></i>&emsp;&emsp;コーディネート</a></li>
+                	<li><a href="contact.html" th:href="@{/}"><i class="far fa-envelope"></i>&emsp;&emsp;お問い合わせ</a></li>
+               		<li><a href="faq.html" th:href="@{/faq}"><i class="far fa-question-circle"></i>&emsp;&emsp;FAQ</a></li>
+                	<li><a href="login.html" th:href="@{/logout}"><i class="fas fa-sign-out-alt"></i>&emsp;&emsp;ログアウト</a></li>
              </ul>
            </div>
         </nav>
@@ -47,11 +47,14 @@
         <section class="page-section bg-light" id="portfolio">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">アイテム新規登録</h2>
+                    <h2 class="section-heading text-uppercase">アイテム詳細/編集</h2>
                 </div>
-                <form action="#" method="post">
+                <form action="#" method="post" th:action="@{/showDetail/editClothes}" th:object="${editClothesForm}">
+                	<!-- 商品idを埋め込んでおく -->
+					<input  type="hidden" name="clothesId" th:value="${clothes.id}">
                 	<div class="image-information">
-                		<input name="imageFile" type="file" accept=".jpg,.png,image/jpeg,image/png" th:errorclass="error-input"/>
+                	<img class="img-fluid" th:src="${'/img/'+clothes.imagePath}" /><br>
+                	<!--  	<input name="imageFile" type="file" accept=".jpg,.png,image/jpeg,image/png" th:errorclass="error-input"/>-->
               	    </div>
               	    <div class="required-information">
                 		<table>
@@ -65,10 +68,10 @@
                 					<th>カテゴリー</th>
                 					<td data-label="カテゴリー" class="txt">
                 						<div class="cp_ipselect cp_sl02">
-                							<select required>
-                								<option>アクセサリー</option>
-                								<option>バック</option>
-                								<option>トップス</option>
+                							<select name="category" id="category">
+                								<option th:each="category :${categoryList}"
+												th:text="${category.name}" th:value="${category.id}"
+												th:field="*{category}">アクセサリー</option>
                 							</select>
                 						</div>
                 					</td>
@@ -77,7 +80,7 @@
                 					<th>ブランド</th>
                 					<td data-label="ブランド" class="txt">
                 						<div class="search">
-                							<input type="text" class="search-form">
+                							<input type="text" class="search-form"  name="brand" id="brand" th:value="${clothes.brand.name}" th:field="*{brand}">
                 							<button type="submit" id="sbtn2"><i class="fas fa-search"></i></button>
                 						</div>
                 					</td>
@@ -86,10 +89,9 @@
                 					<th>カラー</th>
                 					<td data-label="カラー" class="txt">
                 						<div class="cp_ipselect cp_sl02">
-                							<select required>
-                								<option>レッド</option>
-                								<option>ブルー</option>
-                								<option>ブラック</option>
+                							<select name="color" id="color" th:field="*{color}">
+                								<option th:each="color :${colorList}" th:text="${color.name}"
+												th:value="${color.id}" >レッド</option>
                 							</select>
                 						</div>
                 					</td>
@@ -107,10 +109,28 @@
                 			</thead>
                 			<tbody>
                 				<tr>
-                					<th>タグ</th>
+                					<th>タグ1</th>
                 					<td data-label="タグ" class="txt">
                 						<div class="search">
-                							<input type="text" class="search-form">
+                							<input type="text" class="search-form" name="tag1" id="tag1" th:field="*{tag1}">
+                							<button type="submit" id="sbtn2"><i class="fas fa-search"></i></button>
+                						</div>
+                					</td>
+                				</tr>
+                				<tr>
+                					<th>タグ2</th>
+                					<td data-label="タグ" class="txt" >
+                						<div class="search">
+                							<input type="text" class="search-form" name="tag2" id="tag2" th:field="*{tag2}">
+                							<button type="submit" id="sbtn2"><i class="fas fa-search"></i></button>
+                						</div>
+                					</td>
+                				</tr>
+                				<tr>
+                					<th>タグ3</th>
+                					<td data-label="タグ" class="txt">
+                						<div class="search">
+                							<input type="text" class="search-form" name="tag3" id="tag3" th:field="*{tag3}">
                 							<button type="submit" id="sbtn2"><i class="fas fa-search"></i></button>
                 						</div>
                 					</td>
@@ -118,26 +138,18 @@
                 				<tr>
                 					<th>シーズン</th>
                 					<td data-label="シーズン" class="txt">
-                						<input type="radio">春&emsp;
-                						<input type="radio">夏&emsp;
-                						<input type="radio">秋&emsp;
-                						<input type="radio">冬
+                						<span th:each="season : ${seasonMap}">
+	                						<input name="season" id="season" type="radio" th:value="${season.key}" th:text="${season.value}" th:field="*{season}">&emsp;&emsp;
+	                					</span>
                 					</td>
                 				</tr>
                 				<tr>
                 					<th>サイズ</th>
                 					<td data-label="サイズ" class="txt">
                 						<div class="cp_ipselect cp_sl02">
-                							<select required>
-                								<option>XS</option>
-                								<option>S</option>
-                								<option>M</option>
-                								<option>L</option>
-                								<option>LL</option>
-                								<option>3L</option>
-                								<option>4L</option>
-                								<option>F</option>
-                								<option>不明</option>
+                							<select name="size" id="size">
+                								<option th:each="size:${sizeList}" th:text="${size.name}"
+												th:value="${size.id}" th:field="*{size}">XS</option>
                 							</select>
                 						</div>
                 					</td>
@@ -145,19 +157,19 @@
                 				<tr>
                 					<th>購入日</th>
                 					<td data-label="購入日" class="txt">
-	                						<input type="date">
+	                						<input name="perchaseDate" id="perchaseDate" type="date" th:value="${clothes.perchaseDate}">
                 					</td>
                 				</tr>
                 				<tr>
                 					<th>価格</th>
                 					<td data-label="価格" class="txt">
-                						<input type="text">
+                						<input name="price" id="price" type="text" th:value="${#numbers.formatInteger(clothes.price,1,'COMMA')}">
                 					</td>
                 				</tr>
                 				<tr>
                 					<th>メモ</th>
                 					<td data-label="メモ" class="txt">
-                						<textarea rows="10" cols="30"></textarea>
+                						<textarea name="comment" id="comment" rows="10" cols="30" th:field="*{comment}"></textarea>
                 					</td>
                 				</tr>
                 			</tbody>
@@ -197,10 +209,31 @@
         <!-- Third party plugin JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
         <!-- Contact form JS-->
-        <script src="../static/dist/assets/mail/jqBootstrapValidation.js"></script>
-        <script src="../static/dist/assets/mail/contact_me.js"></script>
+        <script src="../static/dist/assets/mail/jqBootstrapValidation.js" th:src="@{/dist/assets/mail/jqBootstrapValidation.js}"></script>
+        <script src="../static/dist/assets/mail/contact_me.js" th:src="@{/dist/assets/mail/contact_me.js}"></script>
         <!-- Core theme JS-->
-        <script src="../static/dist/js/scripts.js"></script>
-        <script src="../static/dist/js/hamburger_menu.js"></script>
+        <script src="../static/dist/js/scripts.js" th:src="@{/dist/js/scripts.js}"></script>
+        <script src="../static/dist/js/hamburger_menu.js" th:src="@{/dist/js/hamburger_menu.js}"></script>
+    	<!-- brand用オートコンプリート なぜかhead内だと起動しない -->
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script type="text/javascript">
+			$( function() {
+    			var brands= [ [(${brandListForAutocomplete})] ];
+   			    var tagContents= [ [(${tagContentsListForAutocomplete})] ];
+   				 $( "#brand" ).autocomplete({
+      				source: brands
+  				  });
+   				 $( "#tag1" ).autocomplete({
+       				 source: tagContents
+    			 });
+    			$( "#tag2" ).autocomplete({
+       				 source: tagContents
+    			 });
+    			$( "#tag3" ).autocomplete({
+       				 source: tagContents
+    			 });
+  			});
+		</script>
     </body>
 </html>

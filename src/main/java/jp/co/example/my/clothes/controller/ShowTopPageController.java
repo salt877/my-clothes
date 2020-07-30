@@ -73,8 +73,7 @@ public class ShowTopPageController {
 		for (int i = 0; i < tagNameList.size(); i++) {
 			Integer tagContentsId = tagNameList.get(i).getId();
 			String tagContentsName = tagNameList.get(i).getName();
-			// System.out.println("登録されてるアイテムのあるtag_contantsテーブルのidは" + tagContentsId +
-			// "、nameは" + tagContentsName);
+			System.out.println("登録されてるアイテムのあるtag_contantsテーブルのidは" + tagContentsId + "、nameは" + tagContentsName);
 			tagMap.put(tagContentsId, tagContentsName);
 		}
 		model.addAttribute("tagMap", tagMap);
