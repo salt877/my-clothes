@@ -59,47 +59,56 @@
 	</div>
 
 	<!-- main -->
-	<div class="container" style="margin-bottom: 400px;">
-		<div class="text-center">
-			<h2 class="section-heading text-uppercase" style="margin-top: 100px;">コーディネートを登録しました！</h2>
-			<br> <br>
-
-			<div>
-				<a href="coordinate.html" th:href="@{/coordinate}"><button
-						type="button" class="btn btn-primary continue-coordinate-btn"
-						style="border-radius: 50px; width: 280px;">コーディネートを続ける</button></a>
-			</div>
-			<br>
-			<div>
-				<a href="top.html" th:href="@{/}"><button type="button"
-						class="btn btn-secondary return-top-btn"
-						style="border-radius: 50px; width: 280px;">トップへ戻る</button></a>
-			</div>
-
-		</div>
-	</div>
-
-	<!-- Footer-->
-	<footer class="footer py-4">
+	<div class="wrapper">
 		<div class="container">
-			<div class="row align-items-center">
-				<div class="col-lg-4 text-lg-left">Copyright © MYQLO 2020</div>
-				<div class="col-lg-4 my-3 my-lg-0">
-					<a class="btn btn-dark btn-social mx-2" href="#!"><i
-						class="fab fa-twitter"></i></a> <a
-						class="btn btn-dark btn-social mx-2" href="#!"><i
-						class="fab fa-facebook-f"></i></a> <a
-						class="btn btn-dark btn-social mx-2" href="#!"><i
-						class="fab fa-linkedin-in"></i></a>
+			<div class="text-center">
+				<h2 class="section-heading text-uppercase"
+					style="margin-top: 100px;">コーディネートを登録しました！</h2>
+				<br> <br>
+
+				<div>
+					<a href="coordinate.html" th:href="@{/coordinate}"><button
+							type="button" class="btn btn-primary continue-coordinate-btn"
+							style="border-radius: 50px; width: 280px;">コーディネートを続ける</button></a>
 				</div>
-				<div class="col-lg-4 text-lg-right">
-					<a class="mr-3" href="#!">Privacy Policy</a> <a href="#!">Terms
-						of Use</a>
+				<br>
+				<div>
+					<a href="coordinate.html" th:href="@{/past-coordinate}"><button
+							type="button" class="btn btn-secondary continue-coordinate-btn"
+							style="border-radius: 50px; width: 280px;">過去のコーディネートを見る</button></a>
 				</div>
+				<br>
+
+				<div>
+					<a href="top.html" th:href="@{/}"><button type="button"
+							class="btn btn-secondary return-top-btn"
+							style="border-radius: 50px; width: 280px;">トップへ戻る</button></a>
+				</div>
+
 			</div>
 		</div>
-	</footer>
 
+		<!-- Footer-->
+		<footer class="footer py-4">
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col-lg-4 text-lg-left">Copyright © MYQLO 2020</div>
+					<div class="col-lg-4 my-3 my-lg-0">
+						<a class="btn btn-dark btn-social mx-2" href="#!"><i
+							class="fab fa-twitter"></i></a> <a
+							class="btn btn-dark btn-social mx-2" href="#!"><i
+							class="fab fa-facebook-f"></i></a> <a
+							class="btn btn-dark btn-social mx-2" href="#!"><i
+							class="fab fa-linkedin-in"></i></a>
+					</div>
+					<div class="col-lg-4 text-lg-right">
+						<a class="mr-3" href="#!">Privacy Policy</a> <a href="#!">Terms
+							of Use</a>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div>
 
 	<!-- Bootstrap core JS-->
 	<script

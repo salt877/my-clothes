@@ -11,10 +11,12 @@
 	margin: 12px;
 }
 */
-
-
 .continue-coordinate-btn {
 	border-radius: 50px;
+}
+
+.radio-img:hover {
+	opacity: 0.6;
 }
 
 .radio-img {
@@ -32,14 +34,11 @@
 }
 
 .radio:checked+.radio-img {
-	border: 3px #ff0000 solid;
+	border: 1px #808080 solid;
 	background-color: #ffeeee;
+	opacity: 0.6;
 }
-/*
-.modal-input {
-	visibility: hidden;
-}
-*/
+
 /*
 .tooltip {
     width:130px;
@@ -66,3 +65,81 @@
   margin-top: -8px;
 }
 */
+
+/*過去コーデ画面*/
+.register-coordinate-btn {
+	height: 140px;
+	width: 140px;
+	position: absolute;
+	bottom: 30px;
+	right: 30px;
+	position: fixed;
+	border-radius: 100%;
+}
+
+.btn-circle-stitch {
+	display: inline-block;
+	text-decoration: none;
+	background: #87befd;
+	color: #FFF;
+	width: 120px;
+	height: 120px;
+	line-height: 120px;
+	border-radius: 50%;
+	text-align: center;
+	overflow: hidden;
+	box-shadow: 0px 0px 0px 5px #87befd;
+	border: dashed 1px #FFF;
+	transition: .4s;
+}
+
+.btn-circle-stitch:hover {
+	background: #668ad8;
+	box-shadow: 0px 0px 0px 5px #668ad8;
+	text-decoration: none;
+	color: white;
+}
+
+.modal-tbl {
+	table-layout: fixed;
+}
+
+.clm {
+	width: 20%;
+}
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+footer {
+	margin-top: auto;
+}
+
+/* 円の基本形 */
+.maru {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+	flex-flow: column;
+	vertical-align: top;
+}
+/* 円の大きさ */
+.size_normal {
+	width: 30px;
+	height: 30px;
+}
+/* 文字の大きさ */
+.letter3 {
+	font-size: 1em;
+	line-height: 1.5em;
+	text-align: center;
+}
+/* 円と文字の色 */
+.pink1 {
+	color: #DDDDDD;
+	border: 4px solid #DDDDDD;
+}

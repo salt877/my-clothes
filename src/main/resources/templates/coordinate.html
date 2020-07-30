@@ -61,406 +61,420 @@
 	</div>
 
 	<!-- main -->
-	<div class="container">
-		<div class="text-center">
-			<h1 class="section-heading text-uppercase" style="margin-top: 100px;">MY
-				COORDINATE</h1>
-			<div class="section-subheading text-muted">登録した服でコーディネートしよう。</div>
-			<br> <br>
+	<div class="wrapper">
+		<div class="container">
+			<div class="text-center">
+				<h1 class="section-heading text-uppercase"
+					style="margin-top: 100px;">MY COORDINATE</h1>
+				<div class="section-subheading text-muted">登録した服でコーディネートしよう。</div>
+				<br> <br>
+			</div>
 
-		</div>
+			<div style="text-align: right;">
+				<button id="coordinate-explanation" class="btn btn-primary btn-sm"
+					data-toggle="modal" data-target="#explanation-modal">
+					<i class="far fa-question-circle"></i>&emsp;コーディネートの使い方
+				</button>
+			</div>
 
+			<!-- 各カテゴリー選択ボタンを押したときのモーダルの設定 -->
+			<div class="modal fade" id="explanation-modal" tabindex="-1"
+				role="dialog" aria-labelledby="exampleModalLabel">
+				<div class="modal-dialog">
+					<div class="modal-content">
 
-
-		<table class="table">
-			<thead>
-				<tr>
-					<th colspan="3" style="text-align: center;">コーディネート&nbsp;&nbsp;</th>
-					<th colspan="2" style="text-align: center;">アイテム選択</th>
-					<th style="text-align: center;">過去のコーデ</th>
-				</tr>
-
-			</thead>
-			<tbody>
-				<tr>
-					<td colspan="3" id="containment-wrapper">
-
-						<div style="height: 470px; width: 406.5px;">
-							<img id="drag-img1" class="drag-img" alt="" src=""
-								style="width: 100px; height: auto;"> <img id="drag-img2"
-								class="drag-img" alt="" src=""
-								style="width: 100px; height: auto;"> <img id="drag-img3"
-								class="drag-img" alt="" src=""
-								style="width: 100px; height: auto;"> <img id="drag-img4"
-								class="drag-img" alt="" src=""
-								style="width: 100px; height: auto;"> <img id="drag-img5"
-								class="drag-img" alt="" src=""
-								style="width: 100px; height: auto;"> <img id="drag-img6"
-								class="drag-img" alt="" src=""
-								style="width: 100px; height: auto;"> <img id="drag-img7"
-								class="drag-img" alt="" src=""
-								style="width: 100px; height: auto;"> <img id="drag-img8"
-								class="drag-img" alt="" src=""
-								style="width: 100px; height: auto;">
-
+						<!-- モーダル内ヘッダー -->
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">コーディネートの使い方</h5>
+							<button type="button" class="close close-modal"
+								data-dismiss="modal" aria-label="閉じる">
+								<span aria-hidden="true">&times;</span>
+							</button>
 						</div>
-					</td>
 
-
-
-					<td colspan="2">
-						<div style="text-align: center;">
-
-							<!-- ファッション雑貨 (valueとして、user_idに紐づいたclothesのidを飛ばします。)-->
-							<div class="fashion-accessories">
-								<button data-toggle="modal" data-target="#category-modal"
-									type="button" class="btn btn-light category-btn"
-									id="fashion-accessories-btn" data-id='fashion-accessories'
-									value="1" style="width: 250px;">ファッション雑貨を選択</button>
-
-							</div>
-							<br>
-
-
-
-							<!-- トップス1を選択(valueとして、user_idに紐づいたclothesのidを飛ばします。) -->
-							<div class="tops1">
-								<button data-toggle="modal" data-target="#category-modal"
-									type="button" class="btn btn-light category-btn" id="tops1-btn"
-									data-id='tops1' value="2" style="width: 250px;">トップス１を選択</button>
-
-							</div>
-							<br>
-
-							<!-- トップス2を選択 (valueとして、user_idに紐づいたclothesのidを飛ばします。)-->
-							<div class="tops2">
-								<button data-toggle="modal" data-target="#category-modal"
-									type="button" class="btn btn-light category-btn" id="tops2-btn"
-									data-id='tops2' value="2" style="width: 250px;">トップス２を選択</button>
-							</div>
-							<br>
-
-							<!-- アウターを選択 (valueとして、user_idに紐づいたclothesのidを飛ばします。)-->
-							<div class="outer">
-								<button data-toggle="modal" data-target="#category-modal"
-									type="button" class="btn btn-light category-btn"
-									id="outers-btn" data-id='outers' value="3"
-									style="width: 250px;">アウターを選択</button>
-							</div>
-							<br>
-
-							<!-- ボトムスを選択 (valueとして、user_idに紐づいたclothesのidを飛ばします。)-->
-							<div class="bottoms">
-								<button data-toggle="modal" data-target="#category-modal"
-									type="button" class="btn btn-light category-btn"
-									id="bottoms-btn" data-id='bottoms' value="4"
-									style="width: 250px;">ボトムスを選択</button>
-							</div>
-							<br>
-
-							<!-- シューズを選択(valueとして、user_idに紐づいたclothesのidを飛ばします。) -->
-							<div class="shoes">
-								<button data-toggle="modal" data-target="#category-modal"
-									type="button" class="btn btn-light category-btn" id="shoes-btn"
-									data-id='shoes' value="5" style="width: 250px;">シューズを選択</button>
-							</div>
-							<br>
-
-							<!-- バッグを選択(valueとして、user_idに紐づいたclothesのidを飛ばします。)s -->
-							<div class="bags">
-								<button data-toggle="modal" data-target="#category-modal"
-									type="button" class="btn btn-light category-btn" id="bag-btn"
-									data-id='bag' value="6" style="width: 250px;">バッグを選択</button>
-
-							</div>
-							<br>
-
-							<!-- ワンピースを選択 (valueとして、user_idに紐づいたclothesのidを飛ばします。)-->
-							<div class="dress">
-								<button data-toggle="modal" data-target="#category-modal"
-									type="button" class="btn btn-light category-btn" id="dress-btn"
-									data-id='dress' value="7" style="width: 250px;">ワンピースを選択</button>
-
-							</div>
-							<br>
-
-							<!-- 各カテゴリー選択ボタンを押したときのモーダルの設定 -->
-							<div class="modal fade" data-keyboard="false"
-								data-backdrop="static" id="category-modal" tabindex="-1"
-								role="dialog" aria-labelledby="exampleModalLabel">
-								<div class="modal-dialog">
-									<div class="modal-content">
-
-										<!-- モーダル内ヘッダー -->
-										<div class="modal-header">
-											<h5 class="modal-title" id="exampleModalLabel">アイテム</h5>
-											<button type="button" class="close close-modal"
-												data-dismiss="modal" aria-label="閉じる">
-												<span aria-hidden="true">&times;</span>
-											</button>
-										</div>
-
-										<!-- モーダル内ボディ -->
-										<div class="modal-body">
-											<div id="modal-img">
-												<!-- ここに動的にlabel/input/imgタグが生成されます。 -->
-											</div>
-										</div>
-
-
-										<!-- モーダル内フッター -->
-										<div class="modal-footer">
-											<button type="button" id="select-modal-btn"
-												class="btn btn-primary modal-btn" data-dismiss="modal">選択</button>
-											<button type="button" id="close-modal-btn"
-												class="btn btn-secondary close-modal" data-dismiss="modal">閉じる</button>
-										</div>
-
-										<!-- /.modal-footer -->
+						<!-- モーダル内ボディ -->
+						<div class="modal-body">
+							<div class="coordinate-exp">
+								<h6 style="margin-left: 15px;">
+									①カテゴリー選択ボタンを押し、登録したアイテムの中からコーディネートで使用したい服を選択します。<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;<small style="color: red;">※トップス1とトップス2で同じアイテムは選択できません。</small>
+								</h6>
+								<br>
+								<div style="text-align: center;">
+									<img alt="" th:src="@{/img/exp1.png}" style="height: 300px;">
+									<span style="margin-left: 30px; margin-right: 30px;">▶</span> <img
+										alt="" th:src="@{/img/exp2.png}" style="height: 300px;">
+								</div>
+								<br> <br>
+								<div style="text-align: center;">
+									<div class="maru size_normal pink1">
+										<div class="letter3">▼</div>
 									</div>
-									<!-- /.modal-content -->
 								</div>
-								<!-- /.modal-dialog -->
+								<br> <br>
+								<h6 style="margin-left: 15px;">
+									②選択したアイテムはコーディネートエリアに表示されます。エリア内では画像を動かすことが可能です。<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;コーディネートエリア内のアイテムをダブルクリックすると選択が解除されます。
+								</h6>
+								<br>
+								<div style="text-align: center;">
+									<img alt="" th:src="@{/img/exp3.png}" style="height: 300px;">
+								</div>
+								<br> <br>
+								<div style="text-align: center;">
+									<div class="maru size_normal pink1">
+										<div class="letter3">▼</div>
+									</div>
+								</div>
+								<br> <br>
+								<h6 style="margin-left: 15px;">
+									③コーディネートが決まったら、「確認画面へ」をクリック。最後に「コーデ名」を入力して、登録完了です！<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;<small style="color: red;">※アイテム未選択、またはコーデ名を入力していないと登録できません。</small>
+								</h6>
+								<br>
+								<div style="text-align: center;">
+									<img alt="" th:src="@{/img/exp4.png}" style="height: 300px;">
+								</div>
+
 							</div>
-							<!-- /.modal -->
-							<!-- モーダル設定終了 -->
-
-
-
 						</div>
-					</td>
+
+
+						<!-- モーダル内フッター -->
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary close-modal"
+								data-dismiss="modal">閉じる</button>
+						</div>
+
+						<!-- /.modal-footer -->
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			<!-- /.modal -->
+			<!-- モーダル設定終了 -->
+
+			<br>
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th colspan="4" style="text-align: center;">コーディネート&nbsp;&nbsp;</th>
+						<th colspan="2" style="text-align: center;">アイテム選択</th>
+					</tr>
+
+				</thead>
+				<tbody>
+					<tr>
+						<td colspan="4" id="containment-wrapper">
+
+							<div style="height: 500px; width: 406.5px;">
+								<img id="drag-img1" class="drag-img" alt="" src=""
+									style="width: 130px; height: auto;"> <img id="drag-img2"
+									class="drag-img" alt="" src=""
+									style="width: 130px; height: auto;"> <img id="drag-img3"
+									class="drag-img" alt="" src=""
+									style="width: 130px; height: auto;"> <img id="drag-img4"
+									class="drag-img" alt="" src=""
+									style="width: 130px; height: auto;"> <img id="drag-img5"
+									class="drag-img" alt="" src=""
+									style="width: 130px; height: auto;"> <img id="drag-img6"
+									class="drag-img" alt="" src=""
+									style="width: 130px; height: auto;"> <img id="drag-img7"
+									class="drag-img" alt="" src=""
+									style="width: 130px; height: auto;"> <img id="drag-img8"
+									class="drag-img" alt="" src=""
+									style="width: 130px; height: auto;">
+
+							</div>
+
+						</td>
 
 
 
+						<td colspan="2">
+							<div style="text-align: center; margin-top: 25px;">
 
-					<td><div style="text-align: center;">
-							<div th:each="coordinate: ${coordinateList}">
-								<div>
-									<button class="btn btn-primary" data-toggle="modal"
-										data-target="#coordinate-modal"
-										th:attr="data-target='#coordinate-modal'+${coordinate.id}"
-										style="width: 160px;">
-										<span th:text="${coordinate.name}"></span>
-									</button>
-									<br>
+								<!-- ファッション雑貨 (valueとして、user_idに紐づいたclothesのidを飛ばします。)-->
+								<div class="fashion-accessories">
+									<button data-toggle="modal" data-target="#category-modal"
+										type="button" class="btn btn-light category-btn"
+										id="fashion-accessories-btn" data-id='fashion-accessories'
+										value="1" style="width: 250px;">ファッション雑貨を選択</button>
+
 								</div>
-
 								<br>
 
-								<!-- 過去コーデリンクを押したときのモーダルの設定 -->
-								<div class="modal fade"
-									th:id="coordinate-modal+${coordinate.id}" tabindex="-1"
+
+
+								<!-- トップス1を選択(valueとして、user_idに紐づいたclothesのidを飛ばします。) -->
+								<div class="tops1">
+									<button data-toggle="modal" data-target="#category-modal"
+										type="button" class="btn btn-light category-btn"
+										id="tops1-btn" data-id='tops1' value="2" style="width: 250px;">トップス１を選択</button>
+
+								</div>
+								<br>
+
+								<!-- トップス2を選択 (valueとして、user_idに紐づいたclothesのidを飛ばします。)-->
+								<div class="tops2">
+									<button data-toggle="modal" data-target="#category-modal"
+										type="button" class="btn btn-light category-btn"
+										id="tops2-btn" data-id='tops2' value="2" style="width: 250px;">トップス２を選択</button>
+								</div>
+								<br>
+
+								<!-- アウターを選択 (valueとして、user_idに紐づいたclothesのidを飛ばします。)-->
+								<div class="outer">
+									<button data-toggle="modal" data-target="#category-modal"
+										type="button" class="btn btn-light category-btn"
+										id="outers-btn" data-id='outers' value="3"
+										style="width: 250px;">アウターを選択</button>
+								</div>
+								<br>
+
+								<!-- ボトムスを選択 (valueとして、user_idに紐づいたclothesのidを飛ばします。)-->
+								<div class="bottoms">
+									<button data-toggle="modal" data-target="#category-modal"
+										type="button" class="btn btn-light category-btn"
+										id="bottoms-btn" data-id='bottoms' value="4"
+										style="width: 250px;">ボトムスを選択</button>
+								</div>
+								<br>
+
+								<!-- シューズを選択(valueとして、user_idに紐づいたclothesのidを飛ばします。) -->
+								<div class="shoes">
+									<button data-toggle="modal" data-target="#category-modal"
+										type="button" class="btn btn-light category-btn"
+										id="shoes-btn" data-id='shoes' value="5" style="width: 250px;">シューズを選択</button>
+								</div>
+								<br>
+
+								<!-- バッグを選択(valueとして、user_idに紐づいたclothesのidを飛ばします。)s -->
+								<div class="bags">
+									<button data-toggle="modal" data-target="#category-modal"
+										type="button" class="btn btn-light category-btn" id="bag-btn"
+										data-id='bag' value="6" style="width: 250px;">バッグを選択</button>
+
+								</div>
+								<br>
+
+								<!-- ワンピースを選択 (valueとして、user_idに紐づいたclothesのidを飛ばします。)-->
+								<div class="dress">
+									<button data-toggle="modal" data-target="#category-modal"
+										type="button" class="btn btn-light category-btn"
+										id="dress-btn" data-id='dress' value="7" style="width: 250px;">ワンピースを選択</button>
+
+								</div>
+								<br>
+
+								<!-- 各カテゴリー選択ボタンを押したときのモーダルの設定 -->
+								<div class="modal fade" data-keyboard="false"
+									data-backdrop="static" id="category-modal" tabindex="-1"
 									role="dialog" aria-labelledby="exampleModalLabel">
 									<div class="modal-dialog">
 										<div class="modal-content">
 
 											<!-- モーダル内ヘッダー -->
 											<div class="modal-header">
-												<h5 class="modal-title" id="exampleModalLabel"
-													th:text="${coordinate.name}"></h5>
-												<button type="button" class="close" data-dismiss="modal"
-													aria-label="閉じる">
+												<h5 class="modal-title" id="exampleModalLabel">アイテム</h5>
+												<button type="button" class="close close-modal"
+													data-dismiss="modal" aria-label="閉じる">
 													<span aria-hidden="true">&times;</span>
 												</button>
 											</div>
 
 											<!-- モーダル内ボディ -->
 											<div class="modal-body">
-												<table class="table">
-													<thead>
-														<tr>
-															<th th:each="clothes:${coordinate.clothesList}"
-																th:text="${clothes.category.name}"
-																style="text-align: center; font-size: 14px"></th>
-														</tr>
-													</thead>
-													<tbody>
-														<tr>
-															<td th:each="clothes:${coordinate.clothesList}"><img
-																class="img-fluid" th:src="${clothes.imagePath}" alt=""
-																style="width: 200px; height: auto;" /></td>
-														</tr>
-													</tbody>
-												</table>
-
-												<!-- モーダル内フッター -->
-												<div class="modal-footer">
-													<button type="button" class="btn btn-primary"
-														id="co-delete-btn" data-dismiss="modal"
-														th:value="${coordinate.id}">このコーディネートを削除する</button>
-													<button type="button" class="btn btn-secondary"
-														data-dismiss="modal">閉じる</button>
+												<div id="modal-img">
+													<!-- ここに動的にlabel/input/imgタグが生成されます。 -->
 												</div>
-
-												<!-- /.modal-footer -->
 											</div>
-											<!-- /.modal-content -->
-										</div>
-										<!-- /.modal-dialog -->
-									</div>
-									<!-- /.modal -->
-									<!-- モーダル設定終了 -->
 
+
+											<!-- モーダル内フッター -->
+											<div class="modal-footer">
+												<button type="button" id="select-modal-btn"
+													class="btn btn-primary modal-btn" data-dismiss="modal">選択</button>
+												<button type="button" id="close-modal-btn"
+													class="btn btn-secondary close-modal" data-dismiss="modal">閉じる</button>
+											</div>
+
+											<!-- /.modal-footer -->
+										</div>
+										<!-- /.modal-content -->
+									</div>
+									<!-- /.modal-dialog -->
+								</div>
+								<!-- /.modal -->
+								<!-- モーダル設定終了 -->
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<br>
+
+			<div style="text-align: center;">
+				<button type="button" class="btn btn-outline-primary"
+					id="co-confirmation-btn" style="border-radius: 50px; width: 300px;"
+					data-toggle="modal" data-target="#registerModal">確認画面へ</button>
+			</div>
+			<br>
+
+			<div style="text-align: center;">
+				<a th:href="@{/past-coordinate}"><button type="button"
+						class="btn btn-outline-secondary"
+						style="border-radius: 50px; width: 300px;">コーディネート一覧を見る</button></a>
+			</div>
+
+			<!-- 「確認へ」を押したときのモーダルの設定 -->
+			<div class="modal fade" id="registerModal" tabindex="-1"
+				role="dialog" aria-labelledby="registerModalLabel">
+				<div class="modal-dialog">
+					<div class="modal-content">
+
+						<!-- モーダル内ヘッダー -->
+						<div class="modal-header">
+							<h5 class="modal-title" id="registerModalLabel">コーディネート確認</h5>
+							&nbsp;&nbsp;&nbsp; <small id="conf-msg"
+								style="color: red; margin-top: 10px;">アイテムが未選択です。</small>
+
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="閉じる">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+
+						<form th:action="@{/coordinate/register_coordinate}"
+							th:object="${registerCoordinateForm}" method="post">
+							<!-- モーダル内ボディ -->
+							<div class="modal-body">
+								<table class="table">
+									<thead>
+										<tr>
+											<th style="text-align: center;">ファッション雑貨</th>
+											<th style="text-align: center;">トップス1</th>
+											<th style="text-align: center;">トップス2</th>
+											<th style="text-align: center;">アウター</th>
+											<th style="text-align: center;">ボトムス</th>
+											<th style="text-align: center;">シューズ</th>
+											<th style="text-align: center;">バッグ</th>
+											<th style="text-align: center;">ワンピース</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr id="modal-observe">
+											<!-- 選択されたclothes.idの画像を表示-->
+
+											<!-- ファッション雑貨 -->
+											<td id="fa-img"><input type="hidden"
+												id="modal-fashion-accessories" class="modal-input"
+												name="fashion_accessories" value=""
+												th:field="*{fashionAccessories}"> <img
+												class="in-modal-img" id="in-modal-img1" alt="" src=""
+												style="width: 100px; height: auto;"></td>
+											<!-- トップス１ -->
+											<td id="t1-img"><input type="hidden" id="modal-tops1"
+												class="modal-input" name="tops1" value=""
+												th:field="*{tops1}"> <img class="in-modal-img"
+												id="in-modal-img2" alt="" src=""
+												style="width: 100px; height: auto;"></td>
+											<!-- トップス２ -->
+											<td id="t1-img"><input type="hidden" id="modal-tops2"
+												class="modal-input" name="tops2" value=""
+												th:field="*{tops2}"> <img class="in-modal-img"
+												id="in-modal-img3" alt="" src=""
+												style="width: 100px; height: auto;"></td>
+											<!-- アウター -->
+											<td id="ou-img"><input type="hidden" id="modal-outers"
+												class="modal-input" name="outers" value=""
+												th:field="*{outers}"> <img class="in-modal-img"
+												id="in-modal-img4" alt="" src=""
+												style="width: 100px; height: auto;"></td>
+											<!-- ボトムス -->
+											<td id="bt-img"><input type="hidden" id="modal-bottoms"
+												class="modal-input" name="bottoms" value=""
+												th:field="*{bottoms}"> <img class="in-modal-img"
+												id="in-modal-img5" alt="" src=""
+												style="width: 100px; height: auto;"></td>
+											<!-- シューズ -->
+											<td id="sh-img"><input type="hidden" id="modal-shoes"
+												class="modal-input" name="shoes" value=""
+												th:field="*{shoes}"> <img class="in-modal-img"
+												id="in-modal-img6" alt="" src=""
+												style="width: 100px; height: auto;"></td>
+											<!-- バッグ -->
+											<td id="bg-img"><input type="hidden" id="modal-bag"
+												class="modal-input" name="bag" value="" th:field="*{bag}">
+												<img class="in-modal-img" id="in-modal-img7" alt="" src=""
+												style="width: 100px; height: auto;"></td>
+											<!-- ワンピース-->
+											<td id="dr-img"><input type="hidden" id="modal-dress"
+												class="modal-input" name="dress" value=""
+												th:field="*{dress}"> <img class="in-modal-img"
+												id="in-modal-img8" alt="" src=""
+												style="width: 100px; height: auto;"></td>
+
+										</tr>
+									</tbody>
+								</table>
+								<div>
+									<h6>
+										コーデ名<span style="color: red;">（必須）</span> &nbsp;<small
+											id="error-msg" style="color: red;">コーデ名は20文字以内で入力してください。</small>
+									</h6>
+
+									<input type="text" name="name" class="form-control"
+										id="code-name" required="required"
+										placeholder="（例）オフィスカジュアルコーデ" th:field="*{name}">
 								</div>
 							</div>
-						</div></td>
-				</tr>
-			</tbody>
-		</table>
-		<br>
-		<div style="text-align: center;">
-			<button type="button" class="btn btn-outline-primary"
-				id="co-confirmation-btn"
-				style="border-radius: 50px; padding-left: 30px; padding-right: 30px;"
-				data-toggle="modal" data-target="#registerModal">確認画面へ</button>
+
+							<!-- モーダル内フッター -->
+							<div class="modal-footer">
+
+								<button type="submit"
+									class="btn btn-primary coordinate-regis-btn">
+									<span>登録する</span>
+								</button>
+
+								<button type="button" class="btn btn-secondary"
+									data-dismiss="modal">戻る</button>
+							</div>
+
+							<!-- /.modal-footer -->
+						</form>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			<!-- /.modal -->
+			<!-- モーダル設定終了 -->
 		</div>
 
-		<!-- 「登録」を押したときのモーダルの設定 -->
-		<div class="modal fade" id="registerModal" tabindex="-1" role="dialog"
-			aria-labelledby="registerModalLabel">
-			<div class="modal-dialog">
-				<div class="modal-content">
+		<br>
 
-					<!-- モーダル内ヘッダー -->
-					<div class="modal-header">
-						<h5 class="modal-title" id="registerModalLabel">コーディネート確認</h5>
-						&nbsp;&nbsp;&nbsp; <small id="conf-msg"
-							style="color: red; margin-top: 10px;">アイテムが未選択です。</small>
-
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="閉じる">
-							<span aria-hidden="true">&times;</span>
-						</button>
+		<!-- Footer-->
+		<footer class="footer py-4">
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col-lg-4 text-lg-left">Copyright © MYQLO 2020</div>
+					<div class="col-lg-4 my-3 my-lg-0">
+						<a class="btn btn-dark btn-social mx-2" href="#!"><i
+							class="fab fa-twitter"></i></a> <a
+							class="btn btn-dark btn-social mx-2" href="#!"><i
+							class="fab fa-facebook-f"></i></a> <a
+							class="btn btn-dark btn-social mx-2" href="#!"><i
+							class="fab fa-linkedin-in"></i></a>
 					</div>
 
-					<form th:action="@{/coordinate/register_coordinate}"
-						th:object="${registerCoordinateForm}" method="post">
-						<!-- モーダル内ボディ -->
-						<div class="modal-body">
-							<table class="table">
-								<thead>
-									<tr>
-										<th style="text-align: center;">ファッション雑貨</th>
-										<th style="text-align: center;">トップス1</th>
-										<th style="text-align: center;">トップス2</th>
-										<th style="text-align: center;">アウター</th>
-										<th style="text-align: center;">ボトムス</th>
-										<th style="text-align: center;">シューズ</th>
-										<th style="text-align: center;">バッグ</th>
-										<th style="text-align: center;">ワンピース</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr id="modal-observe">
-										<!-- 選択されたclothes.idの画像を表示-->
-
-										<!-- ファッション雑貨 -->
-										<td id="fa-img"><input type="hidden"
-											id="modal-fashion-accessories" class="modal-input"
-											name="fashion_accessories" value=""
-											th:field="*{fashionAccessories}"> <img
-											class="in-modal-img" id="in-modal-img1" alt="" src=""
-											style="width: 100px; height: auto;"></td>
-										<!-- トップス１ -->
-										<td id="t1-img"><input type="hidden" id="modal-tops1"
-											class="modal-input" name="tops1" value="" th:field="*{tops1}">
-											<img class="in-modal-img" id="in-modal-img2" alt="" src=""
-											style="width: 100px; height: auto;"></td>
-										<!-- トップス２ -->
-										<td id="t1-img"><input type="hidden" id="modal-tops2"
-											class="modal-input" name="tops2" value="" th:field="*{tops2}">
-											<img class="in-modal-img" id="in-modal-img3" alt="" src=""
-											style="width: 100px; height: auto;"></td>
-										<!-- アウター -->
-										<td id="ou-img"><input type="hidden" id="modal-outers"
-											class="modal-input" name="outers" value=""
-											th:field="*{outers}"> <img class="in-modal-img"
-											id="in-modal-img4" alt="" src=""
-											style="width: 100px; height: auto;"></td>
-										<!-- ボトムス -->
-										<td id="bt-img"><input type="hidden" id="modal-bottoms"
-											class="modal-input" name="bottoms" value=""
-											th:field="*{bottoms}"> <img class="in-modal-img"
-											id="in-modal-img5" alt="" src=""
-											style="width: 100px; height: auto;"></td>
-										<!-- シューズ -->
-										<td id="sh-img"><input type="hidden" id="modal-shoes"
-											class="modal-input" name="shoes" value="" th:field="*{shoes}">
-											<img class="in-modal-img" id="in-modal-img6" alt="" src=""
-											style="width: 100px; height: auto;"></td>
-										<!-- バッグ -->
-										<td id="bg-img"><input type="hidden" id="modal-bag"
-											class="modal-input" name="bag" value="" th:field="*{bag}">
-											<img class="in-modal-img" id="in-modal-img7" alt="" src=""
-											style="width: 100px; height: auto;"></td>
-										<!-- ワンピース-->
-										<td id="dr-img"><input type="hidden" id="modal-dress"
-											class="modal-input" name="dress" value="" th:field="*{dress}">
-											<img class="in-modal-img" id="in-modal-img8" alt="" src=""
-											style="width: 100px; height: auto;"></td>
-
-									</tr>
-								</tbody>
-							</table>
-							<div>
-								<h6>
-									コーデ名<span style="color: red;">（必須）</span> &nbsp;<small
-										id="error-msg" style="color: red;">コーデ名は20文字以内で入力してください。</small>
-								</h6>
-
-								<input type="text" name="name" class="form-control"
-									id="code-name" required="required"
-									placeholder="（例）オフィスカジュアルコーデ" th:field="*{name}">
-							</div>
-						</div>
-
-						<!-- モーダル内フッター -->
-						<div class="modal-footer">
-
-							<button type="submit"
-								class="btn btn-primary coordinate-regis-btn">
-								<span>登録する</span>
-							</button>
-
-							<button type="button" class="btn btn-secondary"
-								data-dismiss="modal">戻る</button>
-						</div>
-
-						<!-- /.modal-footer -->
-					</form>
 				</div>
-				<!-- /.modal-content -->
 			</div>
-			<!-- /.modal-dialog -->
-		</div>
-		<!-- /.modal -->
-		<!-- モーダル設定終了 -->
-
-
-
-
+		</footer>
 	</div>
-
-	<br>
-
-	<!-- Footer-->
-	<footer class="footer py-4">
-		<div class="container">
-			<div class="row align-items-center">
-				<div class="col-lg-4 text-lg-left">Copyright © MYQLO 2020</div>
-				<div class="col-lg-4 my-3 my-lg-0">
-					<a class="btn btn-dark btn-social mx-2" href="#!"><i
-						class="fab fa-twitter"></i></a> <a
-						class="btn btn-dark btn-social mx-2" href="#!"><i
-						class="fab fa-facebook-f"></i></a> <a
-						class="btn btn-dark btn-social mx-2" href="#!"><i
-						class="fab fa-linkedin-in"></i></a>
-				</div>
-
-			</div>
-		</div>
-	</footer>
-
 
 
 
@@ -485,6 +499,8 @@
 		th:src="@{/dist/js/scripts.js}"></script>
 	<script src="../static/dist/js/hamburger_menu.js"
 		th:src="@{/dist/js/hamburger_menu.js}"></script>
+
+
 
 	<!-- Coordinate Ajax -->
 	<script type="text/javascript" src="../static/dist/js/coordinate.js"

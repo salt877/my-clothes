@@ -58,5 +58,7 @@ public class ShowCoordinateRestController {
 		showCoodinateService.deleteCoordinate(coordinateId);
 		
 	}
+	
+	
 
 }
