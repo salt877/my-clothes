@@ -28,12 +28,31 @@ public class Tag {
 	 */
 	private TagContent tagContent;
 
+	/**
+	 * ユーザID
+	 */
+	private Integer userId;
+
+	@Override
+	public String toString() {
+		return "Tag [id=" + id + ", clothesId=" + clothesId + ", tagContentId=" + tagContentId + ", tagContent="
+				+ tagContent + ", userId=" + userId + "]";
+	}
+
 	public Integer getId() {
 		return id;
 	}
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Integer getClothesId() {
+		return clothesId;
+	}
+
+	public void setClothesId(Integer clothesId) {
+		this.clothesId = clothesId;
 	}
 
 	public Integer getTagContentId() {
@@ -52,18 +71,12 @@ public class Tag {
 		this.tagContent = tagContent;
 	}
 
-	public Integer getClothesId() {
-		return clothesId;
+	public Integer getUserId() {
+		return userId;
 	}
 
-	public void setClothesId(Integer clothesId) {
-		this.clothesId = clothesId;
-	}
-
-	@Override
-	public String toString() {
-		return "Tag [id=" + id + ", clothesId=" + clothesId + ", tagContentId=" + tagContentId + ", tagContent="
-				+ tagContent + "]";
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 
 }

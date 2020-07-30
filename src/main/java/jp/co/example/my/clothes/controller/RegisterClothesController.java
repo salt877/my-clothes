@@ -4,8 +4,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.Base64;
+import java.util.LinkedHashMap;
 import java.util.List;
-
+import java.util.Map;
 import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -99,10 +100,11 @@ public class RegisterClothesController {
 			model.addAttribute("season", form.getSeason());
 			return showRegisterClothes(model, loginUser);
 		}
-//		if (Pattern.matches("^[0-9]*$", form.getPrice())) {
-//			System.out.println("数字以外が入力されています");
-//			return showRegisterClothes(model, loginUser);
-//		}
+		
+		if (!Pattern.matches("^[0-9]*$",form.getPrice())&&!StringUtils.isEmpty(form.getPrice())) {
+			System.out.println("数字以外が入力されています");
+			return showRegisterClothes(model, loginUser);
+		}
 
 		// 入力されたカテゴリ情報を取得（必須）
 		Category category = registerClothesService.categorySearchById(Integer.parseInt(form.getCategory()));
@@ -249,7 +251,7 @@ public class RegisterClothesController {
 			registerClothesService.insertTag(tag);
 		}
 
-		return "top.html";
+		return "redirect:/";
 
 	}
 
