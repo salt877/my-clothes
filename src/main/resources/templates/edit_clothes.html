@@ -51,7 +51,7 @@
                 </div>
                 <form action="#" method="post" th:action="@{/showDetail/editClothes}" th:object="${editClothesForm}">
                 	<!-- 商品idを埋め込んでおく -->
-					<input  type="hidden" name="itemId" th:value="${clothes.id}">
+					<input  type="hidden" name="clothesId" th:value="${clothes.id}">
                 	<div class="image-information">
                 	<img class="img-fluid" th:src="${'/img/'+clothes.imagePath}" /><br>
                 	<!--  	<input name="imageFile" type="file" accept=".jpg,.png,image/jpeg,image/png" th:errorclass="error-input"/>-->

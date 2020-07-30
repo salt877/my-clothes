@@ -549,7 +549,8 @@ public class ClothesRepository {
 		sql.append("UPDATE clothes ");
 		sql.append("SET category_id=:categoryId, brand_id=:brandId, color_id=:colorId, season=:season, size_id=:sizeId,");
 		sql.append("price=:price, perchase_date=:perchaseDate, comment=:comment ");
-		sql.append("WHERE id=:id;");
+		sql.append("WHERE id=:id ");
+		sql.append("AND user_id=:userId;");
 		
 		template.update(sql.toString(), param);
 	}

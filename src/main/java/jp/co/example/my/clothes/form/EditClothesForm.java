@@ -4,6 +4,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class EditClothesForm {
 
+	/** アイテムID */
+	private String clothesId;
 	/** 画像 */
 	private MultipartFile imageFile;
 	/** カテゴリーID */
@@ -31,9 +33,18 @@ public class EditClothesForm {
 
 	@Override
 	public String toString() {
-		return "EditClothesForm [imageFile=" + imageFile + ", category=" + category + ", brand=" + brand + ", color="
-				+ color + ", tag1=" + tag1 + ", tag2=" + tag2 + ", tag3=" + tag3 + ", season=" + season + ", size="
-				+ size + ", perchaseDate=" + perchaseDate + ", price=" + price + ", comment=" + comment + "]";
+		return "EditClothesForm [clothesId=" + clothesId + ", imageFile=" + imageFile + ", category=" + category
+				+ ", brand=" + brand + ", color=" + color + ", tag1=" + tag1 + ", tag2=" + tag2 + ", tag3=" + tag3
+				+ ", season=" + season + ", size=" + size + ", perchaseDate=" + perchaseDate + ", price=" + price
+				+ ", comment=" + comment + "]";
+	}
+
+	public String getClothesId() {
+		return clothesId;
+	}
+
+	public void setClothesId(String clothesId) {
+		this.clothesId = clothesId;
 	}
 
 	public MultipartFile getImageFile() {
