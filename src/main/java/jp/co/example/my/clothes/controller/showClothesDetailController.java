@@ -328,4 +328,22 @@ public class showClothesDetailController {
 		}
 		return "forward://";
 	}
+	
+	/*
+	 * ファイル名から拡張子を返します.
+	 * 
+	 * @param originalFileName ファイル名
+	 * 
+	 * @return .を除いたファイルの拡張子
+	 */
+	private String getExtension(String originalFileName) throws Exception {
+		if (originalFileName == null) {
+			throw new FileNotFoundException();
+		}
+		int point = originalFileName.lastIndexOf(".");
+		if (point == -1) {
+			throw new FileNotFoundException();
+		}
+		return originalFileName.substring(point + 1);
+	}
 }
