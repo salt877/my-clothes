@@ -207,6 +207,8 @@ public class showClothesDetailController {
 		
 		// タグの登録を行う
 		TagContent editTagContent = new TagContent();
+		List<Tag>tagList = editClothesService.findATag(Integer.parseInt(form.getClothesId()), loginUser.getUser().getId());
+		System.out.println(tagList);
 		
 		// tag1
 		// タグが入力されている場合
@@ -219,25 +221,32 @@ public class showClothesDetailController {
 				System.out.println(editTagContent);
 				editClothesService.insertTagContent(editTagContent);
 				
-				// 登録したタグでデータを更新する
-				List<Tag>tagList = editClothesService.findATag(Integer.parseInt(form.getClothesId()), loginUser.getUser().getId());
-				System.out.println(tagList);
+				// 既に登録されたタグがある場合、新規登録したタグでデータを更新する
 				if(!CollectionUtils.isEmpty(tagList)) {
-					Tag tag1 = new Tag();
-					tag1.setId(tagList.get(0).getId());
-					tag1.setClothesId(tagList.get(0).getClothesId());
-					tag1.setTagContentId(editTagContent.getId());
-					tag1.setUserId(loginUser.getUser().getId());
+					Tag newTag1 = new Tag();
+					newTag1.setId(tagList.get(0).getId());
+					newTag1.setClothesId(tagList.get(0).getClothesId());
+					newTag1.setUserId(loginUser.getUser().getId());
 					TagContent getTagContent1 = editClothesService.tagContentSearchByName(editTagContent.getName());
 					System.out.println(getTagContent1);
-					tag1.setTagContentId(getTagContent1.getId());
-					tag1.setTagContent(getTagContent1);
-					System.out.println(tag1);
-					editClothesService.tagUpdate(tag1);
+					newTag1.setTagContentId(getTagContent1.getId());
+					newTag1.setTagContent(getTagContent1);
+					System.out.println(newTag1);
+					editClothesService.tagUpdate(newTag1);
 				}
 			}
-		// 既にタグが登録されている場合、入力されたタグ情報を更新する
-		
+			// 既にタグが登録されている場合、入力されたタグ情報を更新する
+			if(!CollectionUtils.isEmpty(tagList)) {
+				Tag tag1 = new Tag();
+				tag1.setId(tagList.get(0).getId());
+				tag1.setClothesId(tagList.get(0).getClothesId());
+				tag1.setUserId(loginUser.getUser().getId());
+				System.out.println(tagContent1);
+				tag1.setTagContentId(tagContent1.getId());
+				tag1.setTagContent(tagContent1);
+				System.out.println(tag1);
+				editClothesService.tagUpdate(tag1);
+			}
 		
 			
 			
