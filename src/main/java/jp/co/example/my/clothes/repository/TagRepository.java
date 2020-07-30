@@ -65,7 +65,7 @@ public class TagRepository {
 		sql.append("JOIN tags t ");
 		sql.append("ON tc.id=t.tag_contents_id ");
 		sql.append("WHERE t.clothes_id=:id ");
-		sql.append("ORDER BY clothes_id,tag_id;");
+		sql.append("ORDER BY tag_id;");
 		SqlParameterSource param = new MapSqlParameterSource("id", id);
 		return template.query(sql.toString(), param, TAG_ROW_MAPPER2);
 	}

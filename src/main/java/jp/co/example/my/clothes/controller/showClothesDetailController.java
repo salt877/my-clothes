@@ -247,12 +247,85 @@ public class showClothesDetailController {
 				System.out.println(tag1);
 				editClothesService.tagUpdate(tag1);
 			}
-		
-			
-			
 		}
 		
+		// tag2
+		if(!StringUtils.isEmpty(form.getTag2())) {
+			// 入力された情報が登録されているかを検索
+			TagContent tagContent2 = editClothesService.tagContentSearchByName(form.getTag2());
+			// もし登録されていないタグがあれば登録する
+			if(StringUtils.isEmpty(tagContent2)) {
+				TagContent editTagContent2 = new TagContent();
+				editTagContent2.setName(form.getTag2());
+				System.out.println(editTagContent2);
+				editClothesService.insertTagContent(editTagContent2);
+				
+				// 既に登録されたタグがある場合、新規登録したタグでデータを更新する
+				if(!CollectionUtils.isEmpty(tagList)) {
+					Tag newTag2 = new Tag();
+					newTag2.setId(tagList.get(1).getId());
+					newTag2.setClothesId(tagList.get(1).getClothesId());
+					newTag2.setUserId(loginUser.getUser().getId());
+					TagContent getTagContent2 = editClothesService.tagContentSearchByName(editTagContent2.getName());
+					System.out.println(getTagContent2);
+					newTag2.setTagContentId(getTagContent2.getId());
+					newTag2.setTagContent(getTagContent2);
+					System.out.println(newTag2);
+					editClothesService.tagUpdate(newTag2);
+				}
+			}
+			// 既にタグが登録されている場合、入力されたタグ情報を更新する
+			if(!CollectionUtils.isEmpty(tagList)) {
+				Tag tag2 = new Tag();
+				tag2.setId(tagList.get(1).getId());
+				tag2.setClothesId(tagList.get(1).getClothesId());
+				tag2.setUserId(loginUser.getUser().getId());
+				System.out.println(tagContent2);
+				tag2.setTagContentId(tagContent2.getId());
+				tag2.setTagContent(tagContent2);
+				System.out.println(tag2);
+				editClothesService.tagUpdate(tag2);
+			}
+		}
 		
+		// tag3
+		if(!StringUtils.isEmpty(form.getTag3())) {
+			// 入力された情報が登録されているかを検索
+			TagContent tagContent3 = editClothesService.tagContentSearchByName(form.getTag3());
+			// もし登録されていないタグがあれば登録する
+			if(StringUtils.isEmpty(tagContent3)) {
+				TagContent editTagContent3 = new TagContent();
+				editTagContent3.setName(form.getTag3());
+				System.out.println(editTagContent3);
+				editClothesService.insertTagContent(editTagContent3);
+						
+				// 既に登録されたタグがある場合、新規登録したタグでデータを更新する
+				if(!CollectionUtils.isEmpty(tagList)) {
+					Tag newTag3 = new Tag();
+					newTag3.setId(tagList.get(2).getId());
+					newTag3.setClothesId(tagList.get(2).getClothesId());
+					newTag3.setUserId(loginUser.getUser().getId());
+					TagContent getTagContent3 = editClothesService.tagContentSearchByName(editTagContent3.getName());
+					System.out.println(getTagContent3);
+					newTag3.setTagContentId(getTagContent3.getId());
+					newTag3.setTagContent(getTagContent3);
+					System.out.println(newTag3);
+					editClothesService.tagUpdate(newTag3);
+				}
+			}
+			// 既にタグが登録されている場合、入力されたタグ情報を更新する
+			if(!CollectionUtils.isEmpty(tagList)) {
+				Tag tag3 = new Tag();
+				tag3.setId(tagList.get(2).getId());
+				tag3.setClothesId(tagList.get(2).getClothesId());
+				tag3.setUserId(loginUser.getUser().getId());
+				System.out.println(tagContent3);
+				tag3.setTagContentId(tagContent3.getId());
+				tag3.setTagContent(tagContent3);
+				System.out.println(tag3);
+				editClothesService.tagUpdate(tag3);
+			}
+		}
 		return "forward://";
 	}
 }
