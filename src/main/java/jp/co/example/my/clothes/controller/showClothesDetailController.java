@@ -205,32 +205,35 @@ public class showClothesDetailController {
 		System.out.println(clothes);
 		editClothesService.editClothes(clothes);
 		
-		// userIdに紐づいた一番最新に登録したアイテムを取得
-		Clothes registerdClothes = registerClothesService.newClothesSearchByUserId(loginUser.getUser().getId());
-
 		// タグの登録を行う
 		TagContent editTagContent = new TagContent();
-		Tag tag = null;
 		
 		// tag1
 		// タグが入力されている場合
 		if(!StringUtils.isEmpty(form.getTag1())) {
 			// 入力された情報が登録されているかを検索
 			TagContent tagContent1 = editClothesService.tagContentSearchByName(form.getTag1());
-			// もし登録されていないタグがあれば登録する　★表示がされない
+			// もし登録されていないタグがあれば登録する　
 			if(StringUtils.isEmpty(tagContent1)) {
-				editTagContent.setId(loginUser.getUser().getId());  // ユーザIDに変更する
 				editTagContent.setName(form.getTag1());
 				System.out.println(editTagContent);
 				editClothesService.insertTagContent(editTagContent);
 				
 				// 登録したタグでデータを更新する
 				List<Tag>tagList = editClothesService.findATag(Integer.parseInt(form.getClothesId()), loginUser.getUser().getId());
+				System.out.println(tagList);
 				if(!CollectionUtils.isEmpty(tagList)) {
-					tag = tagList.get(0);
-					tag.setTagContentId(editTagContent.getId());
-					System.out.println(tag);
-					editClothesService.tagUpdate(tag);
+					Tag tag1 = new Tag();
+					tag1.setId(tagList.get(0).getId());
+					tag1.setClothesId(tagList.get(0).getClothesId());
+					tag1.setTagContentId(editTagContent.getId());
+					tag1.setUserId(loginUser.getUser().getId());
+					TagContent getTagContent1 = editClothesService.tagContentSearchByName(editTagContent.getName());
+					System.out.println(getTagContent1);
+					tag1.setTagContentId(getTagContent1.getId());
+					tag1.setTagContent(getTagContent1);
+					System.out.println(tag1);
+					editClothesService.tagUpdate(tag1);
 				}
 			}
 		// 既にタグが登録されている場合、入力されたタグ情報を更新する

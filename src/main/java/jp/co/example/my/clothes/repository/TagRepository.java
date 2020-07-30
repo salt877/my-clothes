@@ -75,10 +75,15 @@ public class TagRepository {
 	 */
 	private static final RowMapper<Tag>TAG_ROW_MAPPER3 =(rs,i) ->{
 		Tag tag = new Tag();
-		tag.setId(rs.getInt("t_id"));
-		tag.setClothesId(rs.getInt("t_clothes_id"));
-		tag.setTagContentId(rs.getInt("t_tag_contents_id"));
-		tag.setUserId(rs.getInt("c_user_id"));
+		tag.setId(rs.getInt("tag_id"));
+		tag.setClothesId(rs.getInt("clothes_id"));
+		tag.setTagContentId(rs.getInt("tc_id"));
+		tag.setUserId(rs.getInt("user_id"));
+		// タグコンテンツ
+		TagContent tagContent = new TagContent();
+		tagContent.setId(rs.getInt("tc_id"));
+		tagContent.setName(rs.getString("tc_name"));
+		tag.setTagContent(tagContent);
 		return tag;
 	};
 	
