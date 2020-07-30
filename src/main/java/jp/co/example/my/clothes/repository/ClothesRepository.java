@@ -123,7 +123,7 @@ public class ClothesRepository {
 	 * @return ブランド名の入ったリスト
 	 */
 	public List<Brand> showBrandName(Integer userId) {
-		String sql = "SELECT DISTINCT brands.id,brands.name FROM brands INNER JOIN clothes ON brands.id = clothes.brand_id WHERE clothes.user_id=:userId;";
+		String sql = "SELECT DISTINCT brands.id,brands.name FROM brands INNER JOIN clothes ON brands.id = clothes.brand_id WHERE clothes.user_id=:userId AND deleted = false;";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
 		List<Brand> brandList = template.query(sql, param, BRAND_ROW_MAPPER);
 		return brandList;
@@ -153,7 +153,7 @@ public class ClothesRepository {
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT DISTINCT ON (tc.name) tc.id,t.clothes_id,tc.name FROM clothes AS C ");
 		sql.append("JOIN tags AS t ON c.id=t.clothes_id JOIN tag_contents AS tc ");
-		sql.append("ON t.tag_contents_id=tc.id WHERE c.user_id=:userId");
+		sql.append("ON t.tag_contents_id=tc.id WHERE c.user_id=:userId AND c.deleted= false");
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
 		List<TagContent> tagNameList = template.query(sql.toString(), param, TAG_CONTENTS_ROW_MAPPER);
 		return tagNameList;

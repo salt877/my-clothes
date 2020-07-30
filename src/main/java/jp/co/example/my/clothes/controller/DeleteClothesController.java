@@ -17,7 +17,6 @@ public class DeleteClothesController {
 	
 	@RequestMapping("/pushDeleteButton")
 	public String pushDeleteButton(Integer id) {
-		System.out.println(id);
 		
 		deleteClothesService.deleteclothes(id);
 		
