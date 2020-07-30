@@ -54,7 +54,7 @@
 					<input  type="hidden" name="clothesId" th:value="${clothes.id}">
                 	<div class="image-information">
                 	<img class="img-fluid" th:src="${'/img/'+clothes.imagePath}" /><br>
-                	<input name="imageFile" type="file" accept=".jpg,.png,image/jpeg,image/png"/>
+                	<input name="imageFile" type="file" accept=".jpg,.png,image/jpeg,image/png" th:errorclass="error-input"/>
               	    </div>
               	    <div class="required-information">
                 		<table>

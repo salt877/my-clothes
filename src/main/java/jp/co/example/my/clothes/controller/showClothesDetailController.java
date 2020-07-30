@@ -1,6 +1,9 @@
 package jp.co.example.my.clothes.controller;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Date;
+import java.util.Base64;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,8 +15,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import jp.co.example.my.clothes.domain.Brand;
 import jp.co.example.my.clothes.domain.Category;
@@ -136,9 +141,10 @@ public class showClothesDetailController {
 	 * @param loginUser ユーザのログイン情報
 	 * @param id アイテムID
 	 * @return トップ画面に遷移
+	 * @throws IOException 
 	 */
 	@RequestMapping("/editClothes")
-	public String editClothes(Model model, EditClothesForm form, @AuthenticationPrincipal LoginUser loginUser) {
+	public String editClothes(Model model, EditClothesForm form, @AuthenticationPrincipal LoginUser loginUser, BindingResult result) throws IOException {
 		
 		// 入力されたカテゴリー情報を取得(必須)
 		Category category = editClothesService.categorySearchById(Integer.parseInt(form.getCategory()));
@@ -160,6 +166,31 @@ public class showClothesDetailController {
 		clothes.setUserId(loginUser.getUser().getId());
 		// アイテムID
 		clothes.setId(Integer.parseInt(form.getClothesId()));
+		
+		// 画像パス
+		// 画像ファイル形式チェック
+		MultipartFile imageFile = form.getImageFile();
+		String fileExtension = null;
+		try {
+			fileExtension = getExtension(imageFile.getOriginalFilename());
+
+			if (!"jpg".equals(fileExtension) && !"png".equals(fileExtension)) {
+				result.rejectValue("imageFile", "", "拡張子は.jpgか.pngのみに対応しています");
+			}
+		} catch (Exception e) {
+			result.rejectValue("imageFile", "", "拡張子は.jpgか.pngのみに対応しています");
+		}
+		
+		// 画像ファイルをBase64形式にエンコード
+		String base64FileString = Base64.getEncoder().encodeToString(imageFile.getBytes());
+		if ("jpg".equals(fileExtension)) {
+			base64FileString = "data:image/jpeg;base64," + base64FileString;
+		} else if ("png".equals(fileExtension)) {
+			base64FileString = "data:image/png;base64," + base64FileString;
+		}
+
+		// エンコードした画像をセットする.
+		clothes.setImagePath(base64FileString);
 		
 		// カテゴリー情報
 		clothes.setCategory(category);
@@ -234,7 +265,21 @@ public class showClothesDetailController {
 		return "forward://";
 	}
 	
-	
-	
-	
+	/*
+	 * ファイル名から拡張子を返します.
+	 * 
+	 * @param originalFileName ファイル名
+	 * 
+	 * @return .を除いたファイルの拡張子
+	 */
+	private String getExtension(String originalFileName) throws Exception {
+		if (originalFileName == null) {
+			throw new FileNotFoundException();
+		}
+		int point = originalFileName.lastIndexOf(".");
+		if (point == -1) {
+			throw new FileNotFoundException();
+		}
+		return originalFileName.substring(point + 1);
+	}
 }
