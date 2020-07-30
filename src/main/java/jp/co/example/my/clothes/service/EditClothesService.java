@@ -1,5 +1,7 @@
 package jp.co.example.my.clothes.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -57,16 +59,16 @@ public class EditClothesService {
 		clothesRepository.update(clothes);
 	}
 	
+	
 	/**
-	 * 1件のタグ検索を行います.
+	 * タグ検索を行います.
 	 * 
-	 * @param userId ユーザID
-	 * @param clothesId アイテムID
-	 * @param tagContentId タグコンテンツID
-	 * @return 1件のタグ
+	 * @param userId
+	 * @param clothesId
+	 * @return
 	 */
-	public Tag findATag(Integer userId, Integer clothesId, Integer tagContentId) {
-		return tagRepository.findById(userId, clothesId, tagContentId);
+	public List<Tag> findATag(Integer clothesId, Integer userId) {
+		return tagRepository.findByUserIdAndClothesIdAndId(clothesId, userId);
 	}
 	
 	/**

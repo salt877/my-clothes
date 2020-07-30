@@ -141,10 +141,9 @@ public class showClothesDetailController {
 	 * @param loginUser ユーザのログイン情報
 	 * @param id アイテムID
 	 * @return トップ画面に遷移
-	 * @throws IOException 
 	 */
 	@RequestMapping("/editClothes")
-	public String editClothes(Model model, EditClothesForm form, @AuthenticationPrincipal LoginUser loginUser, BindingResult result) throws IOException {
+	public String editClothes(Model model, EditClothesForm form, @AuthenticationPrincipal LoginUser loginUser) {
 		
 		// 入力されたカテゴリー情報を取得(必須)
 		Category category = editClothesService.categorySearchById(Integer.parseInt(form.getCategory()));
@@ -166,31 +165,6 @@ public class showClothesDetailController {
 		clothes.setUserId(loginUser.getUser().getId());
 		// アイテムID
 		clothes.setId(Integer.parseInt(form.getClothesId()));
-		
-		// 画像パス
-		// 画像ファイル形式チェック
-		MultipartFile imageFile = form.getImageFile();
-		String fileExtension = null;
-		try {
-			fileExtension = getExtension(imageFile.getOriginalFilename());
-
-			if (!"jpg".equals(fileExtension) && !"png".equals(fileExtension)) {
-				result.rejectValue("imageFile", "", "拡張子は.jpgか.pngのみに対応しています");
-			}
-		} catch (Exception e) {
-			result.rejectValue("imageFile", "", "拡張子は.jpgか.pngのみに対応しています");
-		}
-		
-		// 画像ファイルをBase64形式にエンコード
-		String base64FileString = Base64.getEncoder().encodeToString(imageFile.getBytes());
-		if ("jpg".equals(fileExtension)) {
-			base64FileString = "data:image/jpeg;base64," + base64FileString;
-		} else if ("png".equals(fileExtension)) {
-			base64FileString = "data:image/png;base64," + base64FileString;
-		}
-
-		// エンコードした画像をセットする.
-		clothes.setImagePath(base64FileString);
 		
 		// カテゴリー情報
 		clothes.setCategory(category);
@@ -232,8 +206,8 @@ public class showClothesDetailController {
 		editClothesService.editClothes(clothes);
 		
 		// userIdに紐づいた一番最新に登録したアイテムを取得
-		
-		
+		Clothes registerdClothes = registerClothesService.newClothesSearchByUserId(loginUser.getUser().getId());
+
 		// タグの登録を行う
 		TagContent editTagContent = new TagContent();
 		Tag tag = null;
@@ -249,37 +223,24 @@ public class showClothesDetailController {
 				editTagContent.setName(form.getTag1());
 				System.out.println(editTagContent);
 				editClothesService.insertTagContent(editTagContent);
+				
+				// 登録したタグでデータを更新する
+				List<Tag>tagList = editClothesService.findATag(Integer.parseInt(form.getClothesId()), loginUser.getUser().getId());
+				if(!CollectionUtils.isEmpty(tagList)) {
+					tag = tagList.get(0);
+					tag.setTagContentId(editTagContent.getId());
+					System.out.println(tag);
+					editClothesService.tagUpdate(tag);
+				}
 			}
-		// tag
-		List<Tag>tagList = showClothesDetailService.showTagList(Integer.parseInt(form.getClothesId()));
-		System.out.println(tagList);
-		tag = editClothesService.findATag(loginUser.getUser().getId(), Integer.parseInt(form.getClothesId()), tagList.get(0).getTagContentId());
-		System.out.println(tag);
-		tag.setTagContentId(tagContent1.getId());
-		editClothesService.tagUpdate(tag);
+		// 既にタグが登録されている場合、入力されたタグ情報を更新する
+		
+		
+			
+			
 		}
-		
-		
 		
 		
 		return "forward://";
-	}
-	
-	/*
-	 * ファイル名から拡張子を返します.
-	 * 
-	 * @param originalFileName ファイル名
-	 * 
-	 * @return .を除いたファイルの拡張子
-	 */
-	private String getExtension(String originalFileName) throws Exception {
-		if (originalFileName == null) {
-			throw new FileNotFoundException();
-		}
-		int point = originalFileName.lastIndexOf(".");
-		if (point == -1) {
-			throw new FileNotFoundException();
-		}
-		return originalFileName.substring(point + 1);
 	}
 }
