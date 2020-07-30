@@ -129,78 +129,76 @@ public class showClothesDetailController {
 	
 
 	@RequestMapping("/editClothes")
-	public String editClothes(Model model, EditClothesForm form, @AuthenticationPrincipal LoginUser loginUser) {
+	public String editClothes(Model model, EditClothesForm form, @AuthenticationPrincipal LoginUser loginUser, Integer id) {
 		
-		// formからオブジェクトに情報をコピー
+		// 入力されたカテゴリー情報を取得(必須)
+		Category category = editClothesService.categorySearchById(Integer.parseInt(form.getCategory()));
+		// 入力されたカラー情報を取得(必須)
+		Color color = editClothesService.ColorSearchById(Integer.parseInt(form.getColor()));
+		// 入力されたブランド情報を取得(必須)
+		Brand brand = editClothesService.brandSearchByName(form.getBrand());
+		// 入力されたサイズ情報を取得(任意)
+		Size size = null;
+		if(!StringUtils.isEmpty(form.getSize())) {
+			size = editClothesService.sizeSearchById(Integer.parseInt(form.getSize()));	
+		}
+		
+		// 取得した情報をclothesオブジェクトにセット
 		Clothes clothes = new Clothes();
-		BeanUtils.copyProperties(form, clothes);
 		
-		// 上記でコピーできなかったものをコピー
+		// 必須項目
 		// userId
 		clothes.setUserId(loginUser.getUser().getId());
 		// アイテムID
 		clothes.setId(Integer.parseInt(form.getClothesId()));;
 		
-		// 入力されたカテゴリー情報を取得
-		Category category = editClothesService.categorySearchById(Integer.parseInt(form.getCategory()));
 		// カテゴリー情報
 		clothes.setCategory(category);
 		clothes.setCategoryId(category.getId());
 		
-		// 入力されたカラー情報を取得
-		Color color = editClothesService.ColorSearchById(Integer.parseInt(form.getColor()));
 		// カラー情報
 		clothes.setColor(color);
 		clothes.setColorId(color.getId());
 		
-		// 入力されたサイズ情報を取得
-		Size size = editClothesService.sizeSearchById(Integer.parseInt(form.getSize()));
-		// サイズ情報
-		clothes.setSize(size);
-		clothes.setSizeId(size.getId());
-		
-		// 入力されたブランド情報を取得
-		Brand brand = editClothesService.brandSearchByName(form.getBrand());
 		// ブランド情報
 		clothes.setBrand(brand);
 		clothes.setBrandId(brand.getId());
 		
-		clothes.setPrice(Integer.parseInt(form.getPrice()));
-		clothes.setPerchaseDate(Date.valueOf(form.getPerchaseDate()));
+		// 任意項目
+		// サイズ情報
+		if(!StringUtils.isEmpty(form.getSize())) {
+			clothes.setSize(size);
+			clothes.setSizeId(size.getId());
+		}
+		// シーズン
+		if(!StringUtils.isEmpty(form.getSeason())) {
+			clothes.setSeason(form.getSeason());
+		}
+		// 価格
+		if(!StringUtils.isEmpty(form.getPrice())) {
+			clothes.setPrice(Integer.parseInt(form.getPrice()));
+		}
+		// 購入日
+		if(!StringUtils.isEmpty(form.getPerchaseDate())) {
+			clothes.setPerchaseDate(Date.valueOf(form.getPerchaseDate()));
+		}
+		// コメント
+		if(!StringUtils.isEmpty(form.getComment())) {
+			clothes.setComment(form.getComment());
+		}
+		
+		// アイテム情報を登録
+		System.out.println(clothes);
+		editClothesService.editClothes(clothes);
+		
+		// 入力されたタグの登録を行う
 		
 		// userIdに紐づいた一番最新に登録したアイテムを取得
 //		Clothes editClothes = editClothesService.newClothesSearchByUserId(loginUser.getUser().getId());
 		
-		// 入力された情報があればすでにタグとして登録されているかを確認
-		TagContent registerTagConetent = new TagContent();
-		
-		// tag1情報について
-		// tagが入力されていればその情報が登録されているか検索
-		if(!StringUtils.isEmpty(form.getTag1())) {
-			TagContent tagContent1 = editClothesService.tagContentSearchByName(form.getTag1());
-			// もし登録されていないタグであれば登録する
-			if(StringUtils.isEmpty(tagContent1)) {
-				registerTagConetent.setId(loginUser.getUser().getId());  // ユーザIDに変更する
-				registerTagConetent.setName(form.getTag1());
-				editClothesService.insertTagContent(registerTagConetent);
-			}
-			// tagIdとclothesIdを結び付けてデータの上書きを行う
-			// 1件のタグ検索を行う
-			Tag tag1 = editClothesService.findATag(loginUser.getUser().getId(),Integer.parseInt(form.getClothesId()), clothes.getTagList().get(0).getTagContentId());
-			System.out.println(tag1);
-			if(!(clothes.getTagList().get(0).getTagContent().getName().equals(form.getTag1()))) {
-				tag1.setTagContentId(tagContent1.getId());
-				System.out.println(tag1);
-				editClothesService.tagUpdate(tag1);
-			}
-			
-		}
 		
 		
 		
-		System.out.println(clothes);
-		
-		editClothesService.editClothes(clothes);
 		
 		
 		return "forward://";
