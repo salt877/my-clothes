@@ -8,7 +8,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -143,7 +142,8 @@ public class showClothesDetailController {
 	 * @return トップ画面に遷移
 	 */
 	@RequestMapping("/editClothes")
-	public String editClothes(Model model, EditClothesForm form, @AuthenticationPrincipal LoginUser loginUser, BindingResult result)throws IOException {
+	public String editClothes(Model model, EditClothesForm form, BindingResult result, @AuthenticationPrincipal LoginUser loginUser)throws IOException {
+		System.out.println(form);
 		
 		// 入力されたカテゴリー情報を取得(必須)
 		Category category = editClothesService.categorySearchById(Integer.parseInt(form.getCategory()));
@@ -167,27 +167,29 @@ public class showClothesDetailController {
 		clothes.setId(Integer.parseInt(form.getClothesId()));
 		
 		// 画像ファイル形式チェック
-//		MultipartFile imageFile = form.getImageFile();
-//		String fileExtension = null;
-//		try {
-//			fileExtension = getExtension(imageFile.getOriginalFilename());
-//			
-//			if(!"jpg".equals(fileExtension) && !"png".equals(fileExtension)) {
-//				result.rejectValue("imageFile", "", "拡張子は.jpgか.pngのみに対応しています");
-//			}
-//		} catch (Exception e) {
-//			result.rejectValue("imageFile", "", "拡張子は.jpgか.pngのみに対応しています");
-//		}
+		MultipartFile imageFile = form.getImageFile();
+		String fileExtension = null;
+		try {
+			fileExtension = getExtension(imageFile.getOriginalFilename());
+			
+			if(!"jpg".equals(fileExtension) && !"png".equals(fileExtension)) {
+				result.rejectValue("imageFile", "", "拡張子は.jpgか.pngのみに対応しています");
+			}
+		} catch (Exception e) {
+			result.rejectValue("imageFile", "", "拡張子は.jpgか.pngのみに対応しています");
+		}
 		// 画像ファイルをBase64形式にエンコード
-//		String base64FileString = Base64.getEncoder().encodeToString(imageFile.getBytes());
-//		if("jpg".equals(fileExtension)) {
-//			base64FileString = "data:image/jpeg;base64," + base64FileString;
-//		} else if("png".equals(fileExtension)){
-//			base64FileString = "data:image/png;base64," + base64FileString;
-//		}
+		String base64FileString = Base64.getEncoder().encodeToString(imageFile.getBytes());
+		if("jpg".equals(fileExtension)) {
+			base64FileString = "data:image/jpeg;base64," + base64FileString;
+		} else if("png".equals(fileExtension)){
+			base64FileString = "data:image/png;base64," + base64FileString;
+		}
 		
 		//エンコードした画像をセットする
-//		clothes.setImagePath(base64FileString);
+		if(!StringUtils.isEmpty(form.getImageFile())) {
+			clothes.setImagePath(base64FileString);
+		}
 		
 		// カテゴリー情報
 		clothes.setCategory(category);
@@ -359,14 +361,14 @@ public class showClothesDetailController {
 	 * 
 	 * @return .を除いたファイルの拡張子
 	 */
-//	private String getExtension(String originalFileName) throws Exception {
-//		if (originalFileName == null) {
-//			throw new FileNotFoundException();
-//		}
-//		int point = originalFileName.lastIndexOf(".");
-//		if (point == -1) {
-//			throw new FileNotFoundException();
-//		}
-//		return originalFileName.substring(point + 1);
-//	}
+	private String getExtension(String originalFileName) throws Exception {
+		if (originalFileName == null) {
+			throw new FileNotFoundException();
+		}
+		int point = originalFileName.lastIndexOf(".");
+		if (point == -1) {
+			throw new FileNotFoundException();
+		}
+		return originalFileName.substring(point + 1);
+	}
 }

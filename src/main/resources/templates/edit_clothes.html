@@ -49,12 +49,12 @@
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">アイテム詳細/編集</h2>
                 </div>
-                <form action="#" method="post" th:action="@{/showDetail/editClothes}" th:object="${editClothesForm}">
+                <form action="#" method="post" th:action="@{/showDetail/editClothes}" th:object="${editClothesForm}" enctype="multipart/form-data">
                 	<!-- 商品idを埋め込んでおく -->
 					<input  type="hidden" name="clothesId" th:value="${clothes.id}">
                 	<div class="image-information">
-                	<img class="img-fluid" th:src="${clothes.imagePath}" /><br>
-                	<!-- <input name="imageFile" type="file" accept=".jpg,.png,image/jpeg,image/png" th:errorclass="error-input"/> -->
+                		<img class="img-fluid" th:src="${clothes.imagePath}" /><br>
+                		<input name="imageFile" type="file" accept=".jpg,.png">
               	    </div>
               	    <div class="required-information">
                 		<table>
