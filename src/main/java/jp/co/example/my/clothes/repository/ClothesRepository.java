@@ -19,6 +19,7 @@ import jp.co.example.my.clothes.domain.Category;
 import jp.co.example.my.clothes.domain.Clothes;
 import jp.co.example.my.clothes.domain.Color;
 import jp.co.example.my.clothes.domain.Size;
+import jp.co.example.my.clothes.domain.MonthlyDataDTO;
 import jp.co.example.my.clothes.domain.TagContent;
 
 /**
@@ -36,26 +37,35 @@ public class ClothesRepository {
 	private static final RowMapper<Clothes> CLOTHES_ROW_MAPPER = new BeanPropertyRowMapper<>(Clothes.class);
 	private static final RowMapper<Brand> BRAND_ROW_MAPPER = new BeanPropertyRowMapper<>(Brand.class);
 	private static final RowMapper<TagContent> TAG_CONTENTS_ROW_MAPPER = new BeanPropertyRowMapper<>(TagContent.class);
+	private static final RowMapper<MonthlyDataDTO> DATA_ROW_MAPPER = new BeanPropertyRowMapper<>(MonthlyDataDTO.class);
 
-//	private static final RowMapper<Clothes> CLOTHES_ROW_MAPPER = (rs,i) ->{
-//		
-//		Clothes clothes = new Clothes();
-//		clothes.setId(rs.getInt("id"));
-//		clothes.setUserId(rs.getInt("user_id"));		
-//		clothes.setCategoryId(rs.getInt("category_id"));
-//		clothes.setBrandId(rs.getInt("brand_id"));
-//		clothes.setImagePath(rs.getString("image_path"));
-//		clothes.setPrice(rs.getInt("price"));
-//		clothes.setColorId(rs.getInt("color_id"));
-//		clothes.setSeason(rs.getString("season"));
-//		clothes.setSizeId(rs.getInt("size_id"));
-//		clothes.setPerchaseDate(rs.getDate("perchase_date"));
-//		clothes.setComment(rs.getString("comment"));
-//		clothes.setDeleted(rs.getBoolean("deleted"));
-//		return clothes;
-//	};
+	/**
+	 * カレンダー画面で使用するローマッパー.
+	 */
+	private static final RowMapper<Clothes> CLOTHES_ROW_MAPPER3 = (rs,i) ->{
+		
+		Clothes clothes = new Clothes();
+		clothes.setId(rs.getInt("cl_id"));
+		clothes.setUserId(rs.getInt("cl_user_id"));		
+		clothes.setCategoryId(rs.getInt("cl_category_id"));
+		clothes.setBrandId(rs.getInt("cl_brand_id"));
+		clothes.setImagePath(rs.getString("cl_image_path"));
+		clothes.setPrice(rs.getInt("price"));
+		clothes.setColorId(rs.getInt("cl_color_id"));
+		clothes.setSeason(rs.getString("cl_season"));
+		clothes.setSizeId(rs.getInt("cl_size_id"));
+		clothes.setPerchaseDate(rs.getDate("cl_perchase_date"));
+		clothes.setComment(rs.getString("cl_comment"));
+		clothes.setDeleted(rs.getBoolean("cl_deleted"));
+		Category category = new Category();
+		category.setId(rs.getInt("ca_id"));
+		category.setName(rs.getString("ca_name"));
+		clothes.setCategory(category);
+		return clothes;
+		
+	};
 
-	private static final String SQL = "SELECT id,user_id,category_id,brand_id,image_path,price,color_id,season,size_id,perchase_date,comment,deleted FROM clothes ";
+	private static final String SQL = "SELECT id,user_id,category_id,brand_id,image_path,price,color_id,season,size_id,perchase_date,comment,deleted ";
 
 	/**
 	 * 新規にアイテム情報をインサート.
@@ -76,9 +86,28 @@ public class ClothesRepository {
 	 * @return 登録アイテム一覧
 	 */
 	public List<Clothes> findAll(Integer userId) {
-		String sql = SQL + "WHERE user_id=:userId AND deleted =false ORDER BY id ;";
+		String sql = SQL + "FROM clothes WHERE user_id=:userId ORDER BY id;";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
 		List<Clothes> clothesList = template.query(sql, param, CLOTHES_ROW_MAPPER);
+		return clothesList;
+	}
+	
+	/**
+	 * カテゴリー名付きの登録アイテム一覧をでID順で取得します.
+	 * 
+	 * @param userId ログインユーザID
+	 * @return　登録アイテム一覧
+	 */
+	public List<Clothes> findAllWithCategory(Integer userId){
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT cl.id cl_id,cl.user_id cl_user_id,cl.category_id cl_category_id,cl.brand_id cl_brand_id,cl.image_path cl_image_path,");
+		sql.append("CASE WHEN cl.price IS NULL THEN 0 ELSE cl.price END,cl.color_id cl_color_id,");
+		sql.append("cl.season cl_season,cl.size_id cl_size_id,cl.perchase_date cl_perchase_date,cl.comment cl_comment,cl.deleted cl_deleted,");
+		sql.append("ca.id ca_id,ca.name ca_name FROM clothes cl INNER JOIN categories ca ");
+		sql.append("ON cl.category_id=ca.id ");
+		sql.append("WHERE cl.user_id=:userId AND cl.deleted='FALSE' ORDER BY cl.id;");
+		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
+		List<Clothes> clothesList = template.query(sql.toString(), param, CLOTHES_ROW_MAPPER3);
 		return clothesList;
 	}
 
@@ -90,7 +119,7 @@ public class ClothesRepository {
 	 * @return 登録アイテム一覧
 	 */
 	public List<Clothes> findByCategory(Integer userId, Integer categoryId) {
-		String sql = SQL + "WHERE user_id=:userId AND category_id=:categoryId AND deleted =false ORDER BY id;";
+		String sql = SQL + "FROM clothes WHERE user_id=:userId AND category_id=:categoryId ORDER BY id;";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId).addValue("categoryId",
 				categoryId);
 		List<Clothes> clothesList = template.query(sql, param, CLOTHES_ROW_MAPPER);
@@ -105,7 +134,7 @@ public class ClothesRepository {
 	 * @return 登録アイテム一覧
 	 */
 	public List<Clothes> findByCategoryForCoordinate(Integer userId, Integer categoryId) {
-		String sql = SQL + "WHERE user_id=:userId AND category_id=:categoryId AND deleted = false ORDER BY id;";
+		String sql = SQL + "FROM clothes WHERE user_id=:userId AND category_id=:categoryId ORDER BY id;";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId).addValue("categoryId",
 				categoryId);
 		List<Clothes> clothesList = template.query(sql, param, CLOTHES_ROW_MAPPER);
@@ -137,7 +166,7 @@ public class ClothesRepository {
 	 * @return 登録アイテム一覧
 	 */
 	public List<Clothes> findByBrand(Integer userId, Integer brandId) {
-		String sql = SQL + "WHERE user_id=:userId AND brand_id=:brandId AND deleted =false ORDER BY id;";
+		String sql = SQL + "FROM clothes WHERE user_id=:userId AND brand_id=:brandId  AND deleted =false ORDER BY id;";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId).addValue("brandId", brandId);
 		List<Clothes> clothesList = template.query(sql, param, CLOTHES_ROW_MAPPER);
 		return clothesList;
@@ -246,7 +275,7 @@ public class ClothesRepository {
 	 * @return
 	 */
 	public Clothes findNewClothes(Integer userId) {
-		String sql = SQL + "WHERE 1=1 AND user_id=:userId order by id desc";
+		String sql = SQL + "FROM clothes WHERE 1=1 AND user_id=:userId order by id desc";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
 		List<Clothes> clothesList = template.query(sql, param, CLOTHES_ROW_MAPPER);
 		return clothesList.get(0);
@@ -473,6 +502,7 @@ public class ClothesRepository {
 		return bigClothesList;
 	}
 
+<<<<<<< HEAD
 	// アイテム詳細表示用のローマッパー.
 	private static final RowMapper<Clothes> CLOTHES_ROW_MAPPER3 = (rs, i) -> {
 		Clothes clothes = new Clothes();
@@ -565,6 +595,26 @@ public class ClothesRepository {
 		String sql = "UPDATE clothes SET deleted=true WHERE id=:id";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
 		template.update(sql, param);
+	/**
+	 * 月毎の購入金額合計、アイテム数、平均金額を検索します.
+	 * 
+	 * @param userId       ユーザID
+	 * @param perchaseDate 購入日
+	 * @return データの入ったリスト
+	 */
+	public List<MonthlyDataDTO> showByPerchaseData(Integer userId, String perchaseDate) {
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT TO_CHAR(perchase_date,'YYYY-MM') as month,");
+		sql.append("SUM(price) AS total_price ,COUNT(perchase_date) AS item_quantity,TRUNC(AVG(price),0) AS price_average ");
+		sql.append("FROM clothes where user_id=:userId AND deleted='false' ");
+		sql.append("GROUP BY month HAVING TO_CHAR(perchase_date,'YYYY-MM')=:perchaseDate ");
+		sql.append("ORDER BY month;");
+
+		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId).addValue("perchaseDate",
+				perchaseDate);
+		List<MonthlyDataDTO> clothesPriceList = template.query(sql.toString(), param, DATA_ROW_MAPPER);
+
+		return clothesPriceList;
 
 	}
 
