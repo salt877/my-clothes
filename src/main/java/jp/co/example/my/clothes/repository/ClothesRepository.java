@@ -42,7 +42,7 @@ public class ClothesRepository {
 	/**
 	 * カレンダー画面で使用するローマッパー.
 	 */
-	private static final RowMapper<Clothes> CLOTHES_ROW_MAPPER3 = (rs,i) ->{
+	private static final RowMapper<Clothes> CLOTHES_ROW_MAPPER4 = (rs,i) ->{
 		
 		Clothes clothes = new Clothes();
 		clothes.setId(rs.getInt("cl_id"));
@@ -107,7 +107,7 @@ public class ClothesRepository {
 		sql.append("ON cl.category_id=ca.id ");
 		sql.append("WHERE cl.user_id=:userId AND cl.deleted='FALSE' ORDER BY cl.id;");
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
-		List<Clothes> clothesList = template.query(sql.toString(), param, CLOTHES_ROW_MAPPER3);
+		List<Clothes> clothesList = template.query(sql.toString(), param, CLOTHES_ROW_MAPPER4);
 		return clothesList;
 	}
 
@@ -502,7 +502,6 @@ public class ClothesRepository {
 		return bigClothesList;
 	}
 
-<<<<<<< HEAD
 	// アイテム詳細表示用のローマッパー.
 	private static final RowMapper<Clothes> CLOTHES_ROW_MAPPER3 = (rs, i) -> {
 		Clothes clothes = new Clothes();
@@ -595,6 +594,8 @@ public class ClothesRepository {
 		String sql = "UPDATE clothes SET deleted=true WHERE id=:id";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
 		template.update(sql, param);
+	}
+		
 	/**
 	 * 月毎の購入金額合計、アイテム数、平均金額を検索します.
 	 * 
