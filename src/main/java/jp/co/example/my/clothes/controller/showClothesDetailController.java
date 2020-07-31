@@ -186,7 +186,7 @@ public class showClothesDetailController {
 			base64FileString = "data:image/png;base64," + base64FileString;
 		}
 		
-		//エンコードした画像をセットする
+		//エンコードした画像をセットする ★画像を選択しないまま変更を行うと画像が表示されない
 		if(!StringUtils.isEmpty(form.getImageFile())) {
 			clothes.setImagePath(base64FileString);
 		}
@@ -258,9 +258,20 @@ public class showClothesDetailController {
 					newTag1.setTagContent(getTagContent1);
 					System.out.println(newTag1);
 					editClothesService.tagUpdate(newTag1);
+				} else {
+					// タグが登録されていない場合、新しく登録する
+					// タグidとclothesIdと結びつけてtagテーブルに入れる
+					Tag insertTag = new Tag();
+					insertTag.setClothesId(Integer.parseInt(form.getClothesId()));
+					insertTag.setUserId(loginUser.getUser().getId());
+					TagContent newTagContent1 = registerClothesService.tagContentSearchByName(form.getTag1());
+					insertTag.setTagContentId(newTagContent1.getId());
+					insertTag.setTagContent(newTagContent1);
+					System.out.println(insertTag);
+					registerClothesService.insertTag(insertTag);
 				}
-				// タグが登録されていない場合、新しく登録する
 			}
+				
 			// 既にタグが登録されている場合、入力されたタグ情報を更新する
 			if(!CollectionUtils.isEmpty(tagList)) {
 				Tag tag1 = new Tag();
@@ -271,6 +282,15 @@ public class showClothesDetailController {
 				tag1.setTagContent(tagContent1);
 				System.out.println(tag1);
 				editClothesService.tagUpdate(tag1);
+			} else {
+				// タグが登録されてなくて、既存のタグ情報で更新する
+				Tag updateTag = new Tag();
+				updateTag.setClothesId(Integer.parseInt(form.getClothesId()));
+				updateTag.setUserId(loginUser.getUser().getId());
+				updateTag.setTagContentId(tagContent1.getId());
+				updateTag.setTagContent(tagContent1);
+				System.out.println(tagContent1);
+				registerClothesService.insertTag(updateTag);
 			}
 		}
 		
@@ -297,6 +317,17 @@ public class showClothesDetailController {
 					newTag2.setTagContent(getTagContent2);
 					System.out.println(newTag2);
 					editClothesService.tagUpdate(newTag2);
+				} else {
+					// タグが登録されていない場合、新しく登録する
+					// タグidとclothesIdと結びつけてtagテーブルに入れる
+					Tag insertTag2 = new Tag();
+					insertTag2.setClothesId(Integer.parseInt(form.getClothesId()));
+					insertTag2.setUserId(loginUser.getUser().getId());
+					TagContent newTagContent2 = registerClothesService.tagContentSearchByName(form.getTag2());
+					insertTag2.setTagContentId(newTagContent2.getId());
+					insertTag2.setTagContent(newTagContent2);
+					System.out.println(insertTag2);
+					registerClothesService.insertTag(insertTag2);
 				}
 			}
 			// 既にタグが登録されている場合、入力されたタグ情報を更新する
@@ -310,6 +341,15 @@ public class showClothesDetailController {
 				tag2.setTagContent(tagContent2);
 				System.out.println(tag2);
 				editClothesService.tagUpdate(tag2);
+			} else {
+				// タグが登録されてなくて、既存のタグ情報で更新する
+				Tag updateTag2 = new Tag();
+				updateTag2.setClothesId(Integer.parseInt(form.getClothesId()));
+				updateTag2.setUserId(loginUser.getUser().getId());
+				updateTag2.setTagContentId(tagContent2.getId());
+				updateTag2.setTagContent(tagContent2);
+				System.out.println(tagContent2);
+				registerClothesService.insertTag(updateTag2);
 			}
 		}
 		
@@ -336,6 +376,17 @@ public class showClothesDetailController {
 					newTag3.setTagContent(getTagContent3);
 					System.out.println(newTag3);
 					editClothesService.tagUpdate(newTag3);
+				} else {
+					// タグが登録されていない場合、新しく登録する
+					// タグidとclothesIdと結びつけてtagテーブルに入れる
+					Tag insertTag3 = new Tag();
+					insertTag3.setClothesId(Integer.parseInt(form.getClothesId()));
+					insertTag3.setUserId(loginUser.getUser().getId());
+					TagContent newTagContent3 = registerClothesService.tagContentSearchByName(form.getTag3());
+					insertTag3.setTagContentId(newTagContent3.getId());
+					insertTag3.setTagContent(newTagContent3);
+					System.out.println(insertTag3);
+					registerClothesService.insertTag(insertTag3);
 				}
 			}
 			// 既にタグが登録されている場合、入力されたタグ情報を更新する
@@ -349,6 +400,15 @@ public class showClothesDetailController {
 				tag3.setTagContent(tagContent3);
 				System.out.println(tag3);
 				editClothesService.tagUpdate(tag3);
+			} else {
+				// タグが登録されてなくて、既存のタグ情報で更新する
+				Tag updateTag3 = new Tag();
+				updateTag3.setClothesId(Integer.parseInt(form.getClothesId()));
+				updateTag3.setUserId(loginUser.getUser().getId());
+				updateTag3.setTagContentId(tagContent3.getId());
+				updateTag3.setTagContent(tagContent3);
+				System.out.println(tagContent3);
+				registerClothesService.insertTag(updateTag3);
 			}
 		}
 		return "forward://";
