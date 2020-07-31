@@ -143,7 +143,7 @@ public class showClothesDetailController {
 	 * @return トップ画面に遷移
 	 */
 	@RequestMapping("/editClothes")
-	public String editClothes(Model model, EditClothesForm form, @AuthenticationPrincipal LoginUser loginUser) {
+	public String editClothes(Model model, EditClothesForm form, @AuthenticationPrincipal LoginUser loginUser, BindingResult result)throws IOException {
 		
 		// 入力されたカテゴリー情報を取得(必須)
 		Category category = editClothesService.categorySearchById(Integer.parseInt(form.getCategory()));
@@ -165,6 +165,29 @@ public class showClothesDetailController {
 		clothes.setUserId(loginUser.getUser().getId());
 		// アイテムID
 		clothes.setId(Integer.parseInt(form.getClothesId()));
+		
+		// 画像ファイル形式チェック
+//		MultipartFile imageFile = form.getImageFile();
+//		String fileExtension = null;
+//		try {
+//			fileExtension = getExtension(imageFile.getOriginalFilename());
+//			
+//			if(!"jpg".equals(fileExtension) && !"png".equals(fileExtension)) {
+//				result.rejectValue("imageFile", "", "拡張子は.jpgか.pngのみに対応しています");
+//			}
+//		} catch (Exception e) {
+//			result.rejectValue("imageFile", "", "拡張子は.jpgか.pngのみに対応しています");
+//		}
+		// 画像ファイルをBase64形式にエンコード
+//		String base64FileString = Base64.getEncoder().encodeToString(imageFile.getBytes());
+//		if("jpg".equals(fileExtension)) {
+//			base64FileString = "data:image/jpeg;base64," + base64FileString;
+//		} else if("png".equals(fileExtension)){
+//			base64FileString = "data:image/png;base64," + base64FileString;
+//		}
+		
+		//エンコードした画像をセットする
+//		clothes.setImagePath(base64FileString);
 		
 		// カテゴリー情報
 		clothes.setCategory(category);
@@ -234,6 +257,7 @@ public class showClothesDetailController {
 					System.out.println(newTag1);
 					editClothesService.tagUpdate(newTag1);
 				}
+				// タグが登録されていない場合、新しく登録する
 			}
 			// 既にタグが登録されている場合、入力されたタグ情報を更新する
 			if(!CollectionUtils.isEmpty(tagList)) {
@@ -241,7 +265,6 @@ public class showClothesDetailController {
 				tag1.setId(tagList.get(0).getId());
 				tag1.setClothesId(tagList.get(0).getClothesId());
 				tag1.setUserId(loginUser.getUser().getId());
-				System.out.println(tagContent1);
 				tag1.setTagContentId(tagContent1.getId());
 				tag1.setTagContent(tagContent1);
 				System.out.println(tag1);
@@ -336,14 +359,14 @@ public class showClothesDetailController {
 	 * 
 	 * @return .を除いたファイルの拡張子
 	 */
-	private String getExtension(String originalFileName) throws Exception {
-		if (originalFileName == null) {
-			throw new FileNotFoundException();
-		}
-		int point = originalFileName.lastIndexOf(".");
-		if (point == -1) {
-			throw new FileNotFoundException();
-		}
-		return originalFileName.substring(point + 1);
-	}
+//	private String getExtension(String originalFileName) throws Exception {
+//		if (originalFileName == null) {
+//			throw new FileNotFoundException();
+//		}
+//		int point = originalFileName.lastIndexOf(".");
+//		if (point == -1) {
+//			throw new FileNotFoundException();
+//		}
+//		return originalFileName.substring(point + 1);
+//	}
 }
