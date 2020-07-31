@@ -6,11 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import jp.co.example.my.clothes.domain.Brand;
-import jp.co.example.my.clothes.domain.Category;
+import jp.co.example.my.clothes.domain.BrandCountDto;
+import jp.co.example.my.clothes.domain.BrandSumDto;
+import jp.co.example.my.clothes.domain.CategoryCountDto;
 import jp.co.example.my.clothes.domain.Clothes;
-import jp.co.example.my.clothes.repository.BrandRepository;
-import jp.co.example.my.clothes.repository.CategoryRepository;
+import jp.co.example.my.clothes.domain.CategorySumDto;
 import jp.co.example.my.clothes.repository.ClothesRepository;
 
 /**
@@ -38,32 +38,46 @@ public class ShowStatisticsService {
 
 	}
 
-	public List<Clothes> showStatsCategoryLabel(Integer userId) {
-		return clothesRepository.findByUserIdOrderByCategoryId(userId);
-	}
-
-	public List<Clothes> showStatsBrandLabel(Integer userId) {
-		return clothesRepository.findByUserIdOrderByBrandId(userId);
+	/**
+	 * ユーザーIDでカテゴリーごとの合計金額を表示します.
+	 * 
+	 * @param userId ユーザーID
+	 * @return
+	 */
+	public List<CategorySumDto> showStatsByCategorySum(Integer userId) {
+		return clothesRepository.findAllStatsByCategorySum(userId);
 	}
 
 	/**
-	 * ユーザーIDで服情報を取得（カテゴリーごとにリスト化）.
 	 * 
-	 * @param userId
+	 * ユーザーIDでカテゴリーごとのアイテム数を表示します.
+	 * 
+	 * @param userId ユーザーID
 	 * @return
 	 */
-	public List<List<Clothes>> showStatsByUserIdAndListedByCategoryId(Integer userId) {
-		return clothesRepository.findByUserIdAndListedByCategoryId(userId);
+	public List<CategoryCountDto> showStatsByCategoryCount(Integer userId) {
+		return clothesRepository.findAllCategoryCount(userId);
 	}
 
 	/**
-	 * ユーザーIDで服情報を取得（ブランドごとにリスト化）.
 	 * 
-	 * @param userId
+	 * ユーザーIDでブランドごとの合計金額を表示します.
+	 * 
+	 * @param userId ユーザーID
 	 * @return
 	 */
-	public List<List<Clothes>> showStatsByUserIdAndListedByBrandId(Integer userId) {
-		return clothesRepository.findByUserIdAndListedByBrandId(userId);
+	public List<BrandSumDto> showStatsByBrandSum(Integer userId) {
+		return clothesRepository.findAllBrandSum(userId);
+	}
+
+	/**
+	 * ユーザーIDでブランドごとのアイテム数を表示します.
+	 * 
+	 * @param userId ユーザーID
+	 * @return
+	 */
+	public List<BrandCountDto> showStatsByBrandCount(Integer userId) {
+		return clothesRepository.findAllBrandCount(userId);
 	}
 
 }
