@@ -28,6 +28,7 @@ import jp.co.example.my.clothes.domain.Size;
 import jp.co.example.my.clothes.domain.Tag;
 import jp.co.example.my.clothes.domain.TagContent;
 import jp.co.example.my.clothes.form.EditClothesForm;
+import jp.co.example.my.clothes.repository.TagRepository;
 import jp.co.example.my.clothes.service.EditClothesService;
 import jp.co.example.my.clothes.service.RegisterClothesService;
 import jp.co.example.my.clothes.service.ShowClothesDetailService;
@@ -237,7 +238,7 @@ public class showClothesDetailController {
 		// タグの登録を行う
 		TagContent editTagContent = new TagContent();
 		List<Tag>tagList = editClothesService.findATag(Integer.parseInt(form.getClothesId()), loginUser.getUser().getId());
-		System.out.println(tagList);
+		Tag tag = null;
 		
 		// tag1
 		// タグが入力されている場合
@@ -247,57 +248,55 @@ public class showClothesDetailController {
 			// もし登録されていないタグがあれば登録する　
 			if(StringUtils.isEmpty(tagContent1)) {
 				editTagContent.setName(form.getTag1());
-				System.out.println(editTagContent);
 				editClothesService.insertTagContent(editTagContent);
 				
 				// 既に登録されたタグがある場合、新規登録したタグでデータを更新する
 				if(!CollectionUtils.isEmpty(tagList)) {
-					Tag newTag1 = new Tag();
-					newTag1.setId(tagList.get(0).getId());
-					newTag1.setClothesId(tagList.get(0).getClothesId());
-					newTag1.setUserId(loginUser.getUser().getId());
+					tag = new Tag();
+					tag.setId(tagList.get(0).getId());
+					tag.setClothesId(tagList.get(0).getClothesId());
+					tag.setUserId(loginUser.getUser().getId());
 					TagContent getTagContent1 = editClothesService.tagContentSearchByName(editTagContent.getName());
-					System.out.println(getTagContent1);
-					newTag1.setTagContentId(getTagContent1.getId());
-					newTag1.setTagContent(getTagContent1);
-					System.out.println(newTag1);
-					editClothesService.tagUpdate(newTag1);
+					tag.setTagContentId(getTagContent1.getId());
+					tag.setTagContent(getTagContent1);
+					editClothesService.tagUpdate(tag);
 				} else {
 					// タグが登録されていない場合、新しく登録する
 					// タグidとclothesIdと結びつけてtagテーブルに入れる
-					Tag insertTag = new Tag();
-					insertTag.setClothesId(Integer.parseInt(form.getClothesId()));
-					insertTag.setUserId(loginUser.getUser().getId());
+					tag = new Tag();
+					tag.setClothesId(Integer.parseInt(form.getClothesId()));
+					tag.setUserId(loginUser.getUser().getId());
 					TagContent newTagContent1 = registerClothesService.tagContentSearchByName(form.getTag1());
-					insertTag.setTagContentId(newTagContent1.getId());
-					insertTag.setTagContent(newTagContent1);
-					System.out.println(insertTag);
-					registerClothesService.insertTag(insertTag);
+					tag.setTagContentId(newTagContent1.getId());
+					tag.setTagContent(newTagContent1);
+					registerClothesService.insertTag(tag);
 				}
 			}
 			// 既にタグが登録されている場合、入力されたタグ情報を更新する
 			if(!CollectionUtils.isEmpty(tagList)) {
-				Tag tag1 = new Tag();
-				tag1.setId(tagList.get(0).getId());
-				tag1.setClothesId(tagList.get(0).getClothesId());
-				tag1.setUserId(loginUser.getUser().getId());
-				tag1.setTagContentId(tagContent1.getId());
-				tag1.setTagContent(tagContent1);
-				System.out.println(tag1);
-				editClothesService.tagUpdate(tag1);
+				tag = new Tag();
+				tag.setId(tagList.get(0).getId());
+				tag.setClothesId(tagList.get(0).getClothesId());
+				tag.setUserId(loginUser.getUser().getId());
+				tag.setTagContentId(tagContent1.getId());
+				tag.setTagContent(tagContent1);
+				editClothesService.tagUpdate(tag);
 			} else {
 				// タグが登録されてなくて、既存のタグ情報で更新する
-				Tag updateTag = new Tag();
-				updateTag.setClothesId(Integer.parseInt(form.getClothesId()));
-				updateTag.setUserId(loginUser.getUser().getId());
-				updateTag.setTagContentId(tagContent1.getId());
-				updateTag.setTagContent(tagContent1);
-				System.out.println(tagContent1);
-				registerClothesService.insertTag(updateTag);
+				tag = new Tag();
+				tag.setClothesId(Integer.parseInt(form.getClothesId()));
+				tag.setUserId(loginUser.getUser().getId());
+				tag.setTagContentId(tagContent1.getId());
+				tag.setTagContent(tagContent1);
+				registerClothesService.insertTag(tag);
 			}
+		} else if(StringUtils.isEmpty(form.getTag1())) {
+			// タグが入力されていない場合は、タグの削除を行う
+			System.out.println("フォームの値は" + form.getTag1());
+			tag = tagList.get(0);
+			System.out.println("タグの中身は" + tag);
+			editClothesService.delete(tag);
 		}
-		// タグが入力されていない場合は、タグの削除を行う
-		
 		
 		
 		
@@ -310,55 +309,48 @@ public class showClothesDetailController {
 			if(StringUtils.isEmpty(tagContent2)) {
 				TagContent editTagContent2 = new TagContent();
 				editTagContent2.setName(form.getTag2());
-				System.out.println(editTagContent2);
 				editClothesService.insertTagContent(editTagContent2);
 				
 				// 既に登録されたタグがある場合、新規登録したタグでデータを更新する
 				if(tagList.size() == 2) {
-					Tag newTag2 = new Tag();
-					newTag2.setId(tagList.get(1).getId());
-					newTag2.setClothesId(tagList.get(1).getClothesId());
-					newTag2.setUserId(loginUser.getUser().getId());
+					tag= new Tag();
+					tag.setId(tagList.get(1).getId());
+					tag.setClothesId(tagList.get(1).getClothesId());
+					tag.setUserId(loginUser.getUser().getId());
 					TagContent getTagContent2 = editClothesService.tagContentSearchByName(editTagContent2.getName());
-					System.out.println(getTagContent2);
-					newTag2.setTagContentId(getTagContent2.getId());
-					newTag2.setTagContent(getTagContent2);
-					System.out.println(newTag2);
-					editClothesService.tagUpdate(newTag2);
+					tag.setTagContentId(getTagContent2.getId());
+					tag.setTagContent(getTagContent2);
+					editClothesService.tagUpdate(tag);
 				} else if(tagList.size() == 1) {
 					// タグが登録されていない場合、新規登録したタグを新たに登録する
 					// タグidとclothesIdと結びつけてtagテーブルに入れる
-					Tag insertTag2 = new Tag();
-					insertTag2.setClothesId(Integer.parseInt(form.getClothesId()));
-					insertTag2.setUserId(loginUser.getUser().getId());
+					tag = new Tag();
+					tag.setClothesId(Integer.parseInt(form.getClothesId()));
+					tag.setUserId(loginUser.getUser().getId());
 					TagContent newTagContent2 = registerClothesService.tagContentSearchByName(form.getTag2());
-					insertTag2.setTagContentId(newTagContent2.getId());
-					insertTag2.setTagContent(newTagContent2);
-					System.out.println(insertTag2);
-					registerClothesService.insertTag(insertTag2);
-					tagList.add(insertTag2);
+					tag.setTagContentId(newTagContent2.getId());
+					tag.setTagContent(newTagContent2);
+					registerClothesService.insertTag(tag);
+					tagList.add(tag);
 				}
 			}
 			// 既にタグが登録されている場合、入力されたタグ情報を更新する
 			if(tagList.size() == 2) {
-				Tag tag2 = new Tag();
-				tag2.setId(tagList.get(1).getId());
-				tag2.setClothesId(tagList.get(1).getClothesId());
-				tag2.setUserId(loginUser.getUser().getId());
-				System.out.println(tagContent2);
-				tag2.setTagContentId(tagContent2.getId());  //ヌルぽ
-				tag2.setTagContent(tagContent2);
-				System.out.println(tag2);
-				editClothesService.tagUpdate(tag2);
+				tag = new Tag();
+				tag.setId(tagList.get(1).getId());
+				tag.setClothesId(tagList.get(1).getClothesId());
+				tag.setUserId(loginUser.getUser().getId());
+				tag.setTagContentId(tagContent2.getId());  //ヌルぽ
+				tag.setTagContent(tagContent2);
+				editClothesService.tagUpdate(tag);
 			} else if(tagList.size() == 1) {
 				// タグが登録されてなくて、既存のタグ情報で更新する
-				Tag updateTag2 = new Tag();
-				updateTag2.setClothesId(Integer.parseInt(form.getClothesId()));
-				updateTag2.setUserId(loginUser.getUser().getId());
-				updateTag2.setTagContentId(tagContent2.getId());
-				updateTag2.setTagContent(tagContent2);
-				System.out.println(tagContent2);
-				registerClothesService.insertTag(updateTag2);
+				tag = new Tag();
+				tag.setClothesId(Integer.parseInt(form.getClothesId()));
+				tag.setUserId(loginUser.getUser().getId());
+				tag.setTagContentId(tagContent2.getId());
+				tag.setTagContent(tagContent2);
+				registerClothesService.insertTag(tag);
 			}
 		} 
 		// タグが入力されていない場合、タグの削除を行う
@@ -373,55 +365,48 @@ public class showClothesDetailController {
 			if(StringUtils.isEmpty(tagContent3)) {
 				TagContent editTagContent3 = new TagContent();
 				editTagContent3.setName(form.getTag3());
-				System.out.println(editTagContent3);
 				editClothesService.insertTagContent(editTagContent3);
 						
 				// 既に登録されたタグがある場合、新規登録したタグでデータを更新する
 				if(tagList.size() == 3) {
-					Tag newTag3 = new Tag();
-					newTag3.setId(tagList.get(2).getId());
-					newTag3.setClothesId(tagList.get(2).getClothesId());
-					newTag3.setUserId(loginUser.getUser().getId());
+					tag = new Tag();
+					tag.setId(tagList.get(2).getId());
+					tag.setClothesId(tagList.get(2).getClothesId());
+					tag.setUserId(loginUser.getUser().getId());
 					TagContent getTagContent3 = editClothesService.tagContentSearchByName(editTagContent3.getName());
-					System.out.println(getTagContent3);
-					newTag3.setTagContentId(getTagContent3.getId());
-					newTag3.setTagContent(getTagContent3);
-					System.out.println(newTag3);
-					editClothesService.tagUpdate(newTag3);
+					tag.setTagContentId(getTagContent3.getId());
+					tag.setTagContent(getTagContent3);
+					editClothesService.tagUpdate(tag);
 				} else if(tagList.size() == 2) {
 					// タグが登録されていない場合、新規登録したタグを新たに登録する
 					// タグidとclothesIdと結びつけてtagテーブルに入れる
-					Tag insertTag3 = new Tag();
-					insertTag3.setClothesId(Integer.parseInt(form.getClothesId()));
-					insertTag3.setUserId(loginUser.getUser().getId());
+					tag = new Tag();
+					tag.setClothesId(Integer.parseInt(form.getClothesId()));
+					tag.setUserId(loginUser.getUser().getId());
 					TagContent newTagContent3 = registerClothesService.tagContentSearchByName(form.getTag3());
-					insertTag3.setTagContentId(newTagContent3.getId());
-					insertTag3.setTagContent(newTagContent3);
-					System.out.println(insertTag3);
-					registerClothesService.insertTag(insertTag3);
-					tagList.add(insertTag3);
+					tag.setTagContentId(newTagContent3.getId());
+					tag.setTagContent(newTagContent3);
+					registerClothesService.insertTag(tag);
+					tagList.add(tag);
 				}
 			}
 			// 既にタグが登録されている場合、入力されたタグ情報を更新する
 			if(tagList.size() == 3) {
-				Tag tag3 = new Tag();
-				tag3.setId(tagList.get(2).getId());
-				tag3.setClothesId(tagList.get(2).getClothesId());
-				tag3.setUserId(loginUser.getUser().getId());
-				System.out.println(tagContent3);
-				tag3.setTagContentId(tagContent3.getId());
-				tag3.setTagContent(tagContent3);
-				System.out.println(tag3);
-				editClothesService.tagUpdate(tag3);
+				tag = new Tag();
+				tag.setId(tagList.get(2).getId());
+				tag.setClothesId(tagList.get(2).getClothesId());
+				tag.setUserId(loginUser.getUser().getId());
+				tag.setTagContentId(tagContent3.getId());
+				tag.setTagContent(tagContent3);
+				editClothesService.tagUpdate(tag);
 			} else if(tagList.size() == 2) {
 				// タグが登録されてなくて、既存のタグ情報で更新する
-				Tag updateTag3 = new Tag();
-				updateTag3.setClothesId(Integer.parseInt(form.getClothesId()));
-				updateTag3.setUserId(loginUser.getUser().getId());
-				updateTag3.setTagContentId(tagContent3.getId());
-				updateTag3.setTagContent(tagContent3);
-				System.out.println(tagContent3);
-				registerClothesService.insertTag(updateTag3);
+				tag = new Tag();
+				tag.setClothesId(Integer.parseInt(form.getClothesId()));
+				tag.setUserId(loginUser.getUser().getId());
+				tag.setTagContentId(tagContent3.getId());
+				tag.setTagContent(tagContent3);
+				registerClothesService.insertTag(tag);
 			}
 		}
 		return "forward://";

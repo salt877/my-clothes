@@ -123,7 +123,7 @@ public class TagRepository {
 	 */
 	public void delete(Tag tag) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(tag);
-		String sql = " DELETE FROM tags WHERE clothes_id=:clothes_id AND id=:id;";
+		String sql = "DELETE FROM tags WHERE clothes_id=:clothesId AND id=:id;";
 		template.update(sql, param);
 	}
 	
