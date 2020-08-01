@@ -342,7 +342,7 @@ public class showClothesDetailController {
 			}
 		} else if(StringUtils.isEmpty(form.getTag2())) {
 			// タグが入力されていない場合
-			if(tagList.size() == 2) {
+			if(tagList.size() == 2 || tagList.size() == 3) {
 				// タグ2が登録されている場合、タグの削除を行う
 				System.out.println("フォームの値は" + form.getTag2());
 				tag = tagList.get(1);
