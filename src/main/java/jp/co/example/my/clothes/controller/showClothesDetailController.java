@@ -171,7 +171,7 @@ public class showClothesDetailController {
 		String fileExtension = null;
 		try {
 			fileExtension = getExtension(imageFile.getOriginalFilename());
-			
+						
 			if(!"jpg".equals(fileExtension) && !"png".equals(fileExtension)) {
 				result.rejectValue("imageFile", "", "拡張子は.jpgか.pngのみに対応しています");
 			}
@@ -186,9 +186,13 @@ public class showClothesDetailController {
 			base64FileString = "data:image/png;base64," + base64FileString;
 		}
 		
-		//エンコードした画像をセットする ★画像を選択しないまま変更を行うと画像が表示されない
-		if(!StringUtils.isEmpty(form.getImageFile())) {
+		//エンコードした画像をセットして変更する
+		if(!form.getImageFile().isEmpty()) {
 			clothes.setImagePath(base64FileString);
+		} else {
+			// 画像の変更を行わない場合
+			Clothes oldClothes = showClothesDetailService.showClothesDetail(Integer.parseInt(form.getClothesId()));
+			clothes.setImagePath(oldClothes.getImagePath());
 		}
 		
 		// カテゴリー情報
@@ -271,7 +275,6 @@ public class showClothesDetailController {
 					registerClothesService.insertTag(insertTag);
 				}
 			}
-				
 			// 既にタグが登録されている場合、入力されたタグ情報を更新する
 			if(!CollectionUtils.isEmpty(tagList)) {
 				Tag tag1 = new Tag();
@@ -293,8 +296,12 @@ public class showClothesDetailController {
 				registerClothesService.insertTag(updateTag);
 			}
 		}
+		// タグが入力されていない場合、新しくタグを登録する
+		
+		
 		
 		// tag2
+		// タグが入力されている場合
 		if(!StringUtils.isEmpty(form.getTag2())) {
 			// 入力された情報が登録されているかを検索
 			TagContent tagContent2 = editClothesService.tagContentSearchByName(form.getTag2());
@@ -317,17 +324,20 @@ public class showClothesDetailController {
 					newTag2.setTagContent(getTagContent2);
 					System.out.println(newTag2);
 					editClothesService.tagUpdate(newTag2);
-				} else {
-					// タグが登録されていない場合、新しく登録する
-					// タグidとclothesIdと結びつけてtagテーブルに入れる
-					Tag insertTag2 = new Tag();
-					insertTag2.setClothesId(Integer.parseInt(form.getClothesId()));
-					insertTag2.setUserId(loginUser.getUser().getId());
-					TagContent newTagContent2 = registerClothesService.tagContentSearchByName(form.getTag2());
-					insertTag2.setTagContentId(newTagContent2.getId());
-					insertTag2.setTagContent(newTagContent2);
-					System.out.println(insertTag2);
-					registerClothesService.insertTag(insertTag2);
+					
+					if(tagList.size() == 1) {
+						// タグが登録されていない場合、新規登録したタグを新たに登録する
+						// タグidとclothesIdと結びつけてtagテーブルに入れる
+						Tag insertTag2 = new Tag();
+						insertTag2.setClothesId(Integer.parseInt(form.getClothesId()));
+						insertTag2.setUserId(loginUser.getUser().getId());
+						TagContent newTagContent2 = registerClothesService.tagContentSearchByName(form.getTag2());
+						insertTag2.setTagContentId(newTagContent2.getId());
+						insertTag2.setTagContent(newTagContent2);
+						System.out.println(insertTag2);
+						registerClothesService.insertTag(insertTag2);
+						tagList.add(insertTag2);
+					}
 				}
 			}
 			// 既にタグが登録されている場合、入力されたタグ情報を更新する
@@ -351,7 +361,10 @@ public class showClothesDetailController {
 				System.out.println(tagContent2);
 				registerClothesService.insertTag(updateTag2);
 			}
-		}
+		} 
+		// タグが入力されていない場合、タグの削除を行う
+		
+		
 		
 		// tag3
 		if(!StringUtils.isEmpty(form.getTag3())) {
