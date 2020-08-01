@@ -165,5 +165,14 @@ public class EditClothesService {
 		tagRepository.insertTag(tag);
 
 	}
+	
+	/**
+	 * タグの削除を行います.
+	 * 
+	 * @param tag タグオブジェクト
+	 */
+	public void delete(Tag tag) {
+		tagRepository.delete(tag);
+	}
 
 }

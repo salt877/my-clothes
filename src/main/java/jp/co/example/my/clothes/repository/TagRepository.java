@@ -116,6 +116,17 @@ public class TagRepository {
 		template.update(sql, param);
 	}
 	
+	/**
+	 * 登録されているタグの削除を行います.
+	 * 
+	 * @param tag タグオブジェクト
+	 */
+	public void delete(Tag tag) {
+		SqlParameterSource param = new BeanPropertySqlParameterSource(tag);
+		String sql = " DELETE FROM tags WHERE clothes_id=:clothes_id AND id=:id;";
+		template.update(sql, param);
+	}
+	
 	
 
 }
