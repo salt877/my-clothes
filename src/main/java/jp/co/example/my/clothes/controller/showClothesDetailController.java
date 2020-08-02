@@ -1,19 +1,23 @@
 package jp.co.example.my.clothes.controller;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Date;
+import java.util.Base64;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import jp.co.example.my.clothes.domain.Brand;
 import jp.co.example.my.clothes.domain.Category;
@@ -24,6 +28,7 @@ import jp.co.example.my.clothes.domain.Size;
 import jp.co.example.my.clothes.domain.Tag;
 import jp.co.example.my.clothes.domain.TagContent;
 import jp.co.example.my.clothes.form.EditClothesForm;
+import jp.co.example.my.clothes.repository.TagRepository;
 import jp.co.example.my.clothes.service.EditClothesService;
 import jp.co.example.my.clothes.service.RegisterClothesService;
 import jp.co.example.my.clothes.service.ShowClothesDetailService;
@@ -108,11 +113,11 @@ public class showClothesDetailController {
 			form.setTag1("");
 			form.setTag2("");
 			form.setTag3("");
-		} else if(clothes.getTagList().get(1).equals(null) && clothes.getTagList().get(2).equals(null)) {
+		} else if(clothes.getTagList().size() == 1) {	// 要素が1つの場合 	
 			form.setTag1(clothes.getTagList().get(0).getTagContent().getName());
 			form.setTag2("");
 			form.setTag3("");
-		} else if(clothes.getTagList().get(2).equals(null)) {
+		} else if(clothes.getTagList().size() ==2) {		// 要素が2つの場合
 			form.setTag1(clothes.getTagList().get(0).getTagContent().getName());
 			form.setTag2(clothes.getTagList().get(1).getTagContent().getName());
 			form.setTag3("");
@@ -128,83 +133,299 @@ public class showClothesDetailController {
 	}
 	
 
+	/**
+	 * アイテム情報の編集を行うメソッドです.
+	 * 
+	 * @param model リクエストスコープ
+	 * @param form フォーム
+	 * @param loginUser ユーザのログイン情報
+	 * @param id アイテムID
+	 * @return トップ画面に遷移
+	 */
 	@RequestMapping("/editClothes")
-	public String editClothes(Model model, EditClothesForm form, @AuthenticationPrincipal LoginUser loginUser) {
+	public String editClothes(Model model, EditClothesForm form, BindingResult result, @AuthenticationPrincipal LoginUser loginUser)throws IOException {
+		System.out.println(form);
 		
-		// formからオブジェクトに情報をコピー
+		// 入力されたカテゴリー情報を取得(必須)
+		Category category = editClothesService.categorySearchById(Integer.parseInt(form.getCategory()));
+		// 入力されたカラー情報を取得(必須)
+		Color color = editClothesService.ColorSearchById(Integer.parseInt(form.getColor()));
+		// 入力されたブランド情報を取得(必須)
+		Brand brand = editClothesService.brandSearchByName(form.getBrand());
+		// 入力されたサイズ情報を取得(任意)
+		Size size = null;
+		if(!StringUtils.isEmpty(form.getSize())) {
+			size = editClothesService.sizeSearchById(Integer.parseInt(form.getSize()));	
+		}
+		
+		// 取得した情報をclothesオブジェクトにセット
 		Clothes clothes = new Clothes();
-		BeanUtils.copyProperties(form, clothes);
 		
-		// 上記でコピーできなかったものをコピー
+		// 必須項目
 		// userId
 		clothes.setUserId(loginUser.getUser().getId());
 		// アイテムID
-		clothes.setId(Integer.parseInt(form.getClothesId()));;
+		clothes.setId(Integer.parseInt(form.getClothesId()));
 		
-		// 入力されたカテゴリー情報を取得
-		Category category = editClothesService.categorySearchById(Integer.parseInt(form.getCategory()));
+		// 画像ファイル形式チェック
+		MultipartFile imageFile = form.getImageFile();
+		String fileExtension = null;
+		try {
+			fileExtension = getExtension(imageFile.getOriginalFilename());
+						
+			if(!"jpg".equals(fileExtension) && !"png".equals(fileExtension)) {
+				result.rejectValue("imageFile", "", "拡張子は.jpgか.pngのみに対応しています");
+			}
+		} catch (Exception e) {
+			result.rejectValue("imageFile", "", "拡張子は.jpgか.pngのみに対応しています");
+		}
+		// 画像ファイルをBase64形式にエンコード
+		String base64FileString = Base64.getEncoder().encodeToString(imageFile.getBytes());
+		if("jpg".equals(fileExtension)) {
+			base64FileString = "data:image/jpeg;base64," + base64FileString;
+		} else if("png".equals(fileExtension)){
+			base64FileString = "data:image/png;base64," + base64FileString;
+		}
+		
+		//エンコードした画像をセットして変更する
+		if(!form.getImageFile().isEmpty()) {
+			clothes.setImagePath(base64FileString);
+		} else {
+			// 画像の変更を行わない場合
+			Clothes oldClothes = showClothesDetailService.showClothesDetail(Integer.parseInt(form.getClothesId()));
+			clothes.setImagePath(oldClothes.getImagePath());
+		}
+		
 		// カテゴリー情報
 		clothes.setCategory(category);
 		clothes.setCategoryId(category.getId());
 		
-		// 入力されたカラー情報を取得
-		Color color = editClothesService.ColorSearchById(Integer.parseInt(form.getColor()));
 		// カラー情報
 		clothes.setColor(color);
 		clothes.setColorId(color.getId());
 		
-		// 入力されたサイズ情報を取得
-		Size size = editClothesService.sizeSearchById(Integer.parseInt(form.getSize()));
-		// サイズ情報
-		clothes.setSize(size);
-		clothes.setSizeId(size.getId());
-		
-		// 入力されたブランド情報を取得
-		Brand brand = editClothesService.brandSearchByName(form.getBrand());
 		// ブランド情報
 		clothes.setBrand(brand);
 		clothes.setBrandId(brand.getId());
 		
-		clothes.setPrice(Integer.parseInt(form.getPrice()));
-		clothes.setPerchaseDate(Date.valueOf(form.getPerchaseDate()));
+		// 任意項目
+		// サイズ情報
+		if(!StringUtils.isEmpty(form.getSize())) {
+			clothes.setSize(size);
+			clothes.setSizeId(size.getId());
+		}
+		// シーズン
+		if(!StringUtils.isEmpty(form.getSeason())) {
+			clothes.setSeason(form.getSeason());
+		}
+		// 価格
+		if(!StringUtils.isEmpty(form.getPrice())) {
+			clothes.setPrice(Integer.parseInt(form.getPrice()));
+		}
+		// 購入日
+		if(!StringUtils.isEmpty(form.getPerchaseDate())) {
+			clothes.setPerchaseDate(Date.valueOf(form.getPerchaseDate()));
+		}
+		// コメント
+		if(!StringUtils.isEmpty(form.getComment())) {
+			clothes.setComment(form.getComment());
+		}
 		
-		// userIdに紐づいた一番最新に登録したアイテムを取得
-//		Clothes editClothes = editClothesService.newClothesSearchByUserId(loginUser.getUser().getId());
+		// アイテム情報を登録
+		System.out.println(clothes);
+		editClothesService.editClothes(clothes);
 		
-		// 入力された情報があればすでにタグとして登録されているかを確認
-		TagContent registerTagConetent = new TagContent();
+		// タグの登録を行う
+		TagContent editTagContent = new TagContent();
+		List<Tag>tagList = editClothesService.findATag(Integer.parseInt(form.getClothesId()), loginUser.getUser().getId());
+		Tag tag = null;
 		
-		// tag1情報について
-		// tagが入力されていればその情報が登録されているか検索
+		// tag1
+		// タグが入力されている場合
 		if(!StringUtils.isEmpty(form.getTag1())) {
+			// 入力された情報が登録されているかを検索
 			TagContent tagContent1 = editClothesService.tagContentSearchByName(form.getTag1());
-			// もし登録されていないタグであれば登録する
+			// もし登録されていないタグがあれば登録する　
 			if(StringUtils.isEmpty(tagContent1)) {
-				registerTagConetent.setId(loginUser.getUser().getId());  // ユーザIDに変更する
-				registerTagConetent.setName(form.getTag1());
-				editClothesService.insertTagContent(registerTagConetent);
+				editTagContent.setName(form.getTag1());
+				editClothesService.insertTagContent(editTagContent);
+				
+				// 既に登録されたタグがある場合、新規登録したタグでデータを更新する
+				if(!CollectionUtils.isEmpty(tagList)) {
+					tag = tagList.get(0);
+					TagContent getTagContent1 = editClothesService.tagContentSearchByName(editTagContent.getName());
+					tag.setTagContentId(getTagContent1.getId());
+					tag.setTagContent(getTagContent1);
+					editClothesService.tagUpdate(tag);
+				} else {
+					// タグが登録されていない場合、新しく登録する
+					// タグidとclothesIdと結びつけてtagテーブルに入れる
+					tag = new Tag();
+					tag.setClothesId(Integer.parseInt(form.getClothesId()));
+					tag.setUserId(loginUser.getUser().getId());
+					TagContent newTagContent1 = registerClothesService.tagContentSearchByName(form.getTag1());
+					tag.setTagContentId(newTagContent1.getId());
+					tag.setTagContent(newTagContent1);
+					registerClothesService.insertTag(tag);
+				}
 			}
-			// tagIdとclothesIdを結び付けてデータの上書きを行う
-			// 1件のタグ検索を行う
-			Tag tag1 = editClothesService.findATag(loginUser.getUser().getId(),Integer.parseInt(form.getClothesId()), clothes.getTagList().get(0).getTagContentId());
-			System.out.println(tag1);
-			if(!(clothes.getTagList().get(0).getTagContent().getName().equals(form.getTag1()))) {
-				tag1.setTagContentId(tagContent1.getId());
-				System.out.println(tag1);
-				editClothesService.tagUpdate(tag1);
+			// 既にタグが登録されている場合、入力されたタグ情報を更新する
+			if(!CollectionUtils.isEmpty(tagList) && tagContent1 != null) {
+				tag = tagList.get(0);
+				tag.setTagContentId(tagContent1.getId());		// ヌルぽ
+				tag.setTagContent(tagContent1);
+				editClothesService.tagUpdate(tag);
+			} else if(CollectionUtils.isEmpty(tagList) && tagContent1 != null){
+				// タグが登録されてなくて、既存のタグ情報で更新する
+				tag = new Tag();
+				tag.setClothesId(Integer.parseInt(form.getClothesId()));
+				tag.setUserId(loginUser.getUser().getId());
+				tag.setTagContentId(tagContent1.getId());
+				tag.setTagContent(tagContent1);
+				registerClothesService.insertTag(tag);
 			}
-			
+		} else if(StringUtils.isEmpty(form.getTag1())) {
+			// タグが入力されていない場合は、タグの削除を行う
+			System.out.println("フォームの値は" + form.getTag1());
+			tag = tagList.get(0);
+			System.out.println("タグの中身は" + tag);
+			editClothesService.delete(tag);
 		}
 		
 		
 		
-		System.out.println(clothes);
+		// tag2
+		// タグが入力されている場合
+		if(!StringUtils.isEmpty(form.getTag2())) {
+			// 入力された情報が登録されているかを検索
+			TagContent tagContent2 = editClothesService.tagContentSearchByName(form.getTag2());
+			// もし登録されていないタグがあれば登録する
+			if(StringUtils.isEmpty(tagContent2)) {
+				TagContent editTagContent2 = new TagContent();
+				editTagContent2.setName(form.getTag2());
+				editClothesService.insertTagContent(editTagContent2);
+				
+				// 既に登録されたタグがある場合、新規登録したタグでデータを更新する
+				if(tagList.size() == 2) {
+					tag = tagList.get(1);
+					TagContent getTagContent2 = editClothesService.tagContentSearchByName(editTagContent2.getName());
+					tag.setTagContentId(getTagContent2.getId());
+					tag.setTagContent(getTagContent2);
+					editClothesService.tagUpdate(tag);
+				} else if(tagList.size() == 1 || CollectionUtils.isEmpty(tagList)) {
+					// タグ2が登録されていない場合またはタグ1が登録されていない場合、新規登録したタグを新たに登録する
+					// タグidとclothesIdと結びつけてtagテーブルに入れる
+					tag = new Tag();
+					tag.setClothesId(Integer.parseInt(form.getClothesId()));
+					tag.setUserId(loginUser.getUser().getId());
+					TagContent newTagContent2 = registerClothesService.tagContentSearchByName(form.getTag2());
+					tag.setTagContentId(newTagContent2.getId());
+					tag.setTagContent(newTagContent2);
+					registerClothesService.insertTag(tag);
+					tagList.add(tag);
+				}
+			}
+			// 既にタグが登録されている場合、入力されたタグ情報を更新する
+			if(tagList.size() == 2 && tagContent2 != null) {
+				tag = tagList.get(1);
+				tag.setTagContentId(tagContent2.getId());  //ヌルぽ
+				tag.setTagContent(tagContent2);
+				editClothesService.tagUpdate(tag);
+			} else if(tagList.size() == 1|| CollectionUtils.isEmpty(tagList) && tagContent2 != null) {
+				// タグ2が登録されていないまたはタグ１が登録されていない場合、既存のタグ情報をインサートする
+				tag = new Tag();
+				tag.setClothesId(Integer.parseInt(form.getClothesId()));
+				tag.setUserId(loginUser.getUser().getId());
+				tag.setTagContentId(tagContent2.getId());
+				tag.setTagContent(tagContent2);
+				registerClothesService.insertTag(tag);
+			}
+		} else if(StringUtils.isEmpty(form.getTag2())) {
+			// タグが入力されていない場合
+			if(tagList.size() == 2 || tagList.size() == 3) {
+				// タグ2が登録されている場合、タグの削除を行う
+				System.out.println("フォームの値は" + form.getTag2());
+				tag = tagList.get(1);
+				System.out.println("タグの中身は" + tag);
+				editClothesService.delete(tag);
+			}
+		}
 		
-		editClothesService.editClothes(clothes);
+		// tag3
+		if(!StringUtils.isEmpty(form.getTag3())) {
+			// 入力された情報が登録されているかを検索
+			TagContent tagContent3 = editClothesService.tagContentSearchByName(form.getTag3());
+			// もし登録されていないタグがあれば登録する
+			if(StringUtils.isEmpty(tagContent3)) {
+				TagContent editTagContent3 = new TagContent();
+				editTagContent3.setName(form.getTag3());
+				editClothesService.insertTagContent(editTagContent3);
+						
+				// 既に登録されたタグがある場合、新規登録したタグでデータを更新する
+				if(tagList.size() == 3) {
+					tag = tagList.get(2);
+					TagContent getTagContent3 = editClothesService.tagContentSearchByName(editTagContent3.getName());
+					tag.setTagContentId(getTagContent3.getId());
+					tag.setTagContent(getTagContent3);
+					editClothesService.tagUpdate(tag);
+				} else if(tagList.size() == 2 || CollectionUtils.isEmpty(tagList)) {
+					// タグ3が登録されていないまたはタグリストが登録されていない場合、新規登録したタグを新たに登録する
+					// タグidとclothesIdと結びつけてtagテーブルに入れる
+					tag = new Tag();
+					tag.setClothesId(Integer.parseInt(form.getClothesId()));
+					tag.setUserId(loginUser.getUser().getId());
+					TagContent newTagContent3 = registerClothesService.tagContentSearchByName(form.getTag3());
+					tag.setTagContentId(newTagContent3.getId());
+					tag.setTagContent(newTagContent3);
+					registerClothesService.insertTag(tag);
+					tagList.add(tag);
+				}
+			}
+			// 既にタグが登録されている場合、入力されたタグ情報を更新する
+			if(tagList.size() == 3 && tagContent3 != null) {
+				tag = tagList.get(2);
+				tag.setTagContentId(tagContent3.getId());
+				tag.setTagContent(tagContent3);
+				editClothesService.tagUpdate(tag);
+			} else if(tagList.size() ==1 || tagList.size() == 2 || CollectionUtils.isEmpty(tagList) && tagContent3 != null) {
+				// タグが登録されてなくて、既存のタグ情報で更新する
+				tag = new Tag();
+				tag.setClothesId(Integer.parseInt(form.getClothesId()));
+				tag.setUserId(loginUser.getUser().getId());
+				tag.setTagContentId(tagContent3.getId());
+				tag.setTagContent(tagContent3);
+				registerClothesService.insertTag(tag);
+			}
+		} else if(StringUtils.isEmpty(form.getTag3())) {
+			// タグが入力されていない場合
+			if(tagList.size() == 3) {
+				// タグ2が登録されている場合、タグの削除を行う
+				System.out.println("フォームの値は" + form.getTag3());
+				tag = tagList.get(2);
+				System.out.println("タグの中身は" + tag);
+				editClothesService.delete(tag);
+			}
+		}
 		
 		
 		return "forward://";
 	}
 	
-	
+	/*
+	 * ファイル名から拡張子を返します.
+	 * 
+	 * @param originalFileName ファイル名
+	 * 
+	 * @return .を除いたファイルの拡張子
+	 */
+	private String getExtension(String originalFileName) throws Exception {
+		if (originalFileName == null) {
+			throw new FileNotFoundException();
+		}
+		int point = originalFileName.lastIndexOf(".");
+		if (point == -1) {
+			throw new FileNotFoundException();
+		}
+		return originalFileName.substring(point + 1);
+	}
 }

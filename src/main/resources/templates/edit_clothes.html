@@ -15,6 +15,19 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="../static/dist/css/styles.css" rel="stylesheet" th:href="@{/dist/css/styles.css}"/>
+        <link href="../static/dist/css/register_clothes.css" th:href="@{/dist/css/register_clothes.css}" rel="stylesheet" />
+   		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+		<link rel="stylesheet" href="/resources/demos/style.css">
+
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+		<script type="text/javascript" src="../static/dist/js/register_clothes.js" th:src="@{/dist/js/register_clothes.js}" /></script>
+		<style type='text/css'>
+			input[type=number]::-webkit-inner-spin-button,
+			input[type=number]::-webkit-outer-spin-button {
+  			-webkit-appearance: none;
+  			margin: 0;
+			}
+   		</style>
     </head>
     <body id="page-top">
     
@@ -49,12 +62,12 @@
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">アイテム詳細/編集</h2>
                 </div>
-                <form action="#" method="post" th:action="@{/showDetail/editClothes}" th:object="${editClothesForm}">
+                <form action="#" method="post" th:action="@{/showDetail/editClothes}" th:object="${editClothesForm}" enctype="multipart/form-data">
                 	<!-- 商品idを埋め込んでおく -->
 					<input  type="hidden" name="clothesId" th:value="${clothes.id}">
-                	<div class="image-information">
-                	<img class="img-fluid" th:src="${'/img/'+clothes.imagePath}" /><br>
-                	<!--  	<input name="imageFile" type="file" accept=".jpg,.png,image/jpeg,image/png" th:errorclass="error-input"/>-->
+                	<div id="item-image" class="image-information">
+                		<img class="img-fluid" th:src="${clothes.imagePath}" width="400" height="400"/><br>
+                		<input name="imageFile" type="file" accept=".jpg,.png">
               	    </div>
               	    <div class="required-information">
                 		<table>
@@ -78,7 +91,7 @@
                 				</tr>
                 				<tr>
                 					<th>ブランド</th>
-                					<td data-label="ブランド" class="txt">
+                					<td data-label="brand" class="txt">
                 						<div class="search">
                 							<input type="text" class="search-form"  name="brand" id="brand" th:value="${clothes.brand.name}" th:field="*{brand}">
                 							<button type="submit" id="sbtn2"><i class="fas fa-search"></i></button>
@@ -163,7 +176,7 @@
                 				<tr>
                 					<th>価格</th>
                 					<td data-label="価格" class="txt">
-                						<input name="price" id="price" type="text" th:value="${#numbers.formatInteger(clothes.price,1,'COMMA')}">
+                						<input name="price" id="price" type="text" th:value="${clothes.price}">
                 					</td>
                 				</tr>
                 				<tr>
