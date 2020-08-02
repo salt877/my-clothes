@@ -65,8 +65,8 @@
                 <form action="#" method="post" th:action="@{/showDetail/editClothes}" th:object="${editClothesForm}" enctype="multipart/form-data">
                 	<!-- 商品idを埋め込んでおく -->
 					<input  type="hidden" name="clothesId" th:value="${clothes.id}">
-                	<div class="image-information">
-                		<img class="img-fluid" th:src="${clothes.imagePath}" width="400" height="100"/><br>
+                	<div id="item-image" class="image-information">
+                		<img class="img-fluid" th:src="${clothes.imagePath}" width="400" height="400"/><br>
                 		<input name="imageFile" type="file" accept=".jpg,.png">
               	    </div>
               	    <div class="required-information">

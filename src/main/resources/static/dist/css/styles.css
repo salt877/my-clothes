@@ -21589,6 +21589,16 @@ tbody th {
 }
 
 /*アイテム編集・削除画面*/
+#item-image{
+	
+}
+
+.image-information .img-fluid img{
+	 width: 30%;    /* 横幅を割合で指定 */
+    height: auto;  /* 高さは自動指定 */
+}
+
+
 .modal-dialog {
 	min-width: 75%;
 	max-width: 80%;
