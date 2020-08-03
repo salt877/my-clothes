@@ -6,7 +6,8 @@
 </head>
 <body>
 	<!-- Navigation-->
-	<div id="navArea" th:fragment="pageheader">
+	<div th:fragment="pageheader">
+	<!-- image th:src="@{/dist/assets/img/myqlo_favicon.jpg}"> -->
 		<nav>
 			<div class="inner">
 				<ul>
@@ -14,7 +15,7 @@
 							class="fas fa-home"></i>&emsp;&emsp;TOP</a></li>
 					<li><a href="statistics.html" th:href="@{/stats}"><i
 							class="far fa-chart-bar"></i>&emsp;&emsp;統計データ</a></li>
-					<li><a href="calender.html" th:href="@{/}"><i
+					<li><a href="calender.html" th:href="@{/calendar}"><i
 							class="far fa-calendar-alt"></i>&emsp;&emsp;カレンダー</a></li>
 					<li><a href="coordinate.html" th:href="@{/coordinate}"><i
 							class="fas fa-female"></i>&emsp;&emsp;コーディネート</a></li>

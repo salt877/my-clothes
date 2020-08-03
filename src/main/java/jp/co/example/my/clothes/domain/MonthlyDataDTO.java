@@ -8,16 +8,34 @@ package jp.co.example.my.clothes.domain;
  */
 public class MonthlyDataDTO {
 
+	/**
+	 * 
+	 */
 	private String title;
 
+	/**
+	 * 
+	 */
 	private String start;
 
+	/**
+	 * 
+	 */
 	private String end;
 
+	/**
+	 * 
+	 */
 	private Integer totalPrice;
 
+	/**
+	 * 
+	 */
 	private Integer itemQuantity;
 
+	/**
+	 * 
+	 */
 	private Integer priceAverage;
 
 	public String getTitle() {
