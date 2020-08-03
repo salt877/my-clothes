@@ -11,6 +11,23 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
+ /*============
+header
+=============*/
+.site-header{
+    background: #fff;
+    display: flex;
+    padding: 10px 20px;
+    position: fixed;
+    justify-content: space-between;
+    width: 100%;
+    z-index: 80;
+}
+.site-logo img{
+    height: 20px;
+    width: auto;
+}
+
 /*今すぐログインボタン*/
 .btn--orange, a.btn--orange {
 	color: #fff;
