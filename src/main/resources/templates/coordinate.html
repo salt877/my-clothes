@@ -32,34 +32,8 @@
 <body>
 	<!-- Navigation-->
 	<div id="navArea">
-		<nav>
-			<div class="inner">
-				<ul>
-					<li><a href="top.html" th:href="@{/}"><i
-							class="fas fa-home"></i>&emsp;&emsp;TOP</a></li>
-					<li><a href="statistics.html" th:href="@{/stats}"><i
-							class="far fa-chart-bar"></i>&emsp;&emsp;統計データ</a></li>
-					<li><a href="calender.html" th:href="@{/}"><i
-							class="far fa-calendar-alt"></i>&emsp;&emsp;カレンダー</a></li>
-					<li><a href="coordinate.html" th:href="@{/coordinate}"><i
-							class="fas fa-female"></i>&emsp;&emsp;コーディネート</a></li>
-					<li><a href="contact.html" th:href="@{/}"><i
-							class="far fa-envelope"></i>&emsp;&emsp;お問い合わせ</a></li>
-					<li><a href="faq.html" th:href="@{/faq}"><i
-							class="far fa-question-circle"></i>&emsp;&emsp;FAQ</a></li>
-					<li><a href="login.html" th:href="@{/logout}"><i
-							class="fas fa-sign-out-alt"></i>&emsp;&emsp;ログアウト</a></li>
-				</ul>
-			</div>
-		</nav>
-		<div class="humberger_menue">
-			<div class="toggle_btn">
-				<span></span> <span></span> <span></span>
-			</div>
-		</div>
-		<div id="mask"></div>
+		<nav class="navbar navbar-default" th:replace="header::pageheader"></nav>
 	</div>
-
 	<!-- main -->
 	<div class="container">
 		<div class="text-center">
@@ -444,23 +418,8 @@
 	<br>
 
 	<!-- Footer-->
-	<footer class="footer py-4">
-		<div class="container">
-			<div class="row align-items-center">
-				<div class="col-lg-4 text-lg-left">Copyright © MYQLO 2020</div>
-				<div class="col-lg-4 my-3 my-lg-0">
-					<a class="btn btn-dark btn-social mx-2" href="#!"><i
-						class="fab fa-twitter"></i></a> <a
-						class="btn btn-dark btn-social mx-2" href="#!"><i
-						class="fab fa-facebook-f"></i></a> <a
-						class="btn btn-dark btn-social mx-2" href="#!"><i
-						class="fab fa-linkedin-in"></i></a>
-				</div>
-
-			</div>
-		</div>
+	<footer class="footer py-4"  th:replace="footer::pagefooter">
 	</footer>
-
 
 
 

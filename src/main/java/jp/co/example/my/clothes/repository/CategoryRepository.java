@@ -18,6 +18,10 @@ import jp.co.example.my.clothes.domain.Category;
  * @author ashibe
  *
  */
+/**
+ * @author ashibe
+ *
+ */
 @Repository
 public class CategoryRepository {
 
@@ -50,6 +54,10 @@ public class CategoryRepository {
 		return category;
 	}
 	
+	/**
+	 * カテゴリ一覧を取得.
+	 * @return
+	 */
 	public List<Category> categoryList(){
 		String sql = "select id,name from categories order by id";
 		SqlParameterSource param = new MapSqlParameterSource();
