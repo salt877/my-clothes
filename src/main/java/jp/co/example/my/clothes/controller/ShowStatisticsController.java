@@ -1,8 +1,6 @@
 package jp.co.example.my.clothes.controller;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -64,28 +62,10 @@ public class ShowStatisticsController {
 		// 平均金額
 		itemPriceAverage = totalItemPrice / totalItemCount;
 
-		// カテゴリー名・ブランド名を重複している名前を削除してclothesインスタンスから抽出・リストに格納
-		List<Clothes> clothesListOrderByCategoryId = showStatisticsService
-				.showStatsCategoryLabel(loginUser.getUser().getId());
-		List<Clothes> clothListOrderByBrandId = showStatisticsService.showStatsBrandLabel(loginUser.getUser().getId());
-
-		List<String> categoryNameList = clothesListOrderByCategoryId.stream().map(c -> c.getCategory().getName())
-				.distinct().collect(Collectors.toList());
-
-		List<String> brandNameList = clothListOrderByBrandId.stream().map(b -> b.getBrand().getName()).distinct()
-				.collect(Collectors.toList());
-
-		// Chart.js用にリストを配列化
-		String categoryArray[] = categoryNameList.toArray(new String[categoryNameList.size()]);
-		String brandArray[] = brandNameList.toArray(new String[brandNameList.size()]);
-
 		model.addAttribute("clothesListByUserId", clothesListByUserId);
 		model.addAttribute("totalItemCount", totalItemCount);
 		model.addAttribute("totalItemPrice", totalItemPrice);
 		model.addAttribute("itemPriceAverage", itemPriceAverage);
-		model.addAttribute("categoryLabel", categoryArray);
-		model.addAttribute("brandLabel", brandArray);
-		model.addAttribute("loginUserId", loginUser.getUser().getId());
 
 		return "statistics";
 	}

@@ -36,10 +36,19 @@ public class ShowCoordinateService {
 	/**
 	 * コーディネートIDに紐づくコーディネートデータを論理削除します.
 	 * 
-	 * @param coordinateId
+	 * @param coordinateId コーデID
 	 */
 	public void deleteCoordinate(Integer coordinateId) {
 		coordinateRepository.update(coordinateId);
 	}
 
+	/**
+	 * コーディネートIDで１件検索結果を表示します.
+	 * 
+	 * @param coordinateId コーデID
+	 * @return
+	 */
+	public Coordinate showCoordinateDetail(Integer coordinateId) {
+		return coordinateRepository.load(coordinateId);
+	}
 }

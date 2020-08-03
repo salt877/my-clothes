@@ -1,5 +1,7 @@
 
 $(function(){
+	
+	
 
 	// カテゴリーボタンがクリックされた時のajax通信処理
 	$('.category-btn').on('click', function(){
@@ -137,7 +139,7 @@ $(function(){
 						$("#in-modal-img6").attr("src",src);
 					
 					}else if(checkId === "bag"){
-						$('#modal-tops1').val(checkedVal);	
+						$('#modal-bag').val(checkedVal);	
 						$("#drag-img7").attr("src",src);
 						$("#in-modal-img7").attr("src",src);
 					
@@ -214,11 +216,10 @@ $(function(){
 	});
 	
 	// コーデ削除ボタンを押したときの処理
-	$('#co-delete-btn').on('click', function(){
+	$('.delete-btn').on('click', function(){
 		
-		var coordinateId = $('#co-delete-btn').val();
-		console.log("コーデID：" + coordinateId);
-		
+		var coordinateId = $(this).attr('id');
+				
 		if(confirm("このコーディネートを削除してもよろしいですか？")){
 			$.ajax({
 				url: "http://localhost:8080/delete_coordinate",
@@ -230,7 +231,7 @@ $(function(){
 				
 			// 通信成功時の処理
 			}).done(function(){
-				window.location.href="http://localhost:8080/coordinate";
+				window.location.href="http://localhost:8080/past-coordinate";
 				
 			}).fail(function(XMLHttpRequest, textStatus, errorThrown){
 				alert("エラーが発生しました。");
@@ -292,11 +293,13 @@ $(function(){
 		
 			if($('#code-name').val().length > 0 && hiddenVal.length == 0){
 				$('.coordinate-regis-btn').prop('disabled', true);
+				
 			}
 						
 			// コーデ名入力&アイテム選択済みの場合、押下可
 			if ($('#code-name').val().length > 0 && $('#code-name').val().length <= 20 && hiddenVal.length > 0) {
 				$('.coordinate-regis-btn').prop('disabled', false);
+				
 			
 			}
 			
@@ -310,6 +313,8 @@ $(function(){
 		});
 		
 	});	
+	
+	
 	
 	
 });

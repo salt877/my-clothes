@@ -8,9 +8,7 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>MYQLO | トップ画面</title>
-<link rel="icon" type="image/x-icon"
-	href="../static/dist/assets/img/favicon.ico"
-	th:href="@{/dist/assets/img/favicon.ico}" />
+<link rel="icon" type="image/x-icon" href="../static/dist/assets/img/myqlo_favicon.jpg" th:href="@{/dist/assets/img/myqlo_favicon.jpg}" />
 <!-- Font Awesome icons (free version)-->
 <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js"
 	crossorigin="anonymous"></script>
@@ -162,6 +160,14 @@
 									<i class="fas fa-plus fa-3x"></i>
 								</div>
 							</div> <img class="img-fluid" th:src="${'/img/'+item.imagePath}" />
+						<a class="portfolio-link" href="edit_cloth.html" th:href="@{'/showDetail/?id=' + ${item.id}}">
+							  <div class="portfolio-hover">  
+								  <div class="portfolio-hover-content"> 
+									 <i class="fas fa-plus fa-3x"></i> 
+								</div>  
+							  </div>   
+									<img class="img-fluid" th:src="${item.imagePath}" />
+									<!-- <img class="img-fluid" th:src="${'/img/'+item.imagePath}" />  -->
 						</a>
 					</div>
 				</div>

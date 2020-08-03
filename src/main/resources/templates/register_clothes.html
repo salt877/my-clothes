@@ -7,8 +7,7 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>MYQLO | アイテム新規登録</title>
-<link rel="icon" type="image/x-icon"
-	href="../static/dist/assets/img/favicon.ico" />
+<link rel="icon" type="image/x-icon" href="../static/dist/assets/img/myqlo_favicon.jpg" th:href="@{../static/dist/assets/img/myqlo_favicon.jpg}"/>
 <!-- Font Awesome icons (free version)-->
 <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js"
 	crossorigin="anonymous"></script>
@@ -163,7 +162,15 @@ function func1(){
 
 	<!-- Navigation-->
 	<div id="navArea">
+
 		<nav class="navbar navbar-default" th:replace="header::pageheader"></nav>
+		
+		<div class="humberger_menue">
+			<div class="toggle_btn">
+				<span></span> <span></span> <span></span>
+			</div>
+		</div>
+		<div id="mask"></div>
 	</div>
 
 	<!-- aアイテム登録画面-->

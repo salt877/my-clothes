@@ -48,4 +48,19 @@ public class ShowCoordinateController {
 
 	}
 
+	/**
+	 * 過去のコーディネート一覧を表示します.
+	 * 
+	 * @param loginUser
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/past-coordinate")
+	public String showPastCoordinate(@AuthenticationPrincipal LoginUser loginUser, Model model) {
+		List<Coordinate> coordinateList = showCoordinateService.showCoordinate(loginUser.getUser().getId());
+
+		model.addAttribute("coordinateList", coordinateList);
+
+		return "past-coordinate";
+	}
 }
