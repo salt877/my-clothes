@@ -99,7 +99,6 @@ $(function() {
 		 var fileName = $(this).val();
 		 console.log(fileName);
 		 $("#fileName").val(fileName);
-		 
 		 change();
 	 });
 		});
@@ -162,15 +161,7 @@ function func1(){
 
 	<!-- Navigation-->
 	<div id="navArea">
-
 		<nav class="navbar navbar-default" th:replace="header::pageheader"></nav>
-		
-		<div class="humberger_menue">
-			<div class="toggle_btn">
-				<span></span> <span></span> <span></span>
-			</div>
-		</div>
-		<div id="mask"></div>
 	</div>
 
 	<!-- aアイテム登録画面-->
@@ -179,20 +170,11 @@ function func1(){
 			<div class="text-center">
 				<h2 class="section-heading text-uppercase">アイテム新規登録</h2>
 			</div>
-			<form action="#" method="post" id="form1"
-				th:action="@{/registerClothes/register}"
-				th:object="${registerClothesForm}" enctype="multipart/form-data">
-				<div class="image-information">
-					<div><img id="preview"></div>
-					<div>	
-						<label >
+			<form action="#" method="post" id="form1" th:action="@{/registerClothes/register}"th:object="${registerClothesForm}" enctype="multipart/form-data">
+					<div id="item-image" class="image-information">	
+						<img class="img-fluid" id="preview"><br>
 						 <input name="imageFile" type="file" accept=".jpg,.png" id="myImage" required>
-						</label>
 					</div>	
-					
-
-					<!-- ,image/jpeg,image/png"th:errorclass="error-input" -->
-				</div>
 				<div class="required-information">
 					<table>
 						<thead>
@@ -353,7 +335,6 @@ function func1(){
 
 							<!-- aこっからモーダル -->
 							<div class="modal-body">
-								<div>
 									<div class="image-information">
 										<div><img id="preview"></div>
 										<script type="text/javascript">
@@ -362,8 +343,6 @@ function func1(){
 										targetImg.width = 300;
 										targetImg.height = 300;
 										</script>
-										<!-- accept=".jpg,.png,image/jpeg,image/png"
-											th:errorclass="error-input" -->
 									</div>
 
 
@@ -502,9 +481,8 @@ function func1(){
 							</div>
 						</div>
 					</div>
-				</div>
-			</form>
-		</div>
+				</form>
+			</div>
 	</section>
 
 	<!-- Footer-->

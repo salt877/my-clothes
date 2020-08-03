@@ -117,8 +117,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 						</tbody>
 					</table>
 				</div>
-				<br>
-				<br>
+				<br> <br>
 				<div class="detailed-information">
 					<table>
 						<thead>
@@ -213,6 +212,42 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 			</form>
 		</div>
 	</section>
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+		　aria-labelledby="exampleModalLabel">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<!-- モーダル内ヘッダー -->
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">確認</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="閉じる">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+
+				<!-- モーダル内ボディ -->
+				<div class="modal-body">
+					このアカウントを削除します。<br> （「はい」を押すとアカウント削除後、登録画面へ移ります。)
+				</div>
+
+				<!-- モーダル内フッター -->
+				<div class="modal-footer">
+					<form action="register_user.html"
+						th:action="@{/withdrawal/withdrawalUser}" method="post">
+						<button type="submit" class="btn btn-primary">はい</button>
+					</form>
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">戻る</button>
+				</div>
+
+				<!-- /.modal-footer -->
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+	<!-- モーダル設定終了 -->
 
 	<!-- Footer-->
 	<footer class="footer py-4" th:replace="footer::pagefooter"> </footer>

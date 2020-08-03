@@ -21,6 +21,11 @@ import jp.co.example.my.clothes.domain.Weather;
 import jp.co.example.my.clothes.service.ShowTopPageService;
 import jp.co.example.my.clothes.service.WeatherService;
 
+/**
+ * topページを操作するコントローラー.
+ * @author ashibe
+ *
+ */
 @Controller
 @RequestMapping("")
 public class ShowTopPageController {
@@ -81,6 +86,15 @@ public class ShowTopPageController {
 		return "top";
 	}
 
+	/**
+	 * 条件を設けて商品を検索
+	 * @param model
+	 * @param loginUser
+	 * @param categoryId
+	 * @param brandId
+	 * @param tagContentsId
+	 * @return
+	 */
 	@RequestMapping("/search")
 	public String showItemNarrowDown(Model model, @AuthenticationPrincipal LoginUser loginUser, Integer categoryId,
 			Integer brandId, Integer tagContentsId) {
