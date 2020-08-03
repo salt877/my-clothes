@@ -7,8 +7,7 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>MYQLO | アイテム新規登録</title>
-<link rel="icon" type="image/x-icon"
-	href="../static/dist/assets/img/favicon.ico" />
+<link rel="icon" type="image/x-icon" href="../static/dist/assets/img/myqlo_favicon.jpg" th:href="@{../static/dist/assets/img/myqlo_favicon.jpg}"/>
 <!-- Font Awesome icons (free version)-->
 <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js"
 	crossorigin="anonymous"></script>
@@ -70,6 +69,7 @@ $('#myImage').on('change', function (e) {
     var reader = new FileReader();
     reader.onload = function (e) {
         $("#preview").attr('src', e.target.result);
+        var a =  document.getElementById('preview').value;
     }
     reader.readAsDataURL(e.target.files[0]);
 });
@@ -98,6 +98,8 @@ $(function() {
 		$("#myImage").change(function (){
 		 var fileName = $(this).val();
 		 console.log(fileName);
+		 $("#fileName").val(fileName);
+		 
 		 change();
 	 });
 		});
@@ -160,22 +162,9 @@ function func1(){
 
 	<!-- Navigation-->
 	<div id="navArea">
-		<nav>
-			<div class="inner">
-				<ul>
-					<li><a href="top.html" th:href="@{/}"><i
-							class="fas fa-home"></i>&emsp;&emsp;TOP</a></li>
-					<li><a href="statistics.html" th:href="@{/stats}"><i
-							class="far fa-chart-bar"></i>&emsp;&emsp;統計データ</a></li>
-					<li><a href="calender.html"><i class="far fa-calendar-alt"></i>&emsp;&emsp;カレンダー</a></li>
-					<li><a href="coordinate.html" th:href="@{/coordinate}"><i class="fas fa-female"></i>&emsp;&emsp;コーディネート</a></li>
-					<li><a href="contact.html" th:href="@{/contact}"><i class="far fa-envelope"></i>&emsp;&emsp;お問い合わせ</a></li>
-					<li><a href="faq.html" th:href="@{/faq}"><i
-							class="far fa-question-circle"></i>&emsp;&emsp;FAQ</a></li>
-					<li><a href="login.html"><i class="fas fa-sign-out-alt"></i>&emsp;&emsp;ログアウト</a></li>
-				</ul>
-			</div>
-		</nav>
+
+		<nav class="navbar navbar-default" th:replace="header::pageheader"></nav>
+		
 		<div class="humberger_menue">
 			<div class="toggle_btn">
 				<span></span> <span></span> <span></span>
@@ -194,12 +183,12 @@ function func1(){
 				th:action="@{/registerClothes/register}"
 				th:object="${registerClothesForm}" enctype="multipart/form-data">
 				<div class="image-information">
-					
-						<label class="upload-label">画像を選択してください <input
-						name="imageFile" type="file" accept=".jpg,.png" id="myImage"
-						required>
+					<div><img id="preview"></div>
+					<div>	
+						<label >
+						 <input name="imageFile" type="file" accept=".jpg,.png" id="myImage" required>
 						</label>
-						<img id="preview">
+					</div>	
 					
 
 					<!-- ,image/jpeg,image/png"th:errorclass="error-input" -->
@@ -366,7 +355,7 @@ function func1(){
 							<div class="modal-body">
 								<div>
 									<div class="image-information">
-										<img id="preview">
+										<div><img id="preview"></div>
 										<script type="text/javascript">
 										/*a 表示の画像サイズを指定する*/
 										var targetImg = document.getElementById('preview');
@@ -519,26 +508,9 @@ function func1(){
 	</section>
 
 	<!-- Footer-->
-	<footer class="footer py-4">
-		<div class="container">
-			<div class="row align-items-center">
-				<div class="col-lg-4 text-lg-left">Copyright © MYQLO 2020</div>
-				<div class="col-lg-4 my-3 my-lg-0">
-					<a class="btn btn-dark btn-social mx-2" href="#!"><i
-						class="fab fa-twitter"></i></a> <a
-						class="btn btn-dark btn-social mx-2" href="#!"><i
-						class="fab fa-facebook-f"></i></a> <a
-						class="btn btn-dark btn-social mx-2" href="#!"><i
-						class="fab fa-linkedin-in"></i></a>
-				</div>
-				<div class="col-lg-4 text-lg-right">
-					<a class="mr-3" href="#!">Privacy Policy</a> <a href="#!">Terms
-						of Use</a>
-				</div>
-			</div>
-		</div>
+	<footer class="footer py-4"  th:replace="footer::pagefooter">
 	</footer>
-
+	
 	<!-- Bootstrap core JS-->
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

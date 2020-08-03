@@ -1,5 +1,8 @@
 package jp.co.example.my.clothes.form;
 
+
+import javax.validation.constraints.NotBlank;
+
 import org.springframework.web.multipart.MultipartFile;
 
 public class EditClothesForm {
@@ -11,6 +14,7 @@ public class EditClothesForm {
 	/** カテゴリーID */
 	private String category;
 	/** ブランドID */
+	@NotBlank(message="入力必須項目です")
 	private String brand;
 	/** カラーID */
 	private String color;

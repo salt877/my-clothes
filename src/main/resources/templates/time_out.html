@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>リンクが無効です</title>
+<link rel="icon" type="image/x-icon" href="../static/dist/assets/img/myqlo_favicon.jpg" th:href="@{/dist/assets/img/myqlo_favicon.jpg}"/>
 <meta http-equiv="refresh" content="3;URL=http://localhost:8080/forgotPassword">
 </head>
 <p>
@@ -11,6 +12,10 @@
 約3秒後にページが切り替わります。<br>
 <a th:href="@{/forgotPassword}">ページが切り替わらない場合はこちら</a>
 </p>
+
+<!-- Footer-->
+	<footer class="footer py-4"  th:replace="footer::pagefooter">
+	</footer>
 
 </body>
 </html>

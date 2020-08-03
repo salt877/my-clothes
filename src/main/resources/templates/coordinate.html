@@ -6,7 +6,8 @@
 	content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
 <title>MYQLO | MY COORDINATE</title>
 <link rel="icon" type="image/x-icon"
-	href="../static/dist/assets/img/favicon.ico" />
+	href="../static/dist/assets/img/myqlo_favicon.jpg"
+	th:href="@{/dist/assets/img/myqlo_favicon.jpg}" />
 <!-- Font Awesome icons (free version)-->
 <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js"
 	crossorigin="anonymous"></script>
@@ -32,6 +33,9 @@
 <body>
 	<!-- Navigation-->
 	<div id="navArea">
+		<<<<<<< HEAD
+		<nav class="navbar navbar-default" th:replace="header::pageheader"></nav>
+		=======
 		<nav>
 			<div class="inner">
 				<ul>
@@ -39,7 +43,7 @@
 							class="fas fa-home"></i>&emsp;&emsp;TOP</a></li>
 					<li><a href="statistics.html" th:href="@{/stats}"><i
 							class="far fa-chart-bar"></i>&emsp;&emsp;統計データ</a></li>
-					<li><a href="calender.html" th:href="@{/}"><i
+					<li><a href="calender.html" th:href="@{/calendar}"><i
 							class="far fa-calendar-alt"></i>&emsp;&emsp;カレンダー</a></li>
 					<li><a href="coordinate.html" th:href="@{/coordinate}"><i
 							class="fas fa-female"></i>&emsp;&emsp;コーディネート</a></li>
@@ -58,8 +62,8 @@
 			</div>
 		</div>
 		<div id="mask"></div>
+		>>>>>>> cddbc33aa2d641e7faab19f89363721ba1ba642d
 	</div>
-
 	<!-- main -->
 	<div class="wrapper">
 		<div class="container">
@@ -317,7 +321,7 @@
 			<br>
 
 			<div style="text-align: center;">
-				<button type="button" class="btn btn-outline-primary"
+				<button type="button" class="btn btn-primary"
 					id="co-confirmation-btn" style="border-radius: 50px; width: 300px;"
 					data-toggle="modal" data-target="#registerModal">確認画面へ</button>
 			</div>
@@ -325,7 +329,7 @@
 
 			<div style="text-align: center;">
 				<a th:href="@{/past-coordinate}"><button type="button"
-						class="btn btn-outline-secondary"
+						class="btn btn-secondary"
 						style="border-radius: 50px; width: 300px;">コーディネート一覧を見る</button></a>
 			</div>
 
@@ -455,27 +459,14 @@
 			<!-- モーダル設定終了 -->
 		</div>
 
-		<br>
+		<br> <br>
 
 		<!-- Footer-->
-		<footer class="footer py-4">
-			<div class="container">
-				<div class="row align-items-center">
-					<div class="col-lg-4 text-lg-left">Copyright © MYQLO 2020</div>
-					<div class="col-lg-4 my-3 my-lg-0">
-						<a class="btn btn-dark btn-social mx-2" href="#!"><i
-							class="fab fa-twitter"></i></a> <a
-							class="btn btn-dark btn-social mx-2" href="#!"><i
-							class="fab fa-facebook-f"></i></a> <a
-							class="btn btn-dark btn-social mx-2" href="#!"><i
-							class="fab fa-linkedin-in"></i></a>
-					</div>
-
-				</div>
-			</div>
+		<footer class="footer py-4" th:replace="footer::pagefooter">
 		</footer>
-	</div>
 
+
+	</div>
 
 
 

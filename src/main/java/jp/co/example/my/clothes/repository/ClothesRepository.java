@@ -90,7 +90,7 @@ public class ClothesRepository {
 	 * @return 登録アイテム一覧
 	 */
 	public List<Clothes> findAll(Integer userId) {
-		String sql = SQL + "FROM clothes WHERE user_id=:userId ORDER BY id;";
+		String sql = SQL + "FROM clothes WHERE user_id=:userId AND deleted = FALSE ORDER BY id;";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
 		List<Clothes> clothesList = template.query(sql, param, CLOTHES_ROW_MAPPER);
 		return clothesList;
@@ -361,8 +361,7 @@ public class ClothesRepository {
 
 		StringBuilder sql = new StringBuilder();
 		sql.append("UPDATE clothes ");
-		sql.append(
-				"SET category_id=:categoryId, brand_id=:brandId, color_id=:colorId, season=:season, size_id=:sizeId,");
+		sql.append("SET image_path=:imagePath, category_id=:categoryId, brand_id=:brandId, color_id=:colorId, season=:season, size_id=:sizeId,");
 		sql.append("price=:price, perchase_date=:perchaseDate, comment=:comment ");
 		sql.append("WHERE id=:id ");
 		sql.append("AND user_id=:userId;");

@@ -18,14 +18,12 @@ $(function() {
 				if (listContents <= num) {
 					$('#close_btn').hide();
 					$('#more_btn').hide();
-					console.log(listContents);
-					console.log(num);
 				}
 
 				// moreボタンがクリックされた時
 				$('#more_btn').click(
 						function() {
-							// numに+3ずつしていく = 6行ずつ追加する
+							// numに+6ずつしていく = 6件ずつ追加する
 							num += 6;
 							$(this).parents('#past-coordinate-list').find(
 									".past-coordinates:lt(" + num + ")")

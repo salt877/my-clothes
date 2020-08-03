@@ -1,223 +1,244 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>MYQLO | アイテム編集</title>
-        <link rel="icon" type="image/x-icon" href="../static/dist/assets/img/favicon.ico" />
-        <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="../static/dist/css/styles.css" rel="stylesheet" th:href="@{/dist/css/styles.css}"/>
-    </head>
-    <body id="page-top">
-    
-        <!-- Navigation-->
-        <div id="navArea">
-          <nav>
-            <div class="inner">
-              <ul>
-                    <li><a href="top.html" th:href="@{/}"><i class="fas fa-home"></i>&emsp;&emsp;TOP</a></li>
-                	<li><a href="statistics.html" th:href="@{/stats}"><i class="far fa-chart-bar"></i>&emsp;&emsp;統計データ</a></li>
-                	<li><a href="calender.html" th:href="@{/}"><i class="far fa-calendar-alt"></i>&emsp;&emsp;カレンダー</a></li>
-                	<li><a href="coordinate.html" th:href="@{/coordinate}"><i class="fas fa-female"></i>&emsp;&emsp;コーディネート</a></li>
-                	<li><a href="contact.html" th:href="@{/}"><i class="far fa-envelope"></i>&emsp;&emsp;お問い合わせ</a></li>
-               		<li><a href="faq.html" th:href="@{/faq}"><i class="far fa-question-circle"></i>&emsp;&emsp;FAQ</a></li>
-                	<li><a href="login.html" th:href="@{/logout}"><i class="fas fa-sign-out-alt"></i>&emsp;&emsp;ログアウト</a></li>
-             </ul>
-           </div>
-        </nav>
-        <div class="humberger_menue">
-          <div class="toggle_btn">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-      </div>
-      <div id="mask"></div>
-     </div>
-     
-        <!-- アイテム編集・削除画面-->
-        <section class="page-section bg-light" id="portfolio">
-            <div class="container">
-                <div class="text-center">
-                    <h2 class="section-heading text-uppercase">アイテム詳細/編集</h2>
-                </div>
-                <form action="#" method="post" th:action="@{/showDetail/editClothes}" th:object="${editClothesForm}">
-                	<!-- 商品idを埋め込んでおく -->
-					<input  type="hidden" name="clothesId" th:value="${clothes.id}">
-                	<div class="image-information">
-                	<img class="img-fluid" th:src="${'/img/'+clothes.imagePath}" /><br>
-                	<!--  	<input name="imageFile" type="file" accept=".jpg,.png,image/jpeg,image/png" th:errorclass="error-input"/>-->
-              	    </div>
-              	    <div class="required-information">
-                		<table>
-                			<thead>
-                				<tr>
-                					<th scope="col" colspan="2">基本情報（必須）</th>
-                				</tr>
-                			</thead>
-                			<tbody>
-                				<tr>
-                					<th>カテゴリー</th>
-                					<td data-label="カテゴリー" class="txt">
-                						<div class="cp_ipselect cp_sl02">
-                							<select name="category" id="category">
-                								<option th:each="category :${categoryList}"
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>MYQLO | アイテム編集</title>
+<link rel="icon" type="image/x-icon"
+	href="../static/dist/assets/img/myqlo_favicon.jpg"
+	th:href="@{/dist/assets/img/myqlo_favicon.jpg}" />
+<!-- Font Awesome icons (free version)-->
+<script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js"
+	crossorigin="anonymous"></script>
+<!-- Google fonts-->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+	rel="stylesheet" type="text/css" />
+<link
+	href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic"
+	rel="stylesheet" type="text/css" />
+<link
+	href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
+	rel="stylesheet" type="text/css" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="../static/dist/css/styles.css" rel="stylesheet"
+	th:href="@{/dist/css/styles.css}" />
+<link href="../static/dist/css/register_clothes.css"
+	th:href="@{/dist/css/register_clothes.css}" rel="stylesheet" />
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script type="text/javascript"
+	src="../static/dist/js/register_clothes.js"
+	th:src="@{/dist/js/register_clothes.js}" /></script>
+<style type='text/css'>
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button
+	{
+	-webkit-appearance: none;
+	margin: 0;
+}
+</style>
+</head>
+<body id="page-top">
+
+
+	<!-- Navigation-->
+	<div id="navArea">
+		<nav class="navbar navbar-default" th:replace="header::pageheader"></nav>
+	</div>
+
+
+	<!-- アイテム編集・削除画面-->
+	<section class="page-section bg-light" id="portfolio">
+		<div class="container">
+			<div class="text-center">
+				<h2 class="section-heading text-uppercase">アイテム詳細/編集</h2>
+			</div>
+			<form action="#" method="post" th:action="@{/showDetail/editClothes}"
+				th:object="${editClothesForm}" enctype="multipart/form-data">
+				<!-- 商品idを埋め込んでおく -->
+				<input type="hidden" name="clothesId" th:value="${clothes.id}">
+				<div id="item-image" class="image-information">
+					<img class="img-fluid" th:src="${clothes.imagePath}" width="400"
+						height="400" /><br> <input name="imageFile" type="file"
+						accept=".jpg,.png">
+				</div>
+				<div class="required-information">
+					<table>
+						<thead>
+							<tr>
+								<th scope="col" colspan="2">基本情報（必須）</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th>カテゴリー</th>
+								<td data-label="カテゴリー" class="txt">
+									<div class="cp_ipselect cp_sl02">
+										<select name="category" id="category">
+											<option th:each="category :${categoryList}"
 												th:text="${category.name}" th:value="${category.id}"
 												th:field="*{category}">アクセサリー</option>
-                							</select>
-                						</div>
-                					</td>
-                				</tr>
-                				<tr>
-                					<th>ブランド</th>
-                					<td data-label="ブランド" class="txt">
-                						<div class="search">
-                							<input type="text" class="search-form"  name="brand" id="brand" th:value="${clothes.brand.name}" th:field="*{brand}">
-                							<button type="submit" id="sbtn2"><i class="fas fa-search"></i></button>
-                						</div>
-                					</td>
-                				</tr>
-                				<tr>
-                					<th>カラー</th>
-                					<td data-label="カラー" class="txt">
-                						<div class="cp_ipselect cp_sl02">
-                							<select name="color" id="color" th:field="*{color}">
-                								<option th:each="color :${colorList}" th:text="${color.name}"
-												th:value="${color.id}" >レッド</option>
-                							</select>
-                						</div>
-                					</td>
-                				</tr>
-                			</tbody>
-                		</table>
-               	    </div>
-               	    <br><br>
-               	    <div class="detailed-information">
-                		<table>
-                			<thead>
-                				<tr>
-                					<th scope="col" colspan="2">詳細情報</th>
-                				</tr>
-                			</thead>
-                			<tbody>
-                				<tr>
-                					<th>タグ1</th>
-                					<td data-label="タグ" class="txt">
-                						<div class="search">
-                							<input type="text" class="search-form" name="tag1" id="tag1" th:field="*{tag1}">
-                							<button type="submit" id="sbtn2"><i class="fas fa-search"></i></button>
-                						</div>
-                					</td>
-                				</tr>
-                				<tr>
-                					<th>タグ2</th>
-                					<td data-label="タグ" class="txt" >
-                						<div class="search">
-                							<input type="text" class="search-form" name="tag2" id="tag2" th:field="*{tag2}">
-                							<button type="submit" id="sbtn2"><i class="fas fa-search"></i></button>
-                						</div>
-                					</td>
-                				</tr>
-                				<tr>
-                					<th>タグ3</th>
-                					<td data-label="タグ" class="txt">
-                						<div class="search">
-                							<input type="text" class="search-form" name="tag3" id="tag3" th:field="*{tag3}">
-                							<button type="submit" id="sbtn2"><i class="fas fa-search"></i></button>
-                						</div>
-                					</td>
-                				</tr>
-                				<tr>
-                					<th>シーズン</th>
-                					<td data-label="シーズン" class="txt">
-                						<span th:each="season : ${seasonMap}">
-	                						<input name="season" id="season" type="radio" th:value="${season.key}" th:text="${season.value}" th:field="*{season}">&emsp;&emsp;
-	                					</span>
-                					</td>
-                				</tr>
-                				<tr>
-                					<th>サイズ</th>
-                					<td data-label="サイズ" class="txt">
-                						<div class="cp_ipselect cp_sl02">
-                							<select name="size" id="size">
-                								<option th:each="size:${sizeList}" th:text="${size.name}"
+										</select>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									<div>ブランド</div>
+									<div th:if="${#fields.hasErrors('brand')}" th:errors="*{brand}"
+										class="error-messages" style="color: red"></div>
+								</th>
+								<td data-label="brand" class="txt">
+									<div class="search">
+										<input type="text" class="search-form" name="brand" id="brand"
+											th:value="${clothes.brand.name}" th:field="*{brand}">
+										<button type="submit" id="sbtn2">
+											<i class="fas fa-search"></i>
+										</button>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th>カラー</th>
+								<td data-label="カラー" class="txt">
+									<div class="cp_ipselect cp_sl02">
+										<select name="color" id="color" th:field="*{color}">
+											<option th:each="color :${colorList}" th:text="${color.name}"
+												th:value="${color.id}">レッド</option>
+										</select>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<br>
+				<br>
+				<div class="detailed-information">
+					<table>
+						<thead>
+							<tr>
+								<th scope="col" colspan="2">詳細情報</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th>タグ1</th>
+								<td data-label="タグ" class="txt">
+									<div class="search">
+										<input type="text" class="search-form" name="tag1" id="tag1"
+											th:field="*{tag1}">
+										<button type="submit" id="sbtn2">
+											<i class="fas fa-search"></i>
+										</button>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th>タグ2</th>
+								<td data-label="タグ" class="txt">
+									<div class="search">
+										<input type="text" class="search-form" name="tag2" id="tag2"
+											th:field="*{tag2}">
+										<button type="submit" id="sbtn2">
+											<i class="fas fa-search"></i>
+										</button>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th>タグ3</th>
+								<td data-label="タグ" class="txt">
+									<div class="search">
+										<input type="text" class="search-form" name="tag3" id="tag3"
+											th:field="*{tag3}">
+										<button type="submit" id="sbtn2">
+											<i class="fas fa-search"></i>
+										</button>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th>シーズン</th>
+								<td data-label="シーズン" class="txt"><span
+									th:each="season : ${seasonMap}"> <input name="season"
+										id="season" type="radio" th:value="${season.key}"
+										th:text="${season.value}" th:field="*{season}">&emsp;&emsp;
+								</span></td>
+							</tr>
+							<tr>
+								<th>サイズ</th>
+								<td data-label="サイズ" class="txt">
+									<div class="cp_ipselect cp_sl02">
+										<select name="size" id="size">
+											<option th:each="size:${sizeList}" th:text="${size.name}"
 												th:value="${size.id}" th:field="*{size}">XS</option>
-                							</select>
-                						</div>
-                					</td>
-                				</tr>
-                				<tr>
-                					<th>購入日</th>
-                					<td data-label="購入日" class="txt">
-	                						<input name="perchaseDate" id="perchaseDate" type="date" th:value="${clothes.perchaseDate}">
-                					</td>
-                				</tr>
-                				<tr>
-                					<th>価格</th>
-                					<td data-label="価格" class="txt">
-                						<input name="price" id="price" type="text" th:value="${#numbers.formatInteger(clothes.price,1,'COMMA')}">
-                					</td>
-                				</tr>
-                				<tr>
-                					<th>メモ</th>
-                					<td data-label="メモ" class="txt">
-                						<textarea name="comment" id="comment" rows="10" cols="30" th:field="*{comment}"></textarea>
-                					</td>
-                				</tr>
-                			</tbody>
-                		</table>
-              	   </div>
-              	   
-              	   <!-- 削除・変更ボタン -->
-              	   <div class="complete-btn">
-                    		<a class="btn btn--delete btn--radius"  th:href="@{'/deleteClothes/pushDeleteButton?id='+${clothes.id}}">&emsp;削除&emsp;</a>
-                    		<input type="submit" name="submit" id="submit" class="btn btn--submit btn--radius" value="&emsp;変更を保存&emsp;"/>
-               	   </div>
-               </form>
-            </div>
-        </section>
+										</select>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th>購入日</th>
+								<td data-label="購入日" class="txt"><input name="perchaseDate"
+									id="perchaseDate" type="date"
+									th:value="${clothes.perchaseDate}"></td>
+							</tr>
+							<tr>
+								<th>価格</th>
+								<td data-label="価格" class="txt"><input name="price"
+									id="price" type="text" th:value="${clothes.price}"></td>
+							</tr>
+							<tr>
+								<th>メモ</th>
+								<td data-label="メモ" class="txt"><textarea name="comment"
+										id="comment" rows="10" cols="30" th:field="*{comment}"></textarea>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 
-        <!-- Footer-->
-        <footer class="footer py-4">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-4 text-lg-left">Copyright © MYQLO 2020</div>
-                    <div class="col-lg-4 my-3 my-lg-0">
-                        <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                    <div class="col-lg-4 text-lg-right">
-                        <a class="mr-3" href="#!">Privacy Policy</a>
-                        <a href="#!">Terms of Use</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
-        
-        <!-- Bootstrap core JS-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
-        <!-- Third party plugin JS-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-        <!-- Contact form JS-->
-        <script src="../static/dist/assets/mail/jqBootstrapValidation.js" th:src="@{/dist/assets/mail/jqBootstrapValidation.js}"></script>
-        <script src="../static/dist/assets/mail/contact_me.js" th:src="@{/dist/assets/mail/contact_me.js}"></script>
-        <!-- Core theme JS-->
-        <script src="../static/dist/js/scripts.js" th:src="@{/dist/js/scripts.js}"></script>
-        <script src="../static/dist/js/hamburger_menu.js" th:src="@{/dist/js/hamburger_menu.js}"></script>
-    	<!-- brand用オートコンプリート なぜかhead内だと起動しない -->
-		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-		<script type="text/javascript">
+				<!-- 削除・変更ボタン -->
+				<div class="complete-btn">
+					<a class="btn btn--delete btn--radius"
+						th:href="@{'/deleteClothes/pushDeleteButton?id='+${clothes.id}}">&emsp;削除&emsp;</a>
+					<input type="submit" name="submit" id="submit"
+						class="btn btn--submit btn--radius" value="&emsp;変更を保存&emsp;" />
+				</div>
+			</form>
+		</div>
+	</section>
+
+	<!-- Footer-->
+	<footer class="footer py-4" th:replace="footer::pagefooter"> </footer>
+
+	<!-- Bootstrap core JS-->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+	<!-- Third party plugin JS-->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+	<!-- Contact form JS-->
+	<script src="../static/dist/assets/mail/jqBootstrapValidation.js"
+		th:src="@{/dist/assets/mail/jqBootstrapValidation.js}"></script>
+	<script src="../static/dist/assets/mail/contact_me.js"
+		th:src="@{/dist/assets/mail/contact_me.js}"></script>
+	<!-- Core theme JS-->
+	<script src="../static/dist/js/scripts.js"
+		th:src="@{/dist/js/scripts.js}"></script>
+	<script src="../static/dist/js/hamburger_menu.js"
+		th:src="@{/dist/js/hamburger_menu.js}"></script>
+	<!-- brand用オートコンプリート なぜかhead内だと起動しない -->
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script type="text/javascript">
 			$( function() {
     			var brands= [ [(${brandListForAutocomplete})] ];
    			    var tagContents= [ [(${tagContentsListForAutocomplete})] ];
@@ -235,5 +256,5 @@
     			 });
   			});
 		</script>
-    </body>
+</body>
 </html>

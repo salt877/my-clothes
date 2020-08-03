@@ -9,8 +9,8 @@
 <meta name="author" content="" />
 <title>MYQLO | トップ画面</title>
 <link rel="icon" type="image/x-icon"
-	href="../static/dist/assets/img/favicon.ico"
-	th:href="@{/dist/assets/img/favicon.ico}" />
+	href="../static/dist/assets/img/myqlo_favicon.jpg"
+	th:href="@{/dist/assets/img/myqlo_favicon.jpg}" />
 <!-- Font Awesome icons (free version)-->
 <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js"
 	crossorigin="anonymous"></script>
@@ -32,19 +32,19 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <style type="text/css">
-.weather{ 
+.weather {
 	background-image: url(../img/weather.jpg);
-	background-color:rgba(255,255,255,0.5);
-	background-blend-mode:lighten;
-	width:20%;
-    margin: 0 auto;
-    max-width: 500px;
-	}
+	background-color: rgba(255, 255, 255, 0.5);
+	background-blend-mode: lighten;
+	width: 20%;
+	margin: 0 auto;
+	max-width: 500px;
+}
 </style>
 <script type="text/javascript">
 	$(function() {
 		var API_KEY = '478ea780a9d4d20c8ddf7539de30ee32';
-		var city="[[ ${city} ]]";
+		var city = "[[ ${city} ]]";
 		//var city = "東京都";
 		var url = 'http://api.openweathermap.org/data/2.5/forecast?q=' + city
 				+ ',jp&units=metric&APPID=' + API_KEY;
@@ -87,35 +87,8 @@
 
 	<!-- Navigation-->
 	<div id="navArea">
-		<nav>
-			<div class="inner">
-				<ul>
-					<li><a href="top.html" th:href="@{/}"><i
-							class="fas fa-home"></i>&emsp;&emsp;TOP</a></li>
-					<li><a href="statistics.html" th:href="@{/stats}"><i
-							class="far fa-chart-bar"></i>&emsp;&emsp;統計データ</a></li>
-					<li><a href="calendar.html" th:href="@{/calendar}"><i
-							class="far fa-calendar-alt"></i>&emsp;&emsp;カレンダー</a></li>
-					<li><a href="coordinate.html" th:href="@{/coordinate}"><i
-							class="fas fa-female"></i>&emsp;&emsp;コーディネート</a></li>
-					<li><a href="contact.html" th:href="@{/}"><i
-							class="far fa-envelope"></i>&emsp;&emsp;お問い合わせ</a></li>
-					<li><a href="faq.html" th:href="@{/faq}"><i
-							class="far fa-question-circle"></i>&emsp;&emsp;FAQ</a></li>
-					<li><a href="login.html" th:href="@{/logout}"><i
-							class="fas fa-sign-out-alt"></i>&emsp;&emsp;ログアウト</a></li>
-
-				</ul>
-			</div>
-		</nav>
-		<div class="humberger_menue">
-			<div class="toggle_btn">
-				<span></span> <span></span> <span></span>
-			</div>
-		</div>
-		<div id="mask"></div>
+		<nav class="navbar navbar-default" th:replace="header::pageheader"></nav>
 	</div>
-
 	<!-- アイテム一覧画面 -->
 	<section class="page-section bg-light" id="portfolio">
 		<div class="container">
@@ -123,12 +96,12 @@
 				<h2 class="section-heading text-uppercase">My Closet</h2>
 				<h3 class="section-subheading text-muted">Here is a list of the
 					clothes you have.</h3>
-			<!-- 天気予報の表示 -->
-					
-			<div class="weather">
-			<a th:href="@{/weather/showWeatherPage}"><div th:text="${city}+'の天気'"></div><span id="weather"></span></a>
-			</div>	
-			
+				<!-- 天気予報の表示 -->
+				<div class="weather">
+					<a th:href="@{/weather/showWeatherPage}"><div
+							th:text="${city}+'の天気'"></div> <span id="weather"></span></a>
+				</div>
+
 			</div>
 			<!-- タブ切り替え -->
 			<div class="item_select cp_sl04">
@@ -182,13 +155,22 @@
 				<div id="items" class="col-lg-4 col-sm-6 mb-4"
 					th:each="item : ${clothesList}">
 					<div class="portfolio-item">
-						<a class="portfolio-link" href="edit_cloth.html" th:href="@{'/showDetail/?id=' + ${item.id}}">
-							  <div class="portfolio-hover">  
-								  <div class="portfolio-hover-content"> 
-									 <i class="fas fa-plus fa-3x"></i> 
-								</div>  
-							  </div>   
-									<img class="img-fluid" th:src="${item.imagePath}" />
+						<a class="portfolio-link" href="edit_cloth.html"
+							th:href="@{'/showDetail/?id=' + ${item.id}}">
+							<div class="portfolio-hover">
+								<div class="portfolio-hover-content">
+									<i class="fas fa-plus fa-3x"></i>
+								</div>
+							</div> 
+						</a> <a class="portfolio-link" href="edit_cloth.html"
+							th:href="@{'/showDetail/?id=' + ${item.id}}">
+							<div class="portfolio-hover">
+								<div class="portfolio-hover-content">
+									<i class="fas fa-plus fa-3x"></i>
+								</div>
+							</div> 
+							<img class="img-fluid" th:src="${item.imagePath}" />
+
 						</a>
 					</div>
 				</div>
@@ -201,36 +183,18 @@
 					閉じる <i class="fa fa-chevron-up" aria-hidden="true"></i>
 				</div>
 			</div>
-				<!-- アイテム新規登録ボタン -->
-				<div class="register-item-btn">
-					<a href="register_clothes.html"
-						th:href="@{/registerClothes/showRegisterClothes}"
-						class="btn-circle-stitch"> <i class="fas fa-tshirt"></i> <span>登録</span>
-					</a>
-				</div>
+			<!-- アイテム新規登録ボタン -->
+			<div class="register-item-btn">
+				<a href="register_clothes.html"
+					th:href="@{/registerClothes/showRegisterClothes}"
+					class="btn-circle-stitch"> <i class="fas fa-tshirt"></i> <span>登録</span>
+				</a>
+			</div>
 		</div>
 	</section>
 
 	<!-- Footer-->
-	<footer class="footer py-4">
-		<div class="container">
-			<div class="row align-items-center">
-				<div class="col-lg-4 text-lg-left">Copyright © MYQLO 2020</div>
-				<div class="col-lg-4 my-3 my-lg-0">
-					<a class="btn btn-dark btn-social mx-2" href="#!"><i
-						class="fab fa-twitter"></i></a> <a
-						class="btn btn-dark btn-social mx-2" href="#!"><i
-						class="fab fa-facebook-f"></i></a> <a
-						class="btn btn-dark btn-social mx-2" href="#!"><i
-						class="fab fa-linkedin-in"></i></a>
-				</div>
-				<div class="col-lg-4 text-lg-right">
-					<a class="mr-3" href="#!">Privacy Policy</a> <a href="#!">Terms
-						of Use</a>
-				</div>
-			</div>
-		</div>
-	</footer>
+	<footer class="footer py-4" th:replace="footer::pagefooter"> </footer>
 
 	<!-- Bootstrap core JS-->
 	<script

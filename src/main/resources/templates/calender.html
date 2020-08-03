@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=yes">
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>MYQLO | MY CALENDER</title>
+<link rel="icon" type="image/x-icon"
+	href="../static/dist/assets/img/favicon.ico" />
+<!-- Font Awesome icons (free version)-->
+<script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js"
+	crossorigin="anonymous"></script>
+<!-- Google fonts-->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+	rel="stylesheet" type="text/css" />
+<link
+	href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic"
+	rel="stylesheet" type="text/css" />
+<link
+	href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
+	rel="stylesheet" type="text/css" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="../static/dist/css/styles.css" rel="stylesheet" />
+
+<!-- FullCalender実装用 -->
+<link href='../static/lib/main.css' rel='stylesheet' />
+<script src='../static/lib/main.js'></script>
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+		var calendarEl = document.getElementById('calendar');
+
+		var calendar = new FullCalendar.Calendar(calendarEl, {
+			'locale' : 'ja'
+		});
+
+		calendar.render();
+	});
+</script>
+<style>
+a {
+	color: black;
+}
+
+body {
+	margin: 40px 10px;
+	padding: 0;
+	font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+	font-size: 14px;
+}
+
+#calendar {
+	max-width: 1100px;
+	margin: 0 auto;
+}
+</style>
+<title>カレンダー</title>
+</head>
+<body>
+	<!-- Navigation-->
+	<div id="navArea">
+		<nav class="navbar navbar-default" th:replace="header::pageheader"></nav>
+	</div>
+
+	<div class="container">
+		<div class="text-center" style="margin-top: 100px;">
+			<h1 class="section-heading text-uppercase">MY CALENDER</h1>
+			<div class="section-subheading text-muted">MYQLOに登録した服を月ごとにチェック！</div>
+			<br> <br>
+		</div>
+
+		<!-- 各月データテーブル -->
+		<div class="text-center">
+			<table class="table">
+				<thead>
+					<tr>
+						<th><h6>〇月の購入金額合計</h6></th>
+						<th><h6>〇月の平均購入金額</h6></th>
+						<th><h6>〇月の購入アイテム数</h6></th>
+					</tr>
+					<tr>
+						<td>¥120,650</td>
+						<td>¥5,250</td>
+						<td>22&nbsp;点</td>
+					</tr>
+				</thead>
+			</table>
+		</div>
+		<br>
+		
+		<!-- カレンダー挿入位置 -->
+		<div id='calendar'></div>
+		<br>
+
+	</div>
+
+	
+	<!-- Footer-->
+	<footer class="footer py-4"  th:replace="footer::pagefooter">
+	</footer>
+	
+	<!-- Bootstrap core JS-->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+	<!-- Third party plugin JS-->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+	<!-- Contact form JS-->
+	<script src="../static/dist/assets/mail/jqBootstrapValidation.js"></script>
+	<script src="../static/dist/assets/mail/contact_me.js"></script>
+	<!-- Core theme JS-->
+	<script src="../static/dist/js/scripts.js"></script>
+	<script src="../static/dist/js/hamburger_menu.js"></script>
+</body>
+</html>

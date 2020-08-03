@@ -8,8 +8,7 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>MYQLO | MY CALENDER</title>
-<link rel="icon" type="image/x-icon"
-	href="../static/dist/assets/img/favicon.ico" th:href="@{/dist/assets/img/favicon.ico}" />
+<link rel="icon" type="image/x-icon" href="../static/dist/assets/img/myqlo_favicon.jpg" th:href="@{/dist/assets/img/myqlo_favicon.jpg}" />
 <!-- Font Awesome icons (free version)-->
 <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js"
 	crossorigin="anonymous"></script>
@@ -30,6 +29,7 @@
 
 <!-- FullCalender実装用 -->
 <link href='../static/lib/main.css' rel='stylesheet' th:href="@{/lib/main.css}" />
+<script src='../static/lib/locales/ja.js' th:src="@{/lib/locales/ja.js}"></script>
 <script src='../static/lib/main.js' th:src="@{/lib/main.js}"></script> 
 <!-- 月別データ表示用 -->
 <script src='../static/js/show_price.js' th:src="@{dist/js/show_price.js}"></script> 
@@ -37,6 +37,7 @@
 	document.addEventListener('DOMContentLoaded', function() {
 		var calendarEl = document.getElementById('calendar');
 	    var calendar = new FullCalendar.Calendar(calendarEl, {
+	        locale: 'ja', 
 	        editable: true,
 	        events: 
 	        	{
@@ -45,28 +46,6 @@
 	      });
 	      calendar.render();
 	    });
-	/* $(function(){
-		$('#calendar').ready(function(){
-			$.ajax({
-				url: "http://localhost:8080/show/perchase/all",
-				type: "POST",
-				dataType: "json",
-				data : {
-					userId : $('#loginUserId').val()
-				},
-				async: true
-					
-				}).done(function(data){
-			
-				}).fail(function(XMLHttpRequest, textStatus, errorThrown){
-					alert("エラーが発生しました。");
-						console.log("XMLHttpRequest:" + XMLHttpRequest.status);
-						console.log("textStatus:" + textStatus);
-						console.log("errorThrown" + errorThrown.message);
-				});
-			});						
-		}); */
-
 </script>
 <style>
 a {
@@ -93,13 +72,13 @@ body {
 		<nav>
 			<div class="inner">
 				<ul>
-					<li><a href="top.html"><i class="fas fa-home"></i>&emsp;&emsp;TOP</a></li>
-                	<li><a href="statistics.html"><i class="far fa-chart-bar"></i>&emsp;&emsp;統計データ</a></li>
-                	<li><a href="calender.html"><i class="far fa-calendar-alt"></i>&emsp;&emsp;カレンダー</a></li>
-                	<li><a href="coordinate.html"><i class="fas fa-female"></i>&emsp;&emsp;コーディネート</a></li>
-                	<li><a href="contact.html"><i class="far fa-envelope"></i>&emsp;&emsp;お問い合わせ</a></li>
-               		<li><a href="faq.html"><i class="far fa-question-circle"></i>&emsp;&emsp;FAQ</a></li>
-                	<li><a href="login.html"><i class="fas fa-sign-out-alt"></i>&emsp;&emsp;ログアウト</a></li>
+					<li><a href="top.html" th:href="@{/}"><i class="fas fa-home"></i>&emsp;&emsp;TOP</a></li>
+                	<li><a href="statistics.html" th:href="@{/stats}"><i class="far fa-chart-bar"></i>&emsp;&emsp;統計データ</a></li>
+                	<li><a href="calender.html" th:href="@{/calendar}"><i class="far fa-calendar-alt"></i>&emsp;&emsp;カレンダー</a></li>
+                	<li><a href="coordinate.html" th:href="@{/coordinate}"><i class="fas fa-female"></i>&emsp;&emsp;コーディネート</a></li>
+                	<li><a href="contact.html" th:href="@{/contact}"><i class="far fa-envelope"></i>&emsp;&emsp;お問い合わせ</a></li>
+               		<li><a href="faq.html" th:href="@{/faq}"><i class="far fa-question-circle"></i>&emsp;&emsp;FAQ</a></li>
+                	<li><a href="login.html" th:href="@{/logout}"><i class="fas fa-sign-out-alt"></i>&emsp;&emsp;ログアウト</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -122,20 +101,20 @@ body {
 			<table class="table">
 				<thead>
 					<tr>
-						<th><h6>〇月の購入金額合計</h6></th>
-						<th><h6>〇月の平均購入金額</h6></th>
-						<th><h6>〇月の購入アイテム数</h6></th>
+						<th><h6 class="month_total_price" th:text="${month +'月の購入金額合計'}">〇月の購入金額合計</h6></th>
+						<th><h6 class="month_price_average" th:text="${month +'月の平均購入金額'}">〇月の平均購入金額</h6></th>
+						<th><h6 class="month_item_quantity" th:text="${month +'月の購入アイテム数'}">〇月の購入アイテム数</h6></th>
 					</tr>
 					<tr>
-						<td th:text="${'¥'+ totalPrice}">¥120,650</td>
-						<td th:text="${'¥'+ priceAverage}">¥5,250</td>
-						<td th:text="${itemQuantity + '点'}">22&nbsp;点</td>
+						<td class="total_price" th:text="${'¥&nbsp;'+ #numbers.formatInteger(totalPrice, 1, 'COMMA') }">¥120,650</td>
+						<td class="price_average" th:text="${'¥&nbsp;'+ #numbers.formatInteger(priceAverage, 1, 'COMMA') }">¥5,250</td>
+						<td class="item_quantity" th:text="${itemQuantity} + '点'">22&nbsp;点</td>
 					</tr>
 				</thead>
 			</table>
 		</div>
 		<br>
-		
+			
 		<!-- カレンダー挿入位置 -->
 		<div id='calendar'>
 			<input type="hidden" id="loginUserId" th:value="${loginUserId}">
@@ -166,10 +145,10 @@ body {
 	</footer>
 
 	<!-- Contact form JS-->
-	<script src="../static/dist/assets/mail/jqBootstrapValidation.js"></script>
-	<script src="../static/dist/assets/mail/contact_me.js"></script>
+	<script src="../static/dist/assets/mail/jqBootstrapValidation.js" th:src="@{/dist/assets/mail/jqBootstrapValidation.js}"></script>
+	<script src="../static/dist/assets/mail/contact_me.js" th:src="@{/dist/assets/mail/contact_me.js}"></script>
 	<!-- Core theme JS-->
-	<script src="../static/dist/js/scripts.js"></script>
-	<script src="../static/dist/js/hamburger_menu.js"></script>
+	<script src="../static/dist/js/scripts.js" th:src="@{/dist/js/scripts.js}"></script>
+	<script src="../static/dist/js/hamburger_menu.js" th:src="@{/dist/js/hamburger_menu.js}"></script>
 </body>
 </html>

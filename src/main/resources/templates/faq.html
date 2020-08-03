@@ -8,7 +8,8 @@
 <meta name="author" content="" />
 <title>MYQLO | FAQ</title>
 <link rel="icon" type="image/x-icon"
-	href="../static/dist/assets/img/favicon.ico" />
+	　href="../static/dist/assets/img/myqlo_favicon.jpg"
+	th:href="@{/dist/assets/img/myqlo_favicon.jpg}" />
 <!-- Font Awesome icons (free version)-->
 <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js"
 	crossorigin="anonymous"></script>
@@ -24,34 +25,18 @@
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="../static/dist/css/styles.css"
 	th:href="@{/dist/css/styles.css}" rel="stylesheet" />
+
+<link rel="stylesheet" href="../static/dist/css/faq.css"
+	th:href="@{/dist/css/faq.css}">
 </head>
 <body id="page-top">
 
 
 	<!-- Navigation-->
-	<div id="navArea">
-		<nav>
-			<div class="inner">
-				<ul>
-					<li><a href="top.html" th:href="@{/}"><i class="fas fa-home"></i>&emsp;&emsp;TOP</a></li>
-					<li><a href="statistics.html" th:href="@{/stats}"><i class="far fa-chart-bar"></i>&emsp;&emsp;統計データ</a></li>
-					<li><a href="calender.html" th:href="@{/}"><i class="far fa-calendar-alt"></i>&emsp;&emsp;カレンダー</a></li>
-					<li><a href="coordinate.html" th:href="@{/coordinate}"><i class="fas fa-female"></i>&emsp;&emsp;コーディネート</a></li>
-					<li><a href="contact.html" th:href="@{/}"><i class="far fa-envelope"></i>&emsp;&emsp;お問い合わせ</a></li>
-					<li><a href="faq.html" th:href="@{/faq}"><i class="far fa-question-circle"></i>&emsp;&emsp;FAQ</a></li>
-					<li><a href="login.html" th:href="@{/logout}"><i class="fas fa-sign-out-alt"></i>&emsp;&emsp;ログアウト</a></li>
+	<nav class="navbar navbar-default" th:replace="header::pageheader"></nav>
 
-				</ul>
-			</div>
-		</nav>
-		<div class="humberger_menue">
-			<div class="toggle_btn">
-				<span></span> <span></span> <span></span>
-			</div>
-		</div>
-		<div id="mask"></div>
-	</div>
-	
+
+
 	<!-- FAQ画面-->
 	<section class="page-section bg-light" id="portfolio">
 		<div class="container">
@@ -71,14 +56,14 @@
 					<input id="cp_tabfour01" type="checkbox" name="tabs"> <label
 						for="cp_tabfour01" class="text-muted">MYQLOとは何ですか？</label>
 					<div class="cp_actab-content">
-						<p>自分が持っている服を登録できるクローゼット管理アプリです。</p>
+						<p class="txt-width">自分が持っている服を登録できるクローゼット管理アプリです。</p>
 					</div>
 				</div>
 				<div class="cp_actab">
 					<input id="cp_tabfour02" type="checkbox" name="tabs"> <label
 						for="cp_tabfour02" class="text-muted">このアプリではどのようなことができますか？</label>
 					<div class="cp_actab-content">
-						<p>
+						<p class="txt-width">
 							▶<strong>服を登録</strong><br>自分が持っているアイテムの写真やカテゴリ、ブランドなどの項目を入力し、MYQLOへ登録します。<br>
 							<br>▶<strong>登録した服を検索</strong><br>
 							トップ画面より、MYQLOへ登録した服をカテゴリ別・ブランド別・タグ別に検索できます。<br> <br> ▶<strong>カレンダー機能</strong><br>
@@ -99,18 +84,18 @@
 			<br>
 			<div class="cp_qa">
 				<div class="cp_actab">
-					<input id="cp_tabfour06" type="checkbox" name="tabs"> <label
-						for="cp_tabfour06" class="text-muted">登録アイテム数に上限はありますか？</label>
+					<input id="cp_tabfour03" type="checkbox" name="tabs"> <label
+						for="cp_tabfour03" class="text-muted">登録アイテム数に上限はありますか？</label>
 					<div class="cp_actab-content">
-						<p>登録アイテム数に上限はございません。無料で何アイテムでもご登録いただけます。
+						<p class="txt-width">登録アイテム数に上限はございません。無料で何アイテムでもご登録いただけます。
 					</div>
 				</div>
 
 				<div class="cp_actab">
-					<input id="cp_tabfour07" type="checkbox" name="tabs"> <label
-						for="cp_tabfour07" class="text-muted">アイテム登録時の必須入力項目はどこですか？</label>
+					<input id="cp_tabfour04" type="checkbox" name="tabs"> <label
+						for="cp_tabfour04" class="text-muted">アイテム登録時の必須入力項目はどこですか？</label>
 					<div class="cp_actab-content">
-						<p>
+						<p class="txt-width">
 							【画像】に加え、【カテゴリー】、【ブランド】、【色】となります。<br>
 							それ以外の任意の項目を入力していただくと、統計画面などでより詳細な情報を表示できるようになります。
 					</div>
@@ -124,37 +109,17 @@
 			</h4>
 			<br>
 			<div class="cp_qa">
-				<!-- 
+
 				<div class="cp_actab">
-					<input id="cp_tabfour03" type="checkbox" name="tabs"> <label
-						for="cp_tabfour03" class="text-muted">パスワードを忘れてしまいました。</label>
+					<input id="cp_tabfour05" type="checkbox" name="tabs"> <label
+						for="cp_tabfour05" class="text-muted">数値が正確に表示されません。</label>
 					<div class="cp_actab-content">
-						<p>
-							パスワードの変更は<a href="change_password.html">こちら</a>から行うことができます。
-						</p>
-					</div>
-				</div> -->
-				<div class="cp_actab">
-					<input id="cp_tabfour04" type="checkbox" name="tabs"> <label
-						for="cp_tabfour04" class="text-muted">数値が正確に表示されません。</label>
-					<div class="cp_actab-content">
-						<p>
+						<p class="txt-width">
 							アイテム登録（編集）時にアイテムの金額を入力していただけると、より正確な数値を表示することができます。<br>入力しているにも関わらずうまく表示されない場合は、恐れ入りますがお問い合わせフォームよりご連絡ください。
 						</p>
 					</div>
 				</div>
-				<!-- 
-				<div class="cp_actab">
-					<input id="cp_tabfour05" type="checkbox" name="tabs"> <label
-						for="cp_tabfour05" class="text-muted">退会手続きについて知りたいです。</label>
-					<div class="cp_actab-content">
-						<p>
-							ご退会につきましては下記リンクよりお手続きをお願いしております。<br>
-							退会処理には、1～3営業日お時間をいただいております。<br> <br> 退会処理をご希望の方は<a
-								href="delete_user.html">こちら</a>
-					</div>
-				</div>
-				 -->
+
 			</div>
 			<br> <br> <br>
 
@@ -165,37 +130,16 @@
 			<br>
 			<div class="cp_qa">
 				<div class="cp_actab">
-					<input id="cp_tabfour08" type="checkbox" name="tabs"> <label
-						for="cp_tabfour08" class="text-muted">カレンダー機能とは何ですか？</label>
+					<input id="cp_tabfour06" type="checkbox" name="tabs"> <label
+						for="cp_tabfour06" class="text-muted">カレンダー機能とは何ですか？</label>
 					<div class="cp_actab-content">
-						<p>
+						<p class="txt-width">
 							登録したアイテムの購入日をもとに、月ごとの合計金額やアイテム数などを見ることができます。<br>
-							また、日ごとに表示されたアイテムを選択すると、その詳細を表示することができます。（←仮）
+							また、アイテム登録時に購入日を入力していただくと、カレンダーにアイテムのカテゴリーと金額が表示されるようになるため、アイテム管理がしやすくなります。
 						</p>
 					</div>
 				</div>
-				<!-- 
-				<div class="cp_actab">
-					<input id="cp_tabfour09" type="checkbox" name="tabs"> <label
-						for="cp_tabfour09" class="text-muted">アプリからメールが届きません。</label>
-					<div class="cp_actab-content">
-						<p>プロフィール登録やパスワード・メールアドレス変更をした際の認証確認メールや、お問い合わせに対する返信は
-							@gmail.com のドメインアドレスからお送りします。
-							ドメイン指定受信や迷惑メール対策など、お客様がご利用のメール設定によって受信できない場合がございます。メール設定をご確認ください。</p>
-					</div>
-				</div>
 
-				<div class="cp_actab">
-					<input id="cp_tabfour10" type="checkbox" name="tabs"> <label
-						for="cp_tabfour10" class="text-muted">退会手続きについて知りたいです。</label>
-					<div class="cp_actab-content">
-						<p>
-							ご退会につきましては下記リンクよりお手続きをお願いしております。<br>
-							退会処理には、1～3営業日お時間をいただいております。<br> <br> 退会処理をご希望の方は<a
-								href="delete_user.html">こちら</a>
-					</div>
-				</div>
-				 -->
 			</div>
 			<br> <br> <br>
 
@@ -207,37 +151,16 @@
 			<br>
 			<div class="cp_qa">
 				<div class="cp_actab">
-					<input id="cp_tabfour11" type="checkbox" name="tabs"> <label
-						for="cp_tabfour11" class="text-muted">アイテム選択時にアイテムが表示されません。</label>
+					<input id="cp_tabfour07" type="checkbox" name="tabs"> <label
+						for="cp_tabfour07" class="text-muted">アイテム選択時にアイテムが表示されません。</label>
 					<div class="cp_actab-content">
-						<p>
+						<p class="txt-width">
 							アイテム選択ボックスには、お客様がMYQLOに登録したアイテムがカテゴリーごとに表示されます。<br>
 							登録アイテムのカテゴリーをご確認のうえ、もし不具合がございましたら、お手数ですがお問い合わせフォームよりご連絡ください。
 						</p>
 					</div>
 				</div>
-				<!-- 
-				<div class="cp_actab">
-					<input id="cp_tabfour12" type="checkbox" name="tabs"> <label
-						for="cp_tabfour12" class="text-muted"></label>
-					<div class="cp_actab-content">
-						<p>プロフィール登録やパスワード・メールアドレス変更をした際の認証確認メールや、お問い合わせに対する返信は
-							@gmail.com のドメインアドレスからお送りします。
-							ドメイン指定受信や迷惑メール対策など、お客様がご利用のメール設定によって受信できない場合がございます。メール設定をご確認ください。</p>
-					</div>
-				</div>
 
-				<div class="cp_actab">
-					<input id="cp_tabfour13" type="checkbox" name="tabs"> <label
-						for="cp_tabfour13" class="text-muted">退会手続きについて知りたいです。</label>
-					<div class="cp_actab-content">
-						<p>
-							ご退会につきましては下記リンクよりお手続きをお願いしております。<br>
-							退会処理には、1～3営業日お時間をいただいております。<br> <br> 退会処理をご希望の方は<a
-								href="delete_user.html">こちら</a>
-					</div>
-				</div>
-				 -->
 			</div>
 			<br> <br> <br>
 
@@ -248,33 +171,44 @@
 			<br>
 			<div class="cp_qa">
 				<div class="cp_actab">
-					<input id="cp_tabfour14" type="checkbox" name="tabs"> <label
-						for="cp_tabfour14" class="text-muted">パスワードを忘れてしまいました。</label>
+					<input id="cp_tabfour08" type="checkbox" name="tabs"> <label
+						for="cp_tabfour08" class="text-muted">パスワードを忘れてしまいました。</label>
 					<div class="cp_actab-content">
-						<p>
-							パスワードの変更は<a href="change_password.html" th:href="@{/forgotPassword}" class="faq-a">こちら</a>から行うことができます。
+						<p class="txt-width">
+							パスワードの変更は<a href="change_password.html"
+								th:href="@{/forgotPassword}" class="faq-a">こちら</a>から行うことができます。
 						</p>
 					</div>
 				</div>
 				<div class="cp_actab">
-					<input id="cp_tabfour15" type="checkbox" name="tabs"> <label
-						for="cp_tabfour15" class="text-muted">登録したメールアドレスを変更したいです。</label>
+					<input id="cp_tabfour09" type="checkbox" name="tabs"> <label
+						for="cp_tabfour09" class="text-muted">登録したメールアドレスを変更したいです。</label>
 					<div class="cp_actab-content">
-						<p>
-							メールアドレスの変更は<a href="change_email.html" th:href="@{/showChangeEmail}" class="faq-a">こちら</a>から行うことができます。
+						<p class="txt-width">
+							メールアドレスの変更は<a href="change_email.html"
+								th:href="@{/showChangeEmail}" class="faq-a">こちら</a>から行うことができます。
 						</p>
 					</div>
 				</div>
 
 				<div class="cp_actab">
-					<input id="cp_tabfour16" type="checkbox" name="tabs"> <label
-						for="cp_tabfour16" class="text-muted">退会手続きについて知りたいです。</label>
+					<input id="cp_tabfour10" type="checkbox" name="tabs"> <label
+						for="cp_tabfour10" class="text-muted">退会手続きについて知りたいです。</label>
 					<div class="cp_actab-content">
-						<p>
+						<p class="txt-width">
 							ご退会につきましては下記リンクよりお手続きをお願いしております。<br>
 							退会処理には、1～3営業日お時間をいただいております。<br> <br> 退会をご希望の方は<a
 								href="delete_user.html"
 								th:href="@{/withdrawal/showWithdrawalPage}" class="faq-a">こちら</a>から。
+
+
+
+
+
+
+
+
+
 						
 					</div>
 				</div>
@@ -288,20 +222,28 @@
 			<br>
 			<div class="cp_qa">
 				<div class="cp_actab">
-					<input id="cp_tabfour17" type="checkbox" name="tabs"> <label
-						for="cp_tabfour17" class="text-muted">費用は発生しますか？</label>
+					<input id="cp_tabfour11" type="checkbox" name="tabs"> <label
+						for="cp_tabfour11" class="text-muted">費用は発生しますか？</label>
 					<div class="cp_actab-content">
-						<p>費用は発生いたしません。無料でご利用いただけます。
+						<p class="txt-width">費用は発生いたしません。無料でご利用いただけます。
 					</div>
 				</div>
 				<div class="cp_actab">
-					<input id="cp_tabfour18" type="checkbox" name="tabs"> <label
-						for="cp_tabfour18" class="text-muted">確認メールや問い合わせの返信メールが届きません。</label>
+					<input id="cp_tabfour12" type="checkbox" name="tabs"> <label
+						for="cp_tabfour12" class="text-muted">確認メールや問い合わせの返信メールが届きません。</label>
 					<div class="cp_actab-content">
-						<p>
+						<p class="txt-width">
 							プロフィール登録やパスワード・メールアドレス変更をした際の認証確認メールや、お問い合わせに対する返信は
 							@gmail.comのドメインアドレスからお送りします。<br>
 							ドメイン指定受信や迷惑メール対策など、お客様がご利用のメール設定によって受信できない場合がございます。メール設定をご確認ください。
+
+
+
+
+
+
+
+
 
 						
 					</div>
@@ -318,29 +260,15 @@
 	</div>
 
 	<!-- Footer-->
-	<footer class="footer py-4">
-		<div class="container">
-			<div class="row align-items-center">
-				<div class="col-lg-4 text-lg-left">Copyright © MYQLO 2020</div>
-				<div class="col-lg-4 my-3 my-lg-0">
-					<a class="btn btn-dark btn-social mx-2" href="#!"><i
-						class="fab fa-twitter"></i></a> <a
-						class="btn btn-dark btn-social mx-2" href="#!"><i
-						class="fab fa-facebook-f"></i></a> <a
-						class="btn btn-dark btn-social mx-2" href="#!"><i
-						class="fab fa-linkedin-in"></i></a>
-				</div>
-				<div class="col-lg-4 text-lg-right">
-					<a class="mr-3" href="#!">Privacy Policy</a> <a href="#!">Terms
-						of Use</a>
-				</div>
-			</div>
-		</div>
-	</footer>
+	<footer class="footer py-4" th:replace="footer::pagefooter"> </footer>
 
+
+	<!-- Bootstrap core JS-->
 	<!-- Bootstrap core JS-->
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
 	<!-- Third party plugin JS-->

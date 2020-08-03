@@ -211,6 +211,7 @@ nav .inner ul li a:hover {
 	-webkit-transform: translateY(-10px) rotate(315deg);
 	transform: translateY(-10px) rotate(315deg);
 }
+
 /*============
 #mask
 =============*/
@@ -346,7 +347,31 @@ tabindex
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :focus
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -405,7 +430,19 @@ tabindex
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -446,7 +483,19 @@ tabindex
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -507,7 +556,25 @@ outline
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
 
 
 
@@ -547,9 +614,27 @@ outline
 
 
 
+
+
+
+
+
+
 0
 !
 important
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -717,6 +802,18 @@ a
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
@@ -737,7 +834,19 @@ a
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -780,7 +889,19 @@ href
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -841,7 +962,25 @@ color
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
 
 
 
@@ -881,7 +1020,25 @@ color
 
 
 
+
+
+
+
+
+
 inherit
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -960,7 +1117,25 @@ text-decoration
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
 
 
 
@@ -1000,7 +1175,25 @@ text-decoration
 
 
 
+
+
+
+
+
+
 none
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1089,12 +1282,10 @@ th {
 	text-align: inherit;
 }
 
-
 label {
 	display: inline-block;
 	margin-bottom: 0.5rem;
 }
-
 
 button {
 	border-radius: 0;
@@ -1171,6 +1362,18 @@ button
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
@@ -1191,7 +1394,19 @@ button
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -1232,7 +1447,19 @@ button
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -1296,6 +1523,18 @@ button
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
@@ -1316,7 +1555,19 @@ button
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -1357,7 +1608,19 @@ button
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -1421,7 +1684,25 @@ reset
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :not
+
+
+
+
+
+
 
 
 
@@ -1462,6 +1743,12 @@ reset
 
 
 
+
+
+
+
+
+
 (
 :disabled
 
@@ -1483,7 +1770,19 @@ reset
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -1547,6 +1846,18 @@ submit
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
@@ -1567,7 +1878,19 @@ submit
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -1608,7 +1931,19 @@ submit
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -1669,6 +2004,18 @@ cursor
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -1689,7 +2036,19 @@ cursor
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -1748,6 +2107,18 @@ pointer
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 ;
 }
 button::-moz-focus-inner, [type=button]::-moz-focus-inner, [type=reset]::-moz-focus-inner,
@@ -1756,12 +2127,10 @@ button::-moz-focus-inner, [type=button]::-moz-focus-inner, [type=reset]::-moz-fo
 	border-style: none;
 }
 
-
 input[type=radio], input[type=checkbox] {
 	box-sizing: border-box;
 	padding: 0;
 }
-
 
 textarea {
 	overflow: auto;
@@ -1959,6 +2328,18 @@ mark, .mark {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
@@ -1979,7 +2360,19 @@ mark, .mark {
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -2020,7 +2413,19 @@ mark, .mark {
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -2081,7 +2486,25 @@ margin-right
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
 
 
 
@@ -2121,8 +2544,26 @@ margin-right
 
 
 
+
+
+
+
+
+
 0
 .5rem
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2425,7 +2866,25 @@ pre code {
 			
 			
 			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			:
+			
+			
+			
+			
+			
+			
 			
 			
 			
@@ -2465,8 +2924,26 @@ pre code {
 			
 			
 			
+			
+			
+			
+			
+			
+			
 			14
 			px
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			
 			
@@ -2545,7 +3022,25 @@ pre code {
 			
 			
 			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			:
+			
+			
+			
+			
+			
+			
 			
 			
 			
@@ -2585,8 +3080,26 @@ pre code {
 			
 			
 			
+			
+			
+			
+			
+			
+			
 			18
 			px
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			
 			
@@ -2667,7 +3180,25 @@ pre code {
 			
 			
 			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			:
+			
+			
+			
+			
+			
+			
 			
 			
 			
@@ -2707,8 +3238,26 @@ pre code {
 			
 			
 			
+			
+			
+			
+			
+			
+			
 			12
 			px
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			
 			
@@ -2787,7 +3336,25 @@ pre code {
 			
 			
 			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			:
+			
+			
+			
+			
+			
+			
 			
 			
 			
@@ -2827,8 +3394,26 @@ pre code {
 			
 			
 			
+			
+			
+			
+			
+			
+			
 			16
 			px
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			
 			
@@ -2907,6 +3492,18 @@ pre code {
 			
 			
 			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			:
 			
 			
@@ -2927,7 +3524,19 @@ pre code {
 			
 			
 			
+			
+			
+			
+			
+			
+			
 			 
+			
+			
+			
+			
+			
+			
 			
 			
 			
@@ -2968,7 +3577,19 @@ pre code {
 			
 			
 			
+			
+			
+			
+			
+			
+			
 			 
+			
+			
+			
+			
+			
+			
 			
 			
 			
@@ -3010,7 +3631,19 @@ pre code {
 			
 			
 			
+			
+			
+			
+			
+			
+			
 			 
+			
+			
+			
+			
+			
+			
 			
 			
 			
@@ -3032,6 +3665,18 @@ pre code {
 			
 			52
 			px
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			
 			
@@ -3125,7 +3770,25 @@ pre code {
 		
 		
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		:
+		
+		
+		
+		
+		
+		
 		
 		
 		
@@ -3165,8 +3828,26 @@ pre code {
 		
 		
 		
+		
+		
+		
+		
+		
+		
 		13
 		px
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		
@@ -3245,7 +3926,25 @@ pre code {
 		
 		
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		:
+		
+		
+		
+		
+		
+		
 		
 		
 		
@@ -3285,8 +3984,26 @@ pre code {
 		
 		
 		
+		
+		
+		
+		
+		
+		
 		18
 		px
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		
@@ -3367,7 +4084,25 @@ pre code {
 		
 		
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		:
+		
+		
+		
+		
+		
+		
 		
 		
 		
@@ -3407,8 +4142,26 @@ pre code {
 		
 		
 		
+		
+		
+		
+		
+		
+		
 		12
 		px
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		
@@ -3487,7 +4240,25 @@ pre code {
 		
 		
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		:
+		
+		
+		
+		
+		
+		
 		
 		
 		
@@ -3527,8 +4298,26 @@ pre code {
 		
 		
 		
+		
+		
+		
+		
+		
+		
 		17
 		px
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		
@@ -3646,7 +4435,25 @@ pre code {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	:
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -3686,8 +4493,26 @@ pre code {
 	
 	
 	
+	
+	
+	
+	
+	
+	
 	16
 	px
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -3766,6 +4591,18 @@ pre code {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	:
 	
 	
@@ -3786,7 +4623,19 @@ pre code {
 	
 	
 	
+	
+	
+	
+	
+	
+	
 	 
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -3827,7 +4676,19 @@ pre code {
 	
 	
 	
+	
+	
+	
+	
+	
+	
 	 
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -3868,7 +4729,19 @@ pre code {
 	
 	
 	
+	
+	
+	
+	
+	
+	
 	 
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -3909,7 +4782,19 @@ pre code {
 	
 	
 	
+	
+	
+	
+	
+	
+	
 	 
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -3931,6 +4816,18 @@ pre code {
 	
 	13
 	px
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -4028,7 +4925,25 @@ pre code {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	:
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -4068,8 +4983,26 @@ pre code {
 	
 	
 	
+	
+	
+	
+	
+	
+	
 	16
 	px
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -4148,6 +5081,18 @@ pre code {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	:
 	
 	
@@ -4168,7 +5113,19 @@ pre code {
 	
 	
 	
+	
+	
+	
+	
+	
+	
 	 
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -4209,7 +5166,19 @@ pre code {
 	
 	
 	
+	
+	
+	
+	
+	
+	
 	 
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -4250,7 +5219,19 @@ pre code {
 	
 	
 	
+	
+	
+	
+	
+	
+	
 	 
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -4291,7 +5272,19 @@ pre code {
 	
 	
 	
+	
+	
+	
+	
+	
+	
 	 
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -4313,6 +5306,18 @@ pre code {
 	
 	14
 	px
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -4440,6 +5445,18 @@ pre code {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
 
 
 
@@ -6293,6 +7310,18 @@ textarea.form-control {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
@@ -6313,7 +7342,19 @@ textarea.form-control {
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -6354,7 +7395,19 @@ textarea.form-control {
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -6395,7 +7448,19 @@ textarea.form-control {
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -6436,7 +7501,19 @@ textarea.form-control {
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -6497,7 +7574,25 @@ cursor
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
 
 
 
@@ -6537,7 +7632,25 @@ cursor
 
 
 
+
+
+
+
+
+
 pointer
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -7259,6 +8372,18 @@ input[type=submit].btn-block, input[type=reset].btn-block, input[type=button].bt
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
@@ -7279,7 +8404,19 @@ input[type=submit].btn-block, input[type=reset].btn-block, input[type=button].bt
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -7320,7 +8457,19 @@ input[type=submit].btn-block, input[type=reset].btn-block, input[type=button].bt
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -7381,6 +8530,18 @@ opacity
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -7401,7 +8562,19 @@ opacity
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -7462,6 +8635,18 @@ opacity
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
@@ -7482,7 +8667,19 @@ opacity
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -7523,7 +8720,19 @@ opacity
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -7584,7 +8793,25 @@ display
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
 
 
 
@@ -7624,7 +8851,25 @@ display
 
 
 
+
+
+
+
+
+
 none
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -7997,6 +9242,18 @@ none
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
@@ -8017,7 +9274,19 @@ none
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -8058,7 +9327,19 @@ none
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -8120,6 +9401,18 @@ none
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
@@ -8140,7 +9433,19 @@ none
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -8182,7 +9487,19 @@ none
 
 
 
+
+
+
+
+
+
 	
+
+
+
+
+
+
 
 
 
@@ -8243,7 +9560,25 @@ margin-left
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
 
 
 
@@ -8283,8 +9618,26 @@ margin-left
 
 
 
+
+
+
+
+
+
 -1
 px
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -8414,6 +9767,18 @@ px
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
@@ -8434,7 +9799,19 @@ px
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -8475,7 +9852,19 @@ px
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -8537,7 +9926,25 @@ px
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :not
+
+
+
+
+
+
 
 
 
@@ -8578,6 +9985,12 @@ px
 
 
 
+
+
+
+
+
+
 (
 :first-child
 
@@ -8599,7 +10012,19 @@ px
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -8660,6 +10085,18 @@ margin-top
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -8680,7 +10117,19 @@ margin-top
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -8740,6 +10189,18 @@ px
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 ;
 }
 .btn-group-vertical>.btn:not (:last-child ):not (.dropdown-toggle ),
@@ -8758,7 +10219,6 @@ px
 	margin-bottom: 0;
 }
 
-
 .btn-group-toggle>.btn input[type=radio], .btn-group-toggle>.btn input[type=checkbox],
 	.btn-group-toggle>.btn-group>.btn input[type=radio], .btn-group-toggle>.btn-group>.btn input[type=checkbox]
 	{
@@ -8766,7 +10226,6 @@ px
 	clip: rect(0, 0, 0, 0);
 	pointer-events: none;
 }
-
 
 .input-group {
 	position: relative;
@@ -8846,6 +10305,18 @@ px
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
@@ -8866,7 +10337,19 @@ px
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -8907,7 +10390,19 @@ px
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -8969,7 +10464,25 @@ px
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :not
+
+
+
+
+
+
 
 
 
@@ -9010,6 +10523,12 @@ px
 
 
 
+
+
+
+
+
+
 (
 :last-child
 
@@ -9031,7 +10550,19 @@ px
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -9092,6 +10623,18 @@ border-top-right-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -9112,7 +10655,19 @@ border-top-right-radius
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -9172,6 +10727,18 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -9192,7 +10759,19 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -9255,6 +10834,18 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
@@ -9275,7 +10866,19 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -9316,7 +10919,19 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -9378,7 +10993,25 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :not
+
+
+
+
+
+
 
 
 
@@ -9419,6 +11052,12 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
 (
 :first-child
 
@@ -9440,7 +11079,19 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -9501,6 +11152,18 @@ border-top-left-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -9521,7 +11184,19 @@ border-top-left-radius
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -9581,6 +11256,18 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -9601,7 +11288,19 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -9777,6 +11476,18 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
@@ -9797,7 +11508,19 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -9838,7 +11561,19 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -9903,7 +11638,25 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :not
+
+
+
+
+
+
 
 
 
@@ -9944,6 +11697,12 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
 (
 :last-child
 
@@ -9965,7 +11724,19 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -10030,6 +11801,18 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :last-child
 >
 .btn
@@ -10071,7 +11854,25 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :not
+
+
+
+
+
+
 
 
 
@@ -10112,6 +11913,12 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
 (
 :last-child
 
@@ -10133,7 +11940,19 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -10174,7 +11993,19 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -10215,7 +12046,19 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -10277,9 +12120,33 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :last-child
 >
 .input-group-text
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -10339,7 +12206,19 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
 	
+
+
+
+
+
+
 
 
 
@@ -10380,7 +12259,19 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -10441,6 +12332,18 @@ border-top-right-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -10461,7 +12364,19 @@ border-top-right-radius
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -10521,6 +12436,18 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -10541,7 +12468,19 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -10616,6 +12555,18 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
@@ -10636,7 +12587,19 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -10677,7 +12640,19 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -10742,6 +12717,18 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
@@ -10762,7 +12749,19 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -10803,7 +12802,19 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -10868,9 +12879,33 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :first-child
 >
 .btn
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -10929,7 +12964,19 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -10970,7 +13017,19 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -11032,9 +13091,33 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :first-child
 >
 .input-group-text
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -11093,7 +13176,19 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -11135,7 +13230,19 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
 	
+
+
+
+
+
+
 
 
 
@@ -11196,6 +13303,18 @@ border-top-left-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -11216,7 +13335,19 @@ border-top-left-radius
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -11276,6 +13407,18 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -11296,7 +13439,19 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -11558,6 +13713,18 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 [
 multiple
 ]
@@ -11601,9 +13768,33 @@ multiple
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 [
 size
 ]
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -11662,7 +13853,19 @@ size
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -11707,7 +13910,19 @@ size
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -11768,7 +13983,25 @@ height
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
 
 
 
@@ -11808,7 +14041,25 @@ height
 
 
 
+
+
+
+
+
+
 auto
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -11887,7 +14138,25 @@ padding-right
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
 
 
 
@@ -11927,8 +14196,26 @@ padding-right
 
 
 
+
+
+
+
+
+
 0
 .75rem
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -12007,7 +14294,25 @@ background-image
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
 
 
 
@@ -12047,7 +14352,25 @@ background-image
 
 
 
+
+
+
+
+
+
 none
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -13026,6 +15349,18 @@ none
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	:not
 	
 	
@@ -13046,7 +15381,19 @@ none
 	
 	
 	
+	
+	
+	
+	
+	
+	
 	 
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -13087,7 +15434,19 @@ none
 	
 	
 	
+	
+	
+	
+	
+	
+	
 	 
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -13148,6 +15507,18 @@ none
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	:
 	
 	
@@ -13168,7 +15539,19 @@ none
 	
 	
 	
+	
+	
+	
+	
+	
+	
 	 
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -13228,6 +15611,18 @@ none
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	:
 	
 	
@@ -13248,7 +15643,19 @@ none
 	
 	
 	
+	
+	
+	
+	
+	
+	
 	 
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -13322,6 +15729,18 @@ none
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
@@ -13342,7 +15761,19 @@ none
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -13383,7 +15814,19 @@ none
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -13444,6 +15887,18 @@ border-top-left-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -13464,7 +15919,19 @@ border-top-left-radius
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -13524,6 +15991,18 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -13544,7 +16023,19 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -13641,6 +16132,18 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
@@ -13661,7 +16164,19 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -13702,7 +16217,19 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -13763,6 +16290,18 @@ border-bottom
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -13783,7 +16322,19 @@ border-bottom
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -13843,6 +16394,18 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -13863,7 +16426,19 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -13923,6 +16498,18 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -13943,7 +16530,19 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -14006,6 +16605,18 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
@@ -14026,7 +16637,19 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -14067,7 +16690,19 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -14128,6 +16763,18 @@ border-top-left-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -14148,7 +16795,19 @@ border-top-left-radius
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -14208,6 +16867,18 @@ border-top-right-radius
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -14228,7 +16899,19 @@ border-top-right-radius
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -15201,6 +17884,18 @@ a.close.disabled {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
@@ -15221,7 +17916,19 @@ a.close.disabled {
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -15262,7 +17969,19 @@ a.close.disabled {
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -15323,7 +18042,25 @@ margin-bottom
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
 
 
 
@@ -15363,8 +18100,26 @@ margin-bottom
 
 
 
+
+
+
+
+
+
 0
 .75rem
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -16199,6 +18954,18 @@ opacity
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -16220,7 +18987,19 @@ opacity
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -16283,7 +19062,25 @@ transform
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
 
 
 
@@ -16325,7 +19122,25 @@ transform
 
 
 
+
+
+
+
+
+
 none
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -16417,6 +19232,18 @@ opacity
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -16438,7 +19265,19 @@ opacity
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -16501,7 +19340,25 @@ transform
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
 
 
 
@@ -16543,7 +19400,25 @@ transform
 
 
 
+
+
+
+
+
+
 none
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -19593,6 +22468,18 @@ a.text-dark:hover, a.text-dark:focus {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	:not
 	
 	
@@ -19613,7 +22500,19 @@ a.text-dark:hover, a.text-dark:focus {
 	
 	
 	
+	
+	
+	
+	
+	
+	
 	 
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -19654,7 +22553,19 @@ a.text-dark:hover, a.text-dark:focus {
 	
 	
 	
+	
+	
+	
+	
+	
+	
 	 
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -19715,7 +22626,25 @@ a.text-dark:hover, a.text-dark:focus {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	:
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -19755,7 +22684,25 @@ a.text-dark:hover, a.text-dark:focus {
 	
 	
 	
+	
+	
+	
+	
+	
+	
 	underline
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -20479,7 +23426,7 @@ section#contact form#contactForm :-ms-input-placeholder {
 }
 
 HEAD /*
-画面の文字動き*/                    
+画面の文字動き*/                          
 .main {
 	position: absolute;
 	top: 40%;
@@ -20561,6 +23508,18 @@ transform
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -20582,7 +23541,19 @@ transform
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -20644,8 +23615,32 @@ translateX
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 (10
 px
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -20729,6 +23724,18 @@ opacity
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -20750,7 +23757,19 @@ opacity
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -20813,7 +23832,25 @@ transform
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
 
 
 
@@ -20855,7 +23892,25 @@ transform
 
 
 
+
+
+
+
+
+
 translate
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -20948,6 +24003,18 @@ transform
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -20969,7 +24036,19 @@ transform
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -21031,8 +24110,32 @@ translateX
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 (-10
 px
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -21116,6 +24219,18 @@ opacity
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -21137,7 +24252,19 @@ opacity
 
 
 
+
+
+
+
+
+
  
+
+
+
+
+
+
 
 
 
@@ -21200,7 +24327,25 @@ transform
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
 
 
 
@@ -21242,7 +24387,25 @@ transform
 
 
 
+
+
+
+
+
+
 translate
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -21589,6 +24752,21 @@ tbody th {
 }
 
 /*アイテム編集・削除画面*/
+#item-image {
+	position: relative;
+	left: 360px;
+}
+
+#item-image input[type=file] {
+	padding-top: 10px;
+	padding-left: 60px;
+}
+
+.image-information .img-fluid img {
+	width: 30%; /* 横幅を割合で指定 */
+	height: auto; /* 高さは自動指定 */
+}
+
 .modal-dialog {
 	min-width: 75%;
 	max-width: 80%;
@@ -21869,30 +25047,39 @@ tbody th {
 	width: 9%;
 }
 
-
 .container　>.text-center>.weather>a>span {
 	color: #0000FF;
 }
 
 /* labelをボタンらしく */
 .upload-label {
-  display: inline-block;
-  cursor: pointer; /* カーソルを指に */
-  margin: 1em 0; /* まわりの余白 */
-  padding: .7em 1em; /* 文字まわりの余白 */
-  line-height: 1.4; /* 行間 */
-  background: #3e8bff; /* 背景色 */
-  color: #FFF; /* 文字色 */
-  font-size: 0.95em; /* フォントサイズ */
-  border-radius: 2.5em; /* 角の丸み */
-  transition: 0.2s; /* ホバーをなめらかに */
+	display: inline-block;
+	cursor: pointer; /* カーソルを指に */
+	margin: 1em 0; /* まわりの余白 */
+	padding: .7em 1em; /* 文字まわりの余白 */
+	line-height: 1.4; /* 行間 */
+	background: #3e8bff; /* 背景色 */
+	color: #FFF; /* 文字色 */
+	font-size: 0.95em; /* フォントサイズ */
+	border-radius: 2.5em; /* 角の丸み */
+	transition: 0.2s; /* ホバーをなめらかに */
 }
 /* ホバー時 */
 .upload-label:hover {
-  box-shadow: 0 8px 10px -2px rgba(0, 0, 0, 0.2); /* 影を表示 */
+	box-shadow: 0 8px 10px -2px rgba(0, 0, 0, 0.2); /* 影を表示 */
 }
 /* inputは隠す */
 .upload-label input {
-  display: none;
+	display: none;
 }
 
+body, #wrapper {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+footer {
+	margin-top: auto;
+	text-align: center
+}

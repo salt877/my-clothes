@@ -6,6 +6,11 @@ import javax.validation.constraints.Size;
 
 import org.springframework.web.multipart.MultipartFile;
 
+/**
+ * 新規アイテム登録用のフォーム.
+ * @author ashibe
+ *
+ */
 public class RegisterClothesForm {
 
 	/**
