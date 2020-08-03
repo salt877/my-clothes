@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
@@ -143,7 +144,7 @@ public class showClothesDetailController {
 	 * @return トップ画面に遷移
 	 */
 	@RequestMapping("/editClothes")
-	public String editClothes(Model model, EditClothesForm form, BindingResult result, @AuthenticationPrincipal LoginUser loginUser)throws IOException {
+	public String editClothes(Integer id, Model model, @Validated EditClothesForm form, BindingResult result, @AuthenticationPrincipal LoginUser loginUser)throws IOException {
 		System.out.println(form);
 		
 		// 入力されたカテゴリー情報を取得(必須)
@@ -152,6 +153,10 @@ public class showClothesDetailController {
 		Color color = editClothesService.ColorSearchById(Integer.parseInt(form.getColor()));
 		// 入力されたブランド情報を取得(必須)
 		Brand brand = editClothesService.brandSearchByName(form.getBrand());
+		// ブランドの入力がされていなければ入力画面へ戻る
+		if (result.hasErrors()) {
+			 return toClothesDetail(model, Integer.parseInt(form.getClothesId()), form);
+		}
 		// 入力されたサイズ情報を取得(任意)
 		Size size = null;
 		if(!StringUtils.isEmpty(form.getSize())) {

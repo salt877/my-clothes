@@ -90,7 +90,10 @@
                 					</td>
                 				</tr>
                 				<tr>
-                					<th>ブランド</th>
+                					<th>
+                						<div>ブランド</div>
+                						<div th:if="${#fields.hasErrors('brand')}" th:errors="*{brand}" class="error-messages" style="color: red"></div>
+                					</th>
                 					<td data-label="brand" class="txt">
                 						<div class="search">
                 							<input type="text" class="search-form"  name="brand" id="brand" th:value="${clothes.brand.name}" th:field="*{brand}">
