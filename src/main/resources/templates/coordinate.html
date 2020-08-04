@@ -33,37 +33,9 @@
 <body>
 	<!-- Navigation-->
 	<div id="navArea">
-		<<<<<<< HEAD
 		<nav class="navbar navbar-default" th:replace="header::pageheader"></nav>
-		=======
-		<nav>
-			<div class="inner">
-				<ul>
-					<li><a href="top.html" th:href="@{/}"><i
-							class="fas fa-home"></i>&emsp;&emsp;TOP</a></li>
-					<li><a href="statistics.html" th:href="@{/stats}"><i
-							class="far fa-chart-bar"></i>&emsp;&emsp;統計データ</a></li>
-					<li><a href="calender.html" th:href="@{/calendar}"><i
-							class="far fa-calendar-alt"></i>&emsp;&emsp;カレンダー</a></li>
-					<li><a href="coordinate.html" th:href="@{/coordinate}"><i
-							class="fas fa-female"></i>&emsp;&emsp;コーディネート</a></li>
-					<li><a href="contact.html" th:href="@{/}"><i
-							class="far fa-envelope"></i>&emsp;&emsp;お問い合わせ</a></li>
-					<li><a href="faq.html" th:href="@{/faq}"><i
-							class="far fa-question-circle"></i>&emsp;&emsp;FAQ</a></li>
-					<li><a href="login.html" th:href="@{/logout}"><i
-							class="fas fa-sign-out-alt"></i>&emsp;&emsp;ログアウト</a></li>
-				</ul>
-			</div>
-		</nav>
-		<div class="humberger_menue">
-			<div class="toggle_btn">
-				<span></span> <span></span> <span></span>
-			</div>
-		</div>
-		<div id="mask"></div>
-		>>>>>>> cddbc33aa2d641e7faab19f89363721ba1ba642d
 	</div>
+
 	<!-- main -->
 	<div class="wrapper">
 		<div class="container">
@@ -75,10 +47,9 @@
 			</div>
 
 			<div style="text-align: right;">
-				<button id="coordinate-explanation" class="btn btn-primary btn-sm"
+				<button id="coordinate-explanation" class="btn btn-info btn-sm"
 					data-toggle="modal" data-target="#explanation-modal">
-					<i class="far fa-question-circle"></i>&emsp;コーディネートの使い方
-				</button>
+					▶&emsp;コーディネートの使い方</button>
 			</div>
 
 			<!-- 各カテゴリー選択ボタンを押したときのモーダルの設定 -->

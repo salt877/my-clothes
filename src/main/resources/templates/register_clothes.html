@@ -32,16 +32,13 @@
 <link rel="stylesheet" href="/resources/demos/style.css">
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script type="text/javascript"
-	src="../static/dist/js/register_clothes.js"
-	th:src="@{/dist/js/register_clothes.js}" /></script>
+<script type="text/javascript" src="../static/dist/js/register_clothes.js" th:src="@{/dist/js/register_clothes.js}" /></script>
 <style type='text/css'>
 input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button
 	{
 	-webkit-appearance: none;
 	margin: 0;
 }
-
 /* 画像の選択ボタンに関して*/
 /* labelをボタンらしく */
 .upload-label {
@@ -121,9 +118,7 @@ $(function() {
 			 console.log("押せる");
 		 }
 	};
-	
-	
-	
+		
 </script>
 <script type="text/javascript">
 //a選択必須項目を選択しないとモーダルに移動できない使用にしたため不要*/
@@ -175,17 +170,14 @@ function func1(){
 				th:action="@{/registerClothes/register}"
 				th:object="${registerClothesForm}" enctype="multipart/form-data">
 				<div id="item-image" class="image-information">
-					<img class="img-fluid" id="preview"><br> <input
-						name="imageFile" type="file" accept=".jpg,.png" id="myImage"
-						required>
+					<img class="img-fluid" id="preview"><br>
+					 <input name="imageFile" type="file" accept=".jpg,.png" id="myImage" th:field="*{imageFile}"required>
 				</div>
 				<div class="required-information">
 					<table>
 						<thead>
 							<tr>
-								<th scope="col" colspan="2">基本情報（必須）<span id="message"
-									style="color: red"></span></th>
-
+								<th scope="col" colspan="2">基本情報（必須）<span id="message" style="color: red"></span></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -205,9 +197,7 @@ function func1(){
 							<tr>
 								<th>
 									<div>ブランド</div>
-									<div th:if="${message}!=null" th:text="${message}"
-										　style="color: red">
-										</div-->
+									<div th:if="${message}!=null" th:text="${message}" style="color: red">
 										<div id="duplicateMessage" style="color: red;"></div>
 								</th>
 								<td data-label="brand" class="txt"><label for="brand"
@@ -341,7 +331,7 @@ function func1(){
 							<div class="modal-body">
 								<div>
 									<div class="image-information">
-										<img id="preview">
+										<img class="img-fluid" id="preview"><br>
 										<script type="text/javascript">
 										/*a 表示の画像サイズを指定する*/
 										var targetImg = document.getElementById('preview');
@@ -352,6 +342,7 @@ function func1(){
 											th:errorclass="error-input" -->
 									</div>
 									<div class="required-information">
+									
 										<table>
 											<thead>
 												<tr>
