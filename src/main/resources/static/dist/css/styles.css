@@ -11,6 +11,24 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
+ /*============
+header
+=============*/
+.site-header{
+    background: #fff;
+    display: flex;
+    padding: 10px 20px;
+    position: fixed;
+    justify-content: space-between;
+    width: 100%;
+    z-index: 80;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5); /*これを付け足し*/
+}
+.site-logo img{
+    height: 40px;
+    width: auto;
+}
+
 /*今すぐログインボタン*/
 .btn--orange, a.btn--orange {
 	color: #fff;
@@ -160,7 +178,7 @@ nav .inner ul li a:hover {
 .toggle_btn {
 	display: block;
 	position: fixed;
-	top: 30px;
+	top: 15px;
 	right: 30px;
 	width: 30px;
 	height: 30px;
