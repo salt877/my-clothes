@@ -67,7 +67,7 @@ public class ShowMonthlyDataRestController {
 				} else {
 					String formatItemPrice = String.format("%,d", integerItemPrice);
 					String itemPrice = String.valueOf(formatItemPrice);
-					event.setTitle(itemCategory + "　" + itemPrice + "円");
+					event.setTitle(itemCategory + "　" + "¥" + itemPrice);
 
 					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 					String perchaseDate = dateFormat.format(perchaseDate2);

@@ -50,16 +50,16 @@
                    <div class="passwordform">
                    		<form action="change_email.html" th:action="@{/showChangeEmail/input}" method="post" th:object="${changeUserEmailForm}">
                 			<div class="form-group">
-                				<label th:if="${message}" th:text="${message}" style="color: black">確認用メールアドレスが一致しません</label>
-                				<label th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="control-label" style="color: black" for="inputError">メールアドレスを入力してください</label>
+                				<b th:if="${message}" th:text="${message}" style="color: yellow">確認用メールアドレスが一致しません</b>
+                				<b th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="control-label" style="color: yellow" for="inputError">メールアドレスを入力してください</b>
                 				<input type="email" class="form-control" name="email" id="email" th:field="*{email}" placeholder="新しいメールアドレス" value=""/>
                 			</div>
                 			<div class="form-group">
-                				<label th:if="${#fields.hasErrors('confirmEmail')}" th:errors="*{confirmEmail}" class="control-label" style="color: black" for="inputError">確認用メールアドレスを入力してください</label>
+                				<b th:if="${#fields.hasErrors('confirmEmail')}" th:errors="*{confirmEmail}" class="control-label" style="color: yellow" for="inputError">確認用メールアドレスを入力してください</b>
                 				<input type="email" class="form-control" name="confirmEmail" id="confirmEmail" th:field="*{confirmEmail}" placeholder="【確認用】新しいメールアドレス" value=""/>
                 			</div>
                         	<div class="submit-group">
-                    			<input type="submit" name="submit" id="submit" class="btn btn--submit btn--radius" value="&emsp;送信する&emsp;"/>
+                    			<input type="submit" name="submit" id="submit" class="btn btn--submit btn--radius" value="&emsp;変更する&emsp;"/>
                	  	    	</div>
                    		</form>
                    </div>

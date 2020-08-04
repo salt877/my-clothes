@@ -1,9 +1,7 @@
 package jp.co.example.my.clothes.form;
 
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 
 /**
  * ユーザ情報登録時に使用するフォームクラスです.

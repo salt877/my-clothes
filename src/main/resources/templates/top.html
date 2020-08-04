@@ -96,7 +96,7 @@
 			<!-- タブ切り替え （アイテムが一件も登録されていない場合はタブ非表示）-->
 			<div style="text-align:center">
 				<span th:if="${clothesList.size()==0}"  th:text="${'アイテムはありません'}"></span>
-			<div class="item_select cp_sl04" th:unless="${clothesList.size()==0}">
+			<div class="item_select cp_sl04">
 				<select required>
 					<option value="">アイテムを絞り込む</option>
 					<option value="category">カテゴリで絞り込む</option>

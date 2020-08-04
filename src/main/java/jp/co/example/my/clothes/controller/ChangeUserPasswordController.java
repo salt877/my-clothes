@@ -118,6 +118,12 @@ public class ChangeUserPasswordController {
 	public String changePassword(Model model, @Validated ChangeUserPasswordForm form, BindingResult result,
 			HttpServletRequest request, PasswordReset passwordReset, User user) {
 
+		//パスワードと確認用パスワードが等しくない場合
+		if(!(form.getNewPassword().equals(form.getConfirmNewPassword()))){
+			System.out.println(form.getNewPassword());
+			System.out.println(form.getConfirmNewPassword());
+			result.rejectValue("confirmNewPassword", "","確認用パスワードが一致しません");
+		}
 		// エラーがある場合はパスワード入力画面に戻る
 		if (result.hasErrors()) {
 			return showInputPassword(request, passwordReset, model);

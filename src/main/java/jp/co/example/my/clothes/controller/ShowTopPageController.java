@@ -87,7 +87,7 @@ public class ShowTopPageController {
 	}
 
 	/**
-	 * 条件を設けて商品を検索
+	 * 条件を設けてアイテムを検索
 	 * @param model
 	 * @param loginUser
 	 * @param categoryId

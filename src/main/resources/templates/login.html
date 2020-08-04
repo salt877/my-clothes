@@ -37,12 +37,13 @@
             <div class="containe">
                 <div class="loginform">
                 	<div class="center-heading">
-                		<h1>Start To MYQLO！</h1>
+                		<h1>Log In MYQLO！</h1>
+                		<h2><font size="4" color="white">Manage information of your clothes.</font></h2>
                 	</div>
                 	<form action="login.html" th:action="@{/login}" method="post">
                 		<div class="form-group">
 								<div class="alert" th:if="${errorMessage}">
-									<b th:text="${errorMessage}" class="control-label" style="color: yellow">メールアドレス、またはパスワードが不正です</b>
+									<b th:text="${errorMessage}" class="control-label" style="color:yellow">メールアドレス、またはパスワードが不正です</b>
 								</div>
                 			<input type="email" class="form-control" name="email" id="email" placeholder="Email" value=""/>
                 		</div>
@@ -57,10 +58,10 @@
                    
                    <!-- パスワード忘れ・アカウント作成へのリンク -->
                    <p class="loginhere text-center">
-                        パスワードを忘れた方は<a href="change_password.html" th:href="@{/forgotPassword}" class="loginhere-link a-link">こちら &gt;</a>
+                        パスワードを忘れた方は<a href="change_password.html" th:href="@{/forgotPassword}" class="loginhere-link a-link">こちら</a>
                    </p>
                    <p class="loginhere text-center">
-                        アカウント作成がまだの方は<a href="register_user.html" th:href="@{/showRegisterUser}" class="loginhere-link a-link">こちら &gt;</a>
+                        アカウント作成がまだの方は<a href="register_user.html" th:href="@{/showRegisterUser}" class="loginhere-link a-link">こちら</a>
                    </p>
                    
                    <!-- Googleアカウントなどの連携ログイン -->
