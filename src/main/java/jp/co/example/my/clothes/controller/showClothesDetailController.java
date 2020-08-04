@@ -202,16 +202,16 @@ public class showClothesDetailController {
 		}
 		
 		// カテゴリー情報
-		clothes.setCategory(category);
-		clothes.setCategoryId(category.getId());
+			clothes.setCategory(category);
+			clothes.setCategoryId(category.getId());
 		
 		// カラー情報
-		clothes.setColor(color);
-		clothes.setColorId(color.getId());
+			clothes.setColor(color);
+			clothes.setColorId(color.getId());
 		
 		// ブランド情報
-		clothes.setBrand(brand);
-		clothes.setBrandId(brand.getId());
+			clothes.setBrand(brand);
+			clothes.setBrandId(brand.getId());
 		
 		// 任意項目
 		// サイズ情報
@@ -289,7 +289,7 @@ public class showClothesDetailController {
 				tag.setTagContent(tagContent1);
 				registerClothesService.insertTag(tag);
 			}
-		} else if(StringUtils.isEmpty(form.getTag1())) {
+		} else if(StringUtils.isEmpty(form.getTag1()) && !CollectionUtils.isEmpty(tagList)) {
 			// タグが入力されていない場合は、タグの削除を行う
 			System.out.println("フォームの値は" + form.getTag1());
 			tag = tagList.get(0);

@@ -2,13 +2,16 @@ package jp.co.example.my.clothes.controller;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.example.my.clothes.domain.Contact;
+import jp.co.example.my.clothes.domain.LoginUser;
 import jp.co.example.my.clothes.form.ContactForm;
 import jp.co.example.my.clothes.service.ContactService;
 import jp.co.example.my.clothes.service.SendMailService;
@@ -39,7 +42,11 @@ public class ReceiveContactContaroller {
 	 * @return 問い合わせ画面
 	 */
 	@RequestMapping("")
-	public String showContactForm() {
+	public String showContactForm(ContactForm contactForm, @AuthenticationPrincipal LoginUser loginUser) {
+		
+			// メールアドレスをログイン時の情報で初期表示する
+			contactForm.setEmail(loginUser.getUser().getEmail());
+		
 		return "contact";
 	}
 	
@@ -51,10 +58,10 @@ public class ReceiveContactContaroller {
 	 * @return TOPページ（入力エラーがある場合はお問い合わせ画面に戻る）
 	 */
 	@RequestMapping("/reception")
-	public String insertContact(@Validated ContactForm contactForm, BindingResult result) {
+	public String insertContact(@Validated ContactForm contactForm, BindingResult result, @AuthenticationPrincipal LoginUser loginUser) {
 		// もしエラーが一つでもあった場合は入力画面に遷移
 		if(result.hasErrors()) {
-			return showContactForm();
+			return "contact";
 		}
 		
 		// 問い合わせ内容をContactオブジェクトにコピー
