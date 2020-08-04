@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
 <html lang="ja" xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
@@ -9,9 +8,7 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>MYQLO | 新規ユーザ登録</title>
-<link rel="icon" type="image/x-icon"
-	href="../static/dist/assets/img/favicon.ico"
-	th:href="@{/dist/assets/img/favicon.ico}" />
+<link rel="icon" type="image/x-icon" href="../static/dist/assets/img/myqlo_favicon.jpg" th:href="@{/dist/assets/img/myqlo_favicon.jpg}" />
 <!-- Font Awesome icons (free version)-->
 <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js"
 	crossorigin="anonymous"></script>
@@ -71,12 +68,12 @@
                 	</div>
                 	<form action="register_user.html" th:action="@{/registerUser}" method="post" th:object="${registerUserForm}">
                 		<div class="form-group">
-                			<label th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="control-label" style="color: red" for="inputError">メールアドレスを入力してください</label>
-                			<input type="email" class="form-control" name="email" id="email" placeholder="Email" value=""/>
+                			<b th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="control-label" style="color: yellow">メールアドレスを入力してください</b>
+                			<input type="email" class="form-control" name="email" id="email" th:field="*{email}" placeholder="Email" value=""/>
                 		</div>
                 		<div class="form-group">
-                			 <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="control-label" style="color: red" for="inputError">パスワードを入力してください</label>
-                			 <input type="password" class="form-control" name="password" id="inputPassword" placeholder="Password" value=""/>
+                			 <b th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="control-label" style="color: yellow" for="inputError">パスワードを入力してください</b>
+                			 <input type="password" class="form-control" name="password" id="inputPassword" th:field="*{password}" placeholder="Password" value=""/>
                             <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
                             <div>
                              <input type="checkbox" id="passwordCheck">パスワードを表示する
@@ -94,8 +91,8 @@
                             </div>
                          </div>
                          <div class="form-group">
-                         	<label th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}" class="control-label" style="color: red" for="inputError">確認用パスワードを入力してください</label>
-                            <input type="password" class="form-control" name="confirmPassword" id="re_password" placeholder="Confirmation Password" value=""/>
+                         	<b th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}" class="control-label" style="color: yellow" for="inputError">確認用パスワードを入力してください</b>
+                            <input type="password" class="form-control" name="confirmPassword" id="re_password" th:field="*{confirmPassword}" placeholder="Confirmation Password" value=""/>
                         </div>
                         <div class="submit-group">
                     		<input type="submit" name="submit" id="submit" class="btn btn--submit btn--radius" value="&emsp;登&ensp;録&emsp;"/>
@@ -190,13 +187,10 @@
 	<footer class="footer py-4" th:replace="footer::pagefooter"> </footer>
 
 	<!-- Bootstrap core JS-->
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
 	<!-- Third party plugin JS-->
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 	<!-- Contact form JS-->
 	<script src="../static/dist/assets/mail/jqBootstrapValidation.js"></script>
 	<script src="../static/dist/assets/mail/contact_me.js"></script>
