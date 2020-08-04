@@ -105,14 +105,14 @@
 			<form action="top.html" th:action="@{/search}" method="post"
 				onchange="submit(this.form)">
 				<div id="category" class="category">
-					<input id="tab_all" type="radio" name="categoryId" class="radioButton" value="0"><label class="tab-label"for="tab_all">ALL</label>
-					<input id="tab_tops" type="radio" name="categoryId" value="2" class="radioButton"><label class="tab-label" for="tab_tops">TOPS</label>
-					<input id="tab_outer" type="radio" name="categoryId" value="3" class="radioButton"><label class="tab-label" for="tab_outer">OUTER</label> 
-					<input id="tab_bottoms" type="radio" name="categoryId" value="4" class="radioButton"><label class="tab-label" for="tab_bottoms">BOTTOMS</label> 
-					<input id="tab_dress" type="radio" name="categoryId" value="7" class="radioButton"><label class="tab-label" for="tab_dress">DRESS</label> 
-					<input id="tab_shoes" type="radio" name="categoryId" value="5" class="radioButton"><label class="tab-label" for="tab_shoes">SHOES</label> 
-					<input id="tab_bags" type="radio" name="categoryId" value="6" class="radioButton" /><label class="tab-label" for="tab_bags">BAGS</label>
-					<input id="tab_accessories" type="radio" name="categoryId" value="1" class="radioButton" /><label class="tab-label" for="tab_accessories">ACCESSORIES</label>
+					<input id="tab_all" type="radio" name="categoryId" class="radioButton" value="0"><label class="tab-label"for="tab_all">全て</label>
+					<input id="tab_tops" type="radio" name="categoryId" value="2" class="radioButton"><label class="tab-label" for="tab_tops">トップス</label>
+					<input id="tab_outer" type="radio" name="categoryId" value="3" class="radioButton"><label class="tab-label" for="tab_outer">アウター</label> 
+					<input id="tab_bottoms" type="radio" name="categoryId" value="4" class="radioButton"><label class="tab-label" for="tab_bottoms">ボトムス</label> 
+					<input id="tab_dress" type="radio" name="categoryId" value="7" class="radioButton"><label class="tab-label" for="tab_dress">ワンピース</label> 
+					<input id="tab_shoes" type="radio" name="categoryId" value="5" class="radioButton"><label class="tab-label" for="tab_shoes">シューズ</label> 
+					<input id="tab_bags" type="radio" name="categoryId" value="6" class="radioButton" /><label class="tab-label" for="tab_bags">バッグ</label>
+					<input id="tab_accessories" type="radio" name="categoryId" value="1" class="radioButton" /><label class="tab-label" for="tab_accessories">ファッション雑貨</label>
 				</div>
 				<div>
 					<span class="brand" id="brand" th:each="brand : ${brandMap}">
