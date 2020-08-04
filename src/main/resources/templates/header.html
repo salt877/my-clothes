@@ -6,13 +6,13 @@
 </head>
 <body>
 	<!-- Navigation-->
-		<div th:fragment="pageheader">
+		<div th:fragment="pageheader" class="pageheader">
 			<header class="site-header">
-				<h1 class="site-logo">
-					<a  th:href="@{/}">
-						<img th:src="@{/dist/assets/img/myqlo_favicon.jpg}">
-					</a>
-				</h1>
+				<div class="site-logo">
+				<a  th:href="@{/}">
+						<img th:src="@{/dist/assets/img/myqlo_favicon.jpg}" alt="site-logo">
+			</a>
+				</div>
 					<!-- image th:src="@{/dist/assets/img/myqlo_favicon.jpg}"> -->
 					<nav>
 						<div class="inner">
