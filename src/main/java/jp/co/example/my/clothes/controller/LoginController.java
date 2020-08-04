@@ -32,7 +32,7 @@ public class LoginController {
 	public String showLogin(Model model, @RequestParam(required = false) String error) {
 
 		if (error != null) {
-			model.addAttribute("errorMessage", "メールアドレスまたはパスワードが不正です。");
+			model.addAttribute("errorMessage", "メールアドレスまたはパスワードが不正です");
 			System.err.println(error);
 		}
 		return "login";

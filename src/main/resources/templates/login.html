@@ -6,7 +6,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>MYQLO | ログイン</title>
-        <link rel="icon" type="image/x-icon" href="../static/dist/assets/img/myqlo_favicon.jpg" th:href="@{../static/dist/assets/img/myqlo_favicon.jpg}"/>
+        <link rel="icon" type="image/x-icon" href="../static/dist/assets/img/myqlo_favicon.jpg" th:href="@{/dist/assets/img/myqlo_favicon.jpg}"/>
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -42,7 +42,7 @@
                 	<form action="login.html" th:action="@{/login}" method="post">
                 		<div class="form-group">
 								<div class="alert" th:if="${errorMessage}">
-									<p th:text="${errorMessage}" class="control-label" style="color: red">メールアドレス、またはパスワードが間違っています</p>
+									<b th:text="${errorMessage}" class="control-label" style="color: yellow">メールアドレス、またはパスワードが不正です</b>
 								</div>
                 			<input type="email" class="form-control" name="email" id="email" placeholder="Email" value=""/>
                 		</div>
@@ -64,7 +64,7 @@
                    </p>
                    
                    <!-- Googleアカウントなどの連携ログイン -->
-                   <div class="other-sign">
+             <!--       <div class="other-sign">
                    		<p class="loginhere text-center">
                    			――――――――――― or sign up with ―――――――――――
                    		</p>
@@ -74,7 +74,7 @@
                    				&emsp;Googleアカウントでログイン
                    			</a>
                    		</div>
-                   </div>
+                   </div> -->
                 </div>
             </div>
         </header>

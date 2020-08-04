@@ -14,7 +14,7 @@ import jp.co.example.my.clothes.service.RegisterUserCompleteSendMailService;
 import jp.co.example.my.clothes.service.RegisterUserService;
 
 /**
- * ユーザ情報を操作するコントローラークラス.
+ * ユーザ情報を登録するコントローラークラス.
  * 
  * @author rinashioda
  *
@@ -63,6 +63,11 @@ public class RegisterUserController {
 		User duplicationUser = registerUserService.searchUserByEmail(form.getEmail());
 		if (duplicationUser != null) {
 			result.rejectValue("email", "", "そのメールアドレスはすでに使われています");
+		}
+		
+		//パスワードと確認用パスワードが一致しない場合
+		if(!(form.getPassword().equals(form.getConfirmPassword()))) {
+			result.rejectValue("confirmPassword", "","確認用パスワードが一致しません");
 		}
 
 		// エラーがあれば登録画面に戻る
