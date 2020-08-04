@@ -98,10 +98,11 @@ public class RegisterClothesController {
 		if (brand == null) {
 			model.addAttribute("message", "ソートされた選択肢の中から選択してください");
 			model.addAttribute("season", form.getSeason());
+			// model.addAttribute("myImage",form.getImageFile());
 			return showRegisterClothes(model, loginUser);
 		}
-		
-		if (!Pattern.matches("^[0-9]*$",form.getPrice())&&!StringUtils.isEmpty(form.getPrice())) {
+
+		if (!Pattern.matches("^[0-9]*$", form.getPrice()) && !StringUtils.isEmpty(form.getPrice())) {
 			System.out.println("数字以外が入力されています");
 			return showRegisterClothes(model, loginUser);
 		}

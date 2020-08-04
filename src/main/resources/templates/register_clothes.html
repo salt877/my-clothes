@@ -171,16 +171,13 @@ function func1(){
 				th:object="${registerClothesForm}" enctype="multipart/form-data">
 				<div id="item-image" class="image-information">
 					<img class="img-fluid" id="preview"><br>
-					 <input name="imageFile" type="file" accept=".jpg,.png" id="myImage"
-						required>
+					 <input name="imageFile" type="file" accept=".jpg,.png" id="myImage" th:field="*{imageFile}"required>
 				</div>
 				<div class="required-information">
 					<table>
 						<thead>
 							<tr>
-								<th scope="col" colspan="2">基本情報（必須）<span id="message"
-									style="color: red"></span></th>
-
+								<th scope="col" colspan="2">基本情報（必須）<span id="message" style="color: red"></span></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -334,7 +331,7 @@ function func1(){
 							<div class="modal-body">
 								<div>
 									<div class="image-information">
-										<img id="preview">
+										<img class="img-fluid" id="preview"><br>
 										<script type="text/javascript">
 										/*a 表示の画像サイズを指定する*/
 										var targetImg = document.getElementById('preview');
@@ -345,6 +342,7 @@ function func1(){
 											th:errorclass="error-input" -->
 									</div>
 									<div class="required-information">
+									
 										<table>
 											<thead>
 												<tr>
