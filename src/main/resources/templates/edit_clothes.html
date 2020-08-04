@@ -204,18 +204,25 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 
 				<!-- 削除・変更ボタン -->
 				<div class="complete-btn">
-					<a class="btn btn--delete btn--radius"
-						th:href="@{'/deleteClothes/pushDeleteButton?id='+${clothes.id}}">&emsp;削除&emsp;</a>
+					<button type="button"class="btn btn-secondary btn--radius" data-toggle="modal"
+					data-target="#exampleModal">削除</button>
 					<input type="submit" name="submit" id="submit"
 						class="btn btn--submit btn--radius" value="&emsp;変更を保存&emsp;" />
 				</div>
 			</form>
+			<div class="complete-btn">
+			
+			</div>
 		</div>
 	</section>
+
+
+	<!-- 「はい」を押したときのモーダルの設定 -->
 	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-		　aria-labelledby="exampleModalLabel">
+		aria-labelledby="exampleModalLabel">
 		<div class="modal-dialog">
 			<div class="modal-content">
+
 				<!-- モーダル内ヘッダー -->
 				<div class="modal-header">
 					<h5 class="modal-title" id="exampleModalLabel">確認</h5>
@@ -227,19 +234,16 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 
 				<!-- モーダル内ボディ -->
 				<div class="modal-body">
-					このアカウントを削除します。<br> （「はい」を押すとアカウント削除後、登録画面へ移ります。)
+					このアイテムを削除します。<br> （「はい」を押すとアイテム、top画面へ移ります。)
 				</div>
 
 				<!-- モーダル内フッター -->
 				<div class="modal-footer">
-					<form action="register_user.html"
-						th:action="@{/withdrawal/withdrawalUser}" method="post">
-						<button type="submit" class="btn btn-primary">はい</button>
-					</form>
+					<a class="btn btn-primary"
+						th:href="@{'/deleteClothes/pushDeleteButton?id='+${clothes.id}}">&emsp;削除&emsp;</a>
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">戻る</button>
 				</div>
-
 				<!-- /.modal-footer -->
 			</div>
 			<!-- /.modal-content -->
