@@ -60,13 +60,13 @@
 }
 
 label {
-	background-color: #8cc5ed;
+	background-color: #EEEEEE;
 	padding: 10px 20px;
 	border-radius: 50px;
 }
 
 .radioButton:checked+label {
-	background-color: pink;
+	background-color: #BBBBBB;
 }
 
 .col-lg-4 col-sm-6 mb-4 {
@@ -83,22 +83,23 @@ label {
 	text-align: center;
 	width: 350px;
 	height: 350px;
- 	padding: 13%; 
+	padding: 13%;
 	margin: 1em 1em;
+	/*
 	background: -webkit-repeating-linear-gradient(-45deg, #f0f8ff, #f0f8ff 3px, #e9f4ff
 		3px, #e9f4ff 7px);
 	background: repeating-linear-gradient(-45deg, #f0f8ff, #f0f8ff 3px, #e9f4ff 3px,
 		#e9f4ff 7px);
+		*/
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
-.portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content .img-fluid img{
+
+.portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content .img-fluid img
+	{
 	height: auto;
 	max-height: 80%;
 	width: auto;
 	max-width: 80%;
 }
-
-
-
