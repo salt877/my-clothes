@@ -47,7 +47,7 @@ public class ShowTopPageService {
 	 * @return 登録アイテム一覧
 	 */
 	public List<Clothes> showItemListByCategoryForCoordinate(Integer userId, Integer categoryId) {
-		return clothesRepository.findByCategory(userId, categoryId);
+		return clothesRepository.findByCategoryForCoordinate(userId, categoryId);
 	}
 
 	/**
