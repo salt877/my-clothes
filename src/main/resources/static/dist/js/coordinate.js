@@ -214,6 +214,7 @@ $(function(){
 		
 		
 	});
+
 	
 	// コーデ削除ボタンを押したときの処理
 	$('.delete-btn').on('click', function(){
