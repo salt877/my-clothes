@@ -1,32 +1,4 @@
 <!DOCTYPE html>
-<html lang="ja" xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<meta name="description" content="" />
-<meta name="author" content="" />
-<title>MYQLO | パスワード変更完了</title>
-<link rel="icon" type="image/x-icon"
-	href="../static/dist/assets/img/favicon.ico" />
-<!-- Font Awesome icons (free version)-->
-<script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js"
-	crossorigin="anonymous"></script>
-<!-- Google fonts-->
-<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
-	rel="stylesheet" type="text/css" />
-<link
-	href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic"
-	rel="stylesheet" type="text/css" />
-<link
-	href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
-	rel="stylesheet" type="text/css" />
-<!-- Core theme CSS (includes Bootstrap)-->
-<link href="../static/dist/css/styles.css" rel="stylesheet"
-	th:href="@{/dist/css/styles.css}" />
-</head>
-<body id="page-top">
 <html lang="ja" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head>
         <meta charset="utf-8" />
@@ -66,15 +38,17 @@
             </div>
         </nav>
         
-        <!-- ユーザ登録完了画面 -->
+        <!-- メールアドレス変更完了画面 -->
         <header class="masthead">
             <div class="container">
             	<div class="completeform">
-                	<div class="masthead-subheading">Completed a change of your Email!</div>
-                	<div class="message">メールアドレスの変更が完了しました。<br>引き続きMYQLOをお楽しみください。</div>      
+                	<h2>メールアドレス変更完了</h2>
+                	<p class="message">
+                		メールアドレスの変更が完了しました。引き続きMYQLOをお楽しみください。
+                	</p>      
+            	<div class="totop">
+	            	<a href="top.html" class="btn btn--orange" th:href="@{/}">トップ画面へ</a>
             	</div>
-            	<div class="tologin">
-	            	<a href="" class="btn btn--orange" th:href="@{/showLogin}">今すぐログインする</a>
             	</div>
             </div>
         </header>
@@ -106,21 +80,7 @@
 		</div>
 	</nav>
 
-	<!-- ユーザ登録完了画面 -->
-	<header class="masthead">
-		<div class="container">
-			<div class="completeform">
-				<div class="masthead-subheading">Complete user registration!</div>
-				<div class="message">
-					メールアドレスの変更が完了しました。<br>引き続きMYQLOをお楽しみください。
-				</div>
-			</div>
-			<div class="tologin">
-				<a href="" class="btn btn--orange" th:href="@{/showLogin}">今すぐログインする</a>
-			</div>
-		</div>
-	</header>
-
+	
 	<!-- Footer-->
 	<footer class="footer py-4" th:replace="footer::pagefooter"> </footer>
 	<!-- Portfolio Modals-->

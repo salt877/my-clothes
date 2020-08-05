@@ -38,12 +38,12 @@
                 <div class="loginform">
                 	<div class="center-heading">
                 		<h1>Log In MYQLO！</h1>
-                		<h2><font size="4" color="white">Manage information of your clothes.</font></h2>
+                		<h2><font size="3" color="grey">We'll manage information about your clothes.</font></h2>
                 	</div>
                 	<form action="login.html" th:action="@{/login}" method="post">
                 		<div class="form-group">
 								<div class="alert" th:if="${errorMessage}">
-									<b th:text="${errorMessage}" class="control-label" style="color:yellow">メールアドレス、またはパスワードが不正です</b>
+									<b th:text="${errorMessage}" class="control-label" style="color:red">メールアドレス、またはパスワードが不正です</b>
 								</div>
                 			<input type="email" class="form-control" name="email" id="email" placeholder="Email" value=""/>
                 		</div>

@@ -82,6 +82,11 @@ p {
 	margin: auto;
 }
 
+.password-input {
+	width: 50%;
+	margin: auto;
+}
+
 /*submitボタン*/
 .submit-group {
 	margin: auto;
@@ -93,6 +98,12 @@ p {
 	margin: auto;
 	position: relative;
 	top: -120px;
+}
+
+.totop {
+	margin: auto;
+	position: relative;
+	top: 45px;
 }
 
 .btn--submit, input.btn--submit {
@@ -252,7 +263,8 @@ nav .inner ul li a:hover {
 .center-heading {
 	position: relative;
 	top: -40px;
-	color: #fed136;
+	/* color: #fed136; */
+	color: #fd7e14;
 }
 
 :root { -
@@ -769,13 +781,13 @@ sup {
 }
 
 a {
-	color: #fed136;
+	color: #ff7a34;
 	text-decoration: none;
 	background-color: transparent;
 }
 
 a:hover {
-	color: #e6b301;
+	color: #ffbc57;
 	text-decoration: underline;
 }
 
@@ -2719,7 +2731,7 @@ pre code {
 }
 
 .textform {
-	background-color: rgba(0, 0, 0, 0.6);
+	background-color: rgba(255, 255, 255, 0.7);
 	height: 500px;
 	width: 1000px;
 	position: relative;
@@ -2756,8 +2768,8 @@ pre code {
 }
 
 .registerform {
-	background-color: rgba(0, 0, 0, 0.6);
-	height: 500px;
+	background-color: rgba(255,255,255,0.7);
+	height: 550px;
 	position: relative;
 	top: -50px;
 	text-align: center;
@@ -2765,7 +2777,7 @@ pre code {
 }
 
 .loginform {
-	background-color: rgba(0, 0, 0, 0.6);
+	background-color: rgba(255, 255, 255, 0.7);
 	height: 550px;
 	width: 1000px;
 	position: relative;
@@ -6896,6 +6908,9 @@ textarea.form-control {
 
 .form-group {
 	margin-bottom: 1rem;
+}
+.password-input {
+	margin-bottom: 0rem;
 }
 
 .form-text {
@@ -22242,6 +22257,7 @@ supports ((position: -webkit-sticky ) or (position: sticky )) {
 
 .text-center {
 	text-align: center !important;
+	color: #000000;
 }
 
 @media ( min-width : 576px) {

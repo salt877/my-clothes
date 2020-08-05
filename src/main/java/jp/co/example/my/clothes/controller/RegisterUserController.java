@@ -54,7 +54,7 @@ public class RegisterUserController {
 	 * 
 	 * @param form ユーザ情報用フォーム
 	 * @param result エラー格納オブジェクト
-	 * @return ログイン画面へリダイレクト
+	 * @return ユーザ登録完了画面に遷移
 	 */
 	@RequestMapping("/registerUser")
 	public String registerUser(@Validated RegisterUserForm form, BindingResult result) {
@@ -84,6 +84,6 @@ public class RegisterUserController {
 		// メールを送信する
 		sendMailService.sendMail(form);
 
-		return "redirect:/showLogin";
+		return "complete_register";
 	}
 }

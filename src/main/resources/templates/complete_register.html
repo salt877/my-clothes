@@ -14,7 +14,7 @@
         <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="../static/dist/css/styles.css" rel="stylesheet" />
+        <link href="../static/dist/css/styles.css" rel="stylesheet"　th:href="@{/dist/css/styles.css}" />
     </head>
     <body id="page-top">
     
@@ -42,11 +42,11 @@
         <header class="masthead">
             <div class="container">
             	<div class="completeform">
-                	<div class="masthead-subheading">Complete user registration!</div>
-                	<div class="message">my.clothes0702@gmail.comよりユーザ登録完了の通知メールが届きます。ご確認ください。</div>      
+                	<h2>ユーザ登録完了</h2>
+                	<p class="message">my.clothes0702@gmail.comよりユーザ登録完了の通知メールが届きます。ご確認ください。</p>      
             	</div>
             	<div class="tologin">
-	            	<a href="" class="btn btn--orange">今すぐログインする</a>
+	            	<a href="login.html" th:href="@{/showLogin}" class="btn btn--orange">今すぐログインする</a>
             	</div>
             </div>
         </header>
