@@ -175,6 +175,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 								<td data-label="サイズ" class="txt">
 									<div class="cp_ipselect cp_sl02">
 										<select name="size" id="size">
+											<option value="">--</option>
 											<option th:each="size:${sizeList}" th:text="${size.name}"
 												th:value="${size.id}" th:field="*{size}">XS</option>
 										</select>
