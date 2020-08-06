@@ -3,6 +3,7 @@ package jp.co.example.my.clothes.repository;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -14,6 +15,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
+import jp.co.example.my.clothes.domain.AverageDto;
 import jp.co.example.my.clothes.domain.Brand;
 import jp.co.example.my.clothes.domain.BrandCountDto;
 import jp.co.example.my.clothes.domain.BrandSumDto;
@@ -140,7 +142,8 @@ public class ClothesRepository {
 	 * @return 登録アイテム一覧
 	 */
 	public List<Clothes> findByCategoryForCoordinate(Integer userId, Integer categoryId) {
-		String sql = SQL + "FROM clothes WHERE user_id=:userId AND category_id=:categoryId AND deleted = FALSE ORDER BY id;";
+		String sql = SQL
+				+ "FROM clothes WHERE user_id=:userId AND category_id=:categoryId AND deleted = FALSE ORDER BY id;";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId).addValue("categoryId",
 				categoryId);
 		List<Clothes> clothesList = template.query(sql, param, CLOTHES_ROW_MAPPER);
@@ -361,7 +364,8 @@ public class ClothesRepository {
 
 		StringBuilder sql = new StringBuilder();
 		sql.append("UPDATE clothes ");
-		sql.append("SET image_path=:imagePath, category_id=:categoryId, brand_id=:brandId, color_id=:colorId, season=:season, size_id=:sizeId,");
+		sql.append(
+				"SET image_path=:imagePath, category_id=:categoryId, brand_id=:brandId, color_id=:colorId, season=:season, size_id=:sizeId,");
 		sql.append("price=:price, perchase_date=:perchaseDate, comment=:comment ");
 		sql.append("WHERE id=:id ");
 		sql.append("AND user_id=:userId;");
@@ -539,5 +543,37 @@ public class ClothesRepository {
 		List<BrandCountDto> brandCountList = template.query(sql.toString(), param, BRAND_COUNT_ROW_MAPPER);
 
 		return brandCountList;
+	}
+
+	/**
+	 * ユーザーごとのアイテム平均額情報を格納するローマッパー.
+	 * 
+	 */
+	private static final RowMapper<AverageDto> AVERAGE_DTO_ROW_MAPPER = (rs, i) -> {
+		AverageDto averageDto = new AverageDto();
+		averageDto.setAverage(rs.getInt("average"));
+		return averageDto;
+	};
+
+	/**
+	 * ユーザーごとのアイテム平均金額（アイテムの金額が登録されているもののみ）情報を検索
+	 * 
+	 * @param userId ユーザーID
+	 * @return
+	 */
+	public AverageDto findAveragePriceByUserId(Integer userId) {
+		StringBuilder sql = new StringBuilder();
+		sql.append(
+				"SELECT AVG(price) average FROM clothes WHERE user_id = :userId AND deleted = false AND price IS NOT NULL");
+
+		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
+		List<AverageDto> averageDtoList = template.query(sql.toString(), param, AVERAGE_DTO_ROW_MAPPER);
+
+		if (averageDtoList.size() == 0) {
+			return null;
+		}
+
+		return averageDtoList.get(0);
+
 	}
 }
