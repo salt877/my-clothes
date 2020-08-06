@@ -87,9 +87,9 @@ body {
 						<th><h6 class="month_item_quantity" th:text="${month +'月の購入アイテム数'}">〇月の購入アイテム数</h6></th>
 					</tr>
 					<tr>
-						<td class="total_price" th:text="${'¥&nbsp;'+ #numbers.formatInteger(totalPrice, 1, 'COMMA') }">¥120,650</td>
-						<td class="price_average" th:text="${'¥&nbsp;'+ #numbers.formatInteger(priceAverage, 1, 'COMMA') }">¥5,250</td>
-						<td class="item_quantity" th:text="${itemQuantity} + '点'">22&nbsp;点</td>
+						<td class="total_price" th:text="${#numbers.formatInteger(totalPrice, 1, 'COMMA')+'&nbsp;円'}">120,650 円</td>
+						<td class="price_average" th:text="${#numbers.formatInteger(priceAverage, 1, 'COMMA')+'&nbsp;円'}">5,250 円</td>
+						<td class="item_quantity" th:text="${itemQuantity} + '&nbsp;点'">22&nbsp;点</td>
 					</tr>
 				</thead>
 			</table>

@@ -13,13 +13,13 @@ $(function(){
 			}).done(function(data){
 				console.log("成功です！！");
 				var totalPrice = data.totalPrice;
-				$('.total_price').text("¥"+totalPrice.toLocaleString());
+				$('.total_price').text(totalPrice.toLocaleString()+" 円");
 				
 				var priceAverage = data.priceAverage;
-				$('.price_average').text("¥"+priceAverage.toLocaleString());
+				$('.price_average').text(priceAverage.toLocaleString()+" 円");
 				
 				var itemQuantity = data.itemQuantity;
-				$('.item_quantity').text(itemQuantity.toLocaleString()+"点");
+				$('.item_quantity').text(itemQuantity.toLocaleString()+" 点");
 				
 				var month = data.month;
 				$('.month_total_price').text(month.toLocaleString()+"月の購入金額合計");
