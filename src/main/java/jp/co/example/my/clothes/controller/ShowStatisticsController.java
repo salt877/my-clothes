@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import jp.co.example.my.clothes.domain.AverageDto;
 import jp.co.example.my.clothes.domain.Clothes;
 import jp.co.example.my.clothes.domain.LoginUser;
 import jp.co.example.my.clothes.service.ShowStatisticsService;
@@ -28,18 +29,18 @@ public class ShowStatisticsController {
 	/**
 	 * ユーザーごとの統計画面を表示します.
 	 * 
-	 * @param userId
+	 * @param userId ユーザーID
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping("/stats")
 	public String showStatistics(@AuthenticationPrincipal LoginUser loginUser, Model model) {
+		Integer userId = loginUser.getUser().getId();
 		Integer totalItemCount = 0;
 		Integer totalItemPrice = 0;
-		Integer itemPriceAverage = 0;
 
 		// ユーザーIDに紐づく服データ全件取得
-		List<Clothes> clothesListByUserId = showStatisticsService.showStatsByUserId(loginUser.getUser().getId());
+		List<Clothes> clothesListByUserId = showStatisticsService.showStatsByUserId(userId);
 
 		// アイテム登録が１件もない場合、統計画面には何も表示せず、アイテム登録画面へ誘導します。
 		if (clothesListByUserId == null) {
@@ -59,13 +60,13 @@ public class ShowStatisticsController {
 
 		}
 
-		// 平均金額
-		itemPriceAverage = totalItemPrice / totalItemCount;
+		// 平均金額(アイテム金額登録しているもののみ)
+		AverageDto averagePrice = showStatisticsService.showAveragePrice(userId);
 
 		model.addAttribute("clothesListByUserId", clothesListByUserId);
 		model.addAttribute("totalItemCount", totalItemCount);
 		model.addAttribute("totalItemPrice", totalItemPrice);
-		model.addAttribute("itemPriceAverage", itemPriceAverage);
+		model.addAttribute("averagePrice", averagePrice);
 
 		return "statistics";
 	}

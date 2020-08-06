@@ -7,8 +7,10 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title> MYQLO | Weather</title>
-<link rel="icon" type="image/x-icon" href="../static/dist/assets/img/myqlo_favicon.jpg" th:href="@{/dist/assets/img/myqlo_favicon.jpg}" />
+<title>MYQLO | Weather</title>
+<link rel="icon" type="image/x-icon"
+	href="../static/dist/assets/img/myqlo_favicon.jpg"
+	th:href="@{/dist/assets/img/myqlo_favicon.jpg}" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script
@@ -36,19 +38,17 @@
 <link href="../static/dist/css/register_clothes.css">
 <script type="text/javascript" src="../static/dist/js/weather.js"
 	th:src="@{/dist/js/weather.js}" /></script>
-	
-	
+
+
 <style type="text/css">
-body { 
+body {
 	background-image: url(../img/weather.jpg);
-	background-color:rgba(255,255,255,0.8);
-	background-blend-mode:lighten;
-	}
+	background-color: rgba(255, 255, 255, 0.8);
+	background-blend-mode: lighten;
+}
 
-span{
-
-  display: inline-block;
-
+span {
+	display: inline-block;
 }
 </style>
 
@@ -88,20 +88,22 @@ span{
 		var icon = data.list[i].weather[0].icon;
 		var html = '<span class="weather-report">'
 				+ '<img src="http://openweathermap.org/img/w/' + icon + '.png">'
-				+ '<div class="weather-date">' + day + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>'
+				+ '<div class="weather-date">'
+				+ day
+				+ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>'
 				+ '<div class="weather-main">' + data.list[i].weather[0].main
 				+ '&nbsp;</div>' + '<div class="weather-temp">'
 				+ Math.round(data.list[i].main.temp) + '℃</div>' + '</span>';
 		return html
 	}
-	
-	function clickBtn3(){
+
+	function clickBtn3() {
 		const str = document.getElementById("city").value;
 		console.log(str);
 		form1.submit();
 		var city = str;
 		//alert(str+"に設定しました");
-		
+
 	}
 </script>
 </head>
@@ -113,7 +115,7 @@ span{
 	<div id="navArea">
 		<nav class="navbar navbar-default" th:replace="header::pageheader"></nav>
 	</div>
-	
+
 	<br>
 	<br>
 	<br>
@@ -129,7 +131,7 @@ span{
 		th:object="${weatherForm}" name="form1">
 		<div align="center">
 			<div>
-				<br> <input type="submit" value="都道府県を設定" 
+				<br> <input type="submit" value="都道府県を設定"
 					class="btn btn-primary"> <select id="city" name="city"
 					class="form-control" style="width: 130px" onchange="clickBtn3()">
 					<optgroup label="北海道　東北">
@@ -205,8 +207,7 @@ span{
 
 
 	<!-- Footer-->
-	<footer class="footer py-4"  th:replace="footer::pagefooter">
-	</footer>
+	<footer class="footer py-4" th:replace="footer::pagefooter"> </footer>
 
 
 </body>

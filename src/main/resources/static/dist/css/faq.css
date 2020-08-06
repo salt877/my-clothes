@@ -1,5 +1,14 @@
 @charset "UTF-8";
 
-.txt-width{
+.txt-width {
 	width: 900px;
+}
+
+.to-contact {
+	width: 300px;
+	border-radius: 50px;
+}
+
+.to-contact-btn {
+	text-align: center;
 }
