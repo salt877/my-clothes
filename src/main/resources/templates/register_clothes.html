@@ -9,7 +9,7 @@
 <title>MYQLO | アイテム新規登録</title>
 <link rel="icon" type="image/x-icon"
 	href="../static/dist/assets/img/myqlo_favicon.jpg"
-	th:href="@{../static/dist/assets/img/myqlo_favicon.jpg}" />
+	th:href="@{/dist/assets/img/myqlo_favicon.jpg}" />
 <!-- Font Awesome icons (free version)-->
 <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js"
 	crossorigin="anonymous"></script>
@@ -148,6 +148,20 @@ function func1(){
 	  }
 }	  
 	  
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+ if(dd<10){
+        dd='0'+dd
+    } 
+    if(mm<10){
+        mm='0'+mm
+    } 
+
+today = yyyy+'-'+mm+'-'+dd;
+consolo.log(today);
+document.getElementById("perchaseDate").setAttribute("max", today);
 	
 
 </script>
@@ -290,6 +304,12 @@ function func1(){
 								<td data-label="購入日" class="txt"><input type="date"
 									name="perchaseDate" id="perchaseDate"
 									th:field="*{perchaseDate}"></td>
+									<script type="text/javascript">
+									//a今日日付以降は選択できないように設定
+									perchaseDate.max = new Date().toISOString().split("T")[0];
+									</script>
+									
+									
 							</tr>
 							<tr>
 								<th>価格</th>
@@ -327,6 +347,8 @@ function func1(){
 									<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
+							
+							
 							<!-- aこっからモーダル -->
 							<div class="modal-body">
 								<div>

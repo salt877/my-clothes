@@ -38,7 +38,7 @@
 <link href="../static/dist/css/register_clothes.css">
 <script type="text/javascript" src="../static/dist/js/weather.js"
 	th:src="@{/dist/js/weather.js}" /></script>
-
+<style type="text/css">
 
 <style type="text/css">
 body {
@@ -66,6 +66,7 @@ span {
 			dataType : "json",
 			type : 'GET',
 		}).done(function(data) {
+			console.log(data)
 			var insertHTML = "";
 			var cityName = '<h2>' + data.city.name + '</h2>';
 			$('#city-name').html(cityName);
@@ -100,7 +101,7 @@ span {
 	function clickBtn3() {
 		const str = document.getElementById("city").value;
 		console.log(str);
-		form1.submit();
+		//form1.submit();
 		var city = str;
 		//alert(str+"に設定しました");
 
@@ -115,25 +116,27 @@ span {
 	<div id="navArea">
 		<nav class="navbar navbar-default" th:replace="header::pageheader"></nav>
 	</div>
-
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+	<div class="text-center">
+				<h1 class="section-heading text-uppercase"
+					style="margin-top: 100px;">MY WEATHER</h1>
+				<div class="section-subheading text-muted">設定地区の天気予報をチェック。</div>
+				<br> <br>
+				<br> <br>
+			</div>
 	<div align="center">
 		<h2 th:text="${pref}+'の天気予報'"></h2>
-
+	<br>
 		<span id="weather"></span>
 	</div>
+	<br>
+	<br>
+	<br>
+	<br>
 	<form action="" th:action="@{/weather/registerCity}" method="post"
 		th:object="${weatherForm}" name="form1">
 		<div align="center">
-			<div>
-				<br> <input type="submit" value="都道府県を設定"
-					class="btn btn-primary"> <select id="city" name="city"
-					class="form-control" style="width: 130px" onchange="clickBtn3()">
+			    <span  style="display:inline-flex">
+				<br> <select id="city" name="city" class="form-control" style="width: 130px" onchange="clickBtn3()">
 					<optgroup label="北海道　東北">
 						<option value="北海道" th:field="*{city}">北海道</option>
 						<option value="青森県" th:field="*{city}">青森県</option>
@@ -198,11 +201,11 @@ span {
 						<option value="沖縄県" th:field="*{city}">沖縄県</option>
 					</optgroup>
 				</select>
-
-			</div>
-
+				&nbsp;&nbsp;&nbsp;
+				<input type="submit" value="都道府県を設定" 
+					class="btn btn-primary"> 
+			</span>
 		</div>
-
 	</form>
 
 
