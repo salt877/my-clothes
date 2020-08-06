@@ -97,7 +97,7 @@
 						for="cp_tabfour04" class="text-muted">アイテム登録時の必須入力項目はどこですか？</label>
 					<div class="cp_actab-content">
 						<p class="txt-width">
-							【画像】に加え、【カテゴリー】、【ブランド】、【色】となります。<br>
+							【画像】に加え、【カテゴリー】、【ブランド】、【カラー】となります。<br>
 							それ以外の任意の項目を入力していただくと、統計画面などでより詳細な情報を表示できるようになります。
 					</div>
 				</div>
@@ -165,6 +165,36 @@
 			</div>
 			<br> <br> <br>
 
+			<!-- 天気予報関係FAQ -->
+			<h4>
+				<i class="fas fa-cloud-sun"></i>&emsp;天気予報機能について
+			</h4>
+			<br>
+			<div class="cp_qa">
+
+
+				<div class="cp_actab">
+					<input id="cp_tabfour13" type="checkbox" name="tabs"> <label
+						for="cp_tabfour13" class="text-muted">自分が住む地域の天気予報を表示させたいです。</label>
+					<div class="cp_actab-content">
+						<p class="txt-width">TOP画面の天気予報エリアをクリックすると、天気予報詳細画面へ遷移しますので、
+							選択ボックスからお住まいの地域を選択し、設定してください。</p>
+					</div>
+				</div>
+				<div class="cp_actab">
+					<input id="cp_tabfour14" type="checkbox" name="tabs"> <label
+						for="cp_tabfour14" class="text-muted">天気予報がうまく表示されません。</label>
+					<div class="cp_actab-content">
+						<p class="txt-width">天気予報詳細画面から設定しても正常に表示されない場合は、
+							お手数をおかけしますがお問い合わせフォームよりご連絡ください。</p>
+					</div>
+				</div>
+
+			</div>
+			<br> <br> <br>
+
+
+
 			<!-- ユーザー情報関係FAQ -->
 			<h4>
 				<i class="far fa-address-card"></i>&emsp;ユーザー情報の変更について
@@ -202,6 +232,19 @@
 								href="delete_user.html"
 								th:href="@{/withdrawal/showWithdrawalPage}" class="faq-a">こちら</a>から。
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 						
 					</div>
 				</div>
@@ -229,25 +272,39 @@
 							プロフィール登録やパスワード・メールアドレス変更をした際の認証確認メールや、お問い合わせに対する返信は
 							@gmail.comのドメインアドレスからお送りします。<br>
 							ドメイン指定受信や迷惑メール対策など、お客様がご利用のメール設定によって受信できない場合がございます。メール設定をご確認ください。
+
+
+
+
+
+
+
+
+
+
+
+
+
 						
 					</div>
 				</div>
 			</div>
 		</div>
+		<br> <br> <br>
+		<div class="to-contact-btn">
+			<a href="contact.html" th:href="@{/contact}">
+				<button class="btn btn-primary to-contact">
+					<i class="far fa-envelope"></i> <span>お問い合わせはこちら</span>
+				</button>
+			</a>
+		</div>
 	</section>
 
-	<!-- お問い合わせボタン -->
-	<div class="faq-contact-btn">
-		<a href="contact.html" class="btn-circle" th:href="@{/contact}"> <i
-			class="far fa-envelope"></i> <span>お問い合わせ</span>
-		</a>
-	</div>
 
 	<!-- Footer-->
 	<footer class="footer py-4" th:replace="footer::pagefooter"> </footer>
 
 
-	<!-- Bootstrap core JS-->
 	<!-- Bootstrap core JS-->
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
