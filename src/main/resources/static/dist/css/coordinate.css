@@ -16,7 +16,7 @@
 }
 
 .radio-img:hover {
-	opacity: 0.6;
+	opacity: 0.4;
 }
 
 .radio-img {
@@ -34,9 +34,9 @@
 }
 
 .radio:checked+.radio-img {
-	border: 1px #808080 solid;
+	border: 2px #777777 solid;
 	background-color: #ffeeee;
-	opacity: 0.6;
+	opacity: 0.4;
 }
 
 /*
