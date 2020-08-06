@@ -71,7 +71,7 @@ public class ReceiveContactContaroller {
 		// メールを送信する
 		sendMailService.sendMail(contactForm);
 		
-		return "top";
+		return "forward://";
 	}
 	
 }

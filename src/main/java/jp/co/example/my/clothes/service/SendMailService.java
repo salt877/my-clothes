@@ -32,7 +32,10 @@ public class SendMailService {
 	private ContactRepository contactRepository;
 	
 	@Autowired
-	private MailSender sender;
+	private MailSender sender1;
+	
+	@Autowired
+	private MailSender sender2;
 	
 	@ModelAttribute
 	public ContactForm setUpContactForm() {
@@ -43,20 +46,29 @@ public class SendMailService {
 	 * メールを送信するためのメソッド.
 	 */
 	public  void sendMail(ContactForm contactForm) {
-		// メールの情報を詰めるオブジェクト
-		SimpleMailMessage msg = new SimpleMailMessage();
+		// メールの情報を詰めるオブジェクト(ユーザへ送信)
+		SimpleMailMessage toUsermsg = new SimpleMailMessage();
+		// メールの情報を詰めるオブジェクト(MYQLOアカウントへ送信)
+		SimpleMailMessage toManagementmsg = new SimpleMailMessage();
 		
 		// 送信元メールアドレス
-		msg.setFrom("my.clothes0702@gmail.com");
+		toUsermsg.setFrom("my.clothes0702@gmail.com");
 		
-		// 問い合わせ情報から送信先のメールアドレスをセット
+		// 問い合わせ情報から送信先のメールアドレスをセット(ユーザへ送信)
 		Contact contact = new Contact();
 		BeanUtils.copyProperties(contactForm, contact);
-		String email = contact.getEmail();
-		msg.setTo(email);
+		String toUserEmail = contact.getEmail();
+		toUsermsg.setTo(toUserEmail);
 		
-		// 件名
-		msg.setSubject("【MYQLO】お問い合わせいただきありがとうございます (自動送信メール)");
+		// 問い合わせ情報から送信先のメールアドレスをセット(MYQLOアカウントへ送信)
+		String managementAccountEmail = "my.clothes0702@gmail.com";
+		toManagementmsg.setTo(managementAccountEmail);
+		
+		
+		// 件名(ユーザ宛)
+		toUsermsg.setSubject("【MYQLO】お問い合わせいただきありがとうございます (自動送信メール)");
+		// 件名(管理者宛)
+		toManagementmsg.setSubject("問い合わせを受け付けました");
 		
 		// 本文を作成
 		StringBuilder text = new StringBuilder();
@@ -74,11 +86,6 @@ public class SendMailService {
 		// 以下問い合わせ内容
 		text.append("お名前：" +contact.getName() + "\n");
 		text.append("メールアドレス：" +contact.getEmail() + "\n");
-		// 日時の取得
-//		LocalDateTime ldt = LocalDateTime.now();
-//		SimpleDateFormat sdformat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
-//		String fdate = sdformat.format(ldt);
-//		text.append("お問い合わせ日時：" + fdate + "\n");
 		text.append("お問い合わせ内容：\n");
 		text.append(contact.getContent() + "\n");
 		text.append("---------------------------------------------------------------------------------\n");
@@ -94,12 +101,15 @@ public class SendMailService {
 		text.append("お問合せメールへの返信は2営業日以内にいたします。\n");
 		text.append("──────────────────────────────────────────");
 		
-		// 上記で作成した本文をセット
-		msg.setText(text.toString());
+		// 上記で作成した本文をセット(ユーザ宛)
+		toUsermsg.setText(text.toString());
+		// 上記で作成した本文をセット(ユーザ宛)
+		toManagementmsg.setText(text.toString());
 		
 		try {
 			// 送信処理
-			this.sender.send(msg);
+			this.sender1.send(toUsermsg);
+			this.sender2.send(toManagementmsg);
 		} catch(Exception e) {
 			// 例外処理が必要
 			e.printStackTrace();
