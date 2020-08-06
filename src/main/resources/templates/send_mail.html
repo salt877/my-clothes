@@ -51,9 +51,12 @@
 					</p>
 				</div>
 				<div class="mailform">
-					<form action="#" th:action="@{/sendInputPage}" method="post">
+					<form action="send_mail.html" th:action="@{/sendInputPage}" method="post">
 						<div class="form-group">
-							<input type="email" class="form-control" name="email" id="email" placeholder="Email" value="" />
+						　<span th:if="${errorMessage}">
+							<b style="color:red" th:text="${errorMessage}">メールアドレスを入力してください</b>						
+						 </span>
+							<input type="email" class="form-control" name="email" id="email" placeholder="Email" th:value="${email}" />
 							<input type="hidden" class="form-control" th:name="${_csrf.parameterName}" id="url" th:value="${_csrf.token}" />
 						</div>
 						<div class="submit-group">

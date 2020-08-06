@@ -58,15 +58,22 @@ public class ChangeUserPasswordController {
 	 * @return
 	 */
 	@RequestMapping("/sendInputPage")
-	public String sendPasswordChangeMail(HttpServletRequest request, HttpServletResponse response,
-			PasswordReset passwordReset, String email, Model model) {
+	public String sendPasswordChangeMail(Model model, HttpServletRequest request, HttpServletResponse response,
+			PasswordReset passwordReset, String email) {
 
 		try {
+
 			changeUserPasswordService.registerPasswordReset(request, passwordReset, email);
 			changeUserPasswordService.sendChangePasswordMail(request, response, passwordReset, email);
 
 		} catch (NullPointerException ex) {
+
 			System.err.println("このメールアドレスのユーザーなし");
+			if (email.isEmpty()) {
+				model.addAttribute("errorMessage", "メールアドレスを入力してください");
+				return showInputEmail();
+			}
+
 		} finally {
 			System.out.println("メール送信完了の文言が表示");
 		}
@@ -118,11 +125,11 @@ public class ChangeUserPasswordController {
 	public String changePassword(Model model, @Validated ChangeUserPasswordForm form, BindingResult result,
 			HttpServletRequest request, PasswordReset passwordReset, User user) {
 
-		//パスワードと確認用パスワードが等しくない場合
-		if(!(form.getNewPassword().equals(form.getConfirmNewPassword()))){
+		// パスワードと確認用パスワードが等しくない場合
+		if (!(form.getNewPassword().equals(form.getConfirmNewPassword()))) {
 			System.out.println(form.getNewPassword());
 			System.out.println(form.getConfirmNewPassword());
-			result.rejectValue("confirmNewPassword", "","確認用パスワードが一致しません");
+			result.rejectValue("confirmNewPassword", "", "確認用パスワードが一致しません");
 		}
 		// エラーがある場合はパスワード入力画面に戻る
 		if (result.hasErrors()) {
