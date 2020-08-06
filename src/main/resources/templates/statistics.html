@@ -48,9 +48,7 @@
 					style="margin-top: 100px;">MY STATS</h2>
 				<div class="section-subheading text-muted">あなたが登録したアイテムの統計データです。</div>
 			</div>
-			<br> <br>
-			<br>
-			<br>
+			<br> <br> <br> <br>
 
 			<div class="text-center">
 				<div th:if="${#lists.isEmpty(clothesListByUserId)}">
@@ -60,8 +58,7 @@
 						<div>
 							<a href="register_clothes.html"
 								th:href="@{/registerClothes/showRegisterClothes}"><button
-									type="button"
-									class="btn btn-primary continue-coordinate-btn"
+									type="button" class="btn btn-primary continue-coordinate-btn"
 									style="border-radius: 50px; width: 280px;">アイテムを登録する</button></a>
 						</div>
 					</div>
@@ -81,7 +78,7 @@
 								<td><span
 									th:text="${#numbers.formatInteger(totalItemPrice, 1, 'COMMA') + '&nbsp;円'}"></span></td>
 								<td><span
-									th:text="${#numbers.formatInteger(itemPriceAverage, 1, 'COMMA') + '&nbsp;円'}"></span></td>
+									th:text="${#numbers.formatInteger(averagePrice.average, 1, 'COMMA') + '&nbsp;円'}"></span></td>
 								<td><span
 									th:text="${#numbers.formatInteger(totalItemCount, 1, 'COMMA') + '&nbsp;点'}"></span></td>
 
