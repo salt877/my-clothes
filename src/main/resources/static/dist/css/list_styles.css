@@ -78,6 +78,33 @@ label {
 	padding-top: 100%;
 }
 
+/** 絞り込み */
+.narrow_down_box {
+	position: relative;
+    padding: 0.5em 0.7em;
+    margin: 2em 0;
+    background: #e6f4ff;
+    color: #5c98d4;
+    font-weight: bold;
+    width: 300px;
+	height: 50px;
+    
+}
+.narrow_down_box:after {
+   position: absolute;
+    content: '';
+    top: 100%;
+    left: 30px;
+    border: 15px solid transparent;
+    border-top: 15px solid #e6f4ff;
+    width: 0;
+    height: 0;
+}
+.narrow_down_box .cbt {
+	position: relative;
+	top: 10%;
+}
+
 /** 写真の後ろの枠 */
 .portfolio-item {
 	text-align: center;
