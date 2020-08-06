@@ -56,7 +56,15 @@ public class RegisterUserCompleteSendMailService {
 
 		// お名前
 		text.append("\n" + "新規ユーザ様" + "\n\n");
-
+		
+		// パスワードの文字列置換
+		int len = user.getPassword().length();
+		StringBuilder astaliskPassword = new StringBuilder(len);
+		for(int i = 0; i < len; i++) {
+			astaliskPassword.append("*");
+		}
+		System.out.println(astaliskPassword);
+		
 		// 本文
 		text.append("お世話になっております。\n");
 		text.append("MYQLO運営事務局です。この度は本サイトにご登録いただきありがとうございます。\n");
@@ -64,7 +72,7 @@ public class RegisterUserCompleteSendMailService {
 		text.append("URLよりログイン画面にアクセスできますので、ご確認ください。\n\n");
 		text.append("ログイン画面URL：http://localhost:8080/showLogin\n");
 		text.append("メールアドレス：" + user.getEmail() + "\n");
-		text.append("パスワード：" + user.getPassword() + "\n\n");
+		text.append("パスワード：" + astaliskPassword + "\n\n");
 		text.append("引き続き、MYQLOをお楽しみください。\n");
 		text.append("今後ともよろしくお願い申し上げます。\n\n");
 
