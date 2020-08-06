@@ -95,17 +95,16 @@
 		<div class="container">
 			<div class="text-center">
 				<h2 class="section-heading text-uppercase">
-					<a style="color: black" href="top.html" th:href="@{/}">My
-						Closet</a>
+					<a style="color: black" href="top.html" th:href="@{/}">My Closet</a>
 				</h2>
 				<h3 class="section-subheading text-muted">登録アイテム一覧</h3>
 				<hr>
+				<!-- <h2 class="section-heading text-uppercase"><a style="color:black" href="top.html" th:href="@{/}">My Closet</a></h2>
+				<h3 class="section-subheading text-muted">ここがあなたのクローゼット。</h3> -->
 				<!-- 天気予報の表示 -->
 				<div class="weather" style="background: none;">
-					<a style="color: black" th:href="@{/weather/showWeatherPage}"><div
-							th:text="${city}+'の天気'" style="font-weight: bold;"></div> <span
-						id="weather"></span></a>
-
+					<a style="color: black" th:href="@{/weather/showWeatherPage}">
+					<div th:text="${city}+'の天気'" style="font-weight: bold;"></div> <span id="weather"></span></a>
 				</div>
 				<hr>
 			</div>
