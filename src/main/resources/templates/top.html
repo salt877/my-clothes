@@ -109,56 +109,55 @@
 				<hr>
 			</div>
 			<br>
-			<!-- タブ切り替え （アイテムが一件も登録されていない場合はタブ非表示）-->
+			<!-- タブ切り替え -->
 			<div style="text-align: center">
 				<span th:if="${clothesList.size()==0}" th:text="${'アイテムはありません'}"></span>
 				<div class="item_select cp_sl04">
-					<select required>
+					<select>
 						<option value="">アイテムを絞り込む</option>
 						<option value="category">カテゴリで絞り込む</option>
 						<option value="brand">ブランドで絞り込む</option>
 						<option value="tag">タグで絞り込む</option>
 					</select>
 				</div>
-				<form action="top.html" th:action="@{/search}" method="post"
-					onchange="submit(this.form)">
+		<form action="top.html" th:action="@{/search}" method="post" onchange="submit(this.form)">
 					<div id="category" class="category">
-						<input id="tab_all" type="radio" name="categoryId"
-							class="radioButton" value="0"><label class="tab-label"
-							for="tab_all">全て</label> <input id="tab_tops" type="radio"
-							name="categoryId" value="2" class="radioButton"><label
-							class="tab-label" for="tab_tops">トップス</label> <input
-							id="tab_outer" type="radio" name="categoryId" value="3"
-							class="radioButton"><label class="tab-label"
-							for="tab_outer">アウター</label> <input id="tab_bottoms" type="radio"
-							name="categoryId" value="4" class="radioButton"><label
-							class="tab-label" for="tab_bottoms">ボトムス</label> <input
-							id="tab_dress" type="radio" name="categoryId" value="7"
-							class="radioButton"><label class="tab-label"
-							for="tab_dress">ワンピース</label> <input id="tab_shoes" type="radio"
-							name="categoryId" value="5" class="radioButton"><label
-							class="tab-label" for="tab_shoes">シューズ</label> <input
-							id="tab_bags" type="radio" name="categoryId" value="6"
-							class="radioButton" /><label class="tab-label" for="tab_bags">バッグ</label>
-						<input id="tab_accessories" type="radio" name="categoryId"
-							value="1" class="radioButton" /><label class="tab-label"
-							for="tab_accessories">ファッション雑貨</label>
+						<input id="tab_all" type="radio" name="categoryId" class="radioButton" value="0"><label class="tab-label"for="tab_all" th:text="全て">全て</label> 
+						<input id="tab_tops" type="radio" name="categoryId" value="2" class="radioButton"><label class="tab-label" for="tab_tops" th:text="トップス">トップス</label>
+						<input id="tab_outer" type="radio" name="categoryId" value="3" class="radioButton"><label class="tab-label" for="tab_outer" th:text="アウター">アウター</label> 
+						<input id="tab_bottoms" type="radio" name="categoryId" value="4" class="radioButton"><label class="tab-label" for="tab_bottoms" th:text="ボトムス">ボトムス</label> 
+						<input id="tab_dress" type="radio" name="categoryId" value="7" class="radioButton"><label class="tab-label" for="tab_dress" th:text="ワンピース">ワンピース</label> 
+						<input id="tab_shoes" type="radio" name="categoryId" value="5" class="radioButton"><label class="tab-label" for="tab_shoes" th:text="シューズ">シューズ</label>
+						<input id="tab_bags" type="radio" name="categoryId" value="6" class="radioButton" /><label class="tab-label" for="tab_bags" th:text="バッグ">バッグ</label>
+						<input id="tab_accessories" type="radio" name="categoryId" value="1" class="radioButton" /><label class="tab-label" for="tab_accessories" th:text="ファッション雑貨">ファッション雑貨</label>
 					</div>
 					<div>
 						<span class="brand" id="brand" th:each="brand : ${brandMap}">
-							<label> <input type="radio" class="radioButton"
-								name="brandId" th:value="${brand.key}" th:text="${brand.value}">
-						</label>
+							<label> 
+								<input type="radio" class="radioButton" name="brandId" th:value="${brand.key}" th:text="${brand.value}">
+							</label>
 						</span>
 					</div>
 					<div>
-						<span class="tag" id="tag" th:each="tag : ${tagMap}"> <label>
-								<input type="radio" class="radioButton" name="tagContentsId"
-								th:value="${tag.key}" th:text="${tag.value}">
+						<span class="tag" id="tag" th:each="tag : ${tagMap}">
+						<label>
+								<input type="radio" class="radioButton" name="tagContentsId" th:value="${tag.key}" th:text="${tag.value}">
 						</label>
 						</span>
 					</div>
-				</form>
+				<div class="narrow_down_box" th:if="${session.categoryId} or ${session.showBrandName} or ${session.showTagName}">
+					<p class="cbt" th:if="${session.categoryId==0}" th:text="カテゴリ：全て"></p>
+					<p class="cbt" th:if="${session.categoryId==1}" th:text="カテゴリ：ファッション雑貨"></p>
+					<p class="cbt" th:if="${session.categoryId==2}" th:text="カテゴリ：トップス"></p>
+					<p class="cbt" th:if="${session.categoryId==3}" th:text="カテゴリ：アウター"></p>
+					<p class="cbt" th:if="${session.categoryId==4}" th:text="カテゴリ：ボトムス"></p>
+					<p class="cbt" th:if="${session.categoryId==5}" th:text="カテゴリ：シューズ"></p>
+					<p class="cbt" th:if="${session.categoryId==6}" th:text="カテゴリ：バッグ"></p>
+					<p class="cbt" th:if="${session.categoryId==7}" th:text="カテゴリ：ワンピース"></p> 
+					<p class="cbt" th:if="${session.showBrandName}" th:text="${'ブランド ：'+session.showBrandName}"></p> 
+					<p class="cbt" th:if="${session.showTagName}" th:text="${'タグ ：'+session.showTagName}"></p> 
+				</div>
+		</form>
 			</div>
 			<!-- アイテム一覧 -->
 			<div id="cloth_list" class="row">

@@ -23,6 +23,7 @@ import jp.co.example.my.clothes.service.WeatherService;
 
 /**
  * topページを操作するコントローラー.
+ * 
  * @author ashibe
  *
  */
@@ -49,13 +50,20 @@ public class ShowTopPageController {
 	@RequestMapping("/")
 	public String showItemList(Model model, @AuthenticationPrincipal LoginUser loginUser) {
 
+		session.removeAttribute("categoryId");
+		session.removeAttribute("showBrandName");
+		session.removeAttribute("showTagName");
+
 		Integer userId = loginUser.getUser().getId();
+		// Integer userId = 1;
 
 		List<Clothes> clothesList = showTopPageService.showItemList(userId);
 		model.addAttribute("clothesList", clothesList);
 
 		// 天気予報情報の表示
-		Weather weather = weatherService.cityFindByUserId(loginUser.getUser().getId());
+		weatherService.cityFindByUserId(loginUser.getUser().getId());
+		Weather weather = weatherService.cityFindByUserId(userId);
+
 		if (StringUtils.isEmpty(weather)) {
 			model.addAttribute("city", "東京都");
 		} else {
@@ -88,6 +96,7 @@ public class ShowTopPageController {
 
 	/**
 	 * 条件を設けてアイテムを検索
+	 * 
 	 * @param model
 	 * @param loginUser
 	 * @param categoryId
@@ -97,45 +106,22 @@ public class ShowTopPageController {
 	 */
 	@RequestMapping("/search")
 	public String showItemNarrowDown(Model model, @AuthenticationPrincipal LoginUser loginUser, Integer categoryId,
-			Integer brandId, Integer tagContentsId) {
+			Integer brandId, Integer tagContentsId, String showBrandName) {
+
+		session.removeAttribute("categoryId");
+		session.removeAttribute("showBrandName");
+		session.removeAttribute("showTagName");
 
 		Integer userId = loginUser.getUser().getId();
+		// Integer userId = 1;
 
 		// 天気予報情報の表示
-		Weather weather = weatherService.cityFindByUserId(loginUser.getUser().getId());
+		// weatherService.cityFindByUserId(loginUser.getUser().getId());
+		Weather weather = weatherService.cityFindByUserId(userId);
 		if (StringUtils.isEmpty(weather)) {
 			model.addAttribute("city", "東京都");
 		} else {
 			model.addAttribute("city", weather.getCityName());
-		}
-
-		// トップページを最初に開いた時と、「ALL」が選択されたときのアイテム表示
-		if (categoryId == null || categoryId.equals(0)) {
-			List<Clothes> clothesList = showTopPageService.showItemList(userId);
-			model.addAttribute("clothesList", clothesList);
-
-			// System.out.println("トップページを開いた時、ブランドIDは" + brandId);
-		}
-
-		// カテゴリが選択された時
-		if (categoryId != null) {
-			List<Clothes> clothesList = showTopPageService.showItemListByCategory(userId, categoryId);
-			model.addAttribute("clothesList", clothesList);
-			// System.out.println("カテゴリ選択された時、ブランドIDは" + brandId);
-		}
-
-		// ブランドが選択された時
-		if (brandId != null) {
-			List<Clothes> clothesList = showTopPageService.showItemListByBrand(userId, brandId);
-			model.addAttribute("clothesList", clothesList);
-			// System.out.println("ブランド選択された時、ブランドIDは" + brandId);
-		}
-
-		// タグが選択された時
-		if (tagContentsId != null) {
-			List<Clothes> clothesList = showTopPageService.showItemListByTag(userId, tagContentsId);
-			model.addAttribute("clothesList", clothesList);
-			// System.out.println("タグ選択された時、タグコンテンツIDは" + tagContentsId);
 		}
 
 		// 登録ブランド名を表示させる
@@ -145,7 +131,6 @@ public class ShowTopPageController {
 			Integer brandId2 = brandList.get(i).getId();
 			String brandName = brandList.get(i).getName();
 			brandMap.put(brandId2, brandName);
-			// System.out.println(brandId2 + brandName);
 		}
 		model.addAttribute("brandMap", brandMap);
 
@@ -158,6 +143,41 @@ public class ShowTopPageController {
 			tagMap.put(tagContentsId2, tagContentsName);
 		}
 		model.addAttribute("tagMap", tagMap);
+
+		// 「ALL」が選択されたときのアイテム表示
+		if (categoryId != null && categoryId == 0 && brandId == null && tagContentsId == null) {
+			System.out.println(categoryId);
+			List<Clothes> clothesList = showTopPageService.showItemList(userId);
+			model.addAttribute("clothesList", clothesList);
+			session.setAttribute("categoryId", categoryId);
+		//	System.out.println("ALLが選択された時、カテゴリIDは" + categoryId);
+		}
+
+		// カテゴリが選択された時
+		if (categoryId != null && categoryId != 0 && brandId == null && tagContentsId == null) {
+			List<Clothes> clothesList = showTopPageService.showItemListByCategory(userId, categoryId);
+			model.addAttribute("clothesList", clothesList);
+			session.setAttribute("categoryId", categoryId);
+		//	System.out.println("カテゴリ選択された時、カテゴリIDは" + categoryId);
+		}
+
+		// ブランドが選択された時
+		if (brandId != null && categoryId == null && tagContentsId == null) {
+			List<Clothes> clothesList = showTopPageService.showItemListByBrand(userId, brandId);
+			model.addAttribute("clothesList", clothesList);
+			Brand brandName = showTopPageService.findBrandName(brandId);
+			session.setAttribute("showBrandName", brandName.getName());
+		//	System.out.println("ブランド選択された時、ブランドIDは" + brandId + " ブランド名は" + brandName.getName());
+		}
+
+		// タグが選択された時
+		if (tagContentsId != null && brandId == null && showBrandName == null) {
+			List<Clothes> clothesList = showTopPageService.showItemListByTag(userId, tagContentsId);
+			model.addAttribute("clothesList", clothesList);
+			TagContent tagName = showTopPageService.findTagName(tagContentsId);
+			session.setAttribute("showTagName", tagName.getName());
+		//	System.out.println("タグ選択された時、タグコンテンツIDは" + tagContentsId + " タグ名は" + tagName.getName());
+		}
 
 		return "top";
 	}

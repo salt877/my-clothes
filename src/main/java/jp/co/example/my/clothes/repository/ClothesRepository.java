@@ -1,13 +1,10 @@
 package jp.co.example.my.clothes.repository;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -127,7 +124,8 @@ public class ClothesRepository {
 	 * @return 登録アイテム一覧
 	 */
 	public List<Clothes> findByCategory(Integer userId, Integer categoryId) {
-		String sql = SQL + "FROM clothes WHERE user_id=:userId AND category_id=:categoryId ORDER BY id;";
+		String sql = SQL
+				+ "FROM clothes WHERE user_id=:userId AND category_id=:categoryId AND deleted='false' ORDER BY id;";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId).addValue("categoryId",
 				categoryId);
 		List<Clothes> clothesList = template.query(sql, param, CLOTHES_ROW_MAPPER);
@@ -168,6 +166,32 @@ public class ClothesRepository {
 	}
 
 	/**
+	 * ブランド名を一件検索します.
+	 * 
+	 * @param brandId ブランドID
+	 * @return ブランド名
+	 */
+	public Brand findBrandNameById(Integer brandId) {
+		String sql = "SELECT id,name FROM brands WHERE id=:id;";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("id", brandId);
+		Brand brandName = template.queryForObject(sql, param, BRAND_ROW_MAPPER);
+		return brandName;
+	}
+
+	/**
+	 * タグ名を一件検索します.
+	 * 
+	 * @param tagContentId タグコンテンツID
+	 * @return タグ名
+	 */
+	public TagContent findTagContentsById(Integer tagContentsId) {
+		String sql = "SELECT id,name FROM tag_contents WHERE id=:id;";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("id", tagContentsId);
+		TagContent tagName = template.queryForObject(sql, param, TAG_CONTENTS_ROW_MAPPER);
+		return tagName;
+	}
+
+	/**
 	 * 登録アイテムをブランド別に分けて表示します.
 	 * 
 	 * @param userId  ログインユーザID
@@ -200,8 +224,8 @@ public class ClothesRepository {
 	/**
 	 * 登録アイテムをタグ別に分けて表示します.
 	 * 
-	 * @param userId
-	 * @param tagContentsId
+	 * @param userId ユーザID
+	 * @param        tagContentsId タグコンテンツID
 	 * @return
 	 */
 	public List<Clothes> findByTag(Integer userId, Integer tagContentsId) {

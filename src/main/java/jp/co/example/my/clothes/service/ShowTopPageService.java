@@ -96,4 +96,26 @@ public class ShowTopPageService {
 		return clothesList;
 	}
 
+	/**
+	 * ブランドIDでブランド名を検索します.
+	 * 
+	 * @param brandId ブランドID
+	 * @return ブランド情報
+	 */
+	public Brand findBrandName(Integer brandId) {
+		Brand brandName = clothesRepository.findBrandNameById(brandId);
+		return brandName;
+	}
+
+	/**
+	 * タグIDでタグ名を検索します.
+	 * 
+	 * @param tagContentId タグコンテンツID
+	 * @return タグ情報
+	 */
+	public TagContent findTagName(Integer tagContentsId) {
+		TagContent tagName = clothesRepository.findTagContentsById(tagContentsId);
+		return tagName;
+	}
+
 }
