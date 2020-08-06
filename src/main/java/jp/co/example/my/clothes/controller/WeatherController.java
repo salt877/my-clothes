@@ -85,7 +85,8 @@ public class WeatherController {
 			}
 		}
 
-		return showWeatherPage(form, model, loginUser);
+		//return showWeatherPage(form, model, loginUser);
+		return "redirect:/";
 	}
 
 }
