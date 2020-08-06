@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>MYQLO | 404エラー</title>
+    <link rel="icon" type="image/x-icon" href="../static/dist/assets/img/favicon.ico" th:href="@{../static/dist/assets/img/favicon.ico}"/>
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../../static/dist/css/styles.css" rel="stylesheet" th:href="@{/dist/css/styles.css}"/>
+    <link href="../../static/dist/css/error.css" rel="stylesheet" th:href="@{/dist/css/error.css}"/>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+ </head>
+ 
+<body>
+
+		<!-- Navigation-->
+		<div th:fragment="pageheader" class="pageheader">
+			<header class="site-header">
+				<div class="site-logo">
+					<a>
+						<img th:src="@{/dist/assets/img/myqlo_favicon.jpg}" alt="site-logo">
+					</a>
+				</div>
+			</header>
+		</div>
+  
+  		<div id="main">
+       		 <div class="fof">
+           		 <h1>Error 500</h1>
+          <!--   		 <div class="error-img">
+           		 	<div class="speech-bubble">
+           		 	 	 <img alt="" src="../../static/dist/assets/img/error/3782.png" height="70" width="130">
+           			 </div>
+           			 <div class="illustration">
+           		 	 	 <img alt="" src="../../static/dist/assets/img/error/404error.jpg" height="90" width="90">
+           			 </div>
+           		 </div>-->
+           		 <div class="main-text">
+           		 	  <div>
+						<p>申し訳ございません。エラーが発生しました。</p>
+					  </div>
+					  <div>
+						 <p>
+							<span>
+								ページを更新するか、しばらくしてからお試しください。<br>
+								正しく機能するまで、しばらく時間がかかる場合があります。<br>
+								<a href="login.html" th:href="@{/showLogin}">ログイン画面</a>から再度アクセスしてください。<br>
+							</span>
+				        </p>
+					 </div>
+           		  </div>
+     				<br>
+					<div class="to-toppage">
+						<a href="login.html" th:href="@{/showLogin}" class="btn btn-to-top">ログイン画面</a>
+					</div>
+       		 </div>
+		</div>
+	
+	<!-- Footer-->
+	<footer class="footer py-4" th:replace="footer::pagefooter"> </footer>
+
+	<!-- Bootstrap core JS-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+	<!-- Third party plugin JS-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+	<!-- Contact form JS-->
+	<script src="../../static/dist/assets/mail/jqBootstrapValidation.js" th:src="@{/dist/assets/mail/jqBootstrapValidation.js}"></script>
+	<script src="../../static/dist/assets/mail/contact_me.js" th:src="@{/dist/assets/mail/contact_me.js}"></script>
+	<!-- Core theme JS-->
+	<script src="../../static/dist/js/show_item.js" th:src="@{/dist/js/show_item.js}"></script>
+	<script src="../../static/dist/js/scripts.js" th:src="@{/dist/js/scripts.js}"></script>
+	<script src="../../static/dist/js/hamburger_menu.js" th:src="@{/dist/js/hamburger_menu.js}"></script>
+	<script src="../../static/dist/js/error.js" th:src="@{/dist/js/hamburger_menu.js}"></script>
+</body>
+</html>
