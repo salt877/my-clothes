@@ -352,13 +352,15 @@ public class ClothesRepository {
 		return clothes;
 	};
 
+	
 	/**
-	 * アイテムIDで1件検索を行います.
+	 * アイテムの1件検索を行います.
 	 * 
 	 * @param id アイテムID
-	 * @return 1件のアイテム情報
+	 * @param userId ユーザID
+	 * @return 1件のアイテム
 	 */
-	public Clothes findById(Integer id) {
+	public Clothes findById(Integer id, Integer userId) {
 		StringBuilder sql = new StringBuilder();
 		sql.append(
 				"SELECT cl.id cl_id,cl.user_id cl_user_id,ca.name ca_name,b.id b_brand_id,b.name b_brand_name,ca.id ca_category_id,ca.name ca_category_name,"
@@ -370,9 +372,9 @@ public class ClothesRepository {
 		sql.append("LEFT JOIN brands b ON cl.brand_id=b.id ");
 		sql.append("LEFT JOIN colors co ON cl.color_id=co.id ");
 		sql.append("LEFT JOIN sizes s ON cl.size_id=s.id ");
-		sql.append("WHERE cl.id=:id");
+		sql.append("WHERE cl.id=:id AND cl.user_id=:userId");
 
-		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
+		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id).addValue("userId", userId);
 		Clothes clothes = template.queryForObject(sql.toString(), param, CLOTHES_ROW_MAPPER3);
 
 		return clothes;
