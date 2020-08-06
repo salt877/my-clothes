@@ -78,46 +78,25 @@ label {
 	padding-top: 100%;
 }
 
-/** 絞り込み */
-.narrow_down_box {
-	position: relative;
-    padding: 0.5em 0.7em;
-    margin: 2em 0;
-    background: #e6f4ff;
-    color: #5c98d4;
-    font-weight: bold;
-    width: 300px;
-	height: 50px;
-    
-}
-.narrow_down_box:after {
-   position: absolute;
-    content: '';
-    top: 100%;
-    left: 30px;
-    border: 15px solid transparent;
-    border-top: 15px solid #e6f4ff;
-    width: 0;
-    height: 0;
-}
-.narrow_down_box .cbt {
-	position: relative;
-	top: 10%;
-}
-
 /** 写真の後ろの枠 */
 .portfolio-item {
+	background-color: #ddf6ff;
+	background-image: -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.25, #EFF8F9),
+		color-stop(.25, transparent), color-stop(.5, transparent),
+		color-stop(.5, #EFF8F9), color-stop(.75, #EFF8F9),
+		color-stop(.75, transparent), to(transparent));
+	-webkit-background-size: 14px 14px;
 	text-align: center;
 	width: 350px;
 	height: 350px;
 	padding: 13%;
 	margin: 1em 1em;
-	/*
+	/* 
 	background: -webkit-repeating-linear-gradient(-45deg, #f0f8ff, #f0f8ff 3px, #e9f4ff
 		3px, #e9f4ff 7px);
 	background: repeating-linear-gradient(-45deg, #f0f8ff, #f0f8ff 3px, #e9f4ff 3px,
 		#e9f4ff 7px);
-		*/
+		 */
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -129,4 +108,32 @@ label {
 	max-height: 80%;
 	width: auto;
 	max-width: 80%;
+}
+
+/** 絞り込み */
+.narrow_down_box {
+	position: relative;
+	padding: 0.5em 0.7em;
+	margin: 2em 0;
+	background: #e6f4ff;
+	color: #5c98d4;
+	font-weight: bold;
+	width: 300px;
+	height: 50px;
+}
+
+.narrow_down_box:after {
+	position: absolute;
+	content: '';
+	top: 100%;
+	left: 30px;
+	border: 15px solid transparent;
+	border-top: 15px solid #e6f4ff;
+	width: 0;
+	height: 0;
+}
+
+.narrow_down_box .cbt {
+	position: relative;
+	top: 10%;
 }
