@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import jp.co.example.my.clothes.domain.AverageDto;
 import jp.co.example.my.clothes.domain.BrandCountDto;
 import jp.co.example.my.clothes.domain.BrandSumDto;
 import jp.co.example.my.clothes.domain.CategoryCountDto;
@@ -30,12 +31,22 @@ public class ShowStatisticsService {
 	/**
 	 * ユーザーIDで服情報を取得.
 	 * 
-	 * @param userId
+	 * @param userId ユーザーID
 	 * @return
 	 */
 	public List<Clothes> showStatsByUserId(Integer userId) {
 		return clothesRepository.findByUserId(userId);
 
+	}
+
+	/**
+	 * ユーザーごとのアイテム平均金額（アイテム金額が入力されているもののみ）を表示します.
+	 * 
+	 * @param userId ユーザーID
+	 * @return
+	 */
+	public AverageDto showAveragePrice(Integer userId) {
+		return clothesRepository.findAveragePriceByUserId(userId);
 	}
 
 	/**
