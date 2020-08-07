@@ -19,14 +19,16 @@ public class ShowClothesDetailService {
 	@Autowired
 	private TagRepository tagRepository;
 	
+	
 	/**
-	 * アイテムIDで詳細情報を取得します.
+	 * アイテムの詳細表示を行うメソッドです.
 	 * 
 	 * @param id アイテムID
-	 * @return 1件のアイテム情報
+	 * @param userId ユーザID
+	 * @return 1件のアイテム
 	 */
-	public Clothes showClothesDetail(Integer id) {
-		return clothesRepository.findById(id);
+	public Clothes showClothesDetail(Integer id, Integer userId) {
+		return clothesRepository.findById(id, userId);
 	}
 	
 	/**

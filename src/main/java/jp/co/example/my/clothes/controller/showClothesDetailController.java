@@ -69,7 +69,7 @@ public class showClothesDetailController {
 	 * @return 詳細画面遷移
 	 */
 	@RequestMapping("")
-	public String toClothesDetail(Model model, Integer id, EditClothesForm form) {
+	public String toClothesDetail(Model model, Integer id, EditClothesForm form, @AuthenticationPrincipal LoginUser loginUser) {
 		
 		// シーズンの選択肢を表示
 		Map<String,String>seasonMap = new LinkedHashMap<>();
@@ -98,7 +98,7 @@ public class showClothesDetailController {
 		model.addAttribute("tagContentsListForAutocomplete", tagContentListForAutocomplete);
 		
 		// 編集するアイテムの要素
-		Clothes clothes = showClothesDetailService.showClothesDetail(id);
+		Clothes clothes = showClothesDetailService.showClothesDetail(id, loginUser.getUser().getId());
 		List<Tag>tagList = showClothesDetailService.showTagList(id);
 		clothes.setTagList(tagList);
 		
@@ -155,7 +155,7 @@ public class showClothesDetailController {
 		Brand brand = editClothesService.brandSearchByName(form.getBrand());
 		// ブランドの入力がされていなければ入力画面へ戻る
 		if (result.hasErrors()) {
-			 return toClothesDetail(model, Integer.parseInt(form.getClothesId()), form);
+			 return toClothesDetail(model, Integer.parseInt(form.getClothesId()), form, loginUser);
 		}
 		// 入力されたサイズ情報を取得(任意)
 		Size size = null;
@@ -197,7 +197,7 @@ public class showClothesDetailController {
 			clothes.setImagePath(base64FileString);
 		} else {
 			// 画像の変更を行わない場合
-			Clothes oldClothes = showClothesDetailService.showClothesDetail(Integer.parseInt(form.getClothesId()));
+			Clothes oldClothes = showClothesDetailService.showClothesDetail(Integer.parseInt(form.getClothesId()), loginUser.getUser().getId());
 			clothes.setImagePath(oldClothes.getImagePath());
 		}
 		
