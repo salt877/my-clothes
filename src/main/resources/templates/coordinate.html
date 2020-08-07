@@ -46,7 +46,7 @@
 				<br> <br>
 			</div>
 
-			<div style="text-align: right;">
+			<div id="ex-btn">
 				<button id="coordinate-explanation" class="btn btn-primary btn-sm"
 					data-toggle="modal" data-target="#explanation-modal">
 					▶&emsp;コーディネートの使い方</button>
@@ -72,10 +72,10 @@
 							<div class="coordinate-exp">
 								<h6 style="margin-left: 15px;">
 									①カテゴリー選択ボタンを押し、登録したアイテムの中からコーディネートで使用したい服を選択します。<br>
-									&nbsp;&nbsp;&nbsp;&nbsp;<small style="color: red;">※トップス1とトップス2で同じアイテムは選択できません。</small>
+									&nbsp;&nbsp;&nbsp;&nbsp;<small>※トップス1とトップス2で同じアイテムは選択できません。</small>
 								</h6>
 								<br>
-								<div style="text-align: center;">
+								<div style="text-align: center;" class="ex-img">
 									<img alt="" th:src="@{/img/exp1.png}" style="height: 300px;">
 									<span style="margin-left: 30px; margin-right: 30px;">▶</span> <img
 										alt="" th:src="@{/img/exp2.png}" style="height: 300px;">
@@ -89,10 +89,10 @@
 								<br> <br>
 								<h6 style="margin-left: 15px;">
 									②選択したアイテムはコーディネートエリアに表示されます。エリア内では画像を動かすことが可能です。<br>
-									&nbsp;&nbsp;&nbsp;&nbsp;コーディネートエリア内のアイテムをダブルクリックすると選択が解除されます。
+									&nbsp;&nbsp;&nbsp;&nbsp;<small>※コーディネートエリア内のアイテムをダブルクリックすると選択が解除されます。</small>
 								</h6>
 								<br>
-								<div style="text-align: center;">
+								<div style="text-align: center;" class="ex-img">
 									<img alt="" th:src="@{/img/exp3.png}" style="height: 300px;">
 								</div>
 								<br> <br>
@@ -104,10 +104,10 @@
 								<br> <br>
 								<h6 style="margin-left: 15px;">
 									③コーディネートが決まったら、「確認画面へ」をクリック。最後に「コーデ名」を入力して、登録完了です！<br>
-									&nbsp;&nbsp;&nbsp;&nbsp;<small style="color: red;">※アイテム未選択、またはコーデ名を入力していないと登録できません。</small>
+									&nbsp;&nbsp;&nbsp;&nbsp;<small>※アイテム未選択、またはコーデ名を入力していないと登録できません。</small>
 								</h6>
 								<br>
-								<div style="text-align: center;">
+								<div style="text-align: center;" class="ex-img">
 									<img alt="" th:src="@{/img/exp4.png}" style="height: 300px;">
 								</div>
 
@@ -292,16 +292,15 @@
 			<br>
 
 			<div style="text-align: center;">
-				<button type="button" class="btn btn-primary"
-					id="co-confirmation-btn" style="border-radius: 50px; width: 300px;"
-					data-toggle="modal" data-target="#registerModal">確認画面へ</button>
+				<button type="button" class="btn btn-primary btn-set"
+					id="co-confirmation-btn" data-toggle="modal"
+					data-target="#registerModal">確認画面へ</button>
 			</div>
 			<br>
 
 			<div style="text-align: center;">
 				<a th:href="@{/past-coordinate}"><button type="button"
-						class="btn btn-secondary"
-						style="border-radius: 50px; width: 300px;">コーディネート一覧を見る</button></a>
+						class="btn btn-secondary btn-set">コーディネート一覧を見る</button></a>
 			</div>
 
 			<!-- 「確認へ」を押したときのモーダルの設定 -->
@@ -472,6 +471,8 @@
 
 	<script type="text/javascript"
 		src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
 	<script type="text/javascript">
 		$(function() {
 			$("#drag-img1").draggable({

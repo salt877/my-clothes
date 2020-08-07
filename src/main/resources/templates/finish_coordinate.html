@@ -35,39 +35,35 @@
 	</div>
 	<!-- main -->
 
-	<div class="wrapper">
-		<div class="container">
-			<div class="text-center">
-				<h2 class="section-heading text-uppercase"
-					style="margin-top: 100px;">コーディネートを登録しました！</h2>
-				<br> <br>
+	<div class="container">
+		<div class="text-center">
+			<h2 class="section-heading text-uppercase" style="margin-top: 100px;">コーディネートを登録しました！</h2>
+			<br> <br>
 
-				<div>
-					<a href="coordinate.html" th:href="@{/coordinate}"><button
-							type="button" class="btn btn-primary continue-coordinate-btn"
-							style="border-radius: 50px; width: 280px;">コーディネートを続ける</button></a>
-				</div>
-				<br>
-				<div>
-					<a href="coordinate.html" th:href="@{/past-coordinate}"><button
-							type="button" class="btn btn-secondary continue-coordinate-btn"
-							style="border-radius: 50px; width: 280px;">過去のコーディネートを見る</button></a>
-				</div>
-				<br>
-
-				<div>
-					<a href="top.html" th:href="@{/}"><button type="button"
-							class="btn btn-secondary return-top-btn"
-							style="border-radius: 50px; width: 280px;">トップへ戻る</button></a>
-				</div>
-
+			<div>
+				<a href="coordinate.html" th:href="@{/coordinate}"><button
+						type="button" class="btn btn-primary continue-coordinate-btn"
+						style="border-radius: 50px; width: 280px;">コーディネートを続ける</button></a>
 			</div>
-		</div>
+			<br>
+			<div>
+				<a href="coordinate.html" th:href="@{/past-coordinate}"><button
+						type="button" class="btn btn-secondary continue-coordinate-btn"
+						style="border-radius: 50px; width: 280px;">過去のコーディネートを見る</button></a>
+			</div>
+			<br>
 
-		<!-- Footer-->
-		<footer class="footer py-4" th:replace="footer::pagefooter">
-		</footer>
+			<div>
+				<a href="top.html" th:href="@{/}"><button type="button"
+						class="btn btn-secondary return-top-btn"
+						style="border-radius: 50px; width: 280px;">トップへ戻る</button></a>
+			</div>
+
+		</div>
 	</div>
+
+	<!-- Footer-->
+	<footer class="footer py-4" th:replace="footer::pagefooter"> </footer>
 
 	<!-- Bootstrap core JS-->
 	<script

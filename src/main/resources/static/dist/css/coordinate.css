@@ -11,6 +11,14 @@
 	margin: 12px;
 }
 */
+.btn-set {
+	width: 26%;
+}
+
+#ex-btn {
+	text-align: right;
+}
+
 .continue-coordinate-btn {
 	border-radius: 50px;
 }
@@ -39,85 +47,6 @@
 	opacity: 0.4;
 }
 
-/*
-.tooltip {
-    width:130px;
-    padding:10px;
-    font-size:12px;
-    margin:-30px 0 0;
-    background-color:#666;
-    color:#fff;
-    position:absolute;
-    right:-160px;
-    top: 50%;
-}
-.tooltip:before {
-  right: 100%;
-  top: 50%;
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  border-color: rgba(102, 102, 102, 0);
-  border-right-color: #5e5e5e;
-  border-width: 8px;
-  margin-top: -8px;
-}
-*/
-
-/*過去コーデ画面*/
-.register-coordinate-btn {
-	height: 140px;
-	width: 140px;
-	position: absolute;
-	bottom: 30px;
-	right: 30px;
-	position: fixed;
-	border-radius: 100%;
-}
-
-.btn-circle-stitch {
-	display: inline-block;
-	text-decoration: none;
-	background: #87befd;
-	color: #FFF;
-	width: 120px;
-	height: 120px;
-	line-height: 120px;
-	border-radius: 50%;
-	text-align: center;
-	overflow: hidden;
-	box-shadow: 0px 0px 0px 5px #87befd;
-	border: dashed 1px #FFF;
-	transition: .4s;
-}
-
-.btn-circle-stitch:hover {
-	background: #668ad8;
-	box-shadow: 0px 0px 0px 5px #668ad8;
-	text-decoration: none;
-	color: white;
-}
-
-.modal-tbl {
-	table-layout: fixed;
-}
-
-.clm {
-	width: 20%;
-}
-
-.wrapper {
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
-}
-
-footer {
-	margin-top: auto;
-}
-
 /* 円の基本形 */
 .maru {
 	display: inline-flex;
@@ -142,4 +71,27 @@ footer {
 .pink1 {
 	color: #DDDDDD;
 	border: 4px solid #DDDDDD;
+}
+
+small {
+	color: red;
+}
+
+@media screen and (max-width: 959px) { /* 959px以下に適用されるCSS（タブレット用） */
+}
+
+@media screen and (max-width:480px) {
+	/* 480px以下に適用されるCSS（スマホ用） */
+	.ex-img {
+		display: none;
+	}
+	#explanation-modal {
+		text-align: center;
+	}
+	#ex-btn {
+		text-align: center;
+	}
+	.btn-set {
+		width: 80%;
+	}
 }

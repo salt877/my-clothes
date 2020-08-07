@@ -22,8 +22,9 @@
 	rel="stylesheet" type="text/css" />
 
 <!-- coordinate.css読み込み -->
-<link rel="stylesheet" href="../static/dist/css/coordinate.css"
-	th:href="@{/dist/css/coordinate.css}">
+
+<link rel="stylesheet" href="../static/dist/css/past-coordinate.css"
+	th:href="@{/dist/css/past-coordinate.css}">
 
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="../static/dist/css/styles.css"
@@ -40,39 +41,43 @@
 	<!-- main -->
 	<div class="container">
 		<div class="text-center">
-			<h1 class="section-heading text-uppercase" style="margin-top: 100px;">MY
-				COORDINATE LIST</h1>
+			<h1 class="section-heading text-uppercase">MY COORDINATE LIST</h1>
 			<div class="section-subheading text-muted">登録したコーディネート一覧</div>
 			<br> <br>
 		</div>
 
 		<!-- コーデ未登録の場合、コーデ画面へ遷移誘導 -->
 		<div th:if="${#lists.isEmpty(coordinateList)}">
-			<div
-				style="text-align: center; margin-top: 30px; margin-bottom: 370px;">
+			<div class="not-registered-txt">
 				<div>コーディネートが登録されていません。</div>
 				<br>
 				<div>
 					<a href="coordinate.html" th:href="@{/coordinate}"><button
-							type="button" class="btn btn-primary continue-coordinate-btn"
-							style="border-radius: 50px; width: 280px;">コーディネートを登録する</button></a>
+							type="button" class="btn btn-primary to-coordinate-btn">コーディネートを登録する</button></a>
 				</div>
 			</div>
 		</div>
 
 		<!-- コーデ登録済みの場合表示 -->
 		<div th:if="!${#lists.isEmpty(coordinateList)}">
+			<div class="register-coordinate-btn-sp">
+				<a href="coordinate.html" th:href="@{/coordinate}">
+					<button class="btn btn-primary">
+						<i class=" fasfa-female"> </i> <span>コーデ登録</span>
+					</button>
+				</a> <br> <br> <br>
+			</div>
 			<div id="past-coordinate-list">
 				<div th:each="coordinate:${coordinateList}">
 					<div class="past-coordinates">
 						<h6 th:text="${coordinate.name}"></h6>
 
+
 						<table class="table">
 							<thead>
-								<tr class="bg-light">
+								<tr class="bg-light coordinate-category">
 									<th th:each="clothes:${coordinate.clothesList}"
-										th:text="${clothes.category.name}"
-										style="text-align: center; font-size: 14px;"></th>
+										th:text="${clothes.category.name}"></th>
 
 								</tr>
 							</thead>
@@ -80,15 +85,15 @@
 								<tr>
 									<td th:each="clothes:${coordinate.clothesList}">
 										<div style="text-align: center;">
-											<img class="img-fluid" th:src="${clothes.imagePath}" alt=""
-												style="width: 160px; height: auto; text-align: center;" />
+											<img class="img-fluid coordinate-img"
+												th:src="${clothes.imagePath}" alt="">
 										</div>
 									</td>
 								</tr>
 							</tbody>
 						</table>
 
-						<div style="text-align: right;">
+						<div class="coordinate-detail-btn">
 							<span>
 								<button type="button" class="btn btn-primary detail-btn"
 									th:value="${coordinate.id}" data-toggle="modal"
@@ -119,57 +124,49 @@
 											<div th:each="clothes:${coordinate.clothesList}">
 												<table class="table modal-tbl">
 													<tbody>
-														<tr>
-															<td rowspan="5"><div style="text-align: center;">
-																	<img class="img-fluid" th:src="${clothes.imagePath}"
-																		alt="" style="width: 200px; height: auto;" />
+														<tr class="modal-tr">
+															<td rowspan="5"><div class="clothes-img">
+																	<img class="img-fluid cl-img"
+																		th:src="${clothes.imagePath}" alt="">
 																</div></td>
-															<td style="color: black; text-align: center;"
-																class="table-active clm"><label
+															<td class="table-active clm"><label
 																style="font-weight: bold;">カテゴリー</label></td>
-															<td style="color: black; text-align: center;"><span
-																class="modal-txt" th:text="${clothes.category.name}"></span></td>
+															<td><span class="modal-txt"
+																th:text="${clothes.category.name}"></span></td>
 														</tr>
-														<tr>
-															<td style="color: black; text-align: center;"
-																class="table-active clm"><label
+														<tr class="modal-tr">
+															<td class="table-active clm"><label
 																style="font-weight: bold;">ブランド</label></td>
-															<td style="color: black; text-align: center;"><span
-																class="modal-txt" th:text="${clothes.brand.name}"></span></td>
+															<td><span class="modal-txt"
+																th:text="${clothes.brand.name}"></span></td>
 
 														</tr>
-														<tr>
-															<td style="color: black; text-align: center;"
-																class="table-active clm"><label
+														<tr class="modal-tr">
+															<td class="table-active clm"><label
 																style="font-weight: bold;">金額</label></td>
-															<td style="color: black; text-align: center;"><span
-																class="modal-txt"
+															<td><span class="modal-txt"
 																th:text="${#numbers.formatInteger(clothes.price, 1, 'COMMA') + '&nbsp;円'}"></span></td>
 														</tr>
-														<tr>
-															<td style="color: black; text-align: center;"
-																class="table-active clm"><label
+														<tr class="modal-tr">
+															<td class="table-active clm"><label
 																style="font-weight: bold;">購入日</label></td>
-															<td style="color: black; text-align: center;"><span
-																class="modal-txt"
+															<td><span class="modal-txt"
 																th:text="${#dates.format(clothes.perchaseDate, 'yyyy年M月d日')}"></span></td>
 														</tr>
-														<tr>
-															<td style="color: black; text-align: center;"
-																class="table-active clm"><label
+														<tr class="modal-tr">
+															<td class="table-active clm"><label
 																style="font-weight: bold;">メモ</label></td>
-															<td style="color: black; text-align: center;"><span
-																class="modal-txt" th:text="${clothes.comment}"></span></td>
+															<td><span class="modal-txt"
+																th:text="${clothes.comment}"></span></td>
 														</tr>
 													</tbody>
 												</table>
 											</div>
 											<br>
 											<!-- コーデ合計金額反映 -->
-											<div
-												style="font-weight: bold; font-size: 18px; margin-right: 5px;">
-												このコーディネートの合計金額：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
-													class="total-price"></span>
+											<div class="co-total-price">
+												<span class="co-total-price">このコーディネートの合計金額：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+													class="total-price"></span></span>
 											</div>
 											<br>
 											<!-- モーダル内フッター -->
@@ -200,15 +197,13 @@
 				</div>
 
 				<!-- もっと見るボタン -->
-				<div style="text-align: center;">
-					<button id="more_btn" class="btn btn-light"
-						style="border-radius: 50px; width: 300px;">
+				<div class="btn-area">
+					<button id="more_btn" class="btn btn-light pc-btn">
 						もっと見る&nbsp;&nbsp;<i class="fa fa-chevron-down" aria-hidden="true"></i>
 					</button>
 				</div>
-				<div style="text-align: center;">
-					<button id="close_btn" class="btn btn-light"
-						style="border-radius: 50px; width: 300px;">
+				<div class="btn-area">
+					<button id="close_btn" class="btn btn-light pc-btn">
 						閉じる&nbsp;&nbsp; <i class="fa fa-chevron-up" aria-hidden="true"></i>
 					</button>
 				</div>
