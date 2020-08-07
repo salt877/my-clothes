@@ -330,19 +330,21 @@ public class showClothesDetailController {
 				}
 			}
 			// 既にタグが登録されている場合、入力されたタグ情報を更新する
-			if(tagList.size() >= 2 && tagContent2 != null) {
-				tag = tagList.get(1);
-				tag.setTagContentId(tagContent2.getId());  //ヌルぽ
-				tag.setTagContent(tagContent2);
-				editClothesService.tagUpdate(tag);
-			} else if(tagList.size() == 1  && tagContent2 != null || CollectionUtils.isEmpty(tagList) && tagContent2 != null) {
-				// タグ2が登録されていないまたはタグ１が登録されていない場合、既存のタグ情報をインサートする
-				tag = new Tag();
-				tag.setClothesId(Integer.parseInt(form.getClothesId()));
-				tag.setUserId(loginUser.getUser().getId());
-				tag.setTagContentId(tagContent2.getId());
-				tag.setTagContent(tagContent2);
-				registerClothesService.insertTag(tag);
+			if(tagContent2 != null) {
+				if(tagList.size() >= 2) {
+					tag = tagList.get(1);
+					tag.setTagContentId(tagContent2.getId());  //ヌルぽ
+					tag.setTagContent(tagContent2);
+					editClothesService.tagUpdate(tag);
+				} else if(tagList.size() == 1 || CollectionUtils.isEmpty(tagList)) {
+					// タグ2が登録されていないまたはタグ１が登録されていない場合、既存のタグ情報をインサートする
+					tag = new Tag();
+					tag.setClothesId(Integer.parseInt(form.getClothesId()));
+					tag.setUserId(loginUser.getUser().getId());
+					tag.setTagContentId(tagContent2.getId());
+					tag.setTagContent(tagContent2);
+					registerClothesService.insertTag(tag);
+				}
 			}
 		} else if(StringUtils.isEmpty(form.getTag2())) {
 			// タグが入力されていない場合
@@ -372,7 +374,7 @@ public class showClothesDetailController {
 					tag.setTagContentId(getTagContent3.getId());
 					tag.setTagContent(getTagContent3);
 					editClothesService.tagUpdate(tag);
-				} else if(tagList.size() == 2 || CollectionUtils.isEmpty(tagList)) {
+				} else if(tagList.size() <= 2 || CollectionUtils.isEmpty(tagList)) {
 					// タグ3が登録されていないまたはタグリストが登録されていない場合、新規登録したタグを新たに登録する
 					// タグidとclothesIdと結びつけてtagテーブルに入れる
 					tag = new Tag();
@@ -386,27 +388,27 @@ public class showClothesDetailController {
 				}
 			}
 			// 既にタグが登録されている場合、入力されたタグ情報を更新する
-			if(tagList.size() == 3 && tagContent3 != null) {
-				tag = tagList.get(2);
-				tag.setTagContentId(tagContent3.getId());
-				tag.setTagContent(tagContent3);
-				editClothesService.tagUpdate(tag);
-			} else if(tagList.size() ==1 || tagList.size() == 2 || CollectionUtils.isEmpty(tagList) && tagContent3 != null) {
-				// タグが登録されてなくて、既存のタグ情報で更新する
-				tag = new Tag();
-				tag.setClothesId(Integer.parseInt(form.getClothesId()));
-				tag.setUserId(loginUser.getUser().getId());
-				tag.setTagContentId(tagContent3.getId());
-				tag.setTagContent(tagContent3);
-				registerClothesService.insertTag(tag);
+			if(tagContent3 != null) {
+				if(tagList.size() == 3) {
+					tag = tagList.get(2);
+					tag.setTagContentId(tagContent3.getId());
+					tag.setTagContent(tagContent3);
+					editClothesService.tagUpdate(tag);
+				} else if(tagList.size() ==1 || tagList.size() == 2 || CollectionUtils.isEmpty(tagList)) {
+					// タグが登録されてなくて、既存のタグ情報で更新する
+					tag = new Tag();
+					tag.setClothesId(Integer.parseInt(form.getClothesId()));
+					tag.setUserId(loginUser.getUser().getId());
+					tag.setTagContentId(tagContent3.getId());
+					tag.setTagContent(tagContent3);
+					registerClothesService.insertTag(tag);
+				}
 			}
 		} else if(StringUtils.isEmpty(form.getTag3())) {
 			// タグが入力されていない場合
 			if(tagList.size() == 3) {
 				// タグ2が登録されている場合、タグの削除を行う
-				System.out.println("フォームの値は" + form.getTag3());
 				tag = tagList.get(2);
-				System.out.println("タグの中身は" + tag);
 				editClothesService.delete(tag);
 			}
 		}
