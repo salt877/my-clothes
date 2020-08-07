@@ -10956,6 +10956,7 @@ tbody th {
 .image-information .img-fluid img {
 	width: 30%; /* 横幅を割合で指定 */
 	height: auto; /* 高さは自動指定 */
+	width:auto;
 }
 
 .modal-dialog {

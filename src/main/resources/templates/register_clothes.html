@@ -184,7 +184,7 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 				th:action="@{/registerClothes/register}"
 				th:object="${registerClothesForm}" enctype="multipart/form-data">
 				<div id="item-image" class="image-information">
-					<img class="img-fluid" id="preview"><br>
+					<img class="img-fluid mx-auto" id="preview"><br>
 					 <input name="imageFile" type="file" accept=".jpg,.png" id="myImage" th:field="*{imageFile}"required>
 				</div>
 				<div class="required-information">
