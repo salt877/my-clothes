@@ -224,7 +224,7 @@ public class ClothesRepository {
 		return tagNameList;
 	}
 
-	// アイテム詳細表示用のローマッパー.
+	// タグ検索から詳細画面へ移行する際の表示用ローマッパー.
 	private static final RowMapper<Clothes> CLOTHES_ROW_MAPPER5 = (rs, i) -> {
 		// タグコンテンツ
 		TagContent tagContent= new TagContent();
