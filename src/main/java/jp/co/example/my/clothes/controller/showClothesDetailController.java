@@ -310,12 +310,15 @@ public class showClothesDetailController {
 				editClothesService.insertTagContent(editTagContent2);
 				
 				// 既に登録されたタグがある場合、新規登録したタグでデータを更新する
-				if(tagList.size() == 2) {
+				if(tagList.size() >= 2) {
 					tag = tagList.get(1);
+					System.out.println(tag);
 					TagContent getTagContent2 = editClothesService.tagContentSearchByName(editTagContent2.getName());
 					tag.setTagContentId(getTagContent2.getId());
 					tag.setTagContent(getTagContent2);
+					System.out.println(getTagContent2);
 					editClothesService.tagUpdate(tag);
+					System.out.println(tag);
 				} else if(tagList.size() == 1 || CollectionUtils.isEmpty(tagList)) {
 					// タグ2が登録されていない場合またはタグ1が登録されていない場合、新規登録したタグを新たに登録する
 					// タグidとclothesIdと結びつけてtagテーブルに入れる
