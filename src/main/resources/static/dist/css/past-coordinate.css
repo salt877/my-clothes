@@ -1,0 +1,148 @@
+@charset "UTF-8";
+
+/*タイトル位置*/
+.section-heading {
+	margin-top: 100px;
+}
+
+/*登録していない場合の表示*/
+.not-registered-txt {
+	text-align: center;
+	margin-top: 30px;
+	margin-bottom: 370px;
+}
+
+/*コーディネート画面への誘導ボタン*/
+.to-coordinate-btn {
+	border-radius: 50px;
+	width: 280px;
+}
+
+/**/
+.register-coordinate-btn-sp{
+	display: none;
+}
+
+/*カテゴリー表示*/
+.coordinate-category {
+	text-align: center;
+	font-size: 14px;
+}
+
+/*画像*/
+.coordinate-img {
+	width: 160px;
+	height: auto;
+	text-align: center;
+}
+
+/*詳細ボタン*/
+.coordinate-detail-btn {
+	text-align: right;
+}
+
+/*アイテム画像位置*/
+.clothes-img {
+	text-align: center;
+}
+
+/*アイテム画像*/
+.cl-img {
+	width: 200px;
+	height: auto;
+}
+
+/*モーダル内テーブル*/
+.modal-tr>td {
+	color: black;
+	text-align: center;
+}
+
+/*合計金額表示*/
+.co-total-price {
+	font-weight: bold;
+	font-size: 18px;
+	margin-right: 5px;
+}
+
+/*もっと見る・閉じるボタン*/
+.pc-btn {
+	border-radius: 50px;
+	width: 300px;
+}
+
+/*もっと見る・閉じるボタン位置*/
+.btn-area {
+	text-align: center;
+}
+
+/*過去コーデ画面*/
+.register-coordinate-btn {
+	height: 140px;
+	width: 140px;
+	position: absolute;
+	bottom: 30px;
+	right: 30px;
+	position: fixed;
+	border-radius: 100%;
+}
+
+.btn-circle-stitch {
+	display: inline-block;
+	text-decoration: none;
+	background: #87befd;
+	color: #FFF;
+	width: 120px;
+	height: 120px;
+	line-height: 120px;
+	border-radius: 50%;
+	text-align: center;
+	overflow: hidden;
+	box-shadow: 0px 0px 0px 5px #87befd;
+	border: dashed 1px #FFF;
+	transition: .4s;
+}
+
+.btn-circle-stitch:hover {
+	background: #668ad8;
+	box-shadow: 0px 0px 0px 5px #668ad8;
+	text-decoration: none;
+	color: white;
+}
+
+.modal-tbl {
+	table-layout: fixed;
+}
+
+.clm {
+	width: 20%;
+}
+
+@media screen and (max-width: 959px) { /* 959px以下に適用されるCSS（タブレット用） */
+}
+
+@media screen and (max-width: 480px) { /* 480px以下に適用されるCSS（スマホ用） */
+	/*過去コーデ画面*/
+
+.register-coordinate-btn-sp{
+	display: inline;
+	margin-left: 30%;
+	
+}
+
+.register-coordinate-btn{
+	display: none;
+}
+
+.clm {
+	width: 100%;
+}
+
+.co-total-price{
+	font-size: 12px;
+}
+
+
+
+
+}
