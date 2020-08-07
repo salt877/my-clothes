@@ -237,7 +237,6 @@ public class showClothesDetailController {
 		}
 		
 		// アイテム情報を登録
-		System.out.println(clothes);
 		editClothesService.editClothes(clothes);
 		
 		// タグの登録を行う
@@ -331,7 +330,7 @@ public class showClothesDetailController {
 				}
 			}
 			// 既にタグが登録されている場合、入力されたタグ情報を更新する
-			if(tagList.size() == 2 && tagContent2 != null) {
+			if(tagList.size() >= 2 && tagContent2 != null) {
 				tag = tagList.get(1);
 				tag.setTagContentId(tagContent2.getId());  //ヌルぽ
 				tag.setTagContent(tagContent2);
