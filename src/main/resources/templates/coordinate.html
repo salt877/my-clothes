@@ -40,8 +40,7 @@
 	<div class="wrapper">
 		<div class="container">
 			<div class="text-center">
-				<h1 class="section-heading text-uppercase"
-					style="margin-top: 100px;">MY COORDINATE</h1>
+				<h1 class="section-heading text-uppercase">MY COORDINATE</h1>
 				<div class="section-subheading text-muted">登録した服でコーディネートしよう。</div>
 				<br> <br>
 			</div>
@@ -70,45 +69,45 @@
 						<!-- モーダル内ボディ -->
 						<div class="modal-body">
 							<div class="coordinate-exp">
-								<h6 style="margin-left: 15px;">
+								<h6>
 									①カテゴリー選択ボタンを押し、登録したアイテムの中からコーディネートで使用したい服を選択します。<br>
 									&nbsp;&nbsp;&nbsp;&nbsp;<small>※トップス1とトップス2で同じアイテムは選択できません。</small>
 								</h6>
 								<br>
-								<div style="text-align: center;" class="ex-img">
-									<img alt="" th:src="@{/img/exp1.png}" style="height: 300px;">
-									<span style="margin-left: 30px; margin-right: 30px;">▶</span> <img
-										alt="" th:src="@{/img/exp2.png}" style="height: 300px;">
+								<div class="ex-img">
+									<img alt="" th:src="@{/img/exp1.png}" class="ex-img-a"> <span
+										class="sankaku">▶</span> <img alt="" th:src="@{/img/exp2.png}"
+										class="ex-img-a">
 								</div>
 								<br> <br>
-								<div style="text-align: center;">
+								<div class="arrow">
 									<div class="maru size_normal pink1">
 										<div class="letter3">▼</div>
 									</div>
 								</div>
 								<br> <br>
-								<h6 style="margin-left: 15px;">
+								<h6>
 									②選択したアイテムはコーディネートエリアに表示されます。エリア内では画像を動かすことが可能です。<br>
 									&nbsp;&nbsp;&nbsp;&nbsp;<small>※コーディネートエリア内のアイテムをダブルクリックすると選択が解除されます。</small>
 								</h6>
 								<br>
-								<div style="text-align: center;" class="ex-img">
-									<img alt="" th:src="@{/img/exp3.png}" style="height: 300px;">
+								<div class="ex-img">
+									<img alt="" th:src="@{/img/exp3.png}" class="ex-img-a">
 								</div>
 								<br> <br>
-								<div style="text-align: center;">
+								<div class="arrow">
 									<div class="maru size_normal pink1">
 										<div class="letter3">▼</div>
 									</div>
 								</div>
 								<br> <br>
-								<h6 style="margin-left: 15px;">
+								<h6>
 									③コーディネートが決まったら、「確認画面へ」をクリック。最後に「コーデ名」を入力して、登録完了です！<br>
 									&nbsp;&nbsp;&nbsp;&nbsp;<small>※アイテム未選択、またはコーデ名を入力していないと登録できません。</small>
 								</h6>
 								<br>
-								<div style="text-align: center;" class="ex-img">
-									<img alt="" th:src="@{/img/exp4.png}" style="height: 300px;">
+								<div class="ex-img">
+									<img alt="" th:src="@{/img/exp4.png}" class="ex-img-a">
 								</div>
 
 							</div>
@@ -144,23 +143,15 @@
 					<tr>
 						<td colspan="4" id="containment-wrapper">
 
-							<div style="height: 500px; width: 406.5px;">
-								<img id="drag-img1" class="drag-img" alt="" src=""
-									style="width: 130px; height: auto;"> <img id="drag-img2"
-									class="drag-img" alt="" src=""
-									style="width: 130px; height: auto;"> <img id="drag-img3"
-									class="drag-img" alt="" src=""
-									style="width: 130px; height: auto;"> <img id="drag-img4"
-									class="drag-img" alt="" src=""
-									style="width: 130px; height: auto;"> <img id="drag-img5"
-									class="drag-img" alt="" src=""
-									style="width: 130px; height: auto;"> <img id="drag-img6"
-									class="drag-img" alt="" src=""
-									style="width: 130px; height: auto;"> <img id="drag-img7"
-									class="drag-img" alt="" src=""
-									style="width: 130px; height: auto;"> <img id="drag-img8"
-									class="drag-img" alt="" src=""
-									style="width: 130px; height: auto;">
+							<div class="drag-area">
+								<img id="drag-img1" class="drag-img" src=""> <img
+									id="drag-img2" class="drag-img" src=""> <img
+									id="drag-img3" class="drag-img" src=""> <img
+									id="drag-img4" class="drag-img" src=""> <img
+									id="drag-img5" class="drag-img" src=""> <img
+									id="drag-img6" class="drag-img" src=""> <img
+									id="drag-img7" class="drag-img" src=""> <img
+									id="drag-img8" class="drag-img" src="">
 
 							</div>
 
@@ -176,7 +167,7 @@
 									<button data-toggle="modal" data-target="#category-modal"
 										type="button" class="btn btn-light category-btn"
 										id="fashion-accessories-btn" data-id='fashion-accessories'
-										value="1" style="width: 250px;">ファッション雑貨を選択</button>
+										value="1">ファッション雑貨を選択</button>
 
 								</div>
 								<br>
@@ -187,7 +178,7 @@
 								<div class="tops1">
 									<button data-toggle="modal" data-target="#category-modal"
 										type="button" class="btn btn-light category-btn"
-										id="tops1-btn" data-id='tops1' value="2" style="width: 250px;">トップス１を選択</button>
+										id="tops1-btn" data-id='tops1' value="2">トップス１を選択</button>
 
 								</div>
 								<br>
@@ -196,7 +187,7 @@
 								<div class="tops2">
 									<button data-toggle="modal" data-target="#category-modal"
 										type="button" class="btn btn-light category-btn"
-										id="tops2-btn" data-id='tops2' value="2" style="width: 250px;">トップス２を選択</button>
+										id="tops2-btn" data-id='tops2' value="2">トップス２を選択</button>
 								</div>
 								<br>
 
@@ -204,8 +195,7 @@
 								<div class="outer">
 									<button data-toggle="modal" data-target="#category-modal"
 										type="button" class="btn btn-light category-btn"
-										id="outers-btn" data-id='outers' value="3"
-										style="width: 250px;">アウターを選択</button>
+										id="outers-btn" data-id='outers' value="3">アウターを選択</button>
 								</div>
 								<br>
 
@@ -213,8 +203,7 @@
 								<div class="bottoms">
 									<button data-toggle="modal" data-target="#category-modal"
 										type="button" class="btn btn-light category-btn"
-										id="bottoms-btn" data-id='bottoms' value="4"
-										style="width: 250px;">ボトムスを選択</button>
+										id="bottoms-btn" data-id='bottoms' value="4">ボトムスを選択</button>
 								</div>
 								<br>
 
@@ -222,7 +211,7 @@
 								<div class="shoes">
 									<button data-toggle="modal" data-target="#category-modal"
 										type="button" class="btn btn-light category-btn"
-										id="shoes-btn" data-id='shoes' value="5" style="width: 250px;">シューズを選択</button>
+										id="shoes-btn" data-id='shoes' value="5">シューズを選択</button>
 								</div>
 								<br>
 
@@ -230,7 +219,7 @@
 								<div class="bags">
 									<button data-toggle="modal" data-target="#category-modal"
 										type="button" class="btn btn-light category-btn" id="bag-btn"
-										data-id='bag' value="6" style="width: 250px;">バッグを選択</button>
+										data-id='bag' value="6">バッグを選択</button>
 
 								</div>
 								<br>
@@ -239,7 +228,7 @@
 								<div class="dress">
 									<button data-toggle="modal" data-target="#category-modal"
 										type="button" class="btn btn-light category-btn"
-										id="dress-btn" data-id='dress' value="7" style="width: 250px;">ワンピースを選択</button>
+										id="dress-btn" data-id='dress' value="7">ワンピースを選択</button>
 
 								</div>
 								<br>
@@ -325,7 +314,7 @@
 							th:object="${registerCoordinateForm}" method="post">
 							<!-- モーダル内ボディ -->
 							<div class="modal-body">
-								<table class="table">
+								<table class="table conf-modal-tbl">
 									<thead>
 										<tr>
 											<th style="text-align: center;">ファッション雑貨</th>
@@ -343,50 +332,51 @@
 											<!-- 選択されたclothes.idの画像を表示-->
 
 											<!-- ファッション雑貨 -->
-											<td id="fa-img"><input type="hidden"
+											<td id="fa-img" class="conf-modal"><input type="hidden"
 												id="modal-fashion-accessories" class="modal-input"
 												name="fashion_accessories" value=""
 												th:field="*{fashionAccessories}"> <img
 												class="in-modal-img" id="in-modal-img1" alt="" src=""
 												style="width: 100px; height: auto;"></td>
 											<!-- トップス１ -->
-											<td id="t1-img"><input type="hidden" id="modal-tops1"
-												class="modal-input" name="tops1" value=""
+											<td id="t1-img" class="conf-modal"><input type="hidden"
+												id="modal-tops1" class="modal-input" name="tops1" value=""
 												th:field="*{tops1}"> <img class="in-modal-img"
 												id="in-modal-img2" alt="" src=""
 												style="width: 100px; height: auto;"></td>
 											<!-- トップス２ -->
-											<td id="t1-img"><input type="hidden" id="modal-tops2"
-												class="modal-input" name="tops2" value=""
+											<td id="t1-img" class="conf-modal"><input type="hidden"
+												id="modal-tops2" class="modal-input" name="tops2" value=""
 												th:field="*{tops2}"> <img class="in-modal-img"
 												id="in-modal-img3" alt="" src=""
 												style="width: 100px; height: auto;"></td>
 											<!-- アウター -->
-											<td id="ou-img"><input type="hidden" id="modal-outers"
-												class="modal-input" name="outers" value=""
+											<td id="ou-img" class="conf-modal"><input type="hidden"
+												id="modal-outers" class="modal-input" name="outers" value=""
 												th:field="*{outers}"> <img class="in-modal-img"
 												id="in-modal-img4" alt="" src=""
 												style="width: 100px; height: auto;"></td>
 											<!-- ボトムス -->
-											<td id="bt-img"><input type="hidden" id="modal-bottoms"
-												class="modal-input" name="bottoms" value=""
-												th:field="*{bottoms}"> <img class="in-modal-img"
-												id="in-modal-img5" alt="" src=""
+											<td id="bt-img" class="conf-modal"><input type="hidden"
+												id="modal-bottoms" class="modal-input" name="bottoms"
+												value="" th:field="*{bottoms}"> <img
+												class="in-modal-img" id="in-modal-img5" alt="" src=""
 												style="width: 100px; height: auto;"></td>
 											<!-- シューズ -->
-											<td id="sh-img"><input type="hidden" id="modal-shoes"
-												class="modal-input" name="shoes" value=""
+											<td id="sh-img" class="conf-modal"><input type="hidden"
+												id="modal-shoes" class="modal-input" name="shoes" value=""
 												th:field="*{shoes}"> <img class="in-modal-img"
 												id="in-modal-img6" alt="" src=""
 												style="width: 100px; height: auto;"></td>
 											<!-- バッグ -->
-											<td id="bg-img"><input type="hidden" id="modal-bag"
-												class="modal-input" name="bag" value="" th:field="*{bag}">
-												<img class="in-modal-img" id="in-modal-img7" alt="" src=""
+											<td id="bg-img" class="conf-modal"><input type="hidden"
+												id="modal-bag" class="modal-input" name="bag" value=""
+												th:field="*{bag}"> <img class="in-modal-img"
+												id="in-modal-img7" alt="" src=""
 												style="width: 100px; height: auto;"></td>
 											<!-- ワンピース-->
-											<td id="dr-img"><input type="hidden" id="modal-dress"
-												class="modal-input" name="dress" value=""
+											<td id="dr-img" class="conf-modal"><input type="hidden"
+												id="modal-dress" class="modal-input" name="dress" value=""
 												th:field="*{dress}"> <img class="in-modal-img"
 												id="in-modal-img8" alt="" src=""
 												style="width: 100px; height: auto;"></td>
