@@ -58,6 +58,8 @@ public class RegisterUserController {
 	 */
 	@RequestMapping("/registerUser")
 	public String registerUser(@Validated RegisterUserForm form, BindingResult result) {
+		
+		String myqloEmail = "my.clothes0702@gmail.com";
 
 		// メールアドレスが重複している場合
 		User duplicationUser = registerUserService.searchUserByEmail(form.getEmail());
@@ -65,10 +67,17 @@ public class RegisterUserController {
 			result.rejectValue("email", "", "そのメールアドレスはすでに使われています");
 		}
 		
+		//MYQLOのメールアドレスを登録しようとした場合
+		if(myqloEmail.equals(form.getEmail())) {
+			result.rejectValue("email", "","そのメールアドレスは使用できません");
+		}
+		
 		//パスワードと確認用パスワードが一致しない場合
 		if(!(form.getPassword().equals(form.getConfirmPassword()))) {
 			result.rejectValue("confirmPassword", "","確認用パスワードが一致しません");
 		}
+
+		
 
 		// エラーがあれば登録画面に戻る
 		if (result.hasErrors()) {
