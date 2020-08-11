@@ -20,9 +20,19 @@
         
         <!-- Form送信完了後ポップアップ用のJavaScript -->
         <script type="text/javascript">
-        	function send(){
-        		alert("お問い合わせを受け付けました。");
+        function clickEvent() {
+        	if(document.contact_form.name.value == ""){
+        		return false;
+        	} else if(document.contact_form.email.value == ""){
+        		return false;
+        	} else if(document.contact_form.content.value == ""){
+        		return false;
         	}
+        	var alertmsg = function(){
+        		  alert("問い合わせを受け付けました。\nトップ画面へ遷移します。しばらくお待ちください。");
+        		}
+        	setTimeout(alertmsg, 10000);
+        }
         </script>
     </head>
     <body id="page-top">
@@ -38,9 +48,12 @@
             <div class="conatact-container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">お問い合わせ  入力フォーム</h2>
-                    <p>お問い合わせ内容をご入力の上、「送信」ボタンをクリックしてください。</p>
+                    <p>
+                    	お問い合わせ内容をご入力の上、「送信」ボタンをクリックしてください。<br>
+                    	<span style="color:red;">※すべて入力必須項目となっております。記入漏れのないようお願い致します。</span>
+                    </p>
                 </div>
-                	<form action="#" method="post" th:action="@{/contact/reception}" th:object="${contactForm}" onsubmit="return send()">
+                	<form action="#" method="post" th:action="@{/contact/reception}" th:object="${contactForm}" name="contact_form">
                 		<div class="contact-form">
                 			<div class="cp_iptxt">
 								<label class="ef">お名前
@@ -63,7 +76,7 @@
 							
 							<!-- 送信ボタン/完了ポップアップ -->
 							<div class="submit-button">
-                    			<input type="submit" name="submit" id="submit" class="btn btn--submit btn--radius" value="&emsp;送信&emsp;"/>
+                    			<input type="submit" name="submit" id="submit" class="btn btn--submit btn--radius" value="&emsp;送信&emsp;" onclick="clickEvent()"/>
                	  	    	</div>
                	  	    </div>
               	    </form>
