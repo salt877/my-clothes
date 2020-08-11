@@ -25,6 +25,8 @@
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="../static/dist/css/styles.css" rel="stylesheet"
 	th:href="@{/dist/css/styles.css}" />
+<link href="../static/dist/css/edit_clothes.css" rel="stylesheet"
+	th:href="@{/dist/css/edit_clothes.css}" />	
 <link href="../static/dist/css/register_clothes.css"
 	th:href="@{/dist/css/register_clothes.css}" rel="stylesheet" />
 <link rel="stylesheet"
@@ -63,9 +65,11 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 				<!-- 商品idを埋め込んでおく -->
 				<input type="hidden" name="clothesId" th:value="${clothes.id}">
 				<div id="item-image" class="image-information">
-					<img class="img-fluid" th:src="${clothes.imagePath}" width="400"
-						height="400" /><br> <input name="imageFile" type="file"
-						accept=".jpg,.png">
+					<img id="preview" class="img-fluid" th:src="${clothes.imagePath}" width="400" height="400" /><br> 
+					<div class="file_button">
+						画像を変更
+						<input  id="myImage" class="file_input" name="imageFile" type="file" accept=".jpg,.png">
+					</div>
 				</div>
 				<div class="required-information">
 					<table>
@@ -275,6 +279,8 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 		th:src="@{/dist/js/scripts.js}"></script>
 	<script src="../static/dist/js/hamburger_menu.js"
 		th:src="@{/dist/js/hamburger_menu.js}"></script>
+	<script src="../static/dist/js/edit_clothes.js"
+		th:src="@{/dist/js/edit_clothes.js}"></script>
 	<!-- brand用オートコンプリート なぜかhead内だと起動しない -->
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
