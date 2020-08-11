@@ -1,0 +1,12 @@
+@charset "UTF-8";
+/* 日曜日 */
+.fc-day-sun {
+    color: red;
+    background-color: #fff0f0;
+}
+ 
+/* 土曜日 */
+.fc-day-sat {
+    color: blue;
+    background-color: #f0f0ff;
+}
