@@ -1,5 +1,6 @@
 package jp.co.example.my.clothes.form;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
@@ -13,6 +14,7 @@ public class RegisterUserForm {
 
 	/** メールアドレス */
 	@NotBlank(message = "メールアドレスを入力して下さい")
+	@Email(message = "アドレス形式が不正です")
 	private String email;
 
 	/** パスワード */
