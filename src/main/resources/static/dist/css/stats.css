@@ -1,30 +1,8 @@
 @charset "UTF-8";
 
-
-
-
 /* PC用のCSSはメディアクエリの外に記述する */
-
-
-
-
-@media screen and (max-width: 959px) {
-	/* 959px以下に適用されるCSS（タブレット用） */
-	
-	
-	
-	
-	
+@media screen and (max-width: 959px) { /* 959px以下に適用されるCSS（タブレット用） */
 }
 
-
-@media screen and (max-width: 480px) {
-	/* 480px以下に適用されるCSS（スマホ用） */
-	
-	
-	
-	
-	
-	
-	
+@media screen and (max-width: 480px) { /* 480px以下に適用されるCSS（スマホ用） */
 }
