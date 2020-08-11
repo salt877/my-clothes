@@ -19,8 +19,9 @@
 }
 
 /**/
-.register-coordinate-btn-sp{
+.register-coordinate-btn-sp {
 	display: none;
+	background-color: #87befd;
 }
 
 /*カテゴリー表示*/
@@ -123,26 +124,18 @@
 
 @media screen and (max-width: 480px) { /* 480px以下に適用されるCSS（スマホ用） */
 	/*過去コーデ画面*/
-
-.register-coordinate-btn-sp{
-	display: inline;
-	margin-left: 30%;
-	
-}
-
-.register-coordinate-btn{
-	display: none;
-}
-
-.clm {
-	width: 100%;
-}
-
-.co-total-price{
-	font-size: 12px;
-}
-
-
-
-
+	.register-coordinate-btn-sp {
+		display: inline;
+		margin-left: 30%;
+		background-color: #87befd;
+	}
+	.register-coordinate-btn {
+		display: none;
+	}
+	.clm {
+		width: 100%;
+	}
+	.co-total-price {
+		font-size: 12px;
+	}
 }

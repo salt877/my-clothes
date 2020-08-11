@@ -28,6 +28,7 @@ $(function(){
 					}]
 				},
 				options : {
+					maintainAspectRatio: false,
 					title : {
 						display : true,
 						text : 'カテゴリー'
@@ -52,6 +53,7 @@ $(function(){
 			            }
 			        }											
 		       })
+			
 									
 									
 		}).fail(function(XMLHttpRequest, textStatus, errorThrown){
@@ -90,6 +92,7 @@ $(function(){
 							}]
 					},
 					options : {
+						maintainAspectRatio: false,
 						title : {
 							display : true,
 							text : 'カテゴリー'
@@ -149,6 +152,7 @@ $(function(){
 							}]
 					},
 					options : {
+						maintainAspectRatio: false,
 						title : {
 							display : true,
 							text : 'ブランド'
@@ -208,6 +212,7 @@ $(function(){
 							}]
 					},
 					options : {
+						maintainAspectRatio: false,
 						title : {
 							display : true,
 							text : 'ブランド'

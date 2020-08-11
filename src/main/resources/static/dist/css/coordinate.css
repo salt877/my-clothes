@@ -1,16 +1,46 @@
 @charset "UTF-8";
-/*
-#modal-img {
-	display: flex;
+
+h1 {
+	margin-top: 100px !important;
 }
 
-/*
-#modal-img>img {
-	width: 250px;
-	height: auto;
-	margin: 12px;
+.drag-area {
+	position: relative;
+	width: 406.5px;
+	height: 500px;
 }
-*/
+
+.drag-img {
+	position: absolute;
+	height: auto;
+	width: 130px;
+}
+
+h6 {
+	margin-left: 15px;
+}
+
+.ex-img {
+	text-align: center;
+}
+
+.ex-img-a {
+	height: 300px;
+}
+
+.sankaku {
+	margin-left: 30px;
+	margin-right: 30px;
+}
+
+.arrow {
+	text-align: center;
+}
+
+.category-btn {
+	width: 250px;
+}
+
 .btn-set {
 	width: 26%;
 }
@@ -73,6 +103,7 @@
 	border: 4px solid #DDDDDD;
 }
 
+/*説明モーダル内※印*/
 small {
 	color: red;
 }
@@ -93,5 +124,22 @@ small {
 	}
 	.btn-set {
 		width: 80%;
+	}
+	.in-modal-img {
+		margin-right: 30%;
+	}
+	.conf-modal-tbl>thead {
+		display: inline;
+	}
+	.drag-area {
+		position: relative;
+		height: 500px;
+		width: 250px;
+	}
+	.drag-img {
+		position: absolute;
+		right: 155px;
+		height: auto;
+		width: 90px;
 	}
 }
