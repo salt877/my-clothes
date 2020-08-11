@@ -46,26 +46,42 @@ public class ChangeEmailController {
 		return "change_email";
 	}
 
+	/**
+	 * メールアドレスを変更します.
+	 * 
+	 * @param model モデル
+	 * @param loginUser　ログインユーザ
+	 * @param form　メールアドレス変更時に使用するフォーム
+	 * @param result　エラー結果
+	 * @return　メールアドレス変更完了画面
+	 */
 	@RequestMapping("/input")
 	public String changeEmail(Model model, @AuthenticationPrincipal LoginUser loginUser,
 			@Validated ChangeUserEmailForm form, BindingResult result) {
 
-		// エラーがあれば入力画面に戻る
-		if (result.hasErrors()) {
-			return showChangeEmail();
-		}
-
-		// 入力したメールアドレスと確認用メールアドレスが一致しなければ入力画面に戻る
-		if (!(form.getEmail().equals(form.getConfirmEmail()))) {
-			model.addAttribute("message", "確認用メールアドレスが一致しません");
-			return showChangeEmail();
-		}
+		String myqloEmail = "my.clothes0702@gmail.com";
 
 		User user = changeUserEmailService.findByEmail(form.getEmail());
 
 		// 入力したメールアドレスですでに登録されていたら入力画面に戻る
 		if (user != null) {
-			model.addAttribute("message", "現在そのメールアドレスで登録されています");
+			result.rejectValue("email", "", "そのメールアドレスはすでに使われています");
+			return showChangeEmail();
+		}
+		
+		// MYQLOのメールアドレスに変更できないようにする
+		if (myqloEmail.equals(form.getEmail())) {
+			result.rejectValue("email", "", "そのメールアドレスは使用できません");
+		}
+		
+		// 入力したメールアドレスと確認用メールアドレスが一致しなければ入力画面に戻る
+		if (!(form.getEmail().equals(form.getConfirmEmail()))) {
+			result.rejectValue("confirmEmail", "", "確認用メールアドレスが一致しません");
+			return showChangeEmail();
+		}
+		
+		// エラーがあれば入力画面に戻る
+		if (result.hasErrors()) {
 			return showChangeEmail();
 		}
 

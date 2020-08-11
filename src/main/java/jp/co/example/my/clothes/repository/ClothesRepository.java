@@ -1,5 +1,6 @@
 package jp.co.example.my.clothes.repository;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -21,6 +22,7 @@ import jp.co.example.my.clothes.domain.CategoryCountDto;
 import jp.co.example.my.clothes.domain.Clothes;
 import jp.co.example.my.clothes.domain.Color;
 import jp.co.example.my.clothes.domain.Size;
+import jp.co.example.my.clothes.domain.Tag;
 import jp.co.example.my.clothes.domain.CategorySumDto;
 import jp.co.example.my.clothes.domain.MonthlyDataDTO;
 import jp.co.example.my.clothes.domain.TagContent;
@@ -190,6 +192,7 @@ public class ClothesRepository {
 		TagContent tagName = template.queryForObject(sql, param, TAG_CONTENTS_ROW_MAPPER);
 		return tagName;
 	}
+	
 
 	/**
 	 * 登録アイテムをブランド別に分けて表示します.
@@ -221,6 +224,39 @@ public class ClothesRepository {
 		return tagNameList;
 	}
 
+	// タグ検索から詳細画面へ移行する際の表示用ローマッパー.
+	private static final RowMapper<Clothes> CLOTHES_ROW_MAPPER5 = (rs, i) -> {
+		// タグコンテンツ
+		TagContent tagContent= new TagContent();
+		tagContent.setId(rs.getInt("tc_id"));
+		tagContent.setName(rs.getString("name"));
+		//タグ
+		Tag tag = new Tag();
+		tag.setId(rs.getInt("t_id"));
+		tag.setClothesId(rs.getInt("c_id"));
+		tag.setTagContent(tagContent);
+		List<Tag>tagList = new ArrayList<>();
+		tagList.add(tag);
+		// 服アイテム
+		Clothes clothes = new Clothes();
+		clothes.setId(rs.getInt("c_id"));
+		clothes.setUserId(rs.getInt("user_id"));
+		clothes.setBrandId(rs.getInt("brand_id"));
+		clothes.setCategoryId(rs.getInt("category_id"));
+		clothes.setColorId(rs.getInt("color_id"));
+		clothes.setSizeId(rs.getInt("size_id"));
+		clothes.setImagePath(rs.getString("image_path"));
+		clothes.setPrice(rs.getInt("price"));
+		clothes.setSeason(rs.getString("season"));
+		clothes.setPerchaseDate(rs.getDate("perchase_date"));
+		clothes.setComment(rs.getString("comment"));
+		clothes.setDeleted(rs.getBoolean("deleted"));
+		clothes.setTagList(tagList);
+			
+		return clothes;
+	};
+	
+	
 	/**
 	 * 登録アイテムをタグ別に分けて表示します.
 	 * 
@@ -231,14 +267,14 @@ public class ClothesRepository {
 	public List<Clothes> findByTag(Integer userId, Integer tagContentsId) {
 		StringBuilder sql = new StringBuilder();
 		sql.append(
-				"SELECT c.id,c.user_id,c.category_id,c.brand_id,c.image_path,c.price,color_id,c.season,c.size_id,c.perchase_date,c.comment,c.deleted,");
-		sql.append("t.id,t.clothes_id,tc.id,tc.name FROM clothes AS c ");
+				"SELECT c.id c_id,c.user_id,c.category_id,c.brand_id,c.image_path,c.price,color_id,c.season,c.size_id,c.perchase_date,c.comment,c.deleted,");
+		sql.append("t.id t_id,t.clothes_id,tc.id tc_id,tc.name FROM clothes AS c ");
 		sql.append("JOIN tags AS t ON c.id=t.clothes_id JOIN tag_contents AS tc ON t.tag_contents_id=tc.id ");
 		sql.append("WHERE c.user_id=:userId AND tc.id=:tagContentsId AND deleted =false;");
 		System.out.println(sql.toString());
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId).addValue("tagContentsId",
 				tagContentsId);
-		List<Clothes> clothesList = template.query(sql.toString(), param, CLOTHES_ROW_MAPPER);
+		List<Clothes> clothesList = template.query(sql.toString(), param, CLOTHES_ROW_MAPPER5);
 		return clothesList;
 	}
 
