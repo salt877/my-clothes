@@ -1392,4 +1392,15 @@ A VERTICAL event
   .fc-theme-bootstrap a:not([href]) {
     color: inherit; /* natural color for navlinks */
   }
-
+/* —j“ú‚ÌF‚ğ•ÏX */
+/* “ú—j“ú */
+.fc-day-sun {
+    color: red;
+    background-color: #fff0f0;
+}
+ 
+/* “y—j“ú */
+.fc-day-sat {
+    color: blue;
+    background-color: #f0f0ff;
+}
