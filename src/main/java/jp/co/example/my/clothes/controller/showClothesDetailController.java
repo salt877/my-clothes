@@ -276,7 +276,7 @@ public class showClothesDetailController {
 			// 既にタグが登録されている場合、入力されたタグ情報を更新する
 			if(!CollectionUtils.isEmpty(tagList) && tagContent1 != null) {
 				tag = tagList.get(0);
-				tag.setTagContentId(tagContent1.getId());		// ヌルぽ
+				tag.setTagContentId(tagContent1.getId());		
 				tag.setTagContent(tagContent1);
 				editClothesService.tagUpdate(tag);
 			} else if(CollectionUtils.isEmpty(tagList) && tagContent1 != null){
@@ -333,7 +333,7 @@ public class showClothesDetailController {
 			if(tagContent2 != null) {
 				if(tagList.size() >= 2) {
 					tag = tagList.get(1);
-					tag.setTagContentId(tagContent2.getId());  //ヌルぽ
+					tag.setTagContentId(tagContent2.getId());  
 					tag.setTagContent(tagContent2);
 					editClothesService.tagUpdate(tag);
 				} else if(tagList.size() == 1 || CollectionUtils.isEmpty(tagList)) {
@@ -413,8 +413,7 @@ public class showClothesDetailController {
 			}
 		}
 		
-		
-		return "forward://";
+		return "redirect:/";
 	}
 	
 	/*

@@ -10948,9 +10948,10 @@ tbody th {
 	left: 360px;
 }
 
-#item-image input[type=file] {
-	padding-top: 10px;
-	padding-left: 60px;
+.file_button{
+	position: absolute;
+	top: 10px;
+	left: 130px;
 }
 
 .image-information .img-fluid img {
