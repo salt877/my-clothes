@@ -1,24 +1,15 @@
 @charset "UTF-8";
 
-.body {
-	/*color: #002222;*/
-	/*background-color: papayawhip;*/
-	text-align: center;
-	/*background-image: url(img/weather.jpg);*/
+span {	
+	display: inline-block;
 }
-/*
-img {
-	width: 100px;
-}
-*/
+
 .container {
 	padding-left: 20%;
 	padding-right: 20%;
 }
 
-input {
-	margin: 2%;
-}
+
 
 #submit {
 	margin-left: 10px;
@@ -27,4 +18,21 @@ input {
 .bold {
 	font-weight: bold;
 	font-size: 1.5em;
+}
+
+@media screen and (max-width: 959px) { /* 959px以下に適用されるCSS（タブレット用） */
+}
+
+@media screen and (max-width: 480px) {
+	/* 480px以下に適用されるCSS（スマホ用） */
+	h3 {
+		font-size: 1.5em;
+		margin-top: 0;
+		margin-bottom: 1rem;
+	}
+	
+	span.weather-report{
+	display:block;
+	}
+	
 }

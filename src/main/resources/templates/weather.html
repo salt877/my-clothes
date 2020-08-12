@@ -32,24 +32,21 @@
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="../static/dist/css/styles.css" rel="stylesheet"
 	th:href="@{/dist/css/styles.css}" />
+<link href="../static/dist/css/weather.css" rel="stylesheet"
+	th:href="@{/dist/css/weather.css}" />
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<link href="../static/dist/css/register_clothes.css">
 <script type="text/javascript" src="../static/dist/js/weather.js"
 	th:src="@{/dist/js/weather.js}" /></script>
 <style type="text/css">
+//body {
+//	background-image: url(../img/weather.jpg);
+//	background-color: rgba(255, 255, 255, 0.8);
+//	background-blend-mode: lighten;
+//}
 
-<style type="text/css">
-body {
-	background-image: url(../img/weather.jpg);
-	background-color: rgba(255, 255, 255, 0.8);
-	background-blend-mode: lighten;
-}
 
-span {
-	display: inline-block;
-}
 </style>
 
 
@@ -89,9 +86,9 @@ span {
 		var icon = data.list[i].weather[0].icon;
 		var html = '<span class="weather-report">'
 				+ '<img src="http://openweathermap.org/img/w/' + icon + '.png">'
-				+ '<div class="weather-date">'
+				+ '&nbsp;&nbsp;&nbsp;&nbsp;<div class="weather-date">'
 				+ day
-				+ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>'
+				+ '&nbsp;&nbsp;&nbsp;&nbsp;</div>'
 				+ '<div class="weather-main">' + data.list[i].weather[0].main
 				+ '&nbsp;</div>' + '<div class="weather-temp">'
 				+ Math.round(data.list[i].main.temp) + '℃</div>' + '</span>';
@@ -117,16 +114,14 @@ span {
 		<nav class="navbar navbar-default" th:replace="header::pageheader"></nav>
 	</div>
 	<div class="text-center">
-				<h1 class="section-heading text-uppercase"
-					style="margin-top: 100px;">MY WEATHER</h1>
-				<div class="section-subheading text-muted">設定地区の天気予報をチェック。</div>
-				<br> <br>
-				<br> <br>
-			</div>
+		<h1 class="section-heading text-uppercase" style="margin-top: 100px;">MY
+			WEATHER</h1>
+		<div class="section-subheading text-muted">設定地区の天気予報をチェック。</div>
+		<br> <br> <br> <br>
+	</div>
 	<div align="center">
 		<h3 th:text="${pref}+'の天気予報'"></h3>
-	<br>
-		<span id="weather"></span>
+		<br> <span id="weather"></span>
 	</div>
 	<br>
 	<br>
@@ -135,8 +130,9 @@ span {
 	<form action="" th:action="@{/weather/registerCity}" method="post"
 		th:object="${weatherForm}" name="form1">
 		<div align="center">
-			    <span  style="display:inline-flex">
-				<br> <select id="city" name="city" class="form-control" style="width: 130px" onchange="clickBtn3()">
+			<span style="display: inline-flex"> <br> <select
+				id="city" name="city" class="form-control" style="width: 130px"
+				onchange="clickBtn3()">
 					<optgroup label="北海道　東北">
 						<option value="北海道" th:field="*{city}">北海道</option>
 						<option value="青森県" th:field="*{city}">青森県</option>
@@ -200,10 +196,8 @@ span {
 						<option value="鹿児島県" th:field="*{city}">鹿児島県</option>
 						<option value="沖縄県" th:field="*{city}">沖縄県</option>
 					</optgroup>
-				</select>
-				&nbsp;&nbsp;&nbsp;
-				<input type="submit" value="都道府県を設定" 
-					class="btn btn-primary"> 
+			</select> &nbsp;&nbsp;&nbsp; <input type="submit" value="都道府県を設定"
+				class="btn btn-primary">
 			</span>
 		</div>
 	</form>
