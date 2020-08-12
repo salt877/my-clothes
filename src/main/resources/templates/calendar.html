@@ -26,18 +26,20 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="../static/dist/css/styles.css" rel="stylesheet" th:href="@{/dist/css/styles.css}"/>
-
 <!-- FullCalender実装用 -->
 <link href='../static/lib/main.css' rel='stylesheet' th:href="@{/lib/main.css}" />
-<script src='../static/lib/locales/ja.js' th:src="@{/lib/locales/ja.js}"></script>
 <script src='../static/lib/main.js' th:src="@{/lib/main.js}"></script> 
+<script src='../static/lib/locales/ja.js' th:src="@{/lib/locales/ja.js}"></script>
+<script src='../static/lib/locales-all.js' th:src="@{/lib/locales-all.js}"></script>
 <!-- 月別データ表示用 -->
 <script src='../static/js/show_price.js' th:src="@{dist/js/show_price.js}"></script> 
 <script>
 	document.addEventListener('DOMContentLoaded', function() {
 		var calendarEl = document.getElementById('calendar');
 	    var calendar = new FullCalendar.Calendar(calendarEl, {
-	        locale: 'ja', 
+	       
+	        locale: 'ja',
+	        handleWindowResize: true, 
 	        editable: true,
 	        events: 
 	        	{

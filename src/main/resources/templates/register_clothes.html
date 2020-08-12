@@ -25,40 +25,16 @@
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="../static/dist/css/styles.css"
 	th:href="@{/dist/css/styles.css}" rel="stylesheet" />
-<link href="../static/dist/css/register_clothes.css"
-	th:href="@{/dist/css/register_clothes.css}" rel="stylesheet" />
+	
+<link href="../static/dist/css/register_clothes.css" rel="stylesheet"
+	th:href="@{/dist/css/register_clothes.css}" />
+	
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script type="text/javascript" src="../static/dist/js/register_clothes.js" th:src="@{/dist/js/register_clothes.js}" /></script>
-<style type='text/css'>
-input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button
-	{
-	-webkit-appearance: none;
-	margin: 0;
-}
-/* 画像の選択ボタンに関して*/
-/* labelをボタンらしく */
-.upload-label {
-	display: inline-block;
-	cursor: pointer; /* カーソルを指に */
-	margin: 1em 0; /* まわりの余白 */
-	padding: .7em 1em; /* 文字まわりの余白 */
-	line-height: 1.4; /* 行間 */
-	background: #ffc107; /* 背景色 */
-	color: #FFF; /* 文字色 */
-	font-size: 0.95em; /* フォントサイズ */
-	border-radius: 2.5em; /* 角の丸み */
-	transition: 0.2s; /* ホバーをなめらかに */
-}
-/* aホバー時 */
-.upload-label:hover {
-	box-shadow: 0 8px 10px -2px rgba(0, 0, 0, 0.2); /* 影を表示 */
-}
-/* inputは隠す */
-</style>
 
 <script type="text/javascript">
 //aモーダルの画像表示
@@ -183,10 +159,11 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 				th:action="@{/registerClothes/register}"
 				th:object="${registerClothesForm}" enctype="multipart/form-data">
 				<div id="item-image" class="image-information">
-					<img class="img-fluid mx-auto" id="preview"><br>
-					 <input name="imageFile" type="file" accept=".jpg,.png" id="myImage" th:field="*{imageFile}"required>
+					 
 				</div>
 				<div class="required-information">
+				<img id="preview"><br>
+					 <input name="imageFile" type="file" accept=".jpg,.png" id="myImage" th:field="*{imageFile}"required>
 					<table>
 						<thead>
 							<tr>
@@ -196,7 +173,7 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 						<tbody>
 							<tr>
 								<th>カテゴリー</th>
-								<td data-label="category" class="txt"><label for="category"
+								<td  class="txt"><label for="category"
 									th:errors="*{category}" style="color: red"></label>
 									<div class="cp_ipselect cp_sl02">
 										<select name="category" id="category">
@@ -213,7 +190,7 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 									<div th:if="${message}!=null" th:text="${message}" style="color: red">
 										<div id="duplicateMessage" style="color: red;"></div>
 								</th>
-								<td data-label="brand" class="txt"><label for="brand"
+								<td  class="txt"><label for="brand"
 									th:errors="*{brand}" style="color: red"></label>
 									<div class="search">
 										<input type="text" class="search-form" name="brand" id="brand"
@@ -224,7 +201,7 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 							<tr>
 								<th>カラー</th>
 
-								<td data-label="color" class="txt"><label for="color"
+								<td  class="txt"><label for="color"
 									th:errors="*{color}" style="color: red"></label>
 									<div class="cp_ipselect cp_sl02">
 										<select name="color" id="color">
@@ -248,7 +225,7 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 						<tbody>
 							<tr>
 								<th>タグ1</th>
-								<td data-label="タグ" class="txt">
+								<td class="txt">
 									<div class="search">
 										<input type="text" class="search-form" name="tag1" id="tag1">
 									</div>
@@ -256,7 +233,7 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 							</tr>
 							<tr class="border-top-0">
 								<th>タグ2</th>
-								<td data-label="タグ" class="txt">
+								<td class="txt">
 									<div class="search">
 
 										<input type="text" class="search-form" name="tag2" id="tag2">
@@ -265,7 +242,7 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 							</tr>
 							<tr class="border-top-0">
 								<th>タグ3</th>
-								<td data-label="タグ" class="txt  border-top-0">
+								<td  class="txt  border-top-0">
 									<div class="search">
 										<input type="text" class="search-form" name="tag3" id="tag3">
 
@@ -274,7 +251,7 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 							</tr>
 							<tr>
 								<th>シーズン</th>
-								<td data-label="シーズン" class="txt" id="seasons"><input
+								<td  class="txt" id="seasons"><input
 									type="radio" name="season" th:value="春"
 									th:checked="${season=='春'}" id="season"
 									onchange="chk1(this.value)">春&emsp; <input type="radio"
@@ -288,7 +265,7 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 							</tr>
 							<tr>
 								<th>サイズ</th>
-								<td data-label="サイズ" class="txt" name="size">
+								<td  class="txt" name="size">
 									<div class="cp_ipselect cp_sl02">
 										<select name="size" id="size">
 											<option value="">--</option>
@@ -300,7 +277,7 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 							</tr>
 							<tr>
 								<th>購入日</th>
-								<td data-label="購入日" class="txt"><input type="date"
+								<td class="txt"><input type="date"
 									name="perchaseDate" id="perchaseDate"
 									th:field="*{perchaseDate}"></td>
 									<script type="text/javascript">
@@ -313,13 +290,13 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 							<tr>
 								<th>価格</th>
 
-								<td data-label="price" class="txt"><label for="price"
+								<td class="txt"><label for="price"
 									th:errors="*{price}" style="color: red"></label> <input
 									type="number" name="price" th:field="*{price}" id="price"></td>
 							</tr>
 							<tr>
 								<th>メモ</th>
-								<td data-label="comment" class="txt"><label for="comment"
+								<td class="txt"><label for="comment"
 									th:errors="*{comment}" style="color: red"></label> <textarea
 										rows="10" name="comment" cols="30" th:field="*{comment}"
 										id="comment"></textarea></td>
@@ -337,7 +314,7 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 				<div class="modal fade" id="staticBackdrop" data-backdrop="static"
 					data-keyboard="false" tabindex="-1" role="dialog"
 					aria-labelledby="staticBackdropLabel" aria-hidden="true">
-					<div class="modal-dialog">
+					<div class="modal-dialog modal-dialog-fluid">
 						<div class="modal-content">
 							<div class="modal-header">
 								<h5 class="modal-title" id="staticBackdropLabel">アイテム登録確認画面</h5>
@@ -373,7 +350,7 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 											<tbody>
 												<tr>
 													<th>カテゴリー</th>
-													<td data-label="カテゴリー" class="txt">
+													<td  class="txt">
 														<div class="cp_ipselect cp_sl02">
 															<select id="category2" disabled="disabled">
 																<option th:value="null"></option>
@@ -386,7 +363,7 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 												</tr>
 												<tr>
 													<th>ブランド</th>
-													<td data-label="ブランド" class="txt">
+													<td class="txt">
 														<div class="search">
 															<input type="text" class="search-form" id="brand2"
 																disabled="disabled">
@@ -395,7 +372,7 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 												</tr>
 												<tr>
 													<th>カラー</th>
-													<td data-label="カラー" class="txt">
+													<td class="txt">
 														<div class="cp_ipselect cp_sl02">
 															<select id="color2" disabled="disabled">
 																<option th:value="null"></option>
@@ -420,7 +397,7 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 											<tbody>
 												<tr>
 													<th>タグ1</th>
-													<td data-label="タグ" class="txt">
+													<td class="txt">
 														<div class="search">
 															<input type="text" class="search-form" id="tag11"
 																disabled="disabled">
@@ -429,7 +406,7 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 												</tr>
 												<tr class="border-top-0">
 													<th>タグ2</th>
-													<td data-label="タグ" class="txt">
+													<td class="txt">
 														<div class="search">
 															<input type="text" class="search-form" id="tag22"
 																disabled="disabled">
@@ -438,7 +415,7 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 												</tr>
 												<tr class="border-top-0">
 													<th>タグ3</th>
-													<td data-label="タグ" class="txt  border-top-0">
+													<td class="txt  border-top-0">
 														<div class="search">
 															<input type="text" class="search-form" id="tag33"
 																disabled="disabled">
@@ -447,7 +424,7 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 												</tr>
 												<tr>
 													<th>シーズン</th>
-													<td data-label="シーズン" class="txt"><span id="season2"
+													<td class="txt"><span id="season2"
 														style="color: black"></span> <script>
 													function chk1(val) {
   													document.getElementById("season2").textContent = val;
@@ -456,7 +433,7 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 												</tr>
 												<tr>
 													<th>サイズ</th>
-													<td data-label="サイズ" class="txt">
+													<td class="txt">
 														<div class="cp_ipselect cp_sl02">
 															<select id="size2" disabled="disabled">
 																<option></option>
@@ -469,17 +446,17 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 												</tr>
 												<tr>
 													<th>購入日</th>
-													<td data-label="購入日" class="txt"><input type="date"
+													<td class="txt"><input type="date"
 														id="perchaseDate2" disabled="disabled"></td>
 												</tr>
 												<tr>
 													<th>価格</th>
-													<td data-label="価格" class="txt"><input type="text"
+													<td class="txt"><input type="text"
 														id="price2" disabled="disabled"></td>
 												</tr>
 												<tr>
 													<th>メモ</th>
-													<td data-label="メモ" class="txt"><textarea rows="10"
+													<td class="txt"><textarea rows="10"
 															cols="30" id="comment2" disabled="disabled"></textarea></td>
 												</tr>
 											</tbody>
