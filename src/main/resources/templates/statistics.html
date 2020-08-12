@@ -26,6 +26,8 @@
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="../static/dist/css/styles.css" rel="stylesheet"
 	th:href="@{/dist/css/styles.css}" />
+<link href="../static/dist/css/stats.css" rel="stylesheet"
+	th:href="@{/dist/css/stats.css}" />
 
 <!-- Chart.js -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js "></script>
@@ -43,11 +45,9 @@
 	<!-- Portfolio Grid-->
 	<div class="container">
 		<div class="text-center">
-			<h1 class="section-heading text-uppercase" style="margin-top: 100px;">MY
-				STATS</h1>
+			<h1 class="section-heading text-uppercase">MY STATS</h1>
 			<div class="section-subheading text-muted">あなたが登録したアイテムの統計データです。</div>
 		</div>
-		<br> <br> <br> <br>
 
 		<div class="text-center">
 			<div th:if="${#lists.isEmpty(clothesListByUserId)}">
@@ -64,12 +64,12 @@
 			</div>
 
 			<div th:if="!${#lists.isEmpty(clothesListByUserId)}">
-				<table class="table">
+				<table class="table table-list">
 					<thead>
 						<tr>
 							<th class="st-column">クローゼット総資産額</th>
 							<th class="st-column">購入アイテム平均額</th>
-							<th class="st-column">クローゼットアイテム数</th>
+							<th class="st-column">アイテム数</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -85,20 +85,18 @@
 					</tbody>
 				</table>
 
-				<br> <br>
 
 				<!-- カテゴリー別金額テーブル -->
-				<table class="table">
+				<table class="table canvas-gr">
 					<thead>
 						<tr>
-							<th class="st-column">カテゴリー別金額</th>
+							<th class="st-column cl-title">カテゴリー別金額</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td>
-								<div class="canvas"
-									style="position: relative; height: 70vh; width: 72vw">
+							<td class="canvas-td">
+								<div class="canvas">
 									<canvas id="chartListedByCategoryPrice"></canvas>
 								</div>
 							</td>
@@ -107,21 +105,17 @@
 				</table>
 
 
-				<br> <br>
 
 				<!-- カテゴリー別アイテム数テーブル -->
-				<table class="table">
-					<thead>
-						<tr>
-
-							<th class="st-column">カテゴリー別アイテム数</th>
-						</tr>
-					</thead>
+				<table class="table canvas-gr">
 					<tbody>
 						<tr>
-							<td>
-								<div class="canvas"
-									style="position: relative; height: 70vh; width: 72vw">
+
+							<th class="st-column cl-title">カテゴリー別アイテム数</th>
+						</tr>
+						<tr>
+							<td class="canvas-td">
+								<div class="canvas">
 									<canvas id="chartListedByCategoryCount"></canvas>
 								</div>
 							</td>
@@ -129,20 +123,16 @@
 					</tbody>
 				</table>
 
-				<br> <br>
 
 				<!-- ブランド別金額  -->
-				<table class="table">
-					<thead>
-						<tr>
-							<th class="st-column">ブランド別金額</th>
-						</tr>
-					</thead>
+				<table class="table canvas-gr">
 					<tbody>
 						<tr>
-							<td>
-								<div class="canvas"
-									style="position: relative; height: 70vh; width: 72vw">
+							<th class="st-column cl-title">ブランド別金額</th>
+						</tr>
+						<tr>
+							<td class="canvas-td">
+								<div class="canvas">
 									<canvas id="chartListedByBrandPrice"></canvas>
 								</div>
 							</td>
@@ -150,20 +140,16 @@
 					</tbody>
 				</table>
 
-				<br> <br>
 
 				<!-- ブランド別アイテム数  -->
-				<table class="table">
-					<thead>
-						<tr>
-							<th class="st-column">ブランド別アイテム数</th>
-						</tr>
-					</thead>
+				<table class="table canvas-gr">
 					<tbody>
 						<tr>
-							<td>
-								<div class="canvas"
-									style="position: relative; height: 70vh; width: 72vw">
+							<th class="st-column cl-title">ブランド別アイテム数</th>
+						</tr>
+						<tr>
+							<td class="canvas-td">
+								<div class="canvas">
 									<canvas id="chartListedByBrandCount"></canvas>
 								</div>
 							</td>
