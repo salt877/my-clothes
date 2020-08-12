@@ -33,7 +33,7 @@ public class RegisterCoordinateController {
 	}
 
 	/**
-	 * コーディネートを登録します.
+	 * コーディネートを登録します.登録後、完了画面へリダイレクトします.
 	 * 
 	 * @param loginUser
 	 * @param form
@@ -63,6 +63,11 @@ public class RegisterCoordinateController {
 
 	}
 
+	/**
+	 * コーデ完了画面を表示します.
+	 * 
+	 * @return
+	 */
 	@RequestMapping("/finished")
 	public String finishCoordinate() {
 		return "finish_coordinate";

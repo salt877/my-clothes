@@ -215,10 +215,10 @@ $(function(){
 		
 	});
 	
-	//モバイル端末等でのダブルタップ処理
+	// モバイル端末等でのダブルタップ処理
 	$(".drag-img").data("dblTap",false).click(function(){
 		if($(this).data("dblTap")){
-			//ダブルタップ時の命令
+			// ダブルタップ時の命令
 			if($(this).attr('id') === "drag-img1"){
 				$("#drag-img1").attr("src", "");
 				$("#in-modal-img1").attr("src", "");
@@ -331,24 +331,31 @@ $(function(){
 			}				
 		}
 
+		// 確認モーダルを開いた時点でアイテム選択済＆コーデ名未入力の場合場合、押下不可
 		if(hiddenVal.length > 0 && $('#code-name').val().length == 0){
 			$('small#conf-msg').hide();
 			$('.coordinate-regis-btn').prop('disabled', true);
 		}
 		
-		// 確認モーダルを開いた時点でアイテム選択済＆コーデ名入力されている場合押下可
-		if(hiddenVal.length > 0 && $('#code-name').val().length > 0 && $('#code-name').val().length <= 20){
+		
+		// 確認モーダルを開いた時点でアイテム選択済＆コーデ名２０文字より多い場合、押下不可
+		if(hiddenVal.length > 0 && $('#code-name').val().length > 20){
 			$('small#conf-msg').hide();
-			$('.coordinate-regis-btn').prop('disabled', false);
+			$('.coordinate-regis-btn').prop('disabled', true);
 		}
 		
 				
-		// hiddenValが空（アイテム未選択）の場合、押下不可
-		if(hiddenVal.length == 0 || $('#code-name').val().length > 20){
+		// 確認モーダルを開いた時点でアイテム未選択＆コーデ名２０文字より多い場合、押下不可
+		if(hiddenVal.length == 0 && $('#code-name').val().length > 20){
 			$('small#conf-msg').show();
 			$('.coordinate-regis-btn').prop('disabled', true);
 		}
 		
+		// 確認モーダルを開いた時点でアイテム選択済＆コーデ名が１文字以上２０文字以下で入力されている場合、押下可
+		if(hiddenVal.length > 0 && $('#code-name').val().length > 0 && $('#code-name').val().length <= 20){
+			$('small#conf-msg').hide();
+			$('.coordinate-regis-btn').prop('disabled', false);
+		}
 		
 		// コーデ名入力欄changeイベント
 		$('#code-name').off('change').on('change', function() {
