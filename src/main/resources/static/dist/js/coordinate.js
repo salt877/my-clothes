@@ -214,6 +214,68 @@ $(function(){
 		
 		
 	});
+	
+	//モバイル端末等でのダブルタップ処理
+	$(".drag-img").data("dblTap",false).click(function(){
+		if($(this).data("dblTap")){
+			//ダブルタップ時の命令
+			if($(this).attr('id') === "drag-img1"){
+				$("#drag-img1").attr("src", "");
+				$("#in-modal-img1").attr("src", "");
+				$('#modal-fashion-accessories').val("");
+			}
+			
+			if($(this).attr('id') === "drag-img2"){
+				$("#drag-img2").attr("src", "");
+				$("#in-modal-img2").attr("src", "");
+				$('#modal-tops1').val("");
+			}
+			
+			if($(this).attr('id') === "drag-img3"){
+				$("#drag-img3").attr("src", "");
+				$("#in-modal-img3").attr("src", "");
+				$('#modal-tops2').val("");
+			}
+			
+			if($(this).attr('id') === "drag-img4"){
+				$("#drag-img4").attr("src", "");
+				$("#in-modal-img4").attr("src", "");
+				$('#modal-outers').val("");
+			}
+			
+			if($(this).attr('id') === "drag-img5"){
+				$("#drag-img5").attr("src", "");
+				$("#in-modal-img5").attr("src", "");
+				$('#modal-bottoms').val("");
+			}
+			
+			if($(this).attr('id') === "drag-img6"){
+				$("#drag-img6").attr("src", "");
+				$("#in-modal-img6").attr("src", "");
+				$('#modal-shoes').val("");
+			}
+			
+			if($(this).attr('id') === "drag-img7"){
+				$("#drag-img7").attr("src", "");
+				$("#in-modal-img7").attr("src", "");
+				$('#modal-bag').val("");
+			}
+			
+			if($(this).attr('id') === "drag-img8"){
+				$("#drag-img8").attr("src", "");
+				$("#in-modal-img8").attr("src", "");
+				$('#modal-dress').val("");
+			}			
+			
+			$(this).data("dblTap",false);
+		}else{
+			$(this).data("dblTap",true);
+		}
+		setTimeout(function(){
+			$(".drag-img").data("dblTap",false);
+		},500);
+	
+	});
 
 	
 	// コーデ削除ボタンを押したときの処理

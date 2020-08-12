@@ -16,6 +16,10 @@ h1 {
 	width: 130px;
 }
 
+.wrap {
+	text-align: center;
+}
+
 h6 {
 	margin-left: 15px;
 }
@@ -47,6 +51,10 @@ h6 {
 
 #ex-btn {
 	text-align: right;
+}
+
+.ca-name-sp {
+	display: none;
 }
 
 .continue-coordinate-btn {
@@ -108,11 +116,42 @@ small {
 	color: red;
 }
 
+#registerModalLabel {
+	display: block;
+}
+
+#conf-msg {
+	display: block;
+}
+
+table tr:last-child {
+	border-bottom: 2px solid #bbb;
+}
+
+#conf-msg {
+	color: red;
+	margin-top: 10px;
+}
+
+.conf-modal-tbl th {
+	text-align: center;
+}
+
+.in-modal-img {
+	width: 100px;
+	height: auto;
+}
+
+#error-msg {
+	color: red;
+}
+
 @media screen and (max-width: 959px) { /* 959px以下に適用されるCSS（タブレット用） */
 }
 
 @media screen and (max-width:480px) {
 	/* 480px以下に適用されるCSS（スマホ用） */
+	/*説明モーダル*/
 	.ex-img {
 		display: none;
 	}
@@ -128,9 +167,7 @@ small {
 	.in-modal-img {
 		margin-right: 30%;
 	}
-	.conf-modal-tbl>thead {
-		display: inline;
-	}
+	/*コーデエリア*/
 	.drag-area {
 		position: relative;
 		height: 500px;
@@ -140,8 +177,111 @@ small {
 		position: absolute;
 		right: 155px;
 		height: auto;
-		width: 90px;
+		width: 80px;
 	}
-	
-	
+
+	/*コーデ画面テーブル共通設定*/
+	table {
+		border: 0;
+		width: 100%
+	}
+
+	/*コーデエリアテーブル*/
+	.co-tbl tr {
+		display: block;
+		margin-bottom: 2em;
+		border-bottom: 2px solid #bbb;
+	}
+	.co-tbl td {
+		border-bottom: 1px solid #bbb;
+		display: block;
+		font-size: .8em;
+		text-align: right;
+		position: relative;
+		padding: .625em .625em .625em 4em;
+		border-right: none;
+	}
+	.co-tbl th {
+		display: none;
+	}
+	.co-tbl td {
+		border-top: none !important;
+	}
+	.conf-modal-tbl {
+		width: 100%;
+	}
+	.conf-modal-tbl tr {
+		display: block;
+		float: left;
+	}
+	.conf-modal-tbl tr td, .conf-modal-tbl tr th {
+		display: block;
+		height: 130px;
+	}
+	.conf-modal-tbl thead {
+		display: block;
+		float: left;
+		width: 45%;
+	}
+	.conf-modal-tbl thead tr {
+		width: 100%;
+	}
+	.conf-modal-tbl tbody {
+		display: block;
+		float: left;
+		width: 55%;
+	}
+	.conf-modal-tbl tbody tr {
+		width: 100%;
+	}
+	.conf-modal-tbl td {
+		border-right: 1px solid #bbb;
+	}
+	.ca-clm {
+		border-left: 1px solid #bbb;
+		background-color: #EEEEEE;
+	}
+	.th-text {
+		text-align: center;
+		margin-top: 60px;
+	}
+	#registerModalLabel {
+		display: block;
+	}
+	#conf-msg {
+		display: block;
+	}
+	.wrap {
+		display: flex;
+		text-align: center;
+		margin-top: 25px;
+	}
+	.item {
+		justify-content: space-around;
+		margin: 0px auto;
+	}
+	.category-btn {
+		width: 125px;
+	}
+	.ca-name {
+		display: none;
+	}
+	.ca-name-sp {
+		display: inline;
+		font-size: 12px;
+		font-weight: bold;
+	}
+	#containment-wrapper {
+		height: 400px;
+	}
+	.drag-area {
+		height: 370px;
+	}
+	.modal {
+		padding-left: 13vw;
+	}
+	.radio-img {
+		width: 200px;
+		height: auto;
+	}
 }

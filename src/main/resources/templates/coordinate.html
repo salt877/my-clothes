@@ -131,18 +131,17 @@
 
 			<br>
 
-			<table class="table">
+			<table class="table co-tbl">
 				<thead>
 					<tr>
-						<th colspan="4" style="text-align: center;">コーディネート&nbsp;&nbsp;</th>
-						<th colspan="2" style="text-align: center;">アイテム選択</th>
+						<th colspan="4" style="text-align: center;" class="column">コーディネート&nbsp;&nbsp;</th>
+						<th colspan="2" style="text-align: center;" class="column">アイテム選択</th>
 					</tr>
 
 				</thead>
 				<tbody>
 					<tr>
 						<td colspan="4" id="containment-wrapper">
-
 							<div class="drag-area">
 								<img id="drag-img1" class="drag-img" src=""> <img
 									id="drag-img2" class="drag-img" src=""> <img
@@ -152,86 +151,99 @@
 									id="drag-img6" class="drag-img" src=""> <img
 									id="drag-img7" class="drag-img" src=""> <img
 									id="drag-img8" class="drag-img" src="">
-
 							</div>
-
 						</td>
 
-
-
 						<td colspan="2">
-							<div style="text-align: center; margin-top: 25px;">
+							<div class="wrap">
+								<div class="item">
+									<!-- ファッション雑貨 (valueとして、user_idに紐づいたclothesのidを飛ばします。)-->
+									<div class="fashion-accessories">
+										<button data-toggle="modal" data-target="#category-modal"
+											type="button" class="btn btn-light category-btn"
+											id="fashion-accessories-btn" data-id='fashion-accessories'
+											value="1">
+											<span class="ca-name">ファッション雑貨を選択</span><span
+												class="ca-name-sp fa-sp">ファッション雑貨</span>
+										</button>
 
-								<!-- ファッション雑貨 (valueとして、user_idに紐づいたclothesのidを飛ばします。)-->
-								<div class="fashion-accessories">
-									<button data-toggle="modal" data-target="#category-modal"
-										type="button" class="btn btn-light category-btn"
-										id="fashion-accessories-btn" data-id='fashion-accessories'
-										value="1">ファッション雑貨を選択</button>
+									</div>
+									<br>
 
+									<!-- トップス1を選択(valueとして、user_idに紐づいたclothesのidを飛ばします。) -->
+									<div class="tops1">
+										<button data-toggle="modal" data-target="#category-modal"
+											type="button" class="btn btn-light category-btn"
+											id="tops1-btn" data-id='tops1' value="2">
+											<span class="ca-name">トップス１を選択</span><span class="ca-name-sp">トップス１</span>
+										</button>
+
+									</div>
+									<br>
+
+									<!-- トップス2を選択 (valueとして、user_idに紐づいたclothesのidを飛ばします。)-->
+									<div class="tops2">
+										<button data-toggle="modal" data-target="#category-modal"
+											type="button" class="btn btn-light category-btn"
+											id="tops2-btn" data-id='tops2' value="2">
+											<span class="ca-name">トップス２を選択</span><span class="ca-name-sp">トップス２</span>
+										</button>
+									</div>
+									<br>
+
+									<!-- アウターを選択 (valueとして、user_idに紐づいたclothesのidを飛ばします。)-->
+									<div class="outer">
+										<button data-toggle="modal" data-target="#category-modal"
+											type="button" class="btn btn-light category-btn"
+											id="outers-btn" data-id='outers' value="3">
+											<span class="ca-name">アウターを選択</span><span class="ca-name-sp">アウター</span>
+										</button>
+									</div>
 								</div>
 								<br>
+								<div class="item">
+									<!-- ボトムスを選択 (valueとして、user_idに紐づいたclothesのidを飛ばします。)-->
+									<div class="bottoms">
+										<button data-toggle="modal" data-target="#category-modal"
+											type="button" class="btn btn-light category-btn"
+											id="bottoms-btn" data-id='bottoms' value="4">
+											<span class="ca-name">ボトムスを選択</span><span class="ca-name-sp">ボトムス</span>
+										</button>
+									</div>
+									<br>
 
+									<!-- シューズを選択(valueとして、user_idに紐づいたclothesのidを飛ばします。) -->
+									<div class="shoes">
+										<button data-toggle="modal" data-target="#category-modal"
+											type="button" class="btn btn-light category-btn"
+											id="shoes-btn" data-id='shoes' value="5">
+											<span class="ca-name">シューズを選択 </span><span class="ca-name-sp">シューズ</span>
+										</button>
+									</div>
+									<br>
 
+									<!-- バッグを選択(valueとして、user_idに紐づいたclothesのidを飛ばします。)s -->
+									<div class="bags">
+										<button data-toggle="modal" data-target="#category-modal"
+											type="button" class="btn btn-light category-btn" id="bag-btn"
+											data-id='bag' value="6">
+											<span class="ca-name">バッグを選択</span><span class="ca-name-sp">バッグ</span>
+										</button>
 
-								<!-- トップス1を選択(valueとして、user_idに紐づいたclothesのidを飛ばします。) -->
-								<div class="tops1">
-									<button data-toggle="modal" data-target="#category-modal"
-										type="button" class="btn btn-light category-btn"
-										id="tops1-btn" data-id='tops1' value="2">トップス１を選択</button>
+									</div>
+									<br>
 
+									<!-- ワンピースを選択 (valueとして、user_idに紐づいたclothesのidを飛ばします。)-->
+									<div class="dress">
+										<button data-toggle="modal" data-target="#category-modal"
+											type="button" class="btn btn-light category-btn"
+											id="dress-btn" data-id='dress' value="7">
+											<span class="ca-name">ワンピースを選択</span><span class="ca-name-sp">ワンピース</span>
+										</button>
+
+									</div>
+									<br>
 								</div>
-								<br>
-
-								<!-- トップス2を選択 (valueとして、user_idに紐づいたclothesのidを飛ばします。)-->
-								<div class="tops2">
-									<button data-toggle="modal" data-target="#category-modal"
-										type="button" class="btn btn-light category-btn"
-										id="tops2-btn" data-id='tops2' value="2">トップス２を選択</button>
-								</div>
-								<br>
-
-								<!-- アウターを選択 (valueとして、user_idに紐づいたclothesのidを飛ばします。)-->
-								<div class="outer">
-									<button data-toggle="modal" data-target="#category-modal"
-										type="button" class="btn btn-light category-btn"
-										id="outers-btn" data-id='outers' value="3">アウターを選択</button>
-								</div>
-								<br>
-
-								<!-- ボトムスを選択 (valueとして、user_idに紐づいたclothesのidを飛ばします。)-->
-								<div class="bottoms">
-									<button data-toggle="modal" data-target="#category-modal"
-										type="button" class="btn btn-light category-btn"
-										id="bottoms-btn" data-id='bottoms' value="4">ボトムスを選択</button>
-								</div>
-								<br>
-
-								<!-- シューズを選択(valueとして、user_idに紐づいたclothesのidを飛ばします。) -->
-								<div class="shoes">
-									<button data-toggle="modal" data-target="#category-modal"
-										type="button" class="btn btn-light category-btn"
-										id="shoes-btn" data-id='shoes' value="5">シューズを選択</button>
-								</div>
-								<br>
-
-								<!-- バッグを選択(valueとして、user_idに紐づいたclothesのidを飛ばします。)s -->
-								<div class="bags">
-									<button data-toggle="modal" data-target="#category-modal"
-										type="button" class="btn btn-light category-btn" id="bag-btn"
-										data-id='bag' value="6">バッグを選択</button>
-
-								</div>
-								<br>
-
-								<!-- ワンピースを選択 (valueとして、user_idに紐づいたclothesのidを飛ばします。)-->
-								<div class="dress">
-									<button data-toggle="modal" data-target="#category-modal"
-										type="button" class="btn btn-light category-btn"
-										id="dress-btn" data-id='dress' value="7">ワンピースを選択</button>
-
-								</div>
-								<br>
 
 								<!-- 各カテゴリー選択ボタンを押したときのモーダルの設定 -->
 								<div class="modal fade" data-keyboard="false"
@@ -301,8 +313,7 @@
 						<!-- モーダル内ヘッダー -->
 						<div class="modal-header">
 							<h5 class="modal-title" id="registerModalLabel">コーディネート確認</h5>
-							&nbsp;&nbsp;&nbsp; <small id="conf-msg"
-								style="color: red; margin-top: 10px;">アイテムが未選択です。</small>
+							&nbsp;&nbsp;&nbsp; <small id="conf-msg">アイテムが未選択です。</small>
 
 							<button type="button" class="close" data-dismiss="modal"
 								aria-label="閉じる">
@@ -317,14 +328,14 @@
 								<table class="table conf-modal-tbl">
 									<thead>
 										<tr>
-											<th style="text-align: center;">ファッション雑貨</th>
-											<th style="text-align: center;">トップス1</th>
-											<th style="text-align: center;">トップス2</th>
-											<th style="text-align: center;">アウター</th>
-											<th style="text-align: center;">ボトムス</th>
-											<th style="text-align: center;">シューズ</th>
-											<th style="text-align: center;">バッグ</th>
-											<th style="text-align: center;">ワンピース</th>
+											<th class="ca-clm"><span class="th-text">ファッション雑貨</span></th>
+											<th class="ca-clm"><span class="th-text">トップス1</span></th>
+											<th class="ca-clm"><span class="th-text">トップス2</span></th>
+											<th class="ca-clm"><span class="th-text">アウター</span></th>
+											<th class="ca-clm"><span class="th-text">ボトムス</span></th>
+											<th class="ca-clm"><span class="th-text">シューズ</span></th>
+											<th class="ca-clm"><span class="th-text">バッグ</span></th>
+											<th class="ca-clm"><span class="th-text">ワンピース</span></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -336,50 +347,42 @@
 												id="modal-fashion-accessories" class="modal-input"
 												name="fashion_accessories" value=""
 												th:field="*{fashionAccessories}"> <img
-												class="in-modal-img" id="in-modal-img1" alt="" src=""
-												style="width: 100px; height: auto;"></td>
+												class="in-modal-img" id="in-modal-img1" alt="" src=""></td>
 											<!-- トップス１ -->
 											<td id="t1-img" class="conf-modal"><input type="hidden"
 												id="modal-tops1" class="modal-input" name="tops1" value=""
 												th:field="*{tops1}"> <img class="in-modal-img"
-												id="in-modal-img2" alt="" src=""
-												style="width: 100px; height: auto;"></td>
+												id="in-modal-img2" alt="" src=""></td>
 											<!-- トップス２ -->
 											<td id="t1-img" class="conf-modal"><input type="hidden"
 												id="modal-tops2" class="modal-input" name="tops2" value=""
 												th:field="*{tops2}"> <img class="in-modal-img"
-												id="in-modal-img3" alt="" src=""
-												style="width: 100px; height: auto;"></td>
+												id="in-modal-img3" alt="" src=""></td>
 											<!-- アウター -->
 											<td id="ou-img" class="conf-modal"><input type="hidden"
 												id="modal-outers" class="modal-input" name="outers" value=""
 												th:field="*{outers}"> <img class="in-modal-img"
-												id="in-modal-img4" alt="" src=""
-												style="width: 100px; height: auto;"></td>
+												id="in-modal-img4" alt="" src=""></td>
 											<!-- ボトムス -->
 											<td id="bt-img" class="conf-modal"><input type="hidden"
 												id="modal-bottoms" class="modal-input" name="bottoms"
 												value="" th:field="*{bottoms}"> <img
-												class="in-modal-img" id="in-modal-img5" alt="" src=""
-												style="width: 100px; height: auto;"></td>
+												class="in-modal-img" id="in-modal-img5" alt="" src=""></td>
 											<!-- シューズ -->
 											<td id="sh-img" class="conf-modal"><input type="hidden"
 												id="modal-shoes" class="modal-input" name="shoes" value=""
 												th:field="*{shoes}"> <img class="in-modal-img"
-												id="in-modal-img6" alt="" src=""
-												style="width: 100px; height: auto;"></td>
+												id="in-modal-img6" alt="" src=""></td>
 											<!-- バッグ -->
 											<td id="bg-img" class="conf-modal"><input type="hidden"
 												id="modal-bag" class="modal-input" name="bag" value=""
 												th:field="*{bag}"> <img class="in-modal-img"
-												id="in-modal-img7" alt="" src=""
-												style="width: 100px; height: auto;"></td>
+												id="in-modal-img7" alt="" src=""></td>
 											<!-- ワンピース-->
 											<td id="dr-img" class="conf-modal"><input type="hidden"
 												id="modal-dress" class="modal-input" name="dress" value=""
 												th:field="*{dress}"> <img class="in-modal-img"
-												id="in-modal-img8" alt="" src=""
-												style="width: 100px; height: auto;"></td>
+												id="in-modal-img8" alt="" src=""></td>
 
 										</tr>
 									</tbody>
@@ -387,7 +390,7 @@
 								<div>
 									<h6>
 										コーデ名<span style="color: red;">（必須）</span> &nbsp;<small
-											id="error-msg" style="color: red;">コーデ名は20文字以内で入力してください。</small>
+											id="error-msg">コーデ名は20文字以内で入力してください。</small>
 									</h6>
 
 									<input type="text" name="name" class="form-control"
