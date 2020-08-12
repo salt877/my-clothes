@@ -56,12 +56,15 @@ public class RegisterCoordinateController {
 		coordinate.setBag(form.getIntBag());
 		coordinate.setDress(form.getIntDress());
 		coordinate.setName(form.getName());
-		
-		System.out.println(coordinate);
 
 		registerCoordinateService.registerCooridnate(coordinate);
 
-		return "finish_coordinate";
+		return "redirect:/coordinate/finished";
 
+	}
+
+	@RequestMapping("/finished")
+	public String finishCoordinate() {
+		return "finish_coordinate";
 	}
 }
