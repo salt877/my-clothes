@@ -68,15 +68,16 @@
 					<!-- モーダル内ボディ -->
 					<div class="modal-body">
 						<div class="coordinate-exp">
-							<h6 class="ex-text">
+
+							<h6>
 								①カテゴリー選択ボタンを押し、登録したアイテムの中からコーディネートで使用したい服を選択します。<br>
 								&nbsp;&nbsp;&nbsp;&nbsp;<small>※トップス1とトップス2で同じアイテムは選択できません。</small>
 							</h6>
 							<br>
 							<div class="ex-img">
-								<img alt="" th:src="@{/img/exp1.png}" class="ex-img-a"
-									id="ex-img-1"> <span class="sankaku">▶</span> <img
-									id="ex-img-2" alt="" th:src="@{/img/exp2.png}" class="ex-img-a">
+								<img alt="" th:src="@{/img/exp1.png}" id="ex-img-1"
+									class="ex-img-a"> <span class="sankaku">▶</span> <img
+									alt="" th:src="@{/img/exp2.png}" id="ex-img-2" class="ex-img-a">
 							</div>
 							<br> <br>
 							<div class="arrow">
@@ -85,7 +86,7 @@
 								</div>
 							</div>
 							<br> <br>
-							<h6 class="ex-text">
+							<h6>
 								②選択したアイテムはコーディネートエリアに表示されます。エリア内では画像を動かすことが可能です。<br>
 								&nbsp;&nbsp;&nbsp;&nbsp;<small>※コーディネートエリア内のアイテムをダブルクリックすると選択が解除されます。</small>
 							</h6>
@@ -101,7 +102,7 @@
 								</div>
 							</div>
 							<br> <br>
-							<h6 class="ex-text">
+							<h6>
 								③コーディネートが決まったら、「確認画面へ」をクリック。最後に「コーデ名」を入力して、登録完了です！<br>
 								&nbsp;&nbsp;&nbsp;&nbsp;<small>※アイテム未選択、またはコーデ名を入力していないと登録できません。</small>
 							</h6>
@@ -110,7 +111,6 @@
 								<img alt="" th:src="@{/img/exp4.png}" id="ex-img-4"
 									class="ex-img-a">
 							</div>
-
 						</div>
 					</div>
 
@@ -135,8 +135,9 @@
 		<table class="table co-tbl">
 			<thead>
 				<tr>
-					<th colspan="4" style="text-align: center;" class="column">コーディネート&nbsp;&nbsp;</th>
-					<th colspan="2" style="text-align: center;" class="column">アイテム選択</th>
+
+					<th colspan="4" class="column">コーディネート&nbsp;&nbsp;</th>
+					<th colspan="2" class="column">アイテム選択</th>
 				</tr>
 
 			</thead>
@@ -292,15 +293,13 @@
 			</tbody>
 		</table>
 		<br>
-
-		<div style="text-align: center;">
+		<div class="btn-bottom">
 			<button type="button" class="btn btn-primary btn-set"
 				id="co-confirmation-btn" data-toggle="modal"
 				data-target="#registerModal">確認画面へ</button>
 		</div>
 		<br>
-
-		<div style="text-align: center;">
+		<div class="btn-bottom">
 			<a th:href="@{/past-coordinate}"><button type="button"
 					class="btn btn-secondary btn-set">コーディネート一覧を見る</button></a>
 		</div>
@@ -344,53 +343,62 @@
 										<!-- 選択されたclothes.idの画像を表示-->
 
 										<!-- ファッション雑貨 -->
-										<td id="fa-img" class="conf-modal"><input type="hidden"
-											id="modal-fashion-accessories" class="modal-input"
-											name="fashion_accessories" value=""
-											th:field="*{fashionAccessories}"> <img
-											class="in-modal-img" id="in-modal-img1" alt="" src=""></td>
-										<!-- トップス１ -->
-										<td id="t1-img" class="conf-modal"><input type="hidden"
-											id="modal-tops1" class="modal-input" name="tops1" value=""
-											th:field="*{tops1}"> <img class="in-modal-img"
-											id="in-modal-img2" alt="" src=""></td>
-										<!-- トップス２ -->
-										<td id="t1-img" class="conf-modal"><input type="hidden"
-											id="modal-tops2" class="modal-input" name="tops2" value=""
-											th:field="*{tops2}"> <img class="in-modal-img"
-											id="in-modal-img3" alt="" src=""></td>
-										<!-- アウター -->
-										<td id="ou-img" class="conf-modal"><input type="hidden"
-											id="modal-outers" class="modal-input" name="outers" value=""
-											th:field="*{outers}"> <img class="in-modal-img"
-											id="in-modal-img4" alt="" src=""></td>
-										<!-- ボトムス -->
-										<td id="bt-img" class="conf-modal"><input type="hidden"
-											id="modal-bottoms" class="modal-input" name="bottoms"
-											value="" th:field="*{bottoms}"> <img
-											class="in-modal-img" id="in-modal-img5" alt="" src=""></td>
-										<!-- シューズ -->
-										<td id="sh-img" class="conf-modal"><input type="hidden"
-											id="modal-shoes" class="modal-input" name="shoes" value=""
-											th:field="*{shoes}"> <img class="in-modal-img"
-											id="in-modal-img6" alt="" src=""></td>
-										<!-- バッグ -->
-										<td id="bg-img" class="conf-modal"><input type="hidden"
-											id="modal-bag" class="modal-input" name="bag" value=""
-											th:field="*{bag}"> <img class="in-modal-img"
-											id="in-modal-img7" alt="" src=""></td>
-										<!-- ワンピース-->
-										<td id="dr-img" class="conf-modal"><input type="hidden"
-											id="modal-dress" class="modal-input" name="dress" value=""
-											th:field="*{dress}"> <img class="in-modal-img"
-											id="in-modal-img8" alt="" src=""></td>
 
+										<td id="fa-img" class="conf-modal"><div class="img">
+												<input type="hidden" id="modal-fashion-accessories"
+													class="modal-input" name="fashion_accessories" value=""
+													th:field="*{fashionAccessories}"> <img
+													class="in-modal-img" id="in-modal-img1" alt="" src="">
+											</div></td>
+										<!-- トップス１ -->
+										<td id="t1-img" class="conf-modal"><div class="img">
+												<input type="hidden" id="modal-tops1" class="modal-input"
+													name="tops1" value="" th:field="*{tops1}"> <img
+													class="in-modal-img" id="in-modal-img2" alt="" src="">
+											</div></td>
+										<!-- トップス２ -->
+										<td id="t1-img" class="conf-modal"><div class="img">
+												<input type="hidden" id="modal-tops2" class="modal-input"
+													name="tops2" value="" th:field="*{tops2}"> <img
+													class="in-modal-img" id="in-modal-img3" alt="" src="">
+											</div></td>
+										<!-- アウター -->
+										<td id="ou-img" class="conf-modal"><div class="img">
+												<input type="hidden" id="modal-outers" class="modal-input"
+													name="outers" value="" th:field="*{outers}"> <img
+													class="in-modal-img" id="in-modal-img4" alt="" src="">
+											</div></td>
+										<!-- ボトムス -->
+										<td id="bt-img" class="conf-modal"><div class="img">
+												<input type="hidden" id="modal-bottoms" class="modal-input"
+													name="bottoms" value="" th:field="*{bottoms}"> <img
+													class="in-modal-img" id="in-modal-img5" alt="" src="">
+											</div></td>
+										<!-- シューズ -->
+										<td id="sh-img" class="conf-modal"><div class="img">
+												<input type="hidden" id="modal-shoes" class="modal-input"
+													name="shoes" value="" th:field="*{shoes}"> <img
+													class="in-modal-img" id="in-modal-img6" alt="" src="">
+											</div></td>
+										<!-- バッグ -->
+										<td id="bg-img" class="conf-modal"><div class="img">
+												<input type="hidden" id="modal-bag" class="modal-input"
+													name="bag" value="" th:field="*{bag}"> <img
+													class="in-modal-img" id="in-modal-img7" alt="" src="">
+											</div></td>
+										<!-- ワンピース-->
+										<td id="dr-img" class="conf-modal"><div class="img">
+												<input type="hidden" id="modal-dress" class="modal-input"
+													name="dress" value="" th:field="*{dress}"> <img
+													class="in-modal-img" id="in-modal-img8" alt="" src="">
+											</div></td>
 									</tr>
 								</tbody>
 							</table>
 							<div>
 								<h6>
-									コーデ名<span style="color: red;">（必須）</span> &nbsp;<small
+
+									コーデ名<span class="required">（必須）</span> &nbsp;<small
 										id="error-msg">コーデ名は20文字以内で入力してください。</small>
 								</h6>
 

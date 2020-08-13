@@ -330,27 +330,37 @@ $(function(){
 				hiddenVal.push(hidden.item(i).value);
 			}				
 		}
+		
+		// 確認モーダルを開いた時点でアイテム未選択＆コーデ名未入力の場合場合、押下不可
+		if(hiddenVal.length == 0 && $('#code-name').val().length == 0){
+			$('small#conf-msg').show();
+			$('.coordinate-regis-btn').prop('disabled', true);
+		}
 
-		// 確認モーダルを開いた時点でアイテム選択済＆コーデ名未入力の場合場合、押下不可
-		if(hiddenVal.length > 0 && $('#code-name').val().length == 0){
-			$('small#conf-msg').hide();
-			$('.coordinate-regis-btn').prop('disabled', true);
-		}
-		
-		
-		// 確認モーダルを開いた時点でアイテム選択済＆コーデ名２０文字より多い場合、押下不可
-		if(hiddenVal.length > 0 && $('#code-name').val().length > 20){
-			$('small#conf-msg').hide();
-			$('.coordinate-regis-btn').prop('disabled', true);
-		}
-		
-				
 		// 確認モーダルを開いた時点でアイテム未選択＆コーデ名２０文字より多い場合、押下不可
 		if(hiddenVal.length == 0 && $('#code-name').val().length > 20){
 			$('small#conf-msg').show();
 			$('.coordinate-regis-btn').prop('disabled', true);
 		}
+				
+		// 確認モーダルを開いた時点でアイテム未選択＆コーデ名が１文字以上２０文字以下で入力されている場合、押下不可
+		if(hiddenVal.length == 0 && $('#code-name').val().length > 0 && $('#code-name').val().length <= 20){
+			$('small#conf-msg').show();
+			$('.coordinate-regis-btn').prop('disabled', true);
+		}
 		
+		// 確認モーダルを開いた時点でアイテム選択済＆コーデ名未入力の場合場合、押下不可
+		if(hiddenVal.length > 0 && $('#code-name').val().length == 0){
+			$('small#conf-msg').hide();
+			$('.coordinate-regis-btn').prop('disabled', true);
+		}
+				
+		// 確認モーダルを開いた時点でアイテム選択済＆コーデ名２０文字より多い場合、押下不可
+		if(hiddenVal.length > 0 && $('#code-name').val().length > 20){
+			$('small#conf-msg').hide();
+			$('.coordinate-regis-btn').prop('disabled', true);
+		}
+			
 		// 確認モーダルを開いた時点でアイテム選択済＆コーデ名が１文字以上２０文字以下で入力されている場合、押下可
 		if(hiddenVal.length > 0 && $('#code-name').val().length > 0 && $('#code-name').val().length <= 20){
 			$('small#conf-msg').hide();
@@ -359,26 +369,20 @@ $(function(){
 		
 		// コーデ名入力欄changeイベント
 		$('#code-name').off('change').on('change', function() {
-			// コーデ名入力済み＆アイテム未選択の場合、押下不可
-		
+			// コーデ名入力済み＆アイテム未選択の場合、押下不可	
 			if($('#code-name').val().length > 0 && hiddenVal.length == 0){
-				$('.coordinate-regis-btn').prop('disabled', true);
-				
+				$('.coordinate-regis-btn').prop('disabled', true);	
 			}
 						
-			// コーデ名入力&アイテム選択済みの場合、押下可
-			if ($('#code-name').val().length > 0 && $('#code-name').val().length <= 20 && hiddenVal.length > 0) {
-				$('.coordinate-regis-btn').prop('disabled', false);
-				
-			
-			}
-			
 			// コーデ名未入力&アイテム選択済みの場合、押下不可
 			if($('#code-name').val().length == 0 && hiddenVal.length > 0){
 				$('.coordinate-regis-btn').prop('disabled', true);
 			}
-			
-			
+
+			// コーデ名入力&アイテム選択済みの場合、押下可
+			if ($('#code-name').val().length > 0 && $('#code-name').val().length <= 20 && hiddenVal.length > 0) {
+				$('.coordinate-regis-btn').prop('disabled', false);
+			}	
 
 		});
 		

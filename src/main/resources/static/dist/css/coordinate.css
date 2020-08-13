@@ -4,21 +4,74 @@ h1 {
 	margin-top: 100px !important;
 }
 
+.column {
+	text-align: center;
+}
+
+/*コーデエリア*/
 .drag-area {
 	position: relative;
 	width: 406.5px;
-	height: 500px;
+	height: 550px;
 }
 
+/*コーデエリア内画像*/
 .drag-img {
-	position: absolute;
 	height: auto;
-	width: 130px;
+	width: 120px;
+}
+
+#drag-img1 {
+	position: absolute;
+	top: 0;
+	left: 250px;
+}
+
+#drag-img2 {
+	position: absolute;
+	top: 140px;
+	left: 250px;
+}
+
+#drag-img3 {
+	position: absolute;
+	top: 140px;
+	left: 100px;
+}
+
+#drag-img4 {
+	position: absolute;
+	top: 140px;
+	left: 400px;
+}
+
+#drag-img5 {
+	position: absolute;
+	top: 280px;
+	left: 250px;
+}
+
+#drag-img6 {
+	position: absolute;
+	left: 250px;
+	bottom: 0;
+}
+
+#drag-img7 {
+	position: absolute;
+	top: 280px;
+	left: 100px;
+}
+
+#drag-img8 {
+	position: absolute;
+	top: 280px;
+	left: 400px;
 }
 
 .wrap {
 	text-align: center;
-	margin-top: 20px;
+	margin-top: 30px;
 }
 
 h6 {
@@ -117,16 +170,12 @@ small {
 	color: red;
 }
 
-#registerModalLabel {
-	display: block;
-}
-
-#conf-msg {
-	display: block;
-}
-
 table tr:last-child {
 	border-bottom: 2px solid #bbb;
+}
+
+.btn-bottom {
+	text-align: center;
 }
 
 #conf-msg {
@@ -143,7 +192,15 @@ table tr:last-child {
 	height: auto;
 }
 
+.img {
+	text-align: center;
+}
+
 #error-msg {
+	color: red;
+}
+
+.required {
 	color: red;
 }
 
@@ -196,6 +253,46 @@ table tr:last-child {
 		right: 155px;
 		height: auto;
 		width: 80px;
+	}
+	#drag-img1 {
+		position: absolute;
+		top: 0;
+		left: 100px;
+	}
+	#drag-img2 {
+		position: absolute;
+		top: 100px;
+		left: 100px;
+	}
+	#drag-img3 {
+		position: absolute;
+		top: 100px;
+		left: 0;
+	}
+	#drag-img4 {
+		position: absolute;
+		top: 100px;
+		left: 200px;
+	}
+	#drag-img5 {
+		position: absolute;
+		top: 200px;
+		left: 100px;
+	}
+	#drag-img6 {
+		position: absolute;
+		left: 100px;
+		bottom: 0;
+	}
+	#drag-img7 {
+		position: absolute;
+		top: 200px;
+		left: 0;
+	}
+	#drag-img8 {
+		position: absolute;
+		top: 200px;
+		left: 200px;
 	}
 
 	/*コーデ画面テーブル共通設定*/
@@ -296,7 +393,7 @@ table tr:last-child {
 		height: 370px;
 	}
 	.modal {
-		padding-left: 13vw;
+		margin-left: 30px;
 	}
 	.radio-img {
 		width: 200px;

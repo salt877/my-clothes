@@ -30,8 +30,8 @@
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="../static/dist/css/styles.css"
 	th:href="@{/dist/css/styles.css}" rel="stylesheet" />
-<link href="../static/dist/css/finished-coordinate.css"
-	th:href="@{/dist/css/finished-coordinate.css}" rel="stylesheet" />
+<link href="../static/dist/css/finish-coordinate.css"
+	th:href="@{/dist/css/finish-coordinate.css}" rel="stylesheet" />
 
 </head>
 <body>
@@ -43,28 +43,28 @@
 
 	<div class="container top">
 		<div class="text-center">
-			<h2 class="section-heading text-uppercase for-bg">コーディネートを登録しました！</h2>
-			<h2 class="section-heading text-uppercase for-sp">
-				コーディネートを<br>登録しました！
-			</h2>
-			<br> <br>
+			<h2 class="section-heading text-uppercase">コーディネートを登録しました！</h2>
 
-			<div>
+			<div class="btn-top">
 				<a href="coordinate.html" th:href="@{/coordinate}"><button
-						type="button" class="btn btn-primary continue-coordinate-btn"
-						style="width: 280px;">コーディネートを続ける</button></a>
+						type="button" class="btn btn-primary continue-coordinate-btn">
+						<span class="btn-txt">コーディネートを続ける</span>
+					</button></a>
 			</div>
 			<br>
 			<div>
 				<a href="coordinate.html" th:href="@{/past-coordinate}"><button
-						type="button" class="btn btn-secondary continue-coordinate-btn"
-						style="width: 280px;">過去のコーディネートを見る</button></a>
+						type="button" class="btn btn-secondary continue-coordinate-btn">
+						<span class="btn-txt">過去のコーディネートを見る</span>
+					</button></a>
 			</div>
 			<br>
 
 			<div>
 				<a href="top.html" th:href="@{/}"><button type="button"
-						class="btn btn-secondary return-top-btn" style="width: 280px;">トップへ戻る</button></a>
+						class="btn btn-secondary return-top-btn">
+						<span class="btn-txt">トップへ戻る</span>
+					</button></a>
 			</div>
 
 		</div>
