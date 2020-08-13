@@ -119,16 +119,19 @@ input[type="number"] {
 
 @media screen and (max-width: 480px) {
 	/* 480px以下に適用されるCSS（スマホ用） */
-	h2 {
 	
+	/*確認ボタンのdiv幅が大きかったので適当に小さくしました。適宜修正お願いします。（能勢）*/
+	.switch_btn {
+		width: 60px;
+	}
+	h2 {
 		font-size: 20px;
 		margin-top: 0;
 		margin-bottom: 1rem;
 	}
-	
 	.modal-dialog-fluid {
-  max-width: inherit;
-  width: 50%;
-  margin-left: 15px;
-}	
+		max-width: inherit;
+		width: 50%;
+		margin-left: 15px;
+	}
 }

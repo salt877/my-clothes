@@ -142,12 +142,10 @@ table tr:last-child {
 	.co-total-price {
 		font-size: 12px;
 	}
-	
 	table {
 		border: 0;
 		width: 100%
 	}
-	
 	table th {
 		display: none;
 		border-right: none;
@@ -155,7 +153,6 @@ table tr:last-child {
 		margin-bottom: .2em;
 		padding-bottom: .2em;
 	}
-	
 	table thead {
 		border: none;
 		clip: rect(0, 0, 0, 0);
@@ -164,13 +161,11 @@ table tr:last-child {
 		overflow: hidden;
 		width: 1px;
 	}
-	
 	table tr {
 		display: block;
 		margin-bottom: 2em;
 		border-bottom: 2px solid #bbb;
 	}
-	
 	table td {
 		border-bottom: 1px solid #bbb;
 		display: block;
@@ -180,8 +175,10 @@ table tr:last-child {
 		padding: .625em .625em .625em 4em;
 		border-right: none;
 	}
-	
 	.table td {
 		border-top: none !important;
+	}
+	.modal {
+		margin-left: 30px;
 	}
 }

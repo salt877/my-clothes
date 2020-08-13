@@ -4,8 +4,8 @@
 	margin-top: 100px;
 }
 
-.for-sp {
-	display: none;
+.btn {
+	width: 280px;
 }
 
 @media screen and (max-width: 959px) { /* 959px以下に適用されるCSS（タブレット用） */
@@ -15,10 +15,16 @@
 }
 
 @media screen and (max-width:480px) { /* 480px以下に適用されるCSS（スマホ用） */
-	.for-bg {
-		display: none;
+	.section-heading {
+		font-size: 18px;
 	}
-	.for-sp {
-		display: inline;
+	.btn-top {
+		margin-top: 40px;
+	}
+	.btn {
+		width: 220px;
+	}
+	.btn-txt {
+		font-size: 14px;
 	}
 }
