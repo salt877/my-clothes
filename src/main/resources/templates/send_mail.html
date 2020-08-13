@@ -15,14 +15,14 @@
 <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
 <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
 <!-- Core theme CSS (includes Bootstrap)-->
-<link href="../static/dist/css/styles.css" rel="stylesheet" th:href="@{/dist/css/styles.css}" />
+<link href="../static/dist/css/input-user-information.css" rel="stylesheet" th:href="@{/dist/css/input-user-information.css}" />
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <!-- jQuery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body id="page-top">
 
-	<!-- Navigation-->
+	<!-- Navigation
 	<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
 		<div class="container">
 			<a class="navbar-brand js-scroll-trigger" href="#page-top"><img
@@ -35,36 +35,32 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive"></div>
 		</div>
-	</nav>
+	</nav> -->
 
 	<!-- パスワード再設定用にメールを送信する画面-->
 	<header class="masthead">
-		<div class="containe">
-			<div class="textform">
+		<div class="textform">
+			<div class="user-input-container">
 				<div class="center-heading">
 					<h1>パスワード再設定</h1>
 				</div>
-				<div class="explanatorytext">
-					<p class="loginhere text-center">
-						パスワード再設定用URLを送信しますので、ご登録いただいているメールアドレスを入力し、<br>
-						「送信する」ボタンをクリックしてください。
+					<p class="pass-reset-p" style="color: black">
+						パスワード再設定用URLを送信します。<br class="pass-reset-br">ご登録中のメールアドレスを入力し、<br class="pass-reset-br">
+						「送信」ボタンをクリックしてください。
 					</p>
-				</div>
-				<div class="mailform">
 					<form action="send_mail.html" th:action="@{/sendInputPage}" method="post">
+						　<div class="alert" th:if="${errorMessage}">
+							<b style="color:red"  class="control-label" th:text="${errorMessage}">メールアドレスを入力してください</b>						
+						 </div>
 						<div class="form-group">
-						　<span th:if="${errorMessage}">
-							<b style="color:red" th:text="${errorMessage}">メールアドレスを入力してください</b>						
-						 </span>
 							<input type="email" class="form-control" name="email" id="email" placeholder="Email" th:value="${email}" />
 							<input type="hidden" class="form-control" th:name="${_csrf.parameterName}" id="url" th:value="${_csrf.token}" />
 						</div>
 						<div class="submit-group">
 							<input type="submit" name="submit" id="submit"
-								class="btn btn--submit btn--radius" value="&emsp;送信する&emsp;" />
+								class="btn btn--submit btn--radius" value="&emsp;送信&emsp;" />
 						</div>
 					</form>
-				</div>
 			</div>
 		</div>
 	</header>
