@@ -19,7 +19,7 @@ public class RegisterUserForm {
 
 	/** パスワード */
 	@NotBlank(message = "パスワードを入力して下さい")
-	@Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,20}$", message = "パスワードは半角英数字（大文字・小文字を1文字以上含む）8文字以上20文字以下で入力して下さい")
+	@Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,20}$", message = "パスワード形式が不正です")
 	private String password;
 
 	/** 確認用パスワード */
