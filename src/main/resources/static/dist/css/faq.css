@@ -37,14 +37,6 @@
 	color: white;
 }
 
-.faq-a {
-	color: blue;
-}
-
-.faq-a:hover {
-	color: blue;
-}
-
 .cp_qa *, .cp_qa *:after, .cp_qa *:before {
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
