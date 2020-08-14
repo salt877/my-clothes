@@ -68,6 +68,14 @@
 	margin-left: auto;
 }
 
+.complete-container {
+	width: 80%;
+	padding-right: 0.75rem;
+	padding-left: 0.75rem;
+	margin-right: auto;
+	margin-left: auto;
+}
+
 .login-explanation {
 	white-space: nowrap;
 	font-size: 1rem;
@@ -78,6 +86,10 @@
 }
 
 .welcome-br {
+	display: none;
+}
+
+.complete-br {
 	display: none;
 }
 
@@ -405,9 +417,9 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav,
 
 body {
 	margin: 0;
-	font-family: "Open Sans", sans-serif, "Roboto Slab", -apple-system, BlinkMacSystemFont,
-		"Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif,
-		"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+	font-family: "Open Sans", sans-serif, "Roboto Slab", -apple-system,
+		BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+		sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
 		"Noto Color Emoji";
 	font-size: 1rem;
 	font-weight: 400;
@@ -424,29 +436,71 @@ tabindex
 ]
 
 
+
+
+
+
+
+
 :focus
+
+
+
+
+
+
 
 
 :not
 
+
+
+
  
+
+
+
 
 (
 :focus-visible
 
+
+
+
  
+
+
+
 
 ){
 outline
 
 
+
+
+
+
+
+
 :
 
+
+
+
  
+
+
+
 
 0
 !
 important
+
+
+
+
+
+
 
 
 ;
@@ -463,7 +517,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 p {
-	margin-top: 1rem; 
+	margin-top: 1rem;
 	margin-bottom: 1rem;
 }
 
@@ -544,10 +598,22 @@ a
 
 
 
+
+
+
+
+
+
 :not
 
 
+
+
+
  
+
+
+
 
 
 (
@@ -556,7 +622,13 @@ href
 ]
 
 
+
+
+
  
+
+
+
 
 
 ){
@@ -565,13 +637,31 @@ color
 
 
 
+
+
+
+
+
+
 :
+
+
+
 
 
  
 
 
+
+
+
 inherit
+
+
+
+
+
+
 
 
 
@@ -582,13 +672,31 @@ text-decoration
 
 
 
+
+
+
+
+
+
 :
+
+
+
 
 
  
 
 
+
+
+
 none
+
+
+
+
+
+
 
 
 
@@ -689,17 +797,35 @@ button
 
 
 
+
+
+
+
+
+
 :not
 
 
+
+
+
  
+
+
+
 
 
 (
 :disabled
 
 
+
+
+
  
+
+
+
 
 
 ),
@@ -712,17 +838,35 @@ button
 
 
 
+
+
+
+
+
+
 :not
 
 
+
+
+
  
+
+
+
 
 
 (
 :disabled
 
 
+
+
+
  
+
+
+
 
 
 ),
@@ -735,18 +879,36 @@ reset
 
 
 
+
+
+
+
+
+
 :not
+
+
+
 
 
 
 	
 
 
+
+
+
 (
 :disabled
 
 
+
+
+
  
+
+
+
 
 
 ),
@@ -759,17 +921,35 @@ submit
 
 
 
+
+
+
+
+
+
 :not
 
 
+
+
+
  
+
+
+
 
 
 (
 :disabled
 
 
+
+
+
  
+
+
+
 
 
 ){
@@ -778,13 +958,31 @@ cursor
 
 
 
+
+
+
+
+
+
 :
+
+
+
 
 
  
 
 
+
+
+
 pointer
+
+
+
+
+
+
 
 
 
@@ -970,17 +1168,35 @@ mark, .mark {
 
 
 
+
+
+
+
+
+
 :not
 
 
+
+
+
  
+
+
+
 
 
 (
 :last-child
 
 
+
+
+
  
+
+
+
 
 
 ){
@@ -989,14 +1205,32 @@ margin-right
 
 
 
+
+
+
+
+
+
 :
+
+
+
 
 
  
 
 
+
+
+
 0
 .5rem
+
+
+
+
+
+
 
 
 
@@ -1092,15 +1326,6 @@ pre code {
 	overflow-y: scroll;
 }
 
-.completeform {
-	background-color: rgba(0, 0, 0, 0.6);
-	height: 250px;
-	position: relative;
-	top: -50px;
-	text-align: center;
-	padding: 50px;
-}
-
 .textform {
 	background-color: rgba(255, 255, 255, 0.7);
 	height: auto;
@@ -1161,12 +1386,15 @@ pre code {
 	margin: auto;
 }
 
-.container {
-	width: 80%;
-	padding-right: 0.75rem;
-	padding-left: 0.75rem;
-	margin-right: auto;
-	margin-left: auto;
+.completeform {
+	background-color: rgba(0, 0, 0, 0.6);
+	height: auto;
+	width: 1000px;
+	position: relative;
+	top: -50px;
+	text-align: center;
+	padding: 70px;
+	margin: auto;
 }
 
 .password-constraint {
@@ -1184,6 +1412,18 @@ pre code {
 
 /* スマホ用ログイン・ユーザ登録・パスワード再設定用メールアドレス入力フォーム */
 @media screen and (max-width:480px) {
+	.user-input-container {
+		text-align: center;
+		width: 100%;
+		padding-right: 0rem;
+		padding-left: 0rem;
+	}
+	.complete-container {
+		text-align: center;
+		width: 100%;
+		padding-right: 0rem;
+		padding-left: 0rem;
+	}
 	.loginform {
 		background-color: rgba(255, 255, 255, 0.7);
 		height: auto;
@@ -1210,15 +1450,22 @@ pre code {
 		width: 90%;
 		position: relative;
 		text-align: center;
-		padding: 5rem 2rem; 
+		padding: 5rem 2rem;
 		margin: auto;
 		white-space: nowrap;
 	}
-	.user-input-container {
+	.completeform {
+		background-color: rgba(0, 0, 0, 0.6);
+		height: auto;
+		width: 90%;
+		position: relative;
 		text-align: center;
-		width: 100%;
-		padding-right: 0rem;
-		padding-left: 0rem;
+		padding: 50px;
+		margin: auto;
+	}
+	.message {
+		position: initial;
+		white-space: nowrap;
 	}
 	.login-myqlo {
 		font-size: 1.8rem;
@@ -1246,6 +1493,9 @@ pre code {
 		display: block;
 	}
 	.email-change-br {
+		display: block;
+	}
+	.complete-br {
 		display: block;
 	}
 }
@@ -1312,14 +1562,32 @@ pre code {
 		
 		
 		
+		
+		
+		
+		
+		
+		
 		:
+		
+		
+		
 		
 		
 		 
 		
 		
+		
+		
+		
 		14
 		px
+		
+		
+		
+		
+		
+		
 		
 		
 		
@@ -1330,14 +1598,32 @@ pre code {
 		
 		
 		
+		
+		
+		
+		
+		
+		
 		:
+		
+		
+		
 		
 		
 		 
 		
 		
+		
+		
+		
 		18
 		px
+		
+		
+		
+		
+		
+		
 		
 		
 		
@@ -1350,14 +1636,32 @@ pre code {
 		
 		
 		
+		
+		
+		
+		
+		
+		
 		:
+		
+		
+		
 		
 		
 		 
 		
 		
+		
+		
+		
 		12
 		px
+		
+		
+		
+		
+		
+		
 		
 		
 		
@@ -1368,14 +1672,32 @@ pre code {
 		
 		
 		
+		
+		
+		
+		
+		
+		
 		:
+		
+		
+		
 		
 		
 		 
 		
 		
+		
+		
+		
 		16
 		px
+		
+		
+		
+		
+		
+		
 		
 		
 		
@@ -1386,17 +1708,35 @@ pre code {
 		
 		
 		
+		
+		
+		
+		
+		
+		
 		:
 		
 		
+		
+		
+		
 		 
+		
+		
+		
 		
 		
 		9
 		px
 		
 		
+		
+		
+		
 		 
+		
+		
+		
 		
 		
 		0
@@ -1404,11 +1744,23 @@ pre code {
 		px
 		
 		
+		
+		
+		
 		 
+		
+		
+		
 		
 		
 		52
 		px
+		
+		
+		
+		
+		
+		
 		
 		
 		
@@ -1435,14 +1787,32 @@ pre code {
 	
 	
 	
+	
+	
+	
+	
+	
+	
 	:
+	
+	
+	
 	
 	
 	 
 	
 	
+	
+	
+	
 	13
 	px
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -1453,14 +1823,32 @@ pre code {
 	
 	
 	
+	
+	
+	
+	
+	
+	
 	:
+	
+	
+	
 	
 	
 	 
 	
 	
+	
+	
+	
 	18
 	px
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -1474,14 +1862,32 @@ pre code {
 	
 	
 	
+	
+	
+	
+	
+	
+	
 	:
+	
+	
+	
 	
 	
 	 
 	
 	
+	
+	
+	
 	12
 	px
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -1492,14 +1898,32 @@ pre code {
 	
 	
 	
+	
+	
+	
+	
+	
+	
 	:
+	
+	
+	
 	
 	
 	 
 	
 	
+	
+	
+	
 	17
 	px
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -1548,14 +1972,32 @@ pre code {
 	
 	
 	
+	
+	
+	
+	
+	
+	
 	:
+	
+	
+	
 	
 	
 	 
 	
 	
+	
+	
+	
 	16
 	px
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -1566,35 +2008,71 @@ pre code {
 	
 	
 	
+	
+	
+	
+	
+	
+	
 	:
 	
 	
+	
+	
+	
 	 
+	
+	
+	
 	
 	
 	8
 	px
 	
 	
+	
+	
+	
 	 
+	
+	
+	
 	
 	
 	13
 	px
 	
 	
+	
+	
+	
 	 
+	
+	
+	
 	
 	
 	8
 	px
 	
 	
+	
+	
+	
 	 
+	
+	
+	
 	
 	
 	13
 	px
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -1623,14 +2101,32 @@ pre code {
 	
 	
 	
+	
+	
+	
+	
+	
+	
 	:
+	
+	
+	
 	
 	
 	 
 	
 	
+	
+	
+	
 	16
 	px
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -1641,35 +2137,71 @@ pre code {
 	
 	
 	
+	
+	
+	
+	
+	
+	
 	:
 	
 	
+	
+	
+	
 	 
+	
+	
+	
 	
 	
 	10
 	px
 	
 	
+	
+	
+	
 	 
+	
+	
+	
 	
 	
 	15
 	px
 	
 	
+	
+	
+	
 	 
+	
+	
+	
 	
 	
 	8
 	px
 	
 	
+	
+	
+	
 	 
+	
+	
+	
 	
 	
 	14
 	px
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -3540,31 +4072,61 @@ textarea.form-control {
 
 
 
+
+
+
+
+
+
 :not
 
 
+
+
+
  
+
+
+
 
 
 (
 :disabled
 
 
+
+
+
  
+
+
+
 
 
 )
 :not
 
 
+
+
+
  
+
+
+
 
 
 (
 :disabled
 
 
+
+
+
  
+
+
+
 
 
 ){
@@ -3573,13 +4135,31 @@ cursor
 
 
 
+
+
+
+
+
+
 :
+
+
+
 
 
  
 
 
+
+
+
 pointer
+
+
+
+
+
+
 
 
 
@@ -4233,17 +4813,35 @@ input[type=submit].btn-block, input[type=reset].btn-block, input[type=button].bt
 
 
 
+
+
+
+
+
+
 :not
 
 
+
+
+
  
+
+
+
 
 
 (
 .show
 
 
+
+
+
  
+
+
+
 
 
 ){
@@ -4252,10 +4850,22 @@ opacity
 
 
 
+
+
+
+
+
+
 :
 
 
+
+
+
  
+
+
+
 
 
 0;
@@ -4265,17 +4875,35 @@ opacity
 
 
 
+
+
+
+
+
+
 :not
 
 
+
+
+
  
+
+
+
 
 
 (
 .show
 
 
+
+
+
  
+
+
+
 
 
 ){
@@ -4284,13 +4912,31 @@ display
 
 
 
+
+
+
+
+
+
 :
+
+
+
 
 
  
 
 
+
+
+
 none
+
+
+
+
+
+
 
 
 
@@ -4595,17 +5241,35 @@ none
 
 
 
+
+
+
+
+
+
 :not
 
 
+
+
+
  
+
+
+
 
 
 (
 :first-child
 
 
+
+
+
  
+
+
+
 
 
 ),
@@ -4616,10 +5280,22 @@ none
 
 
 
+
+
+
+
+
+
 :not
 
 
+
+
+
  
+
+
+
 
 
 (
@@ -4627,7 +5303,13 @@ none
 
 
 
+
+
+
 	
+
+
+
 
 
 ){
@@ -4636,14 +5318,32 @@ margin-left
 
 
 
+
+
+
+
+
+
 :
+
+
+
 
 
  
 
 
+
+
+
 -1
 px
+
+
+
+
+
+
 
 
 
@@ -4705,17 +5405,35 @@ px
 
 
 
+
+
+
+
+
+
 :not
 
 
+
+
+
  
+
+
+
 
 
 (
 :first-child
 
 
+
+
+
  
+
+
+
 
 
 ),
@@ -4726,18 +5444,36 @@ px
 
 
 
+
+
+
+
+
+
 :not
+
+
+
 
 
 
 	
 
 
+
+
+
 (
 :first-child
 
 
+
+
+
  
+
+
+
 
 
 ){
@@ -4746,14 +5482,32 @@ margin-top
 
 
 
+
+
+
+
+
+
 :
+
+
+
 
 
  
 
 
+
+
+
 -1
 px
+
+
+
+
+
+
 
 
 
@@ -4828,17 +5582,35 @@ px
 
 
 
+
+
+
+
+
+
 :not
 
 
+
+
+
  
+
+
+
 
 
 (
 :last-child
 
 
+
+
+
  
+
+
+
 
 
 ),
@@ -4849,18 +5621,36 @@ px
 
 
 
+
+
+
+
+
+
 :not
+
+
+
 
 
 
 	
 
 
+
+
+
 (
 :last-child
 
 
+
+
+
  
+
+
+
 
 
 ){
@@ -4869,10 +5659,22 @@ border-top-right-radius
 
 
 
+
+
+
+
+
+
 :
 
 
+
+
+
  
+
+
+
 
 
 0;
@@ -4881,10 +5683,22 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
 :
 
 
+
+
+
  
+
+
+
 
 
 0;
@@ -4896,17 +5710,35 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
 :not
 
 
+
+
+
  
+
+
+
 
 
 (
 :first-child
 
 
+
+
+
  
+
+
+
 
 
 ),
@@ -4917,18 +5749,36 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
 :not
+
+
+
 
 
 
 	
 
 
+
+
+
 (
 :first-child
 
 
+
+
+
  
+
+
+
 
 
 ){
@@ -4937,10 +5787,22 @@ border-top-left-radius
 
 
 
+
+
+
+
+
+
 :
 
 
+
+
+
  
+
+
+
 
 
 0;
@@ -4949,10 +5811,22 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
 :
 
 
+
+
+
  
+
+
+
 
 
 0;
@@ -5088,17 +5962,35 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
 :not
 
 
+
+
+
  
+
+
+
 
 
 (
 :last-child
 
 
+
+
+
  
+
+
+
 
 
 )>
@@ -5111,18 +6003,36 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
 :not
+
+
+
 
 
 
 	
 
 
+
+
+
 (
 :last-child
 
 
+
+
+
  
+
+
+
 
 
 )>
@@ -5135,6 +6045,12 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
 :last-child
 >
 .btn
@@ -5142,32 +6058,62 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
 :not
+
+
+
 
 
 
 	
 
 
+
+
+
 (
 :last-child
 
 
+
+
+
  
+
+
+
 
 
 )
 :not
 
 
+
+
+
  
+
+
+
 
 
 (
 .dropdown-toggle
 
 
+
+
+
  
+
+
+
 
 
 ),
@@ -5178,9 +6124,21 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
 :last-child
 >
 .input-group-text
+
+
+
+
+
+
 
 
 
@@ -5189,14 +6147,26 @@ border-bottom-left-radius
 
 
 
+
+
+
 	
+
+
+
 
 
 (
 :last-child
 
 
+
+
+
  
+
+
+
 
 
 ){
@@ -5205,10 +6175,22 @@ border-top-right-radius
 
 
 
+
+
+
+
+
+
 :
 
 
+
+
+
  
+
+
+
 
 
 0;
@@ -5217,10 +6199,22 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
 :
 
 
+
+
+
  
+
+
+
 
 
 0;
@@ -5244,17 +6238,35 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
 :not
 
 
+
+
+
  
+
+
+
 
 
 (
 :first-child
 
 
+
+
+
  
+
+
+
 
 
 )>
@@ -5267,17 +6279,35 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
 :not
 
 
+
+
+
  
+
+
+
 
 
 (
 :first-child
 
 
+
+
+
  
+
+
+
 
 
 )>
@@ -5290,6 +6320,12 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
 :first-child
 >
 .btn
@@ -5297,17 +6333,35 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
 :not
 
 
+
+
+
  
+
+
+
 
 
 (
 :first-child
 
 
+
+
+
  
+
+
+
 
 
 ),
@@ -5318,6 +6372,12 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
 :first-child
 >
 .input-group-text
@@ -5325,10 +6385,22 @@ border-bottom-right-radius
 
 
 
+
+
+
+
+
+
 :not
 
 
+
+
+
  
+
+
+
 
 
 (
@@ -5336,7 +6408,13 @@ border-bottom-right-radius
 
 
 
+
+
+
 	
+
+
+
 
 
 ){
@@ -5345,10 +6423,22 @@ border-top-left-radius
 
 
 
+
+
+
+
+
+
 :
 
 
+
+
+
  
+
+
+
 
 
 0;
@@ -5357,10 +6447,22 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
 :
 
 
+
+
+
  
+
+
+
 
 
 0;
@@ -5569,6 +6671,12 @@ border-bottom-left-radius
 .custom-select
 
 
+
+
+
+
+
+
 [
 multiple
 ]
@@ -5576,14 +6684,32 @@ multiple
 .custom-select
 
 
+
+
+
+
+
+
 [
 size
 ]
 
 
+
+
+
+
+
+
 :not
 
+
+
+
  
+
+
+
 
 (
 [
@@ -5592,40 +6718,100 @@ size
 "1"
 ]
 
+
+
+
  
+
+
+
 
 ){
 height
 
 
+
+
+
+
+
+
 :
+
+
+
 
  
 
+
+
+
 auto
+
+
+
+
+
+
 
 
 ;
 padding-right
 
 
+
+
+
+
+
+
 :
+
+
+
 
  
 
+
+
+
 0
 .75rem
+
+
+
+
+
+
 
 
 ;
 background-image
 
 
+
+
+
+
+
+
 :
+
+
+
 
  
 
+
+
+
 none
+
+
+
+
+
+
 
 
 ;
@@ -6532,30 +7718,72 @@ none
 	.card
 	
 	
+	
+	
+	
+	
+	
+	
 	:not
 	
+	
+	
+	
 	 
+	
+	
+	
 	
 	(
 	:last-child
 	
+	
+	
+	
 	 
+	
+	
+	
 	
 	){
 	border-top-right-radius
 	
 	
+	
+	
+	
+	
+	
+	
 	:
 	
+	
+	
+	
 	 
+	
+	
+	
 	
 	0;
 	border-bottom-right-radius
 	
 	
+	
+	
+	
+	
+	
+	
 	:
 	
+	
+	
+	
 	 
+	
+	
+	
 	
 	0;
 }
@@ -6575,30 +7803,72 @@ none
 .card
 
 
+
+
+
+
+
+
 :not
 
+
+
+
  
+
+
+
 
 (
 :first-child
 
+
+
+
  
+
+
+
 
 ){
 border-top-left-radius
 
 
+
+
+
+
+
+
 :
 
+
+
+
  
+
+
+
 
 0;
 border-bottom-left-radius
 
 
+
+
+
+
+
+
 :
 
+
+
+
  
+
+
+
 
 0;
 }
@@ -6641,38 +7911,92 @@ border-bottom-left-radius
 .card
 
 
+
+
+
+
+
+
 :not
 
+
+
+
  
+
+
+
 
 (
 :last-of-type
 
+
+
+
  
+
+
+
 
 ){
 border-bottom
 
 
+
+
+
+
+
+
 :
 
+
+
+
  
+
+
+
 
 0;
 border-bottom-right-radius
 
 
+
+
+
+
+
+
 :
 
+
+
+
  
+
+
+
 
 0;
 border-bottom-left-radius
 
 
+
+
+
+
+
+
 :
 
+
+
+
  
+
+
+
 
 0;
 }
@@ -6681,30 +8005,72 @@ border-bottom-left-radius
 .card
 
 
+
+
+
+
+
+
 :not
 
+
+
+
  
+
+
+
 
 (
 :first-of-type
 
+
+
+
  
+
+
+
 
 ){
 border-top-left-radius
 
 
+
+
+
+
+
+
 :
 
+
+
+
  
+
+
+
 
 0;
 border-top-right-radius
 
 
+
+
+
+
+
+
 :
 
+
+
+
  
+
+
+
 
 0;
 }
@@ -7635,25 +9001,61 @@ a.close.disabled {
 .toast
 
 
+
+
+
+
+
+
 :not
 
+
+
+
  
+
+
+
 
 (
 :last-child
 
+
+
+
  
+
+
+
 
 ){
 margin-bottom
 
 
+
+
+
+
+
+
 :
+
+
+
 
  
 
+
+
+
 0
 .75rem
+
+
+
+
+
+
 
 
 ;
@@ -8415,7 +9817,19 @@ opacity
 
 
 
+
+
+
+
+
+
 :
+
+
+
+
+
+
 
 
 
@@ -8426,7 +9840,19 @@ transform
 
 
 
+
+
+
+
+
+
 :none
+
+
+
+
+
+
 
 
 
@@ -8445,7 +9871,19 @@ opacity
 
 
 
+
+
+
+
+
+
 :
+
+
+
+
+
+
 
 
 
@@ -8456,7 +9894,19 @@ transform
 
 
 
+
+
+
+
+
+
 :none
+
+
+
+
+
+
 
 
 
@@ -11435,24 +12885,60 @@ a.text-dark:hover, a.text-dark:focus {
 	a
 	
 	
+	
+	
+	
+	
+	
+	
 	:not
 	
+	
+	
+	
 	 
+	
+	
+	
 	
 	(
 	.btn
 	
+	
+	
+	
 	 
+	
+	
+	
 	
 	){
 	text-decoration
 	
 	
+	
+	
+	
+	
+	
+	
 	:
+	
+	
+	
 	
 	 
 	
+	
+	
+	
 	underline
+	
+	
+	
+	
+	
+	
 	
 	
 	;
