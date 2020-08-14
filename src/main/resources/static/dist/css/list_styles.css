@@ -54,6 +54,33 @@
 	color: #5e5e5e;
 }
 
+@media screen and (max-width:480px) {
+.item_select {
+	overflow: hidden;
+	width: 70%;
+	margin: 1em auto;
+	text-align: center;
+}
+.item_select.cp_sl04 select {
+    padding: 0.5em;
+    color: #5e5e5e;
+}
+.item_select select {
+    width: 100%;
+    padding-right: 1em;
+    cursor: pointer;
+    text-indent: 0.01px;
+    text-overflow: ellipsis;
+    border: none;
+    outline: none;
+    background: transparent;
+    background-image: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+}
+
 /** ラジオボタンで使用　*/
 .radioButton {
 	display: none;
@@ -90,13 +117,7 @@ label {
 	width: 350px;
 	height: 350px;
 	padding: 13%;
-	margin: 1em 1em;
-	/* 
-	background: -webkit-repeating-linear-gradient(-45deg, #f0f8ff, #f0f8ff 3px, #e9f4ff
-		3px, #e9f4ff 7px);
-	background: repeating-linear-gradient(-45deg, #f0f8ff, #f0f8ff 3px, #e9f4ff 3px,
-		#e9f4ff 7px);
-		 */
+	margin: 1em;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -114,7 +135,8 @@ label {
 .narrow_down_box {
 	position: relative;
 	padding: 0.5em 0.7em;
-	margin: 2em 0;
+	margin-left: 3.5em;
+	margin-bottom: 2em;
 	background: #e6f4ff;
 	color: #5c98d4;
 	font-weight: bold;

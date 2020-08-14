@@ -1,28 +1,5 @@
 $(function() {
 
-//<<<<<<< HEAD
-////最初に表示させるアイテムの数
-//var Num = 6;
-////最初はmoreボタン表示にし、
-//$(this).find('#more_btn').show();
-//$(this).find('#close_btn').hide();
-////6番目まで表示
-//$(this).find(".portfolio-item:not(:lt("+Num+"))").hide();
-//
-//if(listContents <= Num){
-//	$('#close_btn').hide();
-//	$('#more_btn').hide();
-//	console.log(listContents);	
-//	console.log(Num);	
-//}
-//
-//
-////moreボタンがクリックされた時
-//$('#more_btn').click(function(){
-////Numに+6ずつしていく = 6件ずつ追加する
-//Num +=6;
-//$(this).parent().find(".portfolio-item:lt("+Num+")").slideDown(); //スライドダウンさせる
-//=======
 		//listの個数を取得しておく
 		var listContents = $("#cloth_list .portfolio-item").length;
 		console.log("リストコンテンツの個数"+listContents);
