@@ -10631,9 +10631,9 @@ keyframes moveInRight { 0% {
 
 /*問い合わせフォーム*/
 .cp_iptxt {
-	position: relative;
 	width: 80%;
-	margin: 40px 3%;
+	margin: 0 auto;
+	margin-bottom: 40px;
 }
 
 .cp_iptxt input[type='text'] {
@@ -10688,13 +10688,15 @@ keyframes moveInRight { 0% {
 }
 
 .contact-form {
-	margin-top: 100px;
-	margin-left: 450px;
+	text-align: center;
+	position:relative;
+    top: 90px;
 }
 
 .submit-button {
+	margin: 0 auto;
 	margin-top: 50px;
-	margin-left: 250px;
+	margin-bottom: 70px;
 }
 
 

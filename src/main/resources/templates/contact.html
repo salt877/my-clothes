@@ -59,7 +59,8 @@
                 	<form action="#" method="post" th:action="@{/contact/reception}" th:object="${contactForm}" name="contact_form">
                 		<div class="contact-form">
                 			<div class="cp_iptxt">
-								<label class="ef">お名前
+								<label class="ef">
+									<span class="input-item">お名前</span>
 									<input type="text" name="name" placeholder="(例)山田太郎" size=54 th:field="*{name}">
 								</label>
                 				<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color:red">エラー！</div>
