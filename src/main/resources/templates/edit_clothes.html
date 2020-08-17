@@ -27,8 +27,6 @@
 	th:href="@{/dist/css/styles.css}" />
 <link href="../static/dist/css/edit_clothes.css" rel="stylesheet"
 	th:href="@{/dist/css/edit_clothes.css}" />	
-<link href="../static/dist/css/register_clothes.css"
-	th:href="@{/dist/css/register_clothes.css}" rel="stylesheet" />
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
@@ -45,7 +43,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 }
 </style>
 </head>
-<body id="page-top">
+<body>
 
 
 	<!-- Navigation-->
@@ -60,6 +58,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 			<div class="text-center">
 				<h2 class="section-heading text-uppercase">アイテム詳細/編集</h2>
 			</div>
+			<div class="contents">
 			<form action="#" method="post" th:action="@{/showDetail/editClothes}"
 				th:object="${editClothesForm}" enctype="multipart/form-data">
 				<!-- 商品idを埋め込んでおく -->
@@ -215,6 +214,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 						class="btn btn--submit" value="&emsp;変更を保存&emsp;" />
 				</div>
 			</form>
+			</div>
 			<div class="complete-btn">
 			
 			</div>

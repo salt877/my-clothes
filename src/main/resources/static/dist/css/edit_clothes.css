@@ -30,7 +30,7 @@
   cursor: pointer;
 }
 
-/*編集画面全体*/
+/*詳細画面全体*/
 body {
 	font-family: "Open Sans", sans-serif;
 	line-height: 1.25;
@@ -72,6 +72,7 @@ tbody th {
 	text-align: right;
 }
 
+/* 600px以下に適用されるCSS（PC用） */
 @media screen and (max-width: 600px) {
 	table {
 		border: 0;
@@ -117,52 +118,41 @@ tbody th {
 	table td:last-child {
 		border-bottom: 0;
 	}
-}
 
-input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button
-	{
-	-webkit-appearance: none;
-	margin: 0;
-}
+	input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button{
+		-webkit-appearance: none;
+		margin: 0;
+	}
 
-input[type="number"] {
-	-moz-appearance: textfield;
-}
+	input[type="number"] {
+		-moz-appearance: textfield;
+	}
 
-/*input type="number"textboxの見た目をtext	boxとそろえる*/
-.txt input[type='number'] {
-	width: 90%;
-	max-width: 400px;
-	padding: 5px;
-	border-radius: 5px;
-	border: 1px solid #ccc;
-	appearance: none;
-	-webkit-appearance: none;
-	-moz-appearance: none;
-}
+	/*input type="number"textboxの見た目をtext	boxとそろえる*/
+	.txt input[type='number'] {
+		width: 90%;
+		max-width: 400px;
+		padding: 5px;
+		border-radius: 5px;
+		border: 1px solid #ccc;
+		appearance: none;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+	}
 
-.required-information {
+	.required-information {
 	text-align: center;
 }
-
-@media screen and (max-width: 959px) { /* 959px以下に適用されるCSS（タブレット用） */
 }
 
+/* 959px以下に適用されるCSS（タブレット用） */
+@media screen and (max-width: 959px) { 
+}
+
+/* 480px以下に適用されるCSS（スマホ用） */
 @media screen and (max-width: 480px) {
-	/* 480px以下に適用されるCSS（スマホ用） */
+	table td{
 	
-	/*確認ボタンのdiv幅が大きかったので適当に小さくしました。適宜修正お願いします。（能勢）*/
-	.switch_btn {
-		width: 60px;
-	}
-	h2 {
-		font-size: 20px;
-		margin-top: 0;
-		margin-bottom: 1rem;
-	}
-	.modal-dialog-fluid {
-		max-width: inherit;
-		width: 50%;
-		margin-left: 15px;
 	}
 }
+

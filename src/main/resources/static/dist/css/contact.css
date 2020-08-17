@@ -68,8 +68,10 @@
 	text-align: center;
 }
 
-@media screen and (max-width: 600px) {
-	
+@media screen and (max-width: 660px) {
+	.container .text-center h2{
+		font-size: 35px;
+	}
 }
 
 /* 959px以下に適用されるCSS（タブレット用） */
@@ -78,10 +80,15 @@
 
 /* 480px以下に適用されるCSS（スマホ用） */
 @media screen and (max-width: 480px) { 
-	h2{
-		font-size: 10px;
+	.container .text-center h2{
+		font-size: 40px;
 	}
-	.text-center p {
-		font-size: 16px;
+	
+	.contact-form{
+		font-size: 15px;
+	}
+	
+	.explanatory-text{
+		font-size: 14px;
 	}
 }
