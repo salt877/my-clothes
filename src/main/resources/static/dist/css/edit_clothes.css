@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+/*画像を変更するときのボタン*/
 .file_button {
   display: inline-block;
   position: relative;
@@ -27,4 +28,141 @@
   height: 100%;
   opacity: 0;
   cursor: pointer;
+}
+
+/*編集画面全体*/
+body {
+	font-family: "Open Sans", sans-serif;
+	line-height: 1.25;
+}
+
+table {
+	border-collapse: collapse;
+	margin: 0 auto;
+	padding: 0;
+	width: 650px;
+	table-layout: fixed;
+	color: #ff9900;
+}
+
+table tr {
+	background-color: #fff;
+	padding: .35em;
+	border-bottom: 1px dotted #bbb;
+}
+
+table tr:last-child {
+	border-bottom: 2px solid #bbb;
+}
+
+table th, table td {
+	padding: 1em 10px 1em 1em;
+}
+
+tbody th {
+	color: black;
+}
+
+.txt {
+	text-align: left;
+	font-size: .85em;
+}
+
+.price {
+	text-align: right;
+}
+
+@media screen and (max-width: 600px) {
+	table {
+		border: 0;
+		width: 100%
+	}
+	table th {
+		display: block;
+		border-right: none;
+		border-bottom: 2px solid #bbb;
+		padding-bottom: .6em;
+		margin-bottom: .6em;
+	}
+	table thead {
+		border: none;
+		clip: rect(0, 0, 0, 0);
+		height: 1px;
+		margin: -1px;
+		overflow: hidden;
+		padding: 0;
+		position: absolute;
+		width: 1px;
+	}
+	table tr {
+		display: block;
+		margin-bottom: 2em;
+		border-bottom: 2px solid #bbb;
+	}
+	table td {
+		border-bottom: 1px solid #bbb;
+		display: block;
+		font-size: .8em;
+		text-align: right;
+		position: relative;
+		padding: .625em .625em .625em 4em;
+		border-right: none;
+	}
+	table td::before {
+		content: attr(data-label);
+		font-weight: bold;
+		position: absolute;
+		left: 10px;
+	}
+	table td:last-child {
+		border-bottom: 0;
+	}
+}
+
+input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button
+	{
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+input[type="number"] {
+	-moz-appearance: textfield;
+}
+
+/*input type="number"textboxの見た目をtext	boxとそろえる*/
+.txt input[type='number'] {
+	width: 90%;
+	max-width: 400px;
+	padding: 5px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+
+.required-information {
+	text-align: center;
+}
+
+@media screen and (max-width: 959px) { /* 959px以下に適用されるCSS（タブレット用） */
+}
+
+@media screen and (max-width: 480px) {
+	/* 480px以下に適用されるCSS（スマホ用） */
+	
+	/*確認ボタンのdiv幅が大きかったので適当に小さくしました。適宜修正お願いします。（能勢）*/
+	.switch_btn {
+		width: 60px;
+	}
+	h2 {
+		font-size: 20px;
+		margin-top: 0;
+		margin-bottom: 1rem;
+	}
+	.modal-dialog-fluid {
+		max-width: inherit;
+		width: 50%;
+		margin-left: 15px;
+	}
 }
