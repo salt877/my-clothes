@@ -46,20 +46,21 @@ public class ShowMonthlyDataRestController {
 		String jsonMsg = null;
 
 		Integer userId = loginUser.getUser().getId();
-		// Integer userId = 1;
+		//Integer userId = 1;
 
 		try {
 
 			List<MonthlyDataDTO> events = new ArrayList<MonthlyDataDTO>();
 
-			// System.out.println("ユーザーIDは" + userId);
 			List<Clothes> clothesList = showCalendarService.showDailyPerchaseData(userId);
 
 			for (int i = 0; i < clothesList.size(); i++) {
 				MonthlyDataDTO event = new MonthlyDataDTO();
 				Integer integerItemPrice = clothesList.get(i).getPrice();
+				System.out.println(integerItemPrice);
 				String itemCategory = clothesList.get(i).getCategory().getName();
 				Date perchaseDate2 = clothesList.get(i).getPerchaseDate();
+				Integer clothesId = clothesList.get(i).getId();
 
 				// 購入日と金額がわかる場合だけ行う処理（購入日がnullの時は何もしない）
 				if (perchaseDate2 == null) {
@@ -67,11 +68,36 @@ public class ShowMonthlyDataRestController {
 				} else {
 					String formatItemPrice = String.format("%,d", integerItemPrice);
 					String itemPrice = String.valueOf(formatItemPrice);
-					event.setTitle(itemCategory + "　" + itemPrice + " 円");
+					event.setTitle(" " + itemCategory + "　" + itemPrice + " 円");
+
+					event.setUrl("http://localhost:8080/showDetail/?id=" + clothesId);
 
 					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 					String perchaseDate = dateFormat.format(perchaseDate2);
 					event.setStart(perchaseDate);
+					
+					if (itemCategory.equals("ファッション雑貨")) {
+						event.setColor("#87ceeb");
+					}
+					if (itemCategory.equals("トップス")) {
+						event.setColor("#4169e1");
+					}
+					if (itemCategory.equals("アウター")) {
+						event.setColor("#90ee90");
+					}
+					if (itemCategory.equals("ボトムス")) {
+						event.setColor("#008000");
+					}
+					if (itemCategory.equals("シューズ")) {
+						event.setColor("#ffb6c1");
+					}
+					if (itemCategory.equals("バッグ")) {
+						event.setColor("#ff4500");
+					}
+					if (itemCategory.equals("ワンピース")) {
+						event.setColor("#ffda03");
+					}
+
 				}
 
 				events.add(event);
@@ -91,8 +117,8 @@ public class ShowMonthlyDataRestController {
 	/**
 	 * 月毎の購入情報を表示します.
 	 * 
-	 * @param userId ユーザID
-	 * @param        perchaseDate 購入年月
+	 * @param userId       ユーザID
+	 * @param perchaseDate 購入年月
 	 * @return 購入情報の詰まったマップ
 	 */
 	@GetMapping("/data")

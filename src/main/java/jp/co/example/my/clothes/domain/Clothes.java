@@ -3,7 +3,6 @@ package jp.co.example.my.clothes.domain;
 import java.util.Date;
 import java.util.List;
 
-
 /**
  * アイテム情報を扱うドメインクラス.
  * 
@@ -100,6 +99,33 @@ public class Clothes {
 	 * ブランドリスト
 	 */
 	private List<Brand> brandList;
+
+	public Clothes(Integer id, Integer userId, Integer brandId, Integer categoryId, String imagePath, Integer price,
+			Integer colorId, String season, Integer sizeId, Date perchaseDate, String comment, Boolean deleted,
+			Category category, Brand brand, Color color, Size size, List<Tag> tagList, List<Brand> brandList) {
+		super();
+		this.id = id;
+		this.userId = userId;
+		this.brandId = brandId;
+		this.categoryId = categoryId;
+		this.imagePath = imagePath;
+		this.price = price;
+		this.colorId = colorId;
+		this.season = season;
+		this.sizeId = sizeId;
+		this.perchaseDate = perchaseDate;
+		this.comment = comment;
+		this.deleted = deleted;
+		this.category = category;
+		this.brand = brand;
+		this.color = color;
+		this.size = size;
+		this.tagList = tagList;
+		this.brandList = brandList;
+	}
+
+	public Clothes() {
+	}
 
 	public Integer getId() {
 		return id;

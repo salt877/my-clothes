@@ -55,7 +55,7 @@ public class ClothesRepository {
 		clothes.setCategoryId(rs.getInt("cl_category_id"));
 		clothes.setBrandId(rs.getInt("cl_brand_id"));
 		clothes.setImagePath(rs.getString("cl_image_path"));
-		clothes.setPrice(rs.getInt("price"));
+		clothes.setPrice(rs.getInt("cl_price"));
 		clothes.setColorId(rs.getInt("cl_color_id"));
 		clothes.setSeason(rs.getString("cl_season"));
 		clothes.setSizeId(rs.getInt("cl_size_id"));
@@ -107,7 +107,7 @@ public class ClothesRepository {
 		StringBuilder sql = new StringBuilder();
 		sql.append(
 				"SELECT cl.id cl_id,cl.user_id cl_user_id,cl.category_id cl_category_id,cl.brand_id cl_brand_id,cl.image_path cl_image_path,");
-		sql.append("CASE WHEN cl.price IS NULL THEN 0 ELSE cl.price END,cl.color_id cl_color_id,");
+		sql.append("CASE WHEN cl.price IS NULL THEN NULL ELSE cl.price END cl_price,cl.color_id cl_color_id,");
 		sql.append(
 				"cl.season cl_season,cl.size_id cl_size_id,cl.perchase_date cl_perchase_date,cl.comment cl_comment,cl.deleted cl_deleted,");
 		sql.append("ca.id ca_id,ca.name ca_name FROM clothes cl INNER JOIN categories ca ");
@@ -115,6 +115,10 @@ public class ClothesRepository {
 		sql.append("WHERE cl.user_id=:userId AND cl.deleted='FALSE' ORDER BY cl.id;");
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
 		List<Clothes> clothesList = template.query(sql.toString(), param, CLOTHES_ROW_MAPPER4);
+		for(int i= 0 ; i < clothesList.size(); i++) {
+			String price = String.valueOf(clothesList.get(i).getPrice());
+			System.out.println("idは"+clothesList.get(i).getId()+"、季節は"+clothesList.get(i).getSeason()+"、購入金額は"+price+"円");
+		}
 		return clothesList;
 	}
 

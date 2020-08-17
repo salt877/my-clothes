@@ -711,6 +711,11 @@ h5, .h5 {
 h6, .h6 {
 	font-size: 1rem;
 }
+@media screen and (max-width: 480px) {
+	h6, .h6 {
+	font-size: 1rem;
+}
+}
 
 .lead {
 	font-size: 1.25rem;
@@ -11955,7 +11960,6 @@ footer {
 	.btn--vuemore {
 		display: block;
 		clear: none;
-		margin: 0em 8.5em;
 		position: relative;
 	}
 	.narrow_down_box {

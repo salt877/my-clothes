@@ -181,7 +181,7 @@ public class RegisterClothesController {
 
 		// 価格
 		if (!StringUtils.isEmpty(form.getPrice())) {
-			clothes.setPrice(Integer.parseInt(form.getPrice()));
+			clothes.setPrice(Integer.parseInt(form.getPrice()));;
 		}
 
 		// メモ

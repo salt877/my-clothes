@@ -44,7 +44,18 @@
 	        events: 
 	        	{
 	        	 	url : '/show/perchase/all' 
-	        	}
+	        	},
+	        eventClick: function(info) {
+	        	
+	        	var eventObj = info.event;
+	        	
+	        	if(eventObj.url){  	
+	        	window.location.href = eventObj.url;
+	        	info.jsEvent.preventDefault();
+	        	} else {
+	                alert("Clicked " + eventObj.title);
+	              }	        	
+	        }
 	      });
 	      calendar.render();
 	    });

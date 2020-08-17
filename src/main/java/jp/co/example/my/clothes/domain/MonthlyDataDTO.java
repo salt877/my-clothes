@@ -9,32 +9,37 @@ package jp.co.example.my.clothes.domain;
 public class MonthlyDataDTO {
 
 	/**
-	 * 
+	 * タイトル
 	 */
 	private String title;
 
 	/**
-	 * 
+	 * 購入日
 	 */
 	private String start;
 
 	/**
-	 * 
+	 * URL
 	 */
-	private String end;
+	private String url;
 
 	/**
-	 * 
+	 * イベントの色
+	 */
+	private String color;
+
+	/**
+	 * 合計金額
 	 */
 	private Integer totalPrice;
 
 	/**
-	 * 
+	 * アイテム数量
 	 */
 	private Integer itemQuantity;
 
 	/**
-	 * 
+	 * アイテム購入平均額
 	 */
 	private Integer priceAverage;
 
@@ -54,12 +59,20 @@ public class MonthlyDataDTO {
 		this.start = start;
 	}
 
-	public String getEnd() {
-		return end;
+	public String getUrl() {
+		return url;
 	}
 
-	public void setEnd(String end) {
-		this.end = end;
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
 	}
 
 	public Integer getTotalPrice() {

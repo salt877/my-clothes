@@ -48,7 +48,6 @@ public class ShowCalendarController {
 		Date today = new Date();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM");
 		String perchaseDate = dateFormat.format(today);
-		System.out.println(perchaseDate);
 
 		int dateLength = perchaseDate.length();
 		if(dateLength == 7) {
