@@ -10630,12 +10630,6 @@ keyframes moveInRight { 0% {
 }
 
 /*問い合わせフォーム*/
-.cp_iptxt {
-	width: 80%;
-	margin: 0 auto;
-	margin-bottom: 40px;
-}
-
 .cp_iptxt input[type='text'] {
 	font: 15px/24px sans-serif;
 	box-sizing: border-box;
@@ -10687,16 +10681,23 @@ keyframes moveInRight { 0% {
 	box-shadow: 0 0 5px 1px rgba(218, 60, 65, .5);
 }
 
-.contact-form {
-	text-align: center;
-	position:relative;
-    top: 90px;
+.contact-form{
+	width: 80%;
+  	margin: 0 auto;
+  	margin-top: 100px;
+  	max-width: 550px;
+}
+
+.cp_iptxt {
+	margin: 0 auto;
+	margin-bottom: 40px;
 }
 
 .submit-button {
+	width: 20%;
 	margin: 0 auto;
-	margin-top: 50px;
-	margin-bottom: 70px;
+	margin-top: 60px;
+	margin-bottom: 60px;
 }
 
 
@@ -10704,6 +10705,9 @@ keyframes moveInRight { 0% {
 body {
 	font-family: "Open Sans", sans-serif;
 	line-height: 1.25;
+	
+	position: relative;
+  	left: 10px;
 }
 
 table {

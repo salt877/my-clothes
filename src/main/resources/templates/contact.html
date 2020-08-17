@@ -59,23 +59,22 @@
                 	<form action="#" method="post" th:action="@{/contact/reception}" th:object="${contactForm}" name="contact_form">
                 		<div class="contact-form">
                 			<div class="cp_iptxt">
-								<label class="ef">
-									<span class="input-item">お名前</span>
-									<input type="text" name="name" placeholder="(例)山田太郎" size=54 th:field="*{name}">
+								<label class="ef">お名前<br>
+									<input type="text" name="name" placeholder="(例)山田太郎" size=70 th:field="*{name}">
 								</label>
-                				<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color:red">エラー！</div>
+                				<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color:red">エラー！</span>
 							</div>
 							<div class="cp_iptxt">
 								<label class="ef">メールアドレス<br>
-									<input type="email" name="email" size=60 th:field="*{email}">
+									<input type="email" name="email" size=70 th:field="*{email}">
 								</label>
-								<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color:red">エラー！</div>
+								<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color:red">エラー！</span>
 							</div>
 							<div class="cp_iptxt">
 									<label class="ef">お問い合わせ内容<br>
-									<textarea name="content" cols="63" rows="5" th:field="*{content}" ></textarea>
+									<textarea name="content" cols="70" rows="5" th:field="*{content}" ></textarea>
 								</label>
-								<div th:if="${#fields.hasErrors('content')}" th:errors="*{content}" style="color:red">エラー！</div>
+								<span th:if="${#fields.hasErrors('content')}" th:errors="*{content}" style="color:red">エラー！</span>
 							</div>
 							
 							<!-- 送信ボタン/完了ポップアップ -->
