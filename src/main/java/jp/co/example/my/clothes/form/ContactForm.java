@@ -5,14 +5,14 @@ import javax.validation.constraints.NotBlank;
 
 public class ContactForm {
 
-	@NotBlank(message="名前を入力してください")
+	@NotBlank(message="※名前を入力してください")
 	private String name;
 	
-	@NotBlank(message="メールアドレスを入力してください")
-	@Email(message="メールアドレスの形式が不正です")
+	@NotBlank(message="※メールアドレスを入力してください")
+	@Email(message="※メールアドレスの形式が不正です")
 	private String email;
 	
-	@NotBlank(message="問い合わせ内容を入力してください")
+	@NotBlank(message="※問い合わせ内容を入力してください")
 	private String content;
 
 	@Override

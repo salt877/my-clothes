@@ -1,0 +1,94 @@
+@charset "UTF-8";
+
+/*問い合わせフォーム*/
+.cp_iptxt input[type='text'] {
+	font: 15px/24px sans-serif;
+	box-sizing: border-box;
+	width: 100%;
+	padding: 0.3em;
+	transition: 0.3s;
+	letter-spacing: 1px;
+	border: 1px solid #1b2538;
+	border-radius: 4px;
+}
+
+.ef input[type='text']:focus {
+	border: 1px solid #da3c41;
+	outline: none;
+	box-shadow: 0 0 5px 1px rgba(218, 60, 65, .5);
+}
+
+.cp_iptxt input[type='email'] {
+	font: 15px/24px sans-serif;
+	box-sizing: border-box;
+	width: 100%;
+	padding: 0.3em;
+	transition: 0.3s;
+	letter-spacing: 1px;
+	border: 1px solid #1b2538;
+	border-radius: 4px;
+}
+
+.ef input[type='email']:focus {
+	border: 1px solid #da3c41;
+	outline: none;
+	box-shadow: 0 0 5px 1px rgba(218, 60, 65, .5);
+}
+
+.cp_iptxt textarea {
+	font: 15px/24px sans-serif;
+	box-sizing: border-box;
+	width: 100%;
+	padding: 0.3em;
+	transition: 0.3s;
+	letter-spacing: 1px;
+	border: 1px solid #1b2538;
+	border-radius: 4px;
+}
+
+.ef textarea:focus {
+	border: 1px solid #da3c41;
+	outline: none;
+	box-shadow: 0 0 5px 1px rgba(218, 60, 65, .5);
+}
+
+.contact-form{
+	width: 80%;
+  	margin: 0 auto;
+  	margin-top: 100px;
+  	max-width: 550px;
+}
+
+.cp_iptxt {
+	margin: 0 auto;
+	margin-bottom: 40px;
+}
+
+.submit-button {
+	text-align: center;
+}
+
+@media screen and (max-width: 660px) {
+	.container .text-center h2{
+		font-size: 35px;
+	}
+}
+
+/* 959px以下に適用されるCSS（タブレット用） */
+@media screen and (max-width: 959px) { 
+}
+
+/* 480px以下に適用されるCSS（スマホ用） */
+@media screen and (max-width: 480px) { 
+	.container .text-center h2{
+		font-size: 40px;
+	}
+	
+	.contact-form{
+		font-size: 15px;
+	}
+	
+	.explanatory-text{
+		font-size: 14px;
+	}
+}

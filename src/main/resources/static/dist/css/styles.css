@@ -11877,6 +11877,7 @@ translate
 }
 }
 
+<<<<<<< HEAD
 /*問い合わせフォーム*/
 .cp_iptxt {
 	position: relative;
@@ -11945,10 +11946,15 @@ translate
 	margin-left: 250px;
 }
 
+=======
+>>>>>>> bag-fix
 /*cloth新規登録画面
 body {
 	font-family: "Open Sans", sans-serif;
 	line-height: 1.25;
+	
+	position: relative;
+  	left: 10px;
 }
 
 table {
@@ -12033,13 +12039,7 @@ tbody th {
 
 
 */
-.image-information {
-	position: relative;
-	top: 10px;
-	left: 37%;
-	padding-top: 50px;
-	padding-bottom: 50px;
-}
+
 
 .complete-btn {
 	position: relative;
@@ -12178,15 +12178,18 @@ tbody th {
 }
 
 /*アイテム編集・削除画面*/
-#item-image {
-	position: relative;
-	left: 360px;
-}
-
-.file_button {
+.file_button{
 	position: absolute;
 	top: 10px;
 	left: 130px;
+}
+
+.image-information{
+	padding-top: 50px;
+	padding-bottom: 50px;
+	width: 80%;
+  	margin: 0 auto;
+  	max-width: 400px;
 }
 
 .image-information .img-fluid img {
@@ -12202,9 +12205,10 @@ tbody th {
 }
 
 .complete-btn {
-	position: relative;
-	top: 0px;
-	left: 42%;
+	width: 200%;
+  	margin: 0 auto;
+  	margin-left: -45px;
+  	max-width: 1500px;
 }
 
 .btn--submit, input.btn--delete {

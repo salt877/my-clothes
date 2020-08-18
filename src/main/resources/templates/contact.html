@@ -17,6 +17,7 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="../static/dist/css/styles.css" rel="stylesheet" th:href="@{/dist/css/styles.css}" />
+        <link href="../static/dist/css/contact.css" rel="stylesheet" th:href="@{/dist/css/contact.css}" />
         
         <!-- Form送信完了後ポップアップ用のJavaScript -->
         <script type="text/javascript">
@@ -29,7 +30,10 @@
         		return false;
         	}
         	var alertmsg = function(){
-        		  alert("問い合わせを受け付けました。\nトップ画面へ遷移します。しばらくお待ちください。");
+        		  alert("問い合わせを受け付けました。\n" +
+        				  "ご入力いただいたアドレス宛に受付完了メールをお送りしました。ご確認ください。\n" +
+        				  "届かない場合は、お手数ですが再度お問い合わせいただくかFAQをご覧ください。\n" +
+        				  "\nトップ画面に遷移します。しばらくお待ちください。");
         		}
         	setTimeout(alertmsg, 10000);
         }
@@ -45,10 +49,10 @@
      
         <!-- 問い合わせ画面-->
         <section class="page-section bg-light" id="portfolio">
-            <div class="conatact-container">
+            <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">お問い合わせ  入力フォーム</h2>
-                    <p>
+                    <p class="explanatory-text">
                     	お問い合わせ内容をご入力の上、「送信」ボタンをクリックしてください。<br>
                     	<span style="color:red;">※すべて入力必須項目となっております。記入漏れのないようお願い致します。</span>
                     </p>
@@ -56,22 +60,22 @@
                 	<form action="#" method="post" th:action="@{/contact/reception}" th:object="${contactForm}" name="contact_form">
                 		<div class="contact-form">
                 			<div class="cp_iptxt">
-								<label class="ef">お名前
-									<input type="text" name="name" placeholder="(例)山田太郎" size=54 th:field="*{name}">
+								<label class="ef">お名前<br>
+									<input type="text" name="name" placeholder="(例)山田太郎" size=70 th:field="*{name}">
 								</label>
-                				<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color:red">エラー！</div>
+                				<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color:red">エラー！</span>
 							</div>
 							<div class="cp_iptxt">
 								<label class="ef">メールアドレス<br>
-									<input type="email" name="email" size=60 th:field="*{email}">
+									<input type="email" name="email" size=70 th:field="*{email}">
 								</label>
-								<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color:red">エラー！</div>
+								<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color:red">エラー！</span>
 							</div>
 							<div class="cp_iptxt">
 									<label class="ef">お問い合わせ内容<br>
-									<textarea name="content" cols="63" rows="5" th:field="*{content}" ></textarea>
+									<textarea name="content" cols="70" rows="5" th:field="*{content}" ></textarea>
 								</label>
-								<div th:if="${#fields.hasErrors('content')}" th:errors="*{content}" style="color:red">エラー！</div>
+								<span th:if="${#fields.hasErrors('content')}" th:errors="*{content}" style="color:red">エラー！</span>
 							</div>
 							
 							<!-- 送信ボタン/完了ポップアップ -->
