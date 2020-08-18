@@ -108,7 +108,7 @@
 				<span th:if="${clothesList.size()==0}" th:text="${'アイテムはありません'}"></span>
 				<div class="item_select cp_sl04">
 					<select>
-						<option value="">アイテムを絞り込む</option>
+						<option value="item">アイテムを絞り込む</option>
 						<option value="category">カテゴリで絞り込む</option>
 						<option value="brand">ブランドで絞り込む</option>
 						<option value="tag">タグで絞り込む</option>
@@ -125,14 +125,14 @@
 						<input id="tab_bags" type="radio" name="categoryId" value="6" class="radioButton" /><label class="tab-label" for="tab_bags" th:text="バッグ">バッグ</label>
 						<input id="tab_accessories" type="radio" name="categoryId" value="1" class="radioButton" /><label class="tab-label" for="tab_accessories" th:text="ファッション雑貨">ファッション雑貨</label>
 					</div>
-					<div>
+					<div class="show_brand_and_tag">
 						<span class="brand" id="brand" th:each="brand : ${brandMap}">
 							<label> 
 								<input type="radio" class="radioButton" name="brandId" th:value="${brand.key}" th:text="${brand.value}">
 							</label>
 						</span>
 					</div>
-					<div>
+					<div class="show_brand_and_tag">
 						<span class="tag" id="tag" th:each="tag : ${tagMap}">
 						<label>
 								<input type="radio" class="radioButton" name="tagContentsId" th:value="${tag.key}" th:text="${tag.value}">

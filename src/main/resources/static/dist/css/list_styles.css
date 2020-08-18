@@ -159,3 +159,7 @@ label {
 	position: relative;
 	top: 10%;
 }
+.show_brand_and_tag{
+	position: relative;
+	margin:1em 10em;
+}

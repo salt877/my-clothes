@@ -178,6 +178,7 @@ public class ShowTopPageController {
 			session.setAttribute("showTagName", tagName.getName());
 		//	System.out.println("タグ選択された時、タグコンテンツIDは" + tagContentsId + " タグ名は" + tagName.getName());
 		}
+		
 
 		return "top";
 	}
