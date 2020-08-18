@@ -184,5 +184,12 @@ tbody th {
 		font-size: 40px;
 	}
 	
+	 tr.inputarea{
+		height: 109px;
+	}
+	
+	.search {
+		top: 10px;
+}
 }
 
