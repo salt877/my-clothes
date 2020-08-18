@@ -174,11 +174,10 @@ tbody th {
 	}
 	
 	.complete-btn {
-		width: 80%;
+		width: 82%;
   		margin: 0 auto;
   		margin-right:10px;
-  		margin-left: -80px;
-  		max-width: 250px;
+  		max-width: 300px;
 	}
 	
 	.container .text-center h2{
