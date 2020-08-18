@@ -141,8 +141,12 @@ tbody th {
 	}
 
 	.required-information {
-	text-align: center;
-}
+		text-align: center;
+	}
+	
+	.file_button{
+		left: 5px;
+	}
 }
 
 /* 959px以下に適用されるCSS（タブレット用） */

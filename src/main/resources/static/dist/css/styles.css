@@ -10720,13 +10720,7 @@ tbody th {
 
 
 */
-.image-information {
-	position: relative;
-	top: 10px;
-	left: 37%;
-	padding-top: 50px;
-	padding-bottom: 50px;
-}
+
 
 .complete-btn {
 	position: relative;
@@ -10865,15 +10859,20 @@ tbody th {
 }
 
 /*アイテム編集・削除画面*/
-#item-image {
-	position: relative;
-	left: 360px;
-}
+
 
 .file_button{
 	position: absolute;
 	top: 10px;
 	left: 130px;
+}
+
+.image-information{
+	padding-top: 50px;
+	padding-bottom: 50px;
+	width: 80%;
+  	margin: 0 auto;
+  	max-width: 400px;
 }
 
 .image-information .img-fluid img {

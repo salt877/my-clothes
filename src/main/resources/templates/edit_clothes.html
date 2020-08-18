@@ -56,21 +56,22 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 	<section class="page-section bg-light" id="portfolio">
 		<div class="container">
 			<div class="text-center">
-				<h2 class="section-heading text-uppercase">アイテム詳細/編集</h2>
+				<h2 class="section-heading text-uppercase">アイテム詳細・編集</h2>
 			</div>
 			<div class="contents">
 			<form action="#" method="post" th:action="@{/showDetail/editClothes}"
 				th:object="${editClothesForm}" enctype="multipart/form-data">
 				<!-- 商品idを埋め込んでおく -->
 				<input type="hidden" name="clothesId" th:value="${clothes.id}">
-				<div id="item-image" class="image-information">
+				
+				<div class="required-information">
+				<div class="image-information">
 					<img id="preview" class="img-fluid" th:src="${clothes.imagePath}" width="400" height="400" /><br> 
 					<div class="file_button">
 						画像を変更
 						<input  id="myImage" class="file_input" name="imageFile" type="file" accept=".jpg,.png">
 					</div>
 				</div>
-				<div class="required-information">
 					<table>
 						<thead>
 							<tr>
@@ -214,9 +215,6 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 						class="btn btn--submit" value="&emsp;変更を保存&emsp;" />
 				</div>
 			</form>
-			</div>
-			<div class="complete-btn">
-			
 			</div>
 		</div>
 	</section>
