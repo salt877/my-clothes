@@ -174,5 +174,9 @@ tbody th {
   		max-width: 250px;
 	}
 	
+	.container .text-center h2{
+		font-size: 40px;
+	}
+	
 }
 
