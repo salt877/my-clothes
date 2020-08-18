@@ -19,12 +19,12 @@ import jp.co.example.my.clothes.domain.BrandCountDto;
 import jp.co.example.my.clothes.domain.BrandSumDto;
 import jp.co.example.my.clothes.domain.Category;
 import jp.co.example.my.clothes.domain.CategoryCountDto;
+import jp.co.example.my.clothes.domain.CategorySumDto;
 import jp.co.example.my.clothes.domain.Clothes;
 import jp.co.example.my.clothes.domain.Color;
+import jp.co.example.my.clothes.domain.MonthlyDataDTO;
 import jp.co.example.my.clothes.domain.Size;
 import jp.co.example.my.clothes.domain.Tag;
-import jp.co.example.my.clothes.domain.CategorySumDto;
-import jp.co.example.my.clothes.domain.MonthlyDataDTO;
 import jp.co.example.my.clothes.domain.TagContent;
 
 /**
@@ -56,6 +56,9 @@ public class ClothesRepository {
 		clothes.setBrandId(rs.getInt("cl_brand_id"));
 		clothes.setImagePath(rs.getString("cl_image_path"));
 		clothes.setPrice(rs.getInt("cl_price"));
+		if (rs.wasNull()) {
+			clothes.setPrice(null);
+		}
 		clothes.setColorId(rs.getInt("cl_color_id"));
 		clothes.setSeason(rs.getString("cl_season"));
 		clothes.setSizeId(rs.getInt("cl_size_id"));
@@ -104,6 +107,7 @@ public class ClothesRepository {
 	 * @return 登録アイテム一覧
 	 */
 	public List<Clothes> findAllWithCategory(Integer userId) {
+
 		StringBuilder sql = new StringBuilder();
 		sql.append(
 				"SELECT cl.id cl_id,cl.user_id cl_user_id,cl.category_id cl_category_id,cl.brand_id cl_brand_id,cl.image_path cl_image_path,");
@@ -115,10 +119,7 @@ public class ClothesRepository {
 		sql.append("WHERE cl.user_id=:userId AND cl.deleted='FALSE' ORDER BY cl.id;");
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
 		List<Clothes> clothesList = template.query(sql.toString(), param, CLOTHES_ROW_MAPPER4);
-		for(int i= 0 ; i < clothesList.size(); i++) {
-			String price = String.valueOf(clothesList.get(i).getPrice());
-			System.out.println("idは"+clothesList.get(i).getId()+"、季節は"+clothesList.get(i).getSeason()+"、購入金額は"+price+"円");
-		}
+
 		return clothesList;
 	}
 
@@ -196,7 +197,6 @@ public class ClothesRepository {
 		TagContent tagName = template.queryForObject(sql, param, TAG_CONTENTS_ROW_MAPPER);
 		return tagName;
 	}
-	
 
 	/**
 	 * 登録アイテムをブランド別に分けて表示します.
@@ -231,15 +231,15 @@ public class ClothesRepository {
 	// タグ検索から詳細画面へ移行する際の表示用ローマッパー.
 	private static final RowMapper<Clothes> CLOTHES_ROW_MAPPER5 = (rs, i) -> {
 		// タグコンテンツ
-		TagContent tagContent= new TagContent();
+		TagContent tagContent = new TagContent();
 		tagContent.setId(rs.getInt("tc_id"));
 		tagContent.setName(rs.getString("name"));
-		//タグ
+		// タグ
 		Tag tag = new Tag();
 		tag.setId(rs.getInt("t_id"));
 		tag.setClothesId(rs.getInt("c_id"));
 		tag.setTagContent(tagContent);
-		List<Tag>tagList = new ArrayList<>();
+		List<Tag> tagList = new ArrayList<>();
 		tagList.add(tag);
 		// 服アイテム
 		Clothes clothes = new Clothes();
@@ -256,16 +256,15 @@ public class ClothesRepository {
 		clothes.setComment(rs.getString("comment"));
 		clothes.setDeleted(rs.getBoolean("deleted"));
 		clothes.setTagList(tagList);
-			
+
 		return clothes;
 	};
-	
-	
+
 	/**
 	 * 登録アイテムをタグ別に分けて表示します.
 	 * 
-	 * @param userId ユーザID
-	 * @param        tagContentsId タグコンテンツID
+	 * @param userId        ユーザID
+	 * @param tagContentsId タグコンテンツID
 	 * @return
 	 */
 	public List<Clothes> findByTag(Integer userId, Integer tagContentsId) {
@@ -392,11 +391,10 @@ public class ClothesRepository {
 		return clothes;
 	};
 
-	
 	/**
 	 * アイテムの1件検索を行います.
 	 * 
-	 * @param id アイテムID
+	 * @param id     アイテムID
 	 * @param userId ユーザID
 	 * @return 1件のアイテム
 	 */

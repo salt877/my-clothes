@@ -46,7 +46,7 @@ public class ShowMonthlyDataRestController {
 		String jsonMsg = null;
 
 		Integer userId = loginUser.getUser().getId();
-		//Integer userId = 1;
+		// Integer userId = 1;
 
 		try {
 
@@ -57,7 +57,6 @@ public class ShowMonthlyDataRestController {
 			for (int i = 0; i < clothesList.size(); i++) {
 				MonthlyDataDTO event = new MonthlyDataDTO();
 				Integer integerItemPrice = clothesList.get(i).getPrice();
-				System.out.println(integerItemPrice);
 				String itemCategory = clothesList.get(i).getCategory().getName();
 				Date perchaseDate2 = clothesList.get(i).getPerchaseDate();
 				Integer clothesId = clothesList.get(i).getId();
@@ -65,17 +64,17 @@ public class ShowMonthlyDataRestController {
 				// 購入日と金額がわかる場合だけ行う処理（購入日がnullの時は何もしない）
 				if (perchaseDate2 == null) {
 					// System.out.println("購入日がnullのアイテムID:" + clothesList.get(i).getId());
+
 				} else {
 					String formatItemPrice = String.format("%,d", integerItemPrice);
 					String itemPrice = String.valueOf(formatItemPrice);
-					event.setTitle(" " + itemCategory + "　" + itemPrice + " 円");
 
 					event.setUrl("http://localhost:8080/showDetail/?id=" + clothesId);
 
 					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 					String perchaseDate = dateFormat.format(perchaseDate2);
 					event.setStart(perchaseDate);
-					
+
 					if (itemCategory.equals("ファッション雑貨")) {
 						event.setColor("#87ceeb");
 					}
@@ -98,17 +97,25 @@ public class ShowMonthlyDataRestController {
 						event.setColor("#ffda03");
 					}
 
+					// 購入金額がnullで登録されている場合はカテゴリのみ表示
+					if (integerItemPrice == null) {
+						event.setTitle(" " + itemCategory + "　");
+						// 購入金額がnull以外で登録されている場合は「○円」まで表示（0も含む）
+					} else {
+						event.setTitle(" " + itemCategory + "　" + itemPrice + " 円");
+					}
+
 				}
-
 				events.add(event);
-
 			}
 
 			// FullCalendarにエンコード済み文字列を渡す
 			ObjectMapper mapper = new ObjectMapper();
 			jsonMsg = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(events);
 
-		} catch (IOException ioex) {
+		} catch (
+
+		IOException ioex) {
 			System.out.println(ioex.getMessage());
 		}
 		return jsonMsg;
