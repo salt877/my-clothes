@@ -107,6 +107,9 @@ tbody th {
 		margin-bottom: 2em;
 		border-bottom: 2px solid #bbb;
 	}
+	tr.inputarea{
+		height: 109px;
+	}
 	table td {
 		border-bottom: 1px solid #bbb;
 		display: block;
@@ -154,6 +157,11 @@ tbody th {
 	.file_button{
 		left: 5px;
 	}
+	
+	.search {
+		top: 10px;
+		left: 30px;
+	}
 }
 
 /* 959px以下に適用されるCSS（タブレット用） */
@@ -190,6 +198,6 @@ tbody th {
 	
 	.search {
 		top: 10px;
-}
+	}
 }
 
