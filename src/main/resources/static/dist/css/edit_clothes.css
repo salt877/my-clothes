@@ -173,7 +173,7 @@ tbody th {
 	#sbtn2 {
 		height: 10px;
 		position: absolute;
-		left: 150px; /*アイコン左右の位置調整*/
+		left: 180px; /*アイコン左右の位置調整*/
 		top: -9px;
 		background: none;
 		color: #666;
@@ -189,7 +189,11 @@ tbody th {
 	}
 	
 	.container .text-center h2{
-		font-size: 40px;
+		font-size: 35px;
+	}
+	
+	table td {
+		padding: .625em .625em .625em 2em;
 	}
 	
 	 tr.inputarea{
@@ -198,6 +202,7 @@ tbody th {
 	
 	.search {
 		top: 10px;
+		left: 1px;
 	}
 }
 
