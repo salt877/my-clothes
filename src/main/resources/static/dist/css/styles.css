@@ -12204,13 +12204,6 @@ tbody th {
 	width: 150%;
 }
 
-.complete-btn {
-	width: 200%;
-  	margin: 0 auto;
-  	margin-left: -45px;
-  	max-width: 1500px;
-}
-
 .btn--submit, input.btn--delete {
 	color: #fff;
 	background-color: #6c757d;

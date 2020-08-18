@@ -30,6 +30,13 @@
   cursor: pointer;
 }
 
+.complete-btn {
+	width: 80%;
+  	margin: 0 auto;
+  	margin-top: 30px;
+  	max-width: 210px;
+}
+
 /*詳細画面全体*/
 body {
 	font-family: "Open Sans", sans-serif;
@@ -170,7 +177,7 @@ tbody th {
 		width: 80%;
   		margin: 0 auto;
   		margin-right:10px;
-  		margin-left: -90px;
+  		margin-left: -80px;
   		max-width: 250px;
 	}
 	
