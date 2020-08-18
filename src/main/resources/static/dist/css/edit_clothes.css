@@ -155,8 +155,17 @@ tbody th {
 
 /* 480px以下に適用されるCSS（スマホ用） */
 @media screen and (max-width: 480px) {
-	table td{
-	
+	#sbtn2 {
+		height: 10px;
+		position: absolute;
+		left: 150px; /*アイコン左右の位置調整*/
+		top: -9px;
+		background: none;
+		color: #666;
+		border: none;
+		font-size: 15px; /*アイコンサイズ*/
 	}
+	
+	
 }
 
