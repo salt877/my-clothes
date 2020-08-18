@@ -37,7 +37,7 @@
 	document.addEventListener('DOMContentLoaded', function() {
 		var calendarEl = document.getElementById('calendar');
 	    var calendar = new FullCalendar.Calendar(calendarEl, {
-	       
+	    	navLinks: false,
 	        locale: 'ja',
 	        handleWindowResize: true, 
 	        editable: true,
@@ -74,6 +74,12 @@ body {
 #calendar {
 	max-width: 1100px;
 	margin: 0 auto;
+}
+a.fc-daygrid-day-number {
+	pointer-events: none;
+}
+.fc-day-other .fc-daygrid-event-harness{
+	 display: none; 
 }
 </style>
 <title>カレンダー</title>
