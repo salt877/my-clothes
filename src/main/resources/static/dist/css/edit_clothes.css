@@ -166,6 +166,13 @@ tbody th {
 		font-size: 15px; /*アイコンサイズ*/
 	}
 	
+	.complete-btn {
+		width: 80%;
+  		margin: 0 auto;
+  		margin-right:10px;
+  		margin-left: -90px;
+  		max-width: 250px;
+	}
 	
 }
 

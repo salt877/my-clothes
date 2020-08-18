@@ -10886,9 +10886,10 @@ tbody th {
 }
 
 .complete-btn {
-	position: relative;
-	top: 0px;
-	left: 42%;
+	width: 200%;
+  	margin: 0 auto;
+  	margin-left: -45px;
+  	max-width: 1500px;
 }
 
 .btn--submit, input.btn--delete {
