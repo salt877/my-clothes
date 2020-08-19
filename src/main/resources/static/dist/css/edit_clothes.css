@@ -189,7 +189,7 @@ tbody th {
 	}
 	
 	.container .text-center h2{
-		font-size: 35px;
+		font-size: 40px;
 	}
 	
 	table td {
@@ -203,6 +203,10 @@ tbody th {
 	.search {
 		top: 10px;
 		left: 1px;
+	}
+	
+	.file_button{
+		left: 0px;
 	}
 }
 

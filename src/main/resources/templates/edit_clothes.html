@@ -56,7 +56,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 	<section class="page-section bg-light" id="portfolio">
 		<div class="container">
 			<div class="text-center">
-				<h2 class="section-heading text-uppercase">アイテム詳細・編集</h2>
+				<h2 class="section-heading text-uppercase">アイテム詳細</h2>
 			</div>
 			<div class="contents">
 			<form action="#" method="post" th:action="@{/showDetail/editClothes}"
@@ -168,7 +168,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 							</tr>
 							<tr>
 								<th>シーズン</th>
-								<td class="txt"><span
+								<td id="seasontxt" class="txt"><span
 									th:each="season : ${seasonMap}"> <input name="season"
 										id="season" type="radio" th:value="${season.key}"
 										th:text="${season.value}" th:field="*{season}">&emsp;&emsp;
