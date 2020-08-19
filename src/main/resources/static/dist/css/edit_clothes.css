@@ -30,6 +30,13 @@
   cursor: pointer;
 }
 
+.complete-btn {
+	width: 80%;
+  	margin: 0 auto;
+  	margin-top: 30px;
+  	max-width: 210px;
+}
+
 /*詳細画面全体*/
 body {
 	font-family: "Open Sans", sans-serif;
@@ -100,6 +107,9 @@ tbody th {
 		margin-bottom: 2em;
 		border-bottom: 2px solid #bbb;
 	}
+	tr.inputarea{
+		height: 109px;
+	}
 	table td {
 		border-bottom: 1px solid #bbb;
 		display: block;
@@ -147,6 +157,11 @@ tbody th {
 	.file_button{
 		left: 5px;
 	}
+	
+	.search {
+		top: 10px;
+		left: 30px;
+	}
 }
 
 /* 959px以下に適用されるCSS（タブレット用） */
@@ -158,7 +173,7 @@ tbody th {
 	#sbtn2 {
 		height: 10px;
 		position: absolute;
-		left: 150px; /*アイコン左右の位置調整*/
+		left: 180px; /*アイコン左右の位置調整*/
 		top: -9px;
 		background: none;
 		color: #666;
@@ -167,16 +182,31 @@ tbody th {
 	}
 	
 	.complete-btn {
-		width: 80%;
+		width: 82%;
   		margin: 0 auto;
   		margin-right:10px;
-  		margin-left: -90px;
-  		max-width: 250px;
+  		max-width: 300px;
 	}
 	
 	.container .text-center h2{
 		font-size: 40px;
 	}
 	
+	table td {
+		padding: .625em .625em .625em 2em;
+	}
+	
+	 tr.inputarea{
+		height: 109px;
+	}
+	
+	.search {
+		top: 10px;
+		left: 1px;
+	}
+	
+	.file_button{
+		left: 0px;
+	}
 }
 
