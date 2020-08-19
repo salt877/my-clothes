@@ -161,15 +161,16 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 				th:action="@{/registerClothes/register}"
 				th:object="${registerClothesForm}" enctype="multipart/form-data">
 				<div class="required-information">
-					<img id="preview">
-					<br>
-					<div class="file_button">
-					画像を登録 <input name="imageFile" class="file_input" type="file"
-						accept=".jpg,.png" id="myImage" th:field="*{imageFile}" required>
+					<img id="preview"> <br>
 				</div>
+				<div class="image-information">
+					<div class="file_button">
+						画像を登録 <input name="imageFile" class="file_input" type="file"
+							accept=".jpg,.png" id="myImage" th:field="*{imageFile}" required>
+					</div>
 				</div>
 
-				
+
 				<div class="required-information">
 
 					<table>
@@ -193,7 +194,7 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 										</select>
 									</div></td>
 							</tr>
-							<tr>
+							<tr class="inputarea">
 								<th>
 									<div>ブランド</div>
 									<div th:if="${message}!=null" th:text="${message}"
@@ -224,6 +225,7 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 						</tbody>
 					</table>
 				</div>
+
 				<br> <br>
 				<div class="detailed-information">
 					<table>
@@ -233,7 +235,7 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
+							<tr class="inputarea">
 								<th>タグ1</th>
 								<td class="txt">
 									<div class="search">
@@ -241,7 +243,7 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 									</div>
 								</td>
 							</tr>
-							<tr class="border-top-0">
+							<tr class="inputarea">
 								<th>タグ2</th>
 								<td class="txt">
 									<div class="search">
@@ -250,7 +252,7 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 									</div>
 								</td>
 							</tr>
-							<tr class="border-top-0">
+							<tr class="inputarea">
 								<th>タグ3</th>
 								<td class="txt  border-top-0">
 									<div class="search">
@@ -369,7 +371,7 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 														</div>
 													</td>
 												</tr>
-												<tr>
+												<tr class="inputarea">
 													<th>ブランド</th>
 													<td class="txt">
 														<div class="search">
@@ -403,7 +405,7 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
+												<tr class="inputarea">
 													<th>タグ1</th>
 													<td class="txt">
 														<div class="search">
@@ -412,7 +414,7 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 														</div>
 													</td>
 												</tr>
-												<tr class="border-top-0">
+												<tr class="inputarea">
 													<th>タグ2</th>
 													<td class="txt">
 														<div class="search">
@@ -421,7 +423,7 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 														</div>
 													</td>
 												</tr>
-												<tr class="border-top-0">
+												<tr class="inputarea">
 													<th>タグ3</th>
 													<td class="txt  border-top-0">
 														<div class="search">
