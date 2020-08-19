@@ -76,25 +76,25 @@ public class ShowMonthlyDataRestController {
 					event.setStart(perchaseDate);
 
 					if (itemCategory.equals("ファッション雑貨")) {
-						event.setColor("#87ceeb");
+						event.setColor("#a6cee3");
 					}
 					if (itemCategory.equals("トップス")) {
-						event.setColor("#4169e1");
+						event.setColor("#1f78b4");
 					}
 					if (itemCategory.equals("アウター")) {
-						event.setColor("#90ee90");
+						event.setColor("#b2df8a");
 					}
 					if (itemCategory.equals("ボトムス")) {
-						event.setColor("#008000");
+						event.setColor("#33a02c");
 					}
 					if (itemCategory.equals("シューズ")) {
-						event.setColor("#ffb6c1");
+						event.setColor("#fb9a99");
 					}
 					if (itemCategory.equals("バッグ")) {
-						event.setColor("#ff4500");
+						event.setColor("#e31a1c");
 					}
 					if (itemCategory.equals("ワンピース")) {
-						event.setColor("#ffda03");
+						event.setColor("#fdbf6f");
 					}
 
 					// 購入金額がnullで登録されている場合はカテゴリのみ表示
