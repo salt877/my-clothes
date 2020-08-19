@@ -55,7 +55,6 @@ public class ShowTopPageController {
 		session.removeAttribute("showTagName");
 
 		Integer userId = loginUser.getUser().getId();
-		// Integer userId = 1;
 
 		List<Clothes> clothesList = showTopPageService.showItemList(userId);
 		model.addAttribute("clothesList", clothesList);
@@ -86,7 +85,6 @@ public class ShowTopPageController {
 		for (int i = 0; i < tagNameList.size(); i++) {
 			Integer tagContentsId = tagNameList.get(i).getId();
 			String tagContentsName = tagNameList.get(i).getName();
-//			System.out.println("登録されてるアイテムのあるtag_contantsテーブルのidは" + tagContentsId + "、nameは" + tagContentsName);
 			tagMap.put(tagContentsId, tagContentsName);
 		}
 		model.addAttribute("tagMap", tagMap);
@@ -113,7 +111,6 @@ public class ShowTopPageController {
 		session.removeAttribute("showTagName");
 
 		Integer userId = loginUser.getUser().getId();
-		// Integer userId = 1;
 
 		// 天気予報情報の表示
 		// weatherService.cityFindByUserId(loginUser.getUser().getId());
@@ -150,7 +147,6 @@ public class ShowTopPageController {
 			List<Clothes> clothesList = showTopPageService.showItemList(userId);
 			model.addAttribute("clothesList", clothesList);
 			session.setAttribute("categoryId", categoryId);
-		//	System.out.println("ALLが選択された時、カテゴリIDは" + categoryId);
 		}
 
 		// カテゴリが選択された時
@@ -158,7 +154,6 @@ public class ShowTopPageController {
 			List<Clothes> clothesList = showTopPageService.showItemListByCategory(userId, categoryId);
 			model.addAttribute("clothesList", clothesList);
 			session.setAttribute("categoryId", categoryId);
-		//	System.out.println("カテゴリ選択された時、カテゴリIDは" + categoryId);
 		}
 
 		// ブランドが選択された時
@@ -167,7 +162,6 @@ public class ShowTopPageController {
 			model.addAttribute("clothesList", clothesList);
 			Brand brandName = showTopPageService.findBrandName(brandId);
 			session.setAttribute("showBrandName", brandName.getName());
-		//	System.out.println("ブランド選択された時、ブランドIDは" + brandId + " ブランド名は" + brandName.getName());
 		}
 
 		// タグが選択された時
@@ -176,7 +170,6 @@ public class ShowTopPageController {
 			model.addAttribute("clothesList", clothesList);
 			TagContent tagName = showTopPageService.findTagName(tagContentsId);
 			session.setAttribute("showTagName", tagName.getName());
-		//	System.out.println("タグ選択された時、タグコンテンツIDは" + tagContentsId + " タグ名は" + tagName.getName());
 		}
 		
 

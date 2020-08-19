@@ -34,7 +34,6 @@ $(function() {
 					gtNum = num-1;
 					$('#close_btn').show();
 					$('#more_btn').hide();
-					console.log('ここに来た');
 
 				//「閉じる」がクリックされたら、
 					$('#close_btn').click(function(){
