@@ -1,5 +1,6 @@
 @charset "UTF-8";
 /*cloth新規登録画面*/
+
 body {
 	font-family: "Open Sans", sans-serif;
 	line-height: 1.25;
@@ -114,13 +115,44 @@ input[type="number"] {
 	text-align: center;
 }
 
+.file_button {
+  display: inline-block;
+  position: relative;
+  padding: 0.6em 2em;
+  text-align: center;
+  color: #fff;
+  border-radius: 4px;
+  background-color: #2772DB;
+  overflow: hidden;
+  -webkit-transition: .3s ease;
+  -moz-transition: .3s ease;
+  -o-transition: .3s ease;
+  transition: .3s ease;
+}
+
+.file_button:hover {
+  background-color: #2062bf;
+}
+
+.file_input {
+  position: absolute;
+  top: 0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+
+
 @media screen and (max-width: 959px) { /* 959px以下に適用されるCSS（タブレット用） */
 }
 
 @media screen and (max-width: 480px) {
 	/* 480px以下に適用されるCSS（スマホ用） */
 	
-	/*確認ボタンのdiv幅が大きかったので適当に小さくしました。適宜修正お願いします。（能勢）*/
+	/*a確認ボタンのdiv幅が大きかったので適当に小さくしました。適宜修正お願いします。（能勢）*/
 	.switch_btn {
 		width: 60px;
 	}
@@ -130,8 +162,8 @@ input[type="number"] {
 		margin-bottom: 1rem;
 	}
 	.modal-dialog-fluid {
-		max-width: inherit;
-		width: 50%;
-		margin-left: 15px;
-	}
+  		max-width: inherit;
+ 	 	width: 92%;
+  		margin-left: 15px;
+	}	
 }

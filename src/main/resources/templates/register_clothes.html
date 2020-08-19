@@ -160,11 +160,18 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 			<form action="#" method="post" id="form1"
 				th:action="@{/registerClothes/register}"
 				th:object="${registerClothesForm}" enctype="multipart/form-data">
-
 				<div class="required-information">
-					<img id="preview"><br> <input name="imageFile"
-						type="file" accept=".jpg,.png" id="myImage"
-						th:field="*{imageFile}" required>
+					<img id="preview">
+					<br>
+					<div class="file_button">
+					画像を登録 <input name="imageFile" class="file_input" type="file"
+						accept=".jpg,.png" id="myImage" th:field="*{imageFile}" required>
+				</div>
+				</div>
+
+				
+				<div class="required-information">
+
 					<table>
 						<thead>
 							<tr>
