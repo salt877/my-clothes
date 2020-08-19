@@ -136,6 +136,10 @@ table tr:last-child {
 	.register-coordinate-btn {
 		display: none;
 	}
+	.sp-btn {
+		background-color: #87BEFD !important;
+		border-color: #87BEFD !important;
+	}
 	.clm {
 		width: 100%;
 	}
