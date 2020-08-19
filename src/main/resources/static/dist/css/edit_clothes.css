@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+/*画像を変更するときのボタン*/
 .file_button {
   display: inline-block;
   position: relative;
@@ -28,3 +29,184 @@
   opacity: 0;
   cursor: pointer;
 }
+
+.complete-btn {
+	width: 80%;
+  	margin: 0 auto;
+  	margin-top: 30px;
+  	max-width: 210px;
+}
+
+/*詳細画面全体*/
+body {
+	font-family: "Open Sans", sans-serif;
+	line-height: 1.25;
+}
+
+table {
+	border-collapse: collapse;
+	margin: 0 auto;
+	padding: 0;
+	width: 650px;
+	table-layout: fixed;
+	color: #ff9900;
+}
+
+table tr {
+	background-color: #fff;
+	padding: .35em;
+	border-bottom: 1px dotted #bbb;
+}
+
+table tr:last-child {
+	border-bottom: 2px solid #bbb;
+}
+
+table th, table td {
+	padding: 1em 10px 1em 1em;
+}
+
+tbody th {
+	color: black;
+}
+
+.txt {
+	text-align: left;
+	font-size: .85em;
+}
+
+.price {
+	text-align: right;
+}
+
+/* 600px以下に適用されるCSS（PC用） */
+@media screen and (max-width: 600px) {
+	table {
+		border: 0;
+		width: 100%
+	}
+	table th {
+		display: block;
+		border-right: none;
+		border-bottom: 2px solid #bbb;
+		padding-bottom: .6em;
+		margin-bottom: .6em;
+	}
+	table thead {
+		border: none;
+		clip: rect(0, 0, 0, 0);
+		height: 1px;
+		margin: -1px;
+		overflow: hidden;
+		padding: 0;
+		position: absolute;
+		width: 1px;
+	}
+	table tr {
+		display: block;
+		margin-bottom: 2em;
+		border-bottom: 2px solid #bbb;
+	}
+	tr.inputarea{
+		height: 109px;
+	}
+	table td {
+		border-bottom: 1px solid #bbb;
+		display: block;
+		font-size: .8em;
+		text-align: right;
+		position: relative;
+		padding: .625em .625em .625em 4em;
+		border-right: none;
+	}
+	table td::before {
+		content: attr(data-label);
+		font-weight: bold;
+		position: absolute;
+		left: 10px;
+	}
+	table td:last-child {
+		border-bottom: 0;
+	}
+
+	input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button{
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	input[type="number"] {
+		-moz-appearance: textfield;
+	}
+
+	/*input type="number"textboxの見た目をtext	boxとそろえる*/
+	.txt input[type='number'] {
+		width: 90%;
+		max-width: 400px;
+		padding: 5px;
+		border-radius: 5px;
+		border: 1px solid #ccc;
+		appearance: none;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+	}
+
+	.required-information {
+		text-align: center;
+	}
+	
+	.file_button{
+		left: 5px;
+	}
+	
+	.search {
+		top: 10px;
+		left: 30px;
+	}
+}
+
+/* 959px以下に適用されるCSS（タブレット用） */
+@media screen and (max-width: 959px) { 
+}
+
+/* 480px以下に適用されるCSS（スマホ用） */
+@media screen and (max-width: 480px) {
+	#sbtn2 {
+		height: 10px;
+		position: absolute;
+		left: 180px; /*アイコン左右の位置調整*/
+		top: -9px;
+		background: none;
+		color: #666;
+		border: none;
+		font-size: 15px; /*アイコンサイズ*/
+	}
+	
+	.complete-btn {
+		width: 82%;
+  		margin: 0 auto;
+  		margin-right:10px;
+  		max-width: 300px;
+	}
+	
+	.container .text-center h2{
+		font-size: 40px;
+	}
+	
+	table td {
+		padding: .625em .625em .625em 2em;
+	}
+	
+	 tr.inputarea{
+		height: 109px;
+	}
+	
+	.search {
+		top: 10px;
+		left: 1px;
+	}
+	
+	.file_button{
+		left: 0px;
+	}
+}
+

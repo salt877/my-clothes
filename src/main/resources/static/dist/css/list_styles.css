@@ -87,10 +87,13 @@
 }
 
 label {
-	background-color: #EEEEEE;
-	padding: 10px 20px;
-	border-radius: 50px;
-}
+		background-color: #EEEEEE;
+		padding: 10px 10px;
+		border-radius: 0;
+		display: inline-block;
+		margin-bottom: 0;
+		margin-top: 0.5em;
+	}
 
 .radioButton:checked+label {
 	background-color: #BBBBBB;
@@ -158,4 +161,8 @@ label {
 .narrow_down_box .cbt {
 	position: relative;
 	top: 10%;
+}
+.show_brand_and_tag{
+	position: relative;
+	margin:1em 10em;
 }

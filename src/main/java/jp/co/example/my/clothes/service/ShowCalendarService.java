@@ -25,8 +25,8 @@ public class ShowCalendarService {
 	 * 月毎の購入情報を取得します.
 	 * 
 	 * @param userId ユーザID
-	 * @param perchaseDate　購入年月
-	 * @return　購入情報のリスト
+	 * @param        perchaseDate 購入年月
+	 * @return 購入情報のリスト
 	 */
 	public List<MonthlyDataDTO> showPriceData(Integer userId, String perchaseDate) {
 		List<MonthlyDataDTO> clothesPriceList = clothesRepository.showByPerchaseData(userId, perchaseDate);
@@ -36,11 +36,11 @@ public class ShowCalendarService {
 	/**
 	 * 全てのアイテム登録情報を取得します.
 	 * 
-	 * @param userId　ユーザID
-　	 * @return　アイテム情報のリスト
+	 * @param userId ユーザID @return アイテム情報のリスト
 	 */
 	public List<Clothes> showDailyPerchaseData(Integer userId) {
 		List<Clothes> dailyPerchaseDataList = clothesRepository.findAllWithCategory(userId);
+
 		return dailyPerchaseDataList;
 	}
 
