@@ -41,6 +41,11 @@ tbody th {
 .price {
 	text-align: right;
 }
+.image-information{
+	padding-bottom:25px;
+	padding-top:10px;
+	}
+
 
 @media screen and (max-width: 600px) {
 	table {
@@ -115,7 +120,7 @@ input[type="number"] {
 	text-align: center;
 }
 
-.file_button {
+.file_button {;
   display: inline-block;
   position: relative;
   padding: 0.6em 2em;
@@ -166,4 +171,20 @@ input[type="number"] {
  	 	width: 92%;
   		margin-left: 15px;
 	}	
+	
+	tr.inputarea{
+		height: 109px;
+	}
+	.search {
+		top: 10px;
+		left: 1px;
+	}
+	.file_button{
+		top: 0px;
+		left: 50px;
+	}
+	
 }
+	 
+	
+

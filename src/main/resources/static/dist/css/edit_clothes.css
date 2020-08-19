@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-/*画像を変更するときのボタン*/
+/* 画像を変更するときのボタン */
 .file_button {
   display: inline-block;
   position: relative;
@@ -15,11 +15,9 @@
   -o-transition: .3s ease;
   transition: .3s ease;
 }
-
 .file_button:hover {
-  background-color: #2062bf;
+  background-color: #2062BF;
 }
-
 .file_input {
   position: absolute;
   top: 0;
@@ -29,57 +27,47 @@
   opacity: 0;
   cursor: pointer;
 }
-
 .complete-btn {
 	width: 80%;
   	margin: 0 auto;
   	margin-top: 30px;
   	max-width: 210px;
 }
-
-/*詳細画面全体*/
+ / * 詳細画面全体 * /
 body {
 	font-family: "Open Sans", sans-serif;
 	line-height: 1.25;
 }
-
 table {
 	border-collapse: collapse;
 	margin: 0 auto;
 	padding: 0;
 	width: 650px;
 	table-layout: fixed;
-	color: #ff9900;
+	color: #FF9900;
 }
-
 table tr {
 	background-color: #fff;
 	padding: .35em;
 	border-bottom: 1px dotted #bbb;
 }
-
 table tr:last-child {
 	border-bottom: 2px solid #bbb;
 }
-
 table th, table td {
 	padding: 1em 10px 1em 1em;
 }
-
 tbody th {
 	color: black;
 }
-
 .txt {
 	text-align: left;
 	font-size: .85em;
 }
-
 .price {
 	text-align: right;
 }
-
-/* 600px以下に適用されるCSS（PC用） */
+ /* 600px以下に適用されるCSS（PC用） */
 @media screen and (max-width: 600px) {
 	table {
 		border: 0;
@@ -128,16 +116,13 @@ tbody th {
 	table td:last-child {
 		border-bottom: 0;
 	}
-
 	input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button{
 		-webkit-appearance: none;
 		margin: 0;
 	}
-
 	input[type="number"] {
 		-moz-appearance: textfield;
 	}
-
 	/*input type="number"textboxの見た目をtext	boxとそろえる*/
 	.txt input[type='number'] {
 		width: 90%;
@@ -149,7 +134,6 @@ tbody th {
 		-webkit-appearance: none;
 		-moz-appearance: none;
 	}
-
 	.required-information {
 		text-align: center;
 	}
@@ -163,12 +147,10 @@ tbody th {
 		left: 30px;
 	}
 }
-
-/* 959px以下に適用されるCSS（タブレット用） */
-@media screen and (max-width: 959px) { 
+ /* 959px以下に適用されるCSS（タブレット用） */
+@media screen and (max-width: 959px) {
 }
-
-/* 480px以下に適用されるCSS（スマホ用） */
+ /* 480px以下に適用されるCSS（スマホ用） */
 @media screen and (max-width: 480px) {
 	#sbtn2 {
 		height: 10px;
@@ -196,6 +178,11 @@ tbody th {
 		padding: .625em .625em .625em 2em;
 	}
 	
+	table thead{
+		overflow: visible;
+	}
+	
+	
 	 tr.inputarea{
 		height: 109px;
 	}
@@ -208,5 +195,5 @@ tbody th {
 	.file_button{
 		left: 0px;
 	}
+	
 }
-
