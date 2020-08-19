@@ -34,23 +34,23 @@ $(function(){
 			
 			// APIから取得したリスト分label/input/imgタグ生成
 			for(let clothes of data.clothesList){
-				var newLabel = document.createElement("label");
-				newLabel.setAttribute("id", "modal-label" + clothes.id);
-				newLabel.setAttribute("class", "modal-label");		
-				document.getElementById("modal-img").appendChild(newLabel);
+				$("<label>", {
+					  id: 'modal-label' + clothes.id,
+					  class: 'modal-label',
+					}).appendTo('#modal-img');
 				
-				var newInput = document.createElement("input");
-				newInput.type = "radio";
-				newInput.id = "modal-radio" + clothes.id;
-				newInput.className = "radio";
-				newInput.name = "clothesId";
-				newInput.value = clothes.id;
-				document.getElementById("modal-label"+ clothes.id).appendChild(newInput);
-								
-				var newImg = document.createElement("img");
-				newImg.setAttribute("src", clothes.imagePath);
-				newImg.setAttribute("class", "radio-img");
-				document.getElementById("modal-label" + clothes.id).appendChild(newImg);
+				$("<input>", {
+					  type: 'radio',
+					  id: 'modal-radio' + clothes.id,
+					  class: 'radio',
+					  name: 'clothesId',
+					  value: clothes.id,
+					}).appendTo('#modal-label'+ clothes.id);
+				
+				$("<img>", {
+					  src: clothes.imagePath,
+					  class: 'radio-img',
+					}).appendTo('#modal-label' + clothes.id);
 			}
 			
 			// チェックされたradioのvalueを入れる変数checkedVal（radio選択解除の条件分岐にも使用）
@@ -387,9 +387,6 @@ $(function(){
 		});
 		
 	});	
-	
-	
-	
 	
 });
 	
