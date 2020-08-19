@@ -47,23 +47,17 @@ public class ClothesRepository {
 	/**
 	 * カレンダー画面で使用するローマッパー.
 	 */
-	private static final RowMapper<Clothes> CLOTHES_ROW_MAPPER4 = (rs, i) -> {
+	private static final RowMapper<Clothes> CALENDAR_ROW_MAPPER = (rs, i) -> {
 
 		Clothes clothes = new Clothes();
 		clothes.setId(rs.getInt("cl_id"));
 		clothes.setUserId(rs.getInt("cl_user_id"));
 		clothes.setCategoryId(rs.getInt("cl_category_id"));
-		clothes.setBrandId(rs.getInt("cl_brand_id"));
-		clothes.setImagePath(rs.getString("cl_image_path"));
 		clothes.setPrice(rs.getInt("cl_price"));
 		if (rs.wasNull()) {
 			clothes.setPrice(null);
 		}
-		clothes.setColorId(rs.getInt("cl_color_id"));
-		clothes.setSeason(rs.getString("cl_season"));
-		clothes.setSizeId(rs.getInt("cl_size_id"));
 		clothes.setPerchaseDate(rs.getDate("cl_perchase_date"));
-		clothes.setComment(rs.getString("cl_comment"));
 		clothes.setDeleted(rs.getBoolean("cl_deleted"));
 		Category category = new Category();
 		category.setId(rs.getInt("ca_id"));
@@ -73,7 +67,7 @@ public class ClothesRepository {
 
 	};
 
-	private static final String SQL = "SELECT id,user_id,category_id,brand_id,image_path,price,color_id,season,size_id,perchase_date,comment,deleted ";
+	private static final String SQL = "SELECT id,user_id,category_id,brand_id,image_path,deleted ";
 
 	/**
 	 * 新規にアイテム情報をインサート.
@@ -110,15 +104,14 @@ public class ClothesRepository {
 
 		StringBuilder sql = new StringBuilder();
 		sql.append(
-				"SELECT cl.id cl_id,cl.user_id cl_user_id,cl.category_id cl_category_id,cl.brand_id cl_brand_id,cl.image_path cl_image_path,");
-		sql.append("CASE WHEN cl.price IS NULL THEN NULL ELSE cl.price END cl_price,cl.color_id cl_color_id,");
-		sql.append(
-				"cl.season cl_season,cl.size_id cl_size_id,cl.perchase_date cl_perchase_date,cl.comment cl_comment,cl.deleted cl_deleted,");
+				"SELECT cl.id cl_id,cl.user_id cl_user_id,cl.category_id cl_category_id,");
+		sql.append("CASE WHEN cl.price IS NULL THEN NULL ELSE cl.price END cl_price,");
+		sql.append("cl.perchase_date cl_perchase_date,cl.deleted cl_deleted,");
 		sql.append("ca.id ca_id,ca.name ca_name FROM clothes cl INNER JOIN categories ca ");
 		sql.append("ON cl.category_id=ca.id ");
 		sql.append("WHERE cl.user_id=:userId AND cl.deleted='FALSE' ORDER BY cl.id;");
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
-		List<Clothes> clothesList = template.query(sql.toString(), param, CLOTHES_ROW_MAPPER4);
+		List<Clothes> clothesList = template.query(sql.toString(), param, CALENDAR_ROW_MAPPER);
 
 		return clothesList;
 	}
