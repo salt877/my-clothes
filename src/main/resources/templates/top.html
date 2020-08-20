@@ -113,8 +113,7 @@
 				<hr>
 				<!-- スマホ用アイテム登録 -->
 				<div class="register-clothes-btn">
-					<a href="register_clothes.html"
-						th:href="@{/registerClothes/showRegisterClothes}">
+					<a href="register_clothes.html" th:href="@{/registerClothes/showRegisterClothes}">
 						<button class="btn rc-btn-info sp-btn">
 							<i class="fas fa-tshirt"></i> &nbsp;&nbsp;<span>登録する</span>
 						</button>
@@ -125,16 +124,17 @@
 		<br>
 		<!-- タブ切り替え -->
 		<div style="text-align: center">
-			<span th:if="${clothesList.size()==0}" th:text="${'アイテムはありません'}"></span>
+			<span th:if="${clothesList.size()==0}" th:text="${'アイテムはありません'}" ></span>
 			<div class="item_select cp_sl04">
 				<select>
-					<option value="item">アイテムを絞り込む</option>
+					<option hidden>アイテムを絞り込む</option>
 					<option value="category">カテゴリで絞り込む</option>
 					<option value="brand">ブランドで絞り込む</option>
 					<option value="tag">タグで絞り込む</option>
+					<option value="all-item" id="all-item">一覧に戻る</option>
 				</select>
 			</div>
-			<form action="top.html" th:action="@{/search}" method="post"
+			<form action="top.html" th:action="@{/search}" method="get"
 				onchange="submit(this.form)">
 				<div id="category" class="category">
 					<input id="tab_all" type="radio" name="categoryId"
