@@ -26,7 +26,7 @@
 <link href="../static/dist/css/styles.css" rel="stylesheet"
 	th:href="@{/dist/css/styles.css}" />
 <link href="../static/dist/css/edit_clothes.css" rel="stylesheet"
-	th:href="@{/dist/css/edit_clothes.css}" />	
+	th:href="@{/dist/css/edit_clothes.css}" />
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
@@ -59,162 +59,165 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 				<h2 class="section-heading text-uppercase">アイテム詳細</h2>
 			</div>
 			<div class="contents">
-			<form action="#" method="post" th:action="@{/showDetail/editClothes}"
-				th:object="${editClothesForm}" enctype="multipart/form-data">
-				<!-- 商品idを埋め込んでおく -->
-				<input type="hidden" name="clothesId" th:value="${clothes.id}">
-				
-				<div class="required-information">
-				<div class="image-information">
-					<img id="preview" class="img-fluid" th:src="${clothes.imagePath}" width="400" height="400" /><br> 
-					<div class="file_button">
-						画像を変更
-					<input  id="myImage" class="file_input" name="imageFile" type="file" accept=".jpg,.png">
-					</div>
-				</div>
-					<table>
-						<thead>
-							<tr>
-								<th scope="col" colspan="2">基本情報（必須）</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<th>カテゴリー</th>
-								<td class="txt">
-									<div class="cp_ipselect cp_sl02">
-										<select name="category" id="category">
-											<option th:each="category :${categoryList}"
-												th:text="${category.name}" th:value="${category.id}"
-												th:field="*{category}">アクセサリー</option>
-										</select>
-									</div>
-								</td>
-							</tr>
-							<tr class="inputarea">
-								<th>
-									<div>ブランド</div>
-									<div th:if="${#fields.hasErrors('brand')}" th:errors="*{brand}"
-										class="error-messages" style="color: red"></div>
-								</th>
-								<td class="txt">
-									<div class="search">
-										<input type="text" class="search-form" name="brand" id="brand"
-											th:value="${clothes.brand.name}" th:field="*{brand}">
-										<button type="submit" id="sbtn2">
-											<i class="fas fa-search"></i>
-										</button>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<th>カラー</th>
-								<td class="txt">
-									<div class="cp_ipselect cp_sl02">
-										<select name="color" id="color" th:field="*{color}">
-											<option th:each="color :${colorList}" th:text="${color.name}"
-												th:value="${color.id}">レッド</option>
-										</select>
-									</div>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				<br> <br>
-				<div class="detailed-information">
-					<table>
-						<thead>
-							<tr>
-								<th scope="col" colspan="2">詳細情報</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr class="inputarea">
-								<th>タグ1</th>
-								<td class="txt">
-									<div class="search">
-										<input type="text" class="search-form" name="tag1" id="tag1"
-											th:field="*{tag1}">
-										<button type="submit" id="sbtn2">
-											<i class="fas fa-search"></i>
-										</button>
-									</div>
-								</td>
-							</tr>
-							<tr class="inputarea">
-								<th>タグ2</th>
-								<td class="txt">
-									<div class="search">
-										<input type="text" class="search-form" name="tag2" id="tag2"
-											th:field="*{tag2}">
-										<button type="submit" id="sbtn2">
-											<i class="fas fa-search"></i>
-										</button>
-									</div>
-								</td>
-							</tr>
-							<tr class="inputarea">
-								<th>タグ3</th>
-								<td class="txt">
-									<div class="search">
-										<input type="text" class="search-form" name="tag3" id="tag3"
-											th:field="*{tag3}">
-										<button type="submit" id="sbtn2">
-											<i class="fas fa-search"></i>
-										</button>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<th>シーズン</th>
-								<td id="seasontxt" class="txt"><span
-									th:each="season : ${seasonMap}"> <input name="season"
-										id="season" type="radio" th:value="${season.key}"
-										th:text="${season.value}" th:field="*{season}">&emsp;&emsp;
-								</span></td>
-							</tr>
-							<tr>
-								<th>サイズ</th>
-								<td class="txt">
-									<div class="cp_ipselect cp_sl02">
-										<select name="size" id="size">
-											<option value="">--</option>
-											<option th:each="size:${sizeList}" th:text="${size.name}"
-												th:value="${size.id}" th:field="*{size}">XS</option>
-										</select>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<th>購入日</th>
-								<td class="txt"><input name="perchaseDate"
-									id="perchaseDate" type="date"
-									th:value="${clothes.perchaseDate}"></td>
-							</tr>
-							<tr>
-								<th>価格</th>
-								<td class="txt"><input name="price"
-									id="price" type="text" th:value="${clothes.price}"></td>
-							</tr>
-							<tr>
-								<th>メモ</th>
-								<td class="txt"><textarea name="comment"
-										id="comment" rows="10" cols="30" th:field="*{comment}"></textarea>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
+				<form action="#" method="post"
+					th:action="@{/showDetail/editClothes}"
+					th:object="${editClothesForm}" enctype="multipart/form-data">
+					<!-- 商品idを埋め込んでおく -->
+					<input type="hidden" name="clothesId" th:value="${clothes.id}">
 
-				<!-- 削除・変更ボタン -->
-				<div class="complete-btn">
-					<button type="button"class="btn btn-secondary btn--radius" data-toggle="modal"
-					data-target="#exampleModal">削除</button>
-					<input type="submit" name="submit" id="submit"
-						class="btn btn--submit" value="&emsp;変更を保存&emsp;" />
-				</div>
-			</form>
+					<div class="required-information">
+						<div class="image-information">
+							<img id="preview" class="img-fluid" th:src="${clothes.imagePath}"
+								width="400" height="400" /><br>
+							<div class="file_button">
+								画像を変更 <input id="myImage" class="file_input" name="imageFile"
+									type="file" accept=".jpg,.png">
+							</div>
+						</div>
+						<table>
+							<thead>
+								<tr>
+									<th scope="col" colspan="2">基本情報（必須）</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th>カテゴリー</th>
+									<td class="txt">
+										<div class="cp_ipselect cp_sl02">
+											<select name="category" id="category">
+												<option th:each="category :${categoryList}"
+													th:text="${category.name}" th:value="${category.id}"
+													th:field="*{category}">アクセサリー</option>
+											</select>
+										</div>
+									</td>
+								</tr>
+								<tr class="inputarea">
+									<th>
+										<div>ブランド</div>
+										<div th:if="${#fields.hasErrors('brand')}"
+											th:errors="*{brand}" class="error-messages"
+											style="color: red"></div>
+									</th>
+									<td class="txt">
+										<div class="search">
+											<input type="text" class="search-form" name="brand"
+												id="brand" th:value="${clothes.brand.name}"
+												th:field="*{brand}">
+											<button type="submit" id="sbtn2">
+												<i class="fas fa-search"></i>
+											</button>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th>カラー</th>
+									<td class="txt">
+										<div class="cp_ipselect cp_sl02">
+											<select name="color" id="color" th:field="*{color}">
+												<option th:each="color :${colorList}"
+													th:text="${color.name}" th:value="${color.id}">レッド</option>
+											</select>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<br> <br>
+					<div class="detailed-information">
+						<table>
+							<thead>
+								<tr>
+									<th scope="col" colspan="2">詳細情報</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="inputarea">
+									<th>タグ1</th>
+									<td class="txt">
+										<div class="search">
+											<input type="text" class="search-form" name="tag1" id="tag1"
+												th:field="*{tag1}">
+											<button type="submit" id="sbtn2">
+												<i class="fas fa-search"></i>
+											</button>
+										</div>
+									</td>
+								</tr>
+								<tr class="inputarea">
+									<th>タグ2</th>
+									<td class="txt">
+										<div class="search">
+											<input type="text" class="search-form" name="tag2" id="tag2"
+												th:field="*{tag2}">
+											<button type="submit" id="sbtn2">
+												<i class="fas fa-search"></i>
+											</button>
+										</div>
+									</td>
+								</tr>
+								<tr class="inputarea">
+									<th>タグ3</th>
+									<td class="txt">
+										<div class="search">
+											<input type="text" class="search-form" name="tag3" id="tag3"
+												th:field="*{tag3}">
+											<button type="submit" id="sbtn2">
+												<i class="fas fa-search"></i>
+											</button>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th>シーズン</th>
+									<td id="seasontxt" class="txt"><span
+										th:each="season : ${seasonMap}"> <input name="season"
+											id="season" type="radio" th:value="${season.key}"
+											th:text="${season.value}" th:field="*{season}">&emsp;&emsp;
+									</span></td>
+								</tr>
+								<tr>
+									<th>サイズ</th>
+									<td class="txt">
+										<div class="cp_ipselect cp_sl02">
+											<select name="size" id="size">
+												<option value="">--</option>
+												<option th:each="size:${sizeList}" th:text="${size.name}"
+													th:value="${size.id}" th:field="*{size}">XS</option>
+											</select>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th>購入日</th>
+									<td class="txt"><input name="perchaseDate"
+										id="perchaseDate" type="date"
+										th:value="${clothes.perchaseDate}"></td>
+								</tr>
+								<tr>
+									<th>価格</th>
+									<td class="txt"><input name="price" id="price" type="text"
+										th:value="${clothes.price}"></td>
+								</tr>
+								<tr>
+									<th>メモ</th>
+									<td class="txt"><textarea name="comment" id="comment"
+											rows="10" cols="30" th:field="*{comment}"></textarea></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<!-- 削除・変更ボタン -->
+					<div class="complete-btn">
+						<button type="button" class="btn btn-secondary btn--radius"
+							data-toggle="modal" data-target="#exampleModal">削除</button>
+						<input type="submit" name="submit" id="submit"
+							class="btn btn--submit" value="&emsp;変更を保存&emsp;" />
+					</div>
+				</form>
 			</div>
 		</div>
 	</section>
@@ -223,7 +226,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 	<!-- 「はい」を押したときのモーダルの設定 -->
 	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel">
-		<div class="modal-dialog">
+		<div class="modal-dialog  modal-dialog-fluid">
 			<div class="modal-content">
 
 				<!-- モーダル内ヘッダー -->

@@ -61,8 +61,8 @@
 				+ date.getHours() + "：00";
 		var icon = data.list[i].weather[0].icon;
 		var html = '<div class="weather-report">'
-				+ '<img src="http://openweathermap.org/img/w/' + icon + '.png">'
-				+ '<div class="weather-date">' + day + '</div>'
+				+ '<img src="http://openweathermap.org/img/w/' + icon + '.png"><br>'
+				+ '<nobr>' + day + '</nobr>'
 				+ '<div class="weather-main">' + data.list[i].weather[0].main
 				+ '</div>' + '<div class="weather-temp">'
 				+ Math.round(data.list[i].main.temp) + '℃</div>' + '</div>';
@@ -89,7 +89,7 @@
 				<!-- 天気予報の表示 -->
 				<div class="weather" style="background: none;">
 					<a style="color: black" th:href="@{/weather/showWeatherPage}">
-					<div th:text="${city}+'の天気'" style="font-weight: bold;"></div> <span id="weather"></span></a>
+					<nobr th:text="${city}+'の天気'" style="font-weight: bold; text-align: center;"></nobr> <span id="weather"></span></a>
 				</div>
 				<hr>
 			<!-- スマホ用アイテム登録 -->

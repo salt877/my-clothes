@@ -166,3 +166,9 @@ label {
 	position: relative;
 	margin:1em 10em;
 }
+
+
+/*a天気予報*/
+nobr.weather-date{
+	text-align: center;
+}

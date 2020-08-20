@@ -1,6 +1,5 @@
 @charset "UTF-8";
 /*cloth新規登録画面*/
-
 body {
 	font-family: "Open Sans", sans-serif;
 	line-height: 1.25;
@@ -41,11 +40,11 @@ tbody th {
 .price {
 	text-align: right;
 }
-.image-information{
-	padding-bottom:25px;
-	padding-top:10px;
-	}
 
+.image-information {
+	padding-bottom: 25px;
+	padding-top: 10px;
+}
 
 @media screen and (max-width: 600px) {
 	table {
@@ -75,7 +74,7 @@ tbody th {
 		border-bottom: 2px solid #bbb;
 	}
 	table td {
-		border-bottom: 1px solid #bbb;
+		/*border-bottom: 1px solid #bbb;*/
 		display: block;
 		font-size: .8em;
 		text-align: right;
@@ -121,42 +120,39 @@ input[type="number"] {
 }
 
 .file_button {;
-  display: inline-block;
-  position: relative;
-  padding: 0.6em 2em;
-  text-align: center;
-  color: #fff;
-  border-radius: 4px;
-  background-color: #2772DB;
-  overflow: hidden;
-  -webkit-transition: .3s ease;
-  -moz-transition: .3s ease;
-  -o-transition: .3s ease;
-  transition: .3s ease;
+	display: inline-block;
+	position: relative;
+	padding: 0.6em 2em;
+	text-align: center;
+	color: #fff;
+	border-radius: 4px;
+	background-color: #2772DB;
+	overflow: hidden;
+	-webkit-transition: .3s ease;
+	-moz-transition: .3s ease;
+	-o-transition: .3s ease;
+	transition: .3s ease;
 }
 
 .file_button:hover {
-  background-color: #2062bf;
+	background-color: #2062bf;
 }
 
 .file_input {
-  position: absolute;
-  top: 0;
-  left:0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  cursor: pointer;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	cursor: pointer;
 }
-
-
 
 @media screen and (max-width: 959px) { /* 959px以下に適用されるCSS（タブレット用） */
 }
 
 @media screen and (max-width: 480px) {
 	/* 480px以下に適用されるCSS（スマホ用） */
-	
 	/*a確認ボタンのdiv幅が大きかったので適当に小さくしました。適宜修正お願いします。（能勢）*/
 	.switch_btn {
 		width: 60px;
@@ -167,24 +163,24 @@ input[type="number"] {
 		margin-bottom: 1rem;
 	}
 	.modal-dialog-fluid {
-  		max-width: inherit;
- 	 	width: 92%;
-  		margin-left: 15px;
-	}	
-	
-	tr.inputarea{
+		max-width: inherit;
+		width: 92%;
+		margin-left: 15px;
+	}
+	tr.inputarea {
 		height: 109px;
 	}
 	.search {
 		top: 10px;
 		left: 1px;
 	}
-	.file_button{
+	.file_button {
 		top: 0px;
 		left: 50px;
 	}
-	
+	table td{
+	border-buttom:0;
+	}
+		
+	}
 }
-	 
-	
-
