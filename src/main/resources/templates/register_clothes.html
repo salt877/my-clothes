@@ -150,7 +150,7 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 	<div id="navArea">
 		<nav class="navbar navbar-default" th:replace="header::pageheader"></nav>
 	</div>
-	
+
 	<!-- aアイテム登録画面-->
 	<section class="page-section bg-light" id="portfolio">
 		<div class="container">
@@ -170,15 +170,14 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 					</div>
 				</div>
 
-				<div class="required-information">
+				<div>
 
 					<table>
-						<thead>
-							<tr>
-								<th scope="col" colspan="2">基本情報（必須）<span id="message"
-									style="color: red"></span></th>
-							</tr>
-						</thead>
+
+						<tr>
+							<th class="thead" scope="col" colspan="2">基本情報（必須）</th>
+						</tr>
+
 						<tbody>
 							<tr>
 								<th>カテゴリー</th>
@@ -192,7 +191,7 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 												th:field="*{category}">アクセサリー</option>
 										</select>
 									</div></td>
-									
+
 							</tr>
 							<tr class="inputarea">
 								<th>
@@ -345,14 +344,12 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 										<!-- accept=".jpg,.png,image/jpeg,image/png"
 											th:errorclass="error-input" -->
 									</div>
-									<div class="required-information">
+									<div>
 
 										<table>
-											<thead>
-												<tr>
-													<th scope="col" colspan="2">基本情報（必須）</th>
-												</tr>
-											</thead>
+											<tr>
+												<th class="thead" scope="col" colspan="2">基本情報（必須）</th>
+											</tr>
 											<tbody>
 												<tr>
 													<th>カテゴリー</th>
@@ -393,13 +390,11 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 										</table>
 									</div>
 									<br> <br>
-									<div class="detailed-information">
+									<div>
 										<table>
-											<thead>
-												<tr>
-													<th scope="col" colspan="2">詳細情報</th>
-												</tr>
-											</thead>
+											<tr>
+												<th class="thead" scope="col" colspan="2">詳細情報</th>
+											</tr>
 											<tbody>
 												<tr class="inputarea">
 													<th>タグ1</th>
