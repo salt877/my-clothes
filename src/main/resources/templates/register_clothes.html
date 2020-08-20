@@ -150,7 +150,7 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 	<div id="navArea">
 		<nav class="navbar navbar-default" th:replace="header::pageheader"></nav>
 	</div>
-
+	
 	<!-- aアイテム登録画面-->
 	<section class="page-section bg-light" id="portfolio">
 		<div class="container">
@@ -161,7 +161,7 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 				th:action="@{/registerClothes/register}"
 				th:object="${registerClothesForm}" enctype="multipart/form-data">
 				<div class="required-information">
-					<img id="preview"> <br>
+					<img id="preview" class="img-fluid"> <br>
 				</div>
 				<div class="image-information">
 					<div class="file_button">
@@ -169,7 +169,6 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 							accept=".jpg,.png" id="myImage" th:field="*{imageFile}" required>
 					</div>
 				</div>
-
 
 				<div class="required-information">
 
@@ -193,6 +192,7 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 												th:field="*{category}">アクセサリー</option>
 										</select>
 									</div></td>
+									
 							</tr>
 							<tr class="inputarea">
 								<th>
@@ -207,11 +207,9 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 										<input type="text" class="search-form" name="brand" id="brand"
 											th:field="*{brand}">
 									</div></td>
-
 							</tr>
 							<tr>
 								<th>カラー</th>
-
 								<td class="txt"><label for="color" th:errors="*{color}"
 									style="color: red"></label>
 									<div class="cp_ipselect cp_sl02">
@@ -295,8 +293,6 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 									//a今日日付以降は選択できないように設定
 									perchaseDate.max = new Date().toISOString().split("T")[0];
 									</script>
-
-
 							</tr>
 							<tr>
 								<th>価格</th>
@@ -343,8 +339,8 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 										<script type="text/javascript">
 										/*a 表示の画像サイズを指定する*/
 										var targetImg = document.getElementById('preview');
-										targetImg.width = 250;
-										targetImg.height = 300;
+										//targetImg.width = 250;
+										//targetImg.height = 300;
 										</script>
 										<!-- accept=".jpg,.png,image/jpeg,image/png"
 											th:errorclass="error-input" -->
