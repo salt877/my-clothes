@@ -14,6 +14,7 @@
   -moz-transition: .3s ease;
   -o-transition: .3s ease;
   transition: .3s ease;
+  left: 32%;
 }
 
 .file_button:hover {
@@ -52,6 +53,7 @@ table {
 	color: #ff9900;
 }
 
+/* 基本・詳細の見出し部分 */
 .thead{
 	color: #ff9900;
 	border-bottom: none;
@@ -82,10 +84,6 @@ tbody th {
 
 .price {
 	text-align: right;
-}
-
-.required-information {
-	text-align: center;
 }
 	
 
@@ -158,13 +156,9 @@ tbody th {
 		-webkit-appearance: none;
 		-moz-appearance: none;
 	}
-
-	.required-information {
-		text-align: center;
-	}
 	
 	.file_button{
-		left: 5px;
+		left: 70px;
 	}
 	
 	.search {
@@ -213,13 +207,6 @@ tbody th {
 	}
 */
 	
-	.table-responsive-sm {
-		width: 100%;
-	}
-	.table-responsive-sm>.table-bordered {
-		border: 0;
-	}
-	
 	 tr.inputarea{
 		height: 109px;
 	}
@@ -230,7 +217,7 @@ tbody th {
 	}
 	
 	.file_button{
-		left: 0px;
+		left: 35px;
 	}
 }
 
