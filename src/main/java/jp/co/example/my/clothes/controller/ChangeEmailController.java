@@ -1,7 +1,5 @@
 package jp.co.example.my.clothes.controller;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -22,9 +20,6 @@ public class ChangeEmailController {
 
 	@Autowired
 	private ChangeUserEmailService changeUserEmailService;
-
-	@Autowired
-	private HttpSession session;
 
 	/**
 	 * 使用するフォームオブジェクトをリクエストスコープに格納する.
@@ -50,10 +45,10 @@ public class ChangeEmailController {
 	 * メールアドレスを変更します.
 	 * 
 	 * @param model モデル
-	 * @param loginUser　ログインユーザ
-	 * @param form　メールアドレス変更時に使用するフォーム
-	 * @param result　エラー結果
-	 * @return　メールアドレス変更完了画面
+	 * @param       loginUser ログインユーザ
+	 * @param       form メールアドレス変更時に使用するフォーム
+	 * @param       result エラー結果
+	 * @return メールアドレス変更完了画面
 	 */
 	@RequestMapping("/input")
 	public String changeEmail(Model model, @AuthenticationPrincipal LoginUser loginUser,
@@ -68,18 +63,18 @@ public class ChangeEmailController {
 			result.rejectValue("email", "", "そのメールアドレスはすでに使われています");
 			return showChangeEmail();
 		}
-		
+
 		// MYQLOのメールアドレスに変更できないようにする
 		if (myqloEmail.equals(form.getEmail())) {
 			result.rejectValue("email", "", "そのメールアドレスは使用できません");
 		}
-		
+
 		// 入力したメールアドレスと確認用メールアドレスが一致しなければ入力画面に戻る
 		if (!(form.getEmail().equals(form.getConfirmEmail()))) {
 			result.rejectValue("confirmEmail", "", "確認用メールアドレスが一致しません");
 			return showChangeEmail();
 		}
-		
+
 		// エラーがあれば入力画面に戻る
 		if (result.hasErrors()) {
 			return showChangeEmail();

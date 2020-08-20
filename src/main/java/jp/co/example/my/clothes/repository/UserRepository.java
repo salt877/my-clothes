@@ -93,6 +93,12 @@ public class UserRepository {
 		return changeList.get(0);
 	}
 
+	/**
+	 * ユーザIDからユーザを検索します.
+	 * 
+	 * @param userId ユーザID
+	 * @return　ユーザ情報
+	 */
 	public User findUserByUserId(Integer userId) {
 		String sql = "SELECT id,email,password FROM users WHERE id=:id AND deleted='false'";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", userId);
