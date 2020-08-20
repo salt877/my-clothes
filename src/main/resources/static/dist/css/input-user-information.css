@@ -46,6 +46,7 @@
 	.form-group {
 		margin-bottom: 1rem;
 		width: 100%;
+	
 	}
 	.password-input {
 		margin-bottom: 0rem;
@@ -146,7 +147,6 @@ p {
 	/* position: relative; */
 	top: 40px;
 }
-/*form-group*/
 .btn btn--gmail {
 	position: absolute;
 	top: 40px;
@@ -165,10 +165,13 @@ p {
 
 /*form-group*/
 .form-group {
-	width: 500px;
+	width: 70%;
 	margin: auto;
 	margin-bottom: 1rem;
 }
+.show-password {
+text-align: left;
+	}
 
 @media screen and (max-width: 480px) {
 	.form-group {
@@ -359,7 +362,8 @@ nav .inner ul li a:hover {
 
 .center-heading {
 	position: relative;
-	top: -40px;
+	top: -40%;
+	white-space: nowrap;
 	/* color: #fed136; */
 	color: #fd7e14;
 }
@@ -442,7 +446,11 @@ tabindex
 
 
 
+
+
 :focus
+
+
 
 
 
@@ -456,7 +464,9 @@ tabindex
 
 
 
+
  
+
 
 
 
@@ -467,7 +477,9 @@ tabindex
 
 
 
+
  
+
 
 
 
@@ -482,7 +494,10 @@ outline
 
 
 
+
+
 :
+
 
 
 
@@ -492,9 +507,12 @@ outline
 
 
 
+
 0
 !
 important
+
+
 
 
 
@@ -604,13 +622,17 @@ a
 
 
 
+
+
 :not
 
 
 
 
 
+
  
+
 
 
 
@@ -625,7 +647,9 @@ href
 
 
 
+
  
+
 
 
 
@@ -643,7 +667,10 @@ color
 
 
 
+
+
 :
+
 
 
 
@@ -655,7 +682,10 @@ color
 
 
 
+
 inherit
+
+
 
 
 
@@ -678,7 +708,10 @@ text-decoration
 
 
 
+
+
 :
+
 
 
 
@@ -690,7 +723,10 @@ text-decoration
 
 
 
+
 none
+
+
 
 
 
@@ -803,13 +839,17 @@ button
 
 
 
+
+
 :not
 
 
 
 
 
+
  
+
 
 
 
@@ -822,7 +862,9 @@ button
 
 
 
+
  
+
 
 
 
@@ -844,13 +886,17 @@ button
 
 
 
+
+
 :not
 
 
 
 
 
+
  
+
 
 
 
@@ -863,7 +909,9 @@ button
 
 
 
+
  
+
 
 
 
@@ -885,7 +933,10 @@ reset
 
 
 
+
+
 :not
+
 
 
 
@@ -898,6 +949,7 @@ reset
 
 
 
+
 (
 :disabled
 
@@ -905,7 +957,9 @@ reset
 
 
 
+
  
+
 
 
 
@@ -927,13 +981,17 @@ submit
 
 
 
+
+
 :not
 
 
 
 
 
+
  
+
 
 
 
@@ -946,7 +1004,9 @@ submit
 
 
 
+
  
+
 
 
 
@@ -964,7 +1024,10 @@ cursor
 
 
 
+
+
 :
+
 
 
 
@@ -976,7 +1039,10 @@ cursor
 
 
 
+
 pointer
+
+
 
 
 
@@ -1074,7 +1140,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 h1, .h1 {
-	font-size: 2.5rem;
+	font-size: 3.5vw;
 }
 
 @media screen and (max-width: 480px) {
@@ -1174,13 +1240,17 @@ mark, .mark {
 
 
 
+
+
 :not
 
 
 
 
 
+
  
+
 
 
 
@@ -1193,7 +1263,9 @@ mark, .mark {
 
 
 
+
  
+
 
 
 
@@ -1211,7 +1283,10 @@ margin-right
 
 
 
+
+
 :
+
 
 
 
@@ -1223,8 +1298,11 @@ margin-right
 
 
 
+
 0
 .5rem
+
+
 
 
 
@@ -1329,7 +1407,7 @@ pre code {
 .textform {
 	background-color: rgba(255, 255, 255, 0.7);
 	height: auto;
-	width: 1000px;
+	width: 80%;
 	position: relative;
 	top: -50px;
 	text-align: center;
@@ -1366,7 +1444,7 @@ pre code {
 .registerform {
 	background-color: rgba(255, 255, 255, 0.7);
 	height: auto;
-	width: 1000px;
+	width: 80%;
 	position: relative;
 	top: -50px;
 	text-align: center;
@@ -1378,7 +1456,7 @@ pre code {
 .loginform {
 	background-color: rgba(255, 255, 255, 0.7);
 	height: auto;
-	width: 1000px;
+	width: 80%;
 	position: relative;
 	top: -50px;
 	text-align: center;
@@ -1389,7 +1467,7 @@ pre code {
 .completeform {
 	background-color: rgba(0, 0, 0, 0.6);
 	height: auto;
-	width: 1000px;
+	width: 80%;
 	position: relative;
 	top: -50px;
 	text-align: center;
@@ -1400,6 +1478,7 @@ pre code {
 .password-constraint {
 	font-size: 0.8rem;
 	text-align: left;
+	white-space: normal;
 }
 
 .password-constraint-br {
@@ -1568,7 +1647,10 @@ pre code {
 		
 		
 		
+		
+		
 		:
+		
 		
 		
 		
@@ -1580,8 +1662,11 @@ pre code {
 		
 		
 		
+		
 		14
 		px
+		
+		
 		
 		
 		
@@ -1604,7 +1689,10 @@ pre code {
 		
 		
 		
+		
+		
 		:
+		
 		
 		
 		
@@ -1616,8 +1704,11 @@ pre code {
 		
 		
 		
+		
 		18
 		px
+		
+		
 		
 		
 		
@@ -1642,7 +1733,10 @@ pre code {
 		
 		
 		
+		
+		
 		:
+		
 		
 		
 		
@@ -1654,8 +1748,11 @@ pre code {
 		
 		
 		
+		
 		12
 		px
+		
+		
 		
 		
 		
@@ -1678,7 +1775,10 @@ pre code {
 		
 		
 		
+		
+		
 		:
+		
 		
 		
 		
@@ -1690,8 +1790,11 @@ pre code {
 		
 		
 		
+		
 		16
 		px
+		
+		
 		
 		
 		
@@ -1714,13 +1817,17 @@ pre code {
 		
 		
 		
+		
+		
 		:
 		
 		
 		
 		
 		
+		
 		 
+		
 		
 		
 		
@@ -1733,7 +1840,9 @@ pre code {
 		
 		
 		
+		
 		 
+		
 		
 		
 		
@@ -1747,7 +1856,9 @@ pre code {
 		
 		
 		
+		
 		 
+		
 		
 		
 		
@@ -1755,6 +1866,8 @@ pre code {
 		
 		52
 		px
+		
+		
 		
 		
 		
@@ -1793,7 +1906,10 @@ pre code {
 	
 	
 	
+	
+	
 	:
+	
 	
 	
 	
@@ -1805,8 +1921,11 @@ pre code {
 	
 	
 	
+	
 	13
 	px
+	
+	
 	
 	
 	
@@ -1829,7 +1948,10 @@ pre code {
 	
 	
 	
+	
+	
 	:
+	
 	
 	
 	
@@ -1841,8 +1963,11 @@ pre code {
 	
 	
 	
+	
 	18
 	px
+	
+	
 	
 	
 	
@@ -1868,7 +1993,10 @@ pre code {
 	
 	
 	
+	
+	
 	:
+	
 	
 	
 	
@@ -1880,8 +2008,11 @@ pre code {
 	
 	
 	
+	
 	12
 	px
+	
+	
 	
 	
 	
@@ -1904,7 +2035,10 @@ pre code {
 	
 	
 	
+	
+	
 	:
+	
 	
 	
 	
@@ -1916,8 +2050,11 @@ pre code {
 	
 	
 	
+	
 	17
 	px
+	
+	
 	
 	
 	
@@ -1978,7 +2115,10 @@ pre code {
 	
 	
 	
+	
+	
 	:
+	
 	
 	
 	
@@ -1990,8 +2130,11 @@ pre code {
 	
 	
 	
+	
 	16
 	px
+	
+	
 	
 	
 	
@@ -2014,13 +2157,17 @@ pre code {
 	
 	
 	
+	
+	
 	:
 	
 	
 	
 	
 	
+	
 	 
+	
 	
 	
 	
@@ -2033,7 +2180,9 @@ pre code {
 	
 	
 	
+	
 	 
+	
 	
 	
 	
@@ -2046,7 +2195,9 @@ pre code {
 	
 	
 	
+	
 	 
+	
 	
 	
 	
@@ -2059,7 +2210,9 @@ pre code {
 	
 	
 	
+	
 	 
+	
 	
 	
 	
@@ -2067,6 +2220,8 @@ pre code {
 	
 	13
 	px
+	
+	
 	
 	
 	
@@ -2107,7 +2262,10 @@ pre code {
 	
 	
 	
+	
+	
 	:
+	
 	
 	
 	
@@ -2119,8 +2277,11 @@ pre code {
 	
 	
 	
+	
 	16
 	px
+	
+	
 	
 	
 	
@@ -2143,13 +2304,17 @@ pre code {
 	
 	
 	
+	
+	
 	:
 	
 	
 	
 	
 	
+	
 	 
+	
 	
 	
 	
@@ -2162,7 +2327,9 @@ pre code {
 	
 	
 	
+	
 	 
+	
 	
 	
 	
@@ -2175,7 +2342,9 @@ pre code {
 	
 	
 	
+	
 	 
+	
 	
 	
 	
@@ -2188,7 +2357,9 @@ pre code {
 	
 	
 	
+	
 	 
+	
 	
 	
 	
@@ -2196,6 +2367,8 @@ pre code {
 	
 	14
 	px
+	
+	
 	
 	
 	
@@ -4078,13 +4251,17 @@ textarea.form-control {
 
 
 
+
+
 :not
 
 
 
 
 
+
  
+
 
 
 
@@ -4097,7 +4274,9 @@ textarea.form-control {
 
 
 
+
  
+
 
 
 
@@ -4110,7 +4289,9 @@ textarea.form-control {
 
 
 
+
  
+
 
 
 
@@ -4123,7 +4304,9 @@ textarea.form-control {
 
 
 
+
  
+
 
 
 
@@ -4141,7 +4324,10 @@ cursor
 
 
 
+
+
 :
+
 
 
 
@@ -4153,7 +4339,10 @@ cursor
 
 
 
+
 pointer
+
+
 
 
 
@@ -4819,13 +5008,17 @@ input[type=submit].btn-block, input[type=reset].btn-block, input[type=button].bt
 
 
 
+
+
 :not
 
 
 
 
 
+
  
+
 
 
 
@@ -4838,7 +5031,9 @@ input[type=submit].btn-block, input[type=reset].btn-block, input[type=button].bt
 
 
 
+
  
+
 
 
 
@@ -4856,13 +5051,17 @@ opacity
 
 
 
+
+
 :
 
 
 
 
 
+
  
+
 
 
 
@@ -4881,13 +5080,17 @@ opacity
 
 
 
+
+
 :not
 
 
 
 
 
+
  
+
 
 
 
@@ -4900,7 +5103,9 @@ opacity
 
 
 
+
  
+
 
 
 
@@ -4918,7 +5123,10 @@ display
 
 
 
+
+
 :
+
 
 
 
@@ -4930,7 +5138,10 @@ display
 
 
 
+
 none
+
+
 
 
 
@@ -5247,13 +5458,17 @@ none
 
 
 
+
+
 :not
 
 
 
 
 
+
  
+
 
 
 
@@ -5266,7 +5481,9 @@ none
 
 
 
+
  
+
 
 
 
@@ -5286,13 +5503,17 @@ none
 
 
 
+
+
 :not
 
 
 
 
 
+
  
+
 
 
 
@@ -5306,7 +5527,9 @@ none
 
 
 
+
 	
+
 
 
 
@@ -5324,7 +5547,10 @@ margin-left
 
 
 
+
+
 :
+
 
 
 
@@ -5336,8 +5562,11 @@ margin-left
 
 
 
+
 -1
 px
+
+
 
 
 
@@ -5411,13 +5640,17 @@ px
 
 
 
+
+
 :not
 
 
 
 
 
+
  
+
 
 
 
@@ -5430,7 +5663,9 @@ px
 
 
 
+
  
+
 
 
 
@@ -5450,7 +5685,10 @@ px
 
 
 
+
+
 :not
+
 
 
 
@@ -5463,6 +5701,7 @@ px
 
 
 
+
 (
 :first-child
 
@@ -5470,7 +5709,9 @@ px
 
 
 
+
  
+
 
 
 
@@ -5488,7 +5729,10 @@ margin-top
 
 
 
+
+
 :
+
 
 
 
@@ -5500,8 +5744,11 @@ margin-top
 
 
 
+
 -1
 px
+
+
 
 
 
@@ -5588,13 +5835,17 @@ px
 
 
 
+
+
 :not
 
 
 
 
 
+
  
+
 
 
 
@@ -5607,7 +5858,9 @@ px
 
 
 
+
  
+
 
 
 
@@ -5627,7 +5880,10 @@ px
 
 
 
+
+
 :not
+
 
 
 
@@ -5640,6 +5896,7 @@ px
 
 
 
+
 (
 :last-child
 
@@ -5647,7 +5904,9 @@ px
 
 
 
+
  
+
 
 
 
@@ -5665,13 +5924,17 @@ border-top-right-radius
 
 
 
+
+
 :
 
 
 
 
 
+
  
+
 
 
 
@@ -5689,13 +5952,17 @@ border-bottom-right-radius
 
 
 
+
+
 :
 
 
 
 
 
+
  
+
 
 
 
@@ -5716,13 +5983,17 @@ border-bottom-right-radius
 
 
 
+
+
 :not
 
 
 
 
 
+
  
+
 
 
 
@@ -5735,7 +6006,9 @@ border-bottom-right-radius
 
 
 
+
  
+
 
 
 
@@ -5755,7 +6028,10 @@ border-bottom-right-radius
 
 
 
+
+
 :not
+
 
 
 
@@ -5768,6 +6044,7 @@ border-bottom-right-radius
 
 
 
+
 (
 :first-child
 
@@ -5775,7 +6052,9 @@ border-bottom-right-radius
 
 
 
+
  
+
 
 
 
@@ -5793,13 +6072,17 @@ border-top-left-radius
 
 
 
+
+
 :
 
 
 
 
 
+
  
+
 
 
 
@@ -5817,13 +6100,17 @@ border-bottom-left-radius
 
 
 
+
+
 :
 
 
 
 
 
+
  
+
 
 
 
@@ -5968,13 +6255,17 @@ border-bottom-left-radius
 
 
 
+
+
 :not
 
 
 
 
 
+
  
+
 
 
 
@@ -5987,7 +6278,9 @@ border-bottom-left-radius
 
 
 
+
  
+
 
 
 
@@ -6009,7 +6302,10 @@ border-bottom-left-radius
 
 
 
+
+
 :not
+
 
 
 
@@ -6022,6 +6318,7 @@ border-bottom-left-radius
 
 
 
+
 (
 :last-child
 
@@ -6029,7 +6326,9 @@ border-bottom-left-radius
 
 
 
+
  
+
 
 
 
@@ -6051,6 +6350,8 @@ border-bottom-left-radius
 
 
 
+
+
 :last-child
 >
 .btn
@@ -6064,7 +6365,10 @@ border-bottom-left-radius
 
 
 
+
+
 :not
+
 
 
 
@@ -6077,6 +6381,7 @@ border-bottom-left-radius
 
 
 
+
 (
 :last-child
 
@@ -6084,7 +6389,9 @@ border-bottom-left-radius
 
 
 
+
  
+
 
 
 
@@ -6097,7 +6404,9 @@ border-bottom-left-radius
 
 
 
+
  
+
 
 
 
@@ -6110,7 +6419,9 @@ border-bottom-left-radius
 
 
 
+
  
+
 
 
 
@@ -6130,9 +6441,13 @@ border-bottom-left-radius
 
 
 
+
+
 :last-child
 >
 .input-group-text
+
+
 
 
 
@@ -6150,7 +6465,9 @@ border-bottom-left-radius
 
 
 
+
 	
+
 
 
 
@@ -6163,7 +6480,9 @@ border-bottom-left-radius
 
 
 
+
  
+
 
 
 
@@ -6181,13 +6500,17 @@ border-top-right-radius
 
 
 
+
+
 :
 
 
 
 
 
+
  
+
 
 
 
@@ -6205,13 +6528,17 @@ border-bottom-right-radius
 
 
 
+
+
 :
 
 
 
 
 
+
  
+
 
 
 
@@ -6244,13 +6571,17 @@ border-bottom-right-radius
 
 
 
+
+
 :not
 
 
 
 
 
+
  
+
 
 
 
@@ -6263,7 +6594,9 @@ border-bottom-right-radius
 
 
 
+
  
+
 
 
 
@@ -6285,13 +6618,17 @@ border-bottom-right-radius
 
 
 
+
+
 :not
 
 
 
 
 
+
  
+
 
 
 
@@ -6304,7 +6641,9 @@ border-bottom-right-radius
 
 
 
+
  
+
 
 
 
@@ -6326,9 +6665,13 @@ border-bottom-right-radius
 
 
 
+
+
 :first-child
 >
 .btn
+
+
 
 
 
@@ -6345,7 +6688,9 @@ border-bottom-right-radius
 
 
 
+
  
+
 
 
 
@@ -6358,7 +6703,9 @@ border-bottom-right-radius
 
 
 
+
  
+
 
 
 
@@ -6378,9 +6725,13 @@ border-bottom-right-radius
 
 
 
+
+
 :first-child
 >
 .input-group-text
+
+
 
 
 
@@ -6397,7 +6748,9 @@ border-bottom-right-radius
 
 
 
+
  
+
 
 
 
@@ -6411,7 +6764,9 @@ border-bottom-right-radius
 
 
 
+
 	
+
 
 
 
@@ -6429,13 +6784,17 @@ border-top-left-radius
 
 
 
+
+
 :
 
 
 
 
 
+
  
+
 
 
 
@@ -6453,13 +6812,17 @@ border-bottom-left-radius
 
 
 
+
+
 :
 
 
 
 
 
+
  
+
 
 
 
@@ -6677,11 +7040,15 @@ border-bottom-left-radius
 
 
 
+
+
 [
 multiple
 ]
 ,
 .custom-select
+
+
 
 
 
@@ -6701,12 +7068,16 @@ size
 
 
 
+
+
 :not
 
 
 
 
+
  
+
 
 
 
@@ -6721,7 +7092,9 @@ size
 
 
 
+
  
+
 
 
 
@@ -6736,7 +7109,10 @@ height
 
 
 
+
+
 :
+
 
 
 
@@ -6746,7 +7122,10 @@ height
 
 
 
+
 auto
+
+
 
 
 
@@ -6765,7 +7144,10 @@ padding-right
 
 
 
+
+
 :
+
 
 
 
@@ -6775,8 +7157,11 @@ padding-right
 
 
 
+
 0
 .75rem
+
+
 
 
 
@@ -6795,7 +7180,10 @@ background-image
 
 
 
+
+
 :
+
 
 
 
@@ -6805,7 +7193,10 @@ background-image
 
 
 
+
 none
+
+
 
 
 
@@ -7724,12 +8115,16 @@ none
 	
 	
 	
+	
+	
 	:not
 	
 	
 	
 	
+	
 	 
+	
 	
 	
 	
@@ -7740,7 +8135,9 @@ none
 	
 	
 	
+	
 	 
+	
 	
 	
 	
@@ -7755,12 +8152,16 @@ none
 	
 	
 	
+	
+	
 	:
 	
 	
 	
 	
+	
 	 
+	
 	
 	
 	
@@ -7775,12 +8176,16 @@ none
 	
 	
 	
+	
+	
 	:
 	
 	
 	
 	
+	
 	 
+	
 	
 	
 	
@@ -7809,12 +8214,16 @@ none
 
 
 
+
+
 :not
 
 
 
 
+
  
+
 
 
 
@@ -7825,7 +8234,9 @@ none
 
 
 
+
  
+
 
 
 
@@ -7840,12 +8251,16 @@ border-top-left-radius
 
 
 
+
+
 :
 
 
 
 
+
  
+
 
 
 
@@ -7860,12 +8275,16 @@ border-bottom-left-radius
 
 
 
+
+
 :
 
 
 
 
+
  
+
 
 
 
@@ -7917,12 +8336,16 @@ border-bottom-left-radius
 
 
 
+
+
 :not
 
 
 
 
+
  
+
 
 
 
@@ -7933,7 +8356,9 @@ border-bottom-left-radius
 
 
 
+
  
+
 
 
 
@@ -7948,12 +8373,16 @@ border-bottom
 
 
 
+
+
 :
 
 
 
 
+
  
+
 
 
 
@@ -7968,12 +8397,16 @@ border-bottom-right-radius
 
 
 
+
+
 :
 
 
 
 
+
  
+
 
 
 
@@ -7988,12 +8421,16 @@ border-bottom-left-radius
 
 
 
+
+
 :
 
 
 
 
+
  
+
 
 
 
@@ -8011,12 +8448,16 @@ border-bottom-left-radius
 
 
 
+
+
 :not
 
 
 
 
+
  
+
 
 
 
@@ -8027,7 +8468,9 @@ border-bottom-left-radius
 
 
 
+
  
+
 
 
 
@@ -8042,12 +8485,16 @@ border-top-left-radius
 
 
 
+
+
 :
 
 
 
 
+
  
+
 
 
 
@@ -8062,12 +8509,16 @@ border-top-right-radius
 
 
 
+
+
 :
 
 
 
 
+
  
+
 
 
 
@@ -9007,12 +9458,16 @@ a.close.disabled {
 
 
 
+
+
 :not
 
 
 
 
+
  
+
 
 
 
@@ -9023,7 +9478,9 @@ a.close.disabled {
 
 
 
+
  
+
 
 
 
@@ -9038,7 +9495,10 @@ margin-bottom
 
 
 
+
+
 :
+
 
 
 
@@ -9048,8 +9508,11 @@ margin-bottom
 
 
 
+
 0
 .75rem
+
+
 
 
 
@@ -9823,7 +10286,11 @@ opacity
 
 
 
+
+
 :
+
+
 
 
 
@@ -9846,7 +10313,11 @@ transform
 
 
 
+
+
 :none
+
+
 
 
 
@@ -9877,7 +10348,11 @@ opacity
 
 
 
+
+
 :
+
+
 
 
 
@@ -9900,7 +10375,11 @@ transform
 
 
 
+
+
 :none
+
+
 
 
 
@@ -12891,12 +13370,16 @@ a.text-dark:hover, a.text-dark:focus {
 	
 	
 	
+	
+	
 	:not
 	
 	
 	
 	
+	
 	 
+	
 	
 	
 	
@@ -12907,7 +13390,9 @@ a.text-dark:hover, a.text-dark:focus {
 	
 	
 	
+	
 	 
+	
 	
 	
 	
@@ -12922,7 +13407,10 @@ a.text-dark:hover, a.text-dark:focus {
 	
 	
 	
+	
+	
 	:
+	
 	
 	
 	
@@ -12932,7 +13420,10 @@ a.text-dark:hover, a.text-dark:focus {
 	
 	
 	
+	
 	underline
+	
+	
 	
 	
 	
@@ -13270,6 +13761,13 @@ header.masthead .masthead-heading {
 	font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI",
 		Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
 		"Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+.container {
+	width: 80%;
+	padding-right: 0.75rem;
+	padding-left: 0.75rem;
+	margin-right: auto;
+	margin-left: auto;
 }
 
 body, #wrapper {
