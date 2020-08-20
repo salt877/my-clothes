@@ -117,10 +117,10 @@ label {
 		color-stop(.75, transparent), to(transparent));
 	-webkit-background-size: 14px 14px;
 	text-align: center;
-	width: 350px;
-	height: 350px;
-	padding: 13%;
-	margin: 1em;
+	width: 80%;
+	height: 80%;
+	padding: 10%;
+	margin: 0.5em 0.5em;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -168,7 +168,24 @@ label {
 }
 
 
+<<<<<<< HEAD
 /*a天気予報*/
 nobr.weather-date{
 	text-align: center;
 }
+=======
+
+.btn--vuemore:hover {
+	color: #fff;
+	background: #fed852;
+}
+
+.btn-c {
+	font-size: 1rem;
+	padding: auto;
+}
+
+.btn-c i.fa {
+	margin-right: 1.5rem;
+}
+>>>>>>> ae83a74670ee553c19dac8f4e3f325a22400a1a6
