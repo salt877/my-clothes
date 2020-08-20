@@ -12108,7 +12108,8 @@ tbody th {
 .file_button{
 	position: absolute;
 	top: 10px;
-	left: 130px;
+	left: 0px;
+	/*前回130px*/
 }
 
 .image-information{

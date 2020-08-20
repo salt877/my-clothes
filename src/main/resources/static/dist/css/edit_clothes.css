@@ -84,6 +84,11 @@ tbody th {
 	text-align: right;
 }
 
+.required-information {
+	text-align: center;
+}
+	
+
 /* 600px以下に適用されるCSS（PC用） */
 @media screen and (max-width: 600px) {
 	table {
@@ -163,8 +168,9 @@ tbody th {
 	}
 	
 	.search {
+		text-align: center;
 		top: 10px;
-		left: 30px;
+		left: 5px;
 	}
 }
 
