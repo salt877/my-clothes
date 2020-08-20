@@ -52,6 +52,11 @@ table {
 	color: #ff9900;
 }
 
+.thead{
+	color: #ff9900;
+	border-bottom: none;
+}
+
 table tr {
 	background-color: #fff;
 	padding: .35em;
@@ -88,7 +93,7 @@ tbody th {
 	table th {
 		display: block;
 		border-right: none;
-		border-bottom: 2px solid #bbb;
+		border-bottom: 2px dotted #bbb;
 		padding-bottom: .6em;
 		margin-bottom: .6em;
 	}
@@ -104,7 +109,6 @@ tbody th {
 	}
 	table tr {
 		display: block;
-		margin-bottom: 2em;
 		border-bottom: 2px solid #bbb;
 	}
 	tr.inputarea{
@@ -185,6 +189,7 @@ tbody th {
 		width: 82%;
   		margin: 0 auto;
   		margin-right:10px;
+  		margin-top: 40px;
   		max-width: 300px;
 	}
 	
@@ -194,6 +199,19 @@ tbody th {
 	
 	table td {
 		padding: .625em .625em .625em 2em;
+	}
+
+/*	テーブルの上の黒線を下線と長さを合わせるCSS
+	table tr{
+		padding: 0em;
+	}
+*/
+	
+	.table-responsive-sm {
+		width: 100%;
+	}
+	.table-responsive-sm>.table-bordered {
+		border: 0;
 	}
 	
 	 tr.inputarea{
