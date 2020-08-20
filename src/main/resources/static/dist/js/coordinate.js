@@ -1,7 +1,5 @@
 
-$(function(){
-	
-	
+$(function(){	
 
 	// カテゴリーボタンがクリックされた時のajax通信処理
 	$('.category-btn').on('click', function(){
