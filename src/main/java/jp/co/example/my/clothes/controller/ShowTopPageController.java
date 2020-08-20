@@ -60,7 +60,7 @@ public class ShowTopPageController {
 		model.addAttribute("clothesList", clothesList);
 
 		// 天気予報情報の表示
-		weatherService.cityFindByUserId(loginUser.getUser().getId());
+		weatherService.cityFindByUserId(userId);
 		Weather weather = weatherService.cityFindByUserId(userId);
 
 		if (StringUtils.isEmpty(weather)) {
@@ -69,31 +69,19 @@ public class ShowTopPageController {
 			model.addAttribute("city", weather.getCityName());
 		}
 
-		// 登録ブランド名を表示させる
-		List<Brand> brandList = showTopPageService.showBrandName(userId);
-		Map<Integer, String> brandMap = new LinkedHashMap<>();
-		for (int i = 0; i < brandList.size(); i++) {
-			Integer brandId = brandList.get(i).getId();
-			String brandName = brandList.get(i).getName();
-			brandMap.put(brandId, brandName);
-		}
+		// 登録ブランド名を表示するメソッドを呼び出し
+		Map<Integer, String> brandMap = showBrandName(userId);
 		model.addAttribute("brandMap", brandMap);
 
-		// 登録タグ名を表示させる
-		List<TagContent> tagNameList = showTopPageService.showTagName(userId);
-		Map<Integer, String> tagMap = new LinkedHashMap<>();
-		for (int i = 0; i < tagNameList.size(); i++) {
-			Integer tagContentsId = tagNameList.get(i).getId();
-			String tagContentsName = tagNameList.get(i).getName();
-			tagMap.put(tagContentsId, tagContentsName);
-		}
+		// 登録タグ名を表示するメソッドを呼び出し
+		Map<Integer, String> tagMap = showTagName(userId);
 		model.addAttribute("tagMap", tagMap);
 
 		return "top";
 	}
 
 	/**
-	 * 条件を設けてアイテムを検索
+	 * アイテムを絞り込み検索します.
 	 * 
 	 * @param model
 	 * @param loginUser
@@ -121,29 +109,16 @@ public class ShowTopPageController {
 			model.addAttribute("city", weather.getCityName());
 		}
 
-		// 登録ブランド名を表示させる
-		List<Brand> brandList = showTopPageService.showBrandName(userId);
-		Map<Integer, String> brandMap = new LinkedHashMap<>();
-		for (int i = 0; i < brandList.size(); i++) {
-			Integer brandId2 = brandList.get(i).getId();
-			String brandName = brandList.get(i).getName();
-			brandMap.put(brandId2, brandName);
-		}
+		// 登録ブランド名を表示するメソッドを呼び出し
+		Map<Integer, String> brandMap = showBrandName(userId);
 		model.addAttribute("brandMap", brandMap);
 
-		// 登録タグ名を表示させる
-		List<TagContent> tagNameList = showTopPageService.showTagName(userId);
-		Map<Integer, String> tagMap = new LinkedHashMap<>();
-		for (int i = 0; i < tagNameList.size(); i++) {
-			Integer tagContentsId2 = tagNameList.get(i).getId();
-			String tagContentsName = tagNameList.get(i).getName();
-			tagMap.put(tagContentsId2, tagContentsName);
-		}
+		// 登録タグ名を表示するメソッドを呼び出し
+		Map<Integer, String> tagMap = showTagName(userId);
 		model.addAttribute("tagMap", tagMap);
 
 		// 「ALL」が選択されたときのアイテム表示
 		if (categoryId != null && categoryId == 0 && brandId == null && tagContentsId == null) {
-			System.out.println(categoryId);
 			List<Clothes> clothesList = showTopPageService.showItemList(userId);
 			model.addAttribute("clothesList", clothesList);
 			session.setAttribute("categoryId", categoryId);
@@ -171,9 +146,47 @@ public class ShowTopPageController {
 			TagContent tagName = showTopPageService.findTagName(tagContentsId);
 			session.setAttribute("showTagName", tagName.getName());
 		}
-		
 
 		return "top";
+	}
+
+	/**
+	 * 登録しているブランド名を表示します.
+	 * 
+	 * @param userId ユーザID
+	 * @return ブランド名が格納されたマップ
+	 */
+	public Map<Integer, String> showBrandName(Integer userId) {
+
+		List<Brand> brandList = showTopPageService.showBrandName(userId);
+		Map<Integer, String> brandMap = new LinkedHashMap<>();
+
+		for (Brand registerBrand : brandList) {
+			Integer brandId = registerBrand.getId();
+			String brandName = registerBrand.getName();
+			brandMap.put(brandId, brandName);
+		}
+		return brandMap;
+	}
+
+	/**
+	 * 登録しているタグ名を表示します.
+	 * 
+	 * @param userId ユーザID
+	 * @return タグ名が格納されたマップ
+	 */
+	public Map<Integer, String> showTagName(Integer userId) {
+
+		List<TagContent> tagNameList = showTopPageService.showTagName(userId);
+		Map<Integer, String> tagMap = new LinkedHashMap<>();
+
+		for (TagContent registerTag : tagNameList) {
+			Integer tagContentsId = registerTag.getId();
+			String tagContentsName = registerTag.getName();
+			tagMap.put(tagContentsId, tagContentsName);
+		}
+		return tagMap;
+
 	}
 
 }

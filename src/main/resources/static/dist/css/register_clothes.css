@@ -54,7 +54,7 @@ tbody th {
 	table th {
 		display: block;
 		border-right: none;
-		border-bottom: 2px solid #bbb;
+		border-bottom: 2px dotted #bbb;
 		padding-bottom: .6em;
 		margin-bottom: .6em;
 	}
@@ -65,12 +65,12 @@ tbody th {
 		margin: -1px;
 		overflow: hidden;
 		padding: 0;
-		position: absolute;
+		/*	position: absolute;*/
 		width: 1px;
 	}
 	table tr {
 		display: block;
-		margin-bottom: 2em;
+		/*margin-bottom: 2em;*/
 		border-bottom: 2px solid #bbb;
 	}
 	table td {
@@ -178,9 +178,9 @@ input[type="number"] {
 		top: 0px;
 		left: 50px;
 	}
-	table td{
-	border-buttom:0;
-	}
-		
-	}
+}
+
+.thead {
+	color: #FF9900;
+	border-bottom: none;
 }

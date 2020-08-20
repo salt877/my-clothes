@@ -55,45 +55,62 @@
 }
 
 @media screen and (max-width:480px) {
-.item_select {
-	overflow: hidden;
-	width: 70%;
-	margin: 1em auto;
-	text-align: center;
-}
-.item_select.cp_sl04 select {
-    padding: 0.5em;
-    color: #5e5e5e;
-}
-.item_select select {
-    width: 100%;
-    padding-right: 1em;
-    cursor: pointer;
-    text-indent: 0.01px;
-    text-overflow: ellipsis;
-    border: none;
-    outline: none;
-    background: transparent;
-    background-image: none;
-    box-shadow: none;
-    -webkit-appearance: none;
-    appearance: none;
-}
+	.item_select {
+		overflow: hidden;
+		width: 70%;
+		margin: 1em auto;
+		text-align: center;
+	}
+	.item_select.cp_sl04 select {
+		padding: 0.5em;
+		color: #5e5e5e;
+	}
+	.item_select select {
+		width: 100%;
+		padding-right: 1em;
+		cursor: pointer;
+		text-indent: 0.01px;
+		text-overflow: ellipsis;
+		border: none;
+		outline: none;
+		background: transparent;
+		background-image: none;
+		box-shadow: none;
+		-webkit-appearance: none;
+		appearance: none;
+	}
+	/*a天気予報*/
+	.weather-day {
+		white-space: nowrap;
+		position: relative;
+		right: 50px;
+	}
+	.weather-main {
+		white-space: nowrap;
+	}
+	.weather {
+		white-space: nowrap;
+	}
+	.weather-pref {
+		white-space: nowrap;
+		position: relative;
+		right: 20px;
+	}
 }
 
-/** ラジオボタンで使用　*/
+/**a ラジオボタンで使用　*/
 .radioButton {
 	display: none;
 }
 
 label {
-		background-color: #EEEEEE;
-		padding: 10px 10px;
-		border-radius: 0;
-		display: inline-block;
-		margin-bottom: 0;
-		margin-top: 0.5em;
-	}
+	background-color: #EEEEEE;
+	padding: 10px 10px;
+	border-radius: 0;
+	display: inline-block;
+	margin-bottom: 0;
+	margin-top: 0.5em;
+}
 
 .radioButton:checked+label {
 	background-color: #BBBBBB;
@@ -108,7 +125,7 @@ label {
 	padding-top: 100%;
 }
 
-/** 写真の後ろの枠 */
+/**a 写真の後ろの枠 */
 .portfolio-item {
 	background-color: #ddf6ff;
 	background-image: -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.25, #EFF8F9),
@@ -162,18 +179,11 @@ label {
 	position: relative;
 	top: 10%;
 }
-.show_brand_and_tag{
+
+.show_brand_and_tag {
 	position: relative;
-	margin:1em 10em;
+	margin: 1em 10em;
 }
-
-
-<<<<<<< HEAD
-/*a天気予報*/
-nobr.weather-date{
-	text-align: center;
-}
-=======
 
 .btn--vuemore:hover {
 	color: #fff;
@@ -188,4 +198,3 @@ nobr.weather-date{
 .btn-c i.fa {
 	margin-right: 1.5rem;
 }
->>>>>>> ae83a74670ee553c19dac8f4e3f325a22400a1a6

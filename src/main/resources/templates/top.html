@@ -1,26 +1,39 @@
 <!DOCTYPE html>
-<html lang="ja" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>MYQLO | トップ画面</title>
-<link rel="icon" type="image/x-icon" href="../static/dist/assets/img/myqlo_favicon.jpg" th:href="@{/dist/assets/img/myqlo_favicon.jpg}" />
+<link rel="icon" type="image/x-icon"
+	href="../static/dist/assets/img/myqlo_favicon.jpg"
+	th:href="@{/dist/assets/img/myqlo_favicon.jpg}" />
 <!-- Font Awesome icons (free version)-->
-<script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+<script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js"
+	crossorigin="anonymous"></script>
 <!-- Google fonts-->
-<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-<link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
-<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+	rel="stylesheet" type="text/css" />
+<link
+	href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic"
+	rel="stylesheet" type="text/css" />
+<link
+	href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
+	rel="stylesheet" type="text/css" />
 <!-- Core theme CSS (includes Bootstrap)-->
-<link href="../static/dist/css/list_styles.css" rel="stylesheet" th:href="@{/dist/css/list_styles.css}" />
-<link href="../static/dist/css/styles.css" rel="stylesheet" th:href="@{/dist/css/styles.css}" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link href="../static/dist/css/list_styles.css" rel="stylesheet"
+	th:href="@{/dist/css/list_styles.css}" />
+<link href="../static/dist/css/styles.css" rel="stylesheet"
+	th:href="@{/dist/css/styles.css}" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <style type="text/css">
-.weather {
-	//background-image: url(../img/weather.jpg);
+.weather { //
+	background-image: url(../img/weather.jpg);
 	background-color: rgba(255, 255, 255, 0.5);
 	background-blend-mode: lighten;
 	width: 20%;
@@ -62,7 +75,7 @@
 		var icon = data.list[i].weather[0].icon;
 		var html = '<div class="weather-report">'
 				+ '<img src="http://openweathermap.org/img/w/' + icon + '.png"><br>'
-				+ '<nobr>' + day + '</nobr>'
+				+ '<div class="weather-day">' + day + '</div>'
 				+ '<div class="weather-main">' + data.list[i].weather[0].main
 				+ '</div>' + '<div class="weather-temp">'
 				+ Math.round(data.list[i].main.temp) + '℃</div>' + '</div>';
@@ -77,101 +90,128 @@
 		<nav class="navbar navbar-default" th:replace="header::pageheader"></nav>
 	</div>
 	<br>
-<!-- アイテム一覧画面 -->
+	<!-- アイテム一覧画面 -->
 	<section class="page-section bg-light" id="portfolio">
 		<div class="container">
 			<div class="text-center">
 				<hr>
-				<h2 class="section-heading text-uppercase"><a style="color:black" href="top.html" th:href="@{/}">My Closet</a></h2>
+				<h2 class="section-heading text-uppercase">
+					<a style="color: black" href="top.html" th:href="@{/}">My
+						Closet</a>
+				</h2>
 				<h3 class="section-subheading text-muted">ここがあなたのクローゼット。</h3>
 				<!-- <h3 class="section-subheading text-muted">登録アイテム一覧</h3>  -->
 				<hr>
 				<!-- 天気予報の表示 -->
 				<div class="weather" style="background: none;">
 					<a style="color: black" th:href="@{/weather/showWeatherPage}">
-					<nobr th:text="${city}+'の天気'" style="font-weight: bold; text-align: center;"></nobr> <span id="weather"></span></a>
+						<div class="weather-pref" th:text="${city}+'の天気'"
+							style="font-weight: bold; text-align: center;"></div> <span
+						id="weather"></span>
+					</a>
 				</div>
 				<hr>
-			<!-- スマホ用アイテム登録 -->
-			<div class="register-clothes-btn">
-				<a href="register_clothes.html" th:href="@{/registerClothes/showRegisterClothes}">
-					<button class="btn rc-btn-info sp-btn">
-						<i class="fas fa-tshirt"></i> &nbsp;&nbsp;<span>登録する</span>
-					</button>
-				</a>
+				<!-- スマホ用アイテム登録 -->
+				<div class="register-clothes-btn">
+					<a href="register_clothes.html" th:href="@{/registerClothes/showRegisterClothes}">
+						<button class="btn rc-btn-info sp-btn">
+							<i class="fas fa-tshirt"></i> &nbsp;&nbsp;<span>登録する</span>
+						</button>
+					</a>
+				</div>
 			</div>
+		</div>
+		<br>
+		<!-- タブ切り替え -->
+		<div style="text-align: center">
+			<span th:if="${clothesList.size()==0}" th:text="${'アイテムはありません'}" ></span>
+			<div class="item_select cp_sl04">
+				<select>
+					<option hidden>アイテムを絞り込む</option>
+					<option value="category">カテゴリで絞り込む</option>
+					<option value="brand">ブランドで絞り込む</option>
+					<option value="tag">タグで絞り込む</option>
+					<option value="all-item" id="all-item">一覧に戻る</option>
+				</select>
 			</div>
-			</div>
-			<br>
-			<!-- タブ切り替え -->
-			<div style="text-align: center">
-				<span th:if="${clothesList.size()==0}" th:text="${'アイテムはありません'}"></span>
-				<div class="item_select cp_sl04">
-					<select>
-						<option value="item">アイテムを絞り込む</option>
-						<option value="category">カテゴリで絞り込む</option>
-						<option value="brand">ブランドで絞り込む</option>
-						<option value="tag">タグで絞り込む</option>
-					</select>
-			</div>
-		<form action="top.html" th:action="@{/search}" method="post" onchange="submit(this.form)">
-					<div id="category" class="category">
-						<input id="tab_all" type="radio" name="categoryId" class="radioButton" value="0"><label class="tab-label"for="tab_all" th:text="全て">全て</label> 
-						<input id="tab_tops" type="radio" name="categoryId" value="2" class="radioButton"><label class="tab-label" for="tab_tops" th:text="トップス">トップス</label>
-						<input id="tab_outer" type="radio" name="categoryId" value="3" class="radioButton"><label class="tab-label" for="tab_outer" th:text="アウター">アウター</label> 
-						<input id="tab_bottoms" type="radio" name="categoryId" value="4" class="radioButton"><label class="tab-label" for="tab_bottoms" th:text="ボトムス">ボトムス</label> 
-						<input id="tab_dress" type="radio" name="categoryId" value="7" class="radioButton"><label class="tab-label" for="tab_dress" th:text="ワンピース">ワンピース</label> 
-						<input id="tab_shoes" type="radio" name="categoryId" value="5" class="radioButton"><label class="tab-label" for="tab_shoes" th:text="シューズ">シューズ</label>
-						<input id="tab_bags" type="radio" name="categoryId" value="6" class="radioButton" /><label class="tab-label" for="tab_bags" th:text="バッグ">バッグ</label>
-						<input id="tab_accessories" type="radio" name="categoryId" value="1" class="radioButton" /><label class="tab-label" for="tab_accessories" th:text="ファッション雑貨">ファッション雑貨</label>
-					</div>
-					<div class="show_brand_and_tag">
-						<span class="brand" id="brand" th:each="brand : ${brandMap}">
-							<label> 
-								<input type="radio" class="radioButton" name="brandId" th:value="${brand.key}" th:text="${brand.value}">
-							</label>
-						</span>
-					</div>
-					<div class="show_brand_and_tag">
-						<span class="tag" id="tag" th:each="tag : ${tagMap}">
-						<label>
-								<input type="radio" class="radioButton" name="tagContentsId" th:value="${tag.key}" th:text="${tag.value}">
-						</label>
-						</span>
-					</div>
-				<div class="narrow_down_box" th:if="${session.categoryId} or ${session.showBrandName} or ${session.showTagName}">
+			<form action="top.html" th:action="@{/search}" method="get"
+				onchange="submit(this.form)">
+				<div id="category" class="category">
+					<input id="tab_all" type="radio" name="categoryId"
+						class="radioButton" value="0"><label class="tab-label"
+						for="tab_all" th:text="全て">全て</label> <input id="tab_tops"
+						type="radio" name="categoryId" value="2" class="radioButton"><label
+						class="tab-label" for="tab_tops" th:text="トップス">トップス</label> <input
+						id="tab_outer" type="radio" name="categoryId" value="3"
+						class="radioButton"><label class="tab-label"
+						for="tab_outer" th:text="アウター">アウター</label> <input
+						id="tab_bottoms" type="radio" name="categoryId" value="4"
+						class="radioButton"><label class="tab-label"
+						for="tab_bottoms" th:text="ボトムス">ボトムス</label> <input
+						id="tab_dress" type="radio" name="categoryId" value="7"
+						class="radioButton"><label class="tab-label"
+						for="tab_dress" th:text="ワンピース">ワンピース</label> <input
+						id="tab_shoes" type="radio" name="categoryId" value="5"
+						class="radioButton"><label class="tab-label"
+						for="tab_shoes" th:text="シューズ">シューズ</label> <input id="tab_bags"
+						type="radio" name="categoryId" value="6" class="radioButton" /><label
+						class="tab-label" for="tab_bags" th:text="バッグ">バッグ</label> <input
+						id="tab_accessories" type="radio" name="categoryId" value="1"
+						class="radioButton" /><label class="tab-label"
+						for="tab_accessories" th:text="ファッション雑貨">ファッション雑貨</label>
+				</div>
+				<div class="show_brand_and_tag">
+					<span class="brand" id="brand" th:each="brand : ${brandMap}">
+						<label> <input type="radio" class="radioButton"
+							name="brandId" th:value="${brand.key}" th:text="${brand.value}">
+					</label>
+					</span>
+				</div>
+				<div class="show_brand_and_tag">
+					<span class="tag" id="tag" th:each="tag : ${tagMap}"> <label>
+							<input type="radio" class="radioButton" name="tagContentsId"
+							th:value="${tag.key}" th:text="${tag.value}">
+					</label>
+					</span>
+				</div>
+				<div class="narrow_down_box"
+					th:if="${session.categoryId} or ${session.showBrandName} or ${session.showTagName}">
 					<p class="cbt" th:if="${session.categoryId==0}" th:text="カテゴリ：全て"></p>
-					<p class="cbt" th:if="${session.categoryId==1}" th:text="カテゴリ：ファッション雑貨"></p>
+					<p class="cbt" th:if="${session.categoryId==1}"
+						th:text="カテゴリ：ファッション雑貨"></p>
 					<p class="cbt" th:if="${session.categoryId==2}" th:text="カテゴリ：トップス"></p>
 					<p class="cbt" th:if="${session.categoryId==3}" th:text="カテゴリ：アウター"></p>
 					<p class="cbt" th:if="${session.categoryId==4}" th:text="カテゴリ：ボトムス"></p>
 					<p class="cbt" th:if="${session.categoryId==5}" th:text="カテゴリ：シューズ"></p>
 					<p class="cbt" th:if="${session.categoryId==6}" th:text="カテゴリ：バッグ"></p>
-					<p class="cbt" th:if="${session.categoryId==7}" th:text="カテゴリ：ワンピース"></p> 
-					<p class="cbt" th:if="${session.showBrandName}" th:text="${'ブランド ：'+session.showBrandName}"></p> 
-					<p class="cbt" th:if="${session.showTagName}" th:text="${'タグ ：'+session.showTagName}"></p> 
+					<p class="cbt" th:if="${session.categoryId==7}"
+						th:text="カテゴリ：ワンピース"></p>
+					<p class="cbt" th:if="${session.showBrandName}"
+						th:text="${'ブランド ：'+session.showBrandName}"></p>
+					<p class="cbt" th:if="${session.showTagName}"
+						th:text="${'タグ ：'+session.showTagName}"></p>
 				</div>
-		</form>
+			</form>
+		</div>
+		<!-- アイテム一覧 -->
+		<div id="cloth_list" class="row">
+
+			<div id="items" class="col-lg-4 col-sm-6 mb-4"
+				th:each="item : ${clothesList}">
+				<div class="portfolio-item">
+					<a class="portfolio-link" href="edit_cloth.html"
+						th:href="@{'/showDetail/?id=' + ${item.id}}">
+						<div class="portfolio-hover">
+							<div class="portfolio-hover-content">
+								<i class="fas fa-plus fa-3x"></i>
+							</div>
+						</div> <img class="img-fluid" th:src="${item.imagePath}" />
+					</a>
+				</div>
 			</div>
-			<!-- アイテム一覧 -->
-			<div id="cloth_list" class="row">
-		
-				<div id="items" class="col-lg-4 col-sm-6 mb-4" th:each="item : ${clothesList}"> 
-					<div class="portfolio-item">
-						<a class="portfolio-link" href="edit_cloth.html"
-							th:href="@{'/showDetail/?id=' + ${item.id}}">
-							<div class="portfolio-hover">
-								<div class="portfolio-hover-content">
-									<i class="fas fa-plus fa-3x"></i>
-								</div>
-							</div> 
-							<img class="img-fluid" th:src="${item.imagePath}" />
-						</a>
-					</div>
-				</div>
-				<!-- もっと見るボタン -->
-				<div id="more_btn" class="btn btn--vuemore btn-c">▽もっと見る</div>
-				<div id="close_btn" class="btn btn--vuemore btn-c">&emsp;△閉じる&emsp;</div>
+			<!-- もっと見るボタン -->
+			<div id="more_btn" class="btn btn--vuemore btn-c">▽もっと見る</div>
+			<div id="close_btn" class="btn btn--vuemore btn-c">&emsp;△閉じる&emsp;</div>
 			<!-- アイテム新規登録ボタン -->
 			<div class="register-item-btn">
 				<a href="register_clothes.html"
@@ -180,21 +220,29 @@
 				</a>
 			</div>
 		</div>
-	</div>
+		</div>
 	</section>
 
 	<!-- Footer-->
 	<footer class="footer py-4" th:replace="footer::pagefooter"> </footer>
 	<!-- Bootstrap core JS-->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
 	<!-- Third party plugin JS-->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 	<!-- Core theme JS-->
-	<script src="../static/dist/js/show_item.js" th:src="@{/dist/js/show_item.js}"></script>
-	<script src="../static/dist/js/scripts.js" th:src="@{/dist/js/scripts.js}"></script>
-	<script src="../static/dist/js/hamburger_menu.js" th:src="@{/dist/js/hamburger_menu.js}"></script>
-	<script src="../static/dist/js/vuemore.js" th:src="@{/dist/js/vuemore.js}"></script>
+	<script src="../static/dist/js/show_item.js"
+		th:src="@{/dist/js/show_item.js}"></script>
+	<script src="../static/dist/js/scripts.js"
+		th:src="@{/dist/js/scripts.js}"></script>
+	<script src="../static/dist/js/hamburger_menu.js"
+		th:src="@{/dist/js/hamburger_menu.js}"></script>
+	<script src="../static/dist/js/vuemore.js"
+		th:src="@{/dist/js/vuemore.js}"></script>
 </body>
 </html>
