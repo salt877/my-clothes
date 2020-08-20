@@ -25,7 +25,7 @@ public class RegisterUserController {
 
 	@Autowired
 	private RegisterUserService registerUserService;
-	
+
 	@Autowired
 	private RegisterUserCompleteSendMailService sendMailService;
 
@@ -52,13 +52,13 @@ public class RegisterUserController {
 	/**
 	 * ユーザ情報を登録します.
 	 * 
-	 * @param form ユーザ情報用フォーム
+	 * @param form   ユーザ情報用フォーム
 	 * @param result エラー格納オブジェクト
 	 * @return ユーザ登録完了画面に遷移
 	 */
 	@RequestMapping("/registerUser")
 	public String registerUser(@Validated RegisterUserForm form, BindingResult result) {
-		
+
 		String myqloEmail = "my.clothes0702@gmail.com";
 
 		// メールアドレスが重複している場合
@@ -66,18 +66,16 @@ public class RegisterUserController {
 		if (duplicationUser != null) {
 			result.rejectValue("email", "", "そのメールアドレスはすでに使われています");
 		}
-		
-		//MYQLOのメールアドレスを登録しようとした場合
-		if(myqloEmail.equals(form.getEmail())) {
-			result.rejectValue("email", "","そのメールアドレスは使用できません");
-		}
-		
-		//パスワードと確認用パスワードが一致しない場合
-		if(!(form.getPassword().equals(form.getConfirmPassword()))) {
-			result.rejectValue("confirmPassword", "","確認用パスワードが一致しません");
+
+		// MYQLOのメールアドレスを登録しようとした場合
+		if (myqloEmail.equals(form.getEmail())) {
+			result.rejectValue("email", "", "そのメールアドレスは使用できません");
 		}
 
-		
+		// パスワードと確認用パスワードが一致しない場合
+		if (!(form.getPassword().equals(form.getConfirmPassword()))) {
+			result.rejectValue("confirmPassword", "", "確認用パスワードが一致しません");
+		}
 
 		// エラーがあれば登録画面に戻る
 		if (result.hasErrors()) {
@@ -86,10 +84,9 @@ public class RegisterUserController {
 
 		User user = new User();
 		BeanUtils.copyProperties(form, user);
-		
+
 		registerUserService.registerUser(user);
-		
-		
+
 		// メールを送信する
 		sendMailService.sendMail(form);
 

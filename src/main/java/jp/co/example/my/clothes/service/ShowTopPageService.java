@@ -10,6 +10,12 @@ import jp.co.example.my.clothes.domain.Clothes;
 import jp.co.example.my.clothes.domain.TagContent;
 import jp.co.example.my.clothes.repository.ClothesRepository;
 
+/**
+ * トップページを表示する処理を行うサービスクラスです.
+ * 
+ * @author rinashioda
+ *
+ */
 @Service
 public class ShowTopPageService {
 

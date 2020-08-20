@@ -31,16 +31,16 @@ public class ShowCalendarController {
 	/**
 	 * 今月のカレンダーと今月のアイテム購入情報を表示します.
 	 * 
-	 * @param model リクエストスコープ
-	 * @param       loginUser ログインユーザ
+	 * @param model     リクエストスコープ
+	 * @param loginUser ログインユーザ
 	 * @return カレンダー画面
-	 * @throws ParseException 
+	 * @throws ParseException
 	 */
 	@RequestMapping("/calendar")
 	public String showCalendar(Model model, @AuthenticationPrincipal LoginUser loginUser) throws ParseException {
 
 		Integer userId = loginUser.getUser().getId();
-	//	Integer userId = 1;
+
 		List<Clothes> dailyPerchaseDataList = showCalendarService.showDailyPerchaseData(userId);
 		model.addAttribute("dailyPerchaseDataList", dailyPerchaseDataList);
 		model.addAttribute("loginUserId", userId);
@@ -50,14 +50,12 @@ public class ShowCalendarController {
 		String perchaseDate = dateFormat.format(today);
 
 		int dateLength = perchaseDate.length();
-		if(dateLength == 7) {
+		if (dateLength == 7) {
 			String month = perchaseDate.substring(6);
 			model.addAttribute("month", month);
-			//System.out.println("1〜9月までならこっち"+month+"月");
 		} else {
 			String month = perchaseDate.substring(7);
-			model.addAttribute("month", month);			
-		//	System.out.println("10〜12月までならこっち"+month+"月");
+			model.addAttribute("month", month);
 		}
 
 		List<MonthlyDataDTO> clothesPriceList = showCalendarService.showPriceData(userId, perchaseDate);

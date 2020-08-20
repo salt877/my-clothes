@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
+ * パスワード変更時に使用するDTOです.
  * 
  * @author rinashioda
  *

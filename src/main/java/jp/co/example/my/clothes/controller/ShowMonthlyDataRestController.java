@@ -46,20 +46,18 @@ public class ShowMonthlyDataRestController {
 		String jsonMsg = null;
 
 		Integer userId = loginUser.getUser().getId();
-		// Integer userId = 1;
 
 		try {
 
 			List<MonthlyDataDTO> events = new ArrayList<MonthlyDataDTO>();
-
 			List<Clothes> clothesList = showCalendarService.showDailyPerchaseData(userId);
 
-			for (int i = 0; i < clothesList.size(); i++) {
+			for (Clothes clothesData : clothesList) {
 				MonthlyDataDTO event = new MonthlyDataDTO();
-				Integer integerItemPrice = clothesList.get(i).getPrice();
-				String itemCategory = clothesList.get(i).getCategory().getName();
-				Date perchaseDate2 = clothesList.get(i).getPerchaseDate();
-				Integer clothesId = clothesList.get(i).getId();
+				Integer integerItemPrice = clothesData.getPrice();
+				String itemCategory = clothesData.getCategory().getName();
+				Date perchaseDate2 = clothesData.getPerchaseDate();
+				Integer clothesId = clothesData.getId();
 
 				// 購入日と金額がわかる場合だけ行う処理（購入日がnullの時は何もしない）
 				if (perchaseDate2 == null) {
@@ -132,39 +130,29 @@ public class ShowMonthlyDataRestController {
 	public Map<String, Integer> show(Integer userId, String perchaseDate) {
 
 		int dateLength = perchaseDate.length();
-		// System.out.println("購入年月は"+ perchaseDate + "文字数は" + dateLength);
 		String replaceYear;
 
 		if (dateLength == 7) {
 			replaceYear = perchaseDate.replace("年", "-0");
-			// System.out.println(replaceYear);
 
 		} else {
 			replaceYear = perchaseDate.replace("年", "-");
-			// System.out.println(replaceYear);
 		}
 
 		String removedMonth = replaceYear.replace("月", "");
-		// System.out.println(removedMonth);
 
 		Map<String, Integer> clothesMap = new HashMap<>();
 		List<MonthlyDataDTO> clothesPriceList = showCalendarService.showPriceData(userId, removedMonth);
 
 		String stringMonth = perchaseDate.substring(5);
-		// System.out.println(stringMonth);
 		String stringMonth2 = stringMonth.replace("月", "");
 		Integer integerMonth = Integer.parseInt(stringMonth2);
 		clothesMap.put("month", integerMonth);
-		// System.out.println(integerMonth);
 
 		if (clothesPriceList.size() == 1) {
 			Integer totalPrice = clothesPriceList.get(0).getTotalPrice();
 			Integer priceAverage = clothesPriceList.get(0).getPriceAverage();
 			Integer itemQuantity = clothesPriceList.get(0).getItemQuantity();
-
-//			System.out.println("合計は" + totalPrice);
-//			System.out.println("平均は" + priceAverage);
-//			System.out.println("アイテム数は" + itemQuantity);
 
 			clothesMap.put("totalPrice", totalPrice);
 			clothesMap.put("priceAverage", priceAverage);

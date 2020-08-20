@@ -4,7 +4,6 @@ import java.sql.Timestamp;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-//import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,9 +26,6 @@ import jp.co.example.my.clothes.service.ChangeUserPasswordService;
  */
 @Controller
 public class ChangeUserPasswordController {
-
-//	@Autowired
-//	private HttpSession session;
 
 	@Autowired
 	private ChangeUserPasswordService changeUserPasswordService;
@@ -68,7 +64,6 @@ public class ChangeUserPasswordController {
 
 		} catch (NullPointerException ex) {
 
-			System.err.println("このメールアドレスのユーザーなし");
 			if (email.isEmpty()) {
 				model.addAttribute("errorMessage", "メールアドレスを入力してください");
 				return showInputEmail();
@@ -91,11 +86,6 @@ public class ChangeUserPasswordController {
 	 */
 	@RequestMapping("/passwordInputPage")
 	public String showInputPassword(HttpServletRequest request, PasswordReset passwordReset, Model model) {
-
-//		CsrfToken csrf = ((CsrfToken) request.getAttribute("_csrf"));
-//		System.out.println("パスワード入力画面を開いた時のトークンは" + csrf.getToken());
-//		HttpSession session = request.getSession();
-//		System.out.println("パスワード入力画面を開いた時のセッションIDは" + session.getId());
 
 		try {
 			// URLを使ってDBからユーザを検索する
@@ -127,8 +117,6 @@ public class ChangeUserPasswordController {
 
 		// パスワードと確認用パスワードが等しくない場合
 		if (!(form.getNewPassword().equals(form.getConfirmNewPassword()))) {
-			System.out.println(form.getNewPassword());
-			System.out.println(form.getConfirmNewPassword());
 			result.rejectValue("confirmNewPassword", "", "確認用パスワードが一致しません");
 		}
 		// エラーがある場合はパスワード入力画面に戻る
