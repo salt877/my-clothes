@@ -66,7 +66,7 @@ public class ShowMonthlyDataRestController {
 					String formatItemPrice = String.format("%,d", integerItemPrice);
 					String itemPrice = String.valueOf(formatItemPrice);
 
-					event.setUrl("http://localhost:8080/myqlo/showDetail/?id=" + clothesId);
+					event.setUrl("/myqlo/showDetail/?id=" + clothesId);
 
 					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 					String perchaseDate = dateFormat.format(perchaseDate2);

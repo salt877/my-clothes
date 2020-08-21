@@ -43,7 +43,7 @@
 	        editable: true,
 	        events: 
 	        	{
-	        	 	url : '/show/perchase/all' 
+	        	 	url : '/myqlo/show/perchase/all' 
 	        	},
 	        eventClick: function(info) {
 	        	
@@ -88,6 +88,7 @@ a.fc-daygrid-day-number {
 	<div id="navArea">
 		<nav class="navbar navbar-default" th:replace="header::pageheader"></nav>
 	</div>
+<section class="page-section bg-white">
 	<div class="container" th:if="${dailyPerchaseDataList} != null">
 		<div class="text-center" style="margin-top: 100px;">
 			<h1 class="section-heading text-uppercase">MY CALENDAR</h1>
@@ -122,7 +123,7 @@ a.fc-daygrid-day-number {
 
 	</div>
 
-
+</section>
 	<!-- Footer-->
 	<footer class="footer py-4" th:replace="footer::pagefooter"> </footer>
 	
