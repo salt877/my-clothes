@@ -11459,6 +11459,7 @@ a.text-dark:hover, a.text-dark:focus {
 
 .text-muted {
 	color: #6c757d !important;
+	font-family: "Montserrat","游ゴシック",YuGothic,"ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","メイリオ",Meiryo,sans-serif;
 }
 
 .text-black-50 {
@@ -12713,8 +12714,8 @@ tbody th {
 	background-color: #fed136;
 	display: block;
 	clear: none;
-	margin-right: 25em;
-	margin-left: 25em;
+	margin-right: 32%;
+	margin-left: 32%;
 }
 
 .btn--vuemore:hover {
@@ -12724,7 +12725,7 @@ tbody th {
 
 .btn-c {
 	font-size: 1rem;
-	padding: 0.5em 13em;
+	padding: 0.5em 12em;
 	width: auto;
 }
 
@@ -12886,7 +12887,7 @@ footer {
 	}
 	.btn-c {
 		font-size: 1rem;
-		padding: 0.5em 5em;
+		padding: 0.5em 6em;
 		margin-left: auto;
 		margin-right: auto;
 		width: auto;
