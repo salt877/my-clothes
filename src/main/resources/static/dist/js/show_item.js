@@ -31,7 +31,7 @@ $(function() {
 			$('.category').hide();
 			$('.brand').hide();
 			$('.tag').hide();
-			location.href = "http://localhost:8080/";
+			location.href = "/myqlo/";
 		}
 
 	});
