@@ -255,6 +255,7 @@ public class showClothesDetailController {
 			// もし登録されていないタグがあれば登録する
 			if (StringUtils.isEmpty(tagContent1)) {
 				editTagContent.setName(form.getTag1());
+				editTagContent.setUserId(loginUser.getUser().getId());
 				editClothesService.insertTagContent(editTagContent);
 
 				// 既に登録されたタグがある場合、新規登録したタグでデータを更新する
@@ -308,6 +309,7 @@ public class showClothesDetailController {
 			if (StringUtils.isEmpty(tagContent2)) {
 				TagContent editTagContent2 = new TagContent();
 				editTagContent2.setName(form.getTag2());
+				editTagContent2.setUserId(loginUser.getUser().getId());
 				editClothesService.insertTagContent(editTagContent2);
 
 				// 既に登録されたタグがある場合、新規登録したタグでデータを更新する
@@ -366,6 +368,7 @@ public class showClothesDetailController {
 			if (StringUtils.isEmpty(tagContent3)) {
 				TagContent editTagContent3 = new TagContent();
 				editTagContent3.setName(form.getTag3());
+				editTagContent3.setUserId(loginUser.getUser().getId());
 				editClothesService.insertTagContent(editTagContent3);
 
 				// 既に登録されたタグがある場合、新規登録したタグでデータを更新する
