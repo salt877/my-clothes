@@ -99,7 +99,6 @@ public class ChangeUserPasswordController {
 			if (changeList == null || changeList.getExpireDate().before(nowTime)) {
 				return "time_out";
 			} else {
-				System.out.println(changeList.getExpireDate());
 			}
 
 		} catch (NullPointerException ex) {

@@ -146,7 +146,6 @@ public class showClothesDetailController {
 	@RequestMapping("/editClothes")
 	public String editClothes(Integer id, Model model, @Validated EditClothesForm form, BindingResult result,
 			@AuthenticationPrincipal LoginUser loginUser) throws IOException {
-		System.out.println(form);
 
 		// 入力されたカテゴリー情報を取得(必須)
 		Category category = editClothesService.categorySearchById(Integer.parseInt(form.getCategory()));
@@ -294,9 +293,7 @@ public class showClothesDetailController {
 			}
 		} else if (StringUtils.isEmpty(form.getTag1()) && !CollectionUtils.isEmpty(tagList)) {
 			// タグが入力されていない場合は、タグの削除を行う
-			System.out.println("フォームの値は" + form.getTag1());
 			tag = tagList.get(0);
-			System.out.println("タグの中身は" + tag);
 			editClothesService.delete(tag);
 		}
 
@@ -353,9 +350,7 @@ public class showClothesDetailController {
 			// タグが入力されていない場合
 			if (tagList.size() == 2 || tagList.size() == 3) {
 				// タグ2が登録されている場合、タグの削除を行う
-				System.out.println("フォームの値は" + form.getTag2());
 				tag = tagList.get(1);
-				System.out.println("タグの中身は" + tag);
 				editClothesService.delete(tag);
 			}
 		}

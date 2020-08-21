@@ -61,7 +61,6 @@ public class ShowMonthlyDataRestController {
 
 				// 購入日と金額がわかる場合だけ行う処理（購入日がnullの時は何もしない）
 				if (perchaseDate2 == null) {
-					// System.out.println("購入日がnullのアイテムID:" + clothesList.get(i).getId());
 
 				} else {
 					String formatItemPrice = String.format("%,d", integerItemPrice);
