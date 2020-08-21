@@ -47,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http.authorizeRequests() // 認可に関する設定
-				.antMatchers("/**").permitAll()
+				.antMatchers("/showLogin","/showRegisterUser","/forgotPassword").permitAll()
 				.anyRequest().authenticated(); 
 
 		http.formLogin() // ログインに関する設定
@@ -66,10 +66,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.deleteCookies("JSESSIONID") // ログアウト後、Cookieに保存されているセッションIDを削除
 				.invalidateHttpSession(true); // true:ログアウト後、セッションを無効にする false:セッションを無効にしない
 		
-//		http.sessionManagement()
-//			.enableSessionUrlRewriting(true)
-//			.invalidSessionUrl("/showLogin");  //URL Rewritingを有効化する
-
 	}
 
 	/**

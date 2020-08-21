@@ -2,7 +2,7 @@ $(function(){
 	$('.fc-button-primary').click(
 		function(){
 			$.ajax({
-				url: "http://localhost:8080/show/perchase/data",
+				url: "/myqlo/show/perchase/data",
 				type: "GET",
 				dataType:"json",
 				data : {
