@@ -3,7 +3,7 @@ $(function(){
 	// カテゴリー別合計金額グラフ
 	$('#chartListedByCategoryPrice').ready(function(){
 		$.ajax({
-			url: "http://localhost:8080/get_category_price_data",
+			url: "/myqlo/get_category_price_data",
 			type: "GET",
 			dataType: "json",
 			async: true
@@ -67,7 +67,7 @@ $(function(){
 	// カテゴリー別アイテム数グラフ
 	$('#chartListedByCategoryCount').ready(function(){
 		$.ajax({
-			url: "http://localhost:8080/get_category_count_data",
+			url: "/myqlo/get_category_count_data",
 			type: "GET",
 			dataType: "json",
 			async: true
@@ -128,7 +128,7 @@ $(function(){
 	// ブランド別合計金額グラフ
 	$('#chartListedByBrandPrice').ready(function(){
 		$.ajax({
-			url: "http://localhost:8080/get_brand_price_data",
+			url: "/myqlo/get_brand_price_data",
 			type: "GET",
 			dataType: "json",
 			async: true
@@ -188,7 +188,7 @@ $(function(){
 	// ブランド別アイテム数グラフ
 	$('#chartListedByBrandCount').ready(function(){
 		$.ajax({
-			url: "http://localhost:8080/get_brand_count_data",
+			url: "/myqlo/get_brand_count_data",
 			type: "GET",
 			dataType: "json",
 			async: true

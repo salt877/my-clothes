@@ -11,7 +11,7 @@ $(function(){
 		var categoryId = $(this).val();
 
 			$.ajax({
-			url: "http://localhost:8080/show_clotheslist",
+			url: "/myqlo/show_clotheslist",
 			type: "GET",
 			dataType: "json",
 			data: {
@@ -283,7 +283,7 @@ $(function(){
 				
 		if(confirm("このコーディネートを削除してもよろしいですか？")){
 			$.ajax({
-				url: "http://localhost:8080/delete_coordinate",
+				url: "/myqlo/delete_coordinate",
 				type: "GET",
 				data :{
 					coordinateId : coordinateId
@@ -292,7 +292,7 @@ $(function(){
 				
 			// 通信成功時の処理
 			}).done(function(){
-				window.location.href="http://localhost:8080/past-coordinate";
+				window.location.href="/myqlo/past-coordinate";
 				
 			}).fail(function(XMLHttpRequest, textStatus, errorThrown){
 				alert("エラーが発生しました。");
@@ -367,7 +367,7 @@ $(function(){
 		
 		// コーデ名入力欄changeイベント
 		$('#code-name').off('change').on('change', function() {
-			// コーデ名入力済み＆アイテム未選択の場合、押下不可	
+			// コーデ名入力済み＆アイテム未選択の場合、押下不可
 			if($('#code-name').val().length > 0 && hiddenVal.length == 0){
 				$('.coordinate-regis-btn').prop('disabled', true);	
 			}
