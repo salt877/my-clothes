@@ -159,7 +159,7 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 			</div>
 			<form action="#" method="post" id="form1"
 				th:action="@{/registerClothes/register}"
-				th:object="${registerClothesForm}" enctype="multipart/form-data">
+				th:object="${registerClothesForm}" enctype="multipart/form-data" onsubmit="return false;">
 				<div class="required-information">
 					<img id="preview" class="img-fluid"> <br>
 				</div>
@@ -289,6 +289,9 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 								<script type="text/javascript">
 									//a今日日付以降は選択できないように設定
 									perchaseDate.max = new Date().toISOString().split("T")[0];
+									console.log(new Date());
+									console.log(new Date().toISOString());
+									console.log(new Date().toISOString().split("T")[0]);
 									</script>
 							</tr>
 							<tr>
@@ -467,7 +470,7 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 							<!-- モーダル画面内フッター -->
 							<div class="modal-footer">
 								<div class="comp_btn">
-									<button type="submit" class="btn btn-primary">登録</button>
+									<button type="submit" class="btn btn-primary" onclick="submit();">登録</button>
 								</div>
 							</div>
 						</div>
