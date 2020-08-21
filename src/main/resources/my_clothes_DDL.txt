@@ -18,7 +18,8 @@ create table brands(
 --タグコンテンツテーブル
 create table tag_contents(
   id serial NOT NULL PRIMARY KEY,
-  name varchar(30) NOT NULL UNIQUE
+  name varchar(30) NOT NULL UNIQUE,
+  user_id integer
 );
 
 
@@ -52,7 +53,7 @@ create table clothes(
   user_id integer NOT NULL,
   category_id integer NOT NULL REFERENCES categories(id),
   brand_id integer NOT NULL REFERENCES brands(id),
-  image_path varchar(50) NOT NULL,
+  image_path text NOT NULL,
   price integer,
   color_id integer REFERENCES colors(id) NOT NULL,
   season char,
@@ -103,4 +104,11 @@ create table contacts(
   email varchar(50) NOT NULL,
   content text NOT NULL
 
+);
+
+--天気予報テーブル
+create table weather(
+  id serial NOT NULL PRIMARY KEY,
+  city_name varchar(50) NOT NULL ,
+  user_id INTEGER NOT  NULL UNIQUE
 );
