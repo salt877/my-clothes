@@ -12,5 +12,9 @@ spring:
     password: beycwsheoeetkjpn
     properties.mail.smtp.auth: true
     properties.mail.smtp.starttls.enable: true
+    
+server:
+  servlet:
+    context-path: /myqlo
   
    
