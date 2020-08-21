@@ -155,11 +155,16 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 	<section class="page-section bg-light" id="portfolio">
 		<div class="container">
 			<div class="text-center">
-				<h2 class="section-heading text-uppercase">アイテム新規登録</h2>
+				<h2 class="section-heading text-uppercase">Add To Your Closet</h2>
+				<div class="section-subheading text-muted">クローゼットにアイテムを登録しよう。</div>
+				<br>
+				<br>
+				<br>
 			</div>
 			<form action="#" method="post" id="form1"
 				th:action="@{/registerClothes/register}"
-				th:object="${registerClothesForm}" enctype="multipart/form-data" onsubmit="return false;">
+				th:object="${registerClothesForm}" enctype="multipart/form-data"
+				onsubmit="return false;">
 				<div class="required-information">
 					<img id="preview" class="img-fluid"> <br>
 				</div>
@@ -470,7 +475,8 @@ document.getElementById("perchaseDate").setAttribute("max", today);
 							<!-- モーダル画面内フッター -->
 							<div class="modal-footer">
 								<div class="comp_btn">
-									<button type="submit" class="btn btn-primary" onclick="submit();">登録</button>
+									<button type="submit" class="btn btn-primary"
+										onclick="submit();">登録</button>
 								</div>
 							</div>
 						</div>
