@@ -184,4 +184,8 @@ table tr:last-child {
 	.modal {
 		margin-left: 30px;
 	}
+	
+	.coordinate-detail-btn{
+		margin-top: -35px;
+	}
 }
