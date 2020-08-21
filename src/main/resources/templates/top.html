@@ -134,7 +134,7 @@
 					<option value="all-item" id="all-item">一覧に戻る</option>
 				</select>
 			</div>
-			<form action="top.html" th:action="@{/search}" method="get"
+			<form action="top.html" th:action="@{/search}" method="post"
 				onchange="submit(this.form)">
 				<div id="category" class="category">
 					<input id="tab_all" type="radio" name="categoryId"
@@ -218,9 +218,8 @@
 					th:href="@{/registerClothes/showRegisterClothes}"
 					class="btn-circle-stitch"> <i class="fas fa-tshirt"></i> <span>登録</span>
 				</a>
-			</div>
 		</div>
-		</div>
+	</div>
 	</section>
 
 	<!-- Footer-->
