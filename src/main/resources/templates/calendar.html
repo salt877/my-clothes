@@ -81,6 +81,10 @@ a.fc-daygrid-day-number {
 .fc-day-other .fc-daygrid-event-harness{
 	 display: none; 
 }
+.column {
+    text-align: center;
+    background-color: #EEEEEE;
+}
 </style>
 </head>
 <body>
@@ -100,7 +104,7 @@ a.fc-daygrid-day-number {
 		<div class="text-center">
 			<table class="table calendar">
 				<thead>
-					<tr>
+					<tr class="column">
 						<th><h6 class="month_total_price" th:utext="${month +'月の'+'<br>'+'購入金額合計'}">〇月の購入金額合計</h6></th>
 						<th><h6 class="month_price_average" th:utext="${month +'月の'+'<br>'+'平均購入金額'}">〇月の平均購入金額</h6></th>
 						<th><h6 class="month_item_quantity" th:utext="${month +'月の'+'<br>'+'購入アイテム数'}">〇月の購入アイテム数</h6></th>
