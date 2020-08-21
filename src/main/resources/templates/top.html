@@ -128,10 +128,10 @@
 			<div class="item_select cp_sl04">
 				<select>
 					<option hidden>アイテムを絞り込む</option>
+					<option value="all-item" id="all-item">アイテムを絞り込む</option>
 					<option value="category">カテゴリで絞り込む</option>
 					<option value="brand">ブランドで絞り込む</option>
 					<option value="tag">タグで絞り込む</option>
-					<option value="all-item" id="all-item">一覧に戻る</option>
 				</select>
 			</div>
 			<form action="top.html" th:action="@{/search}" method="get"
@@ -218,9 +218,8 @@
 					th:href="@{/registerClothes/showRegisterClothes}"
 					class="btn-circle-stitch"> <i class="fas fa-tshirt"></i> <span>登録</span>
 				</a>
-			</div>
 		</div>
-		</div>
+	</div>
 	</section>
 
 	<!-- Footer-->
