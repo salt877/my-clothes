@@ -267,7 +267,6 @@ public class ClothesRepository {
 		sql.append("t.id t_id,t.clothes_id,tc.id tc_id,tc.name FROM clothes AS c ");
 		sql.append("JOIN tags AS t ON c.id=t.clothes_id JOIN tag_contents AS tc ON t.tag_contents_id=tc.id ");
 		sql.append("WHERE c.user_id=:userId AND tc.id=:tagContentsId AND deleted =false;");
-		System.out.println(sql.toString());
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId).addValue("tagContentsId",
 				tagContentsId);
 		List<Clothes> clothesList = template.query(sql.toString(), param, CLOTHES_ROW_MAPPER5);
