@@ -12713,7 +12713,8 @@ tbody th {
 	background-color: #fed136;
 	display: block;
 	clear: none;
-	margin: 0 auto;
+	margin-right: 25em;
+	margin-left: 25em;
 }
 
 .btn--vuemore:hover {
@@ -12723,7 +12724,7 @@ tbody th {
 
 .btn-c {
 	font-size: 1rem;
-	padding: 0.5em 12em;
+	padding: 0.5em 13em;
 	width: auto;
 }
 

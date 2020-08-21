@@ -31,9 +31,9 @@ public class TagContentRepository {
 	 * 
 	 * @return
 	 */
-	public List<TagContent> AllTagContentList() {
-		String sql = "SELECT id,name FROM tag_contents ORDER BY id";
-		SqlParameterSource param = new MapSqlParameterSource();
+	public List<TagContent> AllTagContentList(Integer userId) {
+		String sql = "SELECT id,name FROM tag_contents WHERE user_id=:userId or user_id is null ORDER BY id";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
 		List<TagContent> brandList = template.query(sql, param, TAG_CONTENT_ROW_MAPPER);
 		return brandList;
 	}
@@ -61,7 +61,7 @@ public class TagContentRepository {
 	 * @param tagContent
 	 */
 	public void insertTagContent(TagContent tagContent) {
-		String sql = "INSERT INTO tag_contents(name) VALUES(:name)";
+		String sql = "INSERT INTO tag_contents(name,user_id) VALUES(:name,:userId)";
 		SqlParameterSource param = new BeanPropertySqlParameterSource(tagContent);
 		template.update(sql, param);
 

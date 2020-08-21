@@ -70,7 +70,8 @@ public class RegisterClothesController {
 		model.addAttribute("brandListForAutocomplete", brandListForAutocomplete);
 
 		// タグのオートコンプリート機能.
-		StringBuilder tagContentListForAutocomplete = registerClothesService.getTagContentListForAutoconplete();
+		StringBuilder tagContentListForAutocomplete = registerClothesService
+				.getTagContentListForAutoconplete(loginUser.getUser().getId());
 		model.addAttribute("tagContentsListForAutocomplete", tagContentListForAutocomplete);
 
 		return "register_clothes.html";
@@ -181,7 +182,8 @@ public class RegisterClothesController {
 
 		// 価格
 		if (!StringUtils.isEmpty(form.getPrice())) {
-			clothes.setPrice(Integer.parseInt(form.getPrice()));;
+			clothes.setPrice(Integer.parseInt(form.getPrice()));
+			;
 		}
 
 		// メモ
@@ -210,6 +212,7 @@ public class RegisterClothesController {
 			if (StringUtils.isEmpty(tagContent1)) {
 				registerTagContent.setId(loginUser.getUser().getId());// ユーザーIDに変更する.
 				registerTagContent.setName(form.getTag1());
+				registerTagContent.setUserId(loginUser.getUser().getId());
 				System.out.println(registerTagContent);
 				registerClothesService.insertTagContent(registerTagContent);
 			}
@@ -227,6 +230,7 @@ public class RegisterClothesController {
 			if (StringUtils.isEmpty(tagContent2)) {
 				registerTagContent.setId(loginUser.getUser().getId());// ユーザーIDに変更する.
 				registerTagContent.setName(form.getTag2());
+				registerTagContent.setUserId(loginUser.getUser().getId());
 				registerClothesService.insertTagContent(registerTagContent);
 			}
 			tag = new Tag();
@@ -243,6 +247,7 @@ public class RegisterClothesController {
 			if (StringUtils.isEmpty(tagContent3)) {
 				registerTagContent.setId(loginUser.getUser().getId());// ユーザーIDに変更する.
 				registerTagContent.setName(form.getTag3());
+				registerTagContent.setUserId(loginUser.getUser().getId());
 				registerClothesService.insertTagContent(registerTagContent);
 			}
 			tag = new Tag();
