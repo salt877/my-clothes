@@ -45,7 +45,6 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 </head>
 <body>
 
-
 	<!-- Navigation-->
 	<div id="navArea">
 		<nav class="navbar navbar-default" th:replace="header::pageheader"></nav>
@@ -189,6 +188,10 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 								<td class="txt"><input name="perchaseDate"
 									id="perchaseDate" type="date"
 									th:value="${clothes.perchaseDate}"></td>
+									<script type="text/javascript">
+										//a今日日付以降は選択できないように設定
+										perchaseDate.max = new Date().toISOString().split("T")[0];
+									</script>
 							</tr>
 							<tr>
 								<th>価格</th>
