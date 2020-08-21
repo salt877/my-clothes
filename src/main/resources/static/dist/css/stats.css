@@ -4,7 +4,7 @@
 .canvas {
 	position: relative;
 	height: 70vh;
-	width: 76vw;
+	width: 74vw;
 }
 
 /*カラム背景色*/
@@ -66,6 +66,6 @@ table tr:last-child {
 	}
 	.canvas {
 		height: 70vh;
-		width: 70vw;
+		width: 68vw;
 	}
 }
