@@ -18,6 +18,11 @@ public class TagContent {
 	 */
 	private String name;
 
+	/**
+	 * userId
+	 */
+	private Integer userId;
+
 	public Integer getId() {
 		return id;
 	}
@@ -34,9 +39,17 @@ public class TagContent {
 		this.name = name;
 	}
 
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+
 	@Override
 	public String toString() {
-		return "TagContent [id=" + id + ", name=" + name + "]";
+		return "TagContent [id=" + id + ", name=" + name + ", userId=" + userId + "]";
 	}
 
 }

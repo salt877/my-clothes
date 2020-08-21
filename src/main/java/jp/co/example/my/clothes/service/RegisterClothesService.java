@@ -122,8 +122,9 @@ public class RegisterClothesService {
 	 * @param itemList
 	 * @return オートコンプリートのための文字列をデータベースから取得した配列
 	 */
-	public StringBuilder getTagContentListForAutoconplete() {
-		List<TagContent> tagContentList = tagContentRepository.AllTagContentList();
+	public StringBuilder getTagContentListForAutoconplete(Integer userId) {
+		List<TagContent> tagContentList = tagContentRepository.AllTagContentList(userId);
+		System.out.println(tagContentList);
 		StringBuilder tagContentListForAutocomplete = new StringBuilder();
 		for (int i = 0; i < tagContentList.size(); i++) {
 			if (i != 0) {
