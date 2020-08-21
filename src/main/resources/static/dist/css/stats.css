@@ -1,10 +1,5 @@
 @charset "UTF-8";
 
-/*開始位置*/
-.text-uppercase {
-	margin-top: 90px;
-}
-
 /*グラフ設定*/
 .canvas {
 	position: relative;
@@ -15,11 +10,6 @@
 /*カラム背景色*/
 .st-column {
 	background-color: #EEEEEE;
-}
-
-/*表開始位置*/
-.text-center {
-	margin-top: 50px;
 }
 
 /*グラフ開始位置*/
@@ -36,7 +26,6 @@ table {
 table tr:last-child {
 	border-bottom: 1px solid #bbb;
 }
-
 
 @media screen and (max-width: 480px) { /* 480px以下に適用されるCSS（スマホ用） */
 	.st-column {

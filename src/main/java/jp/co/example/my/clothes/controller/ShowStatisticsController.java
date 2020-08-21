@@ -54,7 +54,7 @@ public class ShowStatisticsController {
 		// 合計点数
 		totalItemCount = clothesListByUserId.size();
 
-		// 合計金額
+		// 合計金額		
 		for (Clothes clothesByUserId : clothesListByUserId) {
 			totalItemPrice += clothesByUserId.getPrice();
 

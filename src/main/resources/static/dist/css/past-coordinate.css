@@ -1,10 +1,5 @@
 @charset "UTF-8";
 
-/*タイトル位置*/
-.section-heading {
-	margin-top: 100px;
-}
-
 /*登録していない場合の表示*/
 .not-registered-txt {
 	text-align: center;
@@ -28,6 +23,10 @@
 .coordinate-category {
 	text-align: center;
 	font-size: 14px;
+}
+
+.column {
+	background-color: #EEEEEE;
 }
 
 /*画像*/

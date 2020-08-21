@@ -120,7 +120,7 @@ input[type="number"] {
 }
 
 .file_button {
-	left : 32%;
+	left: 32%;
 	display: inline-block;
 	position: relative;
 	padding: 0.6em 2em;

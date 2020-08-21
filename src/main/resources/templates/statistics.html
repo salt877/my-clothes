@@ -43,122 +43,124 @@
 	</div>
 
 	<!-- Portfolio Grid-->
-	<div class="container">
-		<div class="text-center">
-			<h1 class="section-heading text-uppercase">MY STATS</h1>
-			<div class="section-subheading text-muted">あなたが登録したアイテムの統計データです。</div>
-		</div>
+	<section class="page-section bg-light">
+		<div class="container">
+			<div class="text-center">
+				<h1 class="section-heading text-uppercase">MY STATS</h1>
+				<h3 class="section-subheading text-muted">あなたが登録したアイテムの統計データです。</h3>
+			</div>
 
-		<div class="text-center">
-			<div th:if="${#lists.isEmpty(clothesListByUserId)}">
-				<div style="text-align: center;">
-					<div th:text="${message}"></div>
-					<br>
-					<div>
-						<a href="register_clothes.html"
-							th:href="@{/registerClothes/showRegisterClothes}"><button
-								type="button" class="btn btn-primary continue-coordinate-btn"
-								style="border-radius: 50px; width: 280px;">アイテムを登録する</button></a>
+			<div class="text-center">
+				<div th:if="${#lists.isEmpty(clothesListByUserId)}">
+					<div style="text-align: center;">
+						<div th:text="${message}"></div>
+						<br>
+						<div>
+							<a href="register_clothes.html"
+								th:href="@{/registerClothes/showRegisterClothes}"><button
+									type="button" class="btn btn-primary continue-coordinate-btn"
+									style="border-radius: 50px; width: 280px;">アイテムを登録する</button></a>
+						</div>
 					</div>
 				</div>
-			</div>
 
-			<div th:if="!${#lists.isEmpty(clothesListByUserId)}">
-				<table class="table table-list">
-					<thead>
-						<tr>
-							<th class="st-column">クローゼット総資産額</th>
-							<th class="st-column">購入アイテム平均額</th>
-							<th class="st-column">アイテム数</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td><span
-								th:text="${#numbers.formatInteger(totalItemPrice, 1, 'COMMA') + '&nbsp;円'}"></span></td>
-							<td><span
-								th:text="${#numbers.formatInteger(averagePrice.average, 1, 'COMMA') + '&nbsp;円'}"></span></td>
-							<td><span
-								th:text="${#numbers.formatInteger(totalItemCount, 1, 'COMMA') + '&nbsp;点'}"></span></td>
+				<div th:if="!${#lists.isEmpty(clothesListByUserId)}">
+					<table class="table table-list">
+						<thead>
+							<tr>
+								<th class="st-column">クローゼット総資産額</th>
+								<th class="st-column">購入アイテム平均額</th>
+								<th class="st-column">アイテム数</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><span
+									th:text="${#numbers.formatInteger(totalItemPrice, 1, 'COMMA') + '&nbsp;円'}"></span></td>
+								<td><span
+									th:text="${#numbers.formatInteger(averagePrice.average, 1, 'COMMA') + '&nbsp;円'}"></span></td>
+								<td><span
+									th:text="${#numbers.formatInteger(totalItemCount, 1, 'COMMA') + '&nbsp;点'}"></span></td>
 
-						</tr>
-					</tbody>
-				</table>
-
-
-				<!-- カテゴリー別金額テーブル -->
-				<table class="table canvas-gr">
-					<thead>
-						<tr>
-							<th class="st-column cl-title">カテゴリー別金額</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td class="canvas-td">
-								<div class="canvas">
-									<canvas id="chartListedByCategoryPrice"></canvas>
-								</div>
-							</td>
-						</tr>
-					</tbody>
-				</table>
+							</tr>
+						</tbody>
+					</table>
 
 
-
-				<!-- カテゴリー別アイテム数テーブル -->
-				<table class="table canvas-gr">
-					<tbody>
-						<tr>
-
-							<th class="st-column cl-title">カテゴリー別アイテム数</th>
-						</tr>
-						<tr>
-							<td class="canvas-td">
-								<div class="canvas">
-									<canvas id="chartListedByCategoryCount"></canvas>
-								</div>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-
-
-				<!-- ブランド別金額  -->
-				<table class="table canvas-gr">
-					<tbody>
-						<tr>
-							<th class="st-column cl-title">ブランド別金額</th>
-						</tr>
-						<tr>
-							<td class="canvas-td">
-								<div class="canvas">
-									<canvas id="chartListedByBrandPrice"></canvas>
-								</div>
-							</td>
-						</tr>
-					</tbody>
-				</table>
+					<!-- カテゴリー別金額テーブル -->
+					<table class="table canvas-gr">
+						<thead>
+							<tr>
+								<th class="st-column cl-title">カテゴリー別金額</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="canvas-td">
+									<div class="canvas">
+										<canvas id="chartListedByCategoryPrice"></canvas>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
 
 
-				<!-- ブランド別アイテム数  -->
-				<table class="table canvas-gr">
-					<tbody>
-						<tr>
-							<th class="st-column cl-title">ブランド別アイテム数</th>
-						</tr>
-						<tr>
-							<td class="canvas-td">
-								<div class="canvas">
-									<canvas id="chartListedByBrandCount"></canvas>
-								</div>
-							</td>
-						</tr>
-					</tbody>
-				</table>
+
+					<!-- カテゴリー別アイテム数テーブル -->
+					<table class="table canvas-gr">
+						<tbody>
+							<tr>
+
+								<th class="st-column cl-title">カテゴリー別アイテム数</th>
+							</tr>
+							<tr>
+								<td class="canvas-td">
+									<div class="canvas">
+										<canvas id="chartListedByCategoryCount"></canvas>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+
+					<!-- ブランド別金額  -->
+					<table class="table canvas-gr">
+						<tbody>
+							<tr>
+								<th class="st-column cl-title">ブランド別金額</th>
+							</tr>
+							<tr>
+								<td class="canvas-td">
+									<div class="canvas">
+										<canvas id="chartListedByBrandPrice"></canvas>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+
+					<!-- ブランド別アイテム数  -->
+					<table class="table canvas-gr">
+						<tbody>
+							<tr>
+								<th class="st-column cl-title">ブランド別アイテム数</th>
+							</tr>
+							<tr>
+								<td class="canvas-td">
+									<div class="canvas">
+										<canvas id="chartListedByBrandCount"></canvas>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
-	</div>
+	</section>
 	<br>
 	<br>
 

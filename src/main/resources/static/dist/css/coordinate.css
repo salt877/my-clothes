@@ -1,12 +1,10 @@
 @charset "UTF-8";
 
-h1 {
-	margin-top: 100px !important;
-}
-
 .column {
 	text-align: center;
+	background-color: #EEEEEE;
 }
+
 
 /*コーデエリア*/
 .drag-area {
@@ -203,7 +201,6 @@ table tr:last-child {
 .required {
 	color: red;
 }
-
 
 @media screen and (max-width:480px) {
 	/* 480px以下に適用されるCSS（スマホ用） */
