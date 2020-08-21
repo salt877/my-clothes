@@ -6,7 +6,7 @@ $(function() {
 		$("#cloth_list").each(function(){
 
 		//最初に表示させるアイテムの数
-			var num = 6;
+			var num = 9;
 			console.log("listContents:"+listContents);	
 			console.log("num:"+num);	
 			//最初はmoreボタン表示にし、
@@ -25,12 +25,12 @@ $(function() {
 			//moreボタンがクリックされた時
 			$('#more_btn').click(function(){
 				//numに+3ずつしていく = 3行ずつ追加する
-				num +=3;
+				num +=9;
 				$(this).parents("#cloth_list").find(".portfolio-item:lt("+num+")").slideDown(); //スライドダウンさせる
 
 				//listの個数よりNumが多い時、
 				if(listContents <= num){
-					num = 6;//「閉じる」がクリックされた後、表示させるアイテムの数
+					num = 9;//「閉じる」がクリックされた後、表示させるアイテムの数
 					gtNum = num-1;
 					$('#close_btn').show();
 					$('#more_btn').hide();
