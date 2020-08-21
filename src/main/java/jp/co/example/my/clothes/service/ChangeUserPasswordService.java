@@ -64,7 +64,6 @@ public class ChangeUserPasswordService {
 		Calendar expireDate = Calendar.getInstance();
 		expireDate.add(Calendar.MINUTE, 60);
 		Timestamp expireDate1hourAfter = new Timestamp(expireDate.getTime().getTime());
-		System.out.println("有効期限は60分後の" + expireDate1hourAfter.toString());
 
 		UUID uuid = UUID.randomUUID();
 		String randomUrl = uuid.toString();
@@ -90,7 +89,6 @@ public class ChangeUserPasswordService {
 	public void sendChangePasswordMail(HttpServletRequest request, HttpServletResponse response,
 			PasswordReset passwordReset, String email) {
 
-		//HttpSession session = request.getSession(true);
 		
 		String url = "http://localhost:8080" + "/passwordInputPage" + "?randomUrl=" + passwordReset.getRandomUrl();
 		String to = email;
@@ -154,9 +152,7 @@ public class ChangeUserPasswordService {
 	 */
 	public void changeUserPassword(Integer userId, String newPassword) {
 
-		System.out.println("ハッシュ化前のパスワード" + newPassword);
 		String password = passwordEncoder.encode(newPassword);
-		System.out.println("ハッシュ化したパスワード" + password);
 		userRepository.updateUserPassword(userId, password);
 	}
 
