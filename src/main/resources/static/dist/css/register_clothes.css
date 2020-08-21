@@ -179,6 +179,9 @@ input[type="number"] {
 		top: 0px;
 		left: 40px;
 	}
+	.text-muted{
+	 left : 100px;
+	}
 }
 
 .thead {
