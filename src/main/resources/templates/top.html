@@ -128,13 +128,13 @@
 			<div class="item_select cp_sl04">
 				<select>
 					<option hidden>アイテムを絞り込む</option>
+					<option value="all-item" id="all-item">アイテムを絞り込む</option>
 					<option value="category">カテゴリで絞り込む</option>
 					<option value="brand">ブランドで絞り込む</option>
 					<option value="tag">タグで絞り込む</option>
-					<option value="all-item" id="all-item">一覧に戻る</option>
 				</select>
 			</div>
-			<form action="top.html" th:action="@{/search}" method="post"
+			<form action="top.html" th:action="@{/search}" method="get"
 				onchange="submit(this.form)">
 				<div id="category" class="category">
 					<input id="tab_all" type="radio" name="categoryId"
