@@ -90,7 +90,7 @@ public class ChangeUserPasswordService {
 			PasswordReset passwordReset, String email) {
 
 		
-		String url = "http://localhost:8080" + "/passwordInputPage" + "?randomUrl=" + passwordReset.getRandomUrl();
+		String url = "http://localhost:8080" + "/myqlo/passwordInputPage" + "?randomUrl=" + passwordReset.getRandomUrl();
 		String to = email;
 		String subject = "【MYQLO】パスワード変更はこちらから";
 
