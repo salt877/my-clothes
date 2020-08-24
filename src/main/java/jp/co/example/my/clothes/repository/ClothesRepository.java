@@ -103,8 +103,7 @@ public class ClothesRepository {
 	public List<Clothes> findAllWithCategory(Integer userId) {
 
 		StringBuilder sql = new StringBuilder();
-		sql.append(
-				"SELECT cl.id cl_id,cl.user_id cl_user_id,cl.category_id cl_category_id,");
+		sql.append("SELECT cl.id cl_id,cl.user_id cl_user_id,cl.category_id cl_category_id,");
 		sql.append("CASE WHEN cl.price IS NULL THEN NULL ELSE cl.price END cl_price,");
 		sql.append("cl.perchase_date cl_perchase_date,cl.deleted cl_deleted,");
 		sql.append("ca.id ca_id,ca.name ca_name FROM clothes cl INNER JOIN categories ca ");
@@ -486,7 +485,7 @@ public class ClothesRepository {
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT cl.category_id cl_category_id, ca.name ca_name, sum(price) sum FROM clothes cl ");
 		sql.append(
-				"LEFT OUTER JOIN categories ca ON cl.category_id = ca.id WHERE user_id = :userId AND deleted = FALSE GROUP BY cl.category_id, ca.name");
+				"LEFT OUTER JOIN categories ca ON cl.category_id = ca.id WHERE user_id = :userId AND deleted = FALSE GROUP BY cl.category_id, ca.name ORDER BY cl.category_id");
 
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
 		List<CategorySumDto> stasByCategorySumList = template.query(sql.toString(), param, CATEGORY_SUM_ROW_MAPPER);
@@ -521,7 +520,7 @@ public class ClothesRepository {
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT cl.brand_id cl_brand_id, b.name b_name, sum(price) sum FROM clothes cl ");
 		sql.append(
-				"LEFT OUTER JOIN brands b ON cl.brand_id = b.id WHERE user_id = :userId AND deleted = FALSE GROUP BY cl.brand_id, b.name");
+				"LEFT OUTER JOIN brands b ON cl.brand_id = b.id WHERE user_id = :userId AND deleted = FALSE GROUP BY cl.brand_id, b.name ORDER BY cl.brand_id");
 
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
 		List<BrandSumDto> brandSumList = template.query(sql.toString(), param, BRAND_SUM_ROW_MAPPER);
@@ -557,7 +556,7 @@ public class ClothesRepository {
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT cl.category_id cl_category_id, ca.name ca_name, count(category_id) count FROM clothes cl ");
 		sql.append(
-				"LEFT OUTER JOIN categories ca ON cl.category_id = ca.id WHERE user_id = :userId AND deleted = FALSE GROUP BY category_id, ca.name ");
+				"LEFT OUTER JOIN categories ca ON cl.category_id = ca.id WHERE user_id = :userId AND deleted = FALSE GROUP BY category_id, ca.name ORDER BY cl.category_id");
 
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
 		List<CategoryCountDto> categoryCountList = template.query(sql.toString(), param, CATEGORY_COUNT_ROW_MAPPER);
@@ -593,7 +592,7 @@ public class ClothesRepository {
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT cl.brand_id cl_brand_id, b.name b_name, count(brand_id) count FROM clothes cl ");
 		sql.append(
-				"LEFT OUTER JOIN brands b ON cl.brand_id = b.id WHERE user_id = :userId AND deleted = FALSE GROUP BY cl.brand_id, b.name");
+				"LEFT OUTER JOIN brands b ON cl.brand_id = b.id WHERE user_id = :userId AND deleted = FALSE GROUP BY cl.brand_id, b.name ORDER BY cl.brand_id");
 
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
 		List<BrandCountDto> brandCountList = template.query(sql.toString(), param, BRAND_COUNT_ROW_MAPPER);
