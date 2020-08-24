@@ -1,8 +1,8 @@
 $(function() {
 
-	$('.category').hide();
-	$('.brand').hide();
-	$('.tag').hide();
+//	$('.category').hide();
+//	$('.brand').hide();
+//	$('.tag').hide();
 
 	$('select').change(function() {
 

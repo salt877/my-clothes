@@ -30,7 +30,7 @@
 	th:href="@{/dist/css/styles.css}" />
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
 <style type="text/css">
 .weather { //
 	background-image: url(../img/weather.jpg);
@@ -135,7 +135,7 @@
 			</div>
 			<form action="top.html" th:action="@{/search}" method="get"
 				onchange="submit(this.form)">
-				<div id="category" class="category">
+				<div id="category" class="category" style="display:none">
 					<input id="tab_all" type="radio" name="categoryId"
 						class="radioButton" value="0"><label class="tab-label"
 						for="tab_all" th:text="全て">全て</label> <input id="tab_tops"
@@ -160,21 +160,21 @@
 						for="tab_accessories" th:text="ファッション雑貨">ファッション雑貨</label>
 				</div>
 				<div class="show_brand_and_tag">
-					<span class="brand" id="brand" th:each="brand : ${brandMap}">
+					<span class="brand" id="brand" th:each="brand : ${brandMap}" style="display:none">
 						<label> <input type="radio" class="radioButton"
 							name="brandId" th:value="${brand.key}" th:text="${brand.value}">
 					</label>
 					</span>
 				</div>
 				<div class="show_brand_and_tag">
-					<span class="tag" id="tag" th:each="tag : ${tagMap}"> <label>
+					<span class="tag" id="tag" th:each="tag : ${tagMap}" style="display:none"> <label>
 							<input type="radio" class="radioButton" name="tagContentsId"
 							th:value="${tag.key}" th:text="${tag.value}">
 					</label>
 					</span>
 				</div>
 				<div class="narrow_down_box"
-					th:if="${session.categoryId} or ${session.showBrandName} or ${session.showTagName}">
+					th:if="${session.categoryId} or ${session.showBrandName} or ${session.showTagName}" >
 					<p class="cbt" th:if="${session.categoryId==0}" th:text="カテゴリ：全て"></p>
 					<p class="cbt" th:if="${session.categoryId==1}"
 						th:text="カテゴリ：ファッション雑貨"></p>
@@ -224,23 +224,15 @@
 	<!-- Footer-->
 	<footer class="footer py-4" th:replace="footer::pagefooter"> </footer>
 	<!-- Bootstrap core JS-->
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
 	<!-- Third party plugin JS-->
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 	<!-- Core theme JS-->
-	<script src="../static/dist/js/show_item.js"
-		th:src="@{/dist/js/show_item.js}"></script>
-	<script src="../static/dist/js/scripts.js"
-		th:src="@{/dist/js/scripts.js}"></script>
-	<script src="../static/dist/js/hamburger_menu.js"
-		th:src="@{/dist/js/hamburger_menu.js}"></script>
-	<script src="../static/dist/js/vuemore.js"
-		th:src="@{/dist/js/vuemore.js}"></script>
+	<script src="../static/dist/js/show_item.js" th:src="@{/dist/js/show_item.js}"></script>
+	<script src="../static/dist/js/scripts.js" th:src="@{/dist/js/scripts.js}"></script>
+	<script src="../static/dist/js/hamburger_menu.js" th:src="@{/dist/js/hamburger_menu.js}"></script>
+	<script src="../static/dist/js/vuemore.js" th:src="@{/dist/js/vuemore.js}"></script>
 </body>
 </html>
