@@ -292,7 +292,7 @@ $(function(){
 				
 			// 通信成功時の処理
 			}).done(function(){
-				window.location.href="/myqlo/past-coordinate";
+				window.location.href="/past-coordinate";
 				
 			}).fail(function(XMLHttpRequest, textStatus, errorThrown){
 				alert("エラーが発生しました。");
