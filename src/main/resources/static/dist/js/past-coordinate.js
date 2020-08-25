@@ -58,7 +58,7 @@ $(function() {
 		var coordinateId = $(this).val();
 
 		$.ajax({
-			url : "/myqlo/culc_coordinate_price",
+			url : "/culc_coordinate_price",
 			type : "GET",
 			data : {
 				coordinateId : coordinateId

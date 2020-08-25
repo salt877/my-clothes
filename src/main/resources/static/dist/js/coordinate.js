@@ -11,7 +11,7 @@ $(function(){
 		var categoryId = $(this).val();
 
 			$.ajax({
-			url: "/myqlo/show_clotheslist",
+			url: "/show_clotheslist",
 			type: "GET",
 			dataType: "json",
 			data: {
@@ -283,7 +283,7 @@ $(function(){
 				
 		if(confirm("このコーディネートを削除してもよろしいですか？")){
 			$.ajax({
-				url: "/myqlo/delete_coordinate",
+				url: "/delete_coordinate",
 				type: "GET",
 				data :{
 					coordinateId : coordinateId
