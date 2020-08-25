@@ -185,6 +185,13 @@ label {
 	margin: 1em 10em;
 }
 
+@media screen and (max-width:480px) {
+	.show_brand_and_tag {
+		position: relative;
+		margin: 0em 0em;
+	}
+}
+
 .btn--vuemore:hover {
 	color: #fff;
 	background: #fed852;
