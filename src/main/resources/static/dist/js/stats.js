@@ -22,8 +22,17 @@ $(function(){
 			const doughnutChart = new Chart(ctx, {
 				type: 'doughnut',
 				data : {
-					labels : categoryNames,
+					labels : ["ファッション雑貨", "トップス", "アウター", "ボトムス", "シューズ", "バッグ", "ワンピース"],
 					datasets : [{
+						backgroundColor: [
+				              "#a6cee3",
+				              "#1f78b4",
+				              "#b2df8a",
+				              "#33a02c",
+				              "#fb9a99",
+				              "#e31a1c",
+				              "#fdbf6f"
+				          ],
 						data : sums,
 					}]
 				},
@@ -86,8 +95,17 @@ $(function(){
 				const doughnutChart = new Chart(ctx, {
 					type: 'doughnut',
 					data : {
-						labels : categoryNames,
+						labels : ["ファッション雑貨", "トップス", "アウター", "ボトムス", "シューズ", "バッグ", "ワンピース"],
 						datasets : [{
+							backgroundColor: [
+					              "#a6cee3",
+					              "#1f78b4",
+					              "#b2df8a",
+					              "#33a02c",
+					              "#fb9a99",
+					              "#e31a1c",
+					              "#fdbf6f"
+					          ],
 							data : categoryCounts,
 							}]
 					},
