@@ -47,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http.authorizeRequests() // 認可に関する設定
-				.antMatchers("myqlo.herokuapp.com/showLogin","myqlo.herokuapp.com/showRegisterUser","myqlo.herokuapp.com/forgotPassword","myqlo.herokuapp.com/passwordInputPage").permitAll()
+				.antMatchers("/showLogin","/showRegisterUser","/registerUser","/forgotPassword","/passwordInputPage").permitAll()
 				.anyRequest().authenticated(); 
 
 		http.formLogin() // ログインに関する設定
