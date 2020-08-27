@@ -11,6 +11,11 @@ spring:
 #    username: bzajoblemlblhm
 #    password: ba7aa32ab325cacaec3255e2340cb3651c8bc9e9cb60437347073433dd85d0b1
 
+#local環境
+#    url: jdbc:postgresql://localhost:5432/my-clothes
+#    username: postgres
+#    password: postgres
+
   mail:
     host: smtp.gmail.com
     port: 587
