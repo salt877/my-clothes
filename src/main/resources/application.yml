@@ -1,9 +1,15 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://ec2-54-236-169-55.compute-1.amazonaws.com/dbi66s64uu9iq6?sslmode=require
-    username: bzajoblemlblhm
-    password: ba7aa32ab325cacaec3255e2340cb3651c8bc9e9cb60437347073433dd85d0b1
+#myqlo
+    url: jdbc:postgresql://ec2-54-156-121-142.compute-1.amazonaws.com/dueibdn4a3aq0?sslmode=require
+    username: lmicnyxioaregd
+    password: d5b51cc4067a4323ccd3d6a524730895af85675edc2521fb17aca67d2d4e1161
+
+#my-clothes
+#    url: jdbc:postgresql://ec2-54-236-169-55.compute-1.amazonaws.com/dbi66s64uu9iq6?sslmode=require
+#    username: bzajoblemlblhm
+#    password: ba7aa32ab325cacaec3255e2340cb3651c8bc9e9cb60437347073433dd85d0b1
 
   mail:
     host: smtp.gmail.com
