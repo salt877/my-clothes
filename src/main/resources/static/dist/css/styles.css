@@ -12582,6 +12582,7 @@ tbody th {
 }
 
 .txt input[type='date'] {
+	background-color:white;
 	width: 90%;
 	max-width: 400px;
 	padding: 5px;
