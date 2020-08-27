@@ -1,5 +1,16 @@
 
 $(function(){	
+	
+	// 選択モーダル内の画像を削除します。
+	function removeImg(){
+		// モーダル内親要素<div>の中にある既存の<img>タグ等を削除
+		// 親要素取得
+		var parentDiv = document.getElementById('modal-img');
+		// その中の子要素を全削除
+		while(parentDiv.firstChild){
+			parentDiv.removeChild(parentDiv.firstChild);	
+		}	
+	} 
 
 	// カテゴリーボタンがクリックされた時のajax通信処理
 	$('.category-btn').on('click', function(){
@@ -90,17 +101,8 @@ $(function(){
 					checkId = "";
 					
 					// モーダル内親要素<div>の中にある既存の<img>タグ等を削除
-					// 親要素取得
-					var parentDiv = document.getElementById('modal-img');
-					// その中の子要素を全削除
-					while(parentDiv.firstChild){
-						parentDiv.removeChild(parentDiv.firstChild);	
-					}		
-					
-									
+					removeImg();							
 				});
-				
-
 
 				// モーダル内の選択ボタンをクリックしたときの処理.
 				// 登録確認モーダル内hiddenのvalueに選択された服IDを付与.
@@ -150,13 +152,7 @@ $(function(){
 					
 					// モーダル内親要素<div>の中にある既存の<img>タグ等を削除
 					// 親要素取得
-					var parentDiv = document.getElementById('modal-img');
-					// その中の子要素を全削除
-					while(parentDiv.firstChild){
-						parentDiv.removeChild(parentDiv.firstChild);	
-					}		
-					
-				
+					removeImg();
 				});
 			
 		}).fail(function(XMLHttpRequest, textStatus, errorThrown){
