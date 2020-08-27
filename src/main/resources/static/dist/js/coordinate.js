@@ -3,6 +3,13 @@ $(function(){
 
 	// カテゴリーボタンがクリックされた時のajax通信処理
 	$('.category-btn').on('click', function(){
+		// モーダル内親要素<div>の中にある既存の<img>タグ等を削除
+		// 親要素取得
+		var parentDiv = document.getElementById('modal-img');
+		// その中の子要素を全削除
+		while(parentDiv.firstChild){
+			parentDiv.removeChild(parentDiv.firstChild);	
+		}
 		
 		// カテゴリーごとの条件分岐のため、クリックされたボタンのdata-id属性取得
 		var checkId = $(this).data('id');
@@ -22,13 +29,13 @@ $(function(){
 		// 通信成功時の処理
 		}).done(function(data){
 			
-			// モーダル内親要素<div>の中にある既存の<img>タグ等を削除
-			// 親要素取得
-			var parentDiv = document.getElementById('modal-img');
-			// その中の子要素を全削除
-			while(parentDiv.firstChild){
-				parentDiv.removeChild(parentDiv.firstChild);	
-			}
+//			// モーダル内親要素<div>の中にある既存の<img>タグ等を削除
+//			// 親要素取得
+//			var parentDiv = document.getElementById('modal-img');
+//			// その中の子要素を全削除
+//			while(parentDiv.firstChild){
+//				parentDiv.removeChild(parentDiv.firstChild);	
+//			}
 			
 			// APIから取得したリスト分label/input/imgタグ生成
 			for(let clothes of data.clothesList){
