@@ -70,7 +70,7 @@ public class RegisterUserCompleteSendMailService {
 		text.append("MYQLO運営事務局です。この度は本サイトにご登録いただきありがとうございます。\n");
 		text.append("下記にご登録いただいたメールアドレスとパスワードをお知らせ致します。\n");
 		text.append("URLよりログイン画面にアクセスできますので、ご確認ください。\n\n");
-		text.append("ログイン画面URL：http://localhost:8080/myqlo/showLogin\n");
+		text.append("ログイン画面URL：https://myqlo.herokuapp.com/showLogin\n");
 		text.append("メールアドレス：" + user.getEmail() + "\n");
 		text.append("パスワード：" + astaliskPassword + "\n\n");
 		text.append("引き続き、MYQLOをお楽しみください。\n");

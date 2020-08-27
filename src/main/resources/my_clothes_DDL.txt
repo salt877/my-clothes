@@ -84,6 +84,7 @@ expire_date TIMESTAMP NOT NULL
 --コーディネートテーブル
 create table coordinates(
   id serial NOT NULL PRIMARY KEY,
+  name varchar(20) NOT NULL,
   user_id integer NOT NULL,
   fashion_accessories integer,
   tops1 integer,
@@ -94,7 +95,6 @@ create table coordinates(
   bag integer,
   dress integer,
   deleted boolean NOT NULL DEFAULT FALSE
-
 );
 
 --お問い合わせテーブル
