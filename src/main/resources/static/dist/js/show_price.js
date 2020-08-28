@@ -2,7 +2,7 @@ $(function(){
 	$('.fc-button-primary').click(
 		function(){
 			$.ajax({
-				url: "/myqlo/show/perchase/data",
+				url: "/show/perchase/data",
 				type: "GET",
 				dataType:"json",
 				data : {
@@ -11,7 +11,6 @@ $(function(){
 				},
 				async: true	
 			}).done(function(data){
-				console.log("成功です！！");
 				var totalPrice = data.totalPrice;
 				$('.total_price').text(totalPrice.toLocaleString()+" 円");
 				
