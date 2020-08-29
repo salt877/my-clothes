@@ -4,9 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.Base64;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -15,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
@@ -41,7 +40,7 @@ import jp.co.example.my.clothes.service.RegisterClothesService;
 public class RegisterClothesController {
 	@Autowired
 	private RegisterClothesService registerClothesService;
-
+	 
 	@ModelAttribute
 	private RegisterClothesForm setUpRegisterClothesForm() {
 		return new RegisterClothesForm();
@@ -75,6 +74,39 @@ public class RegisterClothesController {
 		model.addAttribute("tagContentsListForAutocomplete", tagContentListForAutocomplete);
 
 		return "register_clothes.html";
+	}
+
+	/**
+	 * カレンダー画面から登録画面を開く際に使用します.
+	 * 
+	 * @param model モデル
+	 * @param loginUser　ログインユーザ
+	 * @param perchaseDate　購入日
+	 * @param form　フォーム
+	 * @return　購入日の入力された登録画面
+	 */
+	@GetMapping("/showRegisterClothesByCalendar")
+	public String showRegisterClothesByCalendar(Model model, @AuthenticationPrincipal LoginUser loginUser,String perchaseDate,RegisterClothesForm form) {
+		// カテゴリの選択肢一覧を取得
+		List<Category> categoryList = registerClothesService.showCategoryList();
+		model.addAttribute("categoryList", categoryList);
+		// カラーの選択肢一覧を取得
+		List<Color> colorList = registerClothesService.showColorList();
+		model.addAttribute("colorList", colorList);
+		// サイズの選択し一覧を表示
+		List<Size> sizeList = registerClothesService.showSizeList();
+		model.addAttribute("sizeList", sizeList);
+
+		// ブランドのオートコンプリート機能
+		StringBuilder brandListForAutocomplete = registerClothesService.getBrandListForAutoconplete();
+		model.addAttribute("brandListForAutocomplete", brandListForAutocomplete);
+
+		// タグのオートコンプリート機能.
+		StringBuilder tagContentListForAutocomplete = registerClothesService
+				.getTagContentListForAutoconplete(loginUser.getUser().getId());
+		model.addAttribute("tagContentsListForAutocomplete", tagContentListForAutocomplete);
+		
+		return "register_clothes";
 	}
 
 	/**
