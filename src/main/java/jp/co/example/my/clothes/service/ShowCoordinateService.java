@@ -34,6 +34,15 @@ public class ShowCoordinateService {
 	}
 
 	/**
+	 * 公開コーディネート情報を表示します.
+	 * 
+	 * @return 公開コーディネートデータ一覧
+	 */
+	public List<Coordinate> showPublicCoordinate() {
+		return coordinateRepository.findByIsPublic();
+	}
+
+	/**
 	 * コーディネートIDに紐づくコーディネートデータを論理削除します.
 	 * 
 	 * @param coordinateId コーデID

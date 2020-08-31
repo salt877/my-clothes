@@ -33,6 +33,8 @@ public class Coordinate {
 	private boolean deleted;
 	/** コーディネート名 */
 	private String name;
+	/** 公開フラグ */
+	private boolean isPublic;
 	/** ユーザー情報格納用インスタンス */
 	private User user;
 	/** 服情報を詰めるリスト（コーディネート情報） */
@@ -42,8 +44,8 @@ public class Coordinate {
 	public String toString() {
 		return "Coordinate [id=" + id + ", userId=" + userId + ", fashionAccessories=" + fashionAccessories + ", tops1="
 				+ tops1 + ", tops2=" + tops2 + ", outers=" + outers + ", bottoms=" + bottoms + ", shoes=" + shoes
-				+ ", bag=" + bag + ", dress=" + dress + ", deleted=" + deleted + ", name=" + name + ", user=" + user
-				+ ", clothesList=" + clothesList + "]";
+				+ ", bag=" + bag + ", dress=" + dress + ", deleted=" + deleted + ", name=" + name + ", isPublic="
+				+ isPublic + ", user=" + user + ", clothesList=" + clothesList + "]";
 	}
 
 	public Integer getId() {
@@ -140,6 +142,14 @@ public class Coordinate {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public boolean isPublic() {
+		return isPublic;
+	}
+
+	public void setPublic(boolean isPublic) {
+		this.isPublic = isPublic;
 	}
 
 	public User getUser() {

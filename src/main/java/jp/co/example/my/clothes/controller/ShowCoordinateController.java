@@ -63,4 +63,20 @@ public class ShowCoordinateController {
 
 		return "past-coordinate";
 	}
+
+	/**
+	 * 公開コーデ画面を表示します。
+	 * 
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/coordinate-list")
+	public String showCoordinateList(Model model) {
+		List<Coordinate> coordinateList = showCoordinateService.showPublicCoordinate();
+
+		model.addAttribute("coordinateList", coordinateList);
+
+		return "public_coordinate_list";
+
+	}
 }
