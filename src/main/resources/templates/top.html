@@ -24,10 +24,9 @@
 	href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
 	rel="stylesheet" type="text/css" />
 <!-- Core theme CSS (includes Bootstrap)-->
-<link href="../static/dist/css/list_styles.css" rel="stylesheet"
-	th:href="@{/dist/css/list_styles.css}" />
-<link href="../static/dist/css/styles.css" rel="stylesheet"
-	th:href="@{/dist/css/styles.css}" />
+<link href="../static/dist/css/loading.css" rel="stylesheet" th:href="@{/dist/css/loading.css}" />
+<link href="../static/dist/css/list_styles.css" rel="stylesheet" th:href="@{/dist/css/list_styles.css}" />
+<link href="../static/dist/css/styles.css" rel="stylesheet" th:href="@{/dist/css/styles.css}" />
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -84,7 +83,10 @@
 </script>
 </head>
 <body id="page-top">
-
+	<div class="loader-wrap">
+	<div class="loader">Loading...</div>
+	</div>
+	
 	<!-- Navigation-->
 	<div id="navArea">
 		<nav class="navbar navbar-default" th:replace="header::pageheader"></nav>
@@ -220,7 +222,6 @@
 		</div>
 	</div>
 	</section>
-
 	<!-- Footer-->
 	<footer class="footer py-4" th:replace="footer::pagefooter"> </footer>
 	<!-- Bootstrap core JS-->
@@ -230,6 +231,7 @@
 	<!-- Third party plugin JS-->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 	<!-- Core theme JS-->
+	<script src="../static/dist/js/loading.js" th:src="@{/dist/js/loading.js}"></script>
 	<script src="../static/dist/js/show_item.js" th:src="@{/dist/js/show_item.js}"></script>
 	<script src="../static/dist/js/scripts.js" th:src="@{/dist/js/scripts.js}"></script>
 	<script src="../static/dist/js/hamburger_menu.js" th:src="@{/dist/js/hamburger_menu.js}"></script>

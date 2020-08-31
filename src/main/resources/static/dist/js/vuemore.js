@@ -2,7 +2,6 @@ $(function() {
 
 		//listの個数を取得しておく
 		var listContents = $("#cloth_list .portfolio-item").length;
-		console.log("リストコンテンツの個数"+listContents);
 		$("#cloth_list").each(function(){
 
 		//最初に表示させるアイテムの数
@@ -18,8 +17,6 @@ $(function() {
 			if (listContents <= num) {
 				$('#close_btn').hide();
 				$('#more_btn').hide();
-				console.log("リストコンテンツ:"+listContents);
-				console.log("数:"+num);
 			}
 
 			//moreボタンがクリックされた時
