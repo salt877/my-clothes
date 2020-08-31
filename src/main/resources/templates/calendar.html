@@ -45,6 +45,32 @@
 	        	{
 	        	 	url : '/show/perchase/all' 
 	        	},
+	        dateClick: function(info) {
+	        	
+	        	 	var date = info.dateStr;
+	        	    
+	        			$.ajax({
+	        				type:'GET',
+	        				url: "/registerClothes/showRegisterClothesByCalendar",
+	        				data : {
+	        					perchaseDate : date
+	        				},
+	        				async: false	
+	        			}).done(function(data){
+	        				
+	        				location.href = this.url;
+	        				 	        		
+	        			}).fail(function(XMLHttpRequest, textStatus, errorThrown){
+	        				// HTTPリクエストのステータス情報 
+	        				console.log("XMLHttpRequest : " + XMLHttpRequest.status);
+	        				// エラー情報
+	        				console.log("textStatus     : " + textStatus);
+	        				// 例外情報
+	        				console.log("errorThrown    : " + errorThrown.message);
+	        			}).always(function(data){
+	        			}); 
+	        	    
+	        	 },
 	        eventClick: function(info) {
 	        	
 	        	var eventObj = info.event;
@@ -75,9 +101,10 @@ body {
 	max-width: 1100px;
 	margin: 0 auto;
 }
-a.fc-daygrid-day-number {
+/* a.fc-daygrid-day-number {
 	pointer-events: none;
 }
+ */
 .fc-day-other .fc-daygrid-event-harness{
 	 display: none; 
 }
