@@ -1,0 +1,61 @@
+@charset "UTF-8";
+
+h1{
+	font-size: 30px;
+	margin-top: 20px;
+}
+
+#heading{
+	padding-bottom: 50px;	
+}
+
+.username{
+	color: #000000;
+}
+
+table {
+	border-collapse: collapse;
+	margin: 0 auto;
+	padding: 0;
+	width: 650px;
+	table-layout: fixed;
+	color: #FF9900;
+}
+
+.thead{
+	color: #ff9900;
+	border-bottom: none;
+}
+
+table tr {
+	background-color: #fff;
+	padding: .35em;
+	border-bottom: 1px dotted #bbb;
+}
+
+table tr:last-child {
+	border-bottom: 2px solid #bbb;
+}
+
+table th, table td {
+	padding: 1em 10px 1em 1em;
+}
+
+tbody th {
+	color: black;
+}
+
+.txt {
+	text-align: left;
+	font-size: .85em;
+}
+
+textarea {
+    text-align: left;
+	font-size: .85em;
+}
+
+.complete-btn{
+	text-align:  center; 
+	margin-top: 20px;
+}
