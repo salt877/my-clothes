@@ -2,9 +2,9 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
 #myqlo
-    url: jdbc:postgresql://ec2-54-156-121-142.compute-1.amazonaws.com/dueibdn4a3aq0?sslmode=require
-    username: lmicnyxioaregd
-    password: d5b51cc4067a4323ccd3d6a524730895af85675edc2521fb17aca67d2d4e1161
+#    url: jdbc:postgresql://ec2-54-156-121-142.compute-1.amazonaws.com/dueibdn4a3aq0?sslmode=require
+#    username: lmicnyxioaregd
+#    password: d5b51cc4067a4323ccd3d6a524730895af85675edc2521fb17aca67d2d4e1161
 
 #my-clothes
 #    url: jdbc:postgresql://ec2-54-236-169-55.compute-1.amazonaws.com/dbi66s64uu9iq6?sslmode=require
@@ -13,9 +13,9 @@ spring:
 
 
 #local環境
-#    url: jdbc:postgresql://localhost:5432/my-clothes
-#    username: postgres
-#    password: postgres
+    url: jdbc:postgresql://localhost:5432/my-clothes
+    username: postgres
+    password: postgres
 
 
   mail:
