@@ -70,11 +70,14 @@ public class ShowCoordinateController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/coordinate-list")
+	@RequestMapping("/public-coordinate")
 	public String showCoordinateList(Model model) {
 		List<Coordinate> coordinateList = showCoordinateService.showPublicCoordinate();
 
+		Integer count = coordinateList.size();
+
 		model.addAttribute("coordinateList", coordinateList);
+		model.addAttribute("count", count);
 
 		return "public_coordinate_list";
 

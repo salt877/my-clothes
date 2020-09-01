@@ -303,8 +303,16 @@
 			<br>
 			<div class="btn-bottom">
 				<a th:href="@{/past-coordinate}"><button type="button"
-						class="btn btn-secondary btn-set">コーディネート一覧を見る</button></a>
+						class="btn btn-secondary btn-set">過去のコーディネート一覧を見る</button></a>
 			</div>
+			<br>
+			<div class="btn-bottom">
+				<a th:href="@{/public-coordinate}"><button type="button"
+						class="btn btn-secondary btn-set">みんなのコーディネートを見る</button></a>
+			</div>
+
+
+
 
 			<!-- 「確認へ」を押したときのモーダルの設定 -->
 			<div class="modal fade" id="registerModal" tabindex="-1"
@@ -414,8 +422,8 @@
 							<div class="modal-footer">
 								<div class="item-frame">
 									<input type='checkbox' id='is_public' class="checkbox"
-										name="is_public" /> <label class="switch" for='is_public'></label>
-									<label class="text" for='is_public'>このコーデを公開する</label>
+										name="isPublic" value="true"> <label class="switch"
+										for='is_public'></label> <label class="text" for='is_public'>このコーデを公開する</label>
 								</div>
 								&nbsp;&nbsp;
 

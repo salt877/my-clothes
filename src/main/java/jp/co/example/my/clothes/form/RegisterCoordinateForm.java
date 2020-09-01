@@ -35,12 +35,14 @@ public class RegisterCoordinateForm {
 	/** コーデ名 */
 	@NotBlank(message = "コーディネート名は必須です。")
 	private String name;
+	/** 公開コーデフラグ */
+	private String isPublic;
 
 	@Override
 	public String toString() {
 		return "RegisterCoordinateForm [id=" + id + ", userId=" + userId + ", fashionAccessories=" + fashionAccessories
 				+ ", tops1=" + tops1 + ", tops2=" + tops2 + ", outers=" + outers + ", bottoms=" + bottoms + ", shoes="
-				+ shoes + ", bag=" + bag + ", dress=" + dress + ", name=" + name + "]";
+				+ shoes + ", bag=" + bag + ", dress=" + dress + ", name=" + name + ", isPublic=" + isPublic + "]";
 	}
 
 	/**
@@ -145,7 +147,7 @@ public class RegisterCoordinateForm {
 	 * @return
 	 */
 	public Integer getIntDress() {
-		
+
 		if (StringUtils.isEmpty(dress)) {
 			return null;
 		}
@@ -238,6 +240,14 @@ public class RegisterCoordinateForm {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getIsPublic() {
+		return isPublic;
+	}
+
+	public void setIsPublic(String isPublic) {
+		this.isPublic = isPublic;
 	}
 
 }

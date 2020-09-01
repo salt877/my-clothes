@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -56,7 +57,15 @@ public class RegisterCoordinateController {
 		coordinate.setBag(form.getIntBag());
 		coordinate.setDress(form.getIntDress());
 		coordinate.setName(form.getName());
+		
+		System.out.println(form.getIsPublic());
 
+		if (StringUtils.isEmpty(form.getIsPublic())) {
+			coordinate.setPublic(false);
+		} else {
+			coordinate.setPublic(true);
+
+		}
 		registerCoordinateService.registerCooridnate(coordinate);
 
 		return "redirect:/coordinate/finished";

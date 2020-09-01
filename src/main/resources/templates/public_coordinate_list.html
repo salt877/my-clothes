@@ -47,20 +47,41 @@
 				<br> <br>
 			</div>
 
+			<!-- 公開コーデ未登録の場合、コーデ画面へ遷移誘導 -->
+			<div th:if="${#lists.isEmpty(coordinateList)}">
+				<div class="not-registered-txt">
+					<div>現在公開されているコーディネートはありません。</div>
+					<br>
+					<div>
+						<a href="coordinate.html" th:href="@{/coordinate}"><button
+								type="button" class="btn btn-primary to-coordinate-btn">コーディネートを公開しよう！</button></a>
+					</div>
+				</div>
+			</div>
+
+
 			<div th:if="!${#lists.isEmpty(coordinateList)}">
-				<div class="register-coordinate-btn-sp">
+				<!-- <div class="register-coordinate-btn-sp">
 					<a href="coordinate.html" th:href="@{/coordinate}">
 						<button class="btn btn-primary sp-btn">
 							<i class="fas fa-female"></i> &nbsp;&nbsp;<span>コーデ登録</span>
 						</button>
 					</a> <br> <br> <br>
 				</div>
+				 -->
+				<div style="text-align: right;">
+					<span> 現在の公開コーデ件数：&nbsp;&nbsp;<span th:text="${count}"
+						style="font-size: 20px; font-weight: bold;"></span>&nbsp;件
+					</span>
+				</div>
+				<br>
+
 				<div id="past-coordinate-list">
 					<div th:each="coordinate:${coordinateList}">
 						<div class="past-coordinates">
-							<span th:text="${coordinate.name}" style="font-weight: bold;">公開コーデ
-							</span> <span style="margin-left: 790px;"><a href="#">マイクロ</a> さん</span>&nbsp;&nbsp;
-							&nbsp;&nbsp; <span><i class="far fa-heart"></i>&nbsp;275</span>
+							<h6 th:text="${coordinate.name}">公開コーデ</h6>
+							<span><a href="#">マイクロ</a> さん</span>&nbsp;&nbsp; |&nbsp;&nbsp; <span><i
+								class="far fa-heart"></i>&nbsp;275</span>
 
 
 							<table class="table table-list">
@@ -138,12 +159,7 @@
 																<td><span class="modal-txt"
 																	th:text="${#numbers.formatInteger(clothes.price, 1, 'COMMA') + '&nbsp;円'}"></span></td>
 															</tr>
-															<tr class="modal-tr">
-																<td class="table-active clm"><label
-																	style="font-weight: bold;">購入日</label></td>
-																<td><span class="modal-txt"
-																	th:text="${#dates.format(clothes.perchaseDate, 'yyyy年M月d日')}"></span></td>
-															</tr>
+
 															<tr class="modal-tr">
 																<td class="table-active clm"><label
 																	style="font-weight: bold;">メモ</label></td>
@@ -162,12 +178,6 @@
 												<br>
 												<!-- モーダル内フッター -->
 												<div class="modal-footer">
-													<span>
-														<button type="button" class="btn btn-primary delete-btn"
-															th:id="${coordinate.id}" th:value="${coordinate.id}">
-															<small>このコーディネートを削除する</small>
-														</button>
-													</span>
 													<button type="button" class="btn btn-secondary"
 														data-dismiss="modal">閉じる</button>
 												</div>
@@ -199,12 +209,12 @@
 						</button>
 					</div>
 				</div>
-				<!-- コーデ登録固定ボタン -->
+				<!-- コーデ登録固定ボタン 
 				<div class="register-coordinate-btn">
 					<a href="coordinate.html" th:href="@{/coordinate}"
 						class="btn-circle-stitch"> <i class="fas fa-female"></i> <span>コーデ登録</span>
 					</a>
-				</div>
+				</div>-->
 			</div>
 
 		</div>
@@ -241,27 +251,6 @@
 	<script type="text/javascript"
 		src="../static/dist/js/past-coordinate.js"
 		th:src="@{/dist/js/past-coordinate.js}"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 </body>

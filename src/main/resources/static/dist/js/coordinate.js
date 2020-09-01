@@ -392,5 +392,12 @@ $(function(){
 		
 	});	
 	
+	$('#is_public').on('change', function(){
+		alert("チェンジ");
+		var val = $('#is_public:checked').val();
+		alert(val);
+	});
+	
+		
 });
 	
