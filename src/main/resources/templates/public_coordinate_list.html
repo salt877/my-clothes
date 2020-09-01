@@ -78,10 +78,14 @@
 
 				<div id="past-coordinate-list">
 					<div th:each="coordinate:${coordinateList}">
-						<div class="past-coordinates">
+						<div class="public-coordinates" th:id="${coordinate.id}">
+							<input type="hidden" name="coordinateId" th:value="${coordinate.id}"
+								th:id="${coordinate.id}">
 							<h6 th:text="${coordinate.name}">公開コーデ</h6>
-							<span><a href="#">マイクロ</a> さん</span>&nbsp;&nbsp; |&nbsp;&nbsp; <span><i
-								class="far fa-heart"></i>&nbsp;275</span>
+							<span><a href="#">マイクロ</a> さん</span>&nbsp;&nbsp; |&nbsp;&nbsp; <span>
+								<i class="far fa-heart like" th:id="${coordinate.id} + 'likes'"></i>
+								&nbsp;<span class="counts" th:text="${coordinate.likeList.size()}">275</span>
+							</span>
 
 
 							<table class="table table-list">
@@ -251,6 +255,9 @@
 	<script type="text/javascript"
 		src="../static/dist/js/past-coordinate.js"
 		th:src="@{/dist/js/past-coordinate.js}"></script>
+	<script type="text/javascript"
+		src="../static/dist/js/public_coordinate.js"
+		th:src="@{/dist/js/public_coordinate.js}"></script>
 
 
 </body>

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.example.my.clothes.domain.Coordinate;
+import jp.co.example.my.clothes.domain.Like;
 import jp.co.example.my.clothes.domain.LoginUser;
 import jp.co.example.my.clothes.form.RegisterCoordinateForm;
 import jp.co.example.my.clothes.service.ShowCoordinateService;
@@ -73,6 +74,11 @@ public class ShowCoordinateController {
 	@RequestMapping("/public-coordinate")
 	public String showCoordinateList(Model model) {
 		List<Coordinate> coordinateList = showCoordinateService.showPublicCoordinate();
+		
+		for(Coordinate coodinate : coordinateList) {
+			List<Like> likeList = showCoordinateService.showLikes(coodinate.getId());
+			coodinate.setLikeList(likeList);
+		}
 
 		Integer count = coordinateList.size();
 

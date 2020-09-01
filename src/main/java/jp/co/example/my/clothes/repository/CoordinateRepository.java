@@ -38,6 +38,7 @@ public class CoordinateRepository {
 	private static final ResultSetExtractor<List<Coordinate>> COORDINATE_RESULT_SET_EXTRACTOR = (rs) -> {
 		List<Coordinate> coordinateList = new ArrayList<>();
 		List<Clothes> clothesList = new ArrayList<>();
+		Like like = new Like();
 		Coordinate coordinate = new Coordinate();
 
 		int checkCoId = 0;
@@ -59,6 +60,7 @@ public class CoordinateRepository {
 				coordinate.setDeleted(rs.getBoolean("co_deleted"));
 				coordinate.setName(rs.getString("co_name"));
 				coordinate.setPublic(rs.getBoolean("co_is_public"));
+
 				clothesList = new ArrayList<>();
 				coordinate.setClothesList(clothesList);
 				coordinateList.add(coordinate);

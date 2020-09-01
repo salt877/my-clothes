@@ -39,13 +39,15 @@ public class Coordinate {
 	private User user;
 	/** 服情報を詰めるリスト（コーディネート情報） */
 	private List<Clothes> clothesList;
+	/** コーデのいいね */
+	private List<Like> likeList;
 
 	@Override
 	public String toString() {
 		return "Coordinate [id=" + id + ", userId=" + userId + ", fashionAccessories=" + fashionAccessories + ", tops1="
 				+ tops1 + ", tops2=" + tops2 + ", outers=" + outers + ", bottoms=" + bottoms + ", shoes=" + shoes
 				+ ", bag=" + bag + ", dress=" + dress + ", deleted=" + deleted + ", name=" + name + ", isPublic="
-				+ isPublic + ", user=" + user + ", clothesList=" + clothesList + "]";
+				+ isPublic + ", user=" + user + ", clothesList=" + clothesList + ", likeList=" + likeList + "]";
 	}
 
 	public Integer getId() {
@@ -144,7 +146,7 @@ public class Coordinate {
 		this.name = name;
 	}
 
-	public boolean getIsPublic() {
+	public boolean isPublic() {
 		return isPublic;
 	}
 
@@ -166,6 +168,14 @@ public class Coordinate {
 
 	public void setClothesList(List<Clothes> clothesList) {
 		this.clothesList = clothesList;
+	}
+
+	public List<Like> getLikeList() {
+		return likeList;
+	}
+
+	public void setLikeList(List<Like> likeList) {
+		this.likeList = likeList;
 	}
 
 }
