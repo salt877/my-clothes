@@ -5,7 +5,9 @@ import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -16,6 +18,7 @@ import jp.co.example.my.clothes.domain.Brand;
 import jp.co.example.my.clothes.domain.Category;
 import jp.co.example.my.clothes.domain.Clothes;
 import jp.co.example.my.clothes.domain.Coordinate;
+import jp.co.example.my.clothes.domain.Like;
 
 /**
  * coordinatesテーブルを操作するリポジトリ.
@@ -234,6 +237,48 @@ public class CoordinateRepository {
 
 		SqlParameterSource param = new MapSqlParameterSource().addValue("coordinateId", coordinateId);
 		template.update(sql.toString(), param);
+
+	}
+
+	/** likesテーブルのデータを保持するローマッパー */
+	private static final RowMapper<Like> LIKE_ROW_MAPPER = new BeanPropertyRowMapper<>(Like.class);
+
+	/**
+	 * likesテーブルにインサート
+	 * 
+	 * @param like
+	 */
+	public void insert(Like like) {
+		String sql = "INSERT INTO likes (coordinate_id, user_id) VALUES (:coordinateId, :userId)";
+		SqlParameterSource param = new BeanPropertySqlParameterSource(like);
+		template.update(sql, param);
+	}
+
+	/**
+	 * ユーザーIDに紐づくいいねを削除
+	 * 
+	 * @param userId
+	 */
+	public void delete(Integer userId) {
+		String sql = "DELETE FROM likes WHERE user_id = :userId";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
+		template.update(sql, param);
+	}
+
+	/**
+	 * 
+	 * コーデIDに紐づくいいねを検索します.
+	 * 
+	 * @param coordinateId コーデID
+	 * @return
+	 */
+	public List<Like> likeList(Integer coordinateId) {
+		String sql = "SELECT id, coordinate_id, user_id FROM likes WHERE coordinate_id = :coordinateId";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("coordinateId", coordinateId);
+
+		List<Like> likeList = template.query(sql, param, LIKE_ROW_MAPPER);
+
+		return likeList;
 
 	}
 
