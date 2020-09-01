@@ -272,7 +272,7 @@ public class CoordinateRepository {
 	 * @param coordinateId コーデID
 	 * @return
 	 */
-	public List<Like> likeList(Integer coordinateId) {
+	public List<Like> findLikes(Integer coordinateId) {
 		String sql = "SELECT id, coordinate_id, user_id FROM likes WHERE coordinate_id = :coordinateId";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("coordinateId", coordinateId);
 

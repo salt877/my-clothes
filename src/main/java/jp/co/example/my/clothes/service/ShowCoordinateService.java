@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import jp.co.example.my.clothes.domain.Coordinate;
+import jp.co.example.my.clothes.domain.Like;
 import jp.co.example.my.clothes.repository.CoordinateRepository;
 
 /**
@@ -60,4 +61,33 @@ public class ShowCoordinateService {
 	public Coordinate showCoordinateDetail(Integer coordinateId) {
 		return coordinateRepository.load(coordinateId);
 	}
+
+	/**
+	 * コーデにいいねします.
+	 * 
+	 * @param like
+	 */
+	public void like(Like like) {
+		coordinateRepository.insert(like);
+	}
+
+	/**
+	 * いいねを削除します
+	 * 
+	 * @param userId
+	 */
+	public void deleteLike(Integer userId) {
+		coordinateRepository.delete(userId);
+	}
+
+	/**
+	 * コーデIDに紐づくいいねを表示します.
+	 * 
+	 * @param coordinateId
+	 * @return
+	 */
+	public List<Like> showLikes(Integer coordinateId) {
+		return coordinateRepository.findLikes(coordinateId);
+	}
+
 }
