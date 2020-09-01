@@ -83,7 +83,7 @@ public class ShowCoordinateService {
 	/**
 	 * コーデIDに紐づくいいねを表示します.
 	 * 
-	 * @param coordinateId
+	 * @param coordinateId コーデID
 	 * @return
 	 */
 	public List<Like> showLikes(Integer coordinateId) {
