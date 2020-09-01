@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>MYQLO | FAQ</title>
+<link rel="icon" type="image/x-icon"
+	href="../static/dist/assets/img/myqlo_favicon.jpg"
+	th:href="@{/dist/assets/img/myqlo_favicon.jpg}" />
+<!-- Font Awesome icons (free version)-->
+<script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js"
+	crossorigin="anonymous"></script>
+<!-- Google fonts-->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+	rel="stylesheet" type="text/css" />
+<link
+	href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic"
+	rel="stylesheet" type="text/css" />
+<link
+	href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
+	rel="stylesheet" type="text/css" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="../static/dist/css/styles.css"
+	th:href="@{/dist/css/styles.css}" rel="stylesheet" />
+<link rel="stylesheet" href="../static/dist/css/plofile.css"
+	th:href="@{/dist/css/plofile.css}">
+<link rel="stylesheet" href="../static/dist/css/past-coordinate.css"
+	th:href="@{/dist/css/past-coordinate.css}">
+</head>
+<body id="page-top">
+
+
+	<!-- Navigation
+	<div id="navArea">
+		<nav class="navbar navbar-default" th:replace="header::pageheader"></nav>
+	</div>-->
+	<!-- Navigation-->
+		<div th:fragment="pageheader" class="pageheader">
+			<header class="site-header">
+				<div class="site-logo">
+				<a  th:href="@{/}">
+						<img src="../static/dist/assets/img/myqlo_favicon.jpg" th:src="@{/dist/assets/img/myqlo_favicon.jpg}" alt="site-logo">
+				</a>
+				</div>
+					<!-- image th:src="@{/dist/assets/img/myqlo_favicon.jpg}"> -->
+					<nav>
+						<div class="inner">
+							<ul>
+								<li><a href="top.html" th:href="@{/}"><i
+										class="fas fa-home"></i>&emsp;&emsp;TOP</a></li>
+								<li><a href="statistics.html" th:href="@{/stats}"><i
+										class="far fa-chart-bar"></i>&emsp;&emsp;統計データ</a></li>
+								<li><a href="calender.html" th:href="@{/calendar}"><i
+										class="far fa-calendar-alt"></i>&emsp;&emsp;カレンダー</a></li>
+								<li><a href="coordinate.html" th:href="@{/coordinate}"><i
+										class="fas fa-female"></i>&emsp;&emsp;コーディネート</a></li>
+								<li><a href="contact.html" th:href="@{/contact}"><i
+										class="far fa-envelope"></i>&emsp;&emsp;お問い合わせ</a></li>
+								<li><a href="faq.html" th:href="@{/faq}"><i
+										class="far fa-question-circle"></i>&emsp;&emsp;FAQ</a></li>
+								<li><a href="login.html" th:href="@{/logout}"><i
+										class="fas fa-sign-out-alt"></i>&emsp;&emsp;ログアウト</a></li>
+							</ul>
+						</div>
+					</nav>
+					<div class="humberger_menue">
+						<div class="toggle_btn">
+							<span></span> <span></span> <span></span>
+						</div>
+					</div>
+					<div id="mask"></div>
+			</header>
+		</div>
+		
+	<!-- 見出し -->
+	<section class="page-section bg-white" id="heading">
+		<div class="container">
+			<div>
+				<h1><i class="fas fa-cog"></i>&emsp;基本設定</h1>
+			</div>
+		</div>
+	</section>
+	
+	<!-- 登録画面 -->
+	<section class="page-section bg-light" id="pastcordlist">
+      <div class="container">
+      	<div class="imag-icon">
+      		<img class="plofile_icon" alt="写真" src="../static/dist/assets/img/plofile.jpeg"><br>
+      		<div class="file_button">
+				画像を変更 <input id="myImage" class="file_input" name="imageFile"
+									type="file" accept=".jpg,.png">
+			</div>
+      	</div>
+      	<table>
+			<tr>
+				<th class="thead" scope="col" colspan="2">基本情報</th>
+			</tr>
+			<tbody>
+				<tr>
+					<th>MYQLO ID</th>
+						<td class="txt">
+							<span class="username">testUser1234</span>
+						</td>
+				</tr>
+				<tr>
+					<th>ニックネーム</th>
+						<td class="txt">
+							<input type="text">
+						</td>
+				</tr>
+				<tr>
+					<th>性別</th>
+						<td class="txt">
+							<div class="cp_ipselect cp_sl02">
+								<select name="gender">
+									<option>選択してください</option>
+									<option>MEN</option>
+									<option>WOMEN</option>
+									<option>OTHER</option>
+								</select>
+							</div>
+						</td>
+				</tr>
+				<tr>
+					<th>身長</th>
+						<td class="txt">
+							<div class="cp_ipselect cp_sl02">
+								<select name="height" >
+									<option>選択してください</option>
+									<option>100cm</option>
+									<option>101cm</option>
+									<option>102cm</option>
+									<option>103cm</option>
+									<option>104cm</option>
+									<option>105cm</option>
+									<option>106cm</option>
+									<option>107cm</option>
+									<option>108cm</option>
+									<option>109cm</option>
+									<option>110cm</option>
+									<option>111cm</option>
+									<option>112cm</option>
+									<option>113cm</option>
+									<option>114cm</option>
+									<option>115cm</option>
+									<option>116cm</option>
+									<option>117cm</option>
+									<option>118cm</option>
+									<option>119cm</option>
+									<option>120cm</option>
+									<option>121cm</option>
+									<option>122cm</option>
+									<option>123cm</option>
+									<option>124cm</option>
+									<option>125cm</option>
+									<option>126cm</option>
+									<option>127cm</option>
+									<option>128cm</option>
+									<option>129cm</option>
+									<option>130cm</option>
+									<option>131cm</option>
+									<option>132cm</option>
+									<option>133cm</option>
+									<option>134cm</option>
+									<option>135cm</option>
+									<option>136cm</option>
+									<option>137cm</option>
+									<option>138cm</option>
+									<option>139cm</option>
+									<option>140cm</option>
+									<option>141cm</option>
+									<option>142cm</option>
+									<option>143cm</option>
+									<option>144cm</option>
+									<option>145cm</option>
+									<option>146cm</option>
+									<option>147cm</option>
+									<option>148cm</option>
+									<option>149cm</option>
+									<option>150cm</option>
+									<option>151cm</option>
+									<option>152cm</option>
+									<option>153cm</option>
+									<option>154cm</option>
+									<option>155cm</option>
+									<option>156cm</option>
+									<option>157cm</option>
+									<option>158cm</option>
+									<option>159cm</option>
+									<option>160cm</option>
+									<option>161cm</option>
+									<option>162cm</option>
+									<option>163cm</option>
+									<option>164cm</option>
+									<option>165cm</option>
+									<option>166cm</option>
+									<option>167cm</option>
+									<option>168cm</option>
+									<option>169cm</option>
+									<option>170cm</option>
+									<option>171cm</option>
+									<option>172cm</option>
+									<option>173cm</option>
+									<option>174cm</option>
+									<option>175cm</option>
+									<option>176cm</option>
+									<option>177cm</option>
+									<option>178cm</option>
+									<option>179cm</option>
+									<option>180cm</option>
+									<option>181cm</option>
+									<option>182cm</option>
+									<option>183cm</option>
+									<option>184cm</option>
+									<option>185cm</option>
+									<option>186cm</option>
+									<option>187cm</option>
+									<option>188cm</option>
+									<option>189cm</option>
+									<option>190cm</option>
+									<option>191cm</option>
+									<option>192cm</option>
+									<option>193cm</option>
+									<option>194cm</option>
+									<option>195cm</option>
+									<option>196cm</option>
+									<option>197cm</option>
+									<option>198cm</option>
+									<option>199cm</option>
+									<option>200cm</option>
+								</select>
+							</div>
+						</td>
+				</tr>
+				<tr>
+					<th>年齢</th>
+						<td class="txt">
+							<div class="cp_ipselect cp_sl02">
+								<select name="age" >
+									<option>選択してください</option>
+									<option>10代前半</option>
+									<option>10代後半</option>
+									<option>20代前半</option>
+									<option>20代後半</option>
+									<option>30代前半</option>
+									<option>30代後半</option>
+									<option>40代前半</option>
+									<option>40代後半</option>
+									<option>50代前半</option>
+									<option>50代後半</option>
+								</select>
+							</div>
+						</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="detailed-information">
+			<table>
+				<tr>
+					<th class="thead" scope="col" colspan="2">自己紹介</th>
+				</tr>
+				<tbody>
+					<tr>
+						<td class="self-introduction" colspan="2">
+							<textarea name="self-introduction" rows="10" cols="82"></textarea>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<!--  変更ボタン -->
+			<div class="complete-btn">
+				<input type="submit" name="submit" id="submit"
+							class="btn btn--submit" value="&emsp;変更を保存&emsp;" />
+			</div>
+		</div>
+      </div>
+    </section>
+
+
+	<!-- Bootstrap core JS-->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+	<!-- Third party plugin JS-->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+	<!-- Contact form JS-->
+	<script src="../static/dist/assets/mail/jqBootstrapValidation.js"
+		th:src="@{/dist/assets/mail/jqBootstrapValidation.js}"></script>
+	<script src="../static/dist/assets/mail/contact_me.js"
+		th:src="@{/dist/assets/mail/contact_me.js}"></script>
+	<!-- Core theme JS-->
+	<script src="../static/dist/js/scripts.js"
+		th:src="@{/dist/js/scripts.js}"></script>
+	<script src="../static/dist/js/hamburger_menu.js"
+		th:src="@{/dist/js/hamburger_menu.js}"></script>
+	<script src="../static/dist/js/accordion.js"
+		th:src="@{/dist/js/accordion.js}"></script>
+</body>
+</html>
