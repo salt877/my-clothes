@@ -257,6 +257,22 @@ public class CoordinateRepository {
 	}
 
 	/**
+	 * ユーザーIDでいいね検索
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	public List<Like> likeListByUserId(Integer userId) {
+		String sql = "SELECT id, coordinate_id, user_id FROM likes WHERE user_id = :userId";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
+
+		List<Like> likeList = template.query(sql, param, LIKE_ROW_MAPPER);
+
+		return likeList;
+
+	}
+
+	/**
 	 * ユーザーIDに紐づくいいねを削除
 	 * 
 	 * @param userId

@@ -72,10 +72,10 @@ public class ShowCoordinateController {
 	 * @return
 	 */
 	@RequestMapping("/public-coordinate")
-	public String showCoordinateList(Model model) {
+	public String showCoordinateList(@AuthenticationPrincipal LoginUser loginUser, Model model) {
 		List<Coordinate> coordinateList = showCoordinateService.showPublicCoordinate();
-		
-		for(Coordinate coodinate : coordinateList) {
+
+		for (Coordinate coodinate : coordinateList) {
 			List<Like> likeList = showCoordinateService.showLikes(coodinate.getId());
 			coodinate.setLikeList(likeList);
 		}

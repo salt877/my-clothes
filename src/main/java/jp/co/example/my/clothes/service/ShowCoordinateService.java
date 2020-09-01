@@ -72,7 +72,18 @@ public class ShowCoordinateService {
 	}
 
 	/**
-	 * いいねを削除します
+	 * 
+	 * ユーザーIDでいいね検索します .
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	public List<Like> likeListByuserId(Integer userId) {
+		return coordinateRepository.likeListByUserId(userId);
+	}
+
+	/**
+	 * いいねを削除します.
 	 * 
 	 * @param userId
 	 */

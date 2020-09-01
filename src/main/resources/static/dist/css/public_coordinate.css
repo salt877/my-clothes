@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+.radio-img:hover {
+	opacity: 0.4;
+}
+
+.radio-img {
+	
+}
+
+.radio {
+	display: none;
+}
+
+.radio+.radio-img {
+	
+}
+
+.radio:checked+.radio-img {
+	color: red;
+}
