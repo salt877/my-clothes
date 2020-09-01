@@ -48,6 +48,7 @@
 
 .name{
 	font-size: 25px;
+	margin: 0 auto;
 }
 
 li .user_id .height .gender .hair{
@@ -62,3 +63,50 @@ li .user_id .height .gender .hair{
 	top: 50px;
 }
 
+/* 480px以下に適用されるCSS（スマホ用） */
+@media screen and (max-width: 480px) {
+	.container{
+		padding: 9em;
+	}
+	
+	.plofile_img{
+		left: 110px;
+		top: 100px;
+	}
+	
+	.user_main{
+		position: absolute;
+		left: 50px;
+		top: 340px;
+	}
+	
+	.name{
+		font-size: 18px;
+		margin: 0 auto;
+		margin-left: 80px;
+	}
+	
+	ul{
+		font-size: 11px;
+	}
+	
+	.self-introduction{
+		font-size: 11px;
+		width: 270px;
+	}
+	
+	.plofile_icon{
+	width:  150px;       /* ※縦横を同値に */
+    height: 150px;       /* ※縦横を同値に */
+    border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
+    background-position: center center;　/* 横長画像の中央を基準に表示 */
+	}
+	
+	.chacge-profile{
+		font-size: 13px;
+	}
+	
+	.btn{
+		    padding: 0.320rem 0.55rem;
+	}
+}
