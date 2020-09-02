@@ -48,7 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //		/showLogin","/showRegisterUser","/forgotPassword","/passwordInputPage
 
 		http.authorizeRequests() // 認可に関する設定
-				.antMatchers("/showLogin","/showRegisterUser","/registerUser","/forgotPassword","/sendInputPage","/passwordInputPage","/passwordInputPage").permitAll()
+				.antMatchers("/showLogin","/showRegisterUser","/registerUser","/forgotPassword","/sendInputPage","/passwordInputPage","/profileEdit").permitAll()
 				.anyRequest().authenticated(); 
 
 		http.formLogin() // ログインに関する設定

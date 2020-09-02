@@ -36,7 +36,7 @@ public class RegisterUserCompleteSendMailService {
 	/**
 	 * ユーザ登録完了後にメールを送信するメソッド.
 	 */
-	public void sendMail(RegisterUserForm form) {
+	public void sendMail(RegisterUserForm form,User insertUser) {
 		// メール情報を詰めるオブジェクト
 		SimpleMailMessage msg = new SimpleMailMessage();
 
@@ -71,6 +71,9 @@ public class RegisterUserCompleteSendMailService {
 		text.append("下記にご登録いただいたメールアドレスとパスワードをお知らせ致します。\n");
 		text.append("URLよりログイン画面にアクセスできますので、ご確認ください。\n\n");
 		text.append("ログイン画面URL：https://myqlo.herokuapp.com/showLogin\n");
+		Integer userId = insertUser.getId();
+		System.out.println("メールに記載されるユーザID"+ userId);
+		text.append("開発用：http://localhost:8080/profileEdit?userId=" + userId + "\n");
 		text.append("メールアドレス：" + user.getEmail() + "\n");
 		text.append("パスワード：" + astaliskPassword + "\n\n");
 		text.append("引き続き、MYQLOをお楽しみください。\n");

@@ -67,6 +67,11 @@
                 		<h2><font size="4" color="grey">さあ、始めましょう！</font></h2>
                 	</div>
                 	<form action="register_user.html" th:action="@{/registerUser}" method="post" th:object="${registerUserForm}">
+                		<div class="form-group">
+                			<b th:if="${#fields.hasErrors('myqloId')}" th:errors="*{myqloId}" class="control-label" style="color: red">MYQLO IDを入力してください</b>
+                			<span id="duplicateMessage" class="control-label" style="color: red"></span>
+                			<input type="text" class="form-control" name="myqloId" id="myqloId" placeholder="MYQLO ID（半角英数字のみ、登録後変更できません）">
+                		</div>
                 		<b th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="control-label" style="color: red">メールアドレスを入力してください</b>
                 		<div class="form-group">
                 			<input type="email" class="form-control" name="email" id="email" th:field="*{email}" placeholder="メールアドレス" value=""/>
@@ -77,7 +82,7 @@
                 			<input type="password" class="form-control" name="password" id="inputPassword" th:field="*{password}" placeholder="パスワード" value=""/>
                              		<div class="show-password" style="color: black">
                              		<input type="checkbox" id="passwordCheck">パスワードを表示する</div>
-										<script>
+										<script>										
 		 									const pwd = document.getElementById('inputPassword');
 		 									const pwdCheck = document.getElementById('passwordCheck');
 		 									pwdCheck.addEventListener('change', function() {
@@ -88,6 +93,7 @@
 		     									}
 		 										}, false);
 		 								</script> 
+		 								
                         </div>
                         	<span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
                          	<b th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}" class="control-label" style="color: red" for="inputError">確認用パスワードを入力してください</b>
@@ -118,5 +124,6 @@
 	<script src="../static/dist/assets/mail/contact_me.js"></script>
 	<!-- Core theme JS-->
 	<script src="../static/dist/js/scripts.js"></script>
-</body>
+   <!--  <script src="../static/dist/js/check_myqloid.js" th:src="@{/dist/js/check_myqloid.js}"></script> -->
+ </body>
 </html>

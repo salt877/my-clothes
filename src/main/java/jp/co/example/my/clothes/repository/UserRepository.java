@@ -2,18 +2,23 @@ package jp.co.example.my.clothes.repository;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import jp.co.example.my.clothes.domain.LoginUser;
 import jp.co.example.my.clothes.domain.PasswordReset;
 import jp.co.example.my.clothes.domain.User;
+import jp.co.example.my.clothes.domain.UserDetail;
 
 /**
  * usersテーブルを操作するリポジトリクラス.
@@ -24,13 +29,9 @@ import jp.co.example.my.clothes.domain.User;
 @Repository
 public class UserRepository {
 
-	private static final RowMapper<User> USER_ROW_MAPPER = (rs, i) -> {
-		User user = new User();
-		user.setId(rs.getInt("id"));
-		user.setEmail(rs.getString("email"));
-		user.setPassword(rs.getString("password"));
-		return user;
-	};
+	private static final RowMapper<User> USER_ROW_MAPPER = new BeanPropertyRowMapper<>(User.class);
+
+	private static final RowMapper<UserDetail> USER_DETAIL_ROW_MAPPER = new BeanPropertyRowMapper<>(UserDetail.class);
 
 	private static final RowMapper<PasswordReset> PASSWORD_RESET_ROWMAPPER = new BeanPropertyRowMapper<>(
 			PasswordReset.class);
@@ -38,6 +39,118 @@ public class UserRepository {
 	@Autowired
 	private NamedParameterJdbcTemplate template;
 
+	private SimpleJdbcInsert insert;
+
+	/**
+	 * 自動採番確認用メソッド.
+	 */
+	@PostConstruct
+	public void init() {
+		SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert((JdbcTemplate) template.getJdbcOperations());
+		SimpleJdbcInsert withtableName = simpleJdbcInsert.withTableName("users");
+		insert = withtableName.usingGeneratedKeyColumns("id");
+
+	}
+
+	/**
+	 * ユーザ情報を挿入し、自動採番されたユーザIDを取得します.
+	 * 
+	 * @param user ユーザ情報
+	 * @return ユーザ情報
+	 */
+	public User save(User user) {
+		SqlParameterSource param = new BeanPropertySqlParameterSource(user);
+
+		if (user.getId() == null) {
+
+			user.setDeleted(false);
+			Number key = insert.executeAndReturnKey(param);
+			user.setId(key.intValue());
+			System.out.println(key + "が割り当てられました");
+		}
+		return user;
+	}
+
+	/**
+	 * ユーザIDから、ユーザ情報をユーザ詳細テーブルと結合して取得します.
+	 * 
+	 * @return ユーザ情報
+	 */
+	public UserDetail findByUserId(Integer userId) {
+		String sql = "SELECT ud.user_id,u.myqlo_id, ud.image_path, ud.user_name, ud.gender, ud.age, ud.height, ud.self_introduction FROM users AS u "
+				+ "LEFT OUTER JOIN user_details AS ud ON u.id = ud.user_id " + "WHERE u.id=:userId";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
+		List<UserDetail> userList = template.query(sql, param, USER_DETAIL_ROW_MAPPER);
+		if (userList.size() == 0) {
+			System.out.println("ユーザリストサイズ:"+userList.size());
+			return null;
+		}
+
+		return userList.get(0);
+	}
+
+	/**
+	 * MYQLO IDを検索し、結果を取得します.
+	 * 
+	 * @param myqloId MYQLO ID
+	 * @return ユーザ情報
+	 */
+	public User findMyqloId(Integer userId) {
+		String sql = "SELECT myqlo_id FROM users WHERE id=:id AND deleted=false";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("id", userId);
+		List<User> userList = template.query(sql, param,USER_ROW_MAPPER);
+		if(userList.size() == 0) {
+			return null;
+		}
+		return userList.get(0);
+	}
+	
+	/**
+	 * ユーザID一つにつき、詳細テーブル列は一つなので列が存在するか調べます.
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	public UserDetail findUserDetailInformation(Integer userId) {
+		String sql = "SELECT id,user_id,user_name,image_path,gender,height,age,self_introduction FROM user_details WHERE user_id=:userId";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
+		System.out.println("findUserDetailInformationメソッド:"+userId);
+		List<UserDetail> userDetailList = template.query(sql, param,USER_DETAIL_ROW_MAPPER);
+		if(userDetailList.size() == 0) {
+			System.out.println("まだ詳細情報を登録していない");
+			return null;
+		}
+		System.out.println("詳細情報を登録している");
+		return userDetailList.get(0);
+	}
+	
+	/**
+	 * user_detailsテーブルにインサート.
+	 * 
+	 * @param user
+	 */
+	public void insertUserDetail(UserDetail userDetail) {
+		SqlParameterSource param = new BeanPropertySqlParameterSource(userDetail);
+		String sql = "INSERT INTO user_details(user_id,image_path,user_name,gender,height,age,self_introduction)VALUES(:userId,:imagePath,:userName,:gender,:height,:age,:selfIntroduction);";
+		template.update(sql, param);
+	}
+	
+	/**
+	 * user_detailsテーブルを更新.
+	 * 
+	 * @param user
+	 */
+	public void updateUserDetail(UserDetail userDetail) {
+		SqlParameterSource param = new BeanPropertySqlParameterSource(userDetail);
+		StringBuilder sql = new StringBuilder();
+		sql.append("UPDATE user_details SET ");
+		sql.append("image_path=:imagePath, user_name=:userName, gender=:gender, height=:height, ");
+		sql.append("age=:age, self_introduction=:selfIntroduction ");
+		sql.append("WHERE id=:id");
+		template.update(sql.toString(), param);
+	}
+	
+	
 	/**
 	 * ユーザ情報を挿入します.
 	 * 
@@ -45,7 +158,7 @@ public class UserRepository {
 	 */
 	public void insert(User user) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(user);
-		String sql = "INSERT INTO users(email,password)VALUES(:email,:password)";
+		String sql = "INSERT INTO users(myqlo_id,email,password)VALUES(:myqloId,:email,:password)";
 		template.update(sql, param);
 	}
 
@@ -97,7 +210,7 @@ public class UserRepository {
 	 * ユーザIDからユーザを検索します.
 	 * 
 	 * @param userId ユーザID
-	 * @return　ユーザ情報
+	 * @return ユーザ情報
 	 */
 	public User findUserByUserId(Integer userId) {
 		String sql = "SELECT id,email,password FROM users WHERE id=:id AND deleted='false'";
@@ -116,8 +229,7 @@ public class UserRepository {
 	 */
 	public void updateUserPassword(Integer userId, String password) {
 		String sql = "UPDATE users SET password=:password WHERE id=:id AND deleted='false'";
-		SqlParameterSource param = new MapSqlParameterSource().addValue("password", password).addValue("id",
-				userId);
+		SqlParameterSource param = new MapSqlParameterSource().addValue("password", password).addValue("id", userId);
 		template.update(sql, param);
 	}
 
