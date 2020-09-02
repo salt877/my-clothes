@@ -146,7 +146,7 @@ public class Coordinate {
 		this.name = name;
 	}
 
-	public boolean isPublic() {
+	public boolean getIsPublic() {
 		return isPublic;
 	}
 

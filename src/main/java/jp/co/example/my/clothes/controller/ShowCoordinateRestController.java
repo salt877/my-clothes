@@ -65,38 +65,27 @@ public class ShowCoordinateRestController {
 	}
 
 	/**
-	 * コーデIDに紐づくいいねをJSON形式でリターン.
+	 * ユーザーIDに紐づくいいねをJSON形式でリターン.
 	 * 
 	 * @param coordinateId コーデID
 	 * @return
 	 */
 	@RequestMapping(value = "/show_likes", method = RequestMethod.GET)
-	public Map<String, List<Like>> likeMap(@AuthenticationPrincipal LoginUser loginUser, Integer coordinateId) {
+	public Map<String, List<Like>> likeMap(@AuthenticationPrincipal LoginUser loginUser) {
 		Map<String, List<Like>> LikeMap = new HashMap<>();
+		int userId = loginUser.getUser().getId();
+
+		List<Like> likeListByUserId = showCoodinateService.likeListByuserId(userId);
 		
-		List<Like> likeListByCoordinateId = showCoodinateService.showLikes(coordinateId);
-		
-		if(likeListByCoordinateId.size() == 0) {
-			LikeMap.put("likeMap", Collections.emptyList());
-			
+		if (likeListByUserId.size() == 0) {
+			LikeMap.put("likeList", Collections.emptyList());
+
+		} else {
+			LikeMap.put("likeList", likeListByUserId);
+
 		}
-		
-		List<Like> likeListByUserId = new ArrayList<>();
-		
-		for(Like like : likeListByCoordinateId) {
-			if(like.getUserId() == loginUser.getUser().getId()) {
-				likeListByUserId.add(like);
-			}
-		}
-		
-		if(likeListByUserId.size() == 0) {
-			LikeMap.put("likeMap", Collections.emptyList());
-		}
-		
-		LikeMap.put("likeMap", likeListByUserId);
-		
+
 		return LikeMap;
-			
 
 	}
 
@@ -110,7 +99,7 @@ public class ShowCoordinateRestController {
 		Like like = new Like();
 		like.setCoordinateId(coordinateId);
 		like.setUserId(loginUser.getUser().getId());
-				
+
 		showCoodinateService.like(like);
 
 		Map<String, Integer> likeMap = new HashMap<>();

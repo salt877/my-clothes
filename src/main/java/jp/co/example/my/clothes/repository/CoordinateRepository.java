@@ -263,7 +263,7 @@ public class CoordinateRepository {
 	 * @return
 	 */
 	public List<Like> likeListByUserId(Integer userId) {
-		String sql = "SELECT id, coordinate_id, user_id FROM likes WHERE user_id = :userId";
+		String sql = "SELECT id, coordinate_id, user_id FROM likes WHERE user_id = :userId ORDER BY coordinate_id";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
 
 		List<Like> likeList = template.query(sql, param, LIKE_ROW_MAPPER);
@@ -297,6 +297,21 @@ public class CoordinateRepository {
 		List<Like> likeList = template.query(sql, param, LIKE_ROW_MAPPER);
 
 		return likeList;
+
+	}
+
+	public Like load(Integer coordinateId, Integer userId) {
+		String sql = "SELECT id, coordinate_id, user_id FROM likes WHERE coordinate_id = :coordinateId AND userId = :userId";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("coordinateId", coordinateId).addValue("userId",
+				userId);
+
+		List<Like> likeList = template.query(sql, param, LIKE_ROW_MAPPER);
+
+		if (likeList.size() == 0) {
+			return null;
+		}
+
+		return likeList.get(0);
 
 	}
 

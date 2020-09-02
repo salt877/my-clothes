@@ -101,4 +101,8 @@ public class ShowCoordinateService {
 		return coordinateRepository.findLikes(coordinateId);
 	}
 
+	public Like confirmLike(Integer coordinateId, Integer userId) {
+		return coordinateRepository.load(coordinateId, userId);
+	}
+
 }
