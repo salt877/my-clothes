@@ -27,13 +27,16 @@
 	th:href="@{/dist/css/past-coordinate.css}">
 <link rel="stylesheet" href="../static/dist/css/public_coordinate.css"
 	th:href="@{/dist/css/public_coordinate.css}">
+<link href="../static/dist/css/loading.css" rel="stylesheet"
+	th:href="@{/dist/css/loading.css}" />
 
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="../static/dist/css/styles.css"
 	th:href="@{/dist/css/styles.css}" rel="stylesheet" />
-<script src="../static/lib/main.js" th:src="@{/lib/main.js}"></script>
+
 </head>
 <body>
+	
 
 	<!-- Navigation-->
 	<div id="navArea">
@@ -243,6 +246,7 @@
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 
+	<script src="../static/lib/main.js" th:src="@{/lib/main.js}"></script>
 
 	<!-- Contact form JS-->
 	<script src="../static/dist/assets/mail/jqBootstrapValidation.js"
@@ -264,6 +268,10 @@
 	<script type="text/javascript"
 		src="../static/dist/js/public_coordinate.js"
 		th:src="@{/dist/js/public_coordinate.js}"></script>
+
+	<!-- loading -->
+	<script src="../static/dist/js/loading.js"
+		th:src="@{/dist/js/loading.js}"></script>
 
 
 </body>

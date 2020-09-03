@@ -11,6 +11,9 @@ public class User {
 	/** ユーザID */
 	private Integer id;
 
+	/** MYQLO ID */
+	private String myqloId;
+
 	/** メールアドレス */
 	private String email;
 
@@ -26,6 +29,14 @@ public class User {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getMyqloId() {
+		return myqloId;
+	}
+
+	public void setMyqloId(String myqloId) {
+		this.myqloId = myqloId;
 	}
 
 	public String getEmail() {
@@ -54,7 +65,8 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", email=" + email + ", password=" + password + ", deleted=" + deleted + "]";
+		return "User [id=" + id + ", myqloId=" + myqloId + ", email=" + email + ", password=" + password + ", deleted="
+				+ deleted + "]";
 	}
 
 }

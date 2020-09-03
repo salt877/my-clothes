@@ -83,12 +83,12 @@ public class ShowCoordinateService {
 	}
 
 	/**
-	 * いいねを削除します.
+	 * コーデIDとユーザーIDに紐づくいいねを削除します.
 	 * 
 	 * @param userId
 	 */
-	public void deleteLike(Integer userId) {
-		coordinateRepository.delete(userId);
+	public void deleteLike(Integer coordinateId, Integer userId) {
+		coordinateRepository.delete(coordinateId, userId);
 	}
 
 	/**

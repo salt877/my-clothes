@@ -273,13 +273,13 @@ public class CoordinateRepository {
 	}
 
 	/**
-	 * ユーザーIDに紐づくいいねを削除
+	 * ユーザーIDとコーデIDに紐づくいいねを削除
 	 * 
 	 * @param userId
 	 */
-	public void delete(Integer userId) {
-		String sql = "DELETE FROM likes WHERE user_id = :userId";
-		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
+	public void delete(Integer coordinateId, Integer userId) {
+		String sql = "DELETE FROM likes WHERE coordinate_id = :coordinateId AND user_id = :userId";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("coordinateId", coordinateId).addValue("userId", userId);
 		template.update(sql, param);
 	}
 

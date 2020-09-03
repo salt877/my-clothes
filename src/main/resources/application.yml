@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-#myqlo
+##myqlo
 #    url: jdbc:postgresql://ec2-54-156-121-142.compute-1.amazonaws.com/dueibdn4a3aq0?sslmode=require
 #    username: lmicnyxioaregd
 #    password: d5b51cc4067a4323ccd3d6a524730895af85675edc2521fb17aca67d2d4e1161
@@ -16,7 +16,6 @@ spring:
     url: jdbc:postgresql://localhost:5432/my-clothes
     username: postgres
     password: postgres
-
 
   mail:
     host: smtp.gmail.com

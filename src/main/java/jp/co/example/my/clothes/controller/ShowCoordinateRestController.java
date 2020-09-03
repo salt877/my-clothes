@@ -77,6 +77,10 @@ public class ShowCoordinateRestController {
 
 		List<Like> likeListByUserId = showCoodinateService.likeListByuserId(userId);
 		
+		for(Like like: likeListByUserId) {
+			System.out.println("このユーザーがいいねしているコーデID:" + like.getCoordinateId());
+		}
+		
 		if (likeListByUserId.size() == 0) {
 			LikeMap.put("likeList", Collections.emptyList());
 
@@ -120,7 +124,7 @@ public class ShowCoordinateRestController {
 	 */
 	@RequestMapping(value = "/deleteLike", method = RequestMethod.GET)
 	public Map<String, Integer> deleteLike(@AuthenticationPrincipal LoginUser loginUser, Integer coordinateId) {
-		showCoodinateService.deleteLike(loginUser.getUser().getId());
+		showCoodinateService.deleteLike(coordinateId, loginUser.getUser().getId());
 
 		Map<String, Integer> likeMap = new HashMap<>();
 		Integer likes = showCoodinateService.showLikes(coordinateId).size();

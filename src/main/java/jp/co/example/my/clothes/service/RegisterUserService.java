@@ -36,7 +36,9 @@ public class RegisterUserService {
 		// パスワードのハッシュ化
 		String encodePassword = passwordEncoder.encode(user.getPassword());
 		user.setPassword(encodePassword);
-		userRepository.insert(user);
+		System.out.println("サービスでインサート行う前のユーザID:" + user.getId());
+		userRepository.save(user);
+		System.out.println("サービスでインサート行ったあとのユーザID:" + user.getId());
 	}
 
 	/**

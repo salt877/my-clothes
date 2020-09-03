@@ -88,8 +88,9 @@ public class RegisterUserController {
 		registerUserService.registerUser(user);
 
 		// メールを送信する
-		sendMailService.sendMail(form);
+		sendMailService.sendMail(form, user);
 
 		return "complete_register";
 	}
+
 }

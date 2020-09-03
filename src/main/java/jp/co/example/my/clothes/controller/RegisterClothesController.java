@@ -87,28 +87,10 @@ public class RegisterClothesController {
 	 */
 	@GetMapping("/showRegisterClothesByCalendar")
 	public String showRegisterClothesByCalendar(Model model, @AuthenticationPrincipal LoginUser loginUser,String perchaseDate,RegisterClothesForm form) {
-		// カテゴリの選択肢一覧を取得
-		List<Category> categoryList = registerClothesService.showCategoryList();
-		model.addAttribute("categoryList", categoryList);
-		// カラーの選択肢一覧を取得
-		List<Color> colorList = registerClothesService.showColorList();
-		model.addAttribute("colorList", colorList);
-		// サイズの選択し一覧を表示
-		List<Size> sizeList = registerClothesService.showSizeList();
-		model.addAttribute("sizeList", sizeList);
-
-		// ブランドのオートコンプリート機能
-		StringBuilder brandListForAutocomplete = registerClothesService.getBrandListForAutoconplete();
-		model.addAttribute("brandListForAutocomplete", brandListForAutocomplete);
-
-		// タグのオートコンプリート機能.
-		StringBuilder tagContentListForAutocomplete = registerClothesService
-				.getTagContentListForAutoconplete(loginUser.getUser().getId());
-		model.addAttribute("tagContentsListForAutocomplete", tagContentListForAutocomplete);
 		
-		return "register_clothes";
+		return showRegisterClothes(model, loginUser);
 	}
-
+	
 	/**
 	 * 入力された情報を受け取りアイテム登録を行う.
 	 * 

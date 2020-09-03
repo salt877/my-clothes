@@ -4,6 +4,7 @@
 
 $(function() {
 
+	//ブラウザ読み込み時のいいねチェック
 	$.ajax({
 		url : "/show_likes",
 		type : "GET",
@@ -11,16 +12,15 @@ $(function() {
 
 	// 通信成功時の処理
 	}).done(function(data) {
+		//ログインユーザーIDとコーデIDでいいねの検索をかけ、各公開コーデにそのログインユーザーがいいねしていたら、ページの初期表示（いいねの色・ラジオボタンのチェック）を設定
 		for(var like of data.likeList){
 			$('.radio').each(function(i, o) {
 				if(like.coordinateId == $(o).val()){
-					$(this).next('.radio-img').addClass('checked');
-					$(this).next('.radio-img').css('color', 'red');
+					$(this).next('.radio-img').addClass('checked').css('color', 'red');
 					$(this).prop('checked', true);
 					
 				}
-			});			
-			
+			});						
 		}
 
 	}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
@@ -31,10 +31,13 @@ $(function() {
 
 	});
 
+	//いいねされた時（ラジオボタンがチェックされた時）の処理
 	$('input:radio[name="radio"]').on('click', function() {
 		var coordinateId = $(this).attr('id');
 		var $likes = $(this).next('.radio-img').next('.counts');
 
+		//すでにいいねされていた時の処理（ラジオボタンがチェックされていた時の処理）
+		//いいね削除
 		if ($(this).next().hasClass('checked')) {
 
 			$.ajax({
@@ -62,6 +65,8 @@ $(function() {
 			$(this).next('.radio-img').css('color', 'black');
 			$(this).prop('checked', false);
 
+		//いいねしていないときの処理
+		//いいねする
 		} else {
 
 			$.ajax({
@@ -86,8 +91,7 @@ $(function() {
 			});
 
 			$(this).parent().find('.radio-img.checked').removeClass('checked');
-			$(this).next('.radio-img').addClass('checked');
-			$(this).next('.radio-img').css('color', 'red');
+			$(this).next('.radio-img').addClass('checked').css('color', 'red');
 			$(this).prop('checked', true);
 
 		}

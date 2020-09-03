@@ -48,7 +48,18 @@
 	        dateClick: function(info) {
 	        	
 	        	 	var date = info.dateStr;
-	        	    
+	        	 	
+	        	 	var today = new Date();
+	        	 	var year = today.getFullYear();
+	        	 	var month = ("00" + (today.getMonth()+1)).slice(-2);
+	        	 	var day = ("00" + today.getDate()).slice(-2);
+	        	 	var todayFormat = year + '-' + month +　'-' + day;
+	        	 	var maxDate = todayFormat;
+	        	 	
+	        	 	if(maxDate < date){
+	        	 		return false;
+	        	 	} 
+	        	 	
 	        			$.ajax({
 	        				type:'GET',
 	        				url: "/registerClothes/showRegisterClothesByCalendar",
@@ -82,9 +93,14 @@
 	                alert("Clicked " + eventObj.title);
 	              }	        	
 	        }
+	       
+	       
+	        	 
 	      });
+	    
 	      calendar.render();
 	    });
+	
 </script>
 <style>
 a {
@@ -101,10 +117,11 @@ body {
 	max-width: 1100px;
 	margin: 0 auto;
 }
-/* a.fc-daygrid-day-number {
+
+ .fc-day-future a.fc-daygrid-day-number {
 	pointer-events: none;
-}
- */
+}  
+
 .fc-day-other .fc-daygrid-event-harness{
 	 display: none; 
 }
@@ -112,6 +129,7 @@ body {
     text-align: center;
     background-color: #EEEEEE;
 }
+
 </style>
 </head>
 <body>

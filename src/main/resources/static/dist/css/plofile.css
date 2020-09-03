@@ -1,0 +1,140 @@
+@charset "UTF-8";
+
+h1{
+	font-size: 30px;
+	margin-top: 20px;
+}
+
+#heading{
+	padding-bottom: 50px;	
+}
+
+.username{
+	color: #000000;
+}
+
+table {
+	border-collapse: collapse;
+	margin: 0 auto;
+	padding: 0;
+	width: 650px;
+	table-layout: fixed;
+	color: #FF9900;
+}
+
+.thead{
+	color: #ff9900;
+	border-bottom: none;
+}
+
+table tr {
+	background-color: #fff;
+	padding: .35em;
+	border-bottom: 1px dotted #bbb;
+}
+
+table tr:last-child {
+	border-bottom: 2px solid #bbb;
+}
+
+table th, table td {
+	padding: 1em 10px 1em 1em;
+}
+
+tbody th {
+	color: black;
+}
+
+.txt {
+	text-align: left;
+	font-size: .85em;
+}
+
+textarea {
+    text-align: left;
+	font-size: .85em;
+}
+
+.complete-btn{
+	text-align:  center; 
+	margin-top: 20px;
+}
+
+.plofile_icon{
+	width:  280px;       /* ※縦横を同値に */
+    height: 280px;       /* ※縦横を同値に */
+    border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
+    background-position: center center;　/* 横長画像の中央を基準に表示 */
+}
+
+.file_button {
+  display: inline-block;
+  position: relative;
+  padding: 0.6em 2em;
+  text-align: center;
+  color: #fff;
+  border-radius: 4px;
+  background-color: #2772DB;
+  overflow: hidden;
+  -webkit-transition: .3s ease;
+  -moz-transition: .3s ease;
+  -o-transition: .3s ease;
+  transition: .3s ease;
+}
+
+.file_button:hover {
+	background-color: #2062BF;
+}
+
+.file_input {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	cursor: pointer;
+}
+
+.imag-icon{
+	position: relative;
+	top: -40px;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+/* 480px以下に適用されるCSS（スマホ用） */
+@media screen and (max-width: 480px) {
+	#heading{
+		padding-bottom: 15px;	
+	}
+	
+	h1{
+		width: 200px;
+		font-size: 25px;
+		margin-top: 5px;
+		margin-left: 60px;
+	}
+	
+	.plofile_icon{
+		width:  180px;       /* ※縦横を同値に */
+  	  	height: 180px;       /* ※縦横を同値に */
+   	    border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
+    	background-position: center center;　/* 横長画像の中央を基準に表示 */
+	}
+	
+	.file_button {
+  		padding: 0.3em 1em;
+	}
+	
+	textarea {
+    	text-align: left;
+		font-size: .85em;
+		width: 100px;
+	}
+
+	tbody tr{
+		height: 100px;
+	}	
+	
+}
