@@ -18,9 +18,9 @@ public class PastCoordinateRestController {
 	@Autowired
 	private ShowCoordinateService showCoordinateService;
 
-	@RequestMapping(value = "/culc_coordinate_price", method = RequestMethod.GET)
-	public Map<String, Integer> culcCoordinatePrice(Integer coordinateId) {
-		Coordinate coordinate = showCoordinateService.showCoordinateDetail(coordinateId);
+	@RequestMapping(value = "/culc_pastcoordinate_price", method = RequestMethod.GET)
+	public Map<String, Integer> culcCoordinatePriceForPast(Integer coordinateId) {
+		Coordinate coordinate = showCoordinateService.showCoordinateDetailForPastCoordinate(coordinateId);
 
 		int totalPrice = 0;
 
@@ -34,5 +34,24 @@ public class PastCoordinateRestController {
 		return priceMap;
 
 	}
+	
+	@RequestMapping(value = "/culc_publiccoordinate_price", method = RequestMethod.GET)
+	public Map<String, Integer> culcCoordinatePriceForPublic(Integer coordinateId) {
+		Coordinate coordinate = showCoordinateService.showCoordinateDetailForPublicCoordinate(coordinateId);
+
+		int totalPrice = 0;
+
+		for (Clothes clothes : coordinate.getClothesList()) {
+			totalPrice += clothes.getPrice();
+		}
+
+		Map<String, Integer> priceMap = new HashMap<>();
+		priceMap.put("totalPrice", totalPrice);
+
+		return priceMap;
+
+	}
+	
+	
 
 }

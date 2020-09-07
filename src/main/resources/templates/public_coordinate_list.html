@@ -36,7 +36,9 @@
 
 </head>
 <body>
-	
+	<div class="loader-wrap">
+		<div class="loader">Loading...</div>
+	</div>
 
 	<!-- Navigation-->
 	<div id="navArea">
@@ -119,7 +121,7 @@
 
 							<div class="coordinate-detail-btn">
 								<span>
-									<button type="button" class="btn btn-primary detail-btn"
+									<button type="button" class="btn btn-primary pu_detail-btn"
 										th:value="${coordinate.id}" data-toggle="modal"
 										data-target="#coordinate-modal"
 										th:attr="data-target='#coordinate-modal'+${coordinate.id}">

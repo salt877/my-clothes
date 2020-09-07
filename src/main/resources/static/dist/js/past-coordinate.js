@@ -3,6 +3,32 @@
  */
 $(function() {
 
+	$.ajax({
+		url : "/find_coordinate",
+		type : "GET",
+		async : true
+
+	// 通信成功時の処理
+	}).done(function(data) {
+		
+		$('.checkbox').each(function(i, o){
+			for(var coordinate of data.coordinateListByUserId){
+				if($(o).val() == coordinate.id && coordinate.isPublic == true){
+					$(this).prop('checked', true);
+			}
+		}
+			
+		});
+		
+
+	}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
+		alert("エラーが発生しました。");
+		console.log("XMLHttpRequest:" + XMLHttpRequest.status);
+		console.log("textStatus:" + textStatus);
+		console.log("errorThrown" + errorThrown.message);
+
+	});
+
 	// listの個数を取得しておく
 	var listContents = $("#past-coordinate-list .past-coordinates").length;
 	$("#past-coordinate-list").each(
@@ -55,10 +81,10 @@ $(function() {
 
 	// 詳細ボタンクリックイベント
 	$('.detail-btn').on('click', function() {
-		var coordinateId = $(this).val();
+		let coordinateId = $(this).val();
 
 		$.ajax({
-			url : "/culc_coordinate_price",
+			url : "/culc_pastcoordinate_price",
 			type : "GET",
 			data : {
 				coordinateId : coordinateId
@@ -77,7 +103,39 @@ $(function() {
 			console.log("errorThrown" + errorThrown.message);
 
 		});
+		
+		$('.checkbox').off('click').on('click', function(){
+			let isPublic = $(this).prop('checked');
+			alert("コーデID:" + coordinateId);
+			alert(isPublic + 'に変わる');
+			
+			$.ajax({
+				url : "/update_isPublic",
+				type : "GET",
+				data : {
+					coordinateId : coordinateId,
+					isPublic : isPublic
+				},
+				async : true
+
+				// 通信成功時の処理
+				}).done(function() {
+					alert("公開情報を変更しました。");
+					
+
+				}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
+					alert("エラーが発生しました。");
+					console.log("XMLHttpRequest:" + XMLHttpRequest.status);
+	 				console.log("textStatus:" + textStatus);
+	 				console.log("errorThrown" + errorThrown.message);
+
+				});		
+			
+	 });
 
 	});
+	
+
+	
 
 });

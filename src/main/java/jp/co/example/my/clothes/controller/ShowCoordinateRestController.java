@@ -76,11 +76,7 @@ public class ShowCoordinateRestController {
 		int userId = loginUser.getUser().getId();
 
 		List<Like> likeListByUserId = showCoodinateService.likeListByuserId(userId);
-		
-		for(Like like: likeListByUserId) {
-			System.out.println("このユーザーがいいねしているコーデID:" + like.getCoordinateId());
-		}
-		
+
 		if (likeListByUserId.size() == 0) {
 			LikeMap.put("likeList", Collections.emptyList());
 
@@ -133,6 +129,32 @@ public class ShowCoordinateRestController {
 
 		return likeMap;
 
+	}
+
+	/**
+	 * ユーザーIDでコーデ検索
+	 * 
+	 * @param loginUser ログイン情報
+	 * @return
+	 */
+	@RequestMapping(value = "/find_coordinate", method = RequestMethod.GET)
+	public Map<String, List<Coordinate>> findCoordinateByUserId(@AuthenticationPrincipal LoginUser loginUser) {
+		Map<String, List<Coordinate>> coordinateMapByUserId = new HashMap<>();
+
+		List<Coordinate> coordinateListByUserId = showCoodinateService.showCoordinate(loginUser.getUser().getId());
+
+		coordinateMapByUserId.put("coordinateListByUserId", coordinateListByUserId);
+
+		return coordinateMapByUserId;
+
+	}
+	
+	@RequestMapping(value = "/update_isPublic", method = RequestMethod.GET)
+	public void updateIsPublic(Integer coordinateId, boolean isPublic) {
+		
+		showCoodinateService.updateIsPublic(coordinateId, isPublic);
+		
+		
 	}
 
 }

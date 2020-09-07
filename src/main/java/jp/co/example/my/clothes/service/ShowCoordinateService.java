@@ -53,13 +53,33 @@ public class ShowCoordinateService {
 	}
 
 	/**
-	 * コーディネートIDで１件検索結果を表示します.
+	 * コーディネートIDで１件検索結果を過去コーデに表示します.
 	 * 
 	 * @param coordinateId コーデID
 	 * @return
 	 */
-	public Coordinate showCoordinateDetail(Integer coordinateId) {
-		return coordinateRepository.load(coordinateId);
+	public Coordinate showCoordinateDetailForPastCoordinate(Integer coordinateId) {
+		return coordinateRepository.loadForPastCoordinate(coordinateId);
+	}
+
+	/**
+	 * コーディネートIDで１件検索結果を公開コーデに表示します.
+	 * 
+	 * @param coordinateId コーデID
+	 * @return
+	 */
+	public Coordinate showCoordinateDetailForPublicCoordinate(Integer coordinateId) {
+		return coordinateRepository.loadForPublicCoordinate(coordinateId);
+	}
+
+	/**
+	 * 公開コーデ情報を更新します.
+	 * 
+	 * @param coordinateId コーデID
+	 * @param isPublic     公開フラグ
+	 */
+	public void updateIsPublic(Integer coordinateId, boolean isPublic) {
+		coordinateRepository.updateIsPublic(coordinateId, isPublic);
 	}
 
 	/**

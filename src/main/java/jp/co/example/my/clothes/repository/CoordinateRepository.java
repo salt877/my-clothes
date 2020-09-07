@@ -38,7 +38,6 @@ public class CoordinateRepository {
 	private static final ResultSetExtractor<List<Coordinate>> COORDINATE_RESULT_SET_EXTRACTOR = (rs) -> {
 		List<Coordinate> coordinateList = new ArrayList<>();
 		List<Clothes> clothesList = new ArrayList<>();
-		Like like = new Like();
 		Coordinate coordinate = new Coordinate();
 
 		int checkCoId = 0;
@@ -172,6 +171,45 @@ public class CoordinateRepository {
 		return coordinateList;
 
 	}
+	
+	/**
+	 * コーディネートIDでコーディネートを１件検索します.
+	 * 
+	 * @param coordinateId コーデID
+	 * @return
+	 */
+	public Coordinate loadForPastCoordinate(Integer coordinateId) {
+		StringBuilder sql = new StringBuilder();
+		sql.append(
+				"SELECT co.id co_id, co.user_id co_user_id, co.fashion_accessories co_fashion_accessories, co.tops1 co_tops1, co.tops2 co_tops2, ");
+		sql.append(
+				"co.outers co_outers, co.bottoms co_bottoms, co.shoes co_shoes, co.bag co_bag, co.dress co_dress, co.deleted co_deleted, co.name co_name, co.is_public co_is_public, b.id b_id, b.name b_name, ");
+		sql.append(
+				"cl.id cl_id, cl.user_id cl_user_id, cl.category_id cl_category_id, cl.brand_id cl_brand_id, cl.color_id cl_color_id, cl.season cl_season, cl.image_path cl_image_path, ");
+		sql.append(
+				"cl.perchase_date cl_perchase_date, cl.price cl_price, cl.size_id cl_size_id, cl.comment cl_comment, cl.deleted cl_deleted, ");
+		sql.append("ca.id ca_id, ca.name ca_name, b.id b_id, b.name b_name ");
+		sql.append("FROM coordinates co LEFT OUTER JOIN clothes cl ");
+		sql.append(
+				"ON co.fashion_accessories  = cl.id OR co.tops1 = cl.id OR co.tops2 = cl.id OR co.outers = cl.id OR co.bottoms = cl.id OR co.shoes = cl.id OR co.bag = cl.id OR co.dress = cl.id ");
+		sql.append("LEFT OUTER JOIN categories ca ON cl.category_id = ca.id ");
+		sql.append("LEFT OUTER JOIN brands b ON cl.brand_id = b.id ");
+		sql.append("WHERE co.id = :coordinateId AND co.deleted = 'FALSE' ");
+		sql.append("ORDER BY co.id, cl.category_id");
+
+		SqlParameterSource param = new MapSqlParameterSource().addValue("coordinateId", coordinateId);
+		List<Coordinate> coordinateList = template.query(sql.toString(), param, COORDINATE_RESULT_SET_EXTRACTOR);
+
+		if (coordinateList.size() == 0) {
+			return null;
+		}
+
+		return coordinateList.get(0);
+
+	}
+	
+	
+	
 
 	/**
 	 * コーディネートIDでコーディネートを１件検索します.
@@ -179,7 +217,7 @@ public class CoordinateRepository {
 	 * @param coordinateId コーデID
 	 * @return
 	 */
-	public Coordinate load(Integer coordinateId) {
+	public Coordinate loadForPublicCoordinate(Integer coordinateId) {
 		StringBuilder sql = new StringBuilder();
 		sql.append(
 				"SELECT co.id co_id, co.user_id co_user_id, co.fashion_accessories co_fashion_accessories, co.tops1 co_tops1, co.tops2 co_tops2, ");
@@ -279,7 +317,8 @@ public class CoordinateRepository {
 	 */
 	public void delete(Integer coordinateId, Integer userId) {
 		String sql = "DELETE FROM likes WHERE coordinate_id = :coordinateId AND user_id = :userId";
-		SqlParameterSource param = new MapSqlParameterSource().addValue("coordinateId", coordinateId).addValue("userId", userId);
+		SqlParameterSource param = new MapSqlParameterSource().addValue("coordinateId", coordinateId).addValue("userId",
+				userId);
 		template.update(sql, param);
 	}
 
@@ -312,6 +351,20 @@ public class CoordinateRepository {
 		}
 
 		return likeList.get(0);
+
+	}
+
+	/**
+	 * 公開情報を更新します.
+	 * 
+	 * @param coordinateId　コーデID
+	 * @param isPublic　公開フラグ
+	 */
+	public void updateIsPublic(Integer coordinateId, boolean isPublic) {
+		String sql = "UPDATE coordinates SET is_public = :isPublic WHERE id = :coordinateId";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("isPublic", isPublic).addValue("coordinateId",
+				coordinateId);
+		template.update(sql, param);
 
 	}
 
