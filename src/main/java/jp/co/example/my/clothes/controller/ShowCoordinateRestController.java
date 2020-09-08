@@ -148,13 +148,18 @@ public class ShowCoordinateRestController {
 		return coordinateMapByUserId;
 
 	}
-	
+
+	/**
+	 * 公開情報を更新します.
+	 * 
+	 * @param coordinateId　コーデID
+	 * @param isPublic　公開フラグ
+	 */
 	@RequestMapping(value = "/update_isPublic", method = RequestMethod.GET)
 	public void updateIsPublic(Integer coordinateId, boolean isPublic) {
-		
+
 		showCoodinateService.updateIsPublic(coordinateId, isPublic);
-		
-		
+
 	}
 
 }

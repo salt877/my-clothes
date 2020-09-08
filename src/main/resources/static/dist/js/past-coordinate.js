@@ -81,7 +81,7 @@ $(function() {
 
 	// 詳細ボタンクリックイベント
 	$('.detail-btn').on('click', function() {
-		let coordinateId = $(this).val();
+		var coordinateId = $(this).val();
 
 		$.ajax({
 			url : "/culc_pastcoordinate_price",
@@ -104,7 +104,8 @@ $(function() {
 
 		});
 		
-		$('.checkbox').off('click').on('click', function(){
+		$('.checkbox').off('change').on('change', function(){
+			alert("クリック");
 			let isPublic = $(this).prop('checked');
 			alert("コーデID:" + coordinateId);
 			alert(isPublic + 'に変わる');
@@ -132,8 +133,8 @@ $(function() {
 				});		
 			
 	 });
-
 	});
+
 	
 
 	

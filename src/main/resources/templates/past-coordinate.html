@@ -181,10 +181,10 @@
 												<!-- モーダル内フッター -->
 												<div class="modal-footer">
 													<div class="item-frame">
-														<input type='checkbox' id='is_public' class="checkbox"
+														<input type='checkbox' th:id='${coordinate.id}' class="checkbox"
 															name="isPublic" th:value="${coordinate.id}"> <label
-															class="switch" for='is_public'></label> <label
-															class="text" for='is_public'>このコーデを公開する</label>
+															class="switch" th:for='${coordinate.id}'></label> <label
+															class="text" th:for='${coordinate.id}'>このコーデを公開する</label>
 													</div>
 													<span>
 														<button type="button" class="btn btn-primary delete-btn"
