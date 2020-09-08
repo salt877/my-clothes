@@ -3,6 +3,8 @@
  */
 $(function() {
 
+	// ページ読み込み時にユーザーIDでコーデ検索し、公開フラグチェック
+	// トグルボタンに埋め込まれたコーデIDと一致したコーデの公開フラグがtrueであればチェックを入れる
 	$.ajax({
 		url : "/find_coordinate",
 		type : "GET",
@@ -15,8 +17,14 @@ $(function() {
 			for(var coordinate of data.coordinateListByUserId){
 				if($(o).val() == coordinate.id && coordinate.isPublic == true){
 					$(this).prop('checked', true);
+					$(this).parent().find('.text').css('color', '#000000');
+				}
+				
+				if($(o).val() == coordinate.id && coordinate.isPublic == false){
+					$(this).prop('checked', false);
+					$(this).parent().find('.text').css('color', '#AAAAAA');
+				}
 			}
-		}
 			
 		});
 		
@@ -29,6 +37,7 @@ $(function() {
 
 	});
 
+	// もっと見る設定
 	// listの個数を取得しておく
 	var listContents = $("#past-coordinate-list .past-coordinates").length;
 	$("#past-coordinate-list").each(
@@ -83,6 +92,7 @@ $(function() {
 	$('.detail-btn').on('click', function() {
 		var coordinateId = $(this).val();
 
+		// コーデ合計金額計算処理
 		$.ajax({
 			url : "/culc_pastcoordinate_price",
 			type : "GET",
@@ -104,12 +114,12 @@ $(function() {
 
 		});
 		
+		// 公開設定
 		$('.checkbox').off('change').on('change', function(){
-			alert("クリック");
+			var checkbox = $(this);
 			let isPublic = $(this).prop('checked');
-			alert("コーデID:" + coordinateId);
-			alert(isPublic + 'に変わる');
 			
+			// 公開設定の更新処理
 			$.ajax({
 				url : "/update_isPublic",
 				type : "GET",
@@ -121,8 +131,13 @@ $(function() {
 
 				// 通信成功時の処理
 				}).done(function() {
-					alert("公開情報を変更しました。");
 					
+					if(isPublic){
+						$(checkbox).parent().find('.text').css('color', '#000000');
+						
+					}else{
+						$(checkbox).parent().find('.text').css('color', '#AAAAAA');
+					}
 
 				}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
 					alert("エラーが発生しました。");
@@ -131,12 +146,6 @@ $(function() {
 	 				console.log("errorThrown" + errorThrown.message);
 
 				});		
-			
-	 });
+		});
 	});
-
-	
-
-	
-
 });
