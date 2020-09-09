@@ -80,10 +80,7 @@ public class ShowCoordinateController {
 			coodinate.setLikeList(likeList);
 		}
 
-		Integer count = coordinateList.size();
-
 		model.addAttribute("coordinateList", coordinateList);
-		model.addAttribute("count", count);
 
 		return "public_coordinate_list";
 
