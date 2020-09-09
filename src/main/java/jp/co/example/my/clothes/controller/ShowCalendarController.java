@@ -9,12 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.example.my.clothes.domain.Clothes;
 import jp.co.example.my.clothes.domain.LoginUser;
 import jp.co.example.my.clothes.domain.MonthlyDataDTO;
+import jp.co.example.my.clothes.domain.UserDetail;
 import jp.co.example.my.clothes.service.ShowCalendarService;
+import jp.co.example.my.clothes.service.ShowUserNameService;
 
 /**
  * カレンダーを表示するコントローラクラスです.
@@ -28,6 +31,9 @@ public class ShowCalendarController {
 	@Autowired
 	private ShowCalendarService showCalendarService;
 
+	@Autowired
+	private ShowUserNameService showUserNameService;
+
 	/**
 	 * 今月のカレンダーと今月のアイテム購入情報を表示します.
 	 * 
@@ -37,9 +43,15 @@ public class ShowCalendarController {
 	 * @throws ParseException
 	 */
 	@RequestMapping("/calendar")
-	public String showCalendar(Model model, @AuthenticationPrincipal LoginUser loginUser) throws ParseException {
+	public String showCalendar(Model model,ModelMap modelMap, @AuthenticationPrincipal LoginUser loginUser) throws ParseException {
 
 		Integer userId = loginUser.getUser().getId();
+
+		UserDetail userDetail = showUserNameService.showUserName(userId);
+		model.addAttribute("userDetail", userDetail);
+		
+		String userMyqloId = loginUser.getUser().getMyqloId();
+		modelMap.addAttribute("userMyqloId", userMyqloId);
 
 		List<Clothes> dailyPerchaseDataList = showCalendarService.showDailyPerchaseData(userId);
 		model.addAttribute("dailyPerchaseDataList", dailyPerchaseDataList);

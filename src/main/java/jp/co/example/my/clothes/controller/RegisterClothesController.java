@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -53,7 +54,11 @@ public class RegisterClothesController {
 	 * @return
 	 */
 	@RequestMapping("/showRegisterClothes")
-	public String showRegisterClothes(Model model, @AuthenticationPrincipal LoginUser loginUser) {
+	public String showRegisterClothes(Model model,ModelMap modelMap, @AuthenticationPrincipal LoginUser loginUser) {
+	
+		String userMyqloId = loginUser.getUser().getMyqloId();
+		modelMap.addAttribute("userMyqloId", userMyqloId);
+		
 		// カテゴリの選択肢一覧を取得
 		List<Category> categoryList = registerClothesService.showCategoryList();
 		model.addAttribute("categoryList", categoryList);
@@ -86,9 +91,9 @@ public class RegisterClothesController {
 	 * @return　購入日の入力された登録画面
 	 */
 	@GetMapping("/showRegisterClothesByCalendar")
-	public String showRegisterClothesByCalendar(Model model, @AuthenticationPrincipal LoginUser loginUser,String perchaseDate,RegisterClothesForm form) {
+	public String showRegisterClothesByCalendar(Model model,ModelMap modelMap, @AuthenticationPrincipal LoginUser loginUser,String perchaseDate,RegisterClothesForm form) {
 		
-		return showRegisterClothes(model, loginUser);
+		return showRegisterClothes(model, modelMap, loginUser);
 	}
 	
 	/**
@@ -114,12 +119,12 @@ public class RegisterClothesController {
 			model.addAttribute("message", "ソートされた選択肢の中から選択してください");
 			model.addAttribute("season", form.getSeason());
 			// model.addAttribute("myImage",form.getImageFile());
-			return showRegisterClothes(model, loginUser);
+			return showRegisterClothes(model, null, loginUser);
 		}
 
 		if (!Pattern.matches("^[0-9]*$", form.getPrice()) && !StringUtils.isEmpty(form.getPrice())) {
 			System.out.println("数字以外が入力されています");
-			return showRegisterClothes(model, loginUser);
+			return showRegisterClothes(model, null, loginUser);
 		}
 
 		// 入力されたカテゴリ情報を取得（必須）

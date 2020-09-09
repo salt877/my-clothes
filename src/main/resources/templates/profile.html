@@ -27,7 +27,7 @@
 		<nav class="navbar navbar-default" th:replace="header::pageheader"></nav>
 	</div>-->
 	<!-- Navigation-->
-		<div th:fragment="pageheader" class="pageheader">
+		<!-- <div th:if="${userDetail.userId}" th:fragment="pageheader" class="pageheader"> -->
 			<header class="site-header">
 				<div class="site-logo">
 				<a  th:href="@{/}">
@@ -78,10 +78,12 @@
       <div class="container">
       	<form action="#" method="post" th:action="@{/edit}" th:object="${registerUserForm}" enctype="multipart/form-data">
       	<div class="imag-icon">
-      		<img class="plofile_icon" alt="写真" src="../static/dist/assets/img/plofile.jpeg" th:src="@{/dist/assets/img/plofile.jpeg}"><br>
+      		<img th:if="${userDetail.imagePath}" id="preview" class="plofile_icon" alt="写真" src="../static/dist/assets/img/plofile.jpeg" th:src="${userDetail.imagePath}">
+      		<img th:unless="${userDetail.imagePath}" id="preview" class="plofile_icon" alt="写真" src="../static/dist/assets/img/user_icon.png" th:src="@{/dist/assets/img/user_icon.png}">
+      		<br>
       		<div class="file_button">
 				画像を変更 <input id="myImage" class="file_input" name="imageFile"
-									type="file" accept=".jpg,.png">
+									type="file" accept=".jpg,.png" th:field="*{imageFile}" >
 			</div>
       	</div>
       	<table>
@@ -106,8 +108,9 @@
 						<td class="txt">
 							<div class="cp_ipselect cp_sl02">
 								<select name="gender">
-									<option th:if="${#strings.isEmpty(userDetail.gender)}">選択してください</option>
-									<option th:unless="${#strings.isEmpty(userDetail.gender)}" th:value="${userDetail.gender}" th:text="${userDetail.gender}">MEN</option>
+									<option th:if="${#strings.isEmpty(userDetail.gender)}" th:value="${userDetail.gender}">選択してください</option>
+									<option th:unless="${#strings.isEmpty(userDetail.gender)}" th:value="${userDetail.gender}" th:text="${userDetail.gender}">○○</option>
+									<option th:unless="${#strings.isEmpty(userDetail.gender)}" value="">選択してください</option>
 									<option th:value="MEN">MEN</option>
 									<option th:value="WOMEN">WOMEN</option>
 									<option th:value="OTHER">OTHER</option>
@@ -119,9 +122,9 @@
 					<th>身長</th>
 						<td class="txt">
 							<div class="cp_ipselect cp_sl02">
-								<select name="height" >
-									<option th:unless="${userDetail.height}">選択してください</option>
-									<option th:value="${userDetail.height}" th:text="${userDetail.height} + 'cm'">○○cm</option>
+								<select name="height">
+									<option th:unless="${#strings.isEmpty(userDetail.height)}" th:value="${userDetail.height}" th:text="${userDetail.height} + 'cm'">○○cm</option>
+									<option th:if="${#strings.isEmpty(userDetail.height)}" value="">選択してください</option>
 									<option th:value="100">100cm</option>
 									<option th:value="101">101cm</option>
 									<option th:value="102">102cm</option>
@@ -234,9 +237,10 @@
 					<th>年齢</th>
 						<td class="txt">
 							<div class="cp_ipselect cp_sl02">
-								<select name="age" >
-									<option th:if="${#strings.isEmpty(userDetail.age)}">選択してください</option>
+								<select name="age">
+									<option th:if="${#strings.isEmpty(userDetail.age)}" th:value="${userDetail.age}">選択してください</option>
 									<option th:unless="${#strings.isEmpty(userDetail.age)}" th:value="${userDetail.age}" th:text="${userDetail.age}">○代前半</option>
+									<option th:unless="${#strings.isEmpty(userDetail.age)}" value="">選択してください</option>
 									<option th:value="10代前半">10代前半</option>
 									<option th:value="10代後半">10代後半</option>
 									<option th:value="20代前半">20代前半</option>
@@ -270,7 +274,7 @@
 			</table>
 			<!--  変更ボタン -->
 			<div class="complete-btn">
-				<input type="hidden" name="userId" id="userId" th:value="${userDetail.userId}">
+				<input type="hidden" name="userId" id="userId" th:value="${user.id}">
 				<input type="submit" name="submit" id="submit"
 							class="btn btn--submit" value="&emsp;変更を保存&emsp;" />
 			</div>
@@ -302,5 +306,27 @@
 		th:src="@{/dist/js/hamburger_menu.js}"></script>
 	<script src="../static/dist/js/accordion.js"
 		th:src="@{/dist/js/accordion.js}"></script>
+	<script type="text/javascript">
+//aモーダルの画像表示
+$(function() {
+$('#myImage').on('change', function (e) {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        $("#preview").attr('src', e.target.result);
+        var a =  document.getElementById('preview').value;
+    }
+    reader.readAsDataURL(e.target.files[0]);
+});
+});
+//画像が入っているか確認.
+$(function() {
+	$("#myImage").change(function (){
+	 var fileName = $(this).val();
+	 console.log(fileName);
+	 $("#fileName").val(fileName);
+	 change();
+ });
+	});
+</script>
 </body>
 </html>

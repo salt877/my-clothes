@@ -4,6 +4,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
+import org.springframework.web.multipart.MultipartFile;
+
 /**
  * ユーザ情報登録時に使用するフォームクラスです.
  * 
@@ -33,6 +35,9 @@ public class RegisterUserForm {
 
 	/** プロフィール写真 */
 	private String imagePath;
+
+	/** プロフィール写真 */
+	private MultipartFile imageFile;
 
 	/** ニックネーム */
 	private String userName;
@@ -87,6 +92,14 @@ public class RegisterUserForm {
 
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
+	}
+
+	public MultipartFile getImageFile() {
+		return imageFile;
+	}
+
+	public void setImageFile(MultipartFile imageFile) {
+		this.imageFile = imageFile;
 	}
 
 	public String getUserName() {

@@ -6,7 +6,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>MYQLO | マイページ</title>
+<title th:text="${userInfomation.userName + 'さんのコーディネート一覧'}">MYQLO | ユーザーページ</title>
 <link rel="icon" type="image/x-icon" href="../static/dist/assets/img/myqlo_favicon.jpg" th:href="@{/dist/assets/img/myqlo_favicon.jpg}" />
 <!-- Font Awesome icons (free version)-->
 <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
@@ -34,15 +34,10 @@
 					<img th:if="${userInfomation.imagePath}" class="plofile_icon" alt="写真" src="../static/dist/assets/img/plofile.jpeg" th:src="${userInfomation.imagePath}">
 					<img th:unless="${userInfomation.imagePath}" class="plofile_icon" alt="写真" src="../static/dist/assets/img/user_icon.png" th:src="@{/dist/assets/img/user_icon.png}">
 					<br>
-					<a href="profile.html" th:href="@{'/profileEdit?userId='+${userInfomation.userId}}">
-					<button type="button" id="change_profile_bun" class="btn btn-primary coordinate-regis-btn">
-						<span class="chacge-profile">プロフィール変更</span>
-					</button>
-					</a>
+					
 				</div>
 				<div class="user_main">
 					<h1 class="name" th:text="${userInfomation.userName}">テストユーザ</h1>
-					<h2><a class="user-page" th:href="@{/__${userMyqloId}__}" th:text="${userInfomation.userName + 'さんのページ'}">ユーザページへのリンク</a></h2>
 					<div class="user_data">
 						<ul class="info">
 							<li class="user_id" th:text="'@'+${userInfomation.myqloId}">@testUser1234</li>
