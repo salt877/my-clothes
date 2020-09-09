@@ -84,11 +84,12 @@ ul {
 	display: block;
 	padding: 0 1.36em;
 	position: relative;
+	text-decoration: none;
 }
 
 .work-section .tabs-nav a:hover,
 .work-section .tabs-nav a.active{
-	background-color: rgb(51, 51, 51);
+	background-color: #FF9900;
 	color: rgb(255, 255, 255);
 }
 
@@ -100,7 +101,7 @@ ul {
 .inner{
 	padding-top: 10px;
 	padding-bottom: 10px;
-	text-align: center;
+	margin: 0 auto;
 }
 
 
