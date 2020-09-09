@@ -63,6 +63,47 @@ li .user_id .height .gender .hair{
 	top: 50px;
 }
 
+.work-section{
+	padding-top: 40px;
+}
+
+/*タブのCSS記述*/
+.work-section .tabs-nav li{
+	border-right: 1px solid rgb(218, 218, 218);
+	float: left;
+	position: relative;
+	-webkit-box-shadow: 1px 0 rgb(255, 255, 255);
+			  -box-shadow: 1px 0 rgb(255, 255, 255);
+}
+
+ul {
+  list-style: none;
+}
+
+.work-section .tabs-nav a{
+	display: block;
+	padding: 0 1.36em;
+	position: relative;
+}
+
+.work-section .tabs-nav a:hover,
+.work-section .tabs-nav a.active{
+	background-color: rgb(51, 51, 51);
+	color: rgb(255, 255, 255);
+}
+
+.work-section .tabs-nav a.active:after{
+	content: "";
+	position: absolute;
+}
+
+.inner{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: center;
+}
+
+
 /* 480px以下に適用されるCSS（スマホ用） */
 @media screen and (max-width: 480px) {
 	.container{
