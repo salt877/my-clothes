@@ -6,106 +6,58 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>MYQLO | FAQ</title>
-<link rel="icon" type="image/x-icon"
-	href="../static/dist/assets/img/myqlo_favicon.jpg"
-	th:href="@{/dist/assets/img/myqlo_favicon.jpg}" />
+<title>MYQLO | マイページ</title>
+<link rel="icon" type="image/x-icon" href="../static/dist/assets/img/myqlo_favicon.jpg" th:href="@{/dist/assets/img/myqlo_favicon.jpg}" />
 <!-- Font Awesome icons (free version)-->
-<script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js"
-	crossorigin="anonymous"></script>
+<script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
 <!-- Google fonts-->
-<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
-	rel="stylesheet" type="text/css" />
-<link
-	href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic"
-	rel="stylesheet" type="text/css" />
-<link
-	href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
-	rel="stylesheet" type="text/css" />
-
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+<link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
 <!-- Core theme CSS (includes Bootstrap)-->
-<link href="../static/dist/css/styles.css"
-	th:href="@{/dist/css/styles.css}" rel="stylesheet" />
-<link rel="stylesheet" href="../static/dist/css/my_page.css"
-	th:href="@{/dist/css/my_page.css}">
-<link rel="stylesheet" href="../static/dist/css/past-coordinate.css"
-	th:href="@{/dist/css/past-coordinate.css}">
+<link href="../static/dist/css/styles.css" th:href="@{/dist/css/styles.css}" rel="stylesheet" />
+<link rel="stylesheet" href="../static/dist/css/my_page.css" th:href="@{/dist/css/my_page.css}">
+<link rel="stylesheet" href="../static/dist/css/past-coordinate.css" th:href="@{/dist/css/past-coordinate.css}">
 </head>
 
 <body id="page-top">
 
-
-	<!-- Navigation
+		<!-- Navigation-->
 	<div id="navArea">
 		<nav class="navbar navbar-default" th:replace="header::pageheader"></nav>
-	</div>-->
-	<!-- Navigation-->
-	<div th:fragment="pageheader" class="pageheader">
-		<header class="site-header">
-			<div class="site-logo">
-				<a th:href="@{/}"> <img
-					src="../static/dist/assets/img/myqlo_favicon.jpg"
-					th:src="@{/dist/assets/img/myqlo_favicon.jpg}" alt="site-logo">
-				</a>
-			</div>
-			<!-- image th:src="@{/dist/assets/img/myqlo_favicon.jpg}"> -->
-			<nav>
-				<div class="inner">
-					<ul>
-						<li><a href="top.html" th:href="@{/}"><i
-								class="fas fa-home"></i>&emsp;&emsp;TOP</a></li>
-						<li><a href="statistics.html" th:href="@{/stats}"><i
-								class="far fa-chart-bar"></i>&emsp;&emsp;統計データ</a></li>
-						<li><a href="calender.html" th:href="@{/calendar}"><i
-								class="far fa-calendar-alt"></i>&emsp;&emsp;カレンダー</a></li>
-						<li><a href="coordinate.html" th:href="@{/coordinate}"><i
-								class="fas fa-female"></i>&emsp;&emsp;コーディネート</a></li>
-						<li><a href="contact.html" th:href="@{/contact}"><i
-								class="far fa-envelope"></i>&emsp;&emsp;お問い合わせ</a></li>
-						<li><a href="faq.html" th:href="@{/faq}"><i
-								class="far fa-question-circle"></i>&emsp;&emsp;FAQ</a></li>
-						<li><a href="login.html" th:href="@{/logout}"><i
-								class="fas fa-sign-out-alt"></i>&emsp;&emsp;ログアウト</a></li>
-					</ul>
-				</div>
-			</nav>
-			<div class="humberger_menue">
-				<div class="toggle_btn">
-					<span></span> <span></span> <span></span>
-				</div>
-			</div>
-			<div id="mask"></div>
-		</header>
 	</div>
-
 	<!-- ユーザ情報 -->
 	<section class="page-section bg-white">
 		<div class="container">
 			<div class="user-information">
 				<div class="plofile_img">
-					<img class="plofile_icon" alt="写真"
-						src="../static/dist/assets/img/plofile.jpeg"><br>
-					<button type="submit" id="change_profile_bun"
-						class="btn btn-primary coordinate-regis-btn">
+					<img th:if="${userInfomation.imagePath}" class="plofile_icon" alt="写真" src="../static/dist/assets/img/plofile.jpeg" th:src="${userInfomation.imagePath}">
+					<img th:unless="${userInfomation.imagePath}" class="plofile_icon" alt="写真" src="../static/dist/assets/img/user_icon.png" th:src="@{/dist/assets/img/user_icon.png}">
+					<br>
+					<a href="profile.html" th:href="@{'/profileEdit?userId='+${userInfomation.userId}}">
+					<button type="button" id="change_profile_bun" class="btn btn-primary coordinate-regis-btn">
 						<span class="chacge-profile">プロフィール変更</span>
 					</button>
+					</a>
 				</div>
 				<div class="user_main">
-					<h1 class="name">testUser1234</h1>
+					<h1 class="name" th:text="${userInfomation.userName}">テストユーザ</h1>
+					<h2><a class="user-page" th:href="@{/__${userMyqloId}__}" th:text="${userInfomation.userName + 'さんのページ'}">ユーザページへのリンク</a></h2>
 					<div class="user_data">
 						<ul class="info">
-							<li class="user_id">@testUser1234</li>
-							<li class="break">|</li>
-							<li class="height">170cm</li>
-							<li class="break">|</li>
-							<li class="gender">MEN</li>
-							<li class="break">|</li>
-							<li class="age">20代前半</li>
+							<li class="user_id" th:text="'@'+${userInfomation.myqloId}">@testUser1234</li>
+							<li th:unless="${#strings.isEmpty(userDetail.height)}" class="break">|</li>
+							<li th:unless="${#strings.isEmpty(userDetail.height)}" class="height" th:text="${userInfomation.height}+'cm'">170cm</li>
+							<li th:if="${userInfomation.gender}" class="break">|</li>
+							<li class="gender" th:text="${userInfomation.gender}">MEN</li>
+							<li th:if="${userInfomation.age}" class="break">|</li>
+							<li class="age" th:text="${userInfomation.age}">20代前半</li>
 						</ul>
 					</div>
 					<br> <br>
 					<div class="self-introduction">
-						<span>よろしくお願い致します。卒業までよろしくお願い致します。</span>
+						<span th:text="${userInfomation.selfIntroduction}"></span>
+						<span th:if="${#strings.isEmpty(userInfomation.selfIntroduction)}">よろしくお願いします。</span>
 					</div>
 				</div>
 			</div>
@@ -253,7 +205,8 @@
 
 
 
-
+	<!-- Footer-->
+	<footer class="footer py-4" th:replace="footer::pagefooter"> </footer>
 	<!-- Bootstrap core JS-->
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

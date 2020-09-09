@@ -82,7 +82,7 @@ public class UserRepository {
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
 		List<UserDetail> userList = template.query(sql, param, USER_DETAIL_ROW_MAPPER);
 		if (userList.size() == 0) {
-			System.out.println("ユーザリストサイズ:"+userList.size());
+			System.out.println("ユーザリストサイズ:" + userList.size());
 			return null;
 		}
 
@@ -96,15 +96,15 @@ public class UserRepository {
 	 * @return ユーザ情報
 	 */
 	public User findMyqloId(Integer userId) {
-		String sql = "SELECT myqlo_id FROM users WHERE id=:id AND deleted=false";
+		String sql = "SELECT id,myqlo_id FROM users WHERE id=:id AND deleted=false";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", userId);
-		List<User> userList = template.query(sql, param,USER_ROW_MAPPER);
-		if(userList.size() == 0) {
+		List<User> userList = template.query(sql, param, USER_ROW_MAPPER);
+		if (userList.size() == 0) {
 			return null;
 		}
 		return userList.get(0);
 	}
-	
+
 	/**
 	 * ユーザID一つにつき、詳細テーブル列は一つなので列が存在するか調べます.
 	 * 
@@ -114,16 +114,32 @@ public class UserRepository {
 	public UserDetail findUserDetailInformation(Integer userId) {
 		String sql = "SELECT id,user_id,user_name,image_path,gender,height,age,self_introduction FROM user_details WHERE user_id=:userId";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
-		System.out.println("findUserDetailInformationメソッド:"+userId);
-		List<UserDetail> userDetailList = template.query(sql, param,USER_DETAIL_ROW_MAPPER);
-		if(userDetailList.size() == 0) {
+		System.out.println("findUserDetailInformationメソッド:" + userId);
+		List<UserDetail> userDetailList = template.query(sql, param, USER_DETAIL_ROW_MAPPER);
+		if (userDetailList.size() == 0) {
 			System.out.println("まだ詳細情報を登録していない");
 			return null;
 		}
 		System.out.println("詳細情報を登録している");
 		return userDetailList.get(0);
 	}
-	
+
+	/**
+	 * MYQLO IDを使ってユーザが存在するかどうか調べます.
+	 * 
+	 * @param myqloId
+	 * @return
+	 */
+	public User findUserByMyqloId(String myqloId) {
+		String sql = "SELECT id,myqlo_id FROM users WHERE myqlo_id=:myqloId AND deleted='false'";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("myqloId", myqloId);
+		List<User> userList = template.query(sql, param, USER_ROW_MAPPER);
+		if (userList.size() == 0) {
+			return null;
+		}
+		return userList.get(0);
+	}
+
 	/**
 	 * user_detailsテーブルにインサート.
 	 * 
@@ -134,7 +150,7 @@ public class UserRepository {
 		String sql = "INSERT INTO user_details(user_id,image_path,user_name,gender,height,age,self_introduction)VALUES(:userId,:imagePath,:userName,:gender,:height,:age,:selfIntroduction);";
 		template.update(sql, param);
 	}
-	
+
 	/**
 	 * user_detailsテーブルを更新.
 	 * 
@@ -149,8 +165,7 @@ public class UserRepository {
 		sql.append("WHERE id=:id");
 		template.update(sql.toString(), param);
 	}
-	
-	
+
 	/**
 	 * ユーザ情報を挿入します.
 	 * 
@@ -169,7 +184,7 @@ public class UserRepository {
 	 * @return ユーザ情報 存在しない場合はnullを返します
 	 */
 	public User findByEmail(String email) {
-		String sql = "SELECT id,email,password from users where email=:email AND deleted= false";
+		String sql = "SELECT id,email,password,myqlo_id from users where email=:email AND deleted= false";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("email", email);
 		List<User> userList = template.query(sql, param, USER_ROW_MAPPER);
 		if (userList.size() == 0) {

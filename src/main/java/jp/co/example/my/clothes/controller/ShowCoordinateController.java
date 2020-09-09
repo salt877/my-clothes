@@ -6,14 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.example.my.clothes.domain.Coordinate;
 import jp.co.example.my.clothes.domain.Like;
 import jp.co.example.my.clothes.domain.LoginUser;
+import jp.co.example.my.clothes.domain.UserDetail;
 import jp.co.example.my.clothes.form.RegisterCoordinateForm;
 import jp.co.example.my.clothes.service.ShowCoordinateService;
+import jp.co.example.my.clothes.service.ShowUserNameService;
 
 /**
  * コーディネート画面を表示するコントローラ.
@@ -26,6 +29,9 @@ public class ShowCoordinateController {
 
 	@Autowired
 	private ShowCoordinateService showCoordinateService;
+
+	@Autowired
+	private ShowUserNameService showUserNameService;
 
 	@ModelAttribute
 	public RegisterCoordinateForm setUpForm() {
@@ -40,8 +46,17 @@ public class ShowCoordinateController {
 	 * @return コーディネート画面へ遷移
 	 */
 	@RequestMapping("/coordinate")
-	public String showCoordinate(@AuthenticationPrincipal LoginUser loginUser, Model model) {
-		List<Coordinate> coordinateList = showCoordinateService.showCoordinate(loginUser.getUser().getId());
+	public String showCoordinate(@AuthenticationPrincipal LoginUser loginUser, Model model,ModelMap modelMap) {
+
+		Integer userId = loginUser.getUser().getId();
+
+		UserDetail userDetail = showUserNameService.showUserName(userId);
+		model.addAttribute("userDetail", userDetail);
+		
+		String userMyqloId = loginUser.getUser().getMyqloId();
+		modelMap.addAttribute("userMyqloId", userMyqloId);
+
+		List<Coordinate> coordinateList = showCoordinateService.showCoordinate(userId);
 
 		model.addAttribute("coordinateList", coordinateList);
 
