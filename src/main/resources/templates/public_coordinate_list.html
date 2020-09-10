@@ -36,10 +36,11 @@
 
 </head>
 <body>
+<!-- 
 	<div class="loader-wrap">
 		<div class="loader">Loading...</div>
 	</div>
-
+ -->
 	<!-- Navigation-->
 	<div id="navArea">
 		<nav class="navbar navbar-default" th:replace="header::pageheader"></nav>
@@ -68,24 +69,26 @@
 
 
 			<div th:if="!${#lists.isEmpty(coordinateList)}">
-				<!-- <div class="register-coordinate-btn-sp">
-					<a href="coordinate.html" th:href="@{/coordinate}">
-						<button class="btn btn-primary sp-btn">
-							<i class="fas fa-female"></i> &nbsp;&nbsp;<span>コーデ登録</span>
-						</button>
-					</a> <br> <br> <br>
-				</div>
-				 -->
+
 				<div style="text-align: right;">
-					<span> 現在の公開コーデ件数：&nbsp;&nbsp;<span th:text="${coordinateList.size()}"
+					<span> 現在の公開コーデ件数：&nbsp;&nbsp;<span
+						th:text="${coordinateList.size()}"
 						style="font-size: 20px; font-weight: bold;"></span>&nbsp;件
 					</span>
 				</div>
 				<br>
 
-				<div id="past-coordinate-list">
+				<div id="past-coordinate-list tabs">
+					<input id="all" type="radio" name="tab_item" checked> <label
+						class="tab_item" for="all">ALL</label> <input id="men"
+						type="radio" name="tab_item"> <label class="tab_item"
+						for="men">MEN</label> <input id="women" type="radio"
+						name="tab_item"> <label class="tab_item" for="women">WOMEN</label>
+
+
 					<div th:each="coordinate:${coordinateList}"
-						th:id="${coordinate.id}" class="coordinate">
+						th:id="${coordinate.id}"
+						class="coordinate tab_content all_content">
 						<div class="public-coordinates">
 
 							<h6 th:text="${coordinate.name}">公開コーデ</h6>
@@ -212,7 +215,18 @@
 						</div>
 					</div>
 
-					<!-- もっと見るボタン -->
+					<div class="tab_content men_content" id="">
+						<div class="tab_content_description">
+							<p class="c-txtsp">MENの内容がここに入ります</p>
+						</div>
+					</div>
+					<div class="tab_content women_content" id="">
+						<div class="tab_content_description ">
+							<p class="c-txtsp">WOMENの内容がここに入ります</p>
+						</div>
+					</div>
+
+					<!-- もっと見るボタン 
 					<div class="btn-area">
 						<button id="more_btn" class="btn btn-primary pc-btn">
 							もっと見る&nbsp;&nbsp;<i class="fa fa-chevron-down" aria-hidden="true"></i>
