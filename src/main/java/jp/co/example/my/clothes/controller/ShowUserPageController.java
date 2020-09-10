@@ -1,5 +1,7 @@
 package jp.co.example.my.clothes.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -7,8 +9,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import jp.co.example.my.clothes.domain.Coordinate;
 import jp.co.example.my.clothes.domain.LoginUser;
 import jp.co.example.my.clothes.domain.UserDetail;
+import jp.co.example.my.clothes.service.ShowCoordinateService;
 import jp.co.example.my.clothes.service.ShowMyPageService;
 
 /**
@@ -23,6 +27,9 @@ public class ShowUserPageController {
 	@Autowired
 	private ShowMyPageService showMyPageService;
 	
+	@Autowired
+	private ShowCoordinateService showCoordinateService;
+	
 	@RequestMapping("/{userMyqloId}")
 	public String showMyPage(Model model,@AuthenticationPrincipal LoginUser loginUser,@PathVariable("userMyqloId")String userMyqloId) {
 		
@@ -30,6 +37,9 @@ public class ShowUserPageController {
 		UserDetail userInfomation = showMyPageService.showMyPage(userId);
 		model.addAttribute("userInfomation", userInfomation);
 		model.addAttribute("userDetail", userInfomation);
+		
+		List<Coordinate> publicCoordinateList = showCoordinateService.showPublicCoordinateByUserId(userId);
+		model.addAttribute("publicCoordinateList", publicCoordinateList);
 		
 		System.out.println("このMYQLOIDのマイページを表示:"+userMyqloId);
 		

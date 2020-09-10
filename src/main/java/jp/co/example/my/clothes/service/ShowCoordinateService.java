@@ -44,6 +44,16 @@ public class ShowCoordinateService {
 	}
 
 	/**
+	 * ユーザーIDで公開コーディネート情報を取得します.
+	 * 
+	 * @param userId　ユーザーID
+	 * @return　
+	 */
+	public List<Coordinate> showPublicCoordinateByUserId(Integer userId) {
+		return coordinateRepository.findByIsPublicAndUserId(userId);
+	}
+
+	/**
 	 * コーディネートIDに紐づくコーディネートデータを論理削除します.
 	 * 
 	 * @param coordinateId コーデID

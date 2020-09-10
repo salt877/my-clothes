@@ -72,9 +72,18 @@ public class ShowCoordinateController {
 	 * @return
 	 */
 	@RequestMapping("/past-coordinate")
-	public String showPastCoordinate(@AuthenticationPrincipal LoginUser loginUser, Model model) {
-		List<Coordinate> coordinateList = showCoordinateService.showCoordinate(loginUser.getUser().getId());
+	public String showPastCoordinate(@AuthenticationPrincipal LoginUser loginUser, Model model, ModelMap modelMap) {
+		Integer userId = loginUser.getUser().getId();
+		
+		List<Coordinate> coordinateList = showCoordinateService.showCoordinate(userId);
 
+		
+		UserDetail userDetail = showUserNameService.showUserName(userId);
+		model.addAttribute("userDetail", userDetail);
+		
+		String userMyqloId = loginUser.getUser().getMyqloId();
+		modelMap.addAttribute("userMyqloId", userMyqloId);
+		
 		model.addAttribute("coordinateList", coordinateList);
 
 		return "past-coordinate";
@@ -87,13 +96,21 @@ public class ShowCoordinateController {
 	 * @return
 	 */
 	@RequestMapping("/public-coordinate")
-	public String showCoordinateList(@AuthenticationPrincipal LoginUser loginUser, Model model) {
+	public String showCoordinateList(@AuthenticationPrincipal LoginUser loginUser, Model model, ModelMap modelMap) {
+		Integer userId = loginUser.getUser().getId();
+		
 		List<Coordinate> coordinateList = showCoordinateService.showPublicCoordinate();
 
 		for (Coordinate coodinate : coordinateList) {
 			List<Like> likeList = showCoordinateService.showLikes(coodinate.getId());
 			coodinate.setLikeList(likeList);
 		}
+		
+		UserDetail userDetail = showUserNameService.showUserName(userId);
+		model.addAttribute("userDetail", userDetail);
+		
+		String userMyqloId = loginUser.getUser().getMyqloId();
+		modelMap.addAttribute("userMyqloId", userMyqloId);
 
 		model.addAttribute("coordinateList", coordinateList);
 

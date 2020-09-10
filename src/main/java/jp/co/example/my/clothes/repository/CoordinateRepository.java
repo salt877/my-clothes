@@ -173,6 +173,47 @@ public class CoordinateRepository {
 	}
 	
 	/**
+	 * ユーザーIDで公開コーディネート情報を取得します.
+	 * 
+	 * @return
+	 */
+	public List<Coordinate> findByIsPublicAndUserId(Integer userId) {
+		StringBuilder sql = new StringBuilder();
+		sql.append(
+				"SELECT co.id co_id, co.user_id co_user_id, co.fashion_accessories co_fashion_accessories, co.tops1 co_tops1, co.tops2 co_tops2, ");
+		sql.append(
+				"co.outers co_outers, co.bottoms co_bottoms, co.shoes co_shoes, co.bag co_bag, co.dress co_dress, co.deleted co_deleted, co.name co_name, co.is_public co_is_public, b.id b_id, b.name b_name, ");
+		sql.append(
+				"cl.id cl_id, cl.user_id cl_user_id, cl.category_id cl_category_id, cl.brand_id cl_brand_id, cl.color_id cl_color_id, cl.season cl_season, cl.image_path cl_image_path, ");
+		sql.append(
+				"cl.perchase_date cl_perchase_date, cl.price cl_price, cl.size_id cl_size_id, cl.comment cl_comment, cl.deleted cl_deleted, ");
+		sql.append("ca.id ca_id, ca.name ca_name, b.id b_id, b.name b_name ");
+		sql.append("FROM coordinates co LEFT OUTER JOIN clothes cl ");
+		sql.append(
+				"ON co.fashion_accessories  = cl.id OR co.tops1 = cl.id OR co.tops2 = cl.id OR co.outers = cl.id OR co.bottoms = cl.id OR co.shoes = cl.id OR co.bag = cl.id OR co.dress = cl.id ");
+		sql.append("LEFT OUTER JOIN categories ca ON cl.category_id = ca.id ");
+		sql.append("LEFT OUTER JOIN brands b ON cl.brand_id = b.id ");
+		sql.append("WHERE co.user_id = :userId AND co.deleted = 'FALSE' AND co.is_public = 'TRUE' ");
+		sql.append("ORDER BY co.id, cl.category_id");
+
+		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
+		
+		List<Coordinate> coordinateList = template.query(sql.toString(), param, COORDINATE_RESULT_SET_EXTRACTOR);
+
+		if (coordinateList.size() == 0) {
+			return Collections.emptyList();
+
+		}
+
+		return coordinateList;
+
+	}
+	
+	
+	
+	
+	
+	/**
 	 * コーディネートIDでコーディネートを１件検索します.
 	 * 
 	 * @param coordinateId コーデID
