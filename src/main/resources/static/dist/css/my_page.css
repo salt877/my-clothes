@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+.c-title{
+	margin-top: -18%;
+}
+
 .plofile_img{
 	position: absolute;
 	left: 300px;
