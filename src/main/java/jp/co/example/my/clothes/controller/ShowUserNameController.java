@@ -26,7 +26,6 @@ public class ShowUserNameController {
 	public String showUserName(Model model,@AuthenticationPrincipal LoginUser loginUser) {
 		
 		Integer userId = loginUser.getUser().getId();
-		System.out.println("ヘッダーのコントローラ"+userId);
 		UserDetail userDetail = showUserNameService.showUserName(userId);
 		
 		model.addAttribute("userDetail", userDetail);

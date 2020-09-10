@@ -27,8 +27,10 @@ import jp.co.example.my.clothes.domain.LoginUser;
 import jp.co.example.my.clothes.domain.Size;
 import jp.co.example.my.clothes.domain.Tag;
 import jp.co.example.my.clothes.domain.TagContent;
+import jp.co.example.my.clothes.domain.UserDetail;
 import jp.co.example.my.clothes.form.RegisterClothesForm;
 import jp.co.example.my.clothes.service.RegisterClothesService;
+import jp.co.example.my.clothes.service.ShowUserNameService;
 
 /**
  * アイテム登録画面を操作するコントローラー.
@@ -41,6 +43,9 @@ import jp.co.example.my.clothes.service.RegisterClothesService;
 public class RegisterClothesController {
 	@Autowired
 	private RegisterClothesService registerClothesService;
+	
+	@Autowired
+	private ShowUserNameService showUserNameService;
 	 
 	@ModelAttribute
 	private RegisterClothesForm setUpRegisterClothesForm() {
@@ -56,8 +61,10 @@ public class RegisterClothesController {
 	@RequestMapping("/showRegisterClothes")
 	public String showRegisterClothes(Model model,ModelMap modelMap, @AuthenticationPrincipal LoginUser loginUser) {
 	
-		String userMyqloId = loginUser.getUser().getMyqloId();
-		modelMap.addAttribute("userMyqloId", userMyqloId);
+		Integer userId = loginUser.getUser().getId();
+		
+		UserDetail userDetail = showUserNameService.showUserName(userId);
+		model.addAttribute("userDetail", userDetail);
 		
 		// カテゴリの選択肢一覧を取得
 		List<Category> categoryList = registerClothesService.showCategoryList();
