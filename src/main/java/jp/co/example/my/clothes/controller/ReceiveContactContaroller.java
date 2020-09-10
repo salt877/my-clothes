@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.example.my.clothes.domain.Contact;
 import jp.co.example.my.clothes.domain.LoginUser;
+import jp.co.example.my.clothes.domain.UserDetail;
 import jp.co.example.my.clothes.form.ContactForm;
 import jp.co.example.my.clothes.service.ContactService;
 import jp.co.example.my.clothes.service.SendMailService;
+import jp.co.example.my.clothes.service.ShowUserNameService;
 
 /**
  * 問い合わせ情報を受け付けるコントローラクラス.
@@ -32,6 +35,9 @@ public class ReceiveContactContaroller {
 	@Autowired
 	private SendMailService sendMailService;
 	
+	@Autowired
+	private ShowUserNameService showUserNameService;
+	
 	@ModelAttribute
 	public ContactForm setUpContactForm() {
 		return new ContactForm();
@@ -42,10 +48,18 @@ public class ReceiveContactContaroller {
 	 * @return 問い合わせ画面
 	 */
 	@RequestMapping("")
-	public String showContactForm(ContactForm contactForm, @AuthenticationPrincipal LoginUser loginUser) {
+	public String showContactForm(ContactForm contactForm, @AuthenticationPrincipal LoginUser loginUser,Model model,ModelMap modelMap) {
 		
 			// メールアドレスをログイン時の情報で初期表示する
 			contactForm.setEmail(loginUser.getUser().getEmail());
+			
+			Integer userId = loginUser.getUser().getId();
+
+			UserDetail userDetail = showUserNameService.showUserName(userId);
+			model.addAttribute("userDetail", userDetail);
+			
+			String userMyqloId = loginUser.getUser().getMyqloId();
+			modelMap.addAttribute("userMyqloId", userMyqloId);
 		
 		return "contact";
 	}

@@ -17,8 +17,10 @@ import jp.co.example.my.clothes.domain.Brand;
 import jp.co.example.my.clothes.domain.Clothes;
 import jp.co.example.my.clothes.domain.LoginUser;
 import jp.co.example.my.clothes.domain.TagContent;
+import jp.co.example.my.clothes.domain.UserDetail;
 import jp.co.example.my.clothes.domain.Weather;
 import jp.co.example.my.clothes.service.ShowTopPageService;
+import jp.co.example.my.clothes.service.ShowUserNameService;
 import jp.co.example.my.clothes.service.WeatherService;
 
 /**
@@ -34,6 +36,9 @@ public class ShowTopPageController {
 	@Autowired
 	private ShowTopPageService showTopPageService;
 
+	@Autowired
+	private ShowUserNameService showUserNameService;
+	
 	@Autowired
 	private HttpSession session;
 
@@ -56,6 +61,9 @@ public class ShowTopPageController {
 
 		Integer userId = loginUser.getUser().getId();
 
+		UserDetail userDetail = showUserNameService.showUserName(userId);
+		model.addAttribute("userDetail", userDetail);
+		
 		List<Clothes> clothesList = showTopPageService.showItemList(userId);
 		model.addAttribute("clothesList", clothesList);
 

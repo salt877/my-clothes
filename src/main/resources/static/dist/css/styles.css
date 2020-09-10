@@ -15026,3 +15026,20 @@ footer {
 		width: 15em;
 	}
 }
+/* headerで使用 */
+.header_userName {
+	color: black;
+	position: fixed;
+	right: 8em;
+	left: auto;
+	font-size: 1rem;
+}
+.header_userName span {
+	margin-left:1em;
+	
+}
+.site-logo a:hover{
+	color: #ffbc57;
+	text-decoration: none;
+}
+

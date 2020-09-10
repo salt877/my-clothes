@@ -6,12 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.example.my.clothes.domain.AverageDto;
 import jp.co.example.my.clothes.domain.Clothes;
 import jp.co.example.my.clothes.domain.LoginUser;
+import jp.co.example.my.clothes.domain.UserDetail;
 import jp.co.example.my.clothes.service.ShowStatisticsService;
+import jp.co.example.my.clothes.service.ShowUserNameService;
 
 /**
  * 
@@ -25,6 +28,10 @@ public class ShowStatisticsController {
 
 	@Autowired
 	private ShowStatisticsService showStatisticsService;
+	
+	@Autowired
+	private ShowUserNameService showUserNameService;
+
 
 	/**
 	 * ユーザーごとの統計画面を表示します.
@@ -34,10 +41,16 @@ public class ShowStatisticsController {
 	 * @return
 	 */
 	@RequestMapping("/stats")
-	public String showStatistics(@AuthenticationPrincipal LoginUser loginUser, Model model) {
+	public String showStatistics(@AuthenticationPrincipal LoginUser loginUser, Model model,ModelMap modelMap) {
 		Integer userId = loginUser.getUser().getId();
 		Integer totalItemCount = 0;
 		Integer totalItemPrice = 0;
+		
+		UserDetail userDetail = showUserNameService.showUserName(userId);
+		model.addAttribute("userDetail", userDetail);
+		
+		String userMyqloId = loginUser.getUser().getMyqloId();
+		modelMap.addAttribute("userMyqloId", userMyqloId);
 
 		// ユーザーIDに紐づく服データ全件取得
 		List<Clothes> clothesListByUserId = showStatisticsService.showStatsByUserId(userId);

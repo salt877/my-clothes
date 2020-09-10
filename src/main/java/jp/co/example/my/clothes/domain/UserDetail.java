@@ -8,6 +8,9 @@ package jp.co.example.my.clothes.domain;
  */
 public class UserDetail {
 
+	/** MYQLO ID */
+	private String myqloId;
+
 	/** 詳細情報ID */
 	private Integer id;
 
@@ -31,6 +34,14 @@ public class UserDetail {
 
 	/** 自己紹介 */
 	private String selfIntroduction;
+
+	public String getMyqloId() {
+		return myqloId;
+	}
+
+	public void setMyqloId(String myqloId) {
+		this.myqloId = myqloId;
+	}
 
 	public Integer getId() {
 		return id;
@@ -98,9 +109,9 @@ public class UserDetail {
 
 	@Override
 	public String toString() {
-		return "UserDetail [id=" + id + ", userId=" + userId + ", imagePath=" + imagePath + ", userName=" + userName
-				+ ", gender=" + gender + ", age=" + age + ", height=" + height + ", selfIntroduction="
-				+ selfIntroduction + "]";
+		return "UserDetail [myqloId=" + myqloId + ", id=" + id + ", userId=" + userId + ", imagePath=" + imagePath
+				+ ", userName=" + userName + ", gender=" + gender + ", age=" + age + ", height=" + height
+				+ ", selfIntroduction=" + selfIntroduction + "]";
 	}
 
 }
