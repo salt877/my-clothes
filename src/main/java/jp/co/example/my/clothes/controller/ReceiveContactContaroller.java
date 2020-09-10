@@ -58,9 +58,6 @@ public class ReceiveContactContaroller {
 			UserDetail userDetail = showUserNameService.showUserName(userId);
 			model.addAttribute("userDetail", userDetail);
 			
-			String userMyqloId = loginUser.getUser().getMyqloId();
-			modelMap.addAttribute("userMyqloId", userMyqloId);
-		
 		return "contact";
 	}
 	
@@ -72,9 +69,15 @@ public class ReceiveContactContaroller {
 	 * @return TOPページ（入力エラーがある場合はお問い合わせ画面に戻る）
 	 */
 	@RequestMapping("/reception")
-	public String insertContact(@Validated ContactForm contactForm, BindingResult result, @AuthenticationPrincipal LoginUser loginUser) {
+	public String insertContact(Model model,@Validated ContactForm contactForm, BindingResult result, @AuthenticationPrincipal LoginUser loginUser) {
 		// もしエラーが一つでもあった場合は入力画面に遷移
 		if(result.hasErrors()) {
+			
+			Integer userId = loginUser.getUser().getId();
+
+			UserDetail userDetail = showUserNameService.showUserName(userId);
+			model.addAttribute("userDetail", userDetail);
+			
 			return "contact";
 		}
 		

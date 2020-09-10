@@ -21,48 +21,10 @@
 </head>
 <body id="page-top">
 
-
-	<!-- Navigation
+	<!-- Navigation-->
 	<div id="navArea">
 		<nav class="navbar navbar-default" th:replace="header::pageheader"></nav>
-	</div>-->
-	<!-- Navigation-->
-		<!-- <div th:if="${userDetail.userId}" th:fragment="pageheader" class="pageheader"> -->
-			<header class="site-header">
-				<div class="site-logo">
-				<a  th:href="@{/}">
-						<img src="../static/dist/assets/img/myqlo_favicon.jpg" th:src="@{/dist/assets/img/myqlo_favicon.jpg}" alt="site-logo">
-				</a>
-				</div>
-					<!-- image th:src="@{/dist/assets/img/myqlo_favicon.jpg}"> -->
-					<nav>
-						<div class="inner">
-							<ul>
-								<li><a href="top.html" th:href="@{/}"><i
-										class="fas fa-home"></i>&emsp;&emsp;TOP</a></li>
-								<li><a href="statistics.html" th:href="@{/stats}"><i
-										class="far fa-chart-bar"></i>&emsp;&emsp;統計データ</a></li>
-								<li><a href="calender.html" th:href="@{/calendar}"><i
-										class="far fa-calendar-alt"></i>&emsp;&emsp;カレンダー</a></li>
-								<li><a href="coordinate.html" th:href="@{/coordinate}"><i
-										class="fas fa-female"></i>&emsp;&emsp;コーディネート</a></li>
-								<li><a href="contact.html" th:href="@{/contact}"><i
-										class="far fa-envelope"></i>&emsp;&emsp;お問い合わせ</a></li>
-								<li><a href="faq.html" th:href="@{/faq}"><i
-										class="far fa-question-circle"></i>&emsp;&emsp;FAQ</a></li>
-								<li><a href="login.html" th:href="@{/logout}"><i
-										class="fas fa-sign-out-alt"></i>&emsp;&emsp;ログアウト</a></li>
-							</ul>
-						</div>
-					</nav>
-					<div class="humberger_menue">
-						<div class="toggle_btn">
-							<span></span> <span></span> <span></span>
-						</div>
-					</div>
-					<div id="mask"></div>
-			</header>
-		</div>
+	</div>
 		
 	<!-- 見出し -->
 	<section class="page-section bg-white" id="heading">
@@ -76,7 +38,7 @@
 	<!-- 登録画面 -->
 	<section class="page-section bg-light" id="pastcordlist">
       <div class="container">
-      	<form action="#" method="post" th:action="@{/edit}" th:object="${registerUserForm}" enctype="multipart/form-data">
+      	<form action="#" method="post" th:action="@{/edit}" th:object="${registerUserDetailForm}" enctype="multipart/form-data">
       	<div class="imag-icon">
       		<img th:if="${userDetail.imagePath}" id="preview" class="plofile_icon" alt="写真" src="../static/dist/assets/img/plofile.jpeg" th:src="${userDetail.imagePath}">
       		<img th:unless="${userDetail.imagePath}" id="preview" class="plofile_icon" alt="写真" src="../static/dist/assets/img/user_icon.png" th:src="@{/dist/assets/img/user_icon.png}">
@@ -100,6 +62,7 @@
 				<tr>
 					<th><span style="color:red">※</span>ニックネーム</th>
 						<td class="txt">
+							<b th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" class="control-label" style="color: red" for="inputError">ニックネームは必須です</b>
 							<input type="text" name="userName" id="userName" placeholder="30文字以内で入力してください" th:field="*{userName}">
 						</td>
 				</tr>

@@ -10,20 +10,13 @@
 <title>MYQLO | 新規ユーザ登録</title>
 <link rel="icon" type="image/x-icon" href="../static/dist/assets/img/myqlo_favicon.jpg" th:href="@{/dist/assets/img/myqlo_favicon.jpg}" />
 <!-- Font Awesome icons (free version)-->
-<script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js"
-	crossorigin="anonymous"></script>
+<script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
 <!-- Google fonts-->
-<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
-	rel="stylesheet" type="text/css" />
-<link
-	href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic"
-	rel="stylesheet" type="text/css" />
-<link
-	href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
-	rel="stylesheet" type="text/css" />
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+<link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
 <!-- Core theme CSS (includes Bootstrap)-->
-<link href="../static/dist/css/input-user-information.css" rel="stylesheet"
-	th:href="@{/dist/css/input-user-information.css}" />
+<link href="../static/dist/css/input-user-information.css" rel="stylesheet" th:href="@{/dist/css/input-user-information.css}" />
 </head>
 <body id="page-top">
     <head>
@@ -70,7 +63,7 @@
                 		<div class="form-group">
                 			<b th:if="${#fields.hasErrors('myqloId')}" th:errors="*{myqloId}" class="control-label" style="color: red">MYQLO IDを入力してください</b>
                 			<span id="duplicateMessage" class="control-label" style="color: red"></span>
-                			<input type="text" class="form-control" name="myqloId" id="myqloId" placeholder="MYQLO ID（半角英数字のみ、登録後変更できません）">
+                			<input type="text" class="form-control" name="myqloId" id="myqloId" th:field="*{myqloId}" placeholder="MYQLO ID（半角英数字のみ、登録後変更できません）">
                 		</div>
                 		<b th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="control-label" style="color: red">メールアドレスを入力してください</b>
                 		<div class="form-group">
@@ -124,6 +117,6 @@
 	<script src="../static/dist/assets/mail/contact_me.js"></script>
 	<!-- Core theme JS-->
 	<script src="../static/dist/js/scripts.js"></script>
-   <!--  <script src="../static/dist/js/check_myqloid.js" th:src="@{/dist/js/check_myqloid.js}"></script> -->
+    <script src="../static/dist/js/check_myqloid.js" th:src="@{/dist/js/check_myqloid.js}"></script>
  </body>
 </html>

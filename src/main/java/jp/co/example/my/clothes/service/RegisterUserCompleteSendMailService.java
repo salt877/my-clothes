@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import jp.co.example.my.clothes.domain.User;
 import jp.co.example.my.clothes.form.RegisterUserForm;
-import jp.co.example.my.clothes.repository.UserRepository;
 
 /**
  * ユーザ登録完了後に完了メールを送る処理をするサービスクラスです.
@@ -25,9 +24,6 @@ public class RegisterUserCompleteSendMailService {
 	@Autowired
 	private MailSender sender;
 
-	@Autowired
-	private UserRepository userRepository;
-	
 	@ModelAttribute
 	public RegisterUserForm setUpForm() {
 		return new RegisterUserForm();
@@ -36,7 +32,7 @@ public class RegisterUserCompleteSendMailService {
 	/**
 	 * ユーザ登録完了後にメールを送信するメソッド.
 	 */
-	public void sendMail(RegisterUserForm form,User insertUser) {
+	public void sendMail(RegisterUserForm form, User insertUser) {
 		// メール情報を詰めるオブジェクト
 		SimpleMailMessage msg = new SimpleMailMessage();
 
@@ -56,24 +52,21 @@ public class RegisterUserCompleteSendMailService {
 
 		// お名前
 		text.append("\n" + "新規ユーザ様" + "\n\n");
-		
+
 		// パスワードの文字列置換
 		int len = user.getPassword().length();
 		StringBuilder astaliskPassword = new StringBuilder(len);
-		for(int i = 0; i < len; i++) {
+		for (int i = 0; i < len; i++) {
 			astaliskPassword.append("*");
 		}
 		System.out.println(astaliskPassword);
-		
+
 		// 本文
 		text.append("お世話になっております。\n");
 		text.append("MYQLO運営事務局です。この度は本サイトにご登録いただきありがとうございます。\n");
 		text.append("下記にご登録いただいたメールアドレスとパスワードをお知らせ致します。\n");
 		text.append("URLよりログイン画面にアクセスできますので、ご確認ください。\n\n");
 		text.append("ログイン画面URL：https://myqlo.herokuapp.com/showLogin\n");
-		Integer userId = insertUser.getId();
-		System.out.println("メールに記載されるユーザID"+ userId);
-		text.append("開発用：http://localhost:8080/profileEdit?userId=" + userId + "\n");
 		text.append("メールアドレス：" + user.getEmail() + "\n");
 		text.append("パスワード：" + astaliskPassword + "\n\n");
 		text.append("引き続き、MYQLOをお楽しみください。\n");

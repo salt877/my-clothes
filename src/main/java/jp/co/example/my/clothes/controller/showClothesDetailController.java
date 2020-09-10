@@ -28,11 +28,13 @@ import jp.co.example.my.clothes.domain.LoginUser;
 import jp.co.example.my.clothes.domain.Size;
 import jp.co.example.my.clothes.domain.Tag;
 import jp.co.example.my.clothes.domain.TagContent;
+import jp.co.example.my.clothes.domain.UserDetail;
 import jp.co.example.my.clothes.form.EditClothesForm;
 import jp.co.example.my.clothes.repository.TagRepository;
 import jp.co.example.my.clothes.service.EditClothesService;
 import jp.co.example.my.clothes.service.RegisterClothesService;
 import jp.co.example.my.clothes.service.ShowClothesDetailService;
+import jp.co.example.my.clothes.service.ShowUserNameService;
 
 /**
  * アイテムの詳細画面の表示・編集・削除を行うコントローラクラスです.
@@ -52,8 +54,9 @@ public class showClothesDetailController {
 
 	@Autowired
 	private EditClothesService editClothesService;
-
+	
 	@Autowired
+	private ShowUserNameService showUserNameService;
 
 	@ModelAttribute
 	public EditClothesForm setUpEditClothesForm() {
@@ -71,6 +74,11 @@ public class showClothesDetailController {
 	public String toClothesDetail(Model model, Integer id, EditClothesForm form,
 			@AuthenticationPrincipal LoginUser loginUser) {
 
+		Integer userId = loginUser.getUser().getId();
+		
+		UserDetail userDetail = showUserNameService.showUserName(userId);
+		model.addAttribute("userDetail", userDetail);
+		
 		// シーズンの選択肢を表示
 		Map<String, String> seasonMap = new LinkedHashMap<>();
 		seasonMap.put("春", "春");

@@ -107,6 +107,9 @@ public class ShowTopPageController {
 		session.removeAttribute("showTagName");
 
 		Integer userId = loginUser.getUser().getId();
+		
+		UserDetail userDetail = showUserNameService.showUserName(userId);
+		model.addAttribute("userDetail", userDetail);
 
 		// 天気予報情報の表示
 		// weatherService.cityFindByUserId(loginUser.getUser().getId());
