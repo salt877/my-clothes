@@ -268,9 +268,9 @@
 							</button>
 						</a> <br> <br> <br>
 					</div>
-					<div id="past-coordinate-list">
+					<div id="liked-coordinate-list">
 						<div th:each="likedCoordinate:${likedCoordinateList}">
-							<div class="past-coordinates">
+							<div class="liked-coordinates">
 								<h6 th:text="${likedCoordinate.name}"></h6>
 
 								<table class="table table-list">
@@ -439,7 +439,7 @@
 							</button>
 						</a> <br> <br> <br>
 					</div>
-					<div id="past-coordinate-list">
+					<div id="like-coordinate-list">
 						<div th:each="likeCoordinate:${likeCoordinateList}">
 							<div class="past-coordinates">
 								<h6 th:text="${likeCoordinate.name}"></h6>
@@ -634,5 +634,7 @@
 		th:src="@{/dist/js/tab.js}"></script>
 	<script src="../static/dist/js/vuemore.js"
 		th:src="@{/dist/js/vuemore.js}"></script>
+<!-- <script src="../static/dist/js/my-page.js"
+		th:src="@{/dist/js/my-page.js}"></script> -->	
 </body>
 </html>
