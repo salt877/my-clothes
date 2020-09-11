@@ -408,5 +408,150 @@ public class CoordinateRepository {
 		template.update(sql, param);
 
 	}
+	
+	/**
+	 * ユーザーごとのコーディネートデータを格納するResultSetExtractor.(いいねコーデ用)
+	 */
+	private static final ResultSetExtractor<List<Coordinate>> COORDINATE_RESULT_SET_EXTRACTOR2 = (rs) -> {
+		List<Coordinate> coordinateList = new ArrayList<>();
+		List<Clothes> clothesList = new ArrayList<>();
+		List<Like>likeList = new ArrayList<>();
+		Coordinate coordinate = new Coordinate();
+
+		int checkCoId = 0;
+		int checkClId = 0;
+
+		while (rs.next()) {
+			if (rs.getInt("co_id") != checkCoId) {
+				coordinate = new Coordinate();
+				coordinate.setId(rs.getInt("co_id"));
+				coordinate.setUserId(rs.getInt("co_user_id"));
+				coordinate.setFashionAccessories(rs.getInt("co_fashion_accessories"));
+				coordinate.setTops1(rs.getInt("co_tops1"));
+				coordinate.setTops2(rs.getInt("co_tops2"));
+				coordinate.setOuters(rs.getInt("co_outers"));
+				coordinate.setBottoms(rs.getInt("co_bottoms"));
+				coordinate.setShoes(rs.getInt("co_shoes"));
+				coordinate.setBag(rs.getInt("co_bag"));
+				coordinate.setDress(rs.getInt("co_dress"));
+				coordinate.setDeleted(rs.getBoolean("co_deleted"));
+				coordinate.setName(rs.getString("co_name"));
+				coordinate.setPublic(rs.getBoolean("co_is_public"));
+				
+				clothesList = new ArrayList<>();
+				coordinate.setClothesList(clothesList);
+				coordinate.setLikeList(likeList);
+				coordinateList.add(coordinate);
+
+			}
+
+			if (rs.getInt("cl_id") != checkClId) {
+				Clothes clothes = new Clothes();
+				clothesList.add(clothes);
+				clothes.setId(rs.getInt("cl_id"));
+				clothes.setUserId(rs.getInt("cl_user_id"));
+				clothes.setCategoryId(rs.getInt("cl_category_id"));
+				clothes.setBrandId(rs.getInt("cl_brand_id"));
+				clothes.setColorId(rs.getInt("cl_color_id"));
+				clothes.setImagePath(rs.getString("cl_image_path"));
+				clothes.setPerchaseDate(rs.getDate("cl_perchase_date"));
+				clothes.setPrice(rs.getInt("cl_price"));
+				clothes.setSizeId(rs.getInt("cl_size_id"));
+				clothes.setSeason(rs.getString("cl_season"));
+				clothes.setComment(rs.getString("cl_comment"));
+				clothes.setDeleted(rs.getBoolean("cl_deleted"));
+				Category category = new Category();
+				category.setId(rs.getInt("ca_id"));
+				category.setName(rs.getString("ca_name"));
+				clothes.setCategory(category);
+				Brand brand = new Brand();
+				brand.setId(rs.getInt("b_id"));
+				brand.setName(rs.getString("b_name"));
+				clothes.setBrand(brand);
+
+			}
+			
+			Like like = new Like();
+			like.setId(rs.getInt("li_id"));
+			like.setUserId(rs.getInt("li_user_id"));
+			like.setCoordinateId(rs.getInt("co_id"));
+			likeList.add(like);
+			
+			checkCoId = rs.getInt("co_id");
+			checkClId = rs.getInt("cl_id");
+		}
+
+		return coordinateList;
+
+	};
+	
+	
+	/**
+	 * likesテーブルのユーザIDで自分がいいねしたコーデリストを検索します.
+	 * 
+	 * @param userId　ユーザID
+	 * @return
+	 */
+	public List<Coordinate> findBylike(Integer userId){
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT co.id co_id, li.id li_id, co.user_id co_user_id, li.user_id li_user_id, co.fashion_accessories co_fashion_accessories, co.tops1 co_tops1, co.tops2 co_tops2, ");
+		sql.append("co.outers co_outers, co.bottoms co_bottoms, co.shoes co_shoes, co.bag co_bag, co.dress co_dress, co.deleted co_deleted, co.name co_name, ");
+		sql.append("co.is_public co_is_public, b.id b_id, b.name b_name,cl.id cl_id, cl.user_id cl_user_id, cl.category_id cl_category_id, cl.brand_id cl_brand_id, ");
+		sql.append("cl.color_id cl_color_id, cl.season cl_season, cl.image_path cl_image_path, ");
+		sql.append("cl.perchase_date cl_perchase_date, cl.price cl_price, cl.size_id cl_size_id, cl.comment cl_comment, cl.deleted cl_deleted, ");
+		sql.append("ca.id ca_id, ca.name ca_name, b.id b_id, b.name b_name ");
+		sql.append("FROM coordinates co LEFT OUTER JOIN clothes cl ");
+		sql.append("ON co.fashion_accessories  = cl.id OR co.tops1 = cl.id OR co.tops2 = cl.id OR co.outers = cl.id OR co.bottoms = cl.id OR co.shoes = cl.id OR co.bag = cl.id OR co.dress = cl.id ");
+		sql.append("LEFT OUTER JOIN categories ca ON cl.category_id = ca.id ");
+		sql.append("LEFT OUTER JOIN brands b ON cl.brand_id = b.id ");
+		sql.append("LEFT OUTER JOIN likes li ON co.id = li.coordinate_id ");
+		sql.append("WHERE co.deleted = 'FALSE' AND co.is_public = 'TRUE' AND li.user_id= :userId ");
+		sql.append("ORDER BY co.id, cl.category_id;");
+		
+		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
+		
+		List<Coordinate> coordinateList = template.query(sql.toString(), param, COORDINATE_RESULT_SET_EXTRACTOR2);
+
+		if (coordinateList.size() == 0) {
+			return Collections.emptyList();
+
+		}
+
+		return coordinateList;
+	}
+	
+	/**
+	 * likesテーブルのユーザIDで自分にいいねされたコーデリストを検索します.
+	 * 
+	 * @param userId ユーザID
+	 * @return
+	 */
+	public List<Coordinate> findByliked(Integer userId){
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT co.id co_id, li.id li_id, co.user_id co_user_id, li.user_id li_user_id, co.fashion_accessories co_fashion_accessories, co.tops1 co_tops1, co.tops2 co_tops2, ");
+		sql.append("co.outers co_outers, co.bottoms co_bottoms, co.shoes co_shoes, co.bag co_bag, co.dress co_dress, co.deleted co_deleted, co.name co_name, ");
+		sql.append("co.is_public co_is_public, b.id b_id, b.name b_name,cl.id cl_id, cl.user_id cl_user_id, cl.category_id cl_category_id, cl.brand_id cl_brand_id, ");
+		sql.append("cl.color_id cl_color_id, cl.season cl_season, cl.image_path cl_image_path, ");
+		sql.append("cl.perchase_date cl_perchase_date, cl.price cl_price, cl.size_id cl_size_id, cl.comment cl_comment, cl.deleted cl_deleted, ");
+		sql.append("ca.id ca_id, ca.name ca_name, b.id b_id, b.name b_name ");
+		sql.append("FROM coordinates co LEFT OUTER JOIN clothes cl ");
+		sql.append("ON co.fashion_accessories  = cl.id OR co.tops1 = cl.id OR co.tops2 = cl.id OR co.outers = cl.id OR co.bottoms = cl.id OR co.shoes = cl.id OR co.bag = cl.id OR co.dress = cl.id ");
+		sql.append("LEFT OUTER JOIN categories ca ON cl.category_id = ca.id ");
+		sql.append("LEFT OUTER JOIN brands b ON cl.brand_id = b.id ");
+		sql.append("right outer join likes li ON co.id = li.coordinate_id ");
+		sql.append("WHERE co.deleted = 'FALSE' AND co.is_public = 'TRUE' AND co.user_id = :userId ");
+		sql.append("ORDER BY co.id, cl.category_id;");
+		
+		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
+		
+		List<Coordinate> coordinateList = template.query(sql.toString(), param, COORDINATE_RESULT_SET_EXTRACTOR2);
+
+		if (coordinateList.size() == 0) {
+			return Collections.emptyList();
+
+		}
+
+		return coordinateList;
+	}
 
 }

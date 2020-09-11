@@ -14,7 +14,11 @@
 }
 
 .container{
-	padding: 7em;
+	padding-top: 1em;
+}
+
+#work{
+	padding-top: 200px;
 }
 
 #change_profile_bun{
@@ -22,6 +26,12 @@
 	margin: 0 auto;
 	margin-top: 15px;
 	margin-left: 15px;
+}
+
+.change_profile_bun{
+	color: #fff;
+    background-color: #fed136;
+    border-color: #fed136;
 }
 
 .user_main{

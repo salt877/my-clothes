@@ -134,5 +134,25 @@ public class ShowCoordinateService {
 	public Like confirmLike(Integer coordinateId, Integer userId) {
 		return coordinateRepository.load(coordinateId, userId);
 	}
+	
+	/**
+	 * 自分がいいねしたコーディネートリストを表示します.
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	public List<Coordinate> showLikeCoordinate(Integer userId){
+		return coordinateRepository.findBylike(userId);
+	}
+	
+	/**
+	 * 自分にいいねされたコーディネートリストを表示します.
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	public List<Coordinate> showLikedCoordinate(Integer userId){
+		return coordinateRepository.findByliked(userId);
+	}
 
 }
