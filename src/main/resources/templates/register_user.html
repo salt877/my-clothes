@@ -3,8 +3,7 @@
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>MYQLO | 新規ユーザ登録</title>
@@ -17,41 +16,13 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="../static/dist/css/input-user-information.css" rel="stylesheet" th:href="@{/dist/css/input-user-information.css}" />
+<meta name="_csrf" th:content="${_csrf.token}"/>
+<meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 </head>
 <body id="page-top">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>MYQLO | 新規ユーザ登録</title>
-        <link rel="icon" type="image/x-icon" href="../static/dist/assets/img/myqlo_favicon.jpg" th:href="@{/dist/assets/img/myqlo_favicon.jpg}"/>
-        <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="../static/dist/css/input-user-information.css" rel="stylesheet" th:href="@{/dist/css/input-user-information.css}" />
-    </head>
-    <body id="page-top">
     
-       <!--  Navigation
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-            <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="../static/dist/assets/img/navbar-logo.svg" alt="" /></a>
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    Menu
-                    <i class="fas fa-bars ml-1"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    
-                </div>
-            </div>
-        </nav> -->
-        
         <!-- ユーザ登録画面 -->
+
         <header class="masthead">
         	<div class="registerform">
             	<div class="user-input-container">
@@ -87,6 +58,7 @@
 		 										}, false);
 		 								</script> 
 		 								
+		 								
                         </div>
                         	<span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
                          	<b th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}" class="control-label" style="color: red" for="inputError">確認用パスワードを入力してください</b>
@@ -96,27 +68,24 @@
                         <div class="submit-group">
                     		<input type="submit" name="submit" id="submit" class="btn btn--submit btn--radius" value="&emsp;登&ensp;録&emsp;"/>
                	  	    </div>
-                   </form>
+               </form> 
                    
-                   <!-- 既に登録されている場合、ログイン画面にリンク -->
+				<!-- 既に登録されている場合、ログイン画面にリンク-->
                    <p class="loginhere text-center">
                         既に登録されている場合、<br class="login-link-br"> <a href="login.html" th:href="@{/showLogin}" class="loginhere-link a-link">ログインはこちら</a>
                    </p>
                 </div>
             </div>
-        </header>
+        </header> 
 	<!-- Footer-->
 	<footer class="footer py-4" th:replace="footer::pagefooter"> </footer>
-	<!-- Bootstrap core JS-->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
 	<!-- Third party plugin JS-->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-	<!-- Contact form JS-->
-	<script src="../static/dist/assets/mail/jqBootstrapValidation.js"></script>
-	<script src="../static/dist/assets/mail/contact_me.js"></script>
+	<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="../static/lib/main.js" th:src="@{/lib/main.js}"></script>
+	<!-- Bootstrap core JS-->
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
 	<!-- Core theme JS-->
-	<script src="../static/dist/js/scripts.js"></script>
-    <script src="../static/dist/js/check_myqloid.js" th:src="@{/dist/js/check_myqloid.js}"></script>
+ 	<script type="text/javascript" src="../static/dist/js/check_myqloid.js" th:src="@{/dist/js/check_myqloid.js}"></script> 
+	<script src="../static/dist/js/scripts.js" th:src="@{/dist/js/scripts.js}"></script>
  </body>
 </html>

@@ -45,10 +45,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-//		/showLogin","/showRegisterUser","/forgotPassword","/passwordInputPage
 
 		http.authorizeRequests() // 認可に関する設定
-				.antMatchers("/showLogin","/showRegisterUser","/registerUser","/forgotPassword","/sendInputPage","/passwordInputPage","/profileEdit").permitAll()
+				.antMatchers("/showLogin","/showRegisterUser","/registerUser","/forgotPassword","/sendInputPage","/passwordInputPage","/input_myqloId/myqloId_check").permitAll()
 				.anyRequest().authenticated(); 
 
 		http.formLogin() // ログインに関する設定
