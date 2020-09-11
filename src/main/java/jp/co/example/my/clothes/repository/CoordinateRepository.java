@@ -490,7 +490,7 @@ public class CoordinateRepository {
 	 * likesテーブルのユーザIDで自分がいいねしたコーデリストを検索します.
 	 * 
 	 * @param userId　ユーザID
-	 * @return
+	 * @return いいねしたコーディネートリスト
 	 */
 	public List<Coordinate> findBylike(Integer userId){
 		StringBuilder sql = new StringBuilder();
@@ -524,7 +524,7 @@ public class CoordinateRepository {
 	 * likesテーブルのユーザIDで自分にいいねされたコーデリストを検索します.
 	 * 
 	 * @param userId ユーザID
-	 * @return
+	 * @return いいねされたコーディネートリスト
 	 */
 	public List<Coordinate> findByliked(Integer userId){
 		StringBuilder sql = new StringBuilder();

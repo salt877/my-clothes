@@ -138,8 +138,8 @@ public class ShowCoordinateService {
 	/**
 	 * 自分がいいねしたコーディネートリストを表示します.
 	 * 
-	 * @param userId
-	 * @return
+	 * @param userId ユーザID
+	 * @return いいねしたコーディネートリスト
 	 */
 	public List<Coordinate> showLikeCoordinate(Integer userId){
 		return coordinateRepository.findBylike(userId);
@@ -148,8 +148,8 @@ public class ShowCoordinateService {
 	/**
 	 * 自分にいいねされたコーディネートリストを表示します.
 	 * 
-	 * @param userId
-	 * @return
+	 * @param userId ユーザID
+	 * @return いいねされたコーディネートリスト
 	 */
 	public List<Coordinate> showLikedCoordinate(Integer userId){
 		return coordinateRepository.findByliked(userId);

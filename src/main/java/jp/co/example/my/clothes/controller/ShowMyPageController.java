@@ -55,10 +55,8 @@ public class ShowMyPageController {
 		model.addAttribute("likeCoordinateList", likeCoordinateList);
 		
 		// いいねされたコーデ
-		System.out.println(userId);
 		List<Coordinate> likedCoordinateList = showCoordinateService.showLikedCoordinate(userId);
 		model.addAttribute("likedCoordinateList", likedCoordinateList);
-		System.out.println(likedCoordinateList);
 		
 		return "my_page";
 	}
