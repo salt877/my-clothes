@@ -104,15 +104,19 @@ public class ShowCoordinateController {
 		for (Coordinate coodinate : coordinateList) {
 			List<Like> likeList = showCoordinateService.showLikes(coodinate.getId());
 			coodinate.setLikeList(likeList);
+			
+			System.out.println("ユーザー名：" + coodinate.getUserDetail().getUserName());
+			System.out.println("マイクロID：" + coodinate.getUser().getMyqloId());
+			
 		}
 		
 		UserDetail userDetail = showUserNameService.showUserName(userId);
 		model.addAttribute("userDetail", userDetail);
 		
-		String userMyqloId = loginUser.getUser().getMyqloId();
-		modelMap.addAttribute("userMyqloId", userMyqloId);
+//		String userMyqloId = loginUser.getUser().getMyqloId();
+//		modelMap.addAttribute("userMyqloId", );
 
-		model.addAttribute("coordinateList", coordinateList);
+		modelMap.addAttribute("coordinateList", coordinateList);
 
 		return "public_coordinate_list";
 

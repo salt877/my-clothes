@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import jp.co.example.my.clothes.domain.Coordinate;
 import jp.co.example.my.clothes.domain.Like;
@@ -15,6 +16,7 @@ import jp.co.example.my.clothes.domain.LoginUser;
 import jp.co.example.my.clothes.domain.UserDetail;
 import jp.co.example.my.clothes.service.ShowCoordinateService;
 import jp.co.example.my.clothes.service.ShowMyPageService;
+import jp.co.example.my.clothes.service.ShowUserPageService;
 
 /**
  * ユーザーページ（他人から見たマイページ）を表示するコントローラクラスです.
@@ -26,21 +28,19 @@ import jp.co.example.my.clothes.service.ShowMyPageService;
 public class ShowUserPageController {
 
 	@Autowired
-	private ShowMyPageService showMyPageService;
+	private ShowUserPageService showUserPageService;
 
 	@Autowired
 	private ShowCoordinateService showCoordinateService;
 
 	@RequestMapping("/{userMyqloId}")
-	public String showMyPage(Model model, @AuthenticationPrincipal LoginUser loginUser,
-			@PathVariable("userMyqloId") String userMyqloId) {
+	public String showMyPage(Model model, @PathVariable("userMyqloId") String userMyqloId) {
 
-		Integer userId = loginUser.getUser().getId();
-		UserDetail userInfomation = showMyPageService.showMyPage(userId);
+		UserDetail userInfomation = showUserPageService.showUserDetail(userMyqloId);
 		model.addAttribute("userInfomation", userInfomation);
 		model.addAttribute("userDetail", userInfomation);
 
-		List<Coordinate> publicCoordinateList = showCoordinateService.showPublicCoordinateByUserId(userId);
+		List<Coordinate> publicCoordinateList = showCoordinateService.showCoordinateByMyqloId(userMyqloId);
 
 		for (Coordinate coodinate : publicCoordinateList) {
 			List<Like> likeList = showCoordinateService.showLikes(coodinate.getId());
@@ -48,9 +48,10 @@ public class ShowUserPageController {
 		}
 
 		model.addAttribute("publicCoordinateList", publicCoordinateList);
+		model.addAttribute("userName", publicCoordinateList.get(0).getUserDetail().getUserName());
 
 		// 該当するMYQLOIDを持つユーザがいない場合の処理
-		if (showMyPageService.searchUserByMyqloId(userMyqloId) == null) {
+		if (showUserPageService.showUserDetail(userMyqloId) == null) {
 			return "error/404";
 		}
 

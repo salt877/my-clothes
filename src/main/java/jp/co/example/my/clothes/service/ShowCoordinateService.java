@@ -46,8 +46,8 @@ public class ShowCoordinateService {
 	/**
 	 * ユーザーIDで公開コーディネート情報を取得します.
 	 * 
-	 * @param userId　ユーザーID
-	 * @return　
+	 * @param userId ユーザーID
+	 * @return
 	 */
 	public List<Coordinate> showPublicCoordinateByUserId(Integer userId) {
 		return coordinateRepository.findByIsPublicAndUserId(userId);
@@ -80,6 +80,16 @@ public class ShowCoordinateService {
 	 */
 	public Coordinate showCoordinateDetailForPublicCoordinate(Integer coordinateId) {
 		return coordinateRepository.loadForPublicCoordinate(coordinateId);
+	}
+
+	/**
+	 * マイクロIDでコーディネートを検索します.
+	 * 
+	 * @param myqloId マイクロID
+	 * @return
+	 */
+	public List<Coordinate> showCoordinateByMyqloId(String myqloId) {
+		return coordinateRepository.coordinateListByMyqloId(myqloId);
 	}
 
 	/**

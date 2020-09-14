@@ -90,6 +90,26 @@ public class UserRepository {
 	}
 
 	/**
+	 * 
+	 * マイクロIDから詳細情報を１件検索します.
+	 * 
+	 * @param myqloId マイクロID
+	 * @return ユーザ情報
+	 */
+	public UserDetail findByMyqloId(String myqloId) {
+		String sql = "SELECT ud.user_id,u.myqlo_id, ud.image_path, ud.user_name, ud.gender, ud.age, ud.height, ud.self_introduction FROM users AS u "
+				+ "LEFT OUTER JOIN user_details AS ud ON u.id = ud.user_id " + "WHERE u.myqlo_id=:myqloId";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("myqloId", myqloId);
+		List<UserDetail> userList = template.query(sql, param, USER_DETAIL_ROW_MAPPER);
+		if (userList.size() == 0) {
+			return null;
+		}
+
+		return userList.get(0);
+
+	}
+
+	/**
 	 * MYQLO IDを検索し、結果を取得します.
 	 * 
 	 * @param myqloId MYQLO ID

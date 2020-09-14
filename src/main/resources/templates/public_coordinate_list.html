@@ -92,9 +92,10 @@
 						<div class="public-coordinates">
 
 							<h6 th:text="${coordinate.name}">公開コーデ</h6>
-							<span><a href="#">マイクロ</a> さん</span>&nbsp;&nbsp; |&nbsp;&nbsp; <label
-								class="modal-label"> <input type="radio" class="radio"
-								name="radio" th:id="${coordinate.id}"
+							<span><a th:href="@{/__${coordinate.user.myqloId}__}"><span
+									th:text="${coordinate.userDetail.userName}"></span></a> さん</span>&nbsp;&nbsp;
+							|&nbsp;&nbsp; <label class="modal-label"> <input
+								type="radio" class="radio" name="radio" th:id="${coordinate.id}"
 								th:value="${coordinate.id}"> <img
 								th:src="@{/dist/img/heart.png}"
 								class="far fa-heart like radio-img"> <span class="counts"

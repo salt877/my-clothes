@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jp.co.example.my.clothes.domain.User;
+import jp.co.example.my.clothes.domain.UserDetail;
 import jp.co.example.my.clothes.repository.UserRepository;
 
 /**
@@ -26,6 +27,10 @@ public class ShowUserPageService {
 	 */
 	public User searchMyqloId(Integer userId) {
 		return userRepository.findMyqloId(userId);
+	}
+	
+	public UserDetail showUserDetail(String myqloId) {
+		return userRepository.findByMyqloId(myqloId);
 	}
 
 }

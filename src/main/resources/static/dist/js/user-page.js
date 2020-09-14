@@ -104,7 +104,7 @@ $('.detail-btn').on('click', function() {
 
 	// コーデ合計金額計算処理
 	$.ajax({
-		url : "/culc_pastcoordinate_price",
+		url : "/culc_publiccoordinate_price",
 		type : "GET",
 		data : {
 			coordinateId : coordinateId

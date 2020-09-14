@@ -8,3 +8,168 @@
 .radio {
 	display: none;
 }
+
+.c-title {
+	margin-top: -20%;
+}
+
+.plofile_img {
+	position: absolute;
+	left: 300px;
+	top: 150px;
+}
+
+.plofile_icon {
+	width: 180px; /* ※縦横を同値に */
+	height: 180px; /* ※縦横を同値に */
+	border-radius: 50%; /* 角丸半径を50%にする(=円形にする) */
+	background-position: center center;
+	　 /* 横長画像の中央を基準に表示 */
+}
+
+.container {
+	margin-top: 200px;
+}
+
+#change_profile_bun {
+	position: absolute;
+	margin: 0 auto;
+	margin-top: 15px;
+	margin-left: 15px;
+}
+
+.user_main {
+	position: absolute;
+	left: 530px;
+	top: 180px
+}
+
+.user_data {
+	position: relative;
+	right: 47px;
+}
+
+.info {
+	margin: 0 auto;
+	margin-right: 10px;
+}
+
+.info li {
+	float: left;
+	list-style: none;
+	margin: 5px;
+}
+
+.name {
+	font-size: 25px;
+	margin: 0 auto;
+}
+
+.user-page {
+	font-size: 12px;
+	color: #212529;
+	margin: 0 auto;
+}
+
+li .user_id .height .gender .hair {
+	color: #444444;
+}
+
+.break {
+	color: #CCCCCC;
+}
+
+.pastcordlist {
+	top: 50px;
+}
+
+.work-section {
+	padding-top: 40px;
+}
+
+/*タブのCSS記述*/
+.work-section .tabs-nav li {
+	border-right: 1px solid rgb(218, 218, 218);
+	float: left;
+	position: relative;
+	-webkit-box-shadow: 1px 0 rgb(255, 255, 255);
+	-box-shadow: 1px 0 rgb(255, 255, 255);
+}
+
+ul {
+	list-style: none;
+}
+
+.work-section .tabs-nav a {
+	display: block;
+	padding: 0 1.36em;
+	position: relative;
+	text-decoration: none;
+}
+
+.work-section .tabs-nav a:hover, .work-section .tabs-nav a.active {
+	background-color: rgb(51, 51, 51);
+	color: rgb(255, 255, 255);
+}
+
+.work-section .tabs-nav a.active:after {
+	content: "";
+	position: absolute;
+}
+
+.inner {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin: 0 auto;
+}
+
+/* 480px以下に適用されるCSS（スマホ用） */
+@media screen and (max-width: 480px) {
+	.page-section {
+		padding: 8rem 0 !important;
+	}
+	.c-title {
+		margin-top: -100%;
+	}
+	.plofile_img {
+		left: 100px;
+	
+}
+	.plofile_icon {
+		width: 150px; /* ※縦横を同値に */
+		height: 150px; /* ※縦横を同値に */
+		border-radius: 50%; /* 角丸半径を50%にする(=円形にする) */
+		background-position: center center;
+		margin: 0 auto;
+		　 /* 横長画像の中央を基準に表示 */
+	}
+	.user_main {
+		position: absolute;
+		left: 50px;
+		top: 340px;
+	}
+	.name {
+		font-size: 18px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.user-page {
+		font-size: 12px;
+		color: black;
+		margin: 0 auto;
+		margin-left: 80px;
+	}
+	ul {
+		font-size: 11px;
+	}
+	.self-introduction {
+		font-size: 11px;
+		width: 270px;
+	}
+	.chacge-profile {
+		font-size: 13px;
+	}
+	.btn {
+		padding: 0.320rem 0.55rem;
+	}
+}

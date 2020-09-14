@@ -37,6 +37,8 @@ public class Coordinate {
 	private boolean isPublic;
 	/** ユーザー情報格納用インスタンス */
 	private User user;
+	/** ユーザー詳細情報 */
+	private UserDetail userDetail;
 	/** 服情報を詰めるリスト（コーディネート情報） */
 	private List<Clothes> clothesList;
 	/** コーデのいいね */
@@ -47,7 +49,8 @@ public class Coordinate {
 		return "Coordinate [id=" + id + ", userId=" + userId + ", fashionAccessories=" + fashionAccessories + ", tops1="
 				+ tops1 + ", tops2=" + tops2 + ", outers=" + outers + ", bottoms=" + bottoms + ", shoes=" + shoes
 				+ ", bag=" + bag + ", dress=" + dress + ", deleted=" + deleted + ", name=" + name + ", isPublic="
-				+ isPublic + ", user=" + user + ", clothesList=" + clothesList + ", likeList=" + likeList + "]";
+				+ isPublic + ", user=" + user + ", userDetail=" + userDetail + ", clothesList=" + clothesList
+				+ ", likeList=" + likeList + "]";
 	}
 
 	public Integer getId() {
@@ -160,6 +163,14 @@ public class Coordinate {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public UserDetail getUserDetail() {
+		return userDetail;
+	}
+
+	public void setUserDetail(UserDetail userDetail) {
+		this.userDetail = userDetail;
 	}
 
 	public List<Clothes> getClothesList() {
