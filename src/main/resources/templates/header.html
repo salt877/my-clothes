@@ -6,45 +6,49 @@
 </head>
 <body>
 	<!-- Navigation-->
-		<div th:fragment="pageheader" class="pageheader">
-			<header class="site-header">
-				<div class="site-logo">
-					<a  th:href="@{/}">
-						<img th:src="@{/dist/assets/img/myqlo_favicon.jpg}" alt="site-logo">
-					</a>
-						<a class="header_userName" th:href="@{/mypage}">
-						<img th:if="${userDetail.imagePath}" th:src="${userDetail.imagePath}" style="border-radius: 50%" >
-						<img th:unless="${userDetail.imagePath}" th:src="@{/dist/assets/img/user_icon.png}" style="border-radius: 50%">
-						<span th:text="${userDetail.userName}">○○さん</span>
-					</a>
+	<div th:fragment="pageheader" class="pageheader">
+		<header class="site-header">
+			<div class="site-logo">
+				<a th:href="@{/}"> <img
+					th:src="@{/dist/assets/img/myqlo_favicon.jpg}" alt="site-logo">
+				</a> <a class="header_userName" th:href="@{/mypage}"> <img
+					th:if="${userDetail.imagePath}" th:src="${userDetail.imagePath}"
+					style="border-radius: 50%"> <img
+					th:unless="${userDetail.imagePath}"
+					th:src="@{/dist/assets/img/user_icon.png}"
+					style="border-radius: 50%"> <span
+					th:text="${userDetail.userName}">○○さん</span>
+				</a>
+			</div>
+			<nav>
+				<div class="inner">
+					<ul>
+						<li><a href="top.html" th:href="@{/}"><i
+								class="fas fa-home"></i>&emsp;&emsp;TOP</a></li>
+						<li><a href="statistics.html" th:href="@{/stats}"><i
+								class="far fa-chart-bar"></i>&emsp;&emsp;統計データ</a></li>
+						<li><a href="calender.html" th:href="@{/calendar}"><i
+								class="far fa-calendar-alt"></i>&emsp;&emsp;カレンダー</a></li>
+						<li><a href="coordinate.html" th:href="@{/coordinate}"><i
+								class="fas fa-female"></i>&emsp;&emsp;&nbsp;コーディネート</a></li>
+						<li><a href="coordinate.html" th:href="@{/public-coordinate}"><i
+								class="fas fa-user-friends"></i>&nbsp;&emsp;&nbsp;みんなのコーディネート</a></li>
+						<li><a href="contact.html" th:href="@{/contact}"><i
+								class="far fa-envelope"></i>&emsp;&emsp;お問い合わせ</a></li>
+						<li><a href="faq.html" th:href="@{/faq}"><i
+								class="far fa-question-circle"></i>&emsp;&emsp;FAQ</a></li>
+						<li><a href="login.html" th:href="@{/logout}"><i
+								class="fas fa-sign-out-alt"></i>&emsp;&emsp;ログアウト</a></li>
+					</ul>
 				</div>
-					<nav>
-						<div class="inner">
-							<ul>
-								<li><a href="top.html" th:href="@{/}"><i
-										class="fas fa-home"></i>&emsp;&emsp;TOP</a></li>
-								<li><a href="statistics.html" th:href="@{/stats}"><i
-										class="far fa-chart-bar"></i>&emsp;&emsp;統計データ</a></li>
-								<li><a href="calender.html" th:href="@{/calendar}"><i
-										class="far fa-calendar-alt"></i>&emsp;&emsp;カレンダー</a></li>
-								<li><a href="coordinate.html" th:href="@{/coordinate}"><i
-										class="fas fa-female"></i>&emsp;&emsp;コーディネート</a></li>
-								<li><a href="contact.html" th:href="@{/contact}"><i
-										class="far fa-envelope"></i>&emsp;&emsp;お問い合わせ</a></li>
-								<li><a href="faq.html" th:href="@{/faq}"><i
-										class="far fa-question-circle"></i>&emsp;&emsp;FAQ</a></li>
-								<li><a href="login.html" th:href="@{/logout}"><i
-										class="fas fa-sign-out-alt"></i>&emsp;&emsp;ログアウト</a></li>
-							</ul>
-						</div>
-					</nav>
-					<div class="humberger_menue">
-						<div class="toggle_btn">
-							<span></span> <span></span> <span></span>
-						</div>
-					</div>
-					<div id="mask"></div>
-			</header>
-		</div>
+			</nav>
+			<div class="humberger_menue">
+				<div class="toggle_btn">
+					<span></span> <span></span> <span></span>
+				</div>
+			</div>
+			<div id="mask"></div>
+		</header>
+	</div>
 </body>
 </html>

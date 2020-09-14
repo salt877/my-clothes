@@ -105,17 +105,11 @@ public class ShowCoordinateController {
 			List<Like> likeList = showCoordinateService.showLikes(coodinate.getId());
 			coodinate.setLikeList(likeList);
 			
-			System.out.println("ユーザー名：" + coodinate.getUserDetail().getUserName());
-			System.out.println("マイクロID：" + coodinate.getUser().getMyqloId());
-			
 		}
 		
 		UserDetail userDetail = showUserNameService.showUserName(userId);
 		model.addAttribute("userDetail", userDetail);
 		
-//		String userMyqloId = loginUser.getUser().getMyqloId();
-//		modelMap.addAttribute("userMyqloId", );
-
 		modelMap.addAttribute("coordinateList", coordinateList);
 
 		return "public_coordinate_list";

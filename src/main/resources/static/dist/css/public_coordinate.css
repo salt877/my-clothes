@@ -9,6 +9,19 @@
 	display: none;
 }
 
+.prof_icon {
+	width: 25px; /* ※縦横を同値に */
+	height: 25px; /* ※縦横を同値に */
+	border-radius: 50%; /* 角丸半径を50%にする(=円形にする) */
+	background-position: center center;
+	　 /* 横長画像の中央を基準に表示 */
+}
+
+.prof-icon-name{
+	padding: 3px 0;
+}
+
+
 /*タブ切り替え全体のスタイル*/
 .tabs {
 	margin-top: 50px;

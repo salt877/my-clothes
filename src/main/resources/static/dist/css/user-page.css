@@ -10,7 +10,7 @@
 }
 
 .c-title {
-	margin-top: -20%;
+	margin-top: -22%;
 }
 
 .plofile_img {
@@ -25,6 +25,10 @@
 	border-radius: 50%; /* 角丸半径を50%にする(=円形にする) */
 	background-position: center center;
 	　 /* 横長画像の中央を基準に表示 */
+}
+
+.list-count {
+    margin-top: -20px;
 }
 
 .container {
