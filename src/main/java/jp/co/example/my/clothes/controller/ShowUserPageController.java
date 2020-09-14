@@ -64,7 +64,6 @@ public class ShowUserPageController {
 		model.addAttribute("userDetail", userDetail);
 
 		model.addAttribute("publicCoordinateList", publicCoordinateList);
-		model.addAttribute("userName", publicCoordinateList.get(0).getUserDetail().getUserName());
 
 		// 該当するMYQLOIDを持つユーザがいない場合の処理
 		if (showUserPageService.showUserDetail(userMyqloId) == null) {
