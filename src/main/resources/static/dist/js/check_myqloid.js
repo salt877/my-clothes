@@ -21,7 +21,27 @@ $(function ($) {
 			async : true
 		}).done(function(data) {
 			
-			$("#duplicateMessage").html(data.duplicateMessage);
+			var message = data.duplicateMessage;
+			console.log(message);
+			var mark = document.createElement("span");
+			var newContent = document.createTextNode("");
+			mark.appendChild(newContent);
+			
+			if (message == '使用できます'){
+				mark.setAttribute("class","checkmark001");
+				$("#duplicateMessage").html(data.duplicateMessage);
+				var parent = document.getElementById("duplicateMessage");
+				parent.insertBefore(mark,parent.firstChild);
+				parent.style.color = "green";
+				
+			}  else {
+				$("#duplicateMessage").html(data.duplicateMessage);
+				var parent = document.getElementById("duplicateMessage");
+				parent.insertBefore(mark,parent.firstChild);
+				parent.style.color = "red";
+			}
+			
+			
 			
 		}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
 			console.log("XMLHttpRequest : " + XMLHttpRequest.status);
