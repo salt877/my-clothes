@@ -25,201 +25,224 @@
 	rel="stylesheet" type="text/css" />
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="../static/dist/css/styles.css"
-	th:href="@{/dist/css/styles.css}" rel="stylesheet" />
+	th:href="@{/dist/css/styles.css}" rel="stylesheet">
 
 <link rel="stylesheet" href="../static/dist/css/my_page.css"
 	th:href="@{/dist/css/my_page.css}">
+<link rel="stylesheet" href="../static/dist/css/user-page.css"
+	th:href="@{/dist/css/user-page.css}">
 <link rel="stylesheet" href="../static/dist/css/past-coordinate.css"
 	th:href="@{/dist/css/past-coordinate.css}">
+
 </head>
 <body id="page-top">
-		<!-- Navigation-->
-		<div id="navArea">
-			<nav class="navbar navbar-default" th:replace="header::pageheader"></nav>
-		</div>
+	<!-- Navigation-->
+	<div id="navArea">
+		<nav class="navbar navbar-default" th:replace="header::pageheader"></nav>
+	</div>
 
-		<!-- ユーザ情報 -->
-		<section class="page-section bg-white">
-			<div class="container">
-				<div class="user-information">
-					<div class="plofile_img">
-						<img th:unless="${userInfomation.imagePath}" class="plofile_icon"
-							alt="写真" src="../static/dist/assets/img/user_icon.png"
-							th:src="@{/dist/assets/img/user_icon.png}"> <br>
+	<!-- ユーザ情報 -->
+	<section class="page-section bg-white">
+		<div class="container">
+			<div class="user-information">
+				<div class="plofile_img">
+					<img th:unless="${userInfomation.imagePath}" class="plofile_icon"
+						alt="写真" src="../static/dist/assets/img/user_icon.png"
+						th:src="@{/dist/assets/img/user_icon.png}"> <br>
 
+				</div>
+				<div class="user_main">
+					<h1 class="name" th:text="${userInfomation.userName}">テストユーザ</h1>
+					<div class="user_data">
+						<ul class="info">
+							<li class="user_id" th:text="'@'+${userInfomation.myqloId}">@testUser1234</li>
+							<li th:unless="${#strings.isEmpty(userDetail.height)}"
+								class="break">|</li>
+							<li th:unless="${#strings.isEmpty(userDetail.height)}"
+								class="height" th:text="${userInfomation.height}+'cm'">170cm</li>
+							<li th:if="${userInfomation.gender}" class="break">|</li>
+							<li class="gender" th:text="${userInfomation.gender}">MEN</li>
+							<li th:if="${userInfomation.age}" class="break">|</li>
+							<li class="age" th:text="${userInfomation.age}">20代前半</li>
+						</ul>
 					</div>
-					<div class="user_main">
-						<h1 class="name" th:text="${userInfomation.userName}">テストユーザ</h1>
-						<div class="user_data">
-							<ul class="info">
-								<li class="user_id" th:text="'@'+${userInfomation.myqloId}">@testUser1234</li>
-								<li th:unless="${#strings.isEmpty(userDetail.height)}"
-									class="break">|</li>
-								<li th:unless="${#strings.isEmpty(userDetail.height)}"
-									class="height" th:text="${userInfomation.height}+'cm'">170cm</li>
-								<li th:if="${userInfomation.gender}" class="break">|</li>
-								<li class="gender" th:text="${userInfomation.gender}">MEN</li>
-								<li th:if="${userInfomation.age}" class="break">|</li>
-								<li class="age" th:text="${userInfomation.age}">20代前半</li>
-							</ul>
-						</div>
-						<br> <br>
-						<div class="self-introduction">
-							<span th:text="${userInfomation.selfIntroduction}"></span> <span
-								th:if="${#strings.isEmpty(userInfomation.selfIntroduction)}">よろしくお願いします。</span>
-						</div>
+					<br> <br>
+					<div class="self-introduction">
+						<span th:text="${userInfomation.selfIntroduction}"></span> <span
+							th:if="${#strings.isEmpty(userInfomation.selfIntroduction)}">よろしくお願いします。</span>
 					</div>
 				</div>
 			</div>
-		</section>
+		</div>
+	</section>
 
-		<!-- 公開コーデ -->
-		<section class="page-section bg-light" id="pastcordlist">
-			<div class="container">
-				<h5 class="c-title">
-					<span th:text="${userInfomation.userName}"></span>さんのコーディネート一覧
-				</h5>
-				<br> <br>
-				<!-- 公開コーデ未登録の場合、コーデ画面へ遷移誘導 -->
-				<div th:if="${#lists.isEmpty(publicCoordinateList)}">
-					<div class="not-registered-txt">
-						<div>
-							<span th:text="${userInfomation.userName}"></span>さんが公開しているコーディネートはありません。
-						</div>
+	<!-- 公開コーデ -->
+	<section class="page-section bg-light" id="pastcordlist">
+		<div class="container">
+			<h5 class="c-title">
+				<span th:text="${userInfomation.userName}"></span>さんのコーディネート一覧
+			</h5>
+			<br> <br>
+			<!-- 公開コーデ未登録の場合、コーデ画面へ遷移誘導 -->
+			<div th:if="${#lists.isEmpty(publicCoordinateList)}">
+				<div class="not-registered-txt">
+					<div>
+						<span th:text="${userInfomation.userName}"></span>さんが公開しているコーディネートはありません。
 					</div>
 				</div>
+			</div>
 
 
-				<div th:if="!${#lists.isEmpty(publicCoordinateList)}">
-					<div id="past-coordinate-list">
-						<div th:each="coordinate:${publicCoordinateList}">
-							<div class="past-coordinates">
-								<h6 th:text="${coordinate.name}"></h6>
+			<div th:if="!${#lists.isEmpty(publicCoordinateList)}">
+				<div id="past-coordinate-list">
+					<div th:each="coordinate:${publicCoordinateList}">
+						<div class="past-coordinates">
+							<span th:text="${coordinate.name}"></span>&nbsp;&nbsp;
+							|&nbsp;&nbsp; <label class="modal-label"> <input
+								type="radio" class="radio" name="radio" th:id="${coordinate.id}"
+								th:value="${coordinate.id}"> <img
+								th:src="@{/dist/img/heart.png}"
+								class="far fa-heart like radio-img"> <span class="counts"
+								th:text="${coordinate.likeList.size()}">275</span>
+							</label>
 
-								<table class="table table-list">
-									<thead>
-										<tr class="bg-light coordinate-category">
-											<th th:each="clothes:${coordinate.clothesList}"
-												th:text="${clothes.category.name}" class="column"></th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td th:each="clothes:${coordinate.clothesList}">
-												<div style="text-align: center;">
-													<img class="img-fluid coordinate-img"
-														th:src="${clothes.imagePath}" alt="">
-												</div>
-											</td>
-										</tr>
-									</tbody>
-								</table>
 
-								<div class="coordinate-detail-btn">
-									<span>
-										<button type="button" class="btn btn-primary detail-btn"
-											th:value="${coordinate.id}" data-toggle="modal"
-											data-target="#coordinate-modal"
-											th:attr="data-target='#coordinate-modal'+${coordinate.id}">
-											<small>コーディネート詳細</small>
-										</button>
-									</span>
-
-									<!-- コーデ詳細モーダル -->
-									<div class="modal fade"
-										th:id="coordinate-modal+${coordinate.id}" tabindex="-1"
-										role="dialog" aria-labelledby="exampleModalLabel">
-										<div class="modal-dialog">
-											<div class="modal-content">
-
-												<!-- モーダル内ヘッダー -->
-												<div class="modal-header">
-													<h5 class="modal-title" id="exampleModalLabel"
-														th:text="${coordinate.name}"></h5>
-													<button type="button" class="close" data-dismiss="modal"
-														aria-label="閉じる">
-														<span aria-hidden="true">&times;</span>
-													</button>
-												</div>
-
-												<!-- モーダル内ボディ -->
-												<div class="modal-body">
-													<div th:each="clothes:${coordinate.clothesList}">
-														<table class="table modal-tbl">
-															<tbody>
-																<tr class="modal-tr">
-																	<td rowspan="5"><div class="clothes-img">
-																			<img class="img-fluid cl-img"
-																				th:src="${clothes.imagePath}" alt="">
-																		</div></td>
-																	<td class="table-active clm"><label
-																		style="font-weight: bold;">カテゴリー</label></td>
-																	<td><span class="modal-txt"
-																		th:text="${clothes.category.name}"></span></td>
-																</tr>
-																<tr class="modal-tr">
-																	<td class="table-active clm"><label
-																		style="font-weight: bold;">ブランド</label></td>
-																	<td><span class="modal-txt"
-																		th:text="${clothes.brand.name}"></span></td>
-																</tr>
-																<tr class="modal-tr">
-																	<td class="table-active clm"><label
-																		style="font-weight: bold;">金額</label></td>
-																	<td><span class="modal-txt"
-																		th:text="${#numbers.formatInteger(clothes.price, 1, 'COMMA') + '&nbsp;円'}"></span></td>
-																</tr>
-																<tr class="modal-tr">
-																	<td class="table-active clm"><label
-																		style="font-weight: bold;">購入日</label></td>
-																	<td><span class="modal-txt"
-																		th:text="${#dates.format(clothes.perchaseDate, 'yyyy年M月d日')}"></span></td>
-																</tr>
-																<tr class="modal-tr">
-																	<td class="table-active clm"><label
-																		style="font-weight: bold;">メモ</label></td>
-																	<td><span class="modal-txt"
-																		th:text="${clothes.comment}"></span></td>
-																</tr>
-															</tbody>
-														</table>
-													</div>
-													<br>
-													<!-- コーデ合計金額反映 -->
-													<div class="co-total-price">
-														<span class="co-total-price">このコーディネートの合計金額：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
-															class="total-price"></span></span>
-													</div>
-													<br>
-													<!-- モーダル内フッター -->
-													<div class="modal-footer">
-
-														<button type="button" class="btn btn-secondary"
-															data-dismiss="modal">閉じる</button>
-													</div>
-													<!-- /.modal-footer -->
-												</div>
-												<!-- /.modal-content -->
+							<table class="table table-list">
+								<thead>
+									<tr class="bg-light coordinate-category">
+										<th th:each="clothes:${coordinate.clothesList}"
+											th:text="${clothes.category.name}" class="column"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td th:each="clothes:${coordinate.clothesList}">
+											<div style="text-align: center;">
+												<img class="img-fluid coordinate-img"
+													th:src="${clothes.imagePath}" alt="">
 											</div>
-											<!-- /.modal-dialog -->
+										</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<div class="coordinate-detail-btn">
+								<span>
+									<button type="button" class="btn btn-primary detail-btn"
+										th:value="${coordinate.id}" data-toggle="modal"
+										data-target="#coordinate-modal"
+										th:attr="data-target='#coordinate-modal'+${coordinate.id}">
+										<small>コーディネート詳細</small>
+									</button>
+								</span>
+
+								<!-- コーデ詳細モーダル -->
+								<div class="modal fade"
+									th:id="coordinate-modal+${coordinate.id}" tabindex="-1"
+									role="dialog" aria-labelledby="exampleModalLabel">
+									<div class="modal-dialog">
+										<div class="modal-content">
+
+											<!-- モーダル内ヘッダー -->
+											<div class="modal-header">
+												<h5 class="modal-title" id="exampleModalLabel"
+													th:text="${coordinate.name}"></h5>
+												<button type="button" class="close" data-dismiss="modal"
+													aria-label="閉じる">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+
+											<!-- モーダル内ボディ -->
+											<div class="modal-body">
+												<div th:each="clothes:${coordinate.clothesList}">
+													<table class="table modal-tbl">
+														<tbody>
+															<tr class="modal-tr">
+																<td rowspan="5"><div class="clothes-img">
+																		<img class="img-fluid cl-img"
+																			th:src="${clothes.imagePath}" alt="">
+																	</div></td>
+																<td class="table-active clm"><label
+																	style="font-weight: bold;">カテゴリー</label></td>
+																<td><span class="modal-txt"
+																	th:text="${clothes.category.name}"></span></td>
+															</tr>
+															<tr class="modal-tr">
+																<td class="table-active clm"><label
+																	style="font-weight: bold;">ブランド</label></td>
+																<td><span class="modal-txt"
+																	th:text="${clothes.brand.name}"></span></td>
+															</tr>
+															<tr class="modal-tr">
+																<td class="table-active clm"><label
+																	style="font-weight: bold;">金額</label></td>
+																<td><span class="modal-txt"
+																	th:text="${#numbers.formatInteger(clothes.price, 1, 'COMMA') + '&nbsp;円'}"></span></td>
+															</tr>
+															<tr class="modal-tr">
+																<td class="table-active clm"><label
+																	style="font-weight: bold;">購入日</label></td>
+																<td><span class="modal-txt"
+																	th:text="${#dates.format(clothes.perchaseDate, 'yyyy年M月d日')}"></span></td>
+															</tr>
+															<tr class="modal-tr">
+																<td class="table-active clm"><label
+																	style="font-weight: bold;">メモ</label></td>
+																<td><span class="modal-txt"
+																	th:text="${clothes.comment}"></span></td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+												<br>
+												<!-- コーデ合計金額反映 -->
+												<div class="co-total-price">
+													<span class="co-total-price">このコーディネートの合計金額：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+														class="total-price"></span></span>
+												</div>
+												<br>
+												<!-- モーダル内フッター -->
+												<div class="modal-footer">
+
+													<button type="button" class="btn btn-secondary"
+														data-dismiss="modal">閉じる</button>
+												</div>
+												<!-- /.modal-footer -->
+											</div>
+											<!-- /.modal-content -->
 										</div>
-										<!-- /.modal -->
-										<!-- モーダル設定終了 -->
+										<!-- /.modal-dialog -->
 									</div>
-									<br> <br> <br> <br>
+									<!-- /.modal -->
+									<!-- モーダル設定終了 -->
 								</div>
+								<br> <br> <br> <br>
 							</div>
 						</div>
 					</div>
+
+					<!-- もっと見るボタン -->
+					<div class="btn-area">
+						<button id="more_btn" class="btn btn-primary pc-btn">
+							もっと見る&nbsp;&nbsp;<i class="fa fa-chevron-down" aria-hidden="true"></i>
+						</button>
+					</div>
+					<div class="btn-area">
+						<button id="close_btn" class="btn btn-primary pc-btn">
+							閉じる&nbsp;&nbsp; <i class="fa fa-chevron-up" aria-hidden="true"></i>
+						</button>
+					</div>
+
 				</div>
 			</div>
-		</section>
+		</div>
+	</section>
 
 
 
-		<!-- Footer-->
-		<footer class="footer py-4" th:replace="footer::pagefooter">
-		</footer>
+	<!-- Footer-->
+	<footer class="footer py-4" th:replace="footer::pagefooter"> </footer>
 
 	<!-- Bootstrap core JS-->
 	<script

@@ -46,6 +46,8 @@ public class ShowCoordinateRestController {
 
 		List<Clothes> clothesList = showTopPageService.showItemListByCategoryForCoordinate(loginUser.getUser().getId(),
 				categoryId);
+		
+		System.out.println("リストサイズ：" + clothesList.size());
 
 		clothesMap.put("clothesList", clothesList);
 

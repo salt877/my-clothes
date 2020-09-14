@@ -1,1 +1,10 @@
 @charset "UTF-8";
+
+.radio-img:hover {
+	opacity: 0.4;
+	cursor: pointer;
+}
+
+.radio {
+	display: none;
+}
