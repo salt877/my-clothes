@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.example.my.clothes.domain.Coordinate;
 import jp.co.example.my.clothes.domain.LoginUser;
+import jp.co.example.my.clothes.domain.UserDetail;
 import jp.co.example.my.clothes.form.RegisterCoordinateForm;
 import jp.co.example.my.clothes.service.RegisterCoordinateService;
+import jp.co.example.my.clothes.service.ShowUserNameService;
 
 /**
  * コーディネート登録を行うコントローラ.
@@ -27,6 +29,9 @@ public class RegisterCoordinateController {
 
 	@Autowired
 	private RegisterCoordinateService registerCoordinateService;
+
+	@Autowired
+	private ShowUserNameService showUserNameService;
 
 	@ModelAttribute
 	public RegisterCoordinateForm setUpForm() {
@@ -57,7 +62,7 @@ public class RegisterCoordinateController {
 		coordinate.setBag(form.getIntBag());
 		coordinate.setDress(form.getIntDress());
 		coordinate.setName(form.getName());
-		
+
 		System.out.println(form.getIsPublic());
 
 		if (StringUtils.isEmpty(form.getIsPublic())) {
@@ -78,7 +83,12 @@ public class RegisterCoordinateController {
 	 * @return
 	 */
 	@RequestMapping("/finished")
-	public String finishCoordinate() {
+	public String finishCoordinate(@AuthenticationPrincipal LoginUser loginUser, Model model) {
+		Integer userId = loginUser.getUser().getId();
+
+		UserDetail userDetail = showUserNameService.showUserName(userId);
+		model.addAttribute("userDetail", userDetail);
+
 		return "finish_coordinate";
 	}
 }
