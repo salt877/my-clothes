@@ -16,7 +16,6 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="../static/dist/css/input-user-information.css" rel="stylesheet" th:href="@{/dist/css/input-user-information.css}" />
-<meta name="_csrf" th:content="${_csrf.token}"/>
 <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 </head>
 <body id="page-top">
@@ -80,7 +79,7 @@
 	<!-- Footer-->
 	<footer class="footer py-4" th:replace="footer::pagefooter"> </footer>
 	<!-- Third party plugin JS-->
-	<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script src="../static/lib/main.js" th:src="@{/lib/main.js}"></script>
 	<!-- Bootstrap core JS-->
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
