@@ -44,8 +44,8 @@ public class RegisterUserDetailService {
 	 * 
 	 * @param userDetail ユーザ詳細情報
 	 */
-	public void registerUserDetail(UserDetail userDetail) {
-		userRepository.insertUserDetail(userDetail);
+	public void registerUserName(UserDetail userDetail) {
+		userRepository.insertUserName(userDetail);
 	}
 
 	/**
@@ -65,6 +65,10 @@ public class RegisterUserDetailService {
 	 */
 	public User searchMyqloIdByUserId(Integer userId) {
 		return userRepository.findMyqloId(userId);
+	}
+	
+	public User searchMyqloId(String myqloId) {
+		return userRepository.findUserByMyqloId(myqloId);
 	}
 
 }

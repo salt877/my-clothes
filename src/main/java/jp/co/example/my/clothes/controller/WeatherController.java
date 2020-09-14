@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.example.my.clothes.domain.LoginUser;
+import jp.co.example.my.clothes.domain.UserDetail;
 import jp.co.example.my.clothes.domain.Weather;
 import jp.co.example.my.clothes.form.WeatherForm;
+import jp.co.example.my.clothes.service.ShowUserNameService;
 import jp.co.example.my.clothes.service.WeatherService;
 
 /**
@@ -30,6 +32,9 @@ public class WeatherController {
 
 	@Autowired
 	private WeatherService weatherService;
+	
+	@Autowired
+	private ShowUserNameService showUserNameService;
 
 	/**
 	 * 天気予報詳細ページに遷移する.
@@ -42,8 +47,13 @@ public class WeatherController {
 	@RequestMapping("/showWeatherPage")
 	public String showWeatherPage(WeatherForm form, Model model, @AuthenticationPrincipal LoginUser loginUser) {
 
+		Integer userId = loginUser.getUser().getId();
+		
+		UserDetail userDetail = showUserNameService.showUserName(userId);
+		model.addAttribute("userDetail", userDetail);
+		
 		// 天気予報表示のための街が登録されているか検索
-		Weather weather = weatherService.cityFindByUserId(loginUser.getUser().getId());
+		Weather weather = weatherService.cityFindByUserId(userId);
 		if (!StringUtils.isEmpty(weather)) {
 			form.setCity(weather.getCityName());
 			model.addAttribute("pref", weather.getCityName());

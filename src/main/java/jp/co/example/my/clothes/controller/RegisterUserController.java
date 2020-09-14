@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.example.my.clothes.domain.User;
+import jp.co.example.my.clothes.domain.UserDetail;
 import jp.co.example.my.clothes.form.RegisterUserForm;
 import jp.co.example.my.clothes.service.RegisterUserCompleteSendMailService;
+import jp.co.example.my.clothes.service.RegisterUserDetailService;
 import jp.co.example.my.clothes.service.RegisterUserService;
 
 /**
@@ -25,6 +27,9 @@ public class RegisterUserController {
 
 	@Autowired
 	private RegisterUserService registerUserService;
+
+	@Autowired
+	private RegisterUserDetailService registerUserDetailService;
 
 	@Autowired
 	private RegisterUserCompleteSendMailService sendMailService;
@@ -79,16 +84,26 @@ public class RegisterUserController {
 
 		// エラーがあれば登録画面に戻る
 		if (result.hasErrors()) {
+			System.out.println(result.toString());
 			return showRegisterUser();
 		}
 
 		User user = new User();
 		BeanUtils.copyProperties(form, user);
 
+		// usersテーブルにログイン時入力情報を挿入
 		registerUserService.registerUser(user);
+
+		// user_detailsテーブルにログイン時登録したMYQLO IDをニックネームとして挿入
+		UserDetail newUserDetail = new UserDetail();
+		newUserDetail.setUserId(user.getId());
+		newUserDetail.setUserName(user.getMyqloId());
+		registerUserDetailService.registerUserName(newUserDetail);
 
 		// メールを送信する
 		sendMailService.sendMail(form, user);
+
+		System.out.println("初回登録完了！");
 
 		return "complete_register";
 	}

@@ -66,7 +66,6 @@ public class UserRepository {
 			user.setDeleted(false);
 			Number key = insert.executeAndReturnKey(param);
 			user.setId(key.intValue());
-			System.out.println(key + "が割り当てられました");
 		}
 		return user;
 	}
@@ -161,13 +160,13 @@ public class UserRepository {
 	}
 
 	/**
-	 * user_detailsテーブルにインサート.
+	 * user_detailsテーブルにニックネームのみ挿入します（初回登録時）.
 	 * 
 	 * @param user
 	 */
-	public void insertUserDetail(UserDetail userDetail) {
+	public void insertUserName(UserDetail userDetail) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(userDetail);
-		String sql = "INSERT INTO user_details(user_id,image_path,user_name,gender,height,age,self_introduction)VALUES(:userId,:imagePath,:userName,:gender,:height,:age,:selfIntroduction);";
+		String sql = "INSERT INTO user_details(user_id,user_name)VALUES(:userId,:userName);";
 		template.update(sql, param);
 	}
 

@@ -4,7 +4,6 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
-import org.springframework.web.multipart.MultipartFile;
 
 /**
  * ユーザ情報登録時に使用するフォームクラスです.
@@ -32,27 +31,6 @@ public class RegisterUserForm {
 	/** 確認用パスワード */
 	@NotBlank(message = "確認用パスワードを入力して下さい")
 	private String confirmPassword;
-
-	/** プロフィール写真 */
-	private String imagePath;
-
-	/** プロフィール写真 */
-	private MultipartFile imageFile;
-
-	/** ニックネーム */
-	private String userName;
-
-	/** 性別 */
-	private String gender;
-
-	/** 年代 */
-	private String age;
-
-	/** 身長 */
-	private Integer height;
-
-	/** 自己紹介 */
-	private String selfIntroduction;
 
 	public String getMyqloId() {
 		return myqloId;
@@ -84,62 +62,6 @@ public class RegisterUserForm {
 
 	public void setConfirmPassword(String confirmPassword) {
 		this.confirmPassword = confirmPassword;
-	}
-
-	public String getImagePath() {
-		return imagePath;
-	}
-
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
-	}
-
-	public MultipartFile getImageFile() {
-		return imageFile;
-	}
-
-	public void setImageFile(MultipartFile imageFile) {
-		this.imageFile = imageFile;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	public String getGender() {
-		return gender;
-	}
-
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-
-	public String getAge() {
-		return age;
-	}
-
-	public void setAge(String age) {
-		this.age = age;
-	}
-
-	public Integer getHeight() {
-		return height;
-	}
-
-	public void setHeight(Integer height) {
-		this.height = height;
-	}
-
-	public String getSelfIntroduction() {
-		return selfIntroduction;
-	}
-
-	public void setSelfIntroduction(String selfIntroduction) {
-		this.selfIntroduction = selfIntroduction;
 	}
 
 }
