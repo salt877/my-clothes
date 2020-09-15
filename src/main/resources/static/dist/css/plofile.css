@@ -67,10 +67,23 @@ textarea {
     background-position: center center;　/* 横長画像の中央を基準に表示 */
 }
 
-.file_button {
+.change-image-btn {
+	width: 80%;
+	margin: 1.5em auto;
+	max-width: 210px;
+	text-align: center;
+}
+
+#removeImage {
+	 position: relative;
+	 display: inline-block;
+	 vertical-align: middle;
+}
+.imageFile_button {
   display: inline-block;
+  vertical-align: middle;
   position: relative;
-  padding: 0.6em 2em;
+  padding: 0.45rem 2rem;
   text-align: center;
   color: #fff;
   border-radius: 4px;
@@ -80,10 +93,7 @@ textarea {
   -moz-transition: .3s ease;
   -o-transition: .3s ease;
   transition: .3s ease;
-}
-
-.file_button:hover {
-	background-color: #2062BF;
+ 
 }
 
 .file_input {
@@ -92,8 +102,16 @@ textarea {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	opacity: 0;
+	opacity: 0; 
 	cursor: pointer;
+}
+.imageFile_button:hover {
+	background-color: #2062BF;
+}
+
+
+.file_input:hover {
+	background-color: #2062BF;
 }
 
 .imag-icon{

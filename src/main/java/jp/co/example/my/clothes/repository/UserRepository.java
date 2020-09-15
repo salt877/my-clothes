@@ -76,12 +76,11 @@ public class UserRepository {
 	 * @return ユーザ情報
 	 */
 	public UserDetail findByUserId(Integer userId) {
-		String sql = "SELECT ud.user_id,u.myqlo_id, ud.image_path, ud.user_name, ud.gender, ud.age, ud.height, ud.self_introduction FROM users AS u "
+		String sql = "SELECT ud.id,ud.user_id,u.myqlo_id, ud.image_path, ud.user_name, ud.gender, ud.age, ud.height, ud.self_introduction FROM users AS u "
 				+ "LEFT OUTER JOIN user_details AS ud ON u.id = ud.user_id " + "WHERE u.id=:userId";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
 		List<UserDetail> userList = template.query(sql, param, USER_DETAIL_ROW_MAPPER);
 		if (userList.size() == 0) {
-			System.out.println("ユーザリストサイズ:" + userList.size());
 			return null;
 		}
 
@@ -133,7 +132,6 @@ public class UserRepository {
 	public UserDetail findUserDetailInformation(Integer userId) {
 		String sql = "SELECT id,user_id,user_name,image_path,gender,height,age,self_introduction FROM user_details WHERE user_id=:userId";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
-		System.out.println("findUserDetailInformationメソッド:" + userId);
 		List<UserDetail> userDetailList = template.query(sql, param, USER_DETAIL_ROW_MAPPER);
 		if (userDetailList.size() == 0) {
 			System.out.println("まだ詳細情報を登録していない");

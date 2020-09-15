@@ -32,10 +32,10 @@
 			<div class="user-information">
 				<div class="plofile_img">
 					<img th:if="${userInfomation.imagePath}" class="plofile_icon" alt="写真" src="../static/dist/assets/img/plofile.jpeg" th:src="${userInfomation.imagePath}">
-					<img th:unless="${userInfomation.imagePath}" class="plofile_icon" alt="写真" src="../static/dist/assets/img/user_icon.png" th:src="@{/dist/assets/img/user_icon.png}">
+					<img th:if="${#strings.isEmpty(userInfomation.imagePath)}" class="plofile_icon" alt="写真" src="../static/dist/assets/img/user_icon.png" th:src="@{/dist/assets/img/user_icon.png}">
 					<br>
 					<a href="profile.html" th:href="@{'/profileEdit?userId='+${userInfomation.userId}}">
-					<button type="button" id="change_profile_bun" class="btn btn-primary coordinate-regis-btn">
+					<button type="button" id="change_profile_bun" class="btn btn-primary btn-set">
 						<span class="chacge-profile">プロフィール変更</span>
 					</button>
 					</a>
