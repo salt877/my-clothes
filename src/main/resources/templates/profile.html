@@ -38,16 +38,17 @@
 	<!-- 登録画面 -->
 	<section class="page-section bg-light" id="pastcordlist">
       <div class="container">
-      	<form action="#" method="post" th:action="@{/edit}" th:object="${registerUserDetailForm}" enctype="multipart/form-data">
+      	<form name="profileForm" action="#" method="post" th:action="@{/edit}" th:object="${registerUserDetailForm}" enctype="multipart/form-data">
       	<div class="imag-icon">
-      		<img th:if="${userDetail.imagePath}" id="preview" class="plofile_icon" alt="写真" src="../static/dist/assets/img/plofile.jpeg" th:src="${userDetail.imagePath}">
-      		<img th:unless="${userDetail.imagePath}" id="preview" class="plofile_icon" alt="写真" src="../static/dist/assets/img/user_icon.png" th:src="@{/dist/assets/img/user_icon.png}">
-      		<br>
-      		<div class="file_button">
-				画像を変更 <input id="myImage" class="file_input" name="imageFile"
-									type="file" accept=".jpg,.png" th:field="*{imageFile}" >
-			</div>
+      		<img th:if="${userDetail.imagePath}" id="preview" class="plofile_icon" alt="写真" src="../static/dist/assets/img/plofile.jpeg" th:src="${userDetail.imagePath}" >
+      		<img th:if="${#strings.isEmpty(userDetail.imagePath)}" id="preview" class="plofile_icon" alt="写真" src="../static/dist/assets/img/user_icon.png" th:src="@{/dist/assets/img/user_icon.png}">
       	</div>
+      	<div class="change-image-btn">
+      			<button type="button" id="removeImage" class="btn btn-secondary btn--radius">削除</button>
+      			<div class="imageFile_button">画像を変更
+      			<input id="myImage" class="file_input" name="imageFile" type="file" accept=".jpg,.png" th:field="*{imageFile}" >
+      			</div>
+		</div>
       	<table>
 			<tr>
 				<th class="thead" scope="col" colspan="2">基本情報</th>
@@ -238,8 +239,8 @@
 			<!--  変更ボタン -->
 			<div class="complete-btn">
 				<input type="hidden" name="userId" id="userId" th:value="${user.id}">
-				<input type="submit" name="submit" id="submit"
-							class="btn btn--submit" value="&emsp;変更を保存&emsp;" />
+				<input type="submit" name="submit" id="profile_submit"
+							class="btn btn--submit" value="&emsp;変更を保存&emsp;"disabled>
 			</div>
 		</div>
 		</form>
@@ -289,7 +290,18 @@ $(function() {
 	 $("#fileName").val(fileName);
 	 change();
  });
+	$("#removeImage").click(function(){
+		var defaltImage = '/dist/assets/img/user_icon.png';
+		$("#preview").removeAttr('src');
+		$("#preview").attr('src',defaltImage); 
+		$("#myImage").attr('name','');
+		$('#profile_submit').removeAttr('disabled');
+});
+	
+	$('form[name=profileForm]').change(function(){
+		$('#profile_submit').removeAttr('disabled');
 	});
+});
 </script>
 </body>
 </html>
