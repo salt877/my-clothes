@@ -448,6 +448,7 @@
 						<div th:each="likeCoordinate:${likeCoordinateList}">
 							<div class="like-coordinates">
 								<h6 th:text="${likeCoordinate.name}"></h6>
+								<span><a href="#"><span>マイクロ</span></a> さん</span>&nbsp;&nbsp; |&nbsp;&nbsp; 
 								<label class="modal-label"> <input type="radio" class="radio"
 										name="radio" th:id="${likeCoordinate.id}"
 										th:value="${likeCoordinate.id}"> <img

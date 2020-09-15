@@ -86,9 +86,5 @@ public class ShowMyPageService {
 	public List<Like> showLikes(Integer coordinateId) {
 		return coordinateRepository.findLikes(coordinateId);
 	}
-	
-	public Coordinate displayBranch(Integer coordinateId) {
-		return coordinateRepository.findByCoordinateId(coordinateId);
-	}
 
 }
