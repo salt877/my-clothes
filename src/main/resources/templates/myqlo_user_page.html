@@ -44,10 +44,12 @@
 		<div class="container">
 			<div class="user-information">
 				<div class="plofile_img">
-					<img th:unless="${userInfomation.imagePath}" class="plofile_icon"
+					<img th:if="${#strings.isEmpty(userInfomation.imagePath)}" class="plofile_icon"
 						alt="写真" src="../static/dist/assets/img/user_icon.png"
 						th:src="@{/dist/assets/img/user_icon.png}"> <br>
-
+					<img th:if="${userInfomation.imagePath}" class="plofile_icon"
+						alt="写真" src="../static/dist/assets/img/user_icon.png"
+						th:src="${userInfomation.imagePath}"> <br>
 				</div>
 				<div class="user_main">
 					<h1 class="name" th:text="${userInfomation.userName}">テストユーザ</h1>
