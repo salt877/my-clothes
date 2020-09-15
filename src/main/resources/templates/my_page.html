@@ -554,14 +554,14 @@
 												<br>
 												<!-- モーダル内フッター -->
 												<div class="modal-footer">
-													<div class="item-frame">
+													<div class="like-item-frame">
 														<input type='checkbox' th:id='${likeCoordinate.id}' class="checkbox"
 															name="isPublic" th:value="${likeCoordinate.id}"> 
 														<label class="switch" th:for='${likeCoordinate.id}'></label> 
 														<label class="text" th:for='${likeCoordinate.id}'>このコーデを公開する</label>
 													</div>
 													<span>
-														<button type="button" class="btn btn-primary delete-btn"
+														<button type="button" class="btn btn-primary like-delete-btn "
 															th:id="${likeCoordinate.id}" th:value="${likeCoordinate.id}">
 															<small>このコーディネートを削除する</small>
 														</button>

@@ -24,6 +24,7 @@ public class ShowMyPageRestController {
 		int loginUserId = loginUser.getUser().getId();
 		Coordinate coordinate = showMyPageService.displayBranch(coordinateId);
 		int userId = coordinate.getUserId();
+		System.out.println(userId);
 		
 		if(loginUserId == userId) {
 			return true;
