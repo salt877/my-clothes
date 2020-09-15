@@ -19,6 +19,7 @@ import jp.co.example.my.clothes.domain.Category;
 import jp.co.example.my.clothes.domain.Clothes;
 import jp.co.example.my.clothes.domain.Coordinate;
 import jp.co.example.my.clothes.domain.Like;
+import jp.co.example.my.clothes.domain.User;
 
 /**
  * coordinatesテーブルを操作するリポジトリ.
@@ -31,6 +32,8 @@ public class CoordinateRepository {
 
 	@Autowired
 	private NamedParameterJdbcTemplate template;
+	
+	private static final RowMapper<Coordinate> COORDINATE_ROW_MAPPER = new BeanPropertyRowMapper<>(Coordinate.class);
 
 	/**
 	 * ユーザーごとのコーディネートデータを格納するResultSetExtractor.
@@ -410,83 +413,6 @@ public class CoordinateRepository {
 	}
 	
 	/**
-	 * ユーザーごとのコーディネートデータを格納するResultSetExtractor.(いいねコーデ用)
-	 */
-	private static final ResultSetExtractor<List<Coordinate>> COORDINATE_RESULT_SET_EXTRACTOR2 = (rs) -> {
-		List<Coordinate> coordinateList = new ArrayList<>();
-		List<Clothes> clothesList = new ArrayList<>();
-		List<Like>likeList = new ArrayList<>();
-		Coordinate coordinate = new Coordinate();
-
-		int checkCoId = 0;
-		int checkClId = 0;
-
-		while (rs.next()) {
-			if (rs.getInt("co_id") != checkCoId) {
-				coordinate = new Coordinate();
-				coordinate.setId(rs.getInt("co_id"));
-				coordinate.setUserId(rs.getInt("co_user_id"));
-				coordinate.setFashionAccessories(rs.getInt("co_fashion_accessories"));
-				coordinate.setTops1(rs.getInt("co_tops1"));
-				coordinate.setTops2(rs.getInt("co_tops2"));
-				coordinate.setOuters(rs.getInt("co_outers"));
-				coordinate.setBottoms(rs.getInt("co_bottoms"));
-				coordinate.setShoes(rs.getInt("co_shoes"));
-				coordinate.setBag(rs.getInt("co_bag"));
-				coordinate.setDress(rs.getInt("co_dress"));
-				coordinate.setDeleted(rs.getBoolean("co_deleted"));
-				coordinate.setName(rs.getString("co_name"));
-				coordinate.setPublic(rs.getBoolean("co_is_public"));
-				
-				clothesList = new ArrayList<>();
-				coordinate.setClothesList(clothesList);
-				coordinate.setLikeList(likeList);
-				coordinateList.add(coordinate);
-
-			}
-
-			if (rs.getInt("cl_id") != checkClId) {
-				Clothes clothes = new Clothes();
-				clothesList.add(clothes);
-				clothes.setId(rs.getInt("cl_id"));
-				clothes.setUserId(rs.getInt("cl_user_id"));
-				clothes.setCategoryId(rs.getInt("cl_category_id"));
-				clothes.setBrandId(rs.getInt("cl_brand_id"));
-				clothes.setColorId(rs.getInt("cl_color_id"));
-				clothes.setImagePath(rs.getString("cl_image_path"));
-				clothes.setPerchaseDate(rs.getDate("cl_perchase_date"));
-				clothes.setPrice(rs.getInt("cl_price"));
-				clothes.setSizeId(rs.getInt("cl_size_id"));
-				clothes.setSeason(rs.getString("cl_season"));
-				clothes.setComment(rs.getString("cl_comment"));
-				clothes.setDeleted(rs.getBoolean("cl_deleted"));
-				Category category = new Category();
-				category.setId(rs.getInt("ca_id"));
-				category.setName(rs.getString("ca_name"));
-				clothes.setCategory(category);
-				Brand brand = new Brand();
-				brand.setId(rs.getInt("b_id"));
-				brand.setName(rs.getString("b_name"));
-				clothes.setBrand(brand);
-
-			}
-			
-			Like like = new Like();
-			like.setId(rs.getInt("li_id"));
-			like.setUserId(rs.getInt("li_user_id"));
-			like.setCoordinateId(rs.getInt("co_id"));
-			likeList.add(like);
-			
-			checkCoId = rs.getInt("co_id");
-			checkClId = rs.getInt("cl_id");
-		}
-
-		return coordinateList;
-
-	};
-	
-	
-	/**
 	 * likesテーブルのユーザIDで自分がいいねしたコーデリストを検索します.
 	 * 
 	 * @param userId　ユーザID
@@ -510,7 +436,7 @@ public class CoordinateRepository {
 		
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
 		
-		List<Coordinate> coordinateList = template.query(sql.toString(), param, COORDINATE_RESULT_SET_EXTRACTOR2);
+		List<Coordinate> coordinateList = template.query(sql.toString(), param, COORDINATE_RESULT_SET_EXTRACTOR);
 
 		if (coordinateList.size() == 0) {
 			return Collections.emptyList();
@@ -544,7 +470,7 @@ public class CoordinateRepository {
 		
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
 		
-		List<Coordinate> coordinateList = template.query(sql.toString(), param, COORDINATE_RESULT_SET_EXTRACTOR2);
+		List<Coordinate> coordinateList = template.query(sql.toString(), param, COORDINATE_RESULT_SET_EXTRACTOR);
 
 		if (coordinateList.size() == 0) {
 			return Collections.emptyList();
@@ -552,6 +478,14 @@ public class CoordinateRepository {
 		}
 
 		return coordinateList;
+	}
+	
+	public Coordinate findByCoordinateId(Integer coordinateId) {
+		String sql = "select id,user_id,fashion_accessories,tops1,tops2,outers,bottoms,shoes,bag,dress,deleted,name,is_public from coordinates WHERE id=:coordinateId;";
+		
+		SqlParameterSource param = new MapSqlParameterSource().addValue("coordinateId", coordinateId);
+		
+		return template.queryForObject(sql, param, COORDINATE_ROW_MAPPER);
 	}
 
 }

@@ -41,6 +41,7 @@ public class Coordinate {
 	private List<Clothes> clothesList;
 	/** コーデのいいね */
 	private List<Like> likeList;
+	
 
 	@Override
 	public String toString() {

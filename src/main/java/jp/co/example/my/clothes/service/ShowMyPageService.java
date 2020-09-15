@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jp.co.example.my.clothes.domain.Coordinate;
+import jp.co.example.my.clothes.domain.Like;
 import jp.co.example.my.clothes.domain.User;
 import jp.co.example.my.clothes.domain.UserDetail;
 import jp.co.example.my.clothes.repository.CoordinateRepository;
@@ -74,6 +75,20 @@ public class ShowMyPageService {
 	 */
 	public Coordinate showCoordinateDetailForPastCoordinate(Integer coordinateId) {
 		return coordinateRepository.loadForPastCoordinate(coordinateId);
+	}
+	
+	/**
+	 * コーデIDに紐づくいいねを表示します.
+	 * 
+	 * @param coordinateId コーデID
+	 * @return
+	 */
+	public List<Like> showLikes(Integer coordinateId) {
+		return coordinateRepository.findLikes(coordinateId);
+	}
+	
+	public Coordinate displayBranch(Integer coordinateId) {
+		return coordinateRepository.findByCoordinateId(coordinateId);
 	}
 
 }
