@@ -20,10 +20,8 @@ import jp.co.example.my.clothes.domain.Clothes;
 import jp.co.example.my.clothes.domain.Coordinate;
 import jp.co.example.my.clothes.domain.Like;
 import jp.co.example.my.clothes.domain.User;
-<<<<<<< HEAD
 import jp.co.example.my.clothes.domain.UserDetail;
-=======
->>>>>>> my-page
+
 
 /**
  * coordinatesテーブルを操作するリポジトリ.
