@@ -1,10 +1,15 @@
 package jp.co.example.my.clothes.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import jp.co.example.my.clothes.domain.Coordinate;
+import jp.co.example.my.clothes.domain.Like;
 import jp.co.example.my.clothes.domain.User;
 import jp.co.example.my.clothes.domain.UserDetail;
+import jp.co.example.my.clothes.repository.CoordinateRepository;
 import jp.co.example.my.clothes.repository.UserRepository;
 
 /**
@@ -18,6 +23,9 @@ public class ShowMyPageService {
 	
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private CoordinateRepository coordinateRepository;
 	
 	/**
 	 * マイページを表示させます.
@@ -37,6 +45,46 @@ public class ShowMyPageService {
 	 */
 	public User searchUserByMyqloId(String myqloId) {
 		return userRepository.findUserByMyqloId(myqloId);
+	}
+	
+	/**
+	 * ユーザーIDに紐づくコーディネートデータを全件表示します.
+	 * 
+	 * @param userId ユーザーID
+	 * @return コーディネートデータ一覧
+	 */
+	public List<Coordinate> showCoordinate(Integer userId) {
+		return coordinateRepository.findAll(userId);
+
+	}
+	
+	/**
+	 * コーディネートIDに紐づくコーディネートデータを論理削除します.
+	 * 
+	 * @param coordinateId コーデID
+	 */
+	public void deleteCoordinate(Integer coordinateId) {
+		coordinateRepository.update(coordinateId);
+	}
+	
+	/**
+	 * コーディネートIDで１件検索結果を過去コーデに表示します.
+	 * 
+	 * @param coordinateId コーデID
+	 * @return
+	 */
+	public Coordinate showCoordinateDetailForPastCoordinate(Integer coordinateId) {
+		return coordinateRepository.loadForPastCoordinate(coordinateId);
+	}
+	
+	/**
+	 * コーデIDに紐づくいいねを表示します.
+	 * 
+	 * @param coordinateId コーデID
+	 * @return
+	 */
+	public List<Like> showLikes(Integer coordinateId) {
+		return coordinateRepository.findLikes(coordinateId);
 	}
 
 }

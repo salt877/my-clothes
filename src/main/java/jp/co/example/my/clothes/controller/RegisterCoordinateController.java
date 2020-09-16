@@ -1,9 +1,12 @@
 package jp.co.example.my.clothes.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -15,6 +18,10 @@ import jp.co.example.my.clothes.domain.LoginUser;
 import jp.co.example.my.clothes.domain.UserDetail;
 import jp.co.example.my.clothes.form.RegisterCoordinateForm;
 import jp.co.example.my.clothes.service.RegisterCoordinateService;
+<<<<<<< HEAD
+=======
+import jp.co.example.my.clothes.service.ShowCoordinateService;
+>>>>>>> my-page
 import jp.co.example.my.clothes.service.ShowUserNameService;
 
 /**
@@ -29,6 +36,12 @@ public class RegisterCoordinateController {
 
 	@Autowired
 	private RegisterCoordinateService registerCoordinateService;
+	
+	@Autowired
+	private ShowCoordinateService showCoordinateService;
+
+	@Autowired
+	private ShowUserNameService showUserNameService;
 
 	@Autowired
 	private ShowUserNameService showUserNameService;
@@ -83,12 +96,25 @@ public class RegisterCoordinateController {
 	 * @return
 	 */
 	@RequestMapping("/finished")
+<<<<<<< HEAD
 	public String finishCoordinate(@AuthenticationPrincipal LoginUser loginUser, Model model) {
 		Integer userId = loginUser.getUser().getId();
 
 		UserDetail userDetail = showUserNameService.showUserName(userId);
 		model.addAttribute("userDetail", userDetail);
 
+=======
+	public String finishCoordinate(@AuthenticationPrincipal LoginUser loginUser, Model model, ModelMap modelMap) {
+		
+		Integer userId = loginUser.getUser().getId();
+		
+		UserDetail userDetail = showUserNameService.showUserName(userId);
+		model.addAttribute("userDetail", userDetail);
+		
+		String userMyqloId = loginUser.getUser().getMyqloId();
+		modelMap.addAttribute("userMyqloId", userMyqloId);
+		
+>>>>>>> my-page
 		return "finish_coordinate";
 	}
 }
