@@ -23,8 +23,6 @@
 
 <!-- coordinate.css読み込み -->
 
-<link rel="stylesheet" href="../static/dist/css/past-coordinate.css"
-	th:href="@{/dist/css/past-coordinate.css}">
 <link rel="stylesheet" href="../static/dist/css/public_coordinate.css"
 	th:href="@{/dist/css/public_coordinate.css}">
 <link href="../static/dist/css/loading.css" rel="stylesheet"
@@ -70,13 +68,6 @@
 
 			<div th:if="!${#lists.isEmpty(coordinateList)}">
 
-				<div style="text-align: right;">
-					<span> 現在の公開コーデ件数：&nbsp;&nbsp;<span
-						th:text="${coordinateList.size()}"
-						style="font-size: 20px; font-weight: bold;"></span>&nbsp;件
-					</span>
-				</div>
-				<br>
 
 				<div id="past-coordinate-list tabs">
 					<input id="all" type="radio" name="tab_item" checked> <label
@@ -84,156 +75,514 @@
 						type="radio" name="tab_item"> <label class="tab_item"
 						for="men">MEN</label> <input id="women" type="radio"
 						name="tab_item"> <label class="tab_item" for="women">WOMEN</label>
+					<br> <br>
 
 
-					<div th:each="coordinate:${coordinateList}"
-						th:id="${coordinate.id}"
-						class="coordinate tab_content all_content">
-						<div class="public-coordinates">
+					<div class="coordinate tab_content all_content">
+						<div style="text-align: right;">
+							<span> 公開コーデ件数：&nbsp;&nbsp;<span
+								th:text="${coordinateList.size()}"
+								style="font-size: 20px; font-weight: bold;"></span>&nbsp;件
+							</span>
+						</div>
+						<div th:each="coordinate:${coordinateList}"
+							th:id="${coordinate.id}">
+							<div class="public-coordinates">
 
-							<h6 th:text="${coordinate.name}">公開コーデ</h6>
-							<div class="prof-icon-name">
-								<span><a th:href="@{/__${coordinate.user.myqloId}__}"><span
-										class="prof_img"> <img
-											th:unless="${coordinate.userDetail.imagePath}"
-											class="prof_icon" alt="写真"
-											src="../static/dist/assets/img/user_icon.png"
-											th:src="@{/dist/assets/img/user_icon.png}">
 
-									</span><span th:text="${coordinate.userDetail.userName}"></span></a> さん</span>&nbsp;&nbsp;
-								|&nbsp;&nbsp; <label class="modal-label"> <input
-									type="radio" class="radio" name="radio"
-									th:id="${coordinate.id}" th:value="${coordinate.id}"> <img
-									th:src="@{/dist/img/heart.png}"
-									class="far fa-heart like radio-img"> <span class="counts"
-									th:text="${coordinate.likeList.size()}">275</span>
-								</label>
-							</div>
+								<h6 th:text="${coordinate.name}">公開コーデ</h6>
+								<div class="prof-icon-name">
+									<span><a th:href="@{/__${coordinate.user.myqloId}__}"><span
+											class="prof_img"> <img
+												th:if="${#strings.isEmpty(coordinate.userDetail.imagePath)}"
+												class="prof_icon" alt="写真"
+												src="../static/dist/assets/img/user_icon.png"
+												th:src="@{/dist/assets/img/user_icon.png}"> <img
+												th:if="!${#strings.isEmpty(coordinate.userDetail.imagePath)}"
+												class="prof_icon" alt="写真"
+												src="../static/dist/assets/img/user_icon.png"
+												th:src="${coordinate.userDetail.imagePath}">
 
-							<table class="table table-list">
-								<thead>
-									<tr class="bg-light coordinate-category">
-										<th th:each="clothes:${coordinate.clothesList}"
-											th:text="${clothes.category.name}" class="column"></th>
 
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td th:each="clothes:${coordinate.clothesList}">
-											<div style="text-align: center;">
-												<img class="img-fluid coordinate-img"
-													th:src="${clothes.imagePath}" alt="">
-											</div>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-
-							<div class="coordinate-detail-btn">
-								<span>
-									<button type="button" class="btn btn-primary pu_detail-btn"
-										th:value="${coordinate.id}" data-toggle="modal"
-										data-target="#coordinate-modal"
-										th:attr="data-target='#coordinate-modal'+${coordinate.id}">
-										<small>コーディネート詳細</small>
-									</button>
-								</span>
-
-								<!-- コーデ詳細モーダル -->
-								<div class="modal fade"
-									th:id="coordinate-modal+${coordinate.id}" tabindex="-1"
-									role="dialog" aria-labelledby="exampleModalLabel">
-									<div class="modal-dialog">
-										<div class="modal-content">
-
-											<!-- モーダル内ヘッダー -->
-											<div class="modal-header">
-												<h5 class="modal-title" id="exampleModalLabel"
-													th:text="${coordinate.name}"></h5>
-												<button type="button" class="close" data-dismiss="modal"
-													aria-label="閉じる">
-													<span aria-hidden="true">&times;</span>
-												</button>
-											</div>
-
-											<!-- モーダル内ボディ -->
-											<div class="modal-body">
-												<div th:each="clothes:${coordinate.clothesList}">
-													<table class="table modal-tbl">
-														<tbody>
-															<tr class="modal-tr">
-																<td rowspan="5"><div class="clothes-img">
-																		<img class="img-fluid cl-img"
-																			th:src="${clothes.imagePath}" alt="">
-																	</div></td>
-																<td class="table-active clm"><label
-																	style="font-weight: bold;">カテゴリー</label></td>
-																<td><span class="modal-txt"
-																	th:text="${clothes.category.name}"></span></td>
-															</tr>
-															<tr class="modal-tr">
-																<td class="table-active clm"><label
-																	style="font-weight: bold;">ブランド</label></td>
-																<td><span class="modal-txt"
-																	th:text="${clothes.brand.name}"></span></td>
-
-															</tr>
-															<tr class="modal-tr">
-																<td class="table-active clm"><label
-																	style="font-weight: bold;">金額</label></td>
-																<td><span class="modal-txt"
-																	th:text="${#numbers.formatInteger(clothes.price, 1, 'COMMA') + '&nbsp;円'}"></span></td>
-															</tr>
-
-															<tr class="modal-tr">
-																<td class="table-active clm"><label
-																	style="font-weight: bold;">メモ</label></td>
-																<td><span class="modal-txt"
-																	th:text="${clothes.comment}"></span></td>
-															</tr>
-														</tbody>
-													</table>
-												</div>
-												<br>
-												<!-- コーデ合計金額反映 -->
-												<div class="co-total-price">
-													<span class="co-total-price">このコーディネートの合計金額：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
-														class="total-price"></span></span>
-												</div>
-												<br>
-												<!-- モーダル内フッター -->
-												<div class="modal-footer">
-													<button type="button" class="btn btn-secondary"
-														data-dismiss="modal">閉じる</button>
-												</div>
-												<!-- /.modal-footer -->
-											</div>
-											<!-- /.modal-content -->
-										</div>
-										<!-- /.modal-dialog -->
-									</div>
-									<!-- /.modal -->
-									<!-- モーダル設定終了 -->
+										</span><span th:text="${coordinate.userDetail.userName}"></span></a> さん</span>&nbsp;&nbsp;
+									|&nbsp;&nbsp; <label class="modal-label"> <input
+										type="radio" class="radio" name="radio"
+										th:id="${coordinate.id}" th:value="${coordinate.id}">
+										<img th:src="@{/dist/img/heart.png}"
+										class="far fa-heart like radio-img"> <span
+										class="counts" th:text="${coordinate.likeList.size()}">275</span>
+									</label>
 								</div>
+
+								<table class="table table-list">
+									<thead>
+										<tr class="bg-light coordinate-category">
+											<th th:each="clothes:${coordinate.clothesList}"
+												th:text="${clothes.category.name}" class="column"></th>
+
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td th:each="clothes:${coordinate.clothesList}">
+												<div style="text-align: center;">
+													<img class="img-fluid coordinate-img"
+														th:src="${clothes.imagePath}" alt="">
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+
+								<div class="coordinate-detail-btn">
+									<span>
+										<button type="button" class="btn btn-primary pu_detail-btn"
+											th:value="${coordinate.id}" data-toggle="modal"
+											data-target="#coordinate-modal"
+											th:attr="data-target='#coordinate-modal'+${coordinate.id}">
+											<small>コーディネート詳細</small>
+										</button>
+									</span>
+
+									<!-- コーデ詳細モーダル -->
+									<div class="modal fade"
+										th:id="coordinate-modal+${coordinate.id}" tabindex="-1"
+										role="dialog" aria-labelledby="exampleModalLabel">
+										<div class="modal-dialog">
+											<div class="modal-content">
+
+												<!-- モーダル内ヘッダー -->
+												<div class="modal-header">
+													<h5 class="modal-title" id="exampleModalLabel"
+														th:text="${coordinate.name}"></h5>
+													<button type="button" class="close" data-dismiss="modal"
+														aria-label="閉じる">
+														<span aria-hidden="true">&times;</span>
+													</button>
+												</div>
+
+												<!-- モーダル内ボディ -->
+												<div class="modal-body">
+													<div th:each="clothes:${coordinate.clothesList}">
+														<table class="table modal-tbl">
+															<tbody>
+																<tr class="modal-tr">
+																	<td rowspan="5"><div class="clothes-img">
+																			<img class="img-fluid cl-img"
+																				th:src="${clothes.imagePath}" alt="">
+																		</div></td>
+																	<td class="table-active clm"><label
+																		style="font-weight: bold;">カテゴリー</label></td>
+																	<td><span class="modal-txt"
+																		th:text="${clothes.category.name}"></span></td>
+																</tr>
+																<tr class="modal-tr">
+																	<td class="table-active clm"><label
+																		style="font-weight: bold;">ブランド</label></td>
+																	<td><span class="modal-txt"
+																		th:text="${clothes.brand.name}"></span></td>
+
+																</tr>
+																<tr class="modal-tr">
+																	<td class="table-active clm"><label
+																		style="font-weight: bold;">金額</label></td>
+																	<td><span class="modal-txt"
+																		th:text="${#numbers.formatInteger(clothes.price, 1, 'COMMA') + '&nbsp;円'}"></span></td>
+																</tr>
+
+																<tr class="modal-tr">
+																	<td class="table-active clm"><label
+																		style="font-weight: bold;">メモ</label></td>
+																	<td><span class="modal-txt"
+																		th:text="${clothes.comment}"></span></td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+													<br>
+													<!-- コーデ合計金額反映 -->
+													<div class="co-total-price">
+														<span class="co-total-price">このコーディネートの合計金額：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+															class="total-price"></span></span>
+													</div>
+													<br>
+													<!-- モーダル内フッター -->
+													<div class="modal-footer">
+														<!-- 
+														<div class="item-frame">
+															<input type='checkbox' th:id='${coordinate.id}'
+																class="checkbox" name="isPublic"
+																th:value="${coordinate.id}"> 
+															<label id="switch1" class="switch" th:for='${coordinate.id}'></label>
+															<label id="text1" class="text" th:for='${coordinate.id}'>このコーデを公開する</label>
+														</div>
+														<span class="item-frame">
+															<button type="button" class="btn btn-primary delete-btn"
+																th:id="${coordinate.id}" th:value="${coordinate.id}">
+																<small>このコーディネートを削除する</small>
+															</button>
+														</span>
+														 -->
+														<button type="button" class="btn btn-secondary"
+															data-dismiss="modal">閉じる</button>
+													</div>
+													<!-- /.modal-footer -->
+												</div>
+												<!-- /.modal-content -->
+											</div>
+											<!-- /.modal-dialog -->
+										</div>
+										<!-- /.modal -->
+										<!-- モーダル設定終了 -->
+									</div>
+								</div>
+
+
+								<br> <br> <br> <br>
 							</div>
-
-
-							<br> <br> <br> <br>
 						</div>
 					</div>
 
-					<div class="tab_content men_content" id="">
-						<div class="tab_content_description">
-							<p class="c-txtsp">MENの内容がここに入ります</p>
+					<!-- メンズコーデ -->
+					<div class="coordinate tab_content men_content">
+						<div style="text-align: right;">
+							<span> 公開メンズコーデ件数：&nbsp;&nbsp;<span
+								th:text="${coordinateListForMen.size()}"
+								style="font-size: 20px; font-weight: bold;"></span>&nbsp;件
+							</span>
 						</div>
-					</div>
-					<div class="tab_content women_content" id="">
-						<div class="tab_content_description ">
-							<p class="c-txtsp">WOMENの内容がここに入ります</p>
+
+						<div th:each="coordinateForMen:${coordinateListForMen}"
+							th:id="${coordinateForMen.id}">
+							<div class="public-coordinates">
+
+								<h6 th:text="${coordinateForMen.name}">公開コーデ</h6>
+								<div class="prof-icon-name">
+									<span><a
+										th:href="@{/__${coordinateForMen.user.myqloId}__}"><span
+											class="prof_img"> <img
+												th:if="${#strings.isEmpty(coordinateForMen.userDetail.imagePath)}"
+												class="prof_icon" alt="写真"
+												src="../static/dist/assets/img/user_icon.png"
+												th:src="@{/dist/assets/img/user_icon.png}"> <img
+												th:if="!${#strings.isEmpty(coordinateForMen.userDetail.imagePath)}"
+												class="prof_icon" alt="写真"
+												src="../static/dist/assets/img/user_icon.png"
+												th:src="${coordinateForMen.userDetail.imagePath}">
+
+										</span><span th:text="${coordinateForMen.userDetail.userName}"></span></a>
+										さん</span>&nbsp;&nbsp; |&nbsp;&nbsp; <label class="modal-label">
+										<input type="radio" class="radio" name="radio"
+										th:id="${coordinateForMen.id}"
+										th:value="${coordinateForMen.id}"> <img
+										th:src="@{/dist/img/heart.png}"
+										class="far fa-heart like radio-img"> <span
+										class="counts" th:text="${coordinateForMen.likeList.size()}">275</span>
+									</label>
+								</div>
+
+								<table class="table table-list">
+									<thead>
+										<tr class="bg-light coordinate-category">
+											<th th:each="clothesForMen:${coordinateForMen.clothesList}"
+												th:text="${clothesForMen.category.name}" class="column"></th>
+
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td th:each="clothesForMen:${coordinateForMen.clothesList}">
+												<div style="text-align: center;">
+													<img class="img-fluid coordinate-img"
+														th:src="${clothesForMen.imagePath}" alt="">
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+
+								<div class="coordinate-detail-btn">
+									<span>
+										<button type="button" class="btn btn-primary pu_detail-btn"
+											th:value="${coordinateForMen.id}" data-toggle="modal"
+											data-target="#coordinate-modal2"
+											th:attr="data-target='#coordinate-modal2'+${coordinateForMen.id}">
+											<small>コーディネート詳細</small>
+										</button>
+									</span>
+
+									<!-- コーデ詳細モーダル -->
+									<div class="modal fade"
+										th:id="coordinate-modal2+${coordinateForMen.id}" tabindex="-1"
+										role="dialog" aria-labelledby="exampleModalLabel">
+										<div class="modal-dialog">
+											<div class="modal-content">
+
+												<!-- モーダル内ヘッダー -->
+												<div class="modal-header">
+													<h5 class="modal-title" id="exampleModalLabel"
+														th:text="${coordinateForMen.name}"></h5>
+													<button type="button" class="close" data-dismiss="modal"
+														aria-label="閉じる">
+														<span aria-hidden="true">&times;</span>
+													</button>
+												</div>
+
+												<!-- モーダル内ボディ -->
+												<div class="modal-body">
+													<div
+														th:each="clothesForMen:${coordinateForMen.clothesList}">
+														<table class="table modal-tbl">
+															<tbody>
+																<tr class="modal-tr">
+																	<td rowspan="5"><div class="clothes-img">
+																			<img class="img-fluid cl-img"
+																				th:src="${clothesForMen.imagePath}" alt="">
+																		</div></td>
+																	<td class="table-active clm"><label
+																		style="font-weight: bold;">カテゴリー</label></td>
+																	<td><span class="modal-txt"
+																		th:text="${clothesForMen.category.name}"></span></td>
+																</tr>
+																<tr class="modal-tr">
+																	<td class="table-active clm"><label
+																		style="font-weight: bold;">ブランド</label></td>
+																	<td><span class="modal-txt"
+																		th:text="${clothesForMen.brand.name}"></span></td>
+
+																</tr>
+																<tr class="modal-tr">
+																	<td class="table-active clm"><label
+																		style="font-weight: bold;">金額</label></td>
+																	<td><span class="modal-txt"
+																		th:text="${#numbers.formatInteger(clothesForMen.price, 1, 'COMMA') + '&nbsp;円'}"></span></td>
+																</tr>
+
+																<tr class="modal-tr">
+																	<td class="table-active clm"><label
+																		style="font-weight: bold;">メモ</label></td>
+																	<td><span class="modal-txt"
+																		th:text="${clothesForMen.comment}"></span></td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+													<br>
+													<!-- コーデ合計金額反映 -->
+													<div class="co-total-price">
+														<span class="co-total-price">このコーディネートの合計金額：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+															class="total-price"></span></span>
+													</div>
+													<br>
+													<!-- モーダル内フッター -->
+													<div class="modal-footer">
+														<!-- 
+														<div class="item-frame">
+															<input type='checkbox' th:id='${coordinateForMen.id}'
+																class="checkbox" name="isPublic"
+																th:value="${coordinateForMen.id}"> 
+															<label id="switch2" class="switch" th:for='${coordinateForMen.id}'></label> 
+															<label id="text2" class="text" th:for='${coordinateForMen.id}'>このコーデを公開する</label>
+														</div>
+														<span>
+															<button type="button" class="btn btn-primary delete-btn"
+																th:id="${coordinateForMen.id}"
+																th:value="${coordinateForMen.id}">
+																<small>このコーディネートを削除する</small>
+															</button>
+														</span>
+														 -->
+														<button type="button" class="btn btn-secondary"
+															data-dismiss="modal">閉じる</button>
+													</div>
+													<!-- /.modal-footer -->
+												</div>
+												<!-- /.modal-content -->
+											</div>
+											<!-- /.modal-dialog -->
+										</div>
+										<!-- /.modal -->
+										<!-- モーダル設定終了 -->
+									</div>
+								</div>
+
+
+								<br> <br> <br> <br>
+							</div>
 						</div>
 					</div>
 
+					<!-- ウィメンズコーデ -->
+					<div class="coordinate tab_content women_content">
+						<div style="text-align: right;">
+							<span> 公開ウィメンズコーデ件数：&nbsp;&nbsp;<span
+								th:text="${coordinateListForWomen.size()}"
+								style="font-size: 20px; font-weight: bold;"></span>&nbsp;件
+							</span>
+						</div>
+						<div th:each="coordinateForWomen:${coordinateListForWomen}"
+							th:id="${coordinateForWomen.id}">
+							<div class="public-coordinates">
+
+								<h6 th:text="${coordinateForWomen.name}">公開コーデ</h6>
+								<div class="prof-icon-name">
+									<span><a
+										th:href="@{/__${coordinateForWomen.user.myqloId}__}"><span
+											class="prof_img"> <img
+												th:if="${#strings.isEmpty(coordinateForWomen.userDetail.imagePath)}"
+												class="prof_icon" alt="写真"
+												src="../static/dist/assets/img/user_icon.png"
+												th:src="@{/dist/assets/img/user_icon.png}"> <img
+												th:if="!${#strings.isEmpty(coordinateForWomen.userDetail.imagePath)}"
+												class="prof_icon" alt="写真"
+												src="../static/dist/assets/img/user_icon.png"
+												th:src="${coordinateForWomen.userDetail.imagePath}">
+
+										</span><span th:text="${coordinateForWomen.userDetail.userName}"></span></a>
+										さん</span>&nbsp;&nbsp; |&nbsp;&nbsp; <label class="modal-label">
+										<input type="radio" class="radio" name="radio"
+										th:id="${coordinateForWomen.id}"
+										th:value="${coordinateForWomen.id}"> <img
+										th:src="@{/dist/img/heart.png}"
+										class="far fa-heart like radio-img"> <span
+										class="counts" th:text="${coordinateForWomen.likeList.size()}">275</span>
+									</label>
+								</div>
+
+								<table class="table table-list">
+									<thead>
+										<tr class="bg-light coordinate-category">
+											<th
+												th:each="clothesForWomen:${coordinateForWomen.clothesList}"
+												th:text="${clothesForWomen.category.name}" class="column"></th>
+
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td
+												th:each="clothesForWomen:${coordinateForWomen.clothesList}">
+												<div style="text-align: center;">
+													<img class="img-fluid coordinate-img"
+														th:src="${clothesForWomen.imagePath}" alt="">
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+
+								<div class="coordinate-detail-btn">
+									<span>
+										<button type="button" class="btn btn-primary pu_detail-btn"
+											th:value="${coordinateForWomen.id}" data-toggle="modal"
+											data-target="#coordinate-modal3"
+											th:attr="data-target='#coordinate-modal3'+${coordinateForWomen.id}">
+											<small>コーディネート詳細</small>
+										</button>
+									</span>
+
+									<!-- コーデ詳細モーダル -->
+									<div class="modal fade"
+										th:id="coordinate-modal3+${coordinateForWomen.id}"
+										tabindex="-1" role="dialog"
+										aria-labelledby="exampleModalLabel">
+										<div class="modal-dialog">
+											<div class="modal-content">
+
+												<!-- モーダル内ヘッダー -->
+												<div class="modal-header">
+													<h5 class="modal-title" id="exampleModalLabel"
+														th:text="${coordinateForWomen.name}"></h5>
+													<button type="button" class="close" data-dismiss="modal"
+														aria-label="閉じる">
+														<span aria-hidden="true">&times;</span>
+													</button>
+												</div>
+
+												<!-- モーダル内ボディ -->
+												<div class="modal-body">
+													<div
+														th:each="clothesForWomen:${coordinateForWomen.clothesList}">
+														<table class="table modal-tbl">
+															<tbody>
+																<tr class="modal-tr">
+																	<td rowspan="5"><div class="clothes-img">
+																			<img class="img-fluid cl-img"
+																				th:src="${clothesForWomen.imagePath}" alt="">
+																		</div></td>
+																	<td class="table-active clm"><label
+																		style="font-weight: bold;">カテゴリー</label></td>
+																	<td><span class="modal-txt"
+																		th:text="${clothesForWomen.category.name}"></span></td>
+																</tr>
+																<tr class="modal-tr">
+																	<td class="table-active clm"><label
+																		style="font-weight: bold;">ブランド</label></td>
+																	<td><span class="modal-txt"
+																		th:text="${clothesForWomen.brand.name}"></span></td>
+
+																</tr>
+																<tr class="modal-tr">
+																	<td class="table-active clm"><label
+																		style="font-weight: bold;">金額</label></td>
+																	<td><span class="modal-txt"
+																		th:text="${#numbers.formatInteger(clothesForWomen.price, 1, 'COMMA') + '&nbsp;円'}"></span></td>
+																</tr>
+
+																<tr class="modal-tr">
+																	<td class="table-active clm"><label
+																		style="font-weight: bold;">メモ</label></td>
+																	<td><span class="modal-txt"
+																		th:text="${clothesForWomen.comment}"></span></td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+													<br>
+													<!-- コーデ合計金額反映 -->
+													<div class="co-total-price">
+														<span class="co-total-price">このコーディネートの合計金額：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+															class="total-price"></span></span>
+													</div>
+													<br>
+													<!-- モーダル内フッター -->
+													<div class="modal-footer">
+														<!-- 
+														<div class="item-frame">
+															<input type='checkbox' th:id='${coordinateForWomen.id}'
+																class="checkbox" name="isPublic"
+																th:value="${coordinateForWomen.id}"> 
+															<label id="switch3" class="switch" th:for='${coordinateForWomen.id}'></label> 
+															<label id="text3" class="text"
+																th:for='${coordinateForWomen.id}'>このコーデを公開する</label>
+														</div>
+														<span>
+															<button type="button" class="btn btn-primary delete-btn"
+																th:id="${coordinateForWomen.id}"
+																th:value="${coordinateForWomen.id}">
+																<small>このコーディネートを削除する</small>
+															</button>
+														</span>
+														 -->
+														<button type="button" class="btn btn-secondary"
+															data-dismiss="modal">閉じる</button>
+													</div>
+													<!-- /.modal-footer -->
+												</div>
+												<!-- /.modal-content -->
+											</div>
+											<!-- /.modal-dialog -->
+										</div>
+										<!-- /.modal -->
+										<!-- モーダル設定終了 -->
+									</div>
+								</div>
+
+
+								<br> <br> <br> <br>
+							</div>
+						</div>
+					</div>
 					<!-- もっと見るボタン 
 					<div class="btn-area">
 						<button id="more_btn" class="btn btn-primary pc-btn">
@@ -287,9 +636,7 @@
 	<!-- Coordinate Ajax -->
 	<script type="text/javascript" src="../static/dist/js/coordinate.js"
 		th:src="@{/dist/js/coordinate.js}"></script>
-	<script type="text/javascript"
-		src="../static/dist/js/past-coordinate.js"
-		th:src="@{/dist/js/past-coordinate.js}"></script>
+
 	<script type="text/javascript"
 		src="../static/dist/js/public_coordinate.js"
 		th:src="@{/dist/js/public_coordinate.js}"></script>

@@ -46,7 +46,7 @@ public class ShowCoordinateRestController {
 
 		List<Clothes> clothesList = showTopPageService.showItemListByCategoryForCoordinate(loginUser.getUser().getId(),
 				categoryId);
-		
+
 		System.out.println("リストサイズ：" + clothesList.size());
 
 		clothesMap.put("clothesList", clothesList);
@@ -153,13 +153,40 @@ public class ShowCoordinateRestController {
 	/**
 	 * 公開情報を更新します.
 	 * 
-	 * @param coordinateId　コーデID
-	 * @param isPublic　公開フラグ
+	 * @param coordinateId コーデID
+	 * @param isPublic     公開フラグ
 	 */
 	@RequestMapping(value = "/update_isPublic", method = RequestMethod.GET)
 	public void updateIsPublic(Integer coordinateId, boolean isPublic) {
+		System.out.println("コーデID：" + coordinateId + "/" + "フラグ:" + isPublic);
 
 		showCoodinateService.updateIsPublic(coordinateId, isPublic);
+
+	}
+
+	/**
+	 * コーデIDでログインユーザーIDをチェックします.
+	 * 
+	 * @param loginUser
+	 * @param coordinateId
+	 * @return
+	 */
+	@RequestMapping(value="/check_user", method = RequestMethod.GET)
+	public Map<String, Boolean> checkUserId(@AuthenticationPrincipal LoginUser loginUser, Integer coordinateId) {
+		Map<String, Boolean> checkUserIdMap = new HashMap<>();
+		Coordinate coordinate = showCoodinateService.showCoordinateDetailForPublicCoordinate(coordinateId);
+
+		Integer userId = loginUser.getUser().getId();
+				
+		if (coordinate.getUserId() == userId) {
+			checkUserIdMap.put("isLogin", true);
+
+		} else {
+			checkUserIdMap.put("isLogin", false);
+			
+		}
+
+		return checkUserIdMap;
 
 	}
 

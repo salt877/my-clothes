@@ -54,6 +54,45 @@ public class ShowCoordinateService {
 	}
 
 	/**
+	 * コーデ名でコーデ検索します.
+	 * 
+	 * @param name コーデ名
+	 * @return
+	 */
+	public List<Coordinate> showCoordinateByName(String name) {
+		return coordinateRepository.findCoordinatebyName(name);
+	}
+
+	/**
+	 * コーデ名とジェンダーでコーデ検索します.
+	 * 
+	 * @param name   コーデ名
+	 * @param gender ジェンダー
+	 * @return
+	 */
+	public List<Coordinate> showCoordinateByNameAndGender(String name, String gender) {
+		return coordinateRepository.findCoordinatebyNameAndgender(name, gender);
+	}
+
+	/**
+	 * メンズコーデ検索
+	 * 
+	 * @return
+	 */
+	public List<Coordinate> showCoordinateForMen() {
+		return coordinateRepository.findCoordinateForMen();
+	}
+
+	/**
+	 * ウィメンズコーデ検索
+	 * 
+	 * @return
+	 */
+	public List<Coordinate> showCoordinateForWomen() {
+		return coordinateRepository.findCoordinateForWomen();
+	}
+
+	/**
 	 * コーディネートIDに紐づくコーディネートデータを論理削除します.
 	 * 
 	 * @param coordinateId コーデID
