@@ -59,20 +59,26 @@ public class ShowMyPageController {
 		}
 		
 		// いいねされたコーデ
-		List<Coordinate> likedCoordinateList = showCoordinateService.showCoordinate(userId);
+		List<Coordinate> likedCoordinateList = showCoordinateService.showLikedCoordinate(userId);
 		model.addAttribute("likedCoordinateList", likedCoordinateList);
 		
-		for(int i = 0; i < likedCoordinateList.size(); i++) {
-			Coordinate likedCoordinate = likedCoordinateList.get(i);
+		for(Coordinate likedCoordinate : likedCoordinateList) {
 			List<Like> likeList = showCoordinateService.showLikes(likedCoordinate.getId());
 			likedCoordinate.setLikeList(likeList);
-				if(likeList.size() == 0) {
-					likedCoordinateList.remove(likedCoordinate);
-				} else if(likeList.size() > 0) {
-					likedCoordinateList.add(likedCoordinate);
-					System.out.println(likedCoordinateList);
-				}
 		}
+		
+//		for(int i = 0; i < likedCoordinateList.size(); i++) {
+//			Coordinate likedCoordinate = likedCoordinateList.get(i);
+//			List<Like> likeList = showCoordinateService.showLikes(likedCoordinate.getId());
+//				if(likeList.size() == 0) {
+//					likedCoordinateList.remove(likedCoordinate);
+//					System.out.println(likedCoordinateList);
+//				} else if(likeList.size() > 0) {
+//					likedCoordinateList.add(likedCoordinate);
+//					System.out.println(likedCoordinateList);
+//				}
+//				likedCoordinate.setLikeList(likeList);
+//		}
 		
 		// いいねしたコーデ
 		List<Coordinate> likeCoordinateList = showCoordinateService.showLikeCoordinate(userId);
