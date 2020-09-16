@@ -1,5 +1,6 @@
 package jp.co.example.my.clothes.controller;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,7 @@ public class ShowMyPageController {
 	 * @return マイページ
 	 */
 	@RequestMapping("/mypage")
-	public String showMyPage(Model model, ModelMap modelMap, @AuthenticationPrincipal LoginUser loginUser) {
+	public String showMyPage(Model model, ModelMap modelMap, @AuthenticationPrincipal LoginUser loginUser){
 
 		Integer userId = loginUser.getUser().getId();
 		UserDetail userInfomation = showMyPageService.showMyPage(userId);
@@ -48,6 +49,7 @@ public class ShowMyPageController {
 		String userMyqloId = user.getMyqloId();
 		modelMap.addAttribute("userMyqloId", userMyqloId);
 		
+		// 過去のコーデ
 		List<Coordinate> coordinateList = showCoordinateService.showCoordinate(userId);
 		model.addAttribute("coordinateList", coordinateList);
 		
@@ -57,12 +59,19 @@ public class ShowMyPageController {
 		}
 		
 		// いいねされたコーデ
-		List<Coordinate> likedCoordinateList = showCoordinateService.showLikedCoordinate(userId);
+		List<Coordinate> likedCoordinateList = showCoordinateService.showCoordinate(userId);
 		model.addAttribute("likedCoordinateList", likedCoordinateList);
 		
-		for(Coordinate likedCoordinate : likedCoordinateList) {
+		for(int i = 0; i < likedCoordinateList.size(); i++) {
+			Coordinate likedCoordinate = likedCoordinateList.get(i);
 			List<Like> likeList = showCoordinateService.showLikes(likedCoordinate.getId());
 			likedCoordinate.setLikeList(likeList);
+				if(likeList.size() == 0) {
+					likedCoordinateList.remove(likedCoordinate);
+				} else if(likeList.size() > 0) {
+					likedCoordinateList.add(likedCoordinate);
+					System.out.println(likedCoordinateList);
+				}
 		}
 		
 		// いいねしたコーデ
