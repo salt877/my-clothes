@@ -93,6 +93,27 @@ ul {
   list-style: none;
 }
 
+ul.tabs-nav{
+	margin: 0 auto;
+	margin-left: 180px;
+}
+
+ul li a.tab-list{
+	color: black;
+	font-weight: bold;
+	height: 50px;
+	width: 360px;
+	padding-right: 30px;
+	padding-left: 30px;
+	margin: 0 0.5px;
+}
+
+span.tab-name{
+	position: relative;
+	top: 15px;
+	left: 100px;
+}
+
 .work-section .tabs-nav a{
 	display: block;
 	padding: 0 1.36em;
@@ -102,8 +123,8 @@ ul {
 
 .work-section .tabs-nav a:hover,
 .work-section .tabs-nav a.active{
-	background-color: rgb(51, 51, 51);
-	color: rgb(255, 255, 255);
+	background-color: rgb(218, 218, 218);
+	color: rgb(51, 51, 51);
 }
 
 .work-section .tabs-nav a.active:after{
@@ -111,10 +132,11 @@ ul {
 	position: absolute;
 }
 
-.inner{
-	padding-top: 10px;
-	padding-bottom: 10px;
-	margin: 0 auto;
+.inner1{
+	padding-top: 60px;
+	padding-bottom: 47px;
+	border-bottom: 3px solid rgb(218, 218, 218);
+	
 }
 
 /*いいねのハートのCSS*/
