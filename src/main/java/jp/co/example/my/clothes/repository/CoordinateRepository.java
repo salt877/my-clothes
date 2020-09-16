@@ -562,13 +562,5 @@ public class CoordinateRepository {
 
 		return coordinateList;
 	}
-	
-	public Coordinate findByCoordinateId(Integer coordinateId) {
-		String sql = "select id,user_id,fashion_accessories,tops1,tops2,outers,bottoms,shoes,bag,dress,deleted,name,is_public from coordinates WHERE id=:coordinateId;";
-		
-		SqlParameterSource param = new MapSqlParameterSource().addValue("coordinateId", coordinateId);
-		
-		return template.queryForObject(sql, param, COORDINATE_ROW_MAPPER);
-	}
 
 }
