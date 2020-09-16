@@ -89,7 +89,7 @@
 							<div class="cp_ipselect cp_sl02">
 								<select name="height">
 									<option th:unless="${#strings.isEmpty(userDetail.height)}" th:value="${userDetail.height}" th:text="${userDetail.height} + 'cm'">○○cm</option>
-									<option th:if="${#strings.isEmpty(userDetail.height)}" value="">選択してください</option>
+									<option value="">選択してください</option>
 									<option th:value="100">100cm</option>
 									<option th:value="101">101cm</option>
 									<option th:value="102">102cm</option>

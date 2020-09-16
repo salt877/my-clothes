@@ -28,7 +28,7 @@
 }
 
 .list-count {
-    margin-top: -20px;
+	margin-top: -20px;
 }
 
 .container {
@@ -129,16 +129,33 @@ ul {
 
 /* 480px以下に適用されるCSS（スマホ用） */
 @media screen and (max-width: 480px) {
+	body, #wrapper {
+		display: flex;
+		flex-direction: column;
+		min-height: 100vh;
+	}
 	.page-section {
-		padding: 8rem 0 !important;
+		padding: 6rem 0 !important;
+		height: auto;
+	}
+	.container {
+		margin-top: 1em;
+		height: auto;
 	}
 	.c-title {
-		margin-top: -100%;
+		margin-top: -30%;
+	}
+	.user-information {
+		position: relative;
+		text-align: center;
+		height: auto;
 	}
 	.plofile_img {
-		left: 100px;
-	
-}
+		position: relative;
+		left: 0%;
+		right: 0%;
+		top: 1em;
+	}
 	.plofile_icon {
 		width: 150px; /* ※縦横を同値に */
 		height: 150px; /* ※縦横を同値に */
@@ -148,23 +165,46 @@ ul {
 		　 /* 横長画像の中央を基準に表示 */
 	}
 	.user_main {
-		position: absolute;
-		left: 50px;
-		top: 340px;
+		position: relative;
+		text-align: center;
+		left: auto;
+		top: 3em;
 	}
 	.name {
 		font-size: 18px;
 		margin-left: auto;
 		margin-right: auto;
+		text-align: center;
+	}
+	.user_data {
+		position: relative;
+		text-align: center;
+		right: 0px;
+		padding: 1em 1em;
+	}
+	ul {
+		font-size: 12px;
+		white-space: nowrap !important;
+		padding-inline-start: 0px;
+		position: relative;
+		padding-left: 0;
+	}
+	.info {
+		text-align: center;
+	}
+	.info li {
+		display: inline;
+		float: none;
+		margin: 0.2em;
+	}
+	h5, .h5 {
+		font-size: 0.85rem;
 	}
 	.user-page {
 		font-size: 12px;
 		color: black;
 		margin: 0 auto;
 		margin-left: 80px;
-	}
-	ul {
-		font-size: 11px;
 	}
 	.self-introduction {
 		font-size: 11px;
