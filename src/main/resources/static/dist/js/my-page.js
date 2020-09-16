@@ -1,5 +1,37 @@
 $(function(){
 	
+	// トグルボタンと削除ボタンの表示・非表示設定
+	$('.detail-btn').on('click',function(){
+		var coordinateId = $(this).val();
+		
+		$.ajax({
+			url : "/show_button",
+			type : "GET",
+			data : {
+				coordinateId : coordinateId
+			},
+			async : true
+			
+		// 通信成功時の処理
+		}).done(function(data){
+			console.log(data);
+			if(data === false){
+				$('.like-item-frame').hide();
+				$('.like-delete-btn').hide();
+			} else if(data === true){
+				$('.like-item-frame').show();
+				$('.like-delete-btn').show();
+			}
+			
+		}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
+			alert("エラーが発生しました。");
+			console.log("XMLHttpRequest:" + XMLHttpRequest.status);
+				console.log("textStatus:" + textStatus);
+				console.log("errorThrown" + errorThrown.message);
+
+		});
+	});
+	
 	// いいねされたコーデ一覧のもっと見る設定
 	// listの個数を取得しておく
 	var listContents = $("#liked-coordinate-list .liked-coordinates").length;
@@ -101,36 +133,4 @@ $(function(){
 							}
 						});
 			});
-	
-	// トグルボタンと削除ボタンの表示・非表示設定
-	$('.detail-btn').on('click',function(){
-		var coordinateId = $(this).val();
-		
-		$.ajax({
-			url : "/show_button",
-			type : "GET",
-			data : {
-				coordinateId : coordinateId
-			},
-			async : true
-			
-		// 通信成功時の処理
-		}).done(function(data){
-			console.log(data);
-			if(data === false){
-				$('.like-item-frame').hide();
-				$('.like-delete-btn').hide();
-			} else if(data === true){
-				$('.like-item-frame').show();
-				$('.like-delete-btn').show();
-			}
-			
-		}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
-			alert("エラーが発生しました。");
-			console.log("XMLHttpRequest:" + XMLHttpRequest.status);
-				console.log("textStatus:" + textStatus);
-				console.log("errorThrown" + errorThrown.message);
-
-		});
-	});
 });
