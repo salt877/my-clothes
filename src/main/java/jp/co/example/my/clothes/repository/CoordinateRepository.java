@@ -508,11 +508,16 @@ public class CoordinateRepository {
 		sql.append("co.is_public co_is_public, b.id b_id, b.name b_name,cl.id cl_id, cl.user_id cl_user_id, cl.category_id cl_category_id, cl.brand_id cl_brand_id, ");
 		sql.append("cl.color_id cl_color_id, cl.season cl_season, cl.image_path cl_image_path, ");
 		sql.append("cl.perchase_date cl_perchase_date, cl.price cl_price, cl.size_id cl_size_id, cl.comment cl_comment, cl.deleted cl_deleted, ");
-		sql.append("ca.id ca_id, ca.name ca_name, b.id b_id, b.name b_name ");
+		sql.append("ca.id ca_id, ca.name ca_name, b.id b_id, b.name b_name, ");
+		sql.append("u.id u_id, u.myqlo_id u_myqlo_id, u.email u_email, u.password u_password, u.deleted u_deleted, ");
+		sql.append(
+				"ud.id ud_id, ud.user_id ud_user_id, ud.image_path ud_image_path, ud.user_name ud_user_name, ud.gender ud_gender, ud.height ud_height, ud.age ud_age, ud.self_introduction ud_self_introduction ");
 		sql.append("FROM coordinates co LEFT OUTER JOIN clothes cl ");
 		sql.append("ON co.fashion_accessories  = cl.id OR co.tops1 = cl.id OR co.tops2 = cl.id OR co.outers = cl.id OR co.bottoms = cl.id OR co.shoes = cl.id OR co.bag = cl.id OR co.dress = cl.id ");
 		sql.append("LEFT OUTER JOIN categories ca ON cl.category_id = ca.id ");
 		sql.append("LEFT OUTER JOIN brands b ON cl.brand_id = b.id ");
+		sql.append("LEFT OUTER JOIN users u ON co.user_id = u.id ");
+		sql.append("LEFT OUTER JOIN user_details ud ON co.user_id = ud.user_id ");
 		sql.append("LEFT OUTER JOIN likes li ON co.id = li.coordinate_id ");
 		sql.append("WHERE co.deleted = 'FALSE' AND co.is_public = 'TRUE' AND li.user_id= :userId ");
 		sql.append("ORDER BY co.id, cl.category_id;");
@@ -542,11 +547,16 @@ public class CoordinateRepository {
 		sql.append("co.is_public co_is_public, b.id b_id, b.name b_name,cl.id cl_id, cl.user_id cl_user_id, cl.category_id cl_category_id, cl.brand_id cl_brand_id, ");
 		sql.append("cl.color_id cl_color_id, cl.season cl_season, cl.image_path cl_image_path, ");
 		sql.append("cl.perchase_date cl_perchase_date, cl.price cl_price, cl.size_id cl_size_id, cl.comment cl_comment, cl.deleted cl_deleted, ");
-		sql.append("ca.id ca_id, ca.name ca_name, b.id b_id, b.name b_name ");
+		sql.append("ca.id ca_id, ca.name ca_name, b.id b_id, b.name b_name, ");
+		sql.append("u.id u_id, u.myqlo_id u_myqlo_id, u.email u_email, u.password u_password, u.deleted u_deleted, ");
+		sql.append(
+				"ud.id ud_id, ud.user_id ud_user_id, ud.image_path ud_image_path, ud.user_name ud_user_name, ud.gender ud_gender, ud.height ud_height, ud.age ud_age, ud.self_introduction ud_self_introduction ");
 		sql.append("FROM coordinates co LEFT OUTER JOIN clothes cl ");
 		sql.append("ON co.fashion_accessories  = cl.id OR co.tops1 = cl.id OR co.tops2 = cl.id OR co.outers = cl.id OR co.bottoms = cl.id OR co.shoes = cl.id OR co.bag = cl.id OR co.dress = cl.id ");
 		sql.append("LEFT OUTER JOIN categories ca ON cl.category_id = ca.id ");
 		sql.append("LEFT OUTER JOIN brands b ON cl.brand_id = b.id ");
+		sql.append("LEFT OUTER JOIN users u ON co.user_id = u.id ");
+		sql.append("LEFT OUTER JOIN user_details ud ON co.user_id = ud.user_id ");
 		sql.append("right outer join likes li ON co.id = li.coordinate_id ");
 		sql.append("WHERE co.deleted = 'FALSE' AND co.is_public = 'TRUE' AND co.user_id = :userId ");
 		sql.append("ORDER BY co.id, cl.category_id;");
