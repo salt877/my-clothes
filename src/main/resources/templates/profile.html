@@ -17,7 +17,8 @@
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="../static/dist/css/styles.css" th:href="@{/dist/css/styles.css}" rel="stylesheet" />
 <link rel="stylesheet" href="../static/dist/css/plofile.css" th:href="@{/dist/css/plofile.css}">
-<link rel="stylesheet" href="../static/dist/css/past-coordinate.css" th:href="@{/dist/css/past-coordinate.css}">
+<!-- <link rel="stylesheet" href="../static/dist/css/edit_clothes.css" th:href="@{/dist/css/edit_clothes.css}"> -->
+<!-- <link rel="stylesheet" href="../static/dist/css/past-coordinate.css" th:href="@{/dist/css/past-coordinate.css}">  -->
 </head>
 <body id="page-top">
 
@@ -45,7 +46,7 @@
       	</div>
       	<div class="change-image-btn">
       			<button type="button" id="removeImage" class="btn btn-secondary btn--radius">削除</button>
-      			<div class="imageFile_button">画像を変更
+      			<div class="imageFile_button btn">画像を変更
       			<input id="myImage" class="file_input" name="imageFile" type="file" accept=".jpg,.png" th:field="*{imageFile}" >
       			</div>
 		</div>
@@ -222,6 +223,8 @@
 				</tr>
 			</tbody>
 		</table>
+		<br>
+		<br>
 		<div class="detailed-information">
 			<table>
 				<tr>
@@ -229,20 +232,20 @@
 				</tr>
 				<tbody>
 					<tr>
-						<td class="self-introduction" colspan="2">
+						<td class="self-introduction txt" colspan="2">
 							<textarea name="self-introduction" rows="10" cols="82" placeholder="300文字以内で入力してください"
 								 th:text="${userDetail.selfIntroduction}" th:field="*{selfIntroduction}"></textarea>
 						</td>
 					</tr>
 				</tbody>
 			</table>
+		</div>
 			<!--  変更ボタン -->
 			<div class="complete-btn">
 				<input type="hidden" name="userId" id="userId" th:value="${user.id}">
 				<input type="submit" name="submit" id="profile_submit"
 							class="btn btn--submit" value="&emsp;変更を保存&emsp;"disabled>
 			</div>
-		</div>
 		</form>
       </div>
     </section>
