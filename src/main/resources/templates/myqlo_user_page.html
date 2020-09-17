@@ -109,8 +109,8 @@
 				<div id="past-coordinate-list">
 					<div th:each="coordinate:${publicCoordinateList}">
 						<div class="past-coordinates">
-							<span th:text="${coordinate.name}"></span>&nbsp;
-							|&nbsp;&nbsp;&nbsp; <label class="likes"> <input type="radio"
+							<span th:text="${coordinate.name}"></span>&nbsp;&nbsp;
+							&nbsp;&nbsp;&nbsp; <label class="likes"> <input type="radio"
 								class="radio" name="radio" th:id="${coordinate.id}"
 								th:value="${coordinate.id}"> <i class="likesicon"></i>&nbsp;&nbsp;
 								<span class="counts" th:text="${coordinate.likeList.size()}">275</span>
