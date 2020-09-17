@@ -15,7 +15,7 @@ $(function() {
 		for(var like of data.likeList){
 			$('.radio').each(function(i, o) {
 				if(like.coordinateId == $(o).val()){
-					$(this).next('.radio-img').addClass('checked').css('color', 'red');
+					$(this).next('.likesicon').addClass('on HeartAnimation');
 					$(this).prop('checked', true);
 					
 				}
@@ -34,11 +34,11 @@ $(function() {
 	$('input:radio[name="radio"]').on('click', function() {
 		
 		var coordinateId = $(this).attr('id');
-		var $likes = $(this).next('.radio-img').next('.counts');
+		var $likes = $(this).next('.likesicon').next('.counts');
 
 		// すでにいいねされていた時の処理（ラジオボタンがチェックされていた時の処理）
 		// いいね削除
-		if ($(this).next().hasClass('checked')) {
+		if ($(this).next().hasClass('on')) {
 
 			$.ajax({
 				url : "/deleteLike",
@@ -61,8 +61,8 @@ $(function() {
 
 			});
 
-			$(this).parent().find('.radio-img.checked').removeClass('checked');
-			$(this).next('.radio-img').css('color', 'black');
+			$(this).parent().find('.likesicon.on').removeClass('on HeartAnimation');
+			$(this).next('.likesicon').css('background-position', 'left');
 			$(this).prop('checked', false);
 
 		// いいねしていないときの処理
@@ -90,8 +90,9 @@ $(function() {
 
 			});
 
-			$(this).parent().find('.radio-img.checked').removeClass('checked');
-			$(this).next('.radio-img').addClass('checked').css('color', 'red');
+			$(this).parent().find('.likesicon.on').removeClass('on HeartAnimation');
+			$(this).next('.likesicon').addClass('on HeartAnimation');
+			$(this).next('.likesicon').css('background-position', 'right');
 			$(this).prop('checked', true);
 
 		}

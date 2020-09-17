@@ -298,7 +298,7 @@ $(function(){
 				
 			// 通信成功時の処理
 			}).done(function(){
-				window.location.href="/past-coordinate";
+				window.location.href="/mypage";
 				
 			}).fail(function(XMLHttpRequest, textStatus, errorThrown){
 				alert("エラーが発生しました。");
