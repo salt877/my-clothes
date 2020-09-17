@@ -58,11 +58,12 @@
 	font-size: 25px;
 	margin: 0 auto;
 }
+
 .user-page{
-		font-size: 12px;
-		color: #212529;
-		margin: 0 auto;
-	}
+	font-size: 12px;
+	color: #212529;
+	margin: 0 auto;
+}
 
 li .user_id .height .gender .hair{
 	color: #444444;
@@ -162,6 +163,7 @@ span.tab-name{
 		margin: 0 auto;
 		margin-left: 80px;
 	}
+	
 	.user-page{
 		font-size: 12px;
 		color: black;
@@ -203,77 +205,32 @@ span.tab-name{
 	
 	/* タグのCSS*/
 	ul.tabs-nav{
-		margin: 0 auto;
-	}
-
-	ul li a.tab-list{
-		color: black;
-		font-weight: bold;
-		height: 50px;
-		width: 100px;
-		padding-right: 5px;
-		padding-left: 5px;
-		margin: 0 0.5px;
-	}
-
-	span.tab-name{
-		position: relative;
-		top: 15px;
-		left: 1px;
-		font-size: 8px;
-		text-align: center;
-		width: 40px;
-	}
-	
-/* 1300px以下に適用されるCSS（PC用） */
-@media screen and (max-width: 1300px) {
-	ul.tabs-nav{
-		margin: 0 auto;
-		margin-left: 220px;
-	}
-
-	ul li a.tab-list{
-		color: black;
-		font-weight: bold;
-		height: 50px;
-		width: 250px;
-		padding-right: 30px;
-		padding-left: 30px;
-		margin: 0 0.5px;
-	}
-
-	span.tab-name{
-		position: relative;
-		top: 15px;
-	 	left: 40px;
-	}
-	
-/* 1200px以下に適用されるCSS（PC用） */
-@media screen and (max-width: 1200px) {
-	ul.tabs-nav{
-		margin: 0 auto;
-		margin-left: 220px;
-	}
-
-	ul li a.tab-list{
-		color: black;
-		font-weight: bold;
-		height: 50px;
-		width: 100px;
-		padding-right: 30px;
-		padding-left: 30px;
-		margin: 0 0.5px;
-	}
-
-	span.tab-name{
-		position: relative;
-		top: 15px;
-	 	left: 20px;
-	}
+	margin: 0 auto;
+	margin-right: 10px;
 }
 
-
-
- 
-	
+ul li a.tab-list{
+	color: black;
+	font-weight: bold;
+	height: 50px;
+	width: 100px;
+	padding-right: 30px;
+	padding-left: 30px;
+	margin: 0 0.5px;
 }
+
+span.tab-name{
+	position: relative;
+	top: 15px;
+	left: 1px;
+	font-size: 8px;
+}
+
+.work-section .tabs-nav a{
+	display: block;
+	padding: 0 1.36em;
+	position: relative;
+	text-decoration: none;
+}
+}
+	
