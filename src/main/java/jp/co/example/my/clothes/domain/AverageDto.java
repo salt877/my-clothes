@@ -1,11 +1,16 @@
 package jp.co.example.my.clothes.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * ユーザーごとのアイテム平均金額情報をもつドメイン
  * 
  * @author masashi.nose
  *
  */
+@Getter
+@Setter
 public class AverageDto {
 
 	private Integer average;
@@ -13,14 +18,6 @@ public class AverageDto {
 	@Override
 	public String toString() {
 		return "AverageDto [average=" + average + "]";
-	}
-
-	public Integer getAverage() {
-		return average;
-	}
-
-	public void setAverage(Integer average) {
-		this.average = average;
 	}
 
 }

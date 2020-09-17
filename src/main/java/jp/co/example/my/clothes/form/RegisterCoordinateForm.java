@@ -14,27 +14,38 @@ public class RegisterCoordinateForm {
 
 	/** ID */
 	private String id;
+	
 	/** ユーザーID */
 	private String userId;
+	
 	/** ファッション雑貨 */
 	private String fashionAccessories;
+	
 	/** トップス１ */
 	private String tops1;
+	
 	/** トップス２ */
 	private String tops2;
+	
 	/** アウター */
 	private String outers;
+	
 	/** ボトムス */
 	private String bottoms;
+	
 	/** シューズ */
 	private String shoes;
+	
 	/** バッグ */
 	private String bag;
+	
 	/** ワンピース */
 	private String dress;
+	
 	/** コーデ名 */
 	@NotBlank(message = "コーディネート名は必須です。")
 	private String name;
+	
 	/** 公開コーデフラグ */
 	private String isPublic;
 
