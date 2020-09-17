@@ -23,7 +23,7 @@ public class ShowMyPageRestController {
 	private ShowMyPageService showMyPageService;
 	
 	/**
-	 * 
+	 * モーダル内のトグルボタンと削除ボタンの表示・非表示をするためのメソッド
 	 * 
 	 * @param loginUser
 	 * @param coordinateId
@@ -42,4 +42,5 @@ public class ShowMyPageRestController {
 		} 
 		return false;
 	}
+	
 }

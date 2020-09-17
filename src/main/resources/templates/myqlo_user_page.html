@@ -76,10 +76,11 @@
 	</section>
 
 	<!-- 公開コーデ -->
-	<section class="page-section bg-light" id="pastcordlist">
+	<div class="border"></div>
+	<section class="page-section bg-white" id="pastcordlist">
 		<div class="container">
 			<h5 class="c-title">
-				<span th:text="${userInfomation.userName}"></span>さんのコーディネート一覧
+				<span th:text="${userInfomation.userName}"></span>さんの<br class="userName-br">コーディネート一覧
 			</h5>
 			<br>
 			<!-- 公開コーデ未登録の場合、コーデ画面へ遷移誘導 -->
