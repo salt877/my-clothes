@@ -1,11 +1,16 @@
 package jp.co.example.my.clothes.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * ブランド情報を扱うドメインクラス.
  * 
  * @author ashibe
  *
  */
+@Getter
+@Setter
 public class Brand {
 
 	/**
@@ -17,22 +22,6 @@ public class Brand {
 	 * ブランド名
 	 */
 	private String name;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
 
 	@Override
 	public String toString() {

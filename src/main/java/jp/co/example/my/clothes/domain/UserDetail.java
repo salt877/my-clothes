@@ -1,11 +1,16 @@
 package jp.co.example.my.clothes.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * ユーザの詳細情報を表すドメインクラス.
  * 
  * @author rinashioda
  *
  */
+@Getter
+@Setter
 public class UserDetail {
 
 	/** MYQLO ID */
@@ -34,78 +39,6 @@ public class UserDetail {
 
 	/** 自己紹介 */
 	private String selfIntroduction;
-
-	public String getMyqloId() {
-		return myqloId;
-	}
-
-	public void setMyqloId(String myqloId) {
-		this.myqloId = myqloId;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public Integer getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Integer userId) {
-		this.userId = userId;
-	}
-
-	public String getImagePath() {
-		return imagePath;
-	}
-
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	public String getGender() {
-		return gender;
-	}
-
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-
-	public String getAge() {
-		return age;
-	}
-
-	public void setAge(String age) {
-		this.age = age;
-	}
-
-	public Integer getHeight() {
-		return height;
-	}
-
-	public void setHeight(Integer height) {
-		this.height = height;
-	}
-
-	public String getSelfIntroduction() {
-		return selfIntroduction;
-	}
-
-	public void setSelfIntroduction(String selfIntroduction) {
-		this.selfIntroduction = selfIntroduction;
-	}
 
 	@Override
 	public String toString() {

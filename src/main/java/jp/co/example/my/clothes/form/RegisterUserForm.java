@@ -4,6 +4,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * ユーザ情報登録時に使用するフォームクラスです.
@@ -11,6 +13,8 @@ import javax.validation.constraints.Pattern;
  * @author rinashioda
  *
  */
+@Getter
+@Setter
 public class RegisterUserForm {
 
 	/** MYQLO ID */
@@ -31,37 +35,5 @@ public class RegisterUserForm {
 	/** 確認用パスワード */
 	@NotBlank(message = "確認用パスワードを入力して下さい")
 	private String confirmPassword;
-
-	public String getMyqloId() {
-		return myqloId;
-	}
-
-	public void setMyqloId(String myqloId) {
-		this.myqloId = myqloId;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getConfirmPassword() {
-		return confirmPassword;
-	}
-
-	public void setConfirmPassword(String confirmPassword) {
-		this.confirmPassword = confirmPassword;
-	}
 
 }

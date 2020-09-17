@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * パスワード変更時に使用するDTOです.
  * 
@@ -17,6 +20,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "password_reset")
+@Getter
+@Setter
 public class PasswordReset {
 
 	@Id
@@ -31,38 +36,6 @@ public class PasswordReset {
 
 	@Column(name = "expire_date")
 	private Date expireDate;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public Integer getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Integer userId) {
-		this.userId = userId;
-	}
-
-	public String getRandomUrl() {
-		return randomUrl;
-	}
-
-	public void setRandomUrl(String randomUrl) {
-		this.randomUrl = randomUrl;
-	}
-
-	public Date getExpireDate() {
-		return expireDate;
-	}
-
-	public void setExpireDate(Date expireDate) {
-		this.expireDate = expireDate;
-	}
 
 	@Override
 	public String toString() {
