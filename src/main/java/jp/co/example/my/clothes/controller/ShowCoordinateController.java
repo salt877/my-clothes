@@ -128,7 +128,7 @@ public class ShowCoordinateController {
 
 		modelMap.addAttribute("coordinateList", coordinateList);
 
-		return "public_coordinate2";
+		return "public_coordinate";
 
 	}
 
@@ -199,7 +199,7 @@ public class ShowCoordinateController {
 		UserDetail userDetail = showUserNameService.showUserName(userId);
 		model.addAttribute("userDetail", userDetail);
 
-		return "public_coordinate2";
+		return "public_coordinate";
 
 	}
 	

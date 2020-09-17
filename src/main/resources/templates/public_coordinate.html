@@ -96,7 +96,7 @@
 						style="font-size: 20px; font-weight: bold;"></span>&nbsp;件
 					</span>
 				</div>
-
+				<br>
 				<div id="public_coordinate_list">
 					<div th:each="coordinate:${coordinateList}"
 						th:id="${coordinate.id}">
@@ -116,10 +116,10 @@
 
 
 									</span><span th:text="${coordinate.userDetail.userName}"></span></a> さん</span>&nbsp;&nbsp;
-								|&nbsp;&nbsp; <label class="modal-label"> <input
+								|&nbsp;&nbsp;&nbsp; <label class="likes"> <input
 									type="radio" class="radio" name="radio"
 									th:id="${coordinate.id}" th:value="${coordinate.id}"> <i
-									class="far fa-heart radio-img"></i>&nbsp;<span class="counts"
+									class="likesicon"></i>&nbsp;&nbsp; <span class="counts"
 									th:text="${coordinate.likeList.size()}">275</span>
 								</label>
 							</div>
