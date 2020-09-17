@@ -103,7 +103,7 @@ $(function() {
 		for(var like of data.likeList){
 			$('.radio').each(function(i, o) {
 				if(like.coordinateId == $(o).val()){
-					$(this).next('.radio-img').addClass('checked').css('background-color', 'red');
+					$(this).next('.radio-img').addClass('checked').css('color', 'red');
 					$(this).prop('checked', true);
 					
 				}
@@ -187,77 +187,77 @@ $(function() {
 	// 詳細ボタンクリックイベント
 	$('.pu_detail-btn').on('click', function() {
 		let coordinateId = $(this).val();
-//		let checkbox = $(this).parents('.coordinate-detail-btn').find('.checkbox');
+// let checkbox = $(this).parents('.coordinate-detail-btn').find('.checkbox');
 //
-//		alert(coordinateId);
-//		alert(checkbox.val());
+// alert(coordinateId);
+// alert(checkbox.val());
 //		
 //		
-//		$(checkbox).off('change').on('change', function(){
-//			let isPublic = $(this).prop('checked');
-//			alert(isPublic);
-//			alert($(this).prop('checked'));
+// $(checkbox).off('change').on('change', function(){
+// let isPublic = $(this).prop('checked');
+// alert(isPublic);
+// alert($(this).prop('checked'));
 //
-//			// 公開設定
+// // 公開設定
 //		
 //			
-//			// 公開設定の更新処理
-//			$.ajax({
-//				url : "/update_isPublic",
-//				type : "GET",
-//				data : {
-//					coordinateId : coordinateId,
-//					isPublic : isPublic
-//				},
-//				async : true
+// // 公開設定の更新処理
+// $.ajax({
+// url : "/update_isPublic",
+// type : "GET",
+// data : {
+// coordinateId : coordinateId,
+// isPublic : isPublic
+// },
+// async : true
 //				
-//				// 通信成功時の処理
-//			}).done(function() {
+// // 通信成功時の処理
+// }).done(function() {
 //				
-//				if(isPublic){
-//					$(checkbox).parent().find('.text').css('color', '#000000');
+// if(isPublic){
+// $(checkbox).parent().find('.text').css('color', '#000000');
 //					
-//				}else{
-//					$(checkbox).parent().find('.text').css('color', '#AAAAAA');
-//				}
+// }else{
+// $(checkbox).parent().find('.text').css('color', '#AAAAAA');
+// }
 //				
-//			}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
-//				alert("エラーが発生しました。");
-//				console.log("XMLHttpRequest:" + XMLHttpRequest.status);
-//				console.log("textStatus:" + textStatus);
-//				console.log("errorThrown" + errorThrown.message);
+// }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
+// alert("エラーが発生しました。");
+// console.log("XMLHttpRequest:" + XMLHttpRequest.status);
+// console.log("textStatus:" + textStatus);
+// console.log("errorThrown" + errorThrown.message);
 //				
-//			});		
-//		});	
+// });
+// });
 //		
-//		$.ajax({
-//			url : "/check_user",
-//			type : "GET",
-//			data : {
-//				coordinateId : coordinateId
-//			},
-//			async : true
+// $.ajax({
+// url : "/check_user",
+// type : "GET",
+// data : {
+// coordinateId : coordinateId
+// },
+// async : true
 //
-//		// 通信成功時の処理
-//		}).done(function(data) {
+// // 通信成功時の処理
+// }).done(function(data) {
 //			
-//			if(data.isLogin == true){
-//				$('.item-frame').show();
-//				$('.delete-btn').show();
+// if(data.isLogin == true){
+// $('.item-frame').show();
+// $('.delete-btn').show();
 //				
-//			}else{
-//				$('.item-frame').hide();
-//				$('.delete-btn').hide();
-//			}
+// }else{
+// $('.item-frame').hide();
+// $('.delete-btn').hide();
+// }
 //			
 //
-//		}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
-//			alert("エラーが発生しました。");
-//			console.log("XMLHttpRequest:" + XMLHttpRequest.status);
-//			console.log("textStatus:" + textStatus);
-//			console.log("errorThrown" + errorThrown.message);
+// }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
+// alert("エラーが発生しました。");
+// console.log("XMLHttpRequest:" + XMLHttpRequest.status);
+// console.log("textStatus:" + textStatus);
+// console.log("errorThrown" + errorThrown.message);
 //
-//		});
+// });
 		
 		
 		
@@ -285,5 +285,57 @@ $(function() {
 		
 		
 	});
+	
+	
+	// もっと見る設定
+	// listの個数を取得しておく
+	var listContents = $("#public_coordinate_list .public_coordinates").length;
+	$("#public_coordinate_list").each(
+			function() {
+				// 最初に表示させるアイテムの数
+				var num = 10;
+				// 最初はmoreボタン表示にし、
+				$(this).find('#more_btn').show();
+				$(this).find('#close_btn').hide();
+				// 6番目まで表示
+				$(this).find(".public_coordinates:not(:lt(" + num + "))").hide();
+
+				if (listContents <= num) {
+					$('#close_btn').hide();
+					$('#more_btn').hide();
+				}
+
+				// moreボタンがクリックされた時
+				$('#more_btn').click(
+						function() {
+							// numに+6ずつしていく = 6件ずつ追加する
+							num += 10;
+							$(this).parents('#public_coordinate_list').find(
+									".public_coordinates:lt(" + num + ")")
+									.slideDown(); // スライドダウンさせる
+
+							// listの個数よりnumが多い時、
+							if (listContents <= num) {
+								num = 10;// 「閉じる」がクリックされた後、表示させるアイテムの数
+								gtNum = num - 1;
+								$('#close_btn').show();
+								$('#more_btn').hide();
+
+								// 「閉じる」がクリックされたら、
+								$('#close_btn').click(
+										function() {
+											$(this).parents(
+													'#public_coordinate_list')
+													.find(
+															".public_coordinates:gt("
+																	+ gtNum
+																	+ ")")
+													.slideUp();// 11以降は非表示にし、
+											$(this).hide();// 閉じるボタンを非表示
+											$('#more_btn').show();// moreボタン表示に
+										});
+							}
+						});
+			});
 	
 });

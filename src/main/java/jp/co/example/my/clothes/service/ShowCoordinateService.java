@@ -24,6 +24,30 @@ public class ShowCoordinateService {
 	private CoordinateRepository coordinateRepository;
 
 	/**
+	 * コーデ名のオートコンプリート機能.
+	 * 
+	 * @return コーデ名の配列データ
+	 */
+	public StringBuilder getCoordinateListForAutoComplete() {
+		List<Coordinate> coordinateList = coordinateRepository.findAll();
+		StringBuilder coordinateListForAutoComplete = new StringBuilder();
+		
+		for(int i = 0; i < coordinateList.size(); i++) {
+			if(i != 0) {
+				coordinateListForAutoComplete.append(",");
+			}
+			
+			Coordinate coordinate = coordinateList.get(i);
+			coordinateListForAutoComplete.append("\"");
+			coordinateListForAutoComplete.append(coordinate.getName());
+			coordinateListForAutoComplete.append("\"");
+		}
+		
+		return coordinateListForAutoComplete;
+	
+	}
+
+	/**
 	 * ユーザーIDに紐づくコーディネートデータを全件表示します.
 	 * 
 	 * @param userId ユーザーID
@@ -72,24 +96,6 @@ public class ShowCoordinateService {
 	 */
 	public List<Coordinate> showCoordinateByNameAndGender(String name, String gender) {
 		return coordinateRepository.findCoordinatebyNameAndgender(name, gender);
-	}
-
-	/**
-	 * メンズコーデ検索
-	 * 
-	 * @return
-	 */
-	public List<Coordinate> showCoordinateForMen() {
-		return coordinateRepository.findCoordinateForMen();
-	}
-
-	/**
-	 * ウィメンズコーデ検索
-	 * 
-	 * @return
-	 */
-	public List<Coordinate> showCoordinateForWomen() {
-		return coordinateRepository.findCoordinateForWomen();
 	}
 
 	/**
@@ -182,6 +188,26 @@ public class ShowCoordinateService {
 
 	public Like confirmLike(Integer coordinateId, Integer userId) {
 		return coordinateRepository.load(coordinateId, userId);
+	}
+
+	/**
+	 * 自分がいいねしたコーディネートリストを表示します.
+	 * 
+	 * @param userId ユーザID
+	 * @return いいねしたコーディネートリスト
+	 */
+	public List<Coordinate> showLikeCoordinate(Integer userId) {
+		return coordinateRepository.findBylike(userId);
+	}
+
+	/**
+	 * 自分にいいねされたコーディネートリストを表示します.
+	 * 
+	 * @param userId ユーザID
+	 * @return いいねされたコーディネートリスト
+	 */
+	public List<Coordinate> showLikedCoordinate(Integer userId) {
+		return coordinateRepository.findByliked(userId);
 	}
 
 }

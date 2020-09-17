@@ -118,7 +118,7 @@ input[type="number"] {
 .required-information {
 	text-align: center;
 }
-
+/* 画像を変更するときのボタン */
 .file_button {
 	left: 32%;
 	display: inline-block;

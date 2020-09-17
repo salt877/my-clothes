@@ -17,7 +17,8 @@
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="../static/dist/css/styles.css" th:href="@{/dist/css/styles.css}" rel="stylesheet" />
 <link rel="stylesheet" href="../static/dist/css/plofile.css" th:href="@{/dist/css/plofile.css}">
-<link rel="stylesheet" href="../static/dist/css/past-coordinate.css" th:href="@{/dist/css/past-coordinate.css}">
+<!-- <link rel="stylesheet" href="../static/dist/css/edit_clothes.css" th:href="@{/dist/css/edit_clothes.css}"> -->
+<!-- <link rel="stylesheet" href="../static/dist/css/past-coordinate.css" th:href="@{/dist/css/past-coordinate.css}">  -->
 </head>
 <body id="page-top">
 
@@ -38,16 +39,17 @@
 	<!-- 登録画面 -->
 	<section class="page-section bg-light" id="pastcordlist">
       <div class="container">
-      	<form action="#" method="post" th:action="@{/edit}" th:object="${registerUserDetailForm}" enctype="multipart/form-data">
+      	<form name="profileForm" action="#" method="post" th:action="@{/edit}" th:object="${registerUserDetailForm}" enctype="multipart/form-data">
       	<div class="imag-icon">
-      		<img th:if="${userDetail.imagePath}" id="preview" class="plofile_icon" alt="写真" src="../static/dist/assets/img/plofile.jpeg" th:src="${userDetail.imagePath}">
-      		<img th:unless="${userDetail.imagePath}" id="preview" class="plofile_icon" alt="写真" src="../static/dist/assets/img/user_icon.png" th:src="@{/dist/assets/img/user_icon.png}">
-      		<br>
-      		<div class="file_button">
-				画像を変更 <input id="myImage" class="file_input" name="imageFile"
-									type="file" accept=".jpg,.png" th:field="*{imageFile}" >
-			</div>
+      		<img th:if="${userDetail.imagePath}" id="preview" class="plofile_icon" alt="写真" src="../static/dist/assets/img/plofile.jpeg" th:src="${userDetail.imagePath}" >
+      		<img th:if="${#strings.isEmpty(userDetail.imagePath)}" id="preview" class="plofile_icon" alt="写真" src="../static/dist/assets/img/user_icon.png" th:src="@{/dist/assets/img/user_icon.png}">
       	</div>
+      	<div class="change-image-btn">
+      			<button type="button" id="removeImage" class="btn btn-secondary btn--radius">削除</button>
+      			<div class="imageFile_button btn">画像を変更
+      			<input id="myImage" class="file_input" name="imageFile" type="file" accept=".jpg,.png" th:field="*{imageFile}" >
+      			</div>
+		</div>
       	<table>
 			<tr>
 				<th class="thead" scope="col" colspan="2">基本情報</th>
@@ -87,7 +89,7 @@
 							<div class="cp_ipselect cp_sl02">
 								<select name="height">
 									<option th:unless="${#strings.isEmpty(userDetail.height)}" th:value="${userDetail.height}" th:text="${userDetail.height} + 'cm'">○○cm</option>
-									<option th:if="${#strings.isEmpty(userDetail.height)}" value="">選択してください</option>
+									<option value="">選択してください</option>
 									<option th:value="100">100cm</option>
 									<option th:value="101">101cm</option>
 									<option th:value="102">102cm</option>
@@ -221,6 +223,8 @@
 				</tr>
 			</tbody>
 		</table>
+		<br>
+		<br>
 		<div class="detailed-information">
 			<table>
 				<tr>
@@ -228,20 +232,20 @@
 				</tr>
 				<tbody>
 					<tr>
-						<td class="self-introduction" colspan="2">
+						<td class="self-introduction txt" colspan="2">
 							<textarea name="self-introduction" rows="10" cols="82" placeholder="300文字以内で入力してください"
 								 th:text="${userDetail.selfIntroduction}" th:field="*{selfIntroduction}"></textarea>
 						</td>
 					</tr>
 				</tbody>
 			</table>
+		</div>
 			<!--  変更ボタン -->
 			<div class="complete-btn">
 				<input type="hidden" name="userId" id="userId" th:value="${user.id}">
-				<input type="submit" name="submit" id="submit"
-							class="btn btn--submit" value="&emsp;変更を保存&emsp;" />
+				<input type="submit" name="submit" id="profile_submit"
+							class="btn btn--submit" value="&emsp;変更を保存&emsp;"disabled>
 			</div>
-		</div>
 		</form>
       </div>
     </section>
@@ -289,7 +293,18 @@ $(function() {
 	 $("#fileName").val(fileName);
 	 change();
  });
+	$("#removeImage").click(function(){
+		var defaltImage = '/dist/assets/img/user_icon.png';
+		$("#preview").removeAttr('src');
+		$("#preview").attr('src',defaltImage); 
+		$("#myImage").attr('name','');
+		$('#profile_submit').removeAttr('disabled');
+});
+	
+	$('form[name=profileForm]').change(function(){
+		$('#profile_submit').removeAttr('disabled');
 	});
+});
 </script>
 </body>
 </html>

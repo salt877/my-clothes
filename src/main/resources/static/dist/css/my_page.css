@@ -18,7 +18,11 @@
 }
 
 .container{
-	padding: 7em;
+	padding-top: 1em;
+}
+
+#work{
+	padding-top: 200px;
 }
 
 #change_profile_bun{
@@ -113,6 +117,44 @@ ul {
 	margin: 0 auto;
 }
 
+/*いいねのハートのCSS*/
+.Likes{
+   position: relative;
+ }
+ 
+.Likes-Icon{
+   position: absolute;
+   left: -48px;
+   background: url("http://nelog.jp/wp-content/uploads/2016/03/heart_animation.png");
+   background-position: left;
+   background-size: 2900%;
+   background-repeat: no-repeat;
+   width: 105px;
+   height: 105px;
+ }
+ 
+ @keyframes heartBlast {
+   0% {
+     background-position: left;
+   }
+   100% {
+     background-position: right;
+   }
+ }
+ 
+ .HeartAnimation {
+   display: inline-block;
+   background-position: right;
+   -webkit-animation-name: heartBlast;
+   animation-name: heartBlast;
+   -webkit-animation-duration: .8s;
+   animation-duration: .8s;
+   -webkit-animation-iteration-count: 1;
+   animation-iteration-count: 1;
+   -webkit-animation-timing-function: steps(28);
+   animation-timing-function: steps(28);
+ }
+ 
 /* 480px以下に適用されるCSS（スマホ用） */
 @media screen and (max-width: 480px) {
 	.container{
@@ -165,4 +207,6 @@ ul {
 	.btn{
 		    padding: 0.320rem 0.55rem;
 	}
+	
+	
 }

@@ -291,7 +291,44 @@ table tr:last-child {
 	display: block;
 }
 /*選択されているタブのスタイルを変える*/
-.tabs input:checked + .tab_item {
+.tabs input:checked+.tab_item {
 	background-color: #EEEEEE;
 	color: #000000;
 }
+
+.search_container {
+	box-sizing: border-box;
+	position: relative;
+	border: 1px solid #999;
+	padding: 3px 20px;
+	border-radius: 20px;
+	height: 2.3em;
+	width: 260px;
+	overflow: hidden;
+	margin:0 0 0 auto;
+}
+
+.search_container input[type="text"] {
+	border: none;
+	height: 2.0em;
+}
+
+.search_container input[type="text"]:focus {
+	outline: 0;
+}
+
+.search_container input[type="submit"] {
+	cursor: pointer;
+	font-family: FontAwesome;
+	font-size: 1.3em;
+	border: none;
+	background: none;
+	color: #c0c0c0;
+	position: absolute;
+	width: 2.5em;
+	height: 2.5em;
+	right: 0;
+	top: -10px;
+	outline: none;
+}
+

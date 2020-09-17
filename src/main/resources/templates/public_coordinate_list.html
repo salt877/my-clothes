@@ -645,6 +645,17 @@
 	<script src="../static/dist/js/loading.js"
 		th:src="@{/dist/js/loading.js}"></script>
 
+	<!-- AutoComplete -->
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script type="text/javascript">
+			$( function() {
+    			var coordinateName = [ [(${coordinateListForAutocomplete})] ];
+   				 $( "#coordinate-name" ).autocomplete({
+      				source: coordinateName
+    			 });
+  			});
+		</script>
+
 
 </body>
 </html>

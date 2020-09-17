@@ -118,6 +118,10 @@ public class ShowCoordinateController {
 			coodinate.setLikeList(likeList);
 
 		}
+		
+		StringBuilder coordinateListForAutoComplete = showCoordinateService.getCoordinateListForAutoComplete();
+		model.addAttribute("coordinateListForAutoComplete", coordinateListForAutoComplete);
+		
 
 		UserDetail userDetail = showUserNameService.showUserName(userId);
 		model.addAttribute("userDetail", userDetail);
@@ -135,71 +139,57 @@ public class ShowCoordinateController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/search")
+	@RequestMapping("/public-coordinate/search")
 	public String searchCoordinate(@AuthenticationPrincipal LoginUser loginUser, CoordinateForm form, Model model) {
-		System.out.println(form.getName());
-		System.out.println(form.getGender());
 
 		List<Coordinate> coordinateList = new ArrayList<>();
 
-		if (StringUtils.isEmpty(form.getName()) && form.getGender().equals("ALL")) {
+		if (StringUtils.isEmpty(form.getName()) && "ALL".equals(form.getGender())) {
 			coordinateList = showCoordinateService.showPublicCoordinate();
 			for (Coordinate coodinate : coordinateList) {
 				List<Like> likeList = showCoordinateService.showLikes(coodinate.getId());
 				coodinate.setLikeList(likeList);
-
 			}
-
 		}
 
-		if (!(StringUtils.isEmpty(form.getName())) && form.getGender().equals("ALL")) {
+		if (!(StringUtils.isEmpty(form.getName())) && "ALL".equals(form.getGender())) {
 			coordinateList = showCoordinateService.showCoordinateByName(form.getName());
 			for (Coordinate coodinate : coordinateList) {
 				List<Like> likeList = showCoordinateService.showLikes(coodinate.getId());
 				coodinate.setLikeList(likeList);
-
 			}
-
 		}
 
-		if (form.getGender().equals("ALL")) {
+		if ("ALL".equals(form.getGender())) {
 			coordinateList = showCoordinateService.showCoordinateByName(form.getName());
 			for (Coordinate coodinate : coordinateList) {
 				List<Like> likeList = showCoordinateService.showLikes(coodinate.getId());
 				coodinate.setLikeList(likeList);
-
 			}
-
 		}
 
-		if (form.getGender().equals("MEN")) {
+		if ("MEN".equals(form.getGender())) {
 			coordinateList = showCoordinateService.showCoordinateByNameAndGender(form.getName(), "MEN");
 			for (Coordinate coodinate : coordinateList) {
 				List<Like> likeList = showCoordinateService.showLikes(coodinate.getId());
 				coodinate.setLikeList(likeList);
-
 			}
-
 		}
 
-		if (form.getGender().equals("WOMEN")) {
+		if ("WOMEN".equals(form.getGender())) {
 			coordinateList = showCoordinateService.showCoordinateByNameAndGender(form.getName(), "WOMEN");
 			for (Coordinate coodinate : coordinateList) {
 				List<Like> likeList = showCoordinateService.showLikes(coodinate.getId());
 				coodinate.setLikeList(likeList);
-
 			}
-
 		}
 
-		if (form.getGender().equals("OTHER")) {
+		if ("OTHER".equals(form.getGender())) {
 			coordinateList = showCoordinateService.showCoordinateByNameAndGender(form.getName(), "OTHER");
 			for (Coordinate coodinate : coordinateList) {
 				List<Like> likeList = showCoordinateService.showLikes(coodinate.getId());
 				coodinate.setLikeList(likeList);
-
 			}
-
 		}
 
 		model.addAttribute("coordinateList", coordinateList);

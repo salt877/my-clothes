@@ -91,11 +91,11 @@ public class RegisterUserDetailController {
 	 * @param form　フォーム
 	 * @param result　エラー格納用オブジェクト
 	 * @return
-	 * @throws IOException
+	 * @throws Exception 
 	 */
 	@RequestMapping("/edit")
 	public String editProfile(Model model, Integer userId, @Validated RegisterUserDetailForm form, BindingResult result)
-			throws IOException {
+			throws Exception {
 
 		if (result.hasErrors()) {
 			return showProfileEdit(model, userId, form, result);
@@ -104,6 +104,7 @@ public class RegisterUserDetailController {
 		UserDetail userDetail = registerUserDetailService.searchUserDetail(userId);
 
 		MultipartFile imageFile = form.getImageFile();
+		System.out.println(imageFile);
 		String fileExtension = null;
 
 		try {
@@ -112,25 +113,28 @@ public class RegisterUserDetailController {
 			if (!"jpg".equals(fileExtension) && !"png".equals(fileExtension)) {
 				result.rejectValue("imageFile", "", "拡張子は.jpgか.pngのみに対応しています");
 			}
-		} catch (Exception e) {
+			// 画像ファイルをBase64形式にエンコード
+			String base64FileString = Base64.getEncoder().encodeToString(imageFile.getBytes());
+			if ("jpg".equals(fileExtension)) {
+				base64FileString = "data:image/jpeg;base64," + base64FileString;
+			} else if ("png".equals(fileExtension)) {
+				base64FileString = "data:image/png;base64," + base64FileString;
+			}
+			
+			// エンコードした画像をセットする
+			if (!form.getImageFile().isEmpty()) {
+				form.setImagePath(base64FileString);
+				// 画像の変更を行わない場合
+			} else {
+				UserDetail oldUserDetail = registerUserDetailService.searchUserDetail(userId);
+				form.setImagePath(oldUserDetail.getImagePath());
+			}
+		} catch (NullPointerException | FileNotFoundException ex) {
+			System.err.print(ex);
 			result.rejectValue("imageFile", "", "拡張子は.jpgか.pngのみに対応しています");
-		}
-		// 画像ファイルをBase64形式にエンコード
-		String base64FileString = Base64.getEncoder().encodeToString(imageFile.getBytes());
-		if ("jpg".equals(fileExtension)) {
-			base64FileString = "data:image/jpeg;base64," + base64FileString;
-		} else if ("png".equals(fileExtension)) {
-			base64FileString = "data:image/png;base64," + base64FileString;
-		}
-
-		// エンコードした画像をセットする
-		if (!form.getImageFile().isEmpty()) {
-			form.setImagePath(base64FileString);
-			// 画像の変更を行わない場合
-		} else {
-			UserDetail oldUserDetail = registerUserDetailService.searchUserDetail(userId);
-			form.setImagePath(oldUserDetail.getImagePath());
-		}
+			form.setImagePath(null);
+			
+		} 
 
 		UserDetail newUserDetail = new UserDetail();
 

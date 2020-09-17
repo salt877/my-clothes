@@ -44,10 +44,12 @@
 		<div class="container">
 			<div class="user-information">
 				<div class="plofile_img">
-					<img th:unless="${userInfomation.imagePath}" class="plofile_icon"
+					<img th:if="${#strings.isEmpty(userInfomation.imagePath)}" class="plofile_icon"
 						alt="写真" src="../static/dist/assets/img/user_icon.png"
 						th:src="@{/dist/assets/img/user_icon.png}"> <br>
-
+					<img th:if="${userInfomation.imagePath}" class="plofile_icon"
+						alt="写真" src="../static/dist/assets/img/user_icon.png"
+						th:src="${userInfomation.imagePath}"> <br>
 				</div>
 				<div class="user_main">
 					<h1 class="name" th:text="${userInfomation.userName}">テストユーザ</h1>
@@ -64,7 +66,6 @@
 							<li class="age" th:text="${userInfomation.age}">20代前半</li>
 						</ul>
 					</div>
-					<br> <br>
 					<div class="self-introduction">
 						<span th:text="${userInfomation.selfIntroduction}"></span> <span
 							th:if="${#strings.isEmpty(userInfomation.selfIntroduction)}">よろしくお願いします。</span>
@@ -80,7 +81,7 @@
 			<h5 class="c-title">
 				<span th:text="${userInfomation.userName}"></span>さんのコーディネート一覧
 			</h5>
-			<br> <br>
+			<br>
 			<!-- 公開コーデ未登録の場合、コーデ画面へ遷移誘導 -->
 			<div th:if="${#lists.isEmpty(publicCoordinateList)}">
 				<div class="not-registered-txt">
