@@ -1,25 +1,20 @@
 package jp.co.example.my.clothes.form;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
- * 天気予報情報選択用のフォーム
+ * 天気予報情報選択用のフォームクラスです.
  * 
  * @author ashibe
  *
  */
+@Getter
+@Setter
 public class WeatherForm {
 
-	/**
-	 * 都道府県名
-	 */
+	/** 都道府県名 */
 	private String city;
-
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
 
 	@Override
 	public String toString() {

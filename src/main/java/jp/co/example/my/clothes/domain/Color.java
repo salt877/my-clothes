@@ -1,42 +1,27 @@
 package jp.co.example.my.clothes.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * カラー情報を扱うドメインクラス.
  * 
  * @author ashibe
  *
  */
+@Getter
+@Setter
 public class Color {
 
-	/**
-	 * カラーID
-	 */
+	/** カラーID */
 	private Integer id;
 
-	/**
-	 * カラーの名前
-	 */
+	/** カラーの名前 */
 	private String name;
 
 	@Override
 	public String toString() {
 		return "Color [id=" + id + ", name=" + name + "]";
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 }

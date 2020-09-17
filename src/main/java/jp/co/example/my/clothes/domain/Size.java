@@ -1,38 +1,23 @@
 package jp.co.example.my.clothes.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * サイズ情報を扱うドメインクラス.
  * 
  * @author ashibe
  *
  */
+@Getter
+@Setter
 public class Size {
 
-	/**
-	 * サイズID
-	 */
+	/** サイズID */
 	private Integer id;
 
-	/**
-	 * サイズの名前
-	 */
+	/** サイズの名前 */
 	private String name;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
 
 	@Override
 	public String toString() {
