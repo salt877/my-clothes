@@ -46,8 +46,6 @@ public class RegisterUserDetailController {
 	public String showProfileEdit(Model model, @RequestParam(value = "userId", required = true) Integer userId,
 			RegisterUserDetailForm form, BindingResult result) throws IOException {
 
-		System.out.println("profileEditパスから飛んできたuserId:" + userId);
-
 		User user = registerUserDetailService.searchMyqloIdByUserId(userId);
 		UserDetail userDetail = registerUserDetailService.showProfileEdit(userId);
 
@@ -61,6 +59,8 @@ public class RegisterUserDetailController {
 
 		model.addAttribute("user", user);
 		model.addAttribute("userDetail", userDetail);
+
+		System.out.println("アイコン:" + form.getImagePath());
 
 		return "profile";
 	}
@@ -86,12 +86,12 @@ public class RegisterUserDetailController {
 	/**
 	 * 編集内容を保存します.
 	 * 
-	 * @param model リクエストスコープ
-	 * @param userId　ユーザID
-	 * @param form　フォーム
-	 * @param result　エラー格納用オブジェクト
-	 * @return
-	 * @throws Exception 
+	 * @param model  リクエストスコープ
+	 * @param userId ユーザID
+	 * @param form   フォーム
+	 * @param result エラー格納用オブジェクト
+	 * @return　プロフィール画面
+	 * @throws Exception
 	 */
 	@RequestMapping("/edit")
 	public String editProfile(Model model, Integer userId, @Validated RegisterUserDetailForm form, BindingResult result)
@@ -104,37 +104,82 @@ public class RegisterUserDetailController {
 		UserDetail userDetail = registerUserDetailService.searchUserDetail(userId);
 
 		MultipartFile imageFile = form.getImageFile();
-		System.out.println(imageFile);
 		String fileExtension = null;
 
-		try {
-			fileExtension = getExtension(imageFile.getOriginalFilename());
+		// すでにアイコンが登録されている場合
+		if (userDetail.getImagePath() != null) {
 
-			if (!"jpg".equals(fileExtension) && !"png".equals(fileExtension)) {
+			try {
+				if (!imageFile.isEmpty()) {
+					fileExtension = getExtension(imageFile.getOriginalFilename());
+				} else if (imageFile.isEmpty()) {
+					form.setImagePath(userDetail.getImagePath());
+				}
+
+				if (!"jpg".equals(fileExtension) && !"png".equals(fileExtension)) {
+					result.rejectValue("imageFile", "", "拡張子は.jpgか.pngのみに対応しています");
+				}
+				// 画像ファイルをBase64形式にエンコード
+				String base64FileString = Base64.getEncoder().encodeToString(imageFile.getBytes());
+				if ("jpg".equals(fileExtension)) {
+					base64FileString = "data:image/jpeg;base64," + base64FileString;
+				} else if ("png".equals(fileExtension)) {
+					base64FileString = "data:image/png;base64," + base64FileString;
+				}
+				// エンコードした画像をセットする
+				if (!form.getImageFile().isEmpty()) {
+					form.setImagePath(base64FileString);
+					// 画像の変更を行わない場合
+				} else if (form.getImageFile().isEmpty()) {
+					UserDetail oldUserDetail = registerUserDetailService.searchUserDetail(userId);
+					form.setImagePath(oldUserDetail.getImagePath());
+				}
+
+				// 削除した場合と形式が異なる場合、以下の例外処理に飛ぶ
+			} catch (NullPointerException | FileNotFoundException ex) {
+
+				System.err.print(ex);
 				result.rejectValue("imageFile", "", "拡張子は.jpgか.pngのみに対応しています");
+
+				form.setImagePath(null);
+
 			}
-			// 画像ファイルをBase64形式にエンコード
-			String base64FileString = Base64.getEncoder().encodeToString(imageFile.getBytes());
-			if ("jpg".equals(fileExtension)) {
-				base64FileString = "data:image/jpeg;base64," + base64FileString;
-			} else if ("png".equals(fileExtension)) {
-				base64FileString = "data:image/png;base64," + base64FileString;
+
+			// アイコンを登録していない場合
+		} else if (userDetail.getImagePath() == null) {
+
+			try {
+				fileExtension = getExtension(imageFile.getOriginalFilename());
+
+				if (!"jpg".equals(fileExtension) && !"png".equals(fileExtension)) {
+					result.rejectValue("imageFile", "", "拡張子は.jpgか.pngのみに対応しています");
+				}
+				// 画像ファイルをBase64形式にエンコード
+				String base64FileString = Base64.getEncoder().encodeToString(imageFile.getBytes());
+				if ("jpg".equals(fileExtension)) {
+					base64FileString = "data:image/jpeg;base64," + base64FileString;
+				} else if ("png".equals(fileExtension)) {
+					base64FileString = "data:image/png;base64," + base64FileString;
+				}
+				// エンコードした画像をセットする
+				if (!form.getImageFile().isEmpty()) {
+					form.setImagePath(base64FileString);
+					// 画像の変更を行わない場合
+				} else {
+					UserDetail oldUserDetail = registerUserDetailService.searchUserDetail(userId);
+					form.setImagePath(oldUserDetail.getImagePath());
+				}
+
+				// 画像を変更しない場合と形式が異なる場合、以下の例外処理に飛ぶ
+			} catch (NullPointerException | FileNotFoundException ex) {
+
+				System.err.print(ex);
+				result.rejectValue("imageFile", "", "拡張子は.jpgか.pngのみに対応しています");
+
+				form.setImagePath(null);
 			}
-			
-			// エンコードした画像をセットする
-			if (!form.getImageFile().isEmpty()) {
-				form.setImagePath(base64FileString);
-				// 画像の変更を行わない場合
-			} else {
-				UserDetail oldUserDetail = registerUserDetailService.searchUserDetail(userId);
-				form.setImagePath(oldUserDetail.getImagePath());
-			}
-		} catch (NullPointerException | FileNotFoundException ex) {
-			System.err.print(ex);
-			result.rejectValue("imageFile", "", "拡張子は.jpgか.pngのみに対応しています");
-			form.setImagePath(null);
-			
-		} 
+
+		}
 
 		UserDetail newUserDetail = new UserDetail();
 
@@ -161,8 +206,6 @@ public class RegisterUserDetailController {
 		newUserDetail.setId(userDetail.getId());
 
 		registerUserDetailService.editUserDetail(newUserDetail);
-
-		System.out.println("編集完了！");
 
 		return showProfileEdit(model, userId, form, result);
 	}
