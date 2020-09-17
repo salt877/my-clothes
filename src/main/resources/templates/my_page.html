@@ -66,17 +66,17 @@
 	</section>
 	
 	<section class="work-section" id="work">
-		 <div class="inner">
+		 <div class="inner1">
             <ul class="tabs-nav">
-                <li><a href="#pastcordlist">登録したコーデ</a></li>
-                <li><a href="#liked">いいねされたコーデ</a></li>
-                <li><a href="#ownlike">いいねしたコーデ</a></li>
+                <li><a href="#pastcordlist" class="tab-list"><span class="tab-name">登録したコーデ</span></a></li>
+                <li><a href="#liked" class="tab-list"><span class="tab-name" id="liked-tab-name">いいねされたコーデ</span></a></li>
+                <li><a href="#ownlike" class="tab-list"><span class="tab-name" id="like-tab-name">いいねしたコーデ</span></a></li>
             </ul>
         </div>
 
 
 		<!-- 自分が登録したコーデ一覧 -->
-		<section class="page-section bg-light tabs-panel" id="pastcordlist">
+		<section class="page-section bg-white tabs-panel" id="pastcordlist">
 			<div class="container">
 				<!-- コーデ未登録の場合、コーデ画面へ遷移誘導 -->
 				<div th:if="${#lists.isEmpty(coordinateList)}">
@@ -249,15 +249,15 @@
    	</section>
    
    		<!-- いいねされたコーデ -->
-   		<section class="page-section bg-light tabs-panel" id="liked">
+   		<section class="page-section bg-white tabs-panel" id="liked">
    			<div class="container">
 				<!-- コーデ未登録の場合、コーデ画面へ遷移誘導 -->
 				<div th:if="${#lists.isEmpty(likedCoordinateList)}">
 					<div class="not-registered-txt">
 						<div>いいねされたコーディネートはありません。</div><br>
 						<div>
-							<a href="coordinate.html" th:href="@{/coordinate}"><button
-								type="button" class="btn btn-primary to-coordinate-btn">コーディネートを登録する</button></a>
+							<a href="coordinate.html" th:href="@{/public-coordinate}"><button
+								type="button" class="btn btn-primary to-coordinate-btn">みんなのコーデを見に行こう</button></a>
 						</div>
 					</div>
 				</div>
@@ -422,15 +422,15 @@
    		</section>
    
    		<!-- いいねしたコーデ -->
-   		<section class="page-section bg-light tabs-panel" id="ownlike">
+   		<section class="page-section bg-white tabs-panel" id="ownlike">
    			<div class="container">
 				<!-- コーデ未登録の場合、コーデ画面へ遷移誘導 -->
 				<div th:if="${#lists.isEmpty(likeCoordinateList)}">
 					<div class="not-registered-txt">
 						<div>コーディネートが登録されていません。</div><br>
 						<div>
-							<a href="coordinate.html" th:href="@{/coordinate}"><button
-								type="button" class="btn btn-primary to-coordinate-btn">コーディネートを登録する</button></a>
+							<a href="coordinate.html" th:href="@{/public-coordinate}"><button
+								type="button" class="btn btn-primary to-coordinate-btn">いいねをしにいこう</button></a>
 						</div>
 					</div>
 				</div>
