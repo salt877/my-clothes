@@ -138,7 +138,8 @@ span.tab-name{
 	border-bottom: 3px solid rgb(218, 218, 218);
 	
 }
- 
+
+
 /* 480px以下に適用されるCSS（スマホ用） */
 @media screen and (max-width: 480px) {
 	.container{
@@ -223,5 +224,56 @@ span.tab-name{
 		text-align: center;
 		width: 40px;
 	}
+	
+/* 1300px以下に適用されるCSS（PC用） */
+@media screen and (max-width: 1300px) {
+	ul.tabs-nav{
+		margin: 0 auto;
+		margin-left: 220px;
+	}
+
+	ul li a.tab-list{
+		color: black;
+		font-weight: bold;
+		height: 50px;
+		width: 250px;
+		padding-right: 30px;
+		padding-left: 30px;
+		margin: 0 0.5px;
+	}
+
+	span.tab-name{
+		position: relative;
+		top: 15px;
+	 	left: 40px;
+	}
+	
+/* 1200px以下に適用されるCSS（PC用） */
+@media screen and (max-width: 1200px) {
+	ul.tabs-nav{
+		margin: 0 auto;
+		margin-left: 220px;
+	}
+
+	ul li a.tab-list{
+		color: black;
+		font-weight: bold;
+		height: 50px;
+		width: 100px;
+		padding-right: 30px;
+		padding-left: 30px;
+		margin: 0 0.5px;
+	}
+
+	span.tab-name{
+		position: relative;
+		top: 15px;
+	 	left: 20px;
+	}
+}
+
+
+
+ 
 	
 }
