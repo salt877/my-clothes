@@ -138,44 +138,6 @@ span.tab-name{
 	border-bottom: 3px solid rgb(218, 218, 218);
 	
 }
-
-/*いいねのハートのCSS*/
-.Likes{
-   position: relative;
- }
- 
-.Likes-Icon{
-   position: absolute;
-   left: -48px;
-   background: url("http://nelog.jp/wp-content/uploads/2016/03/heart_animation.png");
-   background-position: left;
-   background-size: 2900%;
-   background-repeat: no-repeat;
-   width: 105px;
-   height: 105px;
- }
- 
- @keyframes heartBlast {
-   0% {
-     background-position: left;
-   }
-   100% {
-     background-position: right;
-   }
- }
- 
- .HeartAnimation {
-   display: inline-block;
-   background-position: right;
-   -webkit-animation-name: heartBlast;
-   animation-name: heartBlast;
-   -webkit-animation-duration: .8s;
-   animation-duration: .8s;
-   -webkit-animation-iteration-count: 1;
-   animation-iteration-count: 1;
-   -webkit-animation-timing-function: steps(28);
-   animation-timing-function: steps(28);
- }
  
 /* 480px以下に適用されるCSS（スマホ用） */
 @media screen and (max-width: 480px) {
@@ -230,5 +192,36 @@ span.tab-name{
 		    padding: 0.320rem 0.55rem;
 	}
 	
+	#work {
+    	padding-top: 15px;
+	}
+	
+	.inner1 {
+    	padding-top: 40px;
+	}
+	
+	/* タグのCSS*/
+	ul.tabs-nav{
+		margin: 0 auto;
+	}
+
+	ul li a.tab-list{
+		color: black;
+		font-weight: bold;
+		height: 50px;
+		width: 100px;
+		padding-right: 5px;
+		padding-left: 5px;
+		margin: 0 0.5px;
+	}
+
+	span.tab-name{
+		position: relative;
+		top: 15px;
+		left: 1px;
+		font-size: 8px;
+		text-align: center;
+		width: 40px;
+	}
 	
 }
