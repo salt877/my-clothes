@@ -189,9 +189,13 @@ table tr:last-child {
 @media screen and (max-width: 480px) { /* 480px以下に適用されるCSS（スマホ用） */
 	/*過去コーデ画面*/
 	.register-coordinate-btn-sp {
+		position: relative;
 		display: inline;
-		margin-left: 30%;
 		background-color: #87befd;
+		margin-top: 0.5em;
+		margin-left: 13.7rem;
+		margin-right: auto;
+		border-radius: 0.25rem;
 	}
 	.register-coordinate-btn {
 		display: none;
