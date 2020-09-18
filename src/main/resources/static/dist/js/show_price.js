@@ -21,9 +21,10 @@ $(function(){
 				$('.item_quantity').text(itemQuantity.toLocaleString()+" 点");
 				
 				var month = data.month;
-				$('.month_total_price').text(month.toLocaleString()+"月の購入金額合計");
-				$('.month_price_average').text(month.toLocaleString()+"月の平均購入金額");
-				$('.month_item_quantity').text(month.toLocaleString()+"月の購入アイテム数");
+	
+				$('.month_total_price').html(month.toLocaleString()+"月の<br>購入金額合計");
+				$('.month_price_average').html(month.toLocaleString()+"月の<br>平均購入金額");
+				$('.month_item_quantity').html(month.toLocaleString()+"月の<br>購入アイテム数");
 				
 				
 			}).fail(function(XMLHttpRequest, textStatus, errorThrown){

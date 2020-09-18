@@ -150,9 +150,9 @@ body {
 			<table class="table calendar">
 				<thead>
 					<tr class="column">
-						<th><h6 class="month_total_price" th:utext="${month +'月の'+'<br>'+'購入金額合計'}">〇月の購入金額合計</h6></th>
-						<th><h6 class="month_price_average" th:utext="${month +'月の'+'<br>'+'平均購入金額'}">〇月の平均購入金額</h6></th>
-						<th><h6 class="month_item_quantity" th:utext="${month +'月の'+'<br>'+'購入アイテム数'}">〇月の購入アイテム数</h6></th>
+						<th id="total_price"><h6 class="month_total_price" th:utext="${month +'月の'+'<br>'+'購入金額合計'}">〇月の購入金額合計</h6></th>
+						<th id="price_average"><h6 class="month_price_average" th:utext="${month +'月の'+'<br>'+'平均購入金額'}">〇月の平均購入金額</h6></th>
+						<th id="item_quantity"><h6 class="month_item_quantity" th:utext="${month +'月の'+'<br>'+'購入アイテム数'}">〇月の購入アイテム数</h6></th>
 					</tr>
 					<tr>
 						<td class="total_price" th:text="${#numbers.formatInteger(totalPrice, 1, 'COMMA')+'&nbsp;円'}">120,650 円</td>

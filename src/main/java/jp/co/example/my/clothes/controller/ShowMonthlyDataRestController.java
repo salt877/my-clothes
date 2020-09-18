@@ -153,6 +153,13 @@ public class ShowMonthlyDataRestController {
 			Integer priceAverage = clothesPriceList.get(0).getPriceAverage();
 			Integer itemQuantity = clothesPriceList.get(0).getItemQuantity();
 
+			if (totalPrice == null) {
+				totalPrice = 0;
+			}
+			if (priceAverage == null) {
+				priceAverage = 0;
+			}
+
 			clothesMap.put("totalPrice", totalPrice);
 			clothesMap.put("priceAverage", priceAverage);
 			clothesMap.put("itemQuantity", itemQuantity);
