@@ -2,7 +2,7 @@
  * 
  */
 $(function() {
-
+	
 	// ページ読み込み時にユーザーIDでコーデ検索し、公開フラグチェック
 	// トグルボタンに埋め込まれたコーデIDと一致したコーデの公開フラグがtrueであればチェックを入れる
 	$.ajax({
@@ -12,15 +12,17 @@ $(function() {
 
 	// 通信成功時の処理
 	}).done(function(data) {
+		console.log(data.coordinateListByUserId);
 		
 		$('.checkbox').each(function(i, o){
 			for(var coordinate of data.coordinateListByUserId){
-				if($(o).val() == coordinate.id && coordinate.isPublic == true){
+				
+				if($(o).val() == coordinate.id && coordinate.public == true){
 					$(this).prop('checked', true);
 					$(this).parent().find('.text').css('color', '#000000');
 				}
 				
-				if($(o).val() == coordinate.id && coordinate.isPublic == false){
+				if($(o).val() == coordinate.id && coordinate.public == false){
 					$(this).prop('checked', false);
 					$(this).parent().find('.text').css('color', '#AAAAAA');
 				}

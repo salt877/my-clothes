@@ -144,7 +144,7 @@ public class ShowCoordinateRestController {
 
 		List<Coordinate> coordinateListByUserId = showCoodinateService.showCoordinate(loginUser.getUser().getId());
 
-		coordinateMapByUserId.put("coordinateListByUserId", coordinateListByUserId);
+		coordinateMapByUserId.put("coordinateListByUserId", coordinateListByUserId);	
 
 		return coordinateMapByUserId;
 
