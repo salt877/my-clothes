@@ -397,7 +397,7 @@ public class CoordinateRepository {
 		sql.append(
 				"INSERT INTO coordinates (user_id, fashion_accessories, tops1, tops2, outers, bottoms, shoes, bag, dress, name, is_public) ");
 		sql.append(
-				"VALUES (:userId, :fashionAccessories, :tops1, :tops2, :outers, :bottoms, :shoes, :bag, :dress, :name, :isPublic)");
+				"VALUES (:userId, :fashionAccessories, :tops1, :tops2, :outers, :bottoms, :shoes, :bag, :dress, :name, :public)");
 
 		SqlParameterSource param = new BeanPropertySqlParameterSource(coordinate);
 
