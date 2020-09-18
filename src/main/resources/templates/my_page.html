@@ -22,7 +22,9 @@
 </head>
 
 <body id="page-top">
-
+	<div class="loader-wrap">
+		<div class="loader">Loading...</div>
+	</div>
 		<!-- Navigation-->
 	<div id="navArea">
 		<nav class="navbar navbar-default" th:replace="header::pageheader"></nav>
@@ -35,11 +37,13 @@
 					<img th:if="${userInfomation.imagePath}" class="plofile_icon" alt="写真" src="../static/dist/assets/img/plofile.jpeg" th:src="${userInfomation.imagePath}">
 					<img th:if="${#strings.isEmpty(userInfomation.imagePath)}" class="plofile_icon" alt="写真" src="../static/dist/assets/img/user_icon.png" th:src="@{/dist/assets/img/user_icon.png}">
 					<br>
-					<a href="profile.html" th:href="@{'/profileEdit?userId='+${userInfomation.userId}}">
-					<button type="button" id="change_profile_bun" class="btn btn-primary btn-set">
-						<span class="chacge-profile">プロフィール変更</span>
-					</button>
-					</a>
+					<div class="prof-and-corde-btn">
+						<a href="profile.html" th:href="@{'/profileEdit?userId='+${userInfomation.userId}}">
+							<button type="button" id="change_profile_bun" class="btn btn-primary btn-set">
+								<span class="chacge-profile">プロフィール変更</span>
+							</button>
+						</a>
+					</div>
 				</div>
 				<div class="user_main">
 					<h1 class="name" th:text="${userInfomation.userName}">テストユーザ</h1>
@@ -55,7 +59,7 @@
 							<li class="age" th:text="${userInfomation.age}">20代前半</li>
 						</ul>
 					</div>
-					<br> <br>
+					<br>
 					<div class="self-introduction">
 						<span th:text="${userInfomation.selfIntroduction}"></span>
 						<span th:if="${#strings.isEmpty(userInfomation.selfIntroduction)}">よろしくお願いします。</span>
@@ -64,13 +68,18 @@
 			</div>
 		</div>
 	</section>
-	
+	<div class="border"></div>
 	<section class="work-section" id="work">
+						<div class="register-coordinate-btn-sp">
+							<a href="coordinate.html" th:href="@{/coordinate}">
+								<button class="btn btn-primary sp-btn">
+								<i class="fas fa-female"></i> &nbsp;&nbsp;<span>コーデ登録</span>
+							</button>
+						</a> <br>
+					</div>
 		 <div class="inner1">
             <ul class="tabs-nav">
-                <li><a href="#pastcordlist" class="tab-list"><span class="tab-name">登録したコーデ</span></a></li>
-                <li><a href="#liked" class="tab-list"><span class="tab-name" id="liked-tab-name">いいねされたコーデ</span></a></li>
-                <li><a href="#ownlike" class="tab-list"><span class="tab-name" id="like-tab-name">いいねしたコーデ</span></a></li>
+                <li><a href="#pastcordlist" class="tab-list"><span class="tab-name">登録したコーデ</span></a></li><li><a href="#liked" class="tab-list"><span class="tab-name" id="liked-tab-name">いいねされたコーデ</span></a></li><li><a href="#ownlike" class="tab-list"><span class="tab-name" id="like-tab-name">いいねしたコーデ</span></a></li>
             </ul>
         </div>
 
@@ -91,13 +100,13 @@
 
 				<!-- コーデ登録済みの場合表示 -->
 				<div th:if="!${#lists.isEmpty(coordinateList)}">
-					<div class="register-coordinate-btn-sp">
+				<!-- 	<div class="register-coordinate-btn-sp">
 						<a href="coordinate.html" th:href="@{/coordinate}">
 							<button class="btn btn-primary sp-btn">
 								<i class="fas fa-female"></i> &nbsp;&nbsp;<span>コーデ登録</span>
 							</button>
 						</a> <br> <br> <br>
-					</div>
+					</div> -->
 					<div id="past-coordinate-list">
 						<div th:each="coordinate:${coordinateList}">
 							<div class="past-coordinates">
@@ -264,13 +273,7 @@
 
 				<!-- コーデ登録済みの場合表示 -->
 				<div th:if="!${#lists.isEmpty(likedCoordinateList)}">
-					<div class="register-coordinate-btn-sp">
-						<a href="coordinate.html" th:href="@{/coordinate}">
-							<button class="btn btn-primary sp-btn">
-								<i class="fas fa-female"></i> &nbsp;&nbsp;<span>コーデ登録</span>
-							</button>
-						</a> <br> <br> <br>
-					</div>
+					
 					<div id="liked-coordinate-list">
 						<div th:each="likedCoordinate:${likedCoordinateList}">
 							<div class="liked-coordinates">
@@ -437,19 +440,13 @@
 
 				<!-- コーデ登録済みの場合表示 -->
 				<div th:if="!${#lists.isEmpty(likeCoordinateList)}">
-					<div class="register-coordinate-btn-sp">
-						<a href="coordinate.html" th:href="@{/coordinate}">
-							<button class="btn btn-primary sp-btn">
-								<i class="fas fa-female"></i> &nbsp;&nbsp;<span>コーデ登録</span>
-							</button>
-						</a> <br> <br> <br>
-					</div>
+					
 					<div id="like-coordinate-list">
 						<div th:each="likeCoordinate:${likeCoordinateList}">
 							<div class="like-coordinates">
 								<h6 th:text="${likeCoordinate.name}"></h6>
 								<div class="prof-icon-name">
-								<span><a th:href="@{/__${likeCoordinate.user.myqloId}__}"><span
+								<h7><a th:href="@{/__${likeCoordinate.user.myqloId}__}"><span
 										class="prof_img"> <img
 											th:if="${#strings.isEmpty(likeCoordinate.userDetail.imagePath)}"
 											class="prof_icon" alt="写真"
@@ -462,6 +459,7 @@
 
 									</span><span th:text="${likeCoordinate.userDetail.userName}"></span></a> さん</span>&nbsp;&nbsp;
 								|&nbsp;&nbsp; <label class="likes"> <input
+
 									type="radio" class="radio" name="radio"
 									th:id="${likeCoordinate.id}" th:value="${likeCoordinate.id}"><i
 									class="likesicon"></i>&nbsp;&nbsp; <span class="counts"

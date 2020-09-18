@@ -1,236 +1,315 @@
 @charset "UTF-8";
 
-.c-title{
+.page-section {
+	padding: 15rem 0;
+	height: auto;
+}
+.border {
+	margin-right: 10rem;
+	margin-left: 10rem;	
+}
+.c-title {
 	margin-top: -25%;
 }
 
-.plofile_img{
+.plofile_img {
 	position: absolute;
 	left: 300px;
-	top:150px;
+	top: 150px;
 }
 
-.plofile_icon{
-	width:  180px;       /* ※縦横を同値に */
-    height: 180px;       /* ※縦横を同値に */
-    border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
-    background-position: center center;　/* 横長画像の中央を基準に表示 */
+.plofile_icon {
+	width: 180px; /* ※縦横を同値に */
+	height: 180px; /* ※縦横を同値に */
+	border-radius: 50%; /* 角丸半径を50%にする(=円形にする) */
+	background-position: center center;
+	　 /* 横長画像の中央を基準に表示 */
 }
 
-.container{
-	padding-top: 1em;
+.container {
+	height: auto;
 }
 
-#work{
-	padding-top: 200px;
+#work {
+	padding-top: 0rem;
+	height: auto;
 }
 
-#change_profile_bun{
+#change_profile_bun {
 	position: absolute;
 	margin: 0 auto;
 	margin-top: 15px;
 	margin-left: 15px;
 }
 
-.user_main{
+.user_main {
 	position: absolute;
 	left: 530px;
-    top: 180px
+	top: 180px
 }
 
-.user_data{
+.user_data {
 	position: relative;
 	right: 47px;
 }
 
-.info{
+.info {
 	margin: 0 auto;
 	margin-right: 10px;
 }
 
-.info li{
-  float: left;
-  list-style: none;
-  margin: 5px;
+.info li {
+	float: left;
+	list-style: none;
+	margin: 5px;
 }
 
-.name{
+.name {
 	font-size: 25px;
 	margin: 0 auto;
 }
 
-.user-page{
+.user-page {
 	font-size: 12px;
 	color: #212529;
 	margin: 0 auto;
 }
 
-li .user_id .height .gender .hair{
+li .user_id .height .gender .hair {
 	color: #444444;
 }
 
-.break{
+.break {
 	color: #CCCCCC;
 }
 
-.pastcordlist{
+.pastcordlist {
 	top: 50px;
 }
 
-.work-section{
+.self-introduction {
+	position: relative;
+	font-size: 16px;
+	width: 45em;
+	padding: 2em 1em;
+}
+
+.work-section {
 	padding-top: 40px;
 }
 
 /*タブのCSS記述*/
-.work-section .tabs-nav li{
+.work-section .tabs-nav li {
 	border-right: 1px solid rgb(218, 218, 218);
-	float: left;
 	position: relative;
 	-webkit-box-shadow: 1px 0 rgb(255, 255, 255);
-			  -box-shadow: 1px 0 rgb(255, 255, 255);
+	-box-shadow: 1px 0 rgb(255, 255, 255);
 }
 
 ul {
-  list-style: none;
+	list-style: none;
 }
 
-ul.tabs-nav{
+ul.tabs-nav {
 	margin: 0 auto;
-	margin-left: 180px;
+	padding-inline-start: 0em;
 }
 
-ul li a.tab-list{
+ul li a.tab-list {
 	color: black;
 	font-weight: bold;
 	height: 50px;
-	width: 360px;
+	width: auto;
 	padding-right: 30px;
 	padding-left: 30px;
-	margin: 0 0.5px;
+	margin: 0 0.25px;
 }
 
-span.tab-name{
+.tabs-nav li {
+	display: inline-block;
+	float: none;
+}
+
+span.tab-name {
 	position: relative;
 	top: 15px;
-	left: 100px;
+	/* left: 100px; */
 }
 
-.work-section .tabs-nav a{
+.work-section .tabs-nav a {
 	display: block;
-	padding: 0 1.36em;
+	padding: 0 7.6em;
 	position: relative;
 	text-decoration: none;
 }
 
-.work-section .tabs-nav a:hover,
-.work-section .tabs-nav a.active{
+.work-section .tabs-nav a:hover, .work-section .tabs-nav a.active {
 	background-color: rgb(218, 218, 218);
 	color: rgb(51, 51, 51);
 }
 
-.work-section .tabs-nav a.active:after{
+.work-section .tabs-nav a.active:after {
 	content: "";
 	position: absolute;
 }
 
-.inner1{
-	padding-top: 60px;
-	padding-bottom: 47px;
+.inner1 {
+	padding-top: 5em;
 	border-bottom: 3px solid rgb(218, 218, 218);
-	
+	margin-left: 10rem;
+	margin-right: 10rem;
+	text-align: center;
 }
-
 
 /* 480px以下に適用されるCSS（スマホ用） */
 @media screen and (max-width: 480px) {
-	.container{
-		padding: 9em;
+	.border {
+	margin-right: 2rem;
+	margin-left: 2rem;	
 	}
-	
-	.plofile_img{
-		left: 110px;
-		top: 100px;
+	h6, .h6 {
+    font-size: 1em;
+}
+	h7, .h7 {
+    font-size: 0.8em;
+}
+.prof-icon-name {
+    padding: 0.1em 0;
+}
+	.page-section {
+		padding: 4rem 0 !important;
+		height: auto;
 	}
-	
-	.user_main{
-		position: absolute;
-		left: 50px;
-		top: 340px;
+	.container {
+		/* padding: 9em; */
+		margin-top: 1em;
+		height: auto;
 	}
-	
-	.name{
+	.plofile_img {
+		position: relative;
+		left: 0%;
+		right: 0%;
+		top: 1em;
+	}
+	.prof-and-corde-btn {
+		display: inline-block;
+	}
+	.user_main {
+		position: relative;
+		text-align: center;
+		left: auto;
+		top: 3em;
+	}
+	.user-information {
+		position: relative;
+		text-align: center;
+		height: auto;
+	}
+	#change_profile_bun {
+		position: relative;
+		margin: 0 auto;
+		margin-top: 1.5em;
+	}
+	.name {
 		font-size: 18px;
 		margin: 0 auto;
-		margin-left: 80px;
 	}
-	
-	.user-page{
+	.user-page {
 		font-size: 12px;
 		color: black;
 		margin: 0 auto;
-		margin-left: 80px;
 	}
-	
-	ul{
-		font-size: 11px;
+	.user_data {
+		position: relative;
+		text-align: center;
+		right: 0px;
 	}
-	
-	.self-introduction{
+	ul {
+		font-size: 12px;
+		white-space: nowrap !important;
+		padding-inline-start: 0px;
+		position: relative;
+		padding-left: 0;
+	}
+	.info {
+		margin: 0 auto;
+		/* margin-right: 10px; */
+	}
+	.info li {
+		display: inline;
+		float: none;
+		margin: 0.2em;
+	}
+	.self-introduction {
 		font-size: 11px;
 		width: 270px;
 	}
-	
-	.plofile_icon{
-	width:  150px;       /* ※縦横を同値に */
-    height: 150px;       /* ※縦横を同値に */
-    border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
-    background-position: center center;　/* 横長画像の中央を基準に表示 */
+	.plofile_icon {
+		width: 150px; /* ※縦横を同値に */
+		height: 150px; /* ※縦横を同値に */
+		border-radius: 50%; /* 角丸半径を50%にする(=円形にする) */
+		background-position: center center;
+		　 /* 横長画像の中央を基準に表示 */
 	}
-	
-	.chacge-profile{
+	.chacge-profile {
 		font-size: 13px;
 	}
-	
-	.btn{
-		    padding: 0.320rem 0.55rem;
+	.btn {
+		padding: 0.320rem 0.55rem;
 	}
-	
 	#work {
-    	padding-top: 15px;
+		padding-top: 15px;
 	}
-	
 	.inner1 {
-    	padding-top: 40px;
+		padding-top: 1em;
+		border-bottom: 0.2em solid rgb(218, 218, 218);
+		margin-left: 2rem;
+		margin-right: 2rem;
+		text-align: center;
+	}
+
+	/* タグのCSS*/
+	ul.tabs-nav {
+		margin: 0 auto;
+		padding: 0 0;
+		width: auto;
+	}
+	.tabs-nav {
+		margin: 0 auto;
+		margin-right: 10px;
+	}
+	.tabs-nav li {
+		display: inline-block;
+		float: none;
+		width: 33.4%;
+	}
+	ul li a.tab-list {
+		color: black;
+		font-weight: bold;
+		height: 4.1em;
+		width: 102px;
+	}
+	span.tab-name {
+		position: relative;
+		top: 15px;
+		left: 1px;
+		font-size: 8px;
+	}
+	.work-section .tabs-nav a {
+		display: block;
+		padding: 0 0;
+		position: relative;
+		text-decoration: none;
+		margin: 0 0;
 	}
 	
-	/* タグのCSS*/
-	ul.tabs-nav{
-	margin: 0 auto;
-	margin-right: 10px;
-}
-
-ul li a.tab-list{
-	color: black;
-	font-weight: bold;
-	height: 50px;
-	width: 100px;
-	padding-right: 30px;
-	padding-left: 30px;
-	margin: 0 0.5px;
-}
-
-span.tab-name{
-	position: relative;
-	top: 15px;
-	left: 1px;
-	font-size: 8px;
-}
-
-.work-section .tabs-nav a{
-	display: block;
-	padding: 0 1.36em;
-	position: relative;
-	text-decoration: none;
-}
-}
 	
+	.work-section .tabs-nav a:hover, .work-section .tabs-nav a.active {
+		background-color: rgb(218, 218, 218);
+		color: rgb(51, 51, 51);
+	}
+	.work-section .tabs-nav a.active:after {
+		content: "";
+		position: absolute; 
+	} 
+}

@@ -174,9 +174,9 @@ table tr:last-child {
 	
 	/*過去コーデ画面*/
 	.register-coordinate-btn-sp {
-		display: inline;
-		margin-left: 30%;
+		display: inline-block;
 		background-color: #87befd;
+		
 	}
 	.register-coordinate-btn {
 		display: none;
