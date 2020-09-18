@@ -185,7 +185,7 @@ table tr:last-child {
 }
 
 .in-modal-img {
-	width: 4em;
+	width: 6em;
 	height: auto;
 }
 
@@ -285,9 +285,6 @@ table tr:last-child {
 	.btn-set {
 		width: 80%;
 	}
-	.in-modal-img {
-		margin-right: 30%;
-	}
 	/*コーデエリア*/
 	.drag-area {
 		position: relative;
@@ -339,6 +336,20 @@ table tr:last-child {
 		position: absolute;
 		top: 200px;
 		left: 200px;
+	}
+	.img {
+		height: 10rem;
+		text-align: center;
+		position: relative;
+	}
+	
+	.in-modal-img {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		margin: auto;
 	}
 
 	/*コーデ画面テーブル共通設定*/
