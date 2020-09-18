@@ -14953,6 +14953,24 @@ footer {
 	border-color: #87befd;
 	display: none;
 }
+/* headerで使用 */
+.header_userName {
+	color: black;
+	position: fixed;
+	right: 7em;
+	left: auto;
+	font-size: 1rem;
+}
+.header_userName span {
+	margin-left: 0.5em;
+	
+}
+
+.site-logo a:hover{
+	color: #ffbc57;
+	text-decoration: none;
+}
+
 /* スマホ表示用 */
 @media screen and (max-width:480px) {
 	.row {
@@ -15025,21 +15043,15 @@ footer {
 		height: 3em;
 		width: 15em;
 	}
+	.header_userName {
+    color: black;
+    position: fixed;
+    right: 5em;
+    left: auto;
+    font-size: 1rem;
 }
-/* headerで使用 */
-.header_userName {
-	color: black;
-	position: fixed;
-	right: 8em;
-	left: auto;
-	font-size: 1rem;
+	.login-user-name {
+	display: none;
 }
-.header_userName span {
-	margin-left:1em;
-	
-}
-.site-logo a:hover{
-	color: #ffbc57;
-	text-decoration: none;
 }
 
