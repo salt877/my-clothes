@@ -451,17 +451,20 @@
 								<div class="prof-icon-name">
 								<span><a th:href="@{/__${likeCoordinate.user.myqloId}__}"><span
 										class="prof_img"> <img
-											th:unless="${likeCoordinate.userDetail.imagePath}"
+											th:if="${#strings.isEmpty(likeCoordinate.userDetail.imagePath)}"
 											class="prof_icon" alt="写真"
 											src="../static/dist/assets/img/user_icon.png"
-											th:src="@{/dist/assets/img/user_icon.png}">
+											th:src="@{/dist/assets/img/user_icon.png}"> <img
+											th:if="!${#strings.isEmpty(likeCoordinate.userDetail.imagePath)}"
+											class="prof_icon" alt="写真"
+											src="../static/dist/assets/img/user_icon.png"
+											th:src="${likeCoordinate.userDetail.imagePath}">
 
 									</span><span th:text="${likeCoordinate.userDetail.userName}"></span></a> さん</span>&nbsp;&nbsp;
-								|&nbsp;&nbsp; <label class="modal-label"> <input
+								|&nbsp;&nbsp; <label class="likes"> <input
 									type="radio" class="radio" name="radio"
-									th:id="${likeCoordinate.id}" th:value="${likeCoordinate.id}"> <img
-									th:src="@{/dist/img/heart.png}"
-									class="far fa-heart like radio-img"> <span class="counts"
+									th:id="${likeCoordinate.id}" th:value="${likeCoordinate.id}"><i
+									class="likesicon"></i>&nbsp;&nbsp; <span class="counts"
 									th:text="${likeCoordinate.likeList.size()}">275</span>
 								</label>
 							</div>
