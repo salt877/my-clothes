@@ -43,15 +43,13 @@ public class ShowCalendarController {
 	 * @throws ParseException
 	 */
 	@RequestMapping("/calendar")
-	public String showCalendar(Model model,ModelMap modelMap, @AuthenticationPrincipal LoginUser loginUser) throws ParseException {
+	public String showCalendar(Model model, ModelMap modelMap, @AuthenticationPrincipal LoginUser loginUser)
+			throws ParseException {
 
 		Integer userId = loginUser.getUser().getId();
 
 		UserDetail userDetail = showUserNameService.showUserName(userId);
 		model.addAttribute("userDetail", userDetail);
-		
-		String userMyqloId = loginUser.getUser().getMyqloId();
-		modelMap.addAttribute("userMyqloId", userMyqloId);
 
 		List<Clothes> dailyPerchaseDataList = showCalendarService.showDailyPerchaseData(userId);
 		model.addAttribute("dailyPerchaseDataList", dailyPerchaseDataList);
@@ -72,10 +70,27 @@ public class ShowCalendarController {
 
 		List<MonthlyDataDTO> clothesPriceList = showCalendarService.showPriceData(userId, perchaseDate);
 
+		System.out.println("clothesPriceListの数:" + clothesPriceList.size());
+		System.out.println("合計:" + clothesPriceList.get(0).getTotalPrice());
+		System.out.println("数量:" + clothesPriceList.get(0).getItemQuantity());
+		System.out.println("平均:" + clothesPriceList.get(0).getPriceAverage());
+
 		if (clothesPriceList.size() == 1) {
-			model.addAttribute("totalPrice", clothesPriceList.get(0).getTotalPrice());
+
+			Integer totalPrice = clothesPriceList.get(0).getTotalPrice();
+			Integer priceAverage = clothesPriceList.get(0).getPriceAverage();
+
+			if (totalPrice == null) {
+				totalPrice = 0;
+			}
+			if (priceAverage == null) {
+				priceAverage = 0;
+			}
+
+			model.addAttribute("totalPrice", totalPrice);
 			model.addAttribute("itemQuantity", clothesPriceList.get(0).getItemQuantity());
-			model.addAttribute("priceAverage", clothesPriceList.get(0).getPriceAverage());
+			model.addAttribute("priceAverage", priceAverage);
+
 		} else {
 			model.addAttribute("totalPrice", 0);
 			model.addAttribute("itemQuantity", 0);
