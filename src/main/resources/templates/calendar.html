@@ -26,6 +26,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="../static/dist/css/styles.css" rel="stylesheet" th:href="@{/dist/css/styles.css}"/>
+<link href="../static/dist/css/calendar.css" rel="stylesheet" th:href="@{/dist/css/calendar.css}"/>
 <!-- FullCalender実装用 -->
 <link href='../static/lib/main.css' rel='stylesheet' th:href="@{/lib/main.css}" />
 <script src='../static/lib/main.js' th:src="@{/lib/main.js}"></script> 
@@ -102,35 +103,7 @@
 	    });
 	
 </script>
-<style>
-a {
-	color: black;
-}
-body {
-	/* margin: 40px 10px; */
-	padding: 0;
-	font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-	font-size: 14px;
-}
 
-#calendar {
-	max-width: 1100px;
-	margin: 0 auto;
-}
-
- .fc-day-future a.fc-daygrid-day-number {
-	pointer-events: none;
-}  
-
-.fc-day-other .fc-daygrid-event-harness{
-	 display: none; 
-}
-.column {
-    text-align: center;
-    background-color: #EEEEEE;
-}
-
-</style>
 </head>
 <body>
 	<!-- Navigation-->
@@ -139,9 +112,9 @@ body {
 	</div>
 <section class="page-section bg-white">
 	<div class="container" th:if="${dailyPerchaseDataList} != null">
-		<div class="text-center" style="margin-top: 100px;">
+		<div class="text-center">
 			<h1 class="section-heading text-uppercase">MY CALENDAR</h1>
-			<div class="section-subheading text-muted">MYQLOに登録した服を月ごとにチェック！</div>
+			<div class="section-subheading text-muted">登録した服を月ごとにチェック！</div>
 			<br> <br>
 		</div>
 
