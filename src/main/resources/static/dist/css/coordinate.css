@@ -185,7 +185,7 @@ table tr:last-child {
 }
 
 .in-modal-img {
-	width: 6em;
+	width: 4em;
 	height: auto;
 }
 
@@ -377,7 +377,7 @@ table tr:last-child {
 	}
 	.conf-modal-tbl tr td, .conf-modal-tbl tr th {
 		display: block;
-		height: 130px;
+		height: 160px;
 	}
 	.conf-modal-tbl thead {
 		display: block;

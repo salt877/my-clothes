@@ -56,7 +56,7 @@ public class ShowCoordinateController {
 	 * @param model
 	 * @return コーディネート画面へ遷移
 	 */
-	@RequestMapping("/")
+	@RequestMapping("")
 	public String showCoordinate(@AuthenticationPrincipal LoginUser loginUser, Model model, ModelMap modelMap) {
 
 		Integer userId = loginUser.getUser().getId();
