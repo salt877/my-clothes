@@ -1,7 +1,13 @@
 @charset "UTF-8";
 
 .page-section {
-	padding: 15rem 0;
+	padding: 3rem 0; 
+	height: 500px;
+}
+ .user-information {
+    height: auto;
+} 
+.container {
 	height: auto;
 }
 .border {
@@ -24,15 +30,6 @@
 	border-radius: 50%; /* 角丸半径を50%にする(=円形にする) */
 	background-position: center center;
 	　 /* 横長画像の中央を基準に表示 */
-}
-
-.container {
-	height: auto;
-}
-
-#work {
-	padding-top: 0rem;
-	height: auto;
 }
 
 #change_profile_bun {
@@ -95,7 +92,9 @@ li .user_id .height .gender .hair {
 }
 
 .work-section {
-	padding-top: 40px;
+	padding-top: 1rem;
+	margin-bottom: 70rem;
+	height: auto;
 }
 
 /*タブのCSS記述*/
