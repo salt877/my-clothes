@@ -65,7 +65,7 @@
 					<th><span style="color:red">※</span>ニックネーム</th>
 						<td class="txt">
 							<b th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" class="control-label" style="color: red" for="inputError">ニックネームは必須です</b>
-							<input type="text" name="userName" id="userName" placeholder="30文字以内で入力してください" th:field="*{userName}">
+							<input type="text" name="userName" id="userName" placeholder="15文字以内で入力してください" th:field="*{userName}">
 						</td>
 				</tr>
 				<tr>
@@ -233,6 +233,7 @@
 				<tbody>
 					<tr>
 						<td class="self-introduction txt" colspan="2">
+							<b th:if="${#fields.hasErrors('selfIntroduction')}" th:errors="*{selfIntroduction}" class="control-label" style="color: red" for="inputError">300文字以内で入力してください</b>
 							<textarea name="self-introduction" rows="10" cols="82" placeholder="300文字以内で入力してください"
 								 th:text="${userDetail.selfIntroduction}" th:field="*{selfIntroduction}"></textarea>
 						</td>

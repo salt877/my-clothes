@@ -26,7 +26,7 @@ public class RegisterUserDetailForm {
 
 	/** ニックネーム */
 	@NotBlank(message = "ニックネームは必須です")
-	@Size(min = 1, max = 30, message = "1文字以上30文字以内で入力してください")
+	@Size(min = 1, max = 15, message = "1〜15文字以内で入力してください")
 	private String userName;
 
 	/** 性別 */
@@ -39,6 +39,7 @@ public class RegisterUserDetailForm {
 	private Integer height;
 
 	/** 自己紹介 */
+	@Size(min = 0, max = 300, message = "300文字以内で入力してください")
 	private String selfIntroduction;
 
 }

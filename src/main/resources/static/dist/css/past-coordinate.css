@@ -194,8 +194,8 @@ table tr:last-child {
 		display: inline;
 		background-color: #87befd;
 		margin-top: 0.5em;
-		margin-left: 13.7rem;
-		margin-right: auto;
+		margin-left: 13em;
+		margin-right: 2em;
 		border-radius: 0.25rem;
 	}
 	.register-coordinate-btn {

@@ -134,7 +134,7 @@
 /*もっと見る・閉じるボタン*/
 .pc-btn {
 	border-radius: 50px;
-	width: 300px;
+	width: 18rem;
 }
 
 /*もっと見る・閉じるボタン位置*/
@@ -176,7 +176,7 @@ table tr:last-child {
 	.register-coordinate-btn-sp {
 		display: inline-block;
 		background-color: #87befd;
-		
+		float: right;
 	}
 	.register-coordinate-btn {
 		display: none;
@@ -233,7 +233,10 @@ table tr:last-child {
 	.coordinate-detail-btn {
 		margin-top: -35px;
 	}
-	
+	.pc-btn {
+	border-radius: 50px;
+	width: 13rem;
+}
 	
 	
 }

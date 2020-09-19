@@ -1,5 +1,18 @@
 @charset "UTF-8";
 
+.page-section {
+	padding-bottom: 25rem;
+	height: auto;
+}
+
+.container {
+	height: auto;
+}
+
+.user-information {
+	height: auto;
+}
+
 .border {
 	margin-left: 10rem;
 	margin-right: 10rem;
@@ -15,9 +28,10 @@
 }
 
 .c-title {
-	margin-top: -22%;
+	margin-top: -20%;
 }
-.userName-br{
+
+.userName-br {
 	display: none;
 }
 
@@ -39,15 +53,15 @@
 	margin-top: -20px;
 }
 
-.container {
-	margin-top: 200px;
-}
-
 #change_profile_bun {
 	position: absolute;
 	margin: 0 auto;
 	margin-top: 15px;
 	margin-left: 15px;
+}
+
+.user-information {
+	height: 100%;
 }
 
 .user_main {
@@ -59,12 +73,11 @@
 .user_data {
 	position: relative;
 	right: 47px;
-	padding: 1em 1em;
+	margin-top: 1rem;
 }
 
 .info {
 	margin: 0 auto;
-	margin-right: 10px;
 }
 
 .info li {
@@ -72,16 +85,17 @@
 	list-style: none;
 	margin: 5px;
 }
-.self-introduction {
-	position: relative;
-    font-size: 16px;
-    width: 45em;
-    padding: 2em 1em;
-}
 
 .name {
 	font-size: 25px;
 	margin: 0 auto;
+}
+
+.self-introduction {
+	position: relative;
+	font-size: 16px;
+	width: 45em;
+	padding: 2em 0em;
 }
 
 .user-page {
@@ -149,29 +163,6 @@ ul {
 		flex-direction: column;
 		min-height: 100vh;
 	}
-	.border {
-    margin-left: 2rem;
-    margin-right: 2rem;
-}
-	.page-section {
-		padding: 6rem 0 !important;
-		height: auto;
-	}
-	.container {
-		margin-top: 1em;
-		height: auto;
-	}
-	.c-title {
-		margin-top: -30%;
-	}
-	.userName-br {
-    display: block;
-}
-	.user-information {
-		position: relative;
-		text-align: center;
-		height: auto;
-	}
 	.plofile_img {
 		position: relative;
 		left: 0%;
@@ -192,17 +183,53 @@ ul {
 		left: auto;
 		top: 3em;
 	}
-	.name {
-		font-size: 18px;
-		margin-left: auto;
-		margin-right: auto;
-		text-align: center;
-	}
 	.user_data {
 		position: relative;
 		text-align: center;
 		right: 0px;
-		padding: 1em 1em;
+		padding: 0 0;
+	}
+	.border {
+		margin-left: 2rem;
+		margin-right: 2rem;
+	}
+	.c-title {
+		margin-top: -20%;
+	}
+	.page-section {
+		padding: 2rem 2rem !important;
+		height: auto;
+	}
+	.container {
+		margin-top: 1em;
+		height: auto;
+		width: auto;
+	}
+	.user-information {
+		margin-top: 3em;
+		position: relative;
+		text-align: center;
+		height: auto;
+		margin-bottom: 1em;
+	}
+	.name {
+		font-size: 18px;
+		margin-left: auto;
+		margin-right: auto;
+		margin-bottom: 1em;
+		text-align: center;
+	}
+	.info {
+		text-align: center;
+		margin: 0 auto;
+	}
+	.self-introduction {
+		font-size: 11px;
+		width: auto;
+		padding: 2em 5em;
+	}
+	h5, .h5 {
+		font-size: 0.85rem;
 	}
 	ul {
 		font-size: 12px;
@@ -211,35 +238,51 @@ ul {
 		position: relative;
 		padding-left: 0;
 	}
-	.info {
-		text-align: center;
+	.userName-br {
+		display: block;
 	}
-	.info li {
-		display: inline;
-		float: none;
-		margin: 0.2em;
-	}
-	h5, .h5 {
-		font-size: 0.85rem;
-	}
-	.user-page {
-		font-size: 12px;
-		color: black;
-		margin: 0 auto;
-		margin-left: 80px;
-	}
-	.self-introduction {
-		font-size: 11px;
-		width: 270px;
-	}
-	.chacge-profile {
-		font-size: 13px;
-	}
-	.btn {
-		padding: 0.320rem 0.55rem;
+	.likesicon {
+		position: absolute;
+		left: 82px;
+		background:
+			url(http://nelog.jp/wp-content/uploads/2016/03/heart_animation.png);
+		background-position: left;
+		background-size: 2900%;
+		background-repeat: no-repeat;
+		width: 66px;
+		height: 65px;
+		margin-top: -20px;
 	}
 }
+/** ここまで　*/
+.c-title {
+	margin-top: -5%;
+}
 
+.user-information {
+	height: auto;
+}
+
+.info li {
+	display: inline;
+	float: none;
+	margin: 0.2em;
+}
+
+.user-page {
+	font-size: 12px;
+	color: black;
+	margin: 0 auto;
+	margin-left: 80px;
+}
+
+.chacge-profile {
+	font-size: 13px;
+}
+
+.btn {
+	padding: 0.320rem 0.55rem;
+}
 
 .likes {
 	position: relative;
@@ -248,7 +291,8 @@ ul {
 .likesicon {
 	position: absolute;
 	left: -34px;
-	background: url("http://nelog.jp/wp-content/uploads/2016/03/heart_animation.png");
+	background:
+		url("http://nelog.jp/wp-content/uploads/2016/03/heart_animation.png");
 	background-position: left;
 	background-size: 2900%;
 	background-repeat: no-repeat;
@@ -257,29 +301,87 @@ ul {
 	margin-top: -20px;
 }
 
-.likesicon:hover{
+.likesicon:hover {
 	cursor: pointer;
-	
 }
 
-@keyframes heartBlast {
-   0% {
-     background-position: left;
-   }
-   100% {
-     background-position: right;
-   }
+.HeartAnimation {
+	display: inline-block;
+	background-position: right;
+	-webkit-animation-name: heartBlast;
+	animation-name: heartBlast;
+	-webkit-animation-duration: .8s;
+	animation-duration: .8s;
+	-webkit-animation-iteration-count: 1;
+	animation-iteration-count: 1;
+	-webkit-animation-timing-function: steps(28);
+	animation-timing-function: steps(28);
 }
+
+@
+keyframes heartBlast { 0% {
+	background-position: left;
+}
+100%
+{
+background-position
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+:
+
+
+
+
+
+
+
+
+
  
- .HeartAnimation {
-   display: inline-block;
-   background-position: right;
-   -webkit-animation-name: heartBlast;
-   animation-name: heartBlast;
-   -webkit-animation-duration: .8s;
-   animation-duration: .8s;
-   -webkit-animation-iteration-count: 1;
-   animation-iteration-count: 1;
-   -webkit-animation-timing-function: steps(28);
-   animation-timing-function: steps(28);
- }
+
+
+
+
+
+
+
+
+
+right
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+;
+}
+}

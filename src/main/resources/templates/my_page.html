@@ -60,7 +60,6 @@
 							<li class="age" th:text="${userInfomation.age}">20代前半</li>
 						</ul>
 					</div>
-					<br>
 					<div class="self-introduction">
 						<span th:text="${userInfomation.selfIntroduction}"></span>
 						<span th:if="${#strings.isEmpty(userInfomation.selfIntroduction)}">よろしくお願いします。</span>
@@ -459,7 +458,7 @@
 											th:src="${likeCoordinate.userDetail.imagePath}">
 
 									</span><span th:text="${likeCoordinate.userDetail.userName}"></span></a> さん</span>&nbsp;&nbsp;
-								|&nbsp;&nbsp; <label class="likes"> <input
+								&nbsp;&nbsp; <label class="likes"> <input
 
 									type="radio" class="radio" name="radio"
 									th:id="${likeCoordinate.id}" th:value="${likeCoordinate.id}"><i
