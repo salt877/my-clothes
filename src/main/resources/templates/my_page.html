@@ -35,7 +35,7 @@
 		<div class="container">
 			<div class="user-information">
 				<div class="plofile_img">
-					<img th:if="${userInfomation.imagePath}" class="plofile_icon" alt="写真" src="../static/dist/assets/img/plofile.jpeg" th:src="${userInfomation.imagePath}">
+					<img th:if="${userInfomation.imagePath}" class="plofile_icon" alt="写真" src="../static/dist/assets/img/plofile.jpeg" th:src="@{'/profile_img/'+${userInfomation.imagePath}}">
 					<img th:if="${#strings.isEmpty(userInfomation.imagePath)}" class="plofile_icon" alt="写真" src="../static/dist/assets/img/user_icon.png" th:src="@{/dist/assets/img/user_icon.png}">
 					<br>
 					<div class="prof-and-corde-btn">

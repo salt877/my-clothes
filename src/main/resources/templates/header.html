@@ -12,7 +12,7 @@
 				<a th:href="@{/}"> <img
 					th:src="@{/dist/assets/img/myqlo_favicon.jpg}" alt="site-logo">
 				</a> <a class="header_userName" th:href="@{/mypage}"> <img
-					th:if="${userDetail.imagePath}" th:src="${userDetail.imagePath}"
+					th:if="${userDetail.imagePath}" th:src="@{'/profile_img/'+${userDetail.imagePath}}"
 					style="border-radius: 50%"> <img
 					th:unless="${userDetail.imagePath}"
 					th:src="@{/dist/assets/img/user_icon.png}"

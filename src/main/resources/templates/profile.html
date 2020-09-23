@@ -41,7 +41,7 @@
       <div class="container">
       	<form name="profileForm" action="#" method="post" th:action="@{/edit}" th:object="${registerUserDetailForm}" enctype="multipart/form-data">
       	<div class="imag-icon">
-      		<img th:if="${userDetail.imagePath}" id="preview" class="plofile_icon" alt="写真" src="../static/dist/assets/img/plofile.jpeg" th:src="${userDetail.imagePath}" >
+      		<img th:if="${userDetail.imagePath}" id="preview" class="plofile_icon" alt="写真" src="../static/dist/assets/img/plofile.jpeg" th:src="@{'/profile_img/'+${userDetail.imagePath}}" > 
       		<img th:if="${#strings.isEmpty(userDetail.imagePath)}" id="preview" class="plofile_icon" alt="写真" src="../static/dist/assets/img/user_icon.png" th:src="@{/dist/assets/img/user_icon.png}">
       	</div>
       	<div class="change-image-btn">

@@ -67,6 +67,10 @@ public class RegisterUserDetailService {
 		return userRepository.findMyqloId(userId);
 	}
 	
+	/**
+	 * @param myqloId
+	 * @return
+	 */
 	public User searchMyqloId(String myqloId) {
 		return userRepository.findUserByMyqloId(myqloId);
 	}

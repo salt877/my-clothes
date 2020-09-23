@@ -2,6 +2,14 @@ package jp.co.example.my.clothes.controller;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Base64;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -102,84 +110,160 @@ public class RegisterUserDetailController {
 		}
 
 		UserDetail userDetail = registerUserDetailService.searchUserDetail(userId);
-
 		MultipartFile imageFile = form.getImageFile();
-		String fileExtension = null;
-
-		// すでにアイコンが登録されている場合
-		if (userDetail.getImagePath() != null) {
-
-			try {
-				if (!imageFile.isEmpty()) {
-					fileExtension = getExtension(imageFile.getOriginalFilename());
-				} else if (imageFile.isEmpty()) {
-					form.setImagePath(userDetail.getImagePath());
+		
+		//すでにアイコンが登録されている場合
+		if(userDetail.getImagePath()!=null) {
+			
+			Path path = Paths.get("/Users/rinashioda/workspace-spring-tool-suite-4-4.1.0.RELEASE/my-clothes/src/main/resources/static/profile_img/");
+			System.out.println("ゲットしたパス");
+//			if (!Files.exists(path)) {
+				//画像の内容が違うかどうかチェックして違うなら新しいディレクトリを作って更新
+				if (imageFile != form.getImageFile()) {
+				try {
+					Files.createDirectory(path);
+					System.out.println("新しくディレクトリができた");
+				} catch (NoSuchFileException ex) {
+					System.err.println(ex);
+				} catch (IOException ex) {
+					System.err.println(ex);
 				}
-
-				if (!"jpg".equals(fileExtension) && !"png".equals(fileExtension)) {
-					result.rejectValue("imageFile", "", "拡張子は.jpgか.pngのみに対応しています");
+				int dot = form.getImageFile().getOriginalFilename().lastIndexOf(".");
+				String extention = "";
+				if (dot > 0) {
+					extention = form.getImageFile().getOriginalFilename().substring(dot).toLowerCase();
 				}
-				// 画像ファイルをBase64形式にエンコード
-				String base64FileString = Base64.getEncoder().encodeToString(imageFile.getBytes());
-				if ("jpg".equals(fileExtension)) {
-					base64FileString = "data:image/jpeg;base64," + base64FileString;
-				} else if ("png".equals(fileExtension)) {
-					base64FileString = "data:image/png;base64," + base64FileString;
+				String filename = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS").format(LocalDateTime.now());
+				Path uploadfile = Paths
+						.get("/Users/rinashioda/workspace-spring-tool-suite-4-4.1.0.RELEASE/my-clothes/src/main/resources/static/profile_img/" + filename + extention);
+				
+				try (OutputStream os = Files.newOutputStream(uploadfile, StandardOpenOption.CREATE)) {
+					byte[] bytes = form.getImageFile().getBytes();
+					os.write(bytes);
+					form.setImagePath(filename+extention);
+					System.out.println(filename+extention);
+				} catch (IOException ex) {
+					System.err.println(ex);
 				}
-				// エンコードした画像をセットする
-				if (!form.getImageFile().isEmpty()) {
-					form.setImagePath(base64FileString);
-					// 画像の変更を行わない場合
-				} else if (form.getImageFile().isEmpty()) {
-					UserDetail oldUserDetail = registerUserDetailService.searchUserDetail(userId);
-					form.setImagePath(oldUserDetail.getImagePath());
-				}
-
-				// 削除した場合と形式が異なる場合、以下の例外処理に飛ぶ
-			} catch (NullPointerException | FileNotFoundException ex) {
-
-				System.err.print(ex);
-				result.rejectValue("imageFile", "", "拡張子は.jpgか.pngのみに対応しています");
-
-				form.setImagePath(null);
-
+				
+			} else {
+				form.setImagePath(form.getImagePath());
+				System.out.println("画像の変更がないので何もしない");
 			}
-
-			// アイコンを登録していない場合
-		} else if (userDetail.getImagePath() == null) {
-
+			
+			
+		//アイコンが登録されていない場合
+		} else if(userDetail.getImagePath()==null) {
+			
+		
+		Path path = Paths.get("/Users/rinashioda/workspace-spring-tool-suite-4-4.1.0.RELEASE/my-clothes/src/main/resources/static/profile_img/");
+		if (!Files.exists(path)) {
 			try {
-				fileExtension = getExtension(imageFile.getOriginalFilename());
-
-				if (!"jpg".equals(fileExtension) && !"png".equals(fileExtension)) {
-					result.rejectValue("imageFile", "", "拡張子は.jpgか.pngのみに対応しています");
-				}
-				// 画像ファイルをBase64形式にエンコード
-				String base64FileString = Base64.getEncoder().encodeToString(imageFile.getBytes());
-				if ("jpg".equals(fileExtension)) {
-					base64FileString = "data:image/jpeg;base64," + base64FileString;
-				} else if ("png".equals(fileExtension)) {
-					base64FileString = "data:image/png;base64," + base64FileString;
-				}
-				// エンコードした画像をセットする
-				if (!form.getImageFile().isEmpty()) {
-					form.setImagePath(base64FileString);
-					// 画像の変更を行わない場合
-				} else {
-					UserDetail oldUserDetail = registerUserDetailService.searchUserDetail(userId);
-					form.setImagePath(oldUserDetail.getImagePath());
-				}
-
-				// 画像を変更しない場合と形式が異なる場合、以下の例外処理に飛ぶ
-			} catch (NullPointerException | FileNotFoundException ex) {
-
-				System.err.print(ex);
-				result.rejectValue("imageFile", "", "拡張子は.jpgか.pngのみに対応しています");
-
-				form.setImagePath(null);
+				Files.createDirectory(path);
+			} catch (NoSuchFileException ex) {
+				System.err.println(ex);
+			} catch (IOException ex) {
+				System.err.println(ex);
 			}
+		}
+		
+		int dot = form.getImageFile().getOriginalFilename().lastIndexOf(".");
+		String extention = "";
+		if (dot > 0) {
+			extention = form.getImageFile().getOriginalFilename().substring(dot).toLowerCase();
+		}
+		String filename = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS").format(LocalDateTime.now());
+		Path uploadfile = Paths
+				.get("/Users/rinashioda/workspace-spring-tool-suite-4-4.1.0.RELEASE/my-clothes/src/main/resources/static/profile_img/" + filename + extention);
+		
+		try (OutputStream os = Files.newOutputStream(uploadfile, StandardOpenOption.CREATE)) {
+			byte[] bytes = form.getImageFile().getBytes();
+			os.write(bytes);
+			form.setImagePath(filename+extention);
+			System.out.println(filename+extention);
+		} catch (IOException ex) {
+			System.err.println(ex);
+		}
 
 		}
+
+//		MultipartFile imageFile = form.getImageFile();
+//		String fileExtension = null;
+//
+//		// すでにアイコンが登録されている場合
+//		if (userDetail.getImagePath() != null) {
+//
+//			try {
+//				if (!imageFile.isEmpty()) {
+//					fileExtension = getExtension(imageFile.getOriginalFilename());
+//				} else if (imageFile.isEmpty()) {
+//					form.setImagePath(userDetail.getImagePath());
+//				}
+//
+//				if (!"jpg".equals(fileExtension) && !"png".equals(fileExtension)) {
+//					result.rejectValue("imageFile", "", "拡張子は.jpgか.pngのみに対応しています");
+//				}
+//				// 画像ファイルをBase64形式にエンコード
+//				String base64FileString = Base64.getEncoder().encodeToString(imageFile.getBytes());
+//				if ("jpg".equals(fileExtension)) {
+//					base64FileString = "data:image/jpeg;base64," + base64FileString;
+//				} else if ("png".equals(fileExtension)) {
+//					base64FileString = "data:image/png;base64," + base64FileString;
+//				}
+//				// エンコードした画像をセットする
+//				if (!form.getImageFile().isEmpty()) {
+//					form.setImagePath(base64FileString);
+//					// 画像の変更を行わない場合
+//				} else if (form.getImageFile().isEmpty()) {
+//					UserDetail oldUserDetail = registerUserDetailService.searchUserDetail(userId);
+//					form.setImagePath(oldUserDetail.getImagePath());
+//				}
+//
+//				// 削除した場合と形式が異なる場合、以下の例外処理に飛ぶ
+//			} catch (NullPointerException | FileNotFoundException ex) {
+//
+//				System.err.print(ex);
+//				result.rejectValue("imageFile", "", "拡張子は.jpgか.pngのみに対応しています");
+//
+//				form.setImagePath(null);
+//
+//			}
+//
+//			// アイコンを登録していない場合
+//		} else if (userDetail.getImagePath() == null) {
+//
+//			try {
+//				fileExtension = getExtension(imageFile.getOriginalFilename());
+//
+//				if (!"jpg".equals(fileExtension) && !"png".equals(fileExtension)) {
+//					result.rejectValue("imageFile", "", "拡張子は.jpgか.pngのみに対応しています");
+//				}
+//				// 画像ファイルをBase64形式にエンコード
+//				String base64FileString = Base64.getEncoder().encodeToString(imageFile.getBytes());
+//				if ("jpg".equals(fileExtension)) {
+//					base64FileString = "data:image/jpeg;base64," + base64FileString;
+//				} else if ("png".equals(fileExtension)) {
+//					base64FileString = "data:image/png;base64," + base64FileString;
+//				}
+//				// エンコードした画像をセットする
+//				if (!form.getImageFile().isEmpty()) {
+//					form.setImagePath(base64FileString);
+//					// 画像の変更を行わない場合
+//				} else {
+//					UserDetail oldUserDetail = registerUserDetailService.searchUserDetail(userId);
+//					form.setImagePath(oldUserDetail.getImagePath());
+//				}
+//
+//				// 画像を変更しない場合と形式が異なる場合、以下の例外処理に飛ぶ
+//			} catch (NullPointerException | FileNotFoundException ex) {
+//
+//				System.err.print(ex);
+//				result.rejectValue("imageFile", "", "拡張子は.jpgか.pngのみに対応しています");
+//
+//				form.setImagePath(null);
+//			}
+//
+//		}
 
 		UserDetail newUserDetail = new UserDetail();
 
