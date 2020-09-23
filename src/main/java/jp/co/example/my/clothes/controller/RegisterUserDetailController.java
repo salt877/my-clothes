@@ -98,7 +98,7 @@ public class RegisterUserDetailController {
 	 * @param userId ユーザID
 	 * @param form   フォーム
 	 * @param result エラー格納用オブジェクト
-	 * @return　プロフィール画面
+	 * @return プロフィール画面
 	 * @throws Exception
 	 */
 	@RequestMapping("/edit")
@@ -111,81 +111,104 @@ public class RegisterUserDetailController {
 
 		UserDetail userDetail = registerUserDetailService.searchUserDetail(userId);
 		MultipartFile imageFile = form.getImageFile();
-		
-		//すでにアイコンが登録されている場合
-		if(userDetail.getImagePath()!=null) {
-			
-			Path path = Paths.get("/Users/rinashioda/workspace-spring-tool-suite-4-4.1.0.RELEASE/my-clothes/src/main/resources/static/profile_img/");
-			System.out.println("ゲットしたパス");
-//			if (!Files.exists(path)) {
-				//画像の内容が違うかどうかチェックして違うなら新しいディレクトリを作って更新
-				if (imageFile != form.getImageFile()) {
-				try {
+		String fileExtension = null;
+
+		System.out.println("イメージファイル:" + imageFile);
+
+		// ①すでにアイコンが登録されている場合
+		if (userDetail.getImagePath() != null) {
+
+			System.out.println("アイコンは登録されてました");
+
+			Path path = Paths.get(
+					"/Users/rinashioda/workspace-spring-tool-suite-4-4.1.0.RELEASE/my-clothes/src/main/resources/static/profile_img/");
+
+			try {
+				// ①-1.別のアイコンに変更したい場合
+				if (!imageFile.isEmpty()) {
 					Files.createDirectory(path);
 					System.out.println("新しくディレクトリができた");
-				} catch (NoSuchFileException ex) {
-					System.err.println(ex);
-				} catch (IOException ex) {
-					System.err.println(ex);
+
+					int dot = form.getImageFile().getOriginalFilename().lastIndexOf(".");
+					String extention = "";
+					if (dot > 0) {
+						extention = form.getImageFile().getOriginalFilename().substring(dot).toLowerCase();
+						String filename = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS").format(LocalDateTime.now());
+						Path uploadfile = Paths.get(
+								"/Users/rinashioda/workspace-spring-tool-suite-4-4.1.0.RELEASE/my-clothes/src/main/resources/static/profile_img/"
+										+ filename + extention);
+
+						try (OutputStream os = Files.newOutputStream(uploadfile, StandardOpenOption.CREATE)) {
+							byte[] bytes = form.getImageFile().getBytes();
+							os.write(bytes);
+							form.setImagePath(filename + extention);
+							System.out.println("この画像に変更します:" + filename + extention);
+						} catch (IOException ex) {
+							System.err.println(ex);
+						}
+
+					}
+
+					// ①-2.アイコンを変更しない場合
+				} else if (imageFile.isEmpty()) {
+					form.setImagePath(userDetail.getImagePath());
+					System.out.println("画像の変更がないので何もしない");
 				}
+
+			} catch (NoSuchFileException | NullPointerException ex) {
+				System.err.println("NoSuchFileException:" + ex);
+				form.setImagePath(null);
+			} catch (IOException ex) {
+				System.err.println("IOException" + ex);
+			}
+
+			// ②アイコンが登録されていない場合
+		} else if (userDetail.getImagePath() == null) {
+			System.out.println("アイコンは登録されてませんでした");
+
+//			Path path = Paths.get(
+//					"/Users/rinashioda/workspace-spring-tool-suite-4-4.1.0.RELEASE/my-clothes/src/main/resources/static/profile_img/");
+//
+//			System.out.println(path);
+			try {
+				// Files.createDirectory(path);
+				System.out.println("ここ");
+
 				int dot = form.getImageFile().getOriginalFilename().lastIndexOf(".");
 				String extention = "";
 				if (dot > 0) {
 					extention = form.getImageFile().getOriginalFilename().substring(dot).toLowerCase();
 				}
 				String filename = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS").format(LocalDateTime.now());
-				Path uploadfile = Paths
-						.get("/Users/rinashioda/workspace-spring-tool-suite-4-4.1.0.RELEASE/my-clothes/src/main/resources/static/profile_img/" + filename + extention);
-				
+				Path uploadfile = Paths.get(
+						"/Users/rinashioda/workspace-spring-tool-suite-4-4.1.0.RELEASE/my-clothes/src/main/resources/static/profile_img/"
+								+ filename + extention);
+
+				System.out.println("ここまできた");
 				try (OutputStream os = Files.newOutputStream(uploadfile, StandardOpenOption.CREATE)) {
 					byte[] bytes = form.getImageFile().getBytes();
 					os.write(bytes);
-					form.setImagePath(filename+extention);
-					System.out.println(filename+extention);
-				} catch (IOException ex) {
-					System.err.println(ex);
-				}
-				
-			} else {
-				form.setImagePath(form.getImagePath());
-				System.out.println("画像の変更がないので何もしない");
-			}
-			
-			
-		//アイコンが登録されていない場合
-		} else if(userDetail.getImagePath()==null) {
-			
-		
-		Path path = Paths.get("/Users/rinashioda/workspace-spring-tool-suite-4-4.1.0.RELEASE/my-clothes/src/main/resources/static/profile_img/");
-		if (!Files.exists(path)) {
-			try {
-				Files.createDirectory(path);
-			} catch (NoSuchFileException ex) {
-				System.err.println(ex);
-			} catch (IOException ex) {
-				System.err.println(ex);
-			}
-		}
-		
-		int dot = form.getImageFile().getOriginalFilename().lastIndexOf(".");
-		String extention = "";
-		if (dot > 0) {
-			extention = form.getImageFile().getOriginalFilename().substring(dot).toLowerCase();
-		}
-		String filename = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS").format(LocalDateTime.now());
-		Path uploadfile = Paths
-				.get("/Users/rinashioda/workspace-spring-tool-suite-4-4.1.0.RELEASE/my-clothes/src/main/resources/static/profile_img/" + filename + extention);
-		
-		try (OutputStream os = Files.newOutputStream(uploadfile, StandardOpenOption.CREATE)) {
-			byte[] bytes = form.getImageFile().getBytes();
-			os.write(bytes);
-			form.setImagePath(filename+extention);
-			System.out.println(filename+extention);
-		} catch (IOException ex) {
-			System.err.println(ex);
-		}
+					form.setImagePath(filename + extention);
+					System.out.println("新しく登録したい" + filename + extention);
 
+					// そのまま何も登録しない場合
+				} catch (IOException | NullPointerException ex) {
+					System.err.println(ex);
+					form.setImagePath(null);
+					System.out.println("そのまま何も登録しない");
+				}
+
+			} catch (NullPointerException ex) {
+				System.err.println(ex);
+				System.out.println("これ〜");
+
+			} 
 		}
+//			catch (IOException ex) {
+//				System.err.println(ex);
+//			System.out.println("あれ〜");
+//			}
+//			
 
 //		MultipartFile imageFile = form.getImageFile();
 //		String fileExtension = null;
@@ -265,32 +288,33 @@ public class RegisterUserDetailController {
 //
 //		}
 
-		UserDetail newUserDetail = new UserDetail();
+			UserDetail newUserDetail = new UserDetail();
 
-		if (!StringUtils.isEmpty(form.getImagePath())) {
-			newUserDetail.setImagePath(form.getImagePath());
-		}
+			if (!StringUtils.isEmpty(form.getImagePath())) {
+				newUserDetail.setImagePath(form.getImagePath());
+			}
 
-		if (!StringUtils.isEmpty(form.getUserName())) {
-			newUserDetail.setUserName(form.getUserName());
-		}
-		if (!StringUtils.isEmpty(form.getGender())) {
-			newUserDetail.setGender(form.getGender());
-		}
-		if (!StringUtils.isEmpty(form.getAge())) {
-			newUserDetail.setAge(form.getAge());
-		}
-		if (!StringUtils.isEmpty(form.getHeight())) {
-			newUserDetail.setHeight(form.getHeight());
-		}
-		if (!StringUtils.isEmpty(form.getSelfIntroduction())) {
-			newUserDetail.setSelfIntroduction(form.getSelfIntroduction());
-		}
+			if (!StringUtils.isEmpty(form.getUserName())) {
+				newUserDetail.setUserName(form.getUserName());
+			}
+			if (!StringUtils.isEmpty(form.getGender())) {
+				newUserDetail.setGender(form.getGender());
+			}
+			if (!StringUtils.isEmpty(form.getAge())) {
+				newUserDetail.setAge(form.getAge());
+			}
+			if (!StringUtils.isEmpty(form.getHeight())) {
+				newUserDetail.setHeight(form.getHeight());
+			}
+			if (!StringUtils.isEmpty(form.getSelfIntroduction())) {
+				newUserDetail.setSelfIntroduction(form.getSelfIntroduction());
+			}
 
-		newUserDetail.setId(userDetail.getId());
+			newUserDetail.setId(userDetail.getId());
 
-		registerUserDetailService.editUserDetail(newUserDetail);
+			registerUserDetailService.editUserDetail(newUserDetail);
 
-		return showProfileEdit(model, userId, form, result);
+			return showProfileEdit(model, userId, form, result);
+		}
 	}
-}
+
