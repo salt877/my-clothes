@@ -121,7 +121,7 @@ public class RegisterUserDetailController {
 			System.out.println("アイコンは登録されてました");
 
 			Path path = Paths.get(
-					"/Users/rinashioda/workspace-spring-tool-suite-4-4.1.0.RELEASE/my-clothes/src/main/resources/static/profile_img/");
+					"/my-clothes/src/main/resources/static/profile_img/");
 
 			try {
 				// ①-1.別のアイコンに変更したい場合
