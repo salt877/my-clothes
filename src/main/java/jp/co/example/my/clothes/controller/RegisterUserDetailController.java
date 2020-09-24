@@ -20,6 +20,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -50,7 +51,7 @@ public class RegisterUserDetailController {
 	 * @return 基本情報編集ページ
 	 * @throws IOException
 	 */
-	@RequestMapping("/profileEdit")
+	@RequestMapping(value="/profileEdit",method=RequestMethod.GET)
 	public String showProfileEdit(Model model, @RequestParam(value = "userId", required = true) Integer userId,
 			RegisterUserDetailForm form, BindingResult result) throws IOException {
 
@@ -101,7 +102,7 @@ public class RegisterUserDetailController {
 	 * @return プロフィール画面
 	 * @throws Exception
 	 */
-	@RequestMapping("/edit")
+	@RequestMapping(value="/edit",method=RequestMethod.POST)
 	public String editProfile(Model model, Integer userId, @Validated RegisterUserDetailForm form, BindingResult result)
 			throws Exception {
 
@@ -121,12 +122,12 @@ public class RegisterUserDetailController {
 			System.out.println("アイコンは登録されてました");
 
 			Path path = Paths.get(
-					"/my-clothes/src/main/resources/static/profile_img/");
+					"src/main/resources/static/profile_img/");
 
 			try {
 				// ①-1.別のアイコンに変更したい場合
 				if (!imageFile.isEmpty()) {
-					Files.createDirectory(path);
+					//Files.createDirectory(path);
 					System.out.println("新しくディレクトリができた");
 
 					int dot = form.getImageFile().getOriginalFilename().lastIndexOf(".");
@@ -135,7 +136,7 @@ public class RegisterUserDetailController {
 						extention = form.getImageFile().getOriginalFilename().substring(dot).toLowerCase();
 						String filename = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS").format(LocalDateTime.now());
 						Path uploadfile = Paths.get(
-								"/Users/rinashioda/workspace-spring-tool-suite-4-4.1.0.RELEASE/my-clothes/src/main/resources/static/profile_img/"
+								"src/main/resources/static/profile_img/"
 										+ filename + extention);
 
 						try (OutputStream os = Files.newOutputStream(uploadfile, StandardOpenOption.CREATE)) {
@@ -155,12 +156,14 @@ public class RegisterUserDetailController {
 					System.out.println("画像の変更がないので何もしない");
 				}
 
-			} catch (NoSuchFileException | NullPointerException ex) {
+			} catch (NullPointerException ex) {
 				System.err.println("NoSuchFileException:" + ex);
 				form.setImagePath(null);
-			} catch (IOException ex) {
-				System.err.println("IOException" + ex);
-			}
+				
+			} 
+//				catch (IOException ex) {
+//				System.err.println("IOException:" + ex);
+//			}
 
 			// ②アイコンが登録されていない場合
 		} else if (userDetail.getImagePath() == null) {
@@ -181,7 +184,7 @@ public class RegisterUserDetailController {
 				}
 				String filename = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS").format(LocalDateTime.now());
 				Path uploadfile = Paths.get(
-						"/Users/rinashioda/workspace-spring-tool-suite-4-4.1.0.RELEASE/my-clothes/src/main/resources/static/profile_img/"
+						"src/main/resources/static/profile_img/"
 								+ filename + extention);
 
 				System.out.println("ここまできた");
