@@ -127,7 +127,7 @@ public class RegisterUserDetailController {
 			try {
 				// ①-1.別のアイコンに変更したい場合
 				if (!imageFile.isEmpty()) {
-					Files.createDirectory(path);
+					//Files.createDirectory(path);
 					System.out.println("新しくディレクトリができた");
 
 					int dot = form.getImageFile().getOriginalFilename().lastIndexOf(".");
