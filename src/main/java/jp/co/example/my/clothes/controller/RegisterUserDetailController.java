@@ -161,9 +161,9 @@ public class RegisterUserDetailController {
 				form.setImagePath(null);
 				
 			} 
-				catch (IOException ex) {
-				System.err.println("IOException:" + ex);
-			}
+//				catch (IOException ex) {
+//				System.err.println("IOException:" + ex);
+//			}
 
 			// ②アイコンが登録されていない場合
 		} else if (userDetail.getImagePath() == null) {
