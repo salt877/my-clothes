@@ -127,7 +127,7 @@ public class RegisterUserDetailController {
 			try {
 				// ①-1.別のアイコンに変更したい場合
 				if (!imageFile.isEmpty()) {
-					//Files.createDirectory(path);
+					Files.createDirectory(path);
 					System.out.println("新しくディレクトリができた");
 
 					int dot = form.getImageFile().getOriginalFilename().lastIndexOf(".");
@@ -161,20 +161,20 @@ public class RegisterUserDetailController {
 				form.setImagePath(null);
 				
 			} 
-//				catch (IOException ex) {
-//				System.err.println("IOException:" + ex);
-//			}
+				catch (IOException ex) {
+				System.err.println("IOException:" + ex);
+			}
 
 			// ②アイコンが登録されていない場合
 		} else if (userDetail.getImagePath() == null) {
 			System.out.println("アイコンは登録されてませんでした");
 
-//			Path path = Paths.get(
-//					"/Users/rinashioda/workspace-spring-tool-suite-4-4.1.0.RELEASE/my-clothes/src/main/resources/static/profile_img/");
-//
-//			System.out.println(path);
+			Path path = Paths.get(
+					"src/main/resources/static/profile_img/");
+
+			System.out.println(path);
 			try {
-				// Files.createDirectory(path);
+				Files.createDirectory(path);
 				System.out.println("ここ");
 
 				int dot = form.getImageFile().getOriginalFilename().lastIndexOf(".");
@@ -188,6 +188,7 @@ public class RegisterUserDetailController {
 								+ filename + extention);
 
 				System.out.println("ここまできた");
+				
 				try (OutputStream os = Files.newOutputStream(uploadfile, StandardOpenOption.CREATE)) {
 					byte[] bytes = form.getImageFile().getBytes();
 					os.write(bytes);
