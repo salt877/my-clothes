@@ -56,7 +56,7 @@
 						<img
 						th:if="${userInfomation.imagePath}" class="plofile_icon" alt="写真"
 						src="../static/dist/assets/img/user_icon.png"
-						th:src="${userInfomation.imagePath}">
+						th:src="@{'/profile_img/'+${userInfomation.imagePath}}">
 				</div>
 				<div class="user_main">
 					<h1 class="name" th:text="${userInfomation.userName}">テストユーザ</h1>

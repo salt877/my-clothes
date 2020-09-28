@@ -3,6 +3,7 @@ package jp.co.example.my.clothes.controller;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
@@ -174,7 +175,7 @@ public class RegisterUserDetailController {
 
 			System.out.println(path);
 			try {
-				Files.createDirectory(path);
+				//Files.createDirectory(path);
 				System.out.println("ここ");
 
 				int dot = form.getImageFile().getOriginalFilename().lastIndexOf(".");
